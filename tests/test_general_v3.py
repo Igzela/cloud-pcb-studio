@@ -45,6 +45,51 @@ def test_topology_rename_invariance():
     assert len(a['repeated_channels'])==len(b['repeated_channels'])
 
 
+def test_value_normalization_merges_case_only_signature_splits():
+    """'1K' vs '1k' is one resistance; the normalized variant must not split a 4-way channel."""
+    comps=[component(f'u{i}') for i in range(4)]+[component(f'r{i}','Resistor',2) for i in range(4)]
+    comps[4]['value']='1K'  # one shunt resistor written with upper-case suffix
+    for i in (5,6,7): comps[i]['value']='1k'
+    nets={f'ch{i}':[[f'u{i}','1'],[f'r{i}','1']] for i in range(4)}
+    nets['rail']=[[r,'2'] for r in ('u0','u1','u2','u3','r0','r1','r2','r3')]
+    s=spec(comps,nets)
+    assert not any(set(g['anchors'])=={'u0','u1','u2','u3'} for g in analyze_topology(s)['repeated_channels'])
+    h=analyze_topology(s,value_normalize=True)
+    assert any(set(g['anchors'])=={'u0','u1','u2','u3'} for g in h['repeated_channels'])
+    # Raw input values stay untouched for electrical parsing and silkscreen.
+    assert s['components'][4]['value']=='1K'
+
+
+def test_value_normalization_keeps_genuinely_different_values_apart():
+    comps=[component('a'),component('b'),component('x','Resistor',2),component('y','Resistor',2)]
+    comps[2]['value']='1k';comps[3]['value']='4k7'
+    s=spec(comps,{'one':[['a','1'],['x','1']],'two':[['b','1'],['y','1']]})
+    assert not analyze_topology(s,value_normalize=True)['repeated_channels']
+    assert not analyze_topology(s)['repeated_channels']
+
+
+def test_value_normalization_never_merges_mega_with_milli():
+    """'1M' (mega) and '1m' (milli) differ in meaning despite identical casefold."""
+    from cloud_pcb.general_solver.topology import canonical_component_values
+    comps=[component('a'),component('b'),component('x','Resistor',2),component('y','Resistor',2)]
+    comps[2]['value']='1M';comps[3]['value']='1m'
+    s=spec(comps,{'one':[['a','1'],['x','1']],'two':[['b','1'],['y','1']]})
+    assert canonical_component_values(s)=={}
+    assert not analyze_topology(s,value_normalize=True)['repeated_channels']
+
+
+def test_value_normalization_is_inert_when_spelling_is_consistent():
+    """A specification with consistent casing keeps every signature byte-identical."""
+    from cloud_pcb.general_solver.topology import canonical_component_values,component_signature
+    comps=[component('a'),component('b'),component('x','Resistor',2),component('y','Resistor',2)]
+    comps[2]['value']='10K';comps[3]['value']='10K'
+    s=spec(comps,{'one':[['a','1'],['x','1']],'two':[['b','1'],['y','1']]})
+    assert canonical_component_values(s)=={}
+    h=analyze_topology(s,value_normalize=True)
+    assert analyze_topology(s)['repeated_channels']==h['repeated_channels']
+    assert component_signature(s['components'][2])==component_signature(s['components'][2],{})
+
+
 def test_one_fine_pitch_part_does_not_collapse_power_trunks():
     s=spec([component('fine')]);s['components'][0]['pads'][0]['net']='rail'
     rule=NetClassRule('POWER',.25,.15,.3,.55,2)

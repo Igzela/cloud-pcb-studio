@@ -8,18 +8,46 @@ from collections import defaultdict
 import networkx as nx
 
 
-def component_signature(comp):
+def canonical_component_values(spec) -> dict[str, str]:
+    """Canonical spellings for topology value matching, restricted to proven ambiguity.
+
+    Equivalence is granted only to value strings that this same specification
+    already spells inconsistently (e.g. both '1K' and '1k' occur), and only when
+    the differing letter positions never change unit meaning — 'M' vs 'm' is
+    mega vs milli, so such classes keep exact matching. A specification with
+    consistent spelling gets an empty map, leaving every signature unchanged.
+    The raw spec values are never rewritten.
+    """
+    groups: dict[str, set[str]] = defaultdict(set)
+    for comp in spec.get('components', []):
+        raw = str(comp.get('value', '')).strip().replace('µ', 'u').replace('μ', 'u')
+        groups[raw.casefold()].add(raw)
+    mapping: dict[str, str] = {}
+    for folded, members in groups.items():
+        if len(members) < 2:
+            continue
+        unsafe = any(len(set(position)) > 1 and set(position) & {'M', 'm'}
+                     for position in zip(*members))
+        if not unsafe:
+            mapping.update((member, folded) for member in members)
+    return mapping
+
+
+def component_signature(comp, value_map: dict[str, str] | None = None):
     pads=comp.get('pads',[])
     geometry=sorted((str(p['num']),round(float(p['x_rel_mm']),3),round(float(p['y_rel_mm']),3),round(float(p['w_mm']),3),round(float(p['h_mm']),3),float(p.get('angle_rel_deg',0)),p.get('pin_type','')) for p in pads)
-    return hashlib.sha256(repr((comp.get('footprint_name',''),comp.get('value',''),geometry)).encode()).hexdigest()
+    raw=comp.get('value','')
+    value=value_map.get(raw,raw) if value_map else raw
+    return hashlib.sha256(repr((comp.get('footprint_name',''),value,geometry)).encode()).hexdigest()
 
 
-def analyze_topology(spec):
+def analyze_topology(spec, *, value_normalize: bool = False):
     comps={c['refdes']:c for c in spec['components']}
+    value_map=canonical_component_values(spec) if value_normalize else None
     rails={r['net'] for r in spec.get('design_requirements',{}).get('power_rails',[])}
     rails.update(n for n in spec.get('nets',{}) if n.upper() in {'GND','AGND','DGND','PGND','VSS','VCC','VDD','VBUS'} or n.startswith('+'))
     graph=nx.Graph()
-    for ref,c in comps.items(): graph.add_node(ref,signature=component_signature(c))
+    for ref,c in comps.items(): graph.add_node(ref,signature=component_signature(c,value_map))
     for net,pins in spec.get('nets',{}).items():
         refs=sorted({r for r,_ in pins if r in comps})
         if net in rails or len(refs)<2: continue

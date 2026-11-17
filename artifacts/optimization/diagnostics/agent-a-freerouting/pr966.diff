@@ -1,0 +1,1897 @@
+diff --git a/.github/workflows/create-release.yml b/.github/workflows/create-release.yml
+index 9a938f984..e57aa04ed 100644
+--- a/.github/workflows/create-release.yml
++++ b/.github/workflows/create-release.yml
+@@ -351,6 +351,15 @@ jobs:
+             ./build/native/nativeCompile/freerouting-cli -de fixtures/Issue508-DAC2020_bm01.dsn -do build/test_smoke.ses -mp 1
+           fi
+           test -s build/test_smoke.ses
++      - name: 'Smoke Test - KiCad Board with Component Outlines and Planes (Issue #957)'
++        shell: bash
++        run: |
++          if [ "${{ runner.os }}" = "Windows" ]; then
++            ./build/native/nativeCompile/freerouting-cli.exe -de fixtures/Issue957-smoke-ldo-led.dsn -do build/test_issue957.ses -mp 1
++          else
++            ./build/native/nativeCompile/freerouting-cli -de fixtures/Issue957-smoke-ldo-led.dsn -do build/test_issue957.ses -mp 1
++          fi
++          test -s build/test_issue957.ses
+       - name: Smoke Test - DRC Report Mode
+         shell: bash
+         run: |
+diff --git a/.github/workflows/create-snapshot.yml b/.github/workflows/create-snapshot.yml
+index 8f7a8144b..2af266c19 100644
+--- a/.github/workflows/create-snapshot.yml
++++ b/.github/workflows/create-snapshot.yml
+@@ -344,6 +344,15 @@ jobs:
+             ./build/native/nativeCompile/freerouting-cli -de fixtures/Issue508-DAC2020_bm01.dsn -do build/test_smoke.ses -mp 1
+           fi
+           test -s build/test_smoke.ses
++      - name: 'Smoke Test - KiCad Board with Component Outlines and Planes (Issue #957)'
++        shell: bash
++        run: |
++          if [ "${{ runner.os }}" = "Windows" ]; then
++            ./build/native/nativeCompile/freerouting-cli.exe -de fixtures/Issue957-smoke-ldo-led.dsn -do build/test_issue957.ses -mp 1
++          else
++            ./build/native/nativeCompile/freerouting-cli -de fixtures/Issue957-smoke-ldo-led.dsn -do build/test_issue957.ses -mp 1
++          fi
++          test -s build/test_issue957.ses
+       - name: Smoke Test - DRC Report Mode
+         shell: bash
+         run: |
+diff --git a/fixtures/Issue957-smoke-ldo-led.dsn b/fixtures/Issue957-smoke-ldo-led.dsn
+new file mode 100644
+index 000000000..168fe1b51
+--- /dev/null
++++ b/fixtures/Issue957-smoke-ldo-led.dsn
+@@ -0,0 +1,300 @@
++(pcb "/private/tmp/claude-501/-Users-noahpique-claude-aipcbdesigner/ef73943f-9c05-4851-9f55-ee422abdce53/scratchpad/fr/smoke-ldo-led.dsn"
++  (parser
++    (string_quote ")
++    (space_in_quoted_tokens on)
++    (host_cad "KiCad's Pcbnew")
++    (host_version "10.0.0")
++  )
++  (resolution um 10)
++  (unit um)
++  (structure
++    (layer F.Cu
++      (type signal)
++      (property
++        (index 0)
++      )
++    )
++    (layer B.Cu
++      (type signal)
++      (property
++        (index 1)
++      )
++    )
++    (boundary
++      (path pcb 0  129044 -100000  129131 -100008  129217 -100023  129301 -100046
++            129383 -100076  129462 -100113  129538 -100156  129609 -100206
++            129676 -100262  129738 -100324  129794 -100391  129844 -100462
++            129887 -100538  129924 -100617  129954 -100699  129977 -100783
++            129992 -100869  130000 -100956  130000 -101000  130000 -119000
++            130000 -119044  129992 -119131  129977 -119217  129954 -119301
++            129924 -119383  129887 -119462  129844 -119538  129794 -119609
++            129738 -119676  129676 -119738  129609 -119794  129538 -119844
++            129462 -119887  129383 -119924  129301 -119954  129217 -119977
++            129131 -119992  129044 -120000  129000 -120000  101000 -120000
++            100956 -120000  100869 -119992  100783 -119977  100699 -119954
++            100617 -119924  100538 -119887  100462 -119844  100391 -119794
++            100324 -119738  100262 -119676  100206 -119609  100156 -119538
++            100113 -119462  100076 -119383  100046 -119301  100023 -119217
++            100008 -119131  100000 -119044  100000 -119000  100000 -101000
++            100000 -100956  100008 -100869  100023 -100783  100046 -100699
++            100076 -100617  100113 -100538  100156 -100462  100206 -100391
++            100262 -100324  100324 -100262  100391 -100206  100462 -100156
++            100538 -100113  100617 -100076  100699 -100046  100783 -100023
++            100869 -100008  100956 -100000  101000 -100000  129000 -100000
++            129044 -100000)
++    )
++    (plane GND (polygon F.Cu 0  129000 -100500  129098 -100510  129191 -100538  129278 -100584
++            129354 -100646  129416 -100722  129462 -100809  129490 -100902
++            129500 -101000  129500 -119000  129490 -119098  129462 -119191
++            129416 -119278  129354 -119354  129278 -119416  129191 -119462
++            129098 -119490  129000 -119500  101000 -119500  100902 -119490
++            100809 -119462  100722 -119416  100646 -119354  100584 -119278
++            100538 -119191  100510 -119098  100500 -119000  100500 -101000
++            100510 -100902  100538 -100809  100584 -100722  100646 -100646
++            100722 -100584  100809 -100538  100902 -100510  101000 -100500
++            129000 -100500))
++    (plane GND (polygon B.Cu 0  129000 -100500  129098 -100510  129191 -100538  129278 -100584
++            129354 -100646  129416 -100722  129462 -100809  129490 -100902
++            129500 -101000  129500 -119000  129490 -119098  129462 -119191
++            129416 -119278  129354 -119354  129278 -119416  129191 -119462
++            129098 -119490  129000 -119500  101000 -119500  100902 -119490
++            100809 -119462  100722 -119416  100646 -119354  100584 -119278
++            100538 -119191  100510 -119098  100500 -119000  100500 -101000
++            100510 -100902  100538 -100809  100584 -100722  100646 -100646
++            100722 -100584  100809 -100538  100902 -100510  101000 -100500
++            129000 -100500))
++    (via "Via[0-1]_600:300_um")
++    (rule
++      (width 250)
++      (clearance 200)
++      (clearance 50 (type smd_smd))
++    )
++  )
++  (placement
++    (component "Package_TO_SOT_SMD:SOT-223-3_TabPin2"
++      (place U1 108550 -112150 front -90 (PN "AMS1117-3.3"))
++    )
++    (component Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical
++      (place J1 102270 -106646 front 180 (PN "5V IN"))
++    )
++    (component Capacitor_SMD:C_0805_2012Metric
++      (place C1 106250 -105550 front 90 (PN 10uF))
++    )
++    (component Resistor_SMD:R_0603_1608Metric
++      (place R1 113150 -105150 front 0 (PN 1k))
++    )
++    (component LED_SMD:LED_0603_1608Metric
++      (place D1 114750 -107200 front 180 (PN RED))
++    )
++    (component "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A"
++      (place C2 108600 -104950 front 90 (PN 22uF))
++    )
++  )
++  (library
++    (image "Package_TO_SOT_SMD:SOT-223-3_TabPin2"
++      (outline (polygon signal 0  4395 3595  4395 -3595  -4395 -3595  -4395 3595))
++      (outline (path signal 120  -1850 -3410  1910 -3410))
++      (outline (path signal 120  1910 -3410  1910 -2150))
++      (outline (path signal 120  -1850 3410  1910 3410))
++      (outline (path signal 120  1910 3410  1910 2150))
++      (outline (path signal 100  -1850 -3350  1850 -3350))
++      (outline (path signal 100  -1850 2350  -1850 -3350))
++      (outline (path signal 100  -1850 2350  -850 3350))
++      (outline (path signal 100  -850 3350  1850 3350))
++      (outline (path signal 100  1850 3350  1850 -3350))
++      (pin RoundRect[T]Pad_2000.000000x1500.000000_376.427000_um_0.000000_0 1 -3150 2300)
++      (pin RoundRect[T]Pad_2000.000000x1500.000000_376.427000_um_0.000000_0 2 -3150 0)
++      (pin RoundRect[T]Pad_2000.000000x3800.000000_501.903000_um_0.000000_0 2@1 3150 0)
++      (pin RoundRect[T]Pad_2000.000000x1500.000000_376.427000_um_0.000000_0 3 -3150 -2300)
++    )
++    (image Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical
++      (outline (polygon signal 0  -1765 1765  1765 1765  1765 -4315  -1765 -4315))
++      (outline (path signal 120  1380 -1270  1380 -3920))
++      (outline (path signal 120  -1380 -3920  1380 -3920))
++      (outline (path signal 120  -1380 -1270  1380 -1270))
++      (outline (path signal 120  -1380 -1270  -1380 -3920))
++      (outline (path signal 120  -1380 0  -1380 1380))
++      (outline (path signal 120  -1380 1380  0 1380))
++      (outline (path signal 100  1270 -3810  -1270 -3810))
++      (outline (path signal 100  1270 1270  1270 -3810))
++      (outline (path signal 100  -635 1270  1270 1270))
++      (outline (path signal 100  -1270 -3810  -1270 635))
++      (outline (path signal 100  -1270 635  -635 1270))
++      (pin Rect[A]Pad_1700.000000x1700.000000_um 1 0 0)
++      (pin Round[A]Pad_1700.000000_um 2 0 -2540)
++    )
++    (image Capacitor_SMD:C_0805_2012Metric
++      (outline (polygon signal 0  -1695 -975  -1695 975  1695 975  1695 -975))
++      (outline (path signal 120  -261.252 735  261.252 735))
++      (outline (path signal 120  -261.252 -735  261.252 -735))
++      (outline (path signal 100  -1000 625  -1000 -625  1000 -625  1000 625  -1000 625))
++      (pin RoundRect[T]Pad_1000.000000x1450.000000_250.951000_um_0.000000_0 1 -950 0)
++      (pin RoundRect[T]Pad_1000.000000x1450.000000_250.951000_um_0.000000_0 2 950 0)
++    )
++    (image Resistor_SMD:R_0603_1608Metric
++      (outline (polygon signal 0  1475 -725  -1475 -725  -1475 725  1475 725))
++      (outline (path signal 120  -237.258 522.5  237.258 522.5))
++      (outline (path signal 120  -237.258 -522.5  237.258 -522.5))
++      (outline (path signal 100  -800 412.5  800 412.5  800 -412.5  -800 -412.5  -800 412.5))
++      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 1 -825 0)
++      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 2 825 0)
++    )
++    (image LED_SMD:LED_0603_1608Metric
++      (outline (polygon signal 0  -1475 725  1475 725  1475 -725  -1475 -725))
++      (outline (path signal 120  800 735  -1485 735))
++      (outline (path signal 120  -1485 -735  800 -735))
++      (outline (path signal 120  -1485 735  -1485 -735))
++      (outline (path signal 100  800 -400  800 400))
++      (outline (path signal 100  800 400  -500 400))
++      (outline (path signal 100  -500 400  -800 100))
++      (outline (path signal 100  -800 -400  800 -400))
++      (outline (path signal 100  -800 100  -800 -400))
++      (pin RoundRect[T]Pad_875.000000x950.000000_219.582000_um_0.000000_0 1 -787.5 0)
++      (pin RoundRect[T]Pad_875.000000x950.000000_219.582000_um_0.000000_0 2 787.5 0)
++    )
++    (image "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A"
++      (outline (polygon signal 0  -2305 -1045  -2305 1045  2305 1045  2305 -1045))
++      (outline (path signal 120  1600 955  -2320 955))
++      (outline (path signal 120  -2320 955  -2320 -955))
++      (outline (path signal 120  -2320 -955  1600 -955))
++      (outline (path signal 100  1600 800  -1200 800))
++      (outline (path signal 100  -1200 800  -1600 400))
++      (outline (path signal 100  -1600 400  -1600 -800))
++      (outline (path signal 100  1600 -800  1600 800))
++      (outline (path signal 100  -1600 -800  1600 -800))
++      (pin RoundRect[T]Pad_1415.000000x1390.000000_250.951000_um_0.000000_0 1 -1352.5 0)
++      (pin RoundRect[T]Pad_1415.000000x1390.000000_250.951000_um_0.000000_0 2 1352.5 0)
++    )
++    (padstack Round[A]Pad_1700.000000_um
++      (shape (circle F.Cu 1700))
++      (shape (circle B.Cu 1700))
++      (attach off)
++    )
++    (padstack RoundRect[T]Pad_2000.000000x1500.000000_376.427000_um_0.000000_0
++      (shape (polygon F.Cu 0  -1001.43 375  -985.778 482.408  -931.355 593.733  -843.733 681.355
++            -732.408 735.778  -624.999 751.426  625 751.427  732.408 735.778
++            843.733 681.355  931.355 593.733  985.778 482.408  1001.43 374.999
++            1001.43 -375  985.778 -482.408  931.355 -593.733  843.733 -681.355
++            732.408 -735.778  624.999 -751.426  -625 -751.427  -732.408 -735.778
++            -843.733 -681.355  -931.355 -593.733  -985.778 -482.408  -1001.43 -374.999
++            -1001.43 375))
++      (attach off)
++    )
++    (padstack RoundRect[T]Pad_2000.000000x3800.000000_501.903000_um_0.000000_0
++      (shape (polygon F.Cu 0  -1001.9 1400  -990.433 1506.69  -940.51 1640.54  -854.899 1754.9
++            -740.537 1840.51  -606.687 1890.43  -499.999 1901.9  500 1901.9
++            606.687 1890.43  740.537 1840.51  854.899 1754.9  940.51 1640.54
++            990.433 1506.69  1001.9 1400  1001.9 -1400  990.433 -1506.69
++            940.51 -1640.54  854.899 -1754.9  740.537 -1840.51  606.687 -1890.43
++            499.999 -1901.9  -500 -1901.9  -606.687 -1890.43  -740.537 -1840.51
++            -854.899 -1754.9  -940.51 -1640.54  -990.433 -1506.69  -1001.9 -1400
++            -1001.9 1400))
++      (attach off)
++    )
++    (padstack RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0
++      (shape (polygon F.Cu 0  -400.761 275  -385.479 351.828  -341.959 416.959  -276.828 460.479
++            -199.999 475.76  200 475.761  276.828 460.479  341.959 416.959
++            385.479 351.828  400.76 274.999  400.761 -275  385.479 -351.828
++            341.959 -416.959  276.828 -460.479  199.999 -475.76  -200 -475.761
++            -276.828 -460.479  -341.959 -416.959  -385.479 -351.828  -400.76 -274.999
++            -400.761 275))
++      (attach off)
++    )
++    (padstack RoundRect[T]Pad_875.000000x950.000000_219.582000_um_0.000000_0
++      (shape (polygon F.Cu 0  -438.332 256.25  -421.617 340.28  -374.018 411.518  -302.78 459.117
++            -218.75 475.832  218.75 475.832  302.78 459.117  374.018 411.518
++            421.617 340.28  438.332 256.25  438.332 -256.25  421.617 -340.28
++            374.018 -411.518  302.78 -459.117  218.75 -475.832  -218.75 -475.832
++            -302.78 -459.117  -374.018 -411.518  -421.617 -340.28  -438.332 -256.25
++            -438.332 256.25))
++      (attach off)
++    )
++    (padstack RoundRect[T]Pad_1000.000000x1450.000000_250.951000_um_0.000000_0
++      (shape (polygon F.Cu 0  -500.951 475  -481.848 571.035  -427.449 652.449  -346.035 706.848
++            -249.999 725.95  250 725.951  346.035 706.848  427.449 652.449
++            481.848 571.035  500.95 474.999  500.951 -475  481.848 -571.035
++            427.449 -652.449  346.035 -706.848  249.999 -725.95  -250 -725.951
++            -346.035 -706.848  -427.449 -652.449  -481.848 -571.035  -500.95 -474.999
++            -500.951 475))
++      (attach off)
++    )
++    (padstack RoundRect[T]Pad_1415.000000x1390.000000_250.951000_um_0.000000_0
++      (shape (polygon F.Cu 0  -708.451 445  -689.348 541.035  -634.949 622.449  -553.535 676.848
++            -457.499 695.95  457.5 695.951  553.535 676.848  634.949 622.449
++            689.348 541.035  708.45 444.999  708.451 -445  689.348 -541.035
++            634.949 -622.449  553.535 -676.848  457.499 -695.95  -457.5 -695.951
++            -553.535 -676.848  -634.949 -622.449  -689.348 -541.035  -708.45 -444.999
++            -708.451 445))
++      (attach off)
++    )
++    (padstack Rect[A]Pad_1700.000000x1700.000000_um
++      (shape (rect F.Cu -850 -850 850 850))
++      (shape (rect B.Cu -850 -850 850 850))
++      (attach off)
++    )
++    (padstack "Via[0-1]_600:300_um"
++      (shape (circle F.Cu 600))
++      (shape (circle B.Cu 600))
++      (attach off)
++    )
++  )
++  (network
++    (net GND
++      (pins U1-1 J1-2 C1-2 D1-1 C2-2)
++    )
++    (net +3V3
++      (pins U1-2 U1-2@1 R1-1 C2-1)
++    )
++    (net +5V
++      (pins U1-3 J1-1 C1-1)
++    )
++    (net LED_A
++      (pins R1-2 D1-2)
++    )
++    (class kicad_default +3V3 +5V GND LED_A
++      (circuit
++        (use_via "Via[0-1]_600:300_um")
++      )
++      (rule
++        (width 250)
++        (clearance 200)
++      )
++    )
++  )
++  (wiring
++    (wire (path F.Cu 250  112010 -103598  113093 -104680)(net GND)(type route))
++    (wire (path F.Cu 250  108600 -103598  112010 -103598)(net GND)(type route))
++    (wire (path F.Cu 250  113093 -108044  112137 -109000  110850 -109000)(net GND)(type route))
++    (wire (path F.Cu 250  105756 -104106  106250 -104600)(net GND)(type route))
++    (wire (path F.Cu 250  115538 -107200  114694 -108044)(net GND)(type route))
++    (wire (path F.Cu 250  113093 -104680  113093 -108044)(net GND)(type route))
++    (wire (path F.Cu 250  107598 -104600  106250 -104600)(net GND)(type route))
++    (wire (path F.Cu 250  108600 -103598  107598 -104600)(net GND)(type route))
++    (wire (path F.Cu 250  114694 -108044  113093 -108044)(net GND)(type route))
++    (wire (path F.Cu 250  102270 -104106  105756 -104106)(net GND)(type route))
++    (wire (path F.Cu 250  108600 -106302  111172 -106302)(net +3V3)(type route))
++    (wire (path F.Cu 250  108600 -106302  108550 -106352)(net +3V3)(type route))
++    (wire (path F.Cu 250  111172 -106302  112325 -105150)(net +3V3)(type route))
++    (wire (path F.Cu 250  108550 -115300  108550 -109000)(net +3V3)(type route))
++    (wire (path F.Cu 250  108550 -106352  108550 -109000)(net +3V3)(type route))
++    (wire (path F.Cu 250  106104 -106646  106250 -106500)(net +5V)(type route))
++    (wire (path F.Cu 250  102270 -106646  106104 -106646)(net +5V)(type route))
++    (wire (path F.Cu 250  106250 -106500  106250 -109000)(net +5V)(type route))
++    (wire (path F.Cu 250  113975 -107188  113962 -107200)(net LED_A)(type route))
++    (wire (path F.Cu 250  113975 -105150  113975 -107188)(net LED_A)(type route))
++    (via "Via[0-1]_600:300_um"  114975 -114975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  120975 -102975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  126975 -114975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  110475 -117225 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  114975 -110475 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  126975 -108975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  102975 -108975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  110475 -102225 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  120975 -114975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  120975 -108975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  104475 -102975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  102975 -114225 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  114975 -102975 (net GND)(type route))
++    (via "Via[0-1]_600:300_um"  126975 -102975 (net GND)(type route))
++  )
++)
+diff --git a/src/main/java/app/freerouting/board/facade/BoardSnapshotManager.java b/src/main/java/app/freerouting/board/facade/BoardSnapshotManager.java
+index d8213d679..848ae1c12 100644
+--- a/src/main/java/app/freerouting/board/facade/BoardSnapshotManager.java
++++ b/src/main/java/app/freerouting/board/facade/BoardSnapshotManager.java
+@@ -36,8 +36,10 @@ byte[] serialize(boolean basicProfile) {
+       }
+       objectStream.close();
+       return outputStream.toByteArray();
+-    } catch (Exception exception) {
+-      FRLogger.error("Couldn't serialize board", exception);
++    } catch (VirtualMachineError fatal) {
++      throw fatal;
++    } catch (Throwable throwable) {
++      FRLogger.error("Couldn't serialize board", throwable);
+       return null;
+     }
+   }
+@@ -48,8 +50,10 @@ static BasicBoard deserialize(byte[] objectByteArray) {
+       ByteArrayInputStream inputStream = new ByteArrayInputStream(objectByteArray);
+       ObjectInputStream objectStream = new app.freerouting.util.SafeObjectInputStream(inputStream);
+       return (BasicBoard) objectStream.readObject();
+-    } catch (Exception exception) {
+-      FRLogger.error("Couldn't deserialize board", exception);
++    } catch (VirtualMachineError fatal) {
++      throw fatal;
++    } catch (Throwable throwable) {
++      FRLogger.error("Couldn't deserialize board", throwable);
+       return null;
+     }
+   }
+@@ -57,16 +61,22 @@ static BasicBoard deserialize(byte[] objectByteArray) {
+   /** Returns an MD5 hash of the board trace-state profile. */
+   String getHash() {
+     try {
++      byte[] serialized = serialize(true);
++      if (serialized == null) {
++        return null;
++      }
+       MessageDigest digest = MessageDigest.getInstance("MD5");
+-      digest.update(serialize(true));
++      digest.update(serialized);
+       byte[] hashedBytes = digest.digest();
+       StringBuilder result = new StringBuilder();
+       for (byte hashedByte : hashedBytes) {
+         result.append(Integer.toString((hashedByte & 0xff) + 0x100, 16).substring(1));
+       }
+       return result.toString();
+-    } catch (Exception exception) {
+-      FRLogger.error("Couldn't calculate hash for board", exception);
++    } catch (VirtualMachineError fatal) {
++      throw fatal;
++    } catch (Throwable throwable) {
++      FRLogger.error("Couldn't calculate hash for board", throwable);
+       return null;
+     }
+   }
+diff --git a/src/main/java/app/freerouting/cli/CliRunner.java b/src/main/java/app/freerouting/cli/CliRunner.java
+index db44870a8..c9c8e0c7f 100644
+--- a/src/main/java/app/freerouting/cli/CliRunner.java
++++ b/src/main/java/app/freerouting/cli/CliRunner.java
+@@ -100,6 +100,15 @@ public static boolean initializeCli(GlobalSettings globalSettings) {
+         routingJob.state = RoutingJobState.CANCELLED;
+         break;
+       }
++      if (routingJob.thread != null
++          && routingJob.thread.getState() != Thread.State.NEW
++          && !routingJob.thread.isAlive()
++          && !isCliTerminalState(routingJob.state)) {
++        FRLogger.error(
++            "Routing thread terminated abnormally without assigning a terminal state.", null);
++        routingJob.state = RoutingJobState.TERMINATED;
++        break;
++      }
+     }
+ 
+     boolean outputWritten = writeCliOutputIfAvailable(globalSettings, routingJob);
+diff --git a/src/main/java/app/freerouting/management/jobs/RoutingJobSchedulerActionThread.java b/src/main/java/app/freerouting/management/jobs/RoutingJobSchedulerActionThread.java
+index 50d4009f3..e248fac7d 100644
+--- a/src/main/java/app/freerouting/management/jobs/RoutingJobSchedulerActionThread.java
++++ b/src/main/java/app/freerouting/management/jobs/RoutingJobSchedulerActionThread.java
+@@ -38,233 +38,247 @@ public RoutingJobSchedulerActionThread(RoutingJob job) {
+ 
+   @Override
+   protected void threadAction() {
+-    job.startedAt = Instant.now();
+-    // Use ISO standard time format
+-    job.logInfo("Job '" + job.shortName + "' started at " + job.startedAt.toString() + ".");
+-
+-    // check if we need to check for timeout
+-    Long timeout = TextManager.parseTimespanString(job.routerSettings.jobTimeoutString);
+-    if (timeout != null) {
+-      // maximize the timeout to 24 hours
+-      if (timeout > MAX_TIMEOUT) {
+-        timeout = MAX_TIMEOUT;
+-      }
++    try {
++      job.startedAt = Instant.now();
++      // Use ISO standard time format
++      job.logInfo("Job '" + job.shortName + "' started at " + job.startedAt.toString() + ".");
++
++      // check if we need to check for timeout
++      Long timeout = TextManager.parseTimespanString(job.routerSettings.jobTimeoutString);
++      if (timeout != null) {
++        // maximize the timeout to 24 hours
++        if (timeout > MAX_TIMEOUT) {
++          timeout = MAX_TIMEOUT;
++        }
+ 
+-      job.timeoutAt = job.startedAt.plusSeconds(timeout);
+-    }
++        job.timeoutAt = job.startedAt.plusSeconds(timeout);
++      }
+ 
+-    // Start a new thread that will monitor the job thread
+-    Thread monitorThread =
+-        new Thread(
+-            () -> {
+-              while ((job != null) && (job.thread != null)) {
++      // Start a new thread that will monitor the job thread
++      Thread monitorThread =
++          new Thread(
++              () -> {
++                while ((job != null) && (job.thread != null)) {
+ 
+-                try {
+-                  Thread.sleep(1000);
+-                } catch (InterruptedException e) {
+-                  e.printStackTrace();
+-                }
++                  try {
++                    Thread.sleep(1000);
++                  } catch (InterruptedException e) {
++                    e.printStackTrace();
++                  }
+ 
+-                if (job.state == RoutingJobState.RUNNING || job.state == RoutingJobState.STOPPING) {
+-                  // Get the CPU time and memory usage of the job thread
+-                  this.monitorCpuAndMemoryUsage(job);
+-
+-                  // Check for timeout
+-                  if (job.timeoutAt != null && !Instant.now().isBefore(job.timeoutAt)) {
+-
+-                    // signal the job thread to stop, and wait gracefully for up to 30 seconds for
+-                    // it
+-                    job.thread.requestStop();
+-                    while ((job.state == RoutingJobState.RUNNING)
+-                        && Instant.now().isBefore(job.timeoutAt.plusSeconds(GRACE_PERIOD))) {
+-                      try {
+-                        Thread.sleep(1000);
+-                      } catch (InterruptedException e) {
+-                        e.printStackTrace();
++                  if (job.state == RoutingJobState.RUNNING
++                      || job.state == RoutingJobState.STOPPING) {
++                    // Get the CPU time and memory usage of the job thread
++                    this.monitorCpuAndMemoryUsage(job);
++
++                    // Check for timeout
++                    if (job.timeoutAt != null && !Instant.now().isBefore(job.timeoutAt)) {
++
++                      // signal the job thread to stop, and wait gracefully for up to 30 seconds for
++                      // it
++                      job.thread.requestStop();
++                      while ((job.state == RoutingJobState.RUNNING)
++                          && Instant.now().isBefore(job.timeoutAt.plusSeconds(GRACE_PERIOD))) {
++                        try {
++                          Thread.sleep(1000);
++                        } catch (InterruptedException e) {
++                          e.printStackTrace();
++                        }
+                       }
++                      markTimedOutIfStillActive();
+                     }
+-                    markTimedOutIfStillActive();
+                   }
+                 }
++              });
++      monitorThread.setDaemon(true);
++      monitorThread.start();
++
++      boolean routerEnabled =
++          job.routerSettings.getRunRouter()
++              && (job.routerSettings.autorouter.maxPasses == null
++                  || job.routerSettings.autorouter.maxPasses >= 0);
++      if (routerEnabled) {
++        FRAnalytics.autorouterStarted();
++      }
++
++      String inputFormat =
++          job.input != null && job.input.format != null ? job.input.format.name() : null;
++      FRAnalytics.recordJobLifecycle(
++          job.id.toString(),
++          job.sessionId != null ? job.sessionId.toString() : null,
++          JobLifecycleStatus.STARTED,
++          FRAnalytics.getCurrentPipeline(),
++          FRAnalytics.getCurrentActorType(),
++          null,
++          null,
++          null,
++          null,
++          null,
++          null,
++          null,
++          null,
++          job.getDetectedHost(),
++          null,
++          job.userId,
++          job.apiKeyHash,
++          inputFormat);
++
++      RoutingPipeline pipeline = RoutingPipeline.createForHeadless(job);
++      pipeline.addBoardUpdatedEventListener(event -> setJobOutput(job));
++      pipeline.addStageListener(
++          new RoutingPipeline.StageListener() {
++            @Override
++            public void afterRouting(BatchAutorouter batchRouter) {
++              if (!routerEnabled) {
++                return;
+               }
+-            });
+-    monitorThread.setDaemon(true);
+-    monitorThread.start();
+-
+-    boolean routerEnabled =
+-        job.routerSettings.getRunRouter()
+-            && (job.routerSettings.autorouter.maxPasses == null
+-                || job.routerSettings.autorouter.maxPasses >= 0);
+-    if (routerEnabled) {
+-      FRAnalytics.autorouterStarted();
+-    }
+ 
+-    String inputFormat =
+-        job.input != null && job.input.format != null ? job.input.format.name() : null;
+-    FRAnalytics.recordJobLifecycle(
+-        job.id.toString(),
+-        job.sessionId != null ? job.sessionId.toString() : null,
+-        JobLifecycleStatus.STARTED,
+-        FRAnalytics.getCurrentPipeline(),
+-        FRAnalytics.getCurrentActorType(),
+-        null,
+-        null,
+-        null,
+-        null,
+-        null,
+-        null,
+-        null,
+-        null,
+-        job.getDetectedHost(),
+-        null,
+-        job.userId,
+-        job.apiKeyHash,
+-        inputFormat);
+-
+-    RoutingPipeline pipeline = RoutingPipeline.createForHeadless(job);
+-    pipeline.addBoardUpdatedEventListener(event -> setJobOutput(job));
+-    pipeline.addStageListener(
+-        new RoutingPipeline.StageListener() {
+-          @Override
+-          public void afterRouting(BatchAutorouter batchRouter) {
+-            if (!routerEnabled) {
+-              return;
+-            }
++              Instant sessionStartTime = batchRouter.getSessionStartTime();
++              if (sessionStartTime == null) {
++                return;
++              }
++
++              Instant sessionEndTime = Instant.now();
++              double totalTime =
++                  java.time.Duration.between(sessionStartTime, sessionEndTime).toMillis() / 1000.0;
++              var finalStats = job.board.getStatistics();
++              float normalizedScore = finalStats.getRouterScore(job.routerSettings);
++              FRAnalytics.autorouterFinished(
++                  finalStats.nets.totalCount,
++                  finalStats.connections.incompleteCount,
++                  finalStats.clearanceViolations.totalCount,
++                  job.board.getHash(),
++                  normalizedScore);
++
++              String completionStatus = "completed:";
++              boolean isTimedOut =
++                  (job.state == RoutingJobState.TIMED_OUT)
++                      || ((job.timeoutAt != null)
++                          && !Instant.now().isBefore(job.timeoutAt)
++                          && job.thread.isStopRequested());
++
++              if (isTimedOut) {
++                completionStatus = "completed with timeout:";
++              } else if (job.thread.isStopRequested()) {
++                completionStatus = job.isCancelledByUser() ? "cancelled:" : "interrupted:";
++              }
+ 
+-            Instant sessionStartTime = batchRouter.getSessionStartTime();
+-            if (sessionStartTime == null) {
+-              return;
++              job.logInfo(
++                  String.format(
++                      java.util.Locale.US,
++                      "Auto-routing stage %s started with %d unrouted nets, completed in %.2f "
++                          + "seconds, final score: %s, using %.2f total CPU seconds, %.2f GB total "
++                          + "allocated, and %.1f MB peak heap usage.",
++                      completionStatus,
++                      batchRouter.getInitialUnroutedCount(),
++                      totalTime,
++                      FRLogger.formatScore(
++                          normalizedScore,
++                          finalStats.connections.incompleteCount,
++                          finalStats.clearanceViolations.totalCount),
++                      job.resourceUsage.cpuTimeUsed,
++                      job.resourceUsage.maxMemoryUsed / 1024.0f,
++                      job.resourceUsage.peakMemoryUsed));
+             }
+ 
+-            Instant sessionEndTime = Instant.now();
+-            double totalTime =
+-                java.time.Duration.between(sessionStartTime, sessionEndTime).toMillis() / 1000.0;
+-            var finalStats = job.board.getStatistics();
+-            float normalizedScore = finalStats.getRouterScore(job.routerSettings);
+-            FRAnalytics.autorouterFinished(
+-                finalStats.nets.totalCount,
+-                finalStats.connections.incompleteCount,
+-                finalStats.clearanceViolations.totalCount,
+-                job.board.getHash(),
+-                normalizedScore);
+-
+-            String completionStatus = "completed:";
+-            boolean isTimedOut =
+-                (job.state == RoutingJobState.TIMED_OUT)
+-                    || ((job.timeoutAt != null)
+-                        && !Instant.now().isBefore(job.timeoutAt)
+-                        && job.thread.isStopRequested());
+-
+-            if (isTimedOut) {
+-              completionStatus = "completed with timeout:";
+-            } else if (job.thread.isStopRequested()) {
+-              completionStatus = job.isCancelledByUser() ? "cancelled:" : "interrupted:";
++            @Override
++            public void beforeOptimization(BatchOptimizer optimizer) {
++              FRAnalytics.routeOptimizerStarted();
+             }
+ 
+-            job.logInfo(
+-                String.format(
+-                    java.util.Locale.US,
+-                    "Auto-routing stage %s started with %d unrouted nets, completed in %.2f "
+-                        + "seconds, final score: %s, using %.2f total CPU seconds, %.2f GB total "
+-                        + "allocated, and %.1f MB peak heap usage.",
+-                    completionStatus,
+-                    batchRouter.getInitialUnroutedCount(),
+-                    totalTime,
+-                    FRLogger.formatScore(
+-                        normalizedScore,
+-                        finalStats.connections.incompleteCount,
+-                        finalStats.clearanceViolations.totalCount),
+-                    job.resourceUsage.cpuTimeUsed,
+-                    job.resourceUsage.maxMemoryUsed / 1024.0f,
+-                    job.resourceUsage.peakMemoryUsed));
+-          }
+-
+-          @Override
+-          public void beforeOptimization(BatchOptimizer optimizer) {
+-            FRAnalytics.routeOptimizerStarted();
+-          }
+-
+-          @Override
+-          public void afterOptimization(BatchOptimizer optimizer) {
+-            FRAnalytics.routeOptimizerFinished();
+-          }
+-        });
+-    pipeline.run();
+-    setJobOutput(job);
+-
+-    boolean fanoutTimedOut = pipeline.getAutorouter().isFanoutTimedOut();
+-    final boolean optimizerTimedOut =
+-        pipeline.getOptimizer() != null && pipeline.getOptimizer().isTimedOut();
+-
+-    job.finishedAt = Instant.now();
+-    assignTerminalState();
+-
+-    long durationMs = java.time.Duration.between(job.startedAt, job.finishedAt).toMillis();
+-    double durationSec = durationMs / 1000.0;
+-    StringBuilder details = new StringBuilder();
+-    if (fanoutTimedOut) {
+-      details.append(" (fanout stage timed out)");
+-    }
+-    if (optimizerTimedOut) {
+-      details.append(" (optimizer stage timed out)");
++            @Override
++            public void afterOptimization(BatchOptimizer optimizer) {
++              FRAnalytics.routeOptimizerFinished();
++            }
++          });
++      pipeline.run();
++      setJobOutput(job);
++
++      boolean fanoutTimedOut = pipeline.getAutorouter().isFanoutTimedOut();
++      final boolean optimizerTimedOut =
++          pipeline.getOptimizer() != null && pipeline.getOptimizer().isTimedOut();
++
++      job.finishedAt = Instant.now();
++      assignTerminalState();
++
++      long durationMs = java.time.Duration.between(job.startedAt, job.finishedAt).toMillis();
++      double durationSec = durationMs / 1000.0;
++      StringBuilder details = new StringBuilder();
++      if (fanoutTimedOut) {
++        details.append(" (fanout stage timed out)");
++      }
++      if (optimizerTimedOut) {
++        details.append(" (optimizer stage timed out)");
++      }
++      job.logInfo(
++          "Job '"
++              + job.shortName
++              + "' finished with state: "
++              + job.state.toString()
++              + details.toString()
++              + " (elapsed: "
++              + FRLogger.formatDuration(durationSec)
++              + ", finished at UTC: "
++              + job.finishedAt.toString()
++              + ").");
++
++      JobLifecycleStatus lifecycleStatus =
++          switch (job.state) {
++            case COMPLETED -> JobLifecycleStatus.SUCCEEDED;
++            case TIMED_OUT -> JobLifecycleStatus.TIMED_OUT;
++            case CANCELLED -> JobLifecycleStatus.CANCELLED;
++            default -> JobLifecycleStatus.FAILED;
++          };
++
++      var finalBoardStats = job.board != null ? job.board.getStatistics() : null;
++      Integer netsTotal =
++          finalBoardStats != null && finalBoardStats.nets != null
++              ? finalBoardStats.nets.totalCount
++              : null;
++      Integer netsIncomplete =
++          finalBoardStats != null && finalBoardStats.connections != null
++              ? finalBoardStats.connections.incompleteCount
++              : null;
++      Integer clearanceViolations =
++          finalBoardStats != null && finalBoardStats.clearanceViolations != null
++              ? finalBoardStats.clearanceViolations.totalCount
++              : null;
++      Float normalizedScore =
++          finalBoardStats != null && job.routerSettings != null
++              ? finalBoardStats.getRouterScore(job.routerSettings)
++              : null;
++
++      FRAnalytics.recordJobLifecycle(
++          job.id.toString(),
++          job.sessionId != null ? job.sessionId.toString() : null,
++          lifecycleStatus,
++          FRAnalytics.getCurrentPipeline(),
++          FRAnalytics.getCurrentActorType(),
++          details.length() > 0 ? details.toString().trim() : null,
++          netsTotal,
++          netsIncomplete,
++          clearanceViolations,
++          normalizedScore,
++          durationSec,
++          (double) job.resourceUsage.cpuTimeUsed,
++          (double) job.resourceUsage.peakMemoryUsed,
++          job.getDetectedHost(),
++          null,
++          job.userId,
++          job.apiKeyHash,
++          inputFormat);
++    } catch (VirtualMachineError fatal) {
++      throw fatal;
++    } catch (Throwable t) {
++      FRLogger.error("Uncaught exception in routing job '" + job.shortName + "'", t);
++      job.finishedAt = Instant.now();
++      synchronized (terminalStateLock) {
++        if (job.state == RoutingJobState.RUNNING || job.state == RoutingJobState.STOPPING) {
++          job.state = RoutingJobState.TERMINATED;
++        }
++      }
++      job.logError("Job '" + job.shortName + "' terminated due to an error: " + t.getMessage(), t);
+     }
+-    job.logInfo(
+-        "Job '"
+-            + job.shortName
+-            + "' finished with state: "
+-            + job.state.toString()
+-            + details.toString()
+-            + " (elapsed: "
+-            + FRLogger.formatDuration(durationSec)
+-            + ", finished at UTC: "
+-            + job.finishedAt.toString()
+-            + ").");
+-
+-    JobLifecycleStatus lifecycleStatus =
+-        switch (job.state) {
+-          case COMPLETED -> JobLifecycleStatus.SUCCEEDED;
+-          case TIMED_OUT -> JobLifecycleStatus.TIMED_OUT;
+-          case CANCELLED -> JobLifecycleStatus.CANCELLED;
+-          default -> JobLifecycleStatus.FAILED;
+-        };
+-
+-    var finalBoardStats = job.board != null ? job.board.getStatistics() : null;
+-    Integer netsTotal =
+-        finalBoardStats != null && finalBoardStats.nets != null
+-            ? finalBoardStats.nets.totalCount
+-            : null;
+-    Integer netsIncomplete =
+-        finalBoardStats != null && finalBoardStats.connections != null
+-            ? finalBoardStats.connections.incompleteCount
+-            : null;
+-    Integer clearanceViolations =
+-        finalBoardStats != null && finalBoardStats.clearanceViolations != null
+-            ? finalBoardStats.clearanceViolations.totalCount
+-            : null;
+-    Float normalizedScore =
+-        finalBoardStats != null && job.routerSettings != null
+-            ? finalBoardStats.getRouterScore(job.routerSettings)
+-            : null;
+-
+-    FRAnalytics.recordJobLifecycle(
+-        job.id.toString(),
+-        job.sessionId != null ? job.sessionId.toString() : null,
+-        lifecycleStatus,
+-        FRAnalytics.getCurrentPipeline(),
+-        FRAnalytics.getCurrentActorType(),
+-        details.length() > 0 ? details.toString().trim() : null,
+-        netsTotal,
+-        netsIncomplete,
+-        clearanceViolations,
+-        normalizedScore,
+-        durationSec,
+-        (double) job.resourceUsage.cpuTimeUsed,
+-        (double) job.resourceUsage.peakMemoryUsed,
+-        job.getDetectedHost(),
+-        null,
+-        job.userId,
+-        job.apiKeyHash,
+-        inputFormat);
+   }
+ 
+   private void monitorCpuAndMemoryUsage(RoutingJob job) {
+diff --git a/src/main/resources/META-INF/native-image/reachability-metadata.json b/src/main/resources/META-INF/native-image/reachability-metadata.json
+index 40b467510..24be43466 100644
+--- a/src/main/resources/META-INF/native-image/reachability-metadata.json
++++ b/src/main/resources/META-INF/native-image/reachability-metadata.json
+@@ -68,14 +68,46 @@
+       "type": "app.freerouting.board.actions.ItemIdGenerator",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.board.actions.ForcedPadRouter$CheckDrillResult",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.board.actions.ItemSelectionFilter",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.board.actions.ItemSelectionFilter$SelectableChoices",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.board.facade.BasicBoard",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.board.facade.BasicBoard$DominantSide",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.board.facade.RoutingBoard",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.board.model.items.BoardItemType",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.board.model.items.ComponentObstacleArea",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.board.model.items.ComponentOutline",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.board.model.items.ConductionArea",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.board.model.items.DrillItem",
+       "serializable": true
+@@ -84,6 +116,14 @@
+       "type": "app.freerouting.board.model.items.Item",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.board.model.items.Item$StopConnectionOption",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.board.model.items.ObstacleArea",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.board.model.items.Pin",
+       "serializable": true
+@@ -96,6 +136,14 @@
+       "type": "app.freerouting.board.model.items.Via",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.board.model.items.ViaObstacleArea",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.board.model.structure.AngleRestriction",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.board.model.structure.BoardOutline",
+       "serializable": true
+@@ -136,6 +184,14 @@
+       "type": "app.freerouting.board.state.Communication$SpecctraParserInfo",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.board.state.Communication$SpecctraParserInfo$WriteResolution",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.board.state.CoordinateTransform",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.board.trace.PolylineTrace",
+       "serializable": true
+@@ -164,6 +220,14 @@
+       "type": "app.freerouting.core.library.BoardLibrary",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.core.library.LogicalPart",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.core.library.LogicalPart$PartPin",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.core.library.LogicalParts",
+       "serializable": true
+@@ -172,6 +236,10 @@
+       "type": "app.freerouting.core.library.Package",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.core.library.Package$Keepout",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.core.library.Package$Keepout[]",
+       "serializable": true
+@@ -329,6 +397,10 @@
+         }
+       ]
+     },
++    {
++      "type": "app.freerouting.core.scoring.BenchmarkScoreCalculator",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatistics",
+       "fields": [
+@@ -380,7 +452,8 @@
+         {
+           "name": "vias"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatistics$BoardStatisticsFanout",
+@@ -411,7 +484,8 @@
+         {
+           "name": "totalCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsBoard",
+@@ -425,7 +499,8 @@
+         {
+           "name": "size"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsBounds",
+@@ -439,7 +514,8 @@
+         {
+           "name": "minViaCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsClearanceViolations",
+@@ -468,7 +544,8 @@
+         {
+           "name": "unfixableCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsComponents",
+@@ -476,7 +553,8 @@
+         {
+           "name": "totalCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsConnections",
+@@ -487,7 +565,8 @@
+         {
+           "name": "maximumCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsDifficulty",
+@@ -507,7 +586,8 @@
+         {
+           "name": "signalLayerCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsItems",
+@@ -536,7 +616,8 @@
+         {
+           "name": "viaCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsLayers",
+@@ -547,7 +628,8 @@
+         {
+           "name": "totalCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsNets",
+@@ -558,7 +640,8 @@
+         {
+           "name": "totalCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsPads",
+@@ -566,7 +649,8 @@
+         {
+           "name": "totalCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsTraces",
+@@ -598,7 +682,8 @@
+         {
+           "name": "totalWeightedLength"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.core.scoring.BoardStatisticsVias",
+@@ -615,7 +700,8 @@
+         {
+           "name": "totalCount"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.datastructures.UndoableObjects",
+@@ -625,6 +711,10 @@
+       "type": "app.freerouting.datastructures.UndoableObjects$UndoableObjectNode",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.BigIntDirection",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.Circle",
+       "serializable": true
+@@ -633,10 +723,30 @@
+       "type": "app.freerouting.geometry.planar.ConvexShape[]",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.Direction",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.geometry.planar.Ellipse",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.geometry.planar.FloatPoint",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.geometry.planar.FortyfiveDegreeDirection",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.IntBox",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.IntDirection",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.IntOctagon",
+       "serializable": true
+@@ -653,6 +763,14 @@
+       "type": "app.freerouting.geometry.planar.Line",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.LineSegment",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.geometry.planar.LineSegment[]",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.Line[]",
+       "serializable": true
+@@ -665,6 +783,10 @@
+       "type": "app.freerouting.geometry.planar.Point[]",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.Polygon",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.PolygonShape",
+       "serializable": true
+@@ -673,6 +795,10 @@
+       "type": "app.freerouting.geometry.planar.Polyline",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.PolylineArea",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.PolylineShape",
+       "serializable": true
+@@ -681,6 +807,18 @@
+       "type": "app.freerouting.geometry.planar.PolylineShape[]",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.Polyline[]",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.geometry.planar.RationalPoint",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.geometry.planar.RationalVector",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.RegularTileShape",
+       "serializable": true
+@@ -689,6 +827,10 @@
+       "type": "app.freerouting.geometry.planar.Shape[]",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.Side",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.Simplex",
+       "serializable": true
+@@ -697,10 +839,18 @@
+       "type": "app.freerouting.geometry.planar.TileShape",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.TileShape[]",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.geometry.planar.Vector",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.geometry.planar.Vector[]",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.io.CoordinateTransform",
+       "serializable": true
+@@ -742,6 +892,10 @@
+       "type": "app.freerouting.rules.DefaultItemClearanceClasses",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.rules.DefaultItemClearanceClasses$ItemClass",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.rules.Net",
+       "serializable": true
+@@ -754,6 +908,14 @@
+       "type": "app.freerouting.rules.NetClasses",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.rules.NetLengthConstraint",
++      "serializable": true
++    },
++    {
++      "type": "app.freerouting.rules.Net[]",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.rules.Nets",
+       "serializable": true
+@@ -762,6 +924,10 @@
+       "type": "app.freerouting.rules.ViaInfo",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.rules.ViaInfo[]",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.rules.ViaInfos",
+       "serializable": true
+@@ -770,6 +936,10 @@
+       "type": "app.freerouting.rules.ViaRule",
+       "serializable": true
+     },
++    {
++      "type": "app.freerouting.rules.ViaRule[]",
++      "serializable": true
++    },
+     {
+       "type": "app.freerouting.settings.ApiAuthenticationSettings",
+       "fields": [
+@@ -788,7 +958,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.ApiServerSettings",
+@@ -823,7 +994,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.AutorouterSettings",
+@@ -855,7 +1027,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.DebugSettings",
+@@ -875,7 +1048,8 @@
+         {
+           "name": "traceInsertionDelay"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.DesignRulesCheckerSettings",
+@@ -898,7 +1072,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.FanoutSettings",
+@@ -945,7 +1120,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.FeatureFlagsSettings",
+@@ -968,7 +1144,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.GlobalSettings",
+@@ -1066,7 +1243,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.GoogleSheetsProviderSettings",
+@@ -1083,7 +1261,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.GuiApplicationSettings",
+@@ -1112,7 +1291,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.LayerSettings",
+@@ -1138,7 +1318,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.LayerSettings[]"
+@@ -1158,7 +1339,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.LoggingSettings$ConsoleLoggingSettings",
+@@ -1233,7 +1415,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.NetworkSettings",
+@@ -1259,7 +1442,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.OptimizerScoreSettings",
+@@ -1288,7 +1472,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.OptimizerScoringVersion",
+@@ -1355,7 +1540,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.RateLimitSettings",
+@@ -1375,7 +1561,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.RouterScoreSettings",
+@@ -1410,7 +1597,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.RouterScoringVersion",
+@@ -1498,7 +1686,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.RoutingCostSettings",
+@@ -1542,7 +1731,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.RuntimeEnvironment",
+@@ -1583,7 +1773,8 @@
+         {
+           "name": "systemLanguage"
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.SettingsMerger"
+@@ -1612,7 +1803,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.UsageAndDiagnosticDataSettings",
+@@ -1638,7 +1830,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "app.freerouting.settings.UserProfileSettings",
+@@ -1661,7 +1854,8 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "boolean"
+@@ -1865,7 +2059,8 @@
+             "java.lang.String"
+           ]
+         }
+-      ]
++      ],
++      "serializable": true
+     },
+     {
+       "type": "java.lang.Class",
+@@ -1876,10 +2071,26 @@
+         }
+       ]
+     },
++    {
++      "type": "java.lang.Double",
++      "serializable": true
++    },
+     {
+       "type": "java.lang.Enum",
+       "serializable": true
+     },
++    {
++      "type": "java.lang.Float",
++      "serializable": true
++    },
++    {
++      "type": "java.lang.Integer",
++      "serializable": true
++    },
++    {
++      "type": "java.lang.Long",
++      "serializable": true
++    },
+     {
+       "type": "java.lang.Object"
+     },
+@@ -1892,7 +2103,12 @@
+       "serializable": true
+     },
+     {
+-      "type": "java.lang.String[]"
++      "type": "java.lang.String[]",
++      "serializable": true
++    },
++    {
++      "type": "java.lang.String[][]",
++      "serializable": true
+     },
+     {
+       "type": "java.lang.reflect.RecordComponent"
+@@ -1923,7 +2139,16 @@
+           "name": "<init>",
+           "parameterTypes": []
+         }
+-      ]
++      ],
++      "serializable": true
++    },
++    {
++      "type": "java.util.HashMap",
++      "serializable": true
++    },
++    {
++      "type": "java.util.HashSet",
++      "serializable": true
+     },
+     {
+       "type": "java.util.LinkedList",
+@@ -1937,6 +2162,14 @@
+     {
+       "type": "java.util.Locale"
+     },
++    {
++      "type": "java.util.TreeMap",
++      "serializable": true
++    },
++    {
++      "type": "java.util.TreeSet",
++      "serializable": true
++    },
+     {
+       "type": "java.util.Vector",
+       "serializable": true,
+@@ -3735,4 +3968,4 @@
+       "name": "app.freerouting.Freerouting"
+     }
+   ]
+-}
+\ No newline at end of file
++}
+diff --git a/src/test/java/app/freerouting/architecture/NativeImageSerializationMetadataArchTest.java b/src/test/java/app/freerouting/architecture/NativeImageSerializationMetadataArchTest.java
+new file mode 100644
+index 000000000..31c4def80
+--- /dev/null
++++ b/src/test/java/app/freerouting/architecture/NativeImageSerializationMetadataArchTest.java
+@@ -0,0 +1,113 @@
++package app.freerouting.architecture;
++
++import static org.junit.jupiter.api.Assertions.assertFalse;
++import static org.junit.jupiter.api.Assertions.assertNotNull;
++import static org.junit.jupiter.api.Assertions.assertTrue;
++
++import com.google.gson.JsonArray;
++import com.google.gson.JsonElement;
++import com.google.gson.JsonObject;
++import com.google.gson.JsonParser;
++import com.tngtech.archunit.core.domain.JavaClass;
++import com.tngtech.archunit.core.domain.JavaClasses;
++import com.tngtech.archunit.core.importer.ClassFileImporter;
++import com.tngtech.archunit.core.importer.ImportOption;
++import java.io.InputStream;
++import java.io.InputStreamReader;
++import java.nio.charset.StandardCharsets;
++import java.util.HashSet;
++import java.util.Set;
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++/**
++ * Ensures all domain and geometric types that participate in board serialization and hashing are
++ * registered for Java serialization in Native Image reachability metadata.
++ *
++ * <p>Regression test for Issue #957: prevents UnsupportedFeatureError during native CLI execution.
++ */
++class NativeImageSerializationMetadataArchTest {
++
++  private static final String METADATA_RESOURCE =
++      "META-INF/native-image/reachability-metadata.json";
++
++  @Test
++  @DisplayName(
++      "ComponentOutline and other board item classes must be declared serializable in reachability metadata")
++  void boardItemsAreRegisteredForSerialization() throws Exception {
++    Set<String> serializableTypes = loadSerializableTypesFromMetadata();
++    assertFalse(
++        serializableTypes.isEmpty(), "Reachability metadata must contain serializable types");
++
++    // Explicit check for the root cause of Issue #957
++    assertTrue(
++        serializableTypes.contains("app.freerouting.board.model.items.ComponentOutline"),
++        "ComponentOutline must be registered as serializable for native CLI execution (Issue #957)");
++    assertTrue(
++        serializableTypes.contains("app.freerouting.board.model.items.ObstacleArea"),
++        "ObstacleArea must be registered as serializable");
++    assertTrue(
++        serializableTypes.contains("app.freerouting.board.model.items.ComponentObstacleArea"),
++        "ComponentObstacleArea must be registered as serializable");
++    assertTrue(
++        serializableTypes.contains("app.freerouting.board.model.items.ConductionArea"),
++        "ConductionArea must be registered as serializable");
++    assertTrue(
++        serializableTypes.contains("app.freerouting.board.model.items.ViaObstacleArea"),
++        "ViaObstacleArea must be registered as serializable");
++  }
++
++  @Test
++  @DisplayName(
++      "All domain Serializable classes in board, geometry, rules, and library must be registered")
++  void allDomainSerializableClassesAreRegistered() throws Exception {
++    Set<String> serializableTypes = loadSerializableTypesFromMetadata();
++
++    JavaClasses classes =
++        new ClassFileImporter()
++            .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
++            .importPackages(
++                "app.freerouting.board",
++                "app.freerouting.geometry.planar",
++                "app.freerouting.rules",
++                "app.freerouting.core.library");
++
++    Set<String> missingClasses = new HashSet<>();
++    for (JavaClass javaClass : classes) {
++      if (javaClass.isAssignableTo(java.io.Serializable.class)
++          && !javaClass.isInterface()
++          && !javaClass.isAnonymousClass()) {
++        String className = javaClass.getName();
++        if (!serializableTypes.contains(className)) {
++          missingClasses.add(className);
++        }
++      }
++    }
++
++    assertTrue(
++        missingClasses.isEmpty(),
++        "The following domain Serializable classes are missing 'serializable: true' "
++            + "in reachability-metadata.json (causes native image crash): "
++            + missingClasses);
++  }
++
++  private Set<String> loadSerializableTypesFromMetadata() throws Exception {
++    InputStream stream = getClass().getClassLoader().getResourceAsStream(METADATA_RESOURCE);
++    assertNotNull(stream, "Reachability metadata resource not found: " + METADATA_RESOURCE);
++
++    Set<String> serializableTypes = new HashSet<>();
++    try (InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
++      JsonObject root = JsonParser.parseReader(reader).getAsJsonObject();
++      JsonArray reflection = root.getAsJsonArray("reflection");
++      if (reflection != null) {
++        for (JsonElement element : reflection) {
++          JsonObject entry = element.getAsJsonObject();
++          if (entry.has("serializable") && entry.get("serializable").getAsBoolean()) {
++            serializableTypes.add(entry.get("type").getAsString());
++          }
++        }
++      }
++    }
++    return serializableTypes;
++  }
++}
+diff --git a/src/test/java/app/freerouting/fixtures/Issue957SmokeRoutingTest.java b/src/test/java/app/freerouting/fixtures/Issue957SmokeRoutingTest.java
+new file mode 100644
+index 000000000..38bf06ca3
+--- /dev/null
++++ b/src/test/java/app/freerouting/fixtures/Issue957SmokeRoutingTest.java
+@@ -0,0 +1,71 @@
++package app.freerouting.fixtures;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertFalse;
++import static org.junit.jupiter.api.Assertions.assertNotNull;
++import static org.junit.jupiter.api.Assertions.assertTrue;
++
++import app.freerouting.Freerouting;
++import app.freerouting.board.facade.BasicBoard;
++import app.freerouting.board.model.items.ComponentOutline;
++import app.freerouting.board.model.items.Item;
++import app.freerouting.core.RoutingJob;
++import app.freerouting.core.RoutingJobState;
++import app.freerouting.logger.FRLogger;
++import app.freerouting.settings.sources.TestingSettings;
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++/**
++ * Regression test for Issue #957: KiCad DSN with component outlines and copper planes completes
++ * board snapshots, hashing, and auto-routing cleanly.
++ */
++class Issue957SmokeRoutingTest extends RoutingFixtureTest {
++
++  private static final String FIXTURE = "Issue957-smoke-ldo-led.dsn";
++
++  @Test
++  @DisplayName(
++      "KiCad 10 board with component outlines serializes, hashes, clones, and routes cleanly")
++  void boardWithComponentOutlinesRoutesAndSerializesCleanly() {
++    System.setProperty("freerouting.logging.console.level", "INFO");
++    FRLogger.granularTraceEnabled = false;
++    Freerouting.globalSettings.debugSettings.enableDetailedLogging = false;
++
++    TestingSettings testSettings = new TestingSettings();
++    testSettings.setMaxPasses(2);
++    testSettings.setJobTimeoutString("00:01:00");
++
++    RoutingJob job = getRoutingJob(FIXTURE, testSettings);
++    assertNotNull(job, "RoutingJob must load successfully from fixture");
++    if (job.routerSettings != null && job.routerSettings.autorouter != null) {
++      job.routerSettings.autorouter.maxPasses = 2;
++    }
++
++    // Run the routing job (initializes board, takes snapshots, runs routing loop)
++    runRoutingJob(job);
++
++    assertEquals(RoutingJobState.COMPLETED, job.state, "Routing job must complete successfully");
++    assertNotNull(job.board, "Job board must be initialized after routing");
++
++    // Verify board has ComponentOutline items
++    boolean foundComponentOutline = false;
++    for (Item item : job.board.getItems()) {
++      if (item instanceof ComponentOutline) {
++        foundComponentOutline = true;
++        break;
++      }
++    }
++    assertTrue(foundComponentOutline, "Fixture must contain ComponentOutline items");
++
++    // Verify snapshot hashing and serialization (which failed in GraalVM native CLI under Issue
++    // #957)
++    String hash = job.board.getHash();
++    assertNotNull(hash, "Board hash must be computed successfully");
++    assertFalse(hash.isBlank(), "Board hash must not be blank");
++
++    BasicBoard clonedBoard = job.board.clone();
++    assertNotNull(clonedBoard, "Board must clone successfully via serialization");
++    assertEquals(hash, clonedBoard.getHash(), "Cloned board must have identical hash");
++  }
++}
+diff --git a/src/test/java/app/freerouting/management/jobs/RoutingJobSchedulerActionThreadTest.java b/src/test/java/app/freerouting/management/jobs/RoutingJobSchedulerActionThreadTest.java
+index facef107c..3d7307758 100644
+--- a/src/test/java/app/freerouting/management/jobs/RoutingJobSchedulerActionThreadTest.java
++++ b/src/test/java/app/freerouting/management/jobs/RoutingJobSchedulerActionThreadTest.java
+@@ -1,6 +1,7 @@
+ package app.freerouting.management.jobs;
+ 
+ import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertNotNull;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+ 
+ import app.freerouting.Freerouting;
+@@ -141,6 +142,23 @@ void monitorTimeoutIsKeptWhenThePipelineFinishes() {
+     assertEquals(RoutingJobState.TIMED_OUT, job.state);
+   }
+ 
++  @Test
++  @app.freerouting.logger.AllowErrorLogs(
++      "Verifies that fatal routing pipeline errors are caught and recorded as TERMINATED")
++  void testFatalErrorSetsJobStateToTerminated() {
++    RoutingJob job = new RoutingJob();
++    job.state = RoutingJobState.RUNNING;
++    // routerSettings is null, which causes threadAction() to throw NullPointerException
++    RoutingJobSchedulerActionThread action = new RoutingJobSchedulerActionThread(job);
++    job.thread = action;
++
++    action.threadAction();
++
++    assertEquals(
++        RoutingJobState.TERMINATED, job.state, "Fatal error must set job state to TERMINATED");
++    assertNotNull(job.finishedAt, "Job finishedAt must be recorded on fatal error");
++  }
++
+   private static RoutingJobSchedulerActionThread stoppedJob(
+       RoutingJobState state, boolean clockExpired) {
+     RoutingJob job = new RoutingJob();
