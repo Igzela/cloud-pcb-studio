@@ -1,0 +1,1 @@
+pair CAN_H CAN_L gap=0.20 skew=0.20

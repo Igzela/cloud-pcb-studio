@@ -1,0 +1,277 @@
+{
+  "pipeline": "tscircuit",
+  "board": "Board1_USB_PD_Telemetry",
+  "outdir": "/home/antigravity/cloud-pcb-studio/artifacts/board1_tscircuit",
+  "runner_summary": {
+    "element_count": 1207,
+    "error_count": 0,
+    "warning_count": 49,
+    "errors": [],
+    "warnings": [
+      {
+        "type": "source_refdes_convention_warning",
+        "message": "The \"J\" prefix is being used with a <chip />, try using it with a <connector /> or <jumper />"
+      },
+      {
+        "type": "source_refdes_convention_warning",
+        "message": "The \"J\" prefix is being used with a <chip />, try using it with a <connector /> or <jumper />"
+      },
+      {
+        "type": "source_no_power_pin_defined_warning",
+        "message": "J_USB has no pin with requires_power=true"
+      },
+      {
+        "type": "source_no_ground_pin_defined_warning",
+        "message": "J_USB has no pin with requires_ground=true"
+      },
+      {
+        "type": "source_component_pins_underspecified_warning",
+        "message": "All pins on J_USB are underspecified (no pinAttributes set)"
+      },
+      {
+        "type": "source_no_power_pin_defined_warning",
+        "message": "D_TVS has no pin with requires_power=true"
+      },
+      {
+        "type": "source_no_ground_pin_defined_warning",
+        "message": "D_TVS has no pin with requires_ground=true"
+      },
+      {
+        "type": "source_component_pins_underspecified_warning",
+        "message": "All pins on D_TVS are underspecified (no pinAttributes set)"
+      },
+      {
+        "type": "source_no_power_pin_defined_warning",
+        "message": "U_BUCK has no pin with requires_power=true"
+      },
+      {
+        "type": "source_no_ground_pin_defined_warning",
+        "message": "U_BUCK has no pin with requires_ground=true"
+      },
+      {
+        "type": "source_component_pins_underspecified_warning",
+        "message": "All pins on U_BUCK are underspecified (no pinAttributes set)"
+      },
+      {
+        "type": "source_no_power_pin_defined_warning",
+        "message": "U_LDO has no pin with requires_power=true"
+      },
+      {
+        "type": "source_no_ground_pin_defined_warning",
+        "message": "U_LDO has no pin with requires_ground=true"
+      },
+      {
+        "type": "source_no_power_pin_defined_warning",
+        "message": "U_MCU has no pin with requires_power=true"
+      },
+      {
+        "type": "source_no_ground_pin_defined_warning",
+        "message": "U_MCU has no pin with requires_ground=true"
+      },
+      {
+        "type": "source_no_power_pin_defined_warning",
+        "message": "J_RF has no pin with requires_power=true"
+      },
+      {
+        "type": "source_no_ground_pin_defined_warning",
+        "message": "J_RF has no pin with requires_ground=true"
+      },
+      {
+        "type": "source_component_pins_underspecified_warning",
+        "message": "All pins on J_RF are underspecified (no pinAttributes set)"
+      },
+      {
+        "type": "schematic_missing_sheet_warning",
+        "message": "No <schematicsheet> was found. Add a <schematicsheet> to define the schematic drawing area."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<chip#7 name=\".J_USB\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<chip#46 name=\".D_TVS\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<chip#98 name=\".U_BUCK\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<diode#138 name=\".D_BUCK\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<chip#227 name=\".U_LDO\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<chip#277 name=\".U_MCU\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<led#391 name=\".D_LED\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<chip#407 name=\".J_RF\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "source_missing_manufacturer_part_number_warning",
+        "message": "<pinheader#411 name=\".J_ACT\" /> is missing a manufacturer part number and could not be resolved to a supplier part. Specify mpn, manufacturerPartNumber, or mfn, provide supplierPartNumbers, or configure a parts engine to select a part. If this part will not be assembled, mark it doNotPlace."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.J_USB > .CC2 to .R_CC2 > .pin1] is routed thinner than requested (requested: 0.25mm, actual: 0.15mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.J_USB > .VBUS1 to .C_IN1 > .pin1] is routed thinner than requested (requested: 2.1mm, actual: 0.7875mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_IN2 > .pin1 to .U_BUCK > .VIN] is routed thinner than requested (requested: 2.1mm, actual: 1.625mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.U_BUCK > .BST to .C_BST > .pin1] is routed thinner than requested (requested: 0.25mm, actual: 0.2mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_BST > .pin2 to .U_BUCK > .SW] is routed thinner than requested (requested: 0.25mm, actual: 0.15mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.L_BUCK > .pin2 to .C_OUT1 > .pin1] is routed thinner than requested (requested: 0.8mm, actual: 0.25mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_OUT1 > .pin1 to .C_OUT2 > .pin1] is routed thinner than requested (requested: 0.8mm, actual: 0.25mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_OUT2 > .pin1 to .C_LDO_IN > .pin1] is routed thinner than requested (requested: 0.6mm, actual: 0.25mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_LDO_IN > .pin1 to .U_LDO > .IN] is routed thinner than requested (requested: 0.5mm, actual: 0.25mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_OUT2 > .pin1 to .U_MCU > .VDD3V3_B] is routed thinner than requested (requested: 0.4mm, actual: 0.25mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_OUT1 > .pin1 to .U_MCU > .VDD3V3_C] is routed thinner than requested (requested: 0.4mm, actual: 0.25mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_OUT2 > .pin1 to .U_MCU > .VDD_CORE] is routed thinner than requested (requested: 0.4mm, actual: 0.25mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_MCU1 > .pin1 to .U_MCU > .VDD3V3_C] is routed thinner than requested (requested: 0.3mm, actual: 0.25mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.C_ANA1 > .pin1 to .C_ANA2 > .pin1] is routed thinner than requested (requested: 0.35mm, actual: 0.17500000000000002mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.U_MCU > .ADC_IN1 to .R_ADC1 > .pin1] is routed thinner than requested (requested: 0.2mm, actual: 0.15mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.U_MCU > .ADC_IN2 to .R_ADC2 > .pin1] is routed thinner than requested (requested: 0.2mm, actual: 0.175mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.U_MCU > .PWM_ACT1 to .J_ACT > .pin3] is routed thinner than requested (requested: 0.25mm, actual: 0.2mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.U_MCU > .PWM_ACT2 to .J_ACT > .pin4] is routed thinner than requested (requested: 0.25mm, actual: 0.15mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.R_LED > .pin2 to .D_LED > .anode] is routed thinner than requested (requested: 0.2mm, actual: 0.15mm)."
+      },
+      {
+        "type": "pcb_trace_warning",
+        "message": "Trace [.U_MCU > .RF_TX to .J_RF > .SIG] is routed thinner than requested (requested: 0.306mm, actual: 0.225mm)."
+      },
+      {
+        "type": "schematic_component_styling_warning",
+        "message": "Net labels attached to C_LDO_IN or U_LDO overlap the other component or its labels. Separate the components and their attached labels, preserving pin connections and rerouting affected traces."
+      }
+    ],
+    "gerber_files": [
+      "F_Cu.gbr",
+      "F_SilkS.gbr",
+      "F_Mask.gbr",
+      "F_Paste.gbr",
+      "B_Cu.gbr",
+      "B_SilkS.gbr",
+      "B_Mask.gbr",
+      "B_Paste.gbr",
+      "Edge_Cuts.gbr",
+      "In1_Cu.gbr",
+      "In2_Cu.gbr",
+      "F_Fab.gbr"
+    ],
+    "drill_files": [
+      "PTH.drl",
+      "NPTH.drl"
+    ],
+    "pcb_traces": 80,
+    "pcb_vias": 64,
+    "pcb_copper_pours": 2,
+    "pcb_keepouts": 1
+  },
+  "physics": {
+    "pcb_traces": 80,
+    "pcb_vias": 64,
+    "pcb_copper_pours": 2,
+    "pcb_keepouts": 1,
+    "usb_tvs_distance_mm": 2.4331,
+    "usb_path_vias": 0,
+    "vbus_max_width_mm": 2.1,
+    "rf_max_width_mm": 0.306,
+    "total_wirelength_mm": 440.456,
+    "cc1_trace_id": "source_trace_32",
+    "cc2_trace_id": "source_trace_34",
+    "cc_nets_distinct": true,
+    "source_nets": [
+      "GND"
+    ]
+  },
+  "kiutils_validation": {
+    "parsed_ok": true,
+    "footprints": 37,
+    "trace_items": 745,
+    "zones": 3,
+    "nets": 24
+  },
+  "artifacts": [
+    "B_Cu.gbr",
+    "B_Mask.gbr",
+    "B_Paste.gbr",
+    "B_SilkS.gbr",
+    "Edge_Cuts.gbr",
+    "F_Cu.gbr",
+    "F_Fab.gbr",
+    "F_Mask.gbr",
+    "F_Paste.gbr",
+    "F_SilkS.gbr",
+    "In1_Cu.gbr",
+    "In2_Cu.gbr",
+    "NPTH.drl",
+    "PTH.drl",
+    "board1.kicad_pcb",
+    "board1.kicad_sch",
+    "circuit.json",
+    "pcb.svg",
+    "schematic.svg",
+    "tscircuit_report.json"
+  ]
+}

@@ -1,0 +1,386 @@
+{
+  "blind_solver": {
+    "label": "Case 3 v2 (Blind)",
+    "pcb_path": "artifacts/blind_case3/routed.kicad_pcb",
+    "board_dims_mm": [
+      50.0,
+      50.0
+    ],
+    "origin_shift_mm": [
+      0.0,
+      0.0
+    ],
+    "footprint_sides": {
+      "F.Cu": 74
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 4,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "GND"
+    ],
+    "segments_count": 959,
+    "arcs_count": 0,
+    "total_wirelength_mm": 1171.553,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 453.908,
+      "F.Cu": 717.645
+    },
+    "segments_by_layer": {
+      "B.Cu": 225,
+      "F.Cu": 734
+    },
+    "trace_width_histogram": {
+      "0.080": 2,
+      "0.096": 4,
+      "0.120": 72,
+      "0.160": 632,
+      "0.180": 4,
+      "0.187": 3,
+      "0.200": 3,
+      "0.220": 40,
+      "0.250": 199
+    },
+    "vias_total": 149,
+    "vias_signal": 79,
+    "vias_gnd": 70,
+    "via_sizes": {
+      "0.50/0.25": 2,
+      "0.55/0.30": 119,
+      "0.60/0.30": 28
+    },
+    "diff_pairs": [],
+    "decoupling_cap_distances": {
+      "C11": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U201.8(+6V)",
+        "dist_mm": 6.557
+      },
+      "C12": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U301.8(+6V)",
+        "dist_mm": 9.722
+      },
+      "C13": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U201.8(+6V)",
+        "dist_mm": 8.621
+      },
+      "C14": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U301.8(+6V)",
+        "dist_mm": 11.004
+      },
+      "C3": {
+        "rails": [
+          "/Left Driver/+5V"
+        ],
+        "nearest_ic_pin": "U201.15(/Left Driver/+5V)",
+        "dist_mm": 7.654
+      },
+      "C4": {
+        "rails": [
+          "/Right Driver/+5V"
+        ],
+        "nearest_ic_pin": "U301.15(/Right Driver/+5V)",
+        "dist_mm": 7.938
+      },
+      "C5": {
+        "rails": [
+          "/Left Driver/HNA"
+        ],
+        "nearest_ic_pin": "U201.18(/Left Driver/HNA)",
+        "dist_mm": 3.526
+      },
+      "C6": {
+        "rails": [
+          "/Right Driver/HNA"
+        ],
+        "nearest_ic_pin": "U301.22(/Right Driver/HNA)",
+        "dist_mm": 8.601
+      }
+    },
+    "avg_decoupling_dist_mm": 7.953,
+    "max_decoupling_dist_mm": 11.004,
+    "header_edge_distances_mm": {
+      "J1": 6.8,
+      "J102": 2.6,
+      "J2": 5.5,
+      "J201": 6.8,
+      "J202": 7.5,
+      "J3": 7.5,
+      "J301": 5.5,
+      "J302": 3.6
+    },
+    "avg_header_edge_dist_mm": 5.73,
+    "drc_lvs": {
+      "footprints": 74,
+      "vias": 149,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [
+        {
+          "net": "/M2_BRAKE",
+          "pad_count": 3,
+          "components": 2
+        }
+      ],
+      "min_inter_net_clearance_mm": 0.1317,
+      "worst_clearance_pair": "F.Cu:/Left Driver/V<->/Left Driver/W"
+    }
+  },
+  "human_reference": {
+    "label": "Case 3 Human Ref",
+    "pcb_path": "benchmark_case/sealed_case3/pcb_design/Driver/Driver Example.kicad_pcb",
+    "board_dims_mm": [
+      50.0,
+      50.0
+    ],
+    "origin_shift_mm": [
+      135.0,
+      56.0
+    ],
+    "footprint_sides": {
+      "F.Cu": 73,
+      "B.Cu": 1
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 2,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "+6V",
+      "GND"
+    ],
+    "segments_count": 700,
+    "arcs_count": 0,
+    "total_wirelength_mm": 1506.242,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 554.916,
+      "F.Cu": 951.326
+    },
+    "segments_by_layer": {
+      "B.Cu": 151,
+      "F.Cu": 549
+    },
+    "trace_width_histogram": {
+      "0.200": 668,
+      "0.300": 7,
+      "0.400": 25
+    },
+    "vias_total": 134,
+    "vias_signal": 98,
+    "vias_gnd": 36,
+    "via_sizes": {
+      "0.60/0.30": 134
+    },
+    "diff_pairs": [],
+    "decoupling_cap_distances": {
+      "C11": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U201.8(+6V)",
+        "dist_mm": 5.524
+      },
+      "C12": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U301.8(+6V)",
+        "dist_mm": 4.114
+      },
+      "C13": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U201.8(+6V)",
+        "dist_mm": 3.524
+      },
+      "C14": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U301.8(+6V)",
+        "dist_mm": 2.605
+      },
+      "C3": {
+        "rails": [
+          "/Left Driver/+5V"
+        ],
+        "nearest_ic_pin": "U201.15(/Left Driver/+5V)",
+        "dist_mm": 4.129
+      },
+      "C4": {
+        "rails": [
+          "/Right Driver/+5V"
+        ],
+        "nearest_ic_pin": "U301.15(/Right Driver/+5V)",
+        "dist_mm": 2.769
+      },
+      "C5": {
+        "rails": [
+          "/Left Driver/HNA"
+        ],
+        "nearest_ic_pin": "U201.18(/Left Driver/HNA)",
+        "dist_mm": 3.594
+      },
+      "C6": {
+        "rails": [
+          "/Right Driver/HNA"
+        ],
+        "nearest_ic_pin": "U301.18(/Right Driver/HNA)",
+        "dist_mm": 3.825
+      }
+    },
+    "avg_decoupling_dist_mm": 3.76,
+    "max_decoupling_dist_mm": 5.524,
+    "header_edge_distances_mm": {
+      "J1": 2.81,
+      "J102": 2.5,
+      "J2": 4.53,
+      "J201": 4.0,
+      "J202": 4.53,
+      "J3": 4.03,
+      "J301": 4.0,
+      "J302": 5.03
+    },
+    "avg_header_edge_dist_mm": 3.93,
+    "drc_lvs": {
+      "footprints": 74,
+      "vias": 134,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [
+        {
+          "layer": "F.Cu",
+          "net1": "/Left Driver/CP",
+          "net2": "/M1_TACHO",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "/Left Driver/+5V",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "/Left Driver/HALL_U",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/Left Driver/+5V",
+          "net2": "/~{M1_SLEEP}",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/Left Driver/HNA",
+          "net2": "/Left Driver/HALL_V",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/Left Driver/HNA",
+          "net2": "/Left Driver/HALL_U",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/M1_BRAKE",
+          "net2": "/M1_PWM",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/M1_BRAKE",
+          "net2": "/Left Driver/ILIM",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/M1_PWM",
+          "net2": "/M1_TACHO",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/~{M1_SLEEP}",
+          "net2": "/M1_FAULT",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/M1_DIR",
+          "net2": "/Left Driver/ILIM",
+          "overlap_mm2": 0.01189
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/M1_DIR",
+          "net2": "/Left Driver/ADVANCE",
+          "overlap_mm2": 0.01189
+        }
+      ],
+      "lvs_opens": [],
+      "min_inter_net_clearance_mm": 0.0,
+      "worst_clearance_pair": "F.Cu:/Left Driver/CP<->/M1_TACHO"
+    }
+  },
+  "deltas": {
+    "wirelength_ratio_blind_vs_ref": 0.778,
+    "vias_total_blind_vs_ref": [
+      149,
+      134
+    ],
+    "vias_signal_blind_vs_ref": [
+      79,
+      98
+    ],
+    "vias_gnd_blind_vs_ref": [
+      70,
+      36
+    ],
+    "avg_decoupling_dist_mm_blind_vs_ref": [
+      7.953,
+      3.76
+    ],
+    "avg_header_edge_dist_mm_blind_vs_ref": [
+      5.73,
+      3.93
+    ],
+    "diff_pairs_blind_vs_ref": [
+      [],
+      []
+    ]
+  }
+}

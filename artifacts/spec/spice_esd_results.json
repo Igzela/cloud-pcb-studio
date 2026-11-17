@@ -1,0 +1,18 @@
+{
+  "board": "Board 1: USB-C PD Telemetry & Smart Actuator Node",
+  "all_passed": true,
+  "esd_surge_clamping": {
+    "simulation": "esd_tvs_clamp_and_1k_limiter",
+    "simulator": "ngspice-41",
+    "passed": true,
+    "latchup_threshold_ma": 20.0,
+    "metrics": {
+      "tvs_clamped_line_peak_v": 5.519,
+      "protected_1k_pin_peak_v": 3.916,
+      "protected_1k_ic_clamp_peak_ma": 1.603,
+      "unprotected_1ohm_pin_peak_v": 5.354,
+      "unprotected_1ohm_ic_clamp_peak_ma": 164.91,
+      "current_reduction_factor": 102.9
+    }
+  }
+}

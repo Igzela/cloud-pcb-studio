@@ -1,0 +1,63 @@
+{
+  "board": "Board1_USB_PD_Telemetry",
+  "stackup": {
+    "id": "JLC04161H-7628",
+    "layers": 4,
+    "board_thickness_mm": 1.6,
+    "outer_cu_oz": 1.0,
+    "inner_cu_oz": 0.5,
+    "prepreg_type": "7628",
+    "prepreg_thickness_mm": 0.2104,
+    "prepreg_er": 4.4,
+    "core_thickness_mm": 1.065,
+    "surface_finish": "ENIG",
+    "substrate": "FR4-MidTg",
+    "w_50ohm_mil": 12.05,
+    "w_90diff_mil": 8.31,
+    "s_90diff_mil": 5.0,
+    "min_trace_mil": 3.5,
+    "min_space_mil": 3.5,
+    "min_drill_mm": 0.3,
+    "min_annular_ring_mm": 0.125,
+    "copper_to_edge_mm": 0.5
+  },
+  "selected_winner": "fastroute_v0.1.14",
+  "benchmarks": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "board_name": "Board1_USB_PD_Telemetry",
+      "success": true,
+      "runtime_ms": 10351.49,
+      "total_nets": 23,
+      "routed_nets": 23,
+      "unrouted_nets": 0,
+      "via_count": 16,
+      "total_wirelength_mm": 564.988,
+      "notes": "violations=0, usb_path_vias=0, layers=['B.Cu', 'F.Cu']"
+    },
+    {
+      "engine": "freerouting_cli_v2.5.0",
+      "board_name": "Board1_USB_PD_Telemetry",
+      "success": false,
+      "runtime_ms": 3951.9,
+      "total_nets": 23,
+      "routed_nets": 22,
+      "unrouted_nets": 6,
+      "via_count": 12,
+      "total_wirelength_mm": 507.006,
+      "notes": "usb_path_vias=0, layers=['B.Cu', 'F.Cu'], max_passes=1 (v2.5.0 GraalVM BoardSnapshotManager crashes if max_passes>1)"
+    },
+    {
+      "engine": "tscircuit_capacity_autorouter",
+      "board_name": "Board1_USB_PD_Telemetry",
+      "success": true,
+      "runtime_ms": 0.0,
+      "total_nets": 24,
+      "routed_nets": 24,
+      "unrouted_nets": 0,
+      "via_count": 64,
+      "total_wirelength_mm": 440.456,
+      "notes": "errors=0, usb_path_vias=0"
+    }
+  ]
+}

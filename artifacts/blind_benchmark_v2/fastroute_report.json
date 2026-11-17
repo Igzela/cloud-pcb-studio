@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "artifacts/blind_benchmark_v2/board.dsn",
+  "time_s": {"load": 5.2147, "route": 28.8283, "total": 35.3446, "diagnose": null},
+  "stats": {"layers": 4, "components": 46, "nets": 36, "pins": 164, "connections": 82, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 34, "vias_blind": 0, "vias_buried": 0, "traces": 275, "trace_length_mm": 933.2701, "bends_90": 16, "bends_45": 250, "bends_other": 0, "router_score": 1000, "optimizer_score": 427.1832},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

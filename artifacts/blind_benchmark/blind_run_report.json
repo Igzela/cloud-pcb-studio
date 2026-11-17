@@ -1,0 +1,378 @@
+{
+  "project_name": "can_sensor_board_hw",
+  "repo_url": "https://github.com/HardyYu/can_sensor_board_hw",
+  "commit_sha": "d92c5c1b4860bafcf65c3d8498ee4abc9876a7e6",
+  "total_runtime_ms": 89438.79,
+  "placement_meta": {
+    "board_width_mm": 55.0,
+    "board_height_mm": 45.0,
+    "corner_radius_mm": 6.0,
+    "groups": {
+      "edge_connectors": [
+        "J9"
+      ],
+      "ics": [
+        "U2",
+        "U3",
+        "U1",
+        "Y1"
+      ],
+      "regulators": [
+        "U4"
+      ],
+      "headers_and_tp": [
+        "J14",
+        "J17",
+        "J10",
+        "J16",
+        "J12",
+        "J13",
+        "J15",
+        "J11",
+        "J1",
+        "J2",
+        "J3",
+        "J4",
+        "J5",
+        "J6",
+        "J7",
+        "J8"
+      ],
+      "signal_passives": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9"
+      ],
+      "bypass_caps": [
+        "C1",
+        "C10",
+        "C11",
+        "C12",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C9"
+      ]
+    },
+    "total_placed": 46
+  },
+  "placed_positions": {
+    "J9": [
+      3.799999999999997,
+      21.819999999999993,
+      -90.0
+    ],
+    "U2": [
+      27.5,
+      22.5,
+      0.0
+    ],
+    "U4": [
+      17.289,
+      22.718,
+      270.0
+    ],
+    "U3": [
+      27.874,
+      31.216,
+      90.0
+    ],
+    "U1": [
+      25.74,
+      12.995,
+      180.0
+    ],
+    "Y1": [
+      18.806,
+      15.192,
+      270.0
+    ],
+    "J14": [
+      11.819,
+      26.001,
+      180.0
+    ],
+    "J17": [
+      22.633,
+      33.389,
+      270.0
+    ],
+    "J10": [
+      26.101,
+      8.049,
+      90.0
+    ],
+    "J16": [
+      19.539,
+      29.724,
+      270.0
+    ],
+    "J12": [
+      15.448,
+      11.351,
+      180.0
+    ],
+    "J13": [
+      19.03,
+      11.004,
+      180.0
+    ],
+    "J15": [
+      22.728,
+      4.65,
+      90.0
+    ],
+    "J11": [
+      12.051,
+      3.5,
+      0.0
+    ],
+    "J1": [
+      14.965,
+      15.813,
+      0.0
+    ],
+    "J2": [
+      22.549,
+      8.267,
+      90.0
+    ],
+    "J3": [
+      51.096,
+      10.94,
+      90.0
+    ],
+    "J4": [
+      51.5,
+      13.765,
+      90.0
+    ],
+    "J5": [
+      32.859,
+      12.855,
+      0.0
+    ],
+    "J6": [
+      35.75,
+      11.852,
+      0.0
+    ],
+    "J7": [
+      11.436,
+      9.357,
+      90.0
+    ],
+    "J8": [
+      8.186,
+      11.752,
+      0.0
+    ],
+    "D1": [
+      35.087,
+      20.793,
+      90.0
+    ],
+    "D2": [
+      23.132,
+      29.936,
+      0.0
+    ],
+    "D3": [
+      34.998,
+      16.895,
+      270.0
+    ],
+    "D4": [
+      7.224,
+      14.983,
+      0.0
+    ],
+    "R1": [
+      5.074,
+      28.668,
+      180.0
+    ],
+    "R2": [
+      4.91,
+      10.465,
+      180.0
+    ],
+    "R3": [
+      35.789,
+      24.143,
+      180.0
+    ],
+    "R4": [
+      37.84,
+      20.752,
+      90.0
+    ],
+    "R5": [
+      31.342,
+      30.636,
+      90.0
+    ],
+    "R6": [
+      3.685,
+      13.788,
+      90.0
+    ],
+    "R7": [
+      4.885,
+      31.524,
+      0.0
+    ],
+    "R8": [
+      37.398,
+      16.107,
+      90.0
+    ],
+    "R9": [
+      5.874,
+      34.482,
+      180.0
+    ],
+    "C1": [
+      35.317,
+      28.711,
+      270.0
+    ],
+    "C10": [
+      26.91,
+      34.979,
+      0.0
+    ],
+    "C11": [
+      38.471,
+      27.678,
+      270.0
+    ],
+    "C12": [
+      31.756,
+      34.686,
+      270.0
+    ],
+    "C2": [
+      33.359,
+      4.254,
+      90.0
+    ],
+    "C3": [
+      35.111,
+      33.177,
+      0.0
+    ],
+    "C4": [
+      17.994,
+      36.347,
+      0.0
+    ],
+    "C5": [
+      35.899,
+      4.181,
+      90.0
+    ],
+    "C6": [
+      38.63,
+      11.961,
+      90.0
+    ],
+    "C7": [
+      13.888,
+      36.27,
+      180.0
+    ],
+    "C9": [
+      22.34,
+      36.503,
+      180.0
+    ]
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "board_name": "can_sensor_board_hw",
+      "success": false,
+      "runtime_ms": 76061.7,
+      "total_nets": 37,
+      "routed_nets": 37,
+      "unrouted_nets": 0,
+      "via_count": 49,
+      "total_wirelength_mm": 991.8823,
+      "notes": "rc=0, violations=3, layers=['B.Cu', 'F.Cu']"
+    },
+    {
+      "engine": "freerouting_cli_v2.5.0",
+      "board_name": "can_sensor_board_hw",
+      "success": false,
+      "runtime_ms": 5594.86,
+      "total_nets": 37,
+      "routed_nets": 36,
+      "unrouted_nets": 13,
+      "via_count": 46,
+      "total_wirelength_mm": 838.246,
+      "notes": "rc=0, max_passes=1"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 2443.372,
+    "pour_area_mm2": 2111.048,
+    "fill_ratio": 0.864,
+    "antipad_cutouts": 80,
+    "is_empty": false
+  },
+  "gerber_files": [
+    "B_Cu.gbr",
+    "B_Mask.gbr",
+    "B_Paste.gbr",
+    "B_SilkS.gbr",
+    "Edge_Cuts.gbr",
+    "F_Cu.gbr",
+    "F_Mask.gbr",
+    "F_Paste.gbr",
+    "F_SilkS.gbr",
+    "In1_Cu.gbr",
+    "In2_Cu.gbr",
+    "NPTH.drl",
+    "PTH.drl"
+  ],
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "F_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 89,
+    "npth_hole_count": 4,
+    "min_annular_ring_mm": 0.125,
+    "annular_ring_violations": 0,
+    "silk_to_mask_overlap_mm2": 0.0,
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 1.7951,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 2.15
+    },
+    "lvs_opens": [],
+    "lvs_shorts": [],
+    "min_inter_net_clearance_mm": 0.15
+  }
+}

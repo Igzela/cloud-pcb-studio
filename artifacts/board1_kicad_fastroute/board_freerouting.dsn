@@ -1,0 +1,501 @@
+(pcb board_freerouting.dsn
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "KiCad's Pcbnew")
+    (host_version "8.0.0")
+  )
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu
+      (type signal)
+      (property (index 0))
+    )
+    (layer In1.Cu
+      (type power)
+      (property (index 1))
+    )
+    (layer In2.Cu
+      (type power)
+      (property (index 2))
+    )
+    (layer B.Cu
+      (type signal)
+      (property (index 3))
+    )
+    (boundary
+      (rect pcb 0 -40000 60000 0)
+    )
+    (via Via[0-3]_550:300_um)
+    (rule
+      (width 200)
+      (clearance 150)
+      (clearance 150 (type default_smd))
+      (clearance 50 (type smd_smd))
+    )
+  )
+  (placement
+    (component IMG_H1
+      (place H1 3500 -3000 front 0)
+    )
+    (component IMG_H2
+      (place H2 3500 -37000 front 0)
+    )
+    (component IMG_H3
+      (place H3 56500 -3000 front 0)
+    )
+    (component IMG_H4
+      (place H4 56500 -37000 front 0)
+    )
+    (component IMG_J_USB
+      (place J_USB 4500 -20000 front 0)
+    )
+    (component IMG_R_CC1
+      (place R_CC1 7500 -9000 front 0)
+    )
+    (component IMG_R_CC2
+      (place R_CC2 10500 -26000 front 0)
+    )
+    (component IMG_D_TVS
+      (place D_TVS 11000 -20000 front 0)
+    )
+    (component IMG_R_TVS_PWR
+      (place R_TVS_PWR 14500 -16000 front 0)
+    )
+    (component IMG_C_IN1
+      (place C_IN1 15500 -11500 front 0)
+    )
+    (component IMG_C_IN2
+      (place C_IN2 18800 -11500 front 0)
+    )
+    (component IMG_R_EN
+      (place R_EN 20500 -14800 front 0)
+    )
+    (component IMG_U_BUCK
+      (place U_BUCK 23000 -11000 front 0)
+    )
+    (component IMG_C_BST
+      (place C_BST 23000 -7000 front 0)
+    )
+    (component IMG_D_BUCK
+      (place D_BUCK 26500 -14000 front 0)
+    )
+    (component IMG_L_BUCK
+      (place L_BUCK 28500 -10000 front 0)
+    )
+    (component IMG_R_FB1
+      (place R_FB1 26500 -6500 front 0)
+    )
+    (component IMG_R_FB2
+      (place R_FB2 26500 -4200 front 0)
+    )
+    (component IMG_C_OUT1
+      (place C_OUT1 33000 -9500 front 0)
+    )
+    (component IMG_C_OUT2
+      (place C_OUT2 36200 -9500 front 0)
+    )
+    (component IMG_C_LDO_IN
+      (place C_LDO_IN 39200 -9500 front 0)
+    )
+    (component IMG_U_LDO
+      (place U_LDO 42200 -9500 front 0)
+    )
+    (component IMG_C_ANA1
+      (place C_ANA1 45200 -8800 front 0)
+    )
+    (component IMG_C_ANA2
+      (place C_ANA2 45200 -11800 front 0)
+    )
+    (component IMG_U_MCU
+      (place U_MCU 33000 -20000 front 0)
+    )
+    (component IMG_C_MCU1
+      (place C_MCU1 29000 -15500 front 0)
+    )
+    (component IMG_C_MCU2
+      (place C_MCU2 36500 -15800 front 0)
+    )
+    (component IMG_C_MCU_ANA
+      (place C_MCU_ANA 31000 -25000 front 0)
+    )
+    (component IMG_R_NRST
+      (place R_NRST 32500 -15200 front 0)
+    )
+    (component IMG_R_ADC1
+      (place R_ADC1 37500 -27000 front 0)
+    )
+    (component IMG_R_ADC2
+      (place R_ADC2 37500 -30000 front 0)
+    )
+    (component IMG_R_LED
+      (place R_LED 42500 -24500 front 0)
+    )
+    (component IMG_D_LED
+      (place D_LED 46000 -24500 front 0)
+    )
+    (component IMG_J_RF
+      (place J_RF 49500 -17000 front 0)
+    )
+    (component IMG_J_ACT
+      (place J_ACT 52500 -25500 front 0)
+    )
+  )
+  (library
+    (image IMG_J_USB
+      (pin Rect_T_1600x800_um 1 2800 4600)
+      (pin Rect_T_1600x1600_um 2 2800 2800)
+      (pin Rect_T_1200x350_um 3 2800 1050)
+      (pin Rect_T_1200x320_um 4 2800 350)
+      (pin Rect_T_1200x320_um 5 2800 -350)
+      (pin Rect_T_1200x350_um 6 2800 -1050)
+      (pin Rect_T_1600x1600_um 7 2800 -2800)
+      (pin Rect_T_1600x800_um 8 2800 -4600)
+      (pin Circ_TH_1500_um 9 -1500 5800)
+      (pin Circ_TH_1500_um 10 -1500 -5800)
+      (pin Circ_TH_1500_um 11 2000 5800)
+      (pin Circ_TH_1500_um 12 2000 -5800)
+    )
+    (image IMG_R_CC1
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_R_CC2
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_D_TVS
+      (pin Rect_T_1000x600_um 1 -1300 950)
+      (pin Rect_T_1000x600_um 2 -1300 0)
+      (pin Rect_T_1000x600_um 3 -1300 -950)
+      (pin Rect_T_1000x600_um 4 1300 -950)
+      (pin Rect_T_1000x600_um 5 1300 0)
+      (pin Rect_T_1000x600_um 6 1300 950)
+    )
+    (image IMG_R_TVS_PWR
+      (pin Rect_T_800x800_um 1 -750 0)
+      (pin Rect_T_800x800_um 2 750 0)
+    )
+    (image IMG_C_IN1
+      (pin Rect_T_1300x1150_um 1 0 950)
+      (pin Rect_T_1300x1150_um 2 0 -950)
+    )
+    (image IMG_C_IN2
+      (pin Rect_T_1300x1150_um 1 0 950)
+      (pin Rect_T_1300x1150_um 2 0 -950)
+    )
+    (image IMG_R_EN
+      (pin Rect_T_800x800_um 1 -750 0)
+      (pin Rect_T_800x800_um 2 750 0)
+    )
+    (image IMG_U_BUCK
+      (pin Rect_T_1000x600_um 1 -1300 950)
+      (pin Rect_T_1000x600_um 2 -1300 0)
+      (pin Rect_T_1000x600_um 3 -1300 -950)
+      (pin Rect_T_1000x600_um 4 1300 -950)
+      (pin Rect_T_1000x600_um 5 1300 0)
+      (pin Rect_T_1000x600_um 6 1300 950)
+    )
+    (image IMG_C_BST
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_D_BUCK
+      (pin Rect_T_1000x1200_um 1 -1650 0)
+      (pin Rect_T_1000x1200_um 2 1650 0)
+    )
+    (image IMG_L_BUCK
+      (pin Rect_T_1150x1300_um 1 -950 0)
+      (pin Rect_T_1150x1300_um 2 950 0)
+    )
+    (image IMG_R_FB1
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_R_FB2
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_C_OUT1
+      (pin Rect_T_1300x1150_um 1 0 950)
+      (pin Rect_T_1300x1150_um 2 0 -950)
+    )
+    (image IMG_C_OUT2
+      (pin Rect_T_1300x1150_um 1 0 950)
+      (pin Rect_T_1300x1150_um 2 0 -950)
+    )
+    (image IMG_C_LDO_IN
+      (pin Rect_T_540x560_um 1 0 500)
+      (pin Rect_T_540x560_um 2 0 -500)
+    )
+    (image IMG_U_LDO
+      (pin Rect_T_1000x600_um 1 -1150 950)
+      (pin Rect_T_1000x600_um 2 -1150 0)
+      (pin Rect_T_1000x600_um 3 -1150 -950)
+      (pin Rect_T_1000x600_um 4 1150 -950)
+      (pin Rect_T_1000x600_um 5 1150 950)
+    )
+    (image IMG_C_ANA1
+      (pin Rect_T_540x560_um 1 0 500)
+      (pin Rect_T_540x560_um 2 0 -500)
+    )
+    (image IMG_C_ANA2
+      (pin Rect_T_540x560_um 1 0 500)
+      (pin Rect_T_540x560_um 2 0 -500)
+    )
+    (image IMG_U_MCU
+      (pin Rect_T_800x260_um 1 -1900 1250)
+      (pin Rect_T_800x260_um 2 -1900 750)
+      (pin Rect_T_800x260_um 3 -1900 250)
+      (pin Rect_T_800x260_um 4 -1900 -250)
+      (pin Rect_T_800x260_um 5 -1900 -750)
+      (pin Rect_T_800x260_um 6 -1900 -1250)
+      (pin Rect_T_260x800_um 7 -1250 -1900)
+      (pin Rect_T_260x800_um 8 -750 -1900)
+      (pin Rect_T_260x800_um 9 -250 -1900)
+      (pin Rect_T_260x800_um 10 250 -1900)
+      (pin Rect_T_260x800_um 11 750 -1900)
+      (pin Rect_T_260x800_um 12 1250 -1900)
+      (pin Rect_T_800x260_um 13 1900 -1250)
+      (pin Rect_T_800x260_um 14 1900 -750)
+      (pin Rect_T_800x260_um 15 1900 -250)
+      (pin Rect_T_800x260_um 16 1900 250)
+      (pin Rect_T_800x260_um 17 1900 750)
+      (pin Rect_T_800x260_um 18 1900 1250)
+      (pin Rect_T_260x800_um 19 1250 1900)
+      (pin Rect_T_260x800_um 20 750 1900)
+      (pin Rect_T_260x800_um 21 250 1900)
+      (pin Rect_T_260x800_um 22 -250 1900)
+      (pin Rect_T_260x800_um 23 -750 1900)
+      (pin Rect_T_260x800_um 24 -1250 1900)
+      (pin Rect_T_2400x2400_um 25 0 0)
+    )
+    (image IMG_C_MCU1
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_C_MCU2
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_C_MCU_ANA
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_R_NRST
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_R_ADC1
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_R_ADC2
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_R_LED
+      (pin Rect_T_560x540_um 1 -500 0)
+      (pin Rect_T_560x540_um 2 500 0)
+    )
+    (image IMG_D_LED
+      (pin Rect_T_800x800_um 1 -750 0)
+      (pin Rect_T_800x800_um 2 750 0)
+    )
+    (image IMG_J_RF
+      (pin Rect_T_1000x800_um 1 -1200 0)
+      (pin Rect_T_1000x1200_um 2 800 1400)
+      (pin Rect_T_1000x1200_um 3 800 -1400)
+    )
+    (image IMG_J_ACT
+      (pin Rect_TH_1700x1700_um 1 0 6350)
+      (pin Circ_TH_1700_um 2 0 3810)
+      (pin Circ_TH_1700_um 3 0 1270)
+      (pin Circ_TH_1700_um 4 0 -1270)
+      (pin Circ_TH_1700_um 5 0 -3810)
+      (pin Circ_TH_1700_um 6 0 -6350)
+    )
+    (padstack Via[0-3]_550:300_um
+      (shape (circle F.Cu 550))
+      (shape (circle In1.Cu 550))
+      (shape (circle In2.Cu 550))
+      (shape (circle B.Cu 550))
+      (attach off)
+    )
+    (padstack Rect_T_1600x800_um
+      (shape (rect F.Cu -800 -400 800 400))
+      (attach off)
+    )
+    (padstack Rect_T_1600x1600_um
+      (shape (rect F.Cu -800 -800 800 800))
+      (attach off)
+    )
+    (padstack Rect_T_1200x350_um
+      (shape (rect F.Cu -600 -175 600 175))
+      (attach off)
+    )
+    (padstack Rect_T_1200x320_um
+      (shape (rect F.Cu -600 -160 600 160))
+      (attach off)
+    )
+    (padstack Circ_TH_1500_um
+      (shape (circle F.Cu 1500))
+      (shape (circle In1.Cu 1500))
+      (shape (circle In2.Cu 1500))
+      (shape (circle B.Cu 1500))
+      (attach off)
+    )
+    (padstack Rect_T_560x540_um
+      (shape (rect F.Cu -280 -270 280 270))
+      (attach off)
+    )
+    (padstack Rect_T_1000x600_um
+      (shape (rect F.Cu -500 -300 500 300))
+      (attach off)
+    )
+    (padstack Rect_T_800x800_um
+      (shape (rect F.Cu -400 -400 400 400))
+      (attach off)
+    )
+    (padstack Rect_T_1300x1150_um
+      (shape (rect F.Cu -650 -575 650 575))
+      (attach off)
+    )
+    (padstack Rect_T_1000x1200_um
+      (shape (rect F.Cu -500 -600 500 600))
+      (attach off)
+    )
+    (padstack Rect_T_1150x1300_um
+      (shape (rect F.Cu -575 -650 575 650))
+      (attach off)
+    )
+    (padstack Rect_T_540x560_um
+      (shape (rect F.Cu -270 -280 270 280))
+      (attach off)
+    )
+    (padstack Rect_T_800x260_um
+      (shape (rect F.Cu -400 -130 400 130))
+      (attach off)
+    )
+    (padstack Rect_T_260x800_um
+      (shape (rect F.Cu -130 -400 130 400))
+      (attach off)
+    )
+    (padstack Rect_T_2400x2400_um
+      (shape (rect F.Cu -1200 -1200 1200 1200))
+      (attach off)
+    )
+    (padstack Rect_T_1000x800_um
+      (shape (rect F.Cu -500 -400 500 400))
+      (attach off)
+    )
+    (padstack Rect_TH_1700x1700_um
+      (shape (rect F.Cu -850 -850 850 850))
+      (shape (rect In1.Cu -850 -850 850 850))
+      (shape (rect In2.Cu -850 -850 850 850))
+      (shape (rect B.Cu -850 -850 850 850))
+      (attach off)
+    )
+    (padstack Circ_TH_1700_um
+      (shape (circle F.Cu 1700))
+      (shape (circle In1.Cu 1700))
+      (shape (circle In2.Cu 1700))
+      (shape (circle B.Cu 1700))
+      (attach off)
+    )
+  )
+  (network
+    (net 3V3
+      (pins L_BUCK-2 R_FB1-1 C_OUT1-1 C_OUT2-1 C_LDO_IN-1 U_LDO-1 U_LDO-3 U_MCU-1 U_MCU-16 U_MCU-20 U_MCU-24 C_MCU1-1 C_MCU2-1 R_NRST-1 J_ACT-1)
+    )
+    (net ADC_IN1
+      (pins U_MCU-8 R_ADC1-1)
+    )
+    (net ADC_IN2
+      (pins U_MCU-9 R_ADC2-1)
+    )
+    (net BUCK_BST
+      (pins U_BUCK-6 C_BST-1)
+    )
+    (net BUCK_EN
+      (pins R_EN-2 U_BUCK-5)
+    )
+    (net BUCK_FB
+      (pins U_BUCK-4 R_FB1-2 R_FB2-1)
+    )
+    (net BUCK_SW
+      (pins U_BUCK-2 C_BST-2 D_BUCK-2 L_BUCK-1)
+    )
+    (net CC1
+      (pins J_USB-3 R_CC1-1)
+    )
+    (net CC2
+      (pins J_USB-6 R_CC2-1)
+    )
+    (net GND
+      (pins J_USB-1 J_USB-8 J_USB-9 J_USB-10 J_USB-11 J_USB-12 R_CC1-2 R_CC2-2 D_TVS-2 C_IN1-2 C_IN2-2 U_BUCK-1 D_BUCK-1 R_FB2-2 C_OUT1-2 C_OUT2-2 C_LDO_IN-2 U_LDO-2 C_ANA1-2 C_ANA2-2 U_MCU-2 U_MCU-5 U_MCU-15 U_MCU-21 U_MCU-22 U_MCU-25 C_MCU1-2 C_MCU2-2 C_MCU_ANA-2 D_LED-2 J_RF-2 J_RF-3 J_ACT-2)
+    )
+    (net LED_ANODE
+      (pins R_LED-2 D_LED-1)
+    )
+    (net LED_STAT
+      (pins U_MCU-10 R_LED-1)
+    )
+    (net MCU_NRST
+      (pins U_MCU-23 R_NRST-2)
+    )
+    (net PWM_ACT1
+      (pins U_MCU-11 J_ACT-3)
+    )
+    (net PWM_ACT2
+      (pins U_MCU-12 J_ACT-4)
+    )
+    (net SENSE_1
+      (pins R_ADC1-2 J_ACT-5)
+    )
+    (net SENSE_2
+      (pins R_ADC2-2 J_ACT-6)
+    )
+    (net TELEM_RF
+      (pins U_MCU-17 J_RF-1)
+    )
+    (net USB_DM
+      (pins J_USB-5 D_TVS-3 D_TVS-4 U_MCU-4)
+    )
+    (net USB_DP
+      (pins J_USB-4 D_TVS-1 D_TVS-6 U_MCU-3)
+    )
+    (net VANA_2V5
+      (pins U_LDO-5 C_ANA1-1 C_ANA2-1 U_MCU-6 U_MCU-7 C_MCU_ANA-1)
+    )
+    (net VBUS
+      (pins J_USB-2 J_USB-7 R_TVS_PWR-1 C_IN1-1 C_IN2-1 R_EN-1 U_BUCK-3)
+    )
+    (net VBUS_TVS
+      (pins D_TVS-5 R_TVS_PWR-2)
+    )
+    (class POWER_VBUS VBUS
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 550) (clearance 150))
+    )
+    (class DIFF_USB_90 USB_DM USB_DP
+      (circuit (use_layer F.Cu))
+      (rule (width 211) (clearance 127))
+    )
+    (class RF_50 TELEM_RF
+      (circuit (use_layer F.Cu))
+      (rule (width 306) (clearance 200))
+    )
+    (class POWER_3V3 3V3 BUCK_SW
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 400) (clearance 150))
+    )
+    (class DEFAULT ADC_IN1 ADC_IN2 BUCK_BST BUCK_EN BUCK_FB CC1 CC2 GND LED_ANODE LED_STAT MCU_NRST PWM_ACT1 PWM_ACT2 SENSE_1 SENSE_2 VANA_2V5 VBUS_TVS
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 200) (clearance 150))
+    )
+  )
+  (wiring
+  )
+)

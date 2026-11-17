@@ -1,0 +1,14 @@
+{
+  "name": "cloud-pcb-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@tscircuit/core": "^0.0.2359",
+    "circuit-json-to-gerber": "^0.0.123",
+    "circuit-json-to-kicad": "^0.0.275",
+    "circuit-to-svg": "^0.0.458",
+    "esbuild": "^0.28.2",
+    "tscircuit": "^0.0.3169"
+  }
+}

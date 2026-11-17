@@ -1,0 +1,666 @@
+{
+  "blind_solver": {
+    "label": "Blind Solver (cloud-pcb-studio)",
+    "pcb_path": "/home/antigravity/cloud-pcb-studio/artifacts/blind_benchmark/routed.kicad_pcb",
+    "origin_shift_mm": [
+      0.0,
+      0.0
+    ],
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 0,
+    "zone_layers": [],
+    "zone_nets": [],
+    "segments_count": 649,
+    "arcs_count": 0,
+    "total_wirelength_mm": 991.882,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 372.202,
+      "F.Cu": 619.681
+    },
+    "segments_by_layer": {
+      "B.Cu": 155,
+      "F.Cu": 494
+    },
+    "trace_width_histogram": {
+      "0.120": 2,
+      "0.150": 33,
+      "0.200": 379,
+      "0.240": 1,
+      "0.250": 61,
+      "0.300": 22,
+      "0.400": 151
+    },
+    "vias_total": 49,
+    "vias_signal": 47,
+    "vias_gnd": 2,
+    "via_sizes": {
+      "0.55/0.30": 49
+    },
+    "can_diff_pair": {
+      "CAN_H_len_mm": 36.878,
+      "CAN_L_len_mm": 35.422,
+      "length_mismatch_mm": 1.456
+    },
+    "key_component_distances_mm": {
+      "U2_MCU_to_Y1_XTAL": 11.357,
+      "U2_MCU_to_U3_IMU": 8.724,
+      "U2_MCU_to_U1_CAN": 9.667,
+      "J9_USBC_to_U4_LDO": 13.519,
+      "U1_CAN_to_R2_TERM": 20.983,
+      "U1_CAN_to_J12_HDR": 10.422,
+      "U1_CAN_to_J13_HDR": 6.999
+    },
+    "decoupling_cap_distances": {
+      "C1": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.17(+3V3)",
+        "dist_mm": 4.125
+      },
+      "C2": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U1.3(+5V)",
+        "dist_mm": 8.956
+      },
+      "C3": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.5(+3V3)",
+        "dist_mm": 5.739
+      },
+      "C4": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "J9.A9(+5V)",
+        "dist_mm": 16.616
+      },
+      "C5": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U1.5(+3V3)",
+        "dist_mm": 14.044
+      },
+      "C6": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.17(+3V3)",
+        "dist_mm": 14.361
+      },
+      "C7": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U4.2(+3V3)",
+        "dist_mm": 10.971
+      },
+      "C9": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.5(+3V3)",
+        "dist_mm": 7.422
+      },
+      "C10": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.5(+3V3)",
+        "dist_mm": 4.204
+      },
+      "C11": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.17(+3V3)",
+        "dist_mm": 6.982
+      },
+      "C12": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.5(+3V3)",
+        "dist_mm": 3.693
+      }
+    },
+    "avg_decoupling_dist_mm": 8.828,
+    "max_decoupling_dist_mm": 16.616,
+    "header_edge_distances_mm": {
+      "J1": 14.96,
+      "J10": 8.05,
+      "J11": 3.5,
+      "J12": 11.35,
+      "J13": 11.0,
+      "J14": 11.82,
+      "J15": 4.65,
+      "J16": 15.28,
+      "J17": 11.61,
+      "J2": 8.27,
+      "J3": 3.9,
+      "J4": 3.5,
+      "J5": 12.86,
+      "J6": 11.85,
+      "J7": 9.36,
+      "J8": 8.19
+    },
+    "avg_header_edge_dist_mm": 9.38,
+    "drc_lvs": {
+      "footprints": 50,
+      "vias": 49,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [],
+      "min_inter_net_clearance_mm": 0.15,
+      "worst_clearance_pair": "F.Cu:+3V3<->TIM2_CH2"
+    }
+  },
+  "human_reference": {
+    "label": "Human Reference (HardyYu/can_sensor_board_hw)",
+    "pcb_path": "/home/antigravity/cloud-pcb-studio/benchmark_case/sealed_reference/can_sensor_board_kicad/Sensor_Board.kicad_pcb",
+    "origin_shift_mm": [
+      94.0,
+      44.0
+    ],
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 74,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "+3V3",
+      "+5V",
+      "/NRST",
+      "GND",
+      "GPIO_LED1",
+      "GPIO_LED2",
+      "IMU_CS",
+      "IMU_IDO",
+      "TIM1_CH1",
+      "TIM1_CH2",
+      "TIM1_CH3",
+      "TIM2_CH1",
+      "TIM2_CH2",
+      "UART2_CTS",
+      "UART2_RX",
+      "UART2_TX"
+    ],
+    "segments_count": 472,
+    "arcs_count": 0,
+    "total_wirelength_mm": 1086.862,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 302.639,
+      "F.Cu": 784.223
+    },
+    "segments_by_layer": {
+      "B.Cu": 122,
+      "F.Cu": 350
+    },
+    "trace_width_histogram": {
+      "0.200": 88,
+      "0.300": 191,
+      "0.500": 90,
+      "0.800": 103
+    },
+    "vias_total": 118,
+    "vias_signal": 41,
+    "vias_gnd": 77,
+    "via_sizes": {
+      "0.70/0.30": 115,
+      "0.60/0.30": 3
+    },
+    "can_diff_pair": {
+      "CAN_H_len_mm": 35.595,
+      "CAN_L_len_mm": 44.279,
+      "length_mismatch_mm": 8.684
+    },
+    "key_component_distances_mm": {
+      "U2_MCU_to_Y1_XTAL": 7.792,
+      "U2_MCU_to_U3_IMU": 10.349,
+      "U2_MCU_to_U1_CAN": 17.713,
+      "J9_USBC_to_U4_LDO": 10.683,
+      "U1_CAN_to_R2_TERM": 7.473,
+      "U1_CAN_to_J12_HDR": 8.867,
+      "U1_CAN_to_J13_HDR": 10.729
+    },
+    "decoupling_cap_distances": {
+      "C1": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U4.2(+3V3)",
+        "dist_mm": 2.903
+      },
+      "C2": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U4.3(+5V)",
+        "dist_mm": 1.803
+      },
+      "C3": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U1.5(+3V3)",
+        "dist_mm": 2.276
+      },
+      "C4": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U1.3(+5V)",
+        "dist_mm": 2.279
+      },
+      "C5": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.8(+3V3)",
+        "dist_mm": 1.618
+      },
+      "C6": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.5(+3V3)",
+        "dist_mm": 1.675
+      },
+      "C7": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.1(+3V3)",
+        "dist_mm": 4.308
+      },
+      "C9": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.17(+3V3)",
+        "dist_mm": 1.771
+      },
+      "C10": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.1(+3V3)",
+        "dist_mm": 1.589
+      },
+      "C11": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.5(+3V3)",
+        "dist_mm": 2.035
+      },
+      "C12": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.1(+3V3)",
+        "dist_mm": 2.725
+      }
+    },
+    "avg_decoupling_dist_mm": 2.271,
+    "max_decoupling_dist_mm": 4.308,
+    "header_edge_distances_mm": {
+      "J1": 3.5,
+      "J10": 2.5,
+      "J11": 3.8,
+      "J12": 12.0,
+      "J13": 8.0,
+      "J14": 3.75,
+      "J15": 2.5,
+      "J16": 6.5,
+      "J17": 7.5,
+      "J2": 3.5,
+      "J3": 3.5,
+      "J4": 3.5,
+      "J5": 3.5,
+      "J6": 3.5,
+      "J7": 3.5,
+      "J8": 3.5
+    },
+    "avg_header_edge_dist_mm": 4.66,
+    "drc_lvs": {
+      "footprints": 51,
+      "vias": 118,
+      "via_in_pad_violations": [
+        {
+          "footprint": "LQFP-32_7x7mm_P0.8mm",
+          "pad": "9",
+          "net": "UART2_RX",
+          "x": 121.15,
+          "y": 62.763
+        }
+      ],
+      "lvs_shorts": [
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "+5V",
+          "overlap_mm2": 0.02313
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "/SWDIO",
+          "overlap_mm2": 0.02313
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "IMU_IDO",
+          "overlap_mm2": 0.02625
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "TIM2_CH1",
+          "overlap_mm2": 0.02625
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "unconnected-(U2-PB8-Pad31)",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "unconnected-(U2-PB1-Pad15)",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GND",
+          "net2": "unconnected-(U3-NC-Pad6)",
+          "overlap_mm2": 0.02625
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "+3V3",
+          "net2": "/RCC_OSC_IN",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "+3V3",
+          "net2": "/NRST",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "+3V3",
+          "net2": "UART2_CTS",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "+3V3",
+          "net2": "TIM1_CH1",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "+3V3",
+          "net2": "TIM2_CH2",
+          "overlap_mm2": 0.02625
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "+3V3",
+          "net2": "unconnected-(U3-NC-Pad6)",
+          "overlap_mm2": 0.02625
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "+5V",
+          "net2": "Net-(J9-CC2)",
+          "overlap_mm2": 0.126
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "+5V",
+          "net2": "Net-(J9-CC1)",
+          "overlap_mm2": 0.126
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/RCC_OSC_IN",
+          "net2": "unconnected-(U2-PF1-Pad3)",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "CAN_TX",
+          "net2": "CAN_RX",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "CAN_TX",
+          "net2": "/SWDIO",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "CAN_RX",
+          "net2": "TIM1_CH3",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "CAN_H",
+          "net2": "CAN_L",
+          "overlap_mm2": 0.14
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "Net-(J9-CC2)",
+          "net2": "Net-(J9-CC1)",
+          "overlap_mm2": 0.14
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/SWCLK",
+          "net2": "/SWDIO",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "/NRST",
+          "net2": "unconnected-(U2-PF1-Pad3)",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "UART2_RTS",
+          "net2": "UART2_TX",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "UART2_RTS",
+          "net2": "UART2_CTS",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "UART2_RX",
+          "net2": "IMU_CS",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "UART1_TX",
+          "net2": "UART1_RX",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "UART1_TX",
+          "net2": "GPIO_LED2",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "UART1_RX",
+          "net2": "unconnected-(U2-PB8-Pad31)",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "TIM1_CH2",
+          "net2": "TIM1_CH3",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "TIM1_CH2",
+          "net2": "TIM1_CH1",
+          "overlap_mm2": 0.35746
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "IMU_SDI",
+          "net2": "IMU_IDO",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "IMU_SDI",
+          "net2": "IMU_CLK",
+          "overlap_mm2": 0.02625
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "IMU_SDI",
+          "net2": "unconnected-(U2-PB0-Pad14)",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "IMU_IDO",
+          "net2": "IMU_CLK",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "IMU_CS",
+          "net2": "IMU_CLK",
+          "overlap_mm2": 0.37625
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GPIO_LED1",
+          "net2": "GPIO_LED2",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "GPIO_LED1",
+          "net2": "TIM2_CH2",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "TIM2_CH1",
+          "net2": "TIM2_CH2",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "unconnected-(U2-PB0-Pad14)",
+          "net2": "unconnected-(U2-PB1-Pad15)",
+          "overlap_mm2": 0.35
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "TIM2_CH2",
+          "net2": "unconnected-(U3-NC__1-Pad10)",
+          "overlap_mm2": 0.02625
+        },
+        {
+          "layer": "F.Cu",
+          "net1": "unconnected-(U3-NC__2-Pad11)",
+          "net2": "unconnected-(U3-NC__1-Pad10)",
+          "overlap_mm2": 0.02625
+        },
+        {
+          "layer": "B.Cu",
+          "net1": "GND",
+          "net2": "+3V3",
+          "overlap_mm2": 0.02313
+        },
+        {
+          "layer": "B.Cu",
+          "net1": "GND",
+          "net2": "/NRST",
+          "overlap_mm2": 0.02313
+        },
+        {
+          "layer": "B.Cu",
+          "net1": "UART2_TX",
+          "net2": "UART2_RX",
+          "overlap_mm2": 0.02313
+        },
+        {
+          "layer": "B.Cu",
+          "net1": "UART2_RX",
+          "net2": "IMU_CLK",
+          "overlap_mm2": 0.02313
+        }
+      ],
+      "lvs_opens": [],
+      "min_inter_net_clearance_mm": 0.0,
+      "worst_clearance_pair": "F.Cu:GND<->+5V"
+    }
+  },
+  "deltas": {
+    "wirelength_ratio_blind_vs_ref": 0.913,
+    "vias_total_blind_vs_ref": [
+      49,
+      118
+    ],
+    "vias_signal_blind_vs_ref": [
+      47,
+      41
+    ],
+    "vias_gnd_blind_vs_ref": [
+      2,
+      77
+    ],
+    "avg_decoupling_dist_mm_blind_vs_ref": [
+      8.828,
+      2.271
+    ],
+    "avg_header_edge_dist_mm_blind_vs_ref": [
+      9.38,
+      4.66
+    ],
+    "can_mismatch_mm_blind_vs_ref": [
+      1.456,
+      8.684
+    ]
+  }
+}

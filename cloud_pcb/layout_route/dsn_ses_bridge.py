@@ -1,0 +1,503 @@
+"""Specctra DSN / SES bridge for kiutils KiCad PCB boards.
+
+Supports:
+- Exporting a kiutils Board + NetClassRule dictionary into a Specctra .dsn file
+  compatible with both Rust `fastroute v0.1.14` and native `freerouting-cli v2.5.0`.
+- Parsing Specctra .ses files (handling arbitrary resolution multipliers) and merging
+  routed Segment + Via geometry back into a kiutils Board.
+"""
+
+from __future__ import annotations
+
+import math
+import re
+import uuid
+from pathlib import Path
+from typing import Any
+
+from kiutils.board import Board
+from kiutils.items.brditems import Segment, Via
+from kiutils.items.common import Position
+
+from contracts.schemas import NetClassRule
+
+DEFAULT_VIA_NAME = "Via[0-3]_550:300_um"
+
+
+def _quote(token: str) -> str:
+    if not token or any(ch.isspace() or ch in '()"' for ch in token):
+        escaped = token.replace('"', '\\"')
+        return f'"{escaped}"'
+    return token
+
+
+def _rotate_kicad(dx: float, dy: float, angle_deg: float) -> tuple[float, float]:
+    """Rotate local KiCad footprint offset (dx, dy) by KiCad footprint angle (CCW in Y-up)."""
+    if abs(angle_deg) < 1e-9:
+        return dx, dy
+    rad = math.radians(angle_deg)
+    c = math.cos(rad)
+    s = math.sin(rad)
+    # In KiCad Y-down coordinates, positive angle rotates CCW on screen (Y-up equivalent)
+    return dx * c + dy * s, -dx * s + dy * c
+
+
+def _pad_world_dims(w: float, h: float, total_angle_deg: float) -> tuple[float, float]:
+    norm = round(total_angle_deg) % 180
+    if norm == 90:
+        return h, w
+    return w, h
+
+
+def _footprint_ref(fp: Any, idx: int) -> str:
+    for prop_key in ("Reference", "reference"):
+        if prop_key in getattr(fp, "properties", {}):
+            val = str(fp.properties[prop_key]).strip()
+            if val:
+                return val
+    for gi in getattr(fp, "graphicItems", []):
+        if getattr(gi, "type", None) == "reference" and getattr(gi, "text", None):
+            return str(gi.text).strip()
+    return f"FP{idx}"
+
+
+def board_to_dsn(
+    board: Board,
+    dsn_path: Path,
+    netclasses: dict[str, NetClassRule],
+    net_to_class: dict[str, str],
+    board_bounds_mm: tuple[float, float, float, float] = (0.0, 0.0, 60.0, 40.0),
+    keepouts_mm: list[dict[str, Any]] | None = None,
+    via_pad_mm: float = 0.55,
+    via_drill_mm: float = 0.30,
+    skip_nets: set[str] | None = None,
+    override_net_pins: dict[str, list[str]] | None = None,
+) -> Path:
+    """Export a kiutils Board to a Specctra .dsn file."""
+    x0, y0, x1, y1 = board_bounds_mm
+    # Specctra uses Y-up: KiCad y in [0, 40] -> Specctra y in [-40, 0]
+    bx0 = round(x0 * 1000)
+    by0 = round(-y1 * 1000)
+    bx1 = round(x1 * 1000)
+    by1 = round(-y0 * 1000)
+
+    via_pad_um = round(via_pad_mm * 1000)
+    via_drill_um = round(via_drill_mm * 1000)
+    via_name = f"Via[0-3]_{via_pad_um}:{via_drill_um}_um"
+
+    padstacks: dict[str, list[str]] = {}
+    images: list[str] = []
+    placements: list[str] = []
+    net_pins: dict[str, list[str]] = {}
+
+    # Register via padstack across all 4 copper layers
+    padstacks[via_name] = [
+        f'    (padstack {_quote(via_name)}',
+        f"      (shape (circle F.Cu {via_pad_um}))",
+        f"      (shape (circle In1.Cu {via_pad_um}))",
+        f"      (shape (circle In2.Cu {via_pad_um}))",
+        f"      (shape (circle B.Cu {via_pad_um}))",
+        "      (attach off)",
+        "    )",
+    ]
+
+    for idx, fp in enumerate(board.footprints):
+        ref = _footprint_ref(fp, idx)
+        fx = float(fp.position.X)
+        fy = float(fp.position.Y)
+        fangle = float(fp.position.angle or 0.0)
+        img_name = f"IMG_{ref}"
+
+        # Place footprint at world position with angle 0 and pre-rotated local pins
+        # to eliminate any KiCad vs Specctra rotation-sign ambiguity.
+        fx_um = round(fx * 1000)
+        fy_um = round(-fy * 1000)
+        placements.append(f"    (component {_quote(img_name)}")
+        placements.append(f"      (place {_quote(ref)} {fx_um} {fy_um} front 0)")
+        placements.append("    )")
+
+        pin_lines: list[str] = []
+        for pad_idx, pad in enumerate(fp.pads):
+            pad_num = str(pad.number or f"P{pad_idx+1}").strip()
+            if pad.type == "np_thru_hole":
+                continue
+
+            lx_kicad, ly_kicad = _rotate_kicad(
+                float(pad.position.X), float(pad.position.Y), fangle
+            )
+            px_um = round(lx_kicad * 1000)
+            py_um = round(-ly_kicad * 1000)
+
+            pad_angle = float(pad.position.angle) if pad.position.angle is not None else fangle
+            pw, ph = _pad_world_dims(float(pad.size.X), float(pad.size.Y), pad_angle)
+            pw_um = max(100, round(pw * 1000))
+            ph_um = max(100, round(ph * 1000))
+
+            if pad.type == "thru_hole":
+                layer_list = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"]
+                layer_tag = "TH"
+            else:
+                raw_layers = pad.layers or ["F.Cu"]
+                if "*.Cu" in raw_layers:
+                    layer_list = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"]
+                else:
+                    layer_list = [l for l in raw_layers if l.endswith(".Cu")]
+                if not layer_list:
+                    continue
+                layer_tag = "B" if layer_list == ["B.Cu"] else "T"
+
+            shape_kind = pad.shape
+            if shape_kind == "circle":
+                ps_name = f"Circ_{layer_tag}_{pw_um}_um"
+                if ps_name not in padstacks:
+                    lines = [f"    (padstack {_quote(ps_name)}"]
+                    for lyr in layer_list:
+                        lines.append(f"      (shape (circle {lyr} {pw_um}))")
+                    lines.append("      (attach off)")
+                    lines.append("    )")
+                    padstacks[ps_name] = lines
+            else:
+                ps_name = f"Rect_{layer_tag}_{pw_um}x{ph_um}_um"
+                if ps_name not in padstacks:
+                    hx = pw_um // 2
+                    hy = ph_um // 2
+                    lines = [f"    (padstack {_quote(ps_name)}"]
+                    for lyr in layer_list:
+                        lines.append(f"      (shape (rect {lyr} {-hx} {-hy} {hx} {hy}))")
+                    lines.append("      (attach off)")
+                    lines.append("    )")
+                    padstacks[ps_name] = lines
+
+            pin_lines.append(f"      (pin {_quote(ps_name)} {_quote(pad_num)} {px_um} {py_um})")
+
+            if pad.net and pad.net.name:
+                if skip_nets and pad.net.name in skip_nets:
+                    continue
+                net_pins.setdefault(pad.net.name, []).append(f"{ref}-{pad_num}")
+
+        if pin_lines:
+            images.append(f"    (image {_quote(img_name)}")
+            images.extend(pin_lines)
+            images.append("    )")
+
+    if override_net_pins:
+        for nname, plist in override_net_pins.items():
+            if len(plist) >= 2:
+                net_pins[nname] = list(plist)
+            else:
+                net_pins.pop(nname, None)
+
+    # Keepout rectangles (e.g. RF corner keepout, QFN thermal via B.Cu keepout)
+    keepout_lines: list[str] = []
+    for ko in keepouts_mm or []:
+        kx0 = round(ko["x_min"] * 1000)
+        ky0 = round(-ko["y_max"] * 1000)
+        kx1 = round(ko["x_max"] * 1000)
+        ky1 = round(-ko["y_min"] * 1000)
+        for lyr in ko.get("layers", ["F.Cu", "B.Cu"]):
+            keepout_lines.append(f'    (keepout "" (rect {lyr} {kx0} {ky0} {kx1} {ky1}))')
+
+    # Group nets by netclass
+    class_to_nets: dict[str, list[str]] = {cname: [] for cname in netclasses}
+    for net_name, pins in net_pins.items():
+        if len(pins) < 2:
+            continue
+        cname = net_to_class.get(net_name, "DEFAULT")
+        if cname not in class_to_nets:
+            cname = "DEFAULT"
+        class_to_nets[cname].append(net_name)
+
+    network_lines: list[str] = []
+    for net_name, pins in sorted(net_pins.items()):
+        if len(pins) < 2:
+            continue
+        pin_str = " ".join(_quote(p) for p in pins)
+        network_lines.append(f"    (net {_quote(net_name)}")
+        network_lines.append(f"      (pins {pin_str})")
+        network_lines.append("    )")
+
+    for cname, rule in netclasses.items():
+        nets_in_cls = sorted(class_to_nets.get(cname, []))
+        if not nets_in_cls:
+            continue
+        net_tokens = " ".join(_quote(n) for n in nets_in_cls)
+        w_um = round(rule.trace_width_mm * 1000)
+        clr_um = round(rule.clearance_mm * 1000)
+        network_lines.append(f"    (class {_quote(cname)} {net_tokens}")
+        if rule.zero_via_allowed:
+            network_lines.append(
+                f"      (circuit (use_via {_quote(via_name)}) (use_layer F.Cu B.Cu))"
+            )
+        else:
+            network_lines.append("      (circuit (use_layer F.Cu))")
+        network_lines.append(f"      (rule (width {w_um}) (clearance {clr_um}))")
+        network_lines.append("    )")
+
+    dsn_lines: list[str] = [
+        f'(pcb {_quote(dsn_path.name)}',
+        "  (parser",
+        '    (string_quote ")',
+        "    (space_in_quoted_tokens on)",
+        '    (host_cad "KiCad\'s Pcbnew")',
+        '    (host_version "8.0.0")',
+        "  )",
+        "  (resolution um 10)",
+        "  (unit um)",
+        "  (structure",
+        "    (layer F.Cu",
+        "      (type signal)",
+        "      (property (index 0))",
+        "    )",
+        "    (layer In1.Cu",
+        "      (type power)",
+        "      (property (index 1))",
+        "    )",
+        "    (layer In2.Cu",
+        "      (type power)",
+        "      (property (index 2))",
+        "    )",
+        "    (layer B.Cu",
+        "      (type signal)",
+        "      (property (index 3))",
+        "    )",
+        "    (boundary",
+        f"      (rect pcb {bx0} {by0} {bx1} {by1})",
+        "    )",
+        *keepout_lines,
+        f"    (via {_quote(via_name)})",
+        "    (rule",
+        "      (width 200)",
+        "      (clearance 150)",
+        "      (clearance 150 (type default_smd))",
+        "      (clearance 50 (type smd_smd))",
+        "    )",
+        "  )",
+        "  (placement",
+        *placements,
+        "  )",
+        "  (library",
+        *images,
+    ]
+    for ps_lines in padstacks.values():
+        dsn_lines.extend(ps_lines)
+    dsn_lines.extend(
+        [
+            "  )",
+            "  (network",
+            *network_lines,
+            "  )",
+            "  (wiring",
+            "  )",
+            ")",
+        ]
+    )
+
+    dsn_path.parent.mkdir(parents=True, exist_ok=True)
+    dsn_path.write_text("\n".join(dsn_lines) + "\n", encoding="utf-8")
+    return dsn_path
+
+
+def _parse_sexpr(text: str) -> list[Any]:
+    """Parse Specctra S-expression text into nested Python lists of strings."""
+    tokens: list[str] = []
+    i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if ch.isspace():
+            i += 1
+        elif ch in ("(", ")"):
+            tokens.append(ch)
+            i += 1
+        elif ch == '"':
+            j = i + 1
+            buf: list[str] = []
+            while j < n:
+                c = text[j]
+                if c == "\\" and j + 1 < n:
+                    buf.append(text[j + 1])
+                    j += 2
+                elif c == '"':
+                    j += 1
+                    break
+                else:
+                    buf.append(c)
+                    j += 1
+            tokens.append("".join(buf))
+            i = j
+        else:
+            j = i
+            while j < n and not text[j].isspace() and text[j] not in ("(", ")"):
+                j += 1
+            tokens.append(text[i:j])
+            i = j
+
+    stack: list[list[Any]] = [[]]
+    for tok in tokens:
+        if tok == "(":
+            node: list[Any] = []
+            stack[-1].append(node)
+            stack.append(node)
+        elif tok == ")":
+            if len(stack) > 1:
+                stack.pop()
+        else:
+            stack[-1].append(tok)
+    return stack[0]
+
+
+def _find_child(node: list[Any], key: str) -> list[Any] | None:
+    for item in node:
+        if isinstance(item, list) and item and item[0] == key:
+            return item
+    return None
+
+
+def _parse_padstack_dims(name: str, lib_node: list[Any] | None) -> tuple[float, float]:
+    """Extract (via_pad_mm, via_drill_mm) from padstack name and library_out."""
+    drill_mm = 0.30
+    m = re.search(r"(\d+):(\d+)_um", name)
+    pad_mm = int(m.group(1)) / 1000.0 if m else 0.55
+    if m:
+        drill_mm = int(m.group(2)) / 1000.0
+    return pad_mm, drill_mm
+
+
+def parse_ses(ses_path: Path) -> dict[str, Any]:
+    """Parse a Specctra .ses file into normalized KiCad-mm segments, vias, and metrics."""
+    raw = ses_path.read_text(encoding="utf-8")
+    tree = _parse_sexpr(raw)
+    if not tree:
+        raise ValueError(f"Empty Specctra session file: {ses_path}")
+    session = tree[0]
+    routes = _find_child(session, "routes")
+    if not routes:
+        raise ValueError(f"Missing (routes ...) block in {ses_path}")
+
+    res_node = _find_child(routes, "resolution")
+    mm_per_unit = 0.0001
+    if res_node and len(res_node) >= 3:
+        unit = str(res_node[1]).lower()
+        mult = float(res_node[2])
+        if unit == "um":
+            mm_per_unit = 1.0 / (1000.0 * mult)
+        elif unit == "mm":
+            mm_per_unit = 1.0 / mult
+        elif unit == "mil":
+            mm_per_unit = 0.0254 / mult
+        elif unit == "inch":
+            mm_per_unit = 25.4 / mult
+
+    lib_out = _find_child(routes, "library_out")
+    net_out = _find_child(routes, "network_out")
+    if not net_out:
+        raise ValueError(f"Missing (network_out ...) block in {ses_path}")
+
+    segments: list[dict[str, Any]] = []
+    vias: list[dict[str, Any]] = []
+    routed_net_names: set[str] = set()
+    total_wirelength_mm = 0.0
+    usb_vias = 0
+    layers_used: set[str] = set()
+
+    for item in net_out[1:]:
+        if not isinstance(item, list) or not item or item[0] != "net":
+            continue
+        net_name = str(item[1])
+        has_geometry = False
+        for sub in item[2:]:
+            if not isinstance(sub, list) or not sub:
+                continue
+            if sub[0] == "wire":
+                path_node = _find_child(sub, "path")
+                if not path_node or len(path_node) < 7:
+                    continue
+                layer = str(path_node[1])
+                width_mm = round(float(path_node[2]) * mm_per_unit, 4)
+                coords = [float(v) for v in path_node[3:]]
+                pts = [
+                    (round(coords[k] * mm_per_unit, 4), round(-coords[k + 1] * mm_per_unit, 4))
+                    for k in range(0, len(coords) - 1, 2)
+                ]
+                for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                    seg_len = math.hypot(x2 - x1, y2 - y1)
+                    if seg_len < 1e-6:
+                        continue
+                    total_wirelength_mm += seg_len
+                    segments.append(
+                        {
+                            "net": net_name,
+                            "layer": layer,
+                            "width_mm": width_mm,
+                            "x1": x1,
+                            "y1": y1,
+                            "x2": x2,
+                            "y2": y2,
+                        }
+                    )
+                    layers_used.add(layer)
+                    has_geometry = True
+            elif sub[0] == "via" and len(sub) >= 4:
+                ps_name = str(sub[1])
+                vx = round(float(sub[2]) * mm_per_unit, 4)
+                vy = round(-float(sub[3]) * mm_per_unit, 4)
+                pad_mm, drill_mm = _parse_padstack_dims(ps_name, lib_out)
+                vias.append(
+                    {
+                        "net": net_name,
+                        "x": vx,
+                        "y": vy,
+                        "pad_mm": pad_mm,
+                        "drill_mm": drill_mm,
+                    }
+                )
+                if net_name in ("USB_DP", "USB_DM"):
+                    usb_vias += 1
+                has_geometry = True
+        if has_geometry:
+            routed_net_names.add(net_name)
+
+    return {
+        "segments": segments,
+        "vias": vias,
+        "routed_nets": len(routed_net_names),
+        "routed_net_names": sorted(routed_net_names),
+        "via_count": len(vias),
+        "usb_path_vias": usb_vias,
+        "total_wirelength_mm": round(total_wirelength_mm, 3),
+        "layers_used": sorted(layers_used),
+    }
+
+
+def merge_ses_into_board(board: Board, ses_path: Path) -> tuple[Board, dict[str, Any]]:
+    """Merge parsed Specctra .ses segments & vias into a kiutils Board."""
+    parsed = parse_ses(ses_path)
+    net_map = {n.name: n.number for n in board.nets}
+
+    for seg in parsed["segments"]:
+        net_num = net_map.get(seg["net"], 0)
+        board.traceItems.append(
+            Segment(
+                start=Position(X=seg["x1"], Y=seg["y1"]),
+                end=Position(X=seg["x2"], Y=seg["y2"]),
+                width=seg["width_mm"],
+                layer=seg["layer"],
+                net=net_num,
+                tstamp=str(uuid.uuid4()),
+            )
+        )
+
+    for v in parsed["vias"]:
+        net_num = net_map.get(v["net"], 0)
+        board.traceItems.append(
+            Via(
+                position=Position(X=v["x"], Y=v["y"]),
+                size=v["pad_mm"],
+                drill=v["drill_mm"],
+                layers=["F.Cu", "B.Cu"],
+                net=net_num,
+                tstamp=str(uuid.uuid4()),
+            )
+        )
+
+    return board, parsed

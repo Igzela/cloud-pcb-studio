@@ -1,0 +1,168 @@
+{
+  "spec": {
+    "center_x_mm": 29.5,
+    "center_y_mm": 16.0,
+    "straight_half_len_mm": 2.0,
+    "inner_radius_mm": 3.5,
+    "trace_width_mm": 0.35,
+    "turn_spacing_mm": 0.23,
+    "turns_per_layer": [
+      13.0,
+      12.5,
+      13.0,
+      12.5
+    ],
+    "via_drill_mm": 0.3,
+    "via_pad_mm": 0.65,
+    "terminal_pad_size_mm": [
+      1.2,
+      0.9
+    ],
+    "samples_per_turn": 96,
+    "ambient_temp_c": 25.0,
+    "operating_temp_c": 45.0,
+    "drive_voltage_v": 3.3,
+    "pwm_freq_hz": 25000.0,
+    "pwm_duty": 0.4
+  },
+  "layers": [
+    {
+      "layer": "F.Cu",
+      "turns": 13.0,
+      "radial_direction": "inward",
+      "winding_chirality": 1,
+      "current_angular_direction": "CW",
+      "copper_thickness_mm": 0.035,
+      "z_mm": 0.0,
+      "point_count": 1267,
+      "length_mm": 702.6553,
+      "dc_resistance_ohm": 1.00837,
+      "single_layer_inductance_uh": 3.1554,
+      "axial_bz_per_amp_ut": -1061.3291,
+      "min_turn_clearance_mm": 0.2289,
+      "is_simple": true
+    },
+    {
+      "layer": "In1.Cu",
+      "turns": 12.5,
+      "radial_direction": "outward",
+      "winding_chirality": -1,
+      "current_angular_direction": "CW",
+      "copper_thickness_mm": 0.0175,
+      "z_mm": 0.21,
+      "point_count": 1219,
+      "length_mm": 663.7803,
+      "dc_resistance_ohm": 1.90516,
+      "single_layer_inductance_uh": 2.8995,
+      "axial_bz_per_amp_ut": -1032.8477,
+      "min_turn_clearance_mm": 0.2289,
+      "is_simple": true
+    },
+    {
+      "layer": "In2.Cu",
+      "turns": 13.0,
+      "radial_direction": "inward",
+      "winding_chirality": 1,
+      "current_angular_direction": "CW",
+      "copper_thickness_mm": 0.0175,
+      "z_mm": 1.39,
+      "point_count": 1267,
+      "length_mm": 701.6849,
+      "dc_resistance_ohm": 2.01395,
+      "single_layer_inductance_uh": 3.1554,
+      "axial_bz_per_amp_ut": -996.1772,
+      "min_turn_clearance_mm": 0.2289,
+      "is_simple": true
+    },
+    {
+      "layer": "B.Cu",
+      "turns": 12.5,
+      "radial_direction": "outward",
+      "winding_chirality": -1,
+      "current_angular_direction": "CW",
+      "copper_thickness_mm": 0.035,
+      "z_mm": 1.6,
+      "point_count": 1219,
+      "length_mm": 664.6574,
+      "dc_resistance_ohm": 0.95384,
+      "single_layer_inductance_uh": 2.8995,
+      "axial_bz_per_amp_ut": -952.5368,
+      "min_turn_clearance_mm": 0.2289,
+      "is_simple": true
+    }
+  ],
+  "vias": [
+    {
+      "name": "V_COIL_1",
+      "x_mm": -3.0,
+      "y_mm": 0.0,
+      "drill_mm": 0.3,
+      "pad_mm": 0.65,
+      "from_layer": "F.Cu",
+      "to_layer": "In1.Cu",
+      "net_name": "COIL_P"
+    },
+    {
+      "name": "V_COIL_2",
+      "x_mm": 14.239999999999998,
+      "y_mm": 0.0,
+      "drill_mm": 0.3,
+      "pad_mm": 0.65,
+      "from_layer": "In1.Cu",
+      "to_layer": "In2.Cu",
+      "net_name": "COIL_P"
+    },
+    {
+      "name": "V_COIL_3",
+      "x_mm": 3.0,
+      "y_mm": 0.0,
+      "drill_mm": 0.3,
+      "pad_mm": 0.65,
+      "from_layer": "In2.Cu",
+      "to_layer": "B.Cu",
+      "net_name": "COIL_P"
+    }
+  ],
+  "pad1_local_mm": [
+    -14.54,
+    -1.6
+  ],
+  "pad2_local_mm": [
+    -14.54,
+    1.6
+  ],
+  "pad2_via_local_mm": [
+    -14.54,
+    1.6
+  ],
+  "total_length_mm": 2732.778,
+  "total_turns": 51.0,
+  "r_dc_25c_ohm": 5.8858,
+  "r_dc_op_ohm": 6.33951,
+  "inductance_single_layer_avg_uh": 3.0274,
+  "inductance_constructive_uh": 45.2091,
+  "inductance_canceling_counterfactual_uh": 0.2644,
+  "mutual_coupling_factor": 0.9117,
+  "parasitic_cap_pf": 12.0,
+  "axial_bz_total_per_amp_ut": -4042.8908,
+  "axial_bz_canceling_per_amp_ut": -72.1217,
+  "constructive_flux_verified": true,
+  "min_turn_clearance_mm": 0.2289,
+  "outer_bbox_local_mm": [
+    -15.14,
+    -11.1062,
+    14.565,
+    11.1062
+  ],
+  "ampacity_inner_10c_a": 0.338,
+  "ampacity_inner_20c_a": 0.4585,
+  "ampacity_outer_20c_a": 1.5156,
+  "dc_peak_current_a": 0.5607,
+  "pwm_rms_current_a": 0.3546,
+  "thermal_rise_pwm_c": 25.169,
+  "thermal_rise_dc_c": 62.922,
+  "notes": [
+    "Spin polarity alternates (+1, -1, +1, -1) across inter-layer vias so current circulates CW on all 4 layers.",
+    "Constructive coupling increases inductance from 0.26 uH (canceling) to 45.21 uH (constructive)."
+  ]
+}

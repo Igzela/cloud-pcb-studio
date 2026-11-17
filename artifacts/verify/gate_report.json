@@ -1,0 +1,237 @@
+{
+  "overall_passed": true,
+  "total_checks_run": 113,
+  "total_checks_passed": 113,
+  "critical_count": 0,
+  "high_count": 0,
+  "reports": [
+    {
+      "board": "board1_spec",
+      "passed": true,
+      "checks_run": 14,
+      "checks_passed": 14,
+      "critical_count": 0,
+      "high_count": 0,
+      "metrics": {
+        "bom_unique_parts": 47,
+        "bom_low_stock_count": 0,
+        "bom_cc_resistors": [
+          "R1",
+          "R2"
+        ],
+        "z0_masked_ohm": 50.08,
+        "zdiff_masked_ohm": 89.64,
+        "buck_tj_c": 81.45,
+        "ldo_tj_c": 49.93,
+        "v3v3_steady_v": 3.2981,
+        "v3v3_ripple_mv": 18.054,
+        "v2v5_steady_v": 2.4984,
+        "v2v5_ripple_mv": 0.0062,
+        "mc_fc_mean_hz": 1593.79,
+        "esd_protected_clamp_ma": 1.603
+      },
+      "tickets": []
+    },
+    {
+      "board": "board1_pipeline_b",
+      "passed": true,
+      "checks_run": 40,
+      "checks_passed": 40,
+      "critical_count": 0,
+      "high_count": 0,
+      "metrics": {
+        "board_size_mm": [
+          60.0,
+          40.0
+        ],
+        "copper_areas_mm2": {
+          "F_Cu.gbr": 196.05,
+          "In1_Cu.gbr": 2206.62,
+          "In2_Cu.gbr": 2206.62,
+          "B_Cu.gbr": 47.1
+        },
+        "copper_edge_margins_mm": {
+          "F_Cu.gbr": 2.25,
+          "In1_Cu.gbr": 0.5,
+          "In2_Cu.gbr": 0.5,
+          "B_Cu.gbr": 2.25
+        },
+        "min_trace_width_mm": 0.15,
+        "silk_to_mask_overlap_mm2": 0.0,
+        "silk_to_mask_min_dist_mm": 0.1249,
+        "pth_hole_count": 30,
+        "pth_min_drill_mm": 0.3,
+        "min_annular_ring_mm": 0.125,
+        "annular_ring_violations_count": 0,
+        "npth_hole_count": 4,
+        "kicad_lvs": {
+          "footprints": 35,
+          "vias": 20,
+          "via_in_pad_violations": [],
+          "lvs_shorts": [],
+          "lvs_opens": [],
+          "min_inter_net_clearance_mm": 0.1517,
+          "worst_clearance_pair": "F.Cu:LED_STAT<->PWM_ACT1"
+        },
+        "usb_path_vias": 0,
+        "vbus_max_width_mm": 2.1,
+        "usb_tvs_distance_mm": 2.4739,
+        "qfn_thermal_vias": 4,
+        "bakeoff_winner": "fastroute_v0.1.14",
+        "bakeoff_engines": [
+          "fastroute_v0.1.14",
+          "freerouting_cli_v2.5.0",
+          "tscircuit_capacity_autorouter"
+        ]
+      },
+      "tickets": []
+    },
+    {
+      "board": "board1_pipeline_a",
+      "passed": true,
+      "checks_run": 30,
+      "checks_passed": 30,
+      "critical_count": 0,
+      "high_count": 0,
+      "metrics": {
+        "tscircuit_error_count": 0,
+        "usb_tvs_distance_mm": 2.4331,
+        "usb_path_vias": 0,
+        "vbus_max_width_mm": 2.1,
+        "cc_nets_distinct": true,
+        "board_size_mm": [
+          60.0,
+          40.0
+        ],
+        "copper_areas_mm2": {
+          "F_Cu.gbr": 200.33,
+          "In1_Cu.gbr": 2206.91,
+          "In2_Cu.gbr": 2206.91,
+          "B_Cu.gbr": 60.65
+        },
+        "copper_edge_margins_mm": {
+          "F_Cu.gbr": 2.25,
+          "In1_Cu.gbr": 0.5,
+          "In2_Cu.gbr": 0.5,
+          "B_Cu.gbr": 2.25
+        },
+        "min_trace_width_mm": 0.15,
+        "silk_to_mask_overlap_mm2": 0.0,
+        "silk_to_mask_min_dist_mm": 0.0452,
+        "pth_hole_count": 74,
+        "pth_min_drill_mm": 0.3,
+        "min_annular_ring_mm": 0.125,
+        "annular_ring_violations_count": 0,
+        "npth_hole_count": 4,
+        "kicad_lvs": {
+          "footprints": 37,
+          "vias": 64,
+          "via_in_pad_violations": [],
+          "lvs_shorts": [],
+          "lvs_opens": [],
+          "min_inter_net_clearance_mm": 0.1007,
+          "worst_clearance_pair": "F.Cu:.R_FB1 > .pin1 to .C_OUT1 > .pin1<->.U_MCU > .RF_TX to .J_RF > .SIG"
+        }
+      },
+      "tickets": []
+    },
+    {
+      "board": "board2_special",
+      "passed": true,
+      "checks_run": 29,
+      "checks_passed": 29,
+      "critical_count": 0,
+      "high_count": 0,
+      "metrics": {
+        "coil_bz_constructive_ut_per_a": 4042.89,
+        "coil_bz_canceling_ut_per_a": 72.12,
+        "coil_flux_ratio": 56.06,
+        "coil_l_constructive_uh": 45.209,
+        "coil_l_canceling_uh": 0.264,
+        "coil_tau_error_pct": 0.33,
+        "coil_catch_diode_clamped": true,
+        "coil_v_flyback_clamp_peak_v": 3.5985,
+        "board_size_mm": [
+          50.0,
+          50.0
+        ],
+        "copper_edge_margins_mm": {
+          "F_Cu.gbr": 2.65,
+          "In1_Cu.gbr": 2.65,
+          "In2_Cu.gbr": 2.65,
+          "B_Cu.gbr": 2.65
+        },
+        "silk_to_mask_overlap_mm2": 0.0,
+        "pth_hole_count": 21,
+        "min_annular_ring_mm": 0.175,
+        "kicad_lvs": {
+          "footprints": 4,
+          "vias": 13,
+          "via_in_pad_violations": [],
+          "lvs_shorts": [],
+          "lvs_opens": [],
+          "min_inter_net_clearance_mm": 0.5065,
+          "worst_clearance_pair": "F.Cu:TOUCH_0<->TOUCH_1"
+        }
+      },
+      "tickets": []
+    }
+  ],
+  "renders": {
+    "board1_top": {
+      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board1_top.png",
+      "width_px": 1200,
+      "height_px": 825,
+      "bytes": 79569,
+      "pixel_std": 43.35,
+      "non_blank": true
+    },
+    "board1_bottom": {
+      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board1_bottom.png",
+      "width_px": 1200,
+      "height_px": 825,
+      "bytes": 35693,
+      "pixel_std": 27.93,
+      "non_blank": true
+    },
+    "board1_tscircuit_top": {
+      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board1_tscircuit_top.png",
+      "width_px": 1200,
+      "height_px": 825,
+      "bytes": 108352,
+      "pixel_std": 42.97,
+      "non_blank": true
+    },
+    "board2_top": {
+      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board2_top.png",
+      "width_px": 1200,
+      "height_px": 1200,
+      "bytes": 259328,
+      "pixel_std": 61.97,
+      "non_blank": true
+    },
+    "board2_inner1": {
+      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board2_inner1.png",
+      "width_px": 1200,
+      "height_px": 1200,
+      "bytes": 202765,
+      "pixel_std": 43.44,
+      "non_blank": true
+    }
+  },
+  "tickets": [],
+  "chromium_inspect": {
+    "url": "file:///home/antigravity/cloud-pcb-studio/artifacts/verify/workbench.html",
+    "dom_returncode": 0,
+    "shot_returncode": 0,
+    "dom_length": 1045708,
+    "dom_non_blank": true,
+    "console_errors": [],
+    "screenshot_path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/workbench_screenshot.png",
+    "screenshot_width": 1440,
+    "screenshot_height": 1080,
+    "screenshot_pixel_std": 63.96,
+    "passed": true
+  },
+  "workbench_html": "/home/antigravity/cloud-pcb-studio/artifacts/verify/workbench.html"
+}

@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/home/antigravity/cloud-pcb-studio/artifacts/board1_kicad_fastroute/board.dsn",
+  "time_s": {"load": 0.345, "route": 9.6476, "total": 10.3421, "diagnose": null},
+  "stats": {"layers": 4, "components": 31, "nets": 23, "pins": 111, "connections": 83, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 16, "vias_blind": 0, "vias_buried": 0, "traces": 203, "trace_length_mm": 564.988, "bends_90": 0, "bends_45": 113, "bends_other": 0, "router_score": 1000, "optimizer_score": 690.9982},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

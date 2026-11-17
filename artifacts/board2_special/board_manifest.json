@@ -1,0 +1,259 @@
+{
+  "board_name": "board2_special_coil_captouch",
+  "dimensions_mm": [
+    50.0,
+    50.0
+  ],
+  "layers": 4,
+  "kicad_files": {
+    "planar_coil_mod": "artifacts/board2_special/planar_coil.kicad_mod",
+    "captouch_slider_mod": "artifacts/board2_special/captouch_slider.kicad_mod",
+    "special_board_pcb": "artifacts/board2_special/special_board.kicad_pcb"
+  },
+  "gerber_files": {
+    "F_Cu": "artifacts/board2_special/gerbers/F_Cu.gbr",
+    "In1_Cu": "artifacts/board2_special/gerbers/In1_Cu.gbr",
+    "In2_Cu": "artifacts/board2_special/gerbers/In2_Cu.gbr",
+    "B_Cu": "artifacts/board2_special/gerbers/B_Cu.gbr",
+    "F_Mask": "artifacts/board2_special/gerbers/F_Mask.gbr",
+    "B_Mask": "artifacts/board2_special/gerbers/B_Mask.gbr",
+    "F_SilkS": "artifacts/board2_special/gerbers/F_SilkS.gbr",
+    "B_SilkS": "artifacts/board2_special/gerbers/B_SilkS.gbr",
+    "Edge_Cuts": "artifacts/board2_special/gerbers/Edge_Cuts.gbr"
+  },
+  "excellon_file": "artifacts/board2_special/gerbers/PTH.drl",
+  "coil_params_json": "artifacts/board2_special/coil_params.json",
+  "spice_json": "artifacts/board2_special/special_coil_spice.json",
+  "coil_metrics": {
+    "total_turns": 51.0,
+    "total_length_mm": 2732.778,
+    "r_dc_25c_ohm": 5.8858,
+    "inductance_constructive_uh": 45.2091,
+    "inductance_canceling_uh": 0.2644,
+    "constructive_flux_verified": true,
+    "min_turn_clearance_mm": 0.2289
+  },
+  "captouch_metrics": {
+    "spec": {
+      "center_x_mm": 25.0,
+      "center_y_mm": 40.5,
+      "num_elements": 4,
+      "element_pitch_mm": 7.2,
+      "height_mm": 7.0,
+      "chevron_depth_mm": 2.6,
+      "inter_electrode_gap_mm": 0.3,
+      "guard_clearance_mm": 1.15,
+      "guard_width_mm": 0.5,
+      "bridge_width_mm": 0.25,
+      "via_drill_mm": 0.3,
+      "via_pad_mm": 0.65,
+      "breakout_y_offset_mm": -6.5,
+      "board_width_mm": 50.0,
+      "board_height_mm": 50.0,
+      "min_edge_clearance_mm": 0.5
+    },
+    "electrodes": [
+      {
+        "index": 0,
+        "net_name": "TOUCH_0",
+        "area_mm2": 47.784,
+        "via_in_local_mm": [
+          -9.5,
+          0.0
+        ],
+        "via_out_local_mm": [
+          -9.5,
+          -6.5
+        ],
+        "vertex_count": 6
+      },
+      {
+        "index": 1,
+        "net_name": "TOUCH_1",
+        "area_mm2": 47.784,
+        "via_in_local_mm": [
+          -2.3,
+          0.0
+        ],
+        "via_out_local_mm": [
+          -2.3,
+          -6.5
+        ],
+        "vertex_count": 6
+      },
+      {
+        "index": 2,
+        "net_name": "TOUCH_2",
+        "area_mm2": 47.784,
+        "via_in_local_mm": [
+          4.9,
+          0.0
+        ],
+        "via_out_local_mm": [
+          4.9,
+          -6.5
+        ],
+        "vertex_count": 6
+      },
+      {
+        "index": 3,
+        "net_name": "TOUCH_3",
+        "area_mm2": 47.784,
+        "via_in_local_mm": [
+          12.1,
+          0.0
+        ],
+        "via_out_local_mm": [
+          12.1,
+          -6.5
+        ],
+        "vertex_count": 6
+      }
+    ],
+    "guard_vias_local_mm": [
+      [
+        -16.9131,
+        0.0
+      ],
+      [
+        16.9131,
+        0.0
+      ]
+    ],
+    "min_electrode_clearance_mm": 0.3,
+    "min_guard_clearance_mm": 1.15,
+    "min_via_other_net_clearance_mm": 0.3,
+    "min_board_edge_clearance_mm": 4.35,
+    "all_polygons_valid": true,
+    "drc_passed": true,
+    "notes": [
+      "4 interlocking chevron electrodes on F.Cu (solder-mask covered for capacitive dielectric).",
+      "B.Cu jumper bridges carry TOUCH_0..3 beneath the F.Cu GND guard ring to external breakout vias."
+    ]
+  },
+  "meanders": {
+    "COIL_P": {
+      "target_length_mm": 6.828,
+      "actual_length_mm": 6.828,
+      "length_error_mm": 0.0,
+      "cycles": 1,
+      "amplitude_mm": 1.104,
+      "min_obstacle_clearance_mm": 0.625,
+      "min_self_clearance_mm": 0.291,
+      "clearance_ok": true
+    },
+    "COIL_N": {
+      "target_length_mm": 8.941,
+      "actual_length_mm": 8.941,
+      "length_error_mm": 0.0,
+      "cycles": 4,
+      "amplitude_mm": 0.436,
+      "min_obstacle_clearance_mm": 0.433,
+      "min_self_clearance_mm": 0.423,
+      "clearance_ok": true
+    },
+    "TOUCH_2": {
+      "target_length_mm": 15.8,
+      "actual_length_mm": 15.8,
+      "length_error_mm": 0.0,
+      "cycles": 4,
+      "amplitude_mm": 0.367,
+      "min_obstacle_clearance_mm": 2.569,
+      "min_self_clearance_mm": 0.431,
+      "clearance_ok": true
+    },
+    "TOUCH_1": {
+      "target_length_mm": 13.94,
+      "actual_length_mm": 13.94,
+      "length_error_mm": 0.0,
+      "cycles": 3,
+      "amplitude_mm": 0.407,
+      "min_obstacle_clearance_mm": 3.879,
+      "min_self_clearance_mm": 0.392,
+      "clearance_ok": true
+    },
+    "TOUCH_0": {
+      "target_length_mm": 13.5,
+      "actual_length_mm": 13.5,
+      "length_error_mm": 0.0,
+      "cycles": 4,
+      "amplitude_mm": 0.473,
+      "min_obstacle_clearance_mm": 2.525,
+      "min_self_clearance_mm": 0.331,
+      "clearance_ok": true
+    }
+  },
+  "board_drc": {
+    "passed": true,
+    "min_inter_net_clearance_mm": 0.3,
+    "worst_inter_net_pair": "F.Cu:TOUCH_2<->TOUCH_3",
+    "min_copper_to_edge_mm": 2.65,
+    "min_drill_wall_clearance_mm": 1.54,
+    "coil_min_turn_clearance_mm": 0.2289,
+    "captouch_min_electrode_clearance_mm": 0.3,
+    "copper_bounds_mm": [
+      2.65,
+      4.3906,
+      44.065,
+      45.65
+    ]
+  },
+  "gerber_roundtrip": {
+    "F_Cu": {
+      "gerbonara_objects": 1497,
+      "pygerber_width_mm": 41.415,
+      "pygerber_height_mm": 41.8
+    },
+    "In1_Cu": {
+      "gerbonara_objects": 1239,
+      "pygerber_width_mm": 41.415,
+      "pygerber_height_mm": 35.675
+    },
+    "In2_Cu": {
+      "gerbonara_objects": 1287,
+      "pygerber_width_mm": 41.415,
+      "pygerber_height_mm": 35.93125
+    },
+    "B_Cu": {
+      "gerbonara_objects": 1243,
+      "pygerber_width_mm": 41.415,
+      "pygerber_height_mm": 35.675
+    },
+    "F_Mask": {
+      "gerbonara_objects": 11,
+      "pygerber_width_mm": 13.01,
+      "pygerber_height_mm": 17.12
+    },
+    "B_Mask": {
+      "gerbonara_objects": 8,
+      "pygerber_width_mm": 13.01,
+      "pygerber_height_mm": 17.04
+    },
+    "F_SilkS": {
+      "gerbonara_objects": 178,
+      "pygerber_width_mm": 44.9392,
+      "pygerber_height_mm": 45.85
+    },
+    "B_SilkS": {
+      "gerbonara_objects": 78,
+      "pygerber_width_mm": 12.3375,
+      "pygerber_height_mm": 1.15
+    },
+    "Edge_Cuts": {
+      "gerbonara_objects": 4,
+      "pygerber_width_mm": 50.1,
+      "pygerber_height_mm": 50.1
+    },
+    "PTH_drl": {
+      "total_hits": 21,
+      "hits_by_drill_mm": {
+        "1.000": 7,
+        "0.300": 14
+      },
+      "drill_sizes_mm": [
+        0.3,
+        1.0
+      ]
+    }
+  }
+}

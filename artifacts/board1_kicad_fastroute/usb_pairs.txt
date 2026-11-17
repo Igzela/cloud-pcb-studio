@@ -1,0 +1,1 @@
+pair USB_DP USB_DM gap=0.127 skew=0.10

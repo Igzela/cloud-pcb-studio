@@ -1,0 +1,161 @@
+{
+  "source": "jlcsearch.tscircuit.com",
+  "components": [
+    {
+      "lcsc": 709357,
+      "mfr": "KH-TYPE-C-16P",
+      "package": "SMD",
+      "description": "-40\u2103~+85\u2103 1 10,000 cycles 16P 30V 3A 7.81mm Female Surface Mount, Right Angle Type-C SMD USB Connectors ROHS",
+      "stock": 147898,
+      "price": "1-49:0.0773,50-149:0.0628,150-1499:0.0555,1500-2999:0.0469,3000-4499:0.0448,4500-:0.0433",
+      "category": "Connectors",
+      "subcategory": "USB Connectors",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 2835315,
+      "mfr": "TYPEC-304J-BCP16",
+      "package": "SMD",
+      "description": "-40\u2103~+85\u2103 1 10000 times 16P 20V 5A 7.35mm Black Female Surface Mount, Right Angle Type-C SMD USB Connectors ROHS",
+      "stock": 16882,
+      "price": "1-9:0.4865,10-29:0.3905,30-99:0.3449,100-499:0.3026,500-999:0.2766,1000-:0.2701",
+      "category": "Connectors",
+      "subcategory": "USB Connectors",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 5261088,
+      "mfr": "USBLC6-2SC6",
+      "package": "SOT-23-6L",
+      "description": "0.5pF\u30010.8pF 14V 1uA 2 5V 6A 6V Bidirectional ESD IEC 61000-4-2 SOT-23-6L ESD and Surge Protection (TVS/ESD) ROHS",
+      "stock": 70038,
+      "price": "1-49:0.0412,50-149:0.0336,150-499:0.0293,500-2999:0.0267,3000-5999:0.0194,6000-:0.0181",
+      "category": "Circuit Protection",
+      "subcategory": "ESD And Surge Protection (TVS/ESD)",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 527684,
+      "mfr": "TPS54202HDDCR",
+      "package": "TSOT-23-6",
+      "description": "-40\u2103~+125\u2103@(TJ) 1 2A 4.5V~28V 45uA 500kHz 596mV~28V Adjustable Buck Buck Built-in Yes TSOT-23-6 DC-DC Converters ROHS",
+      "stock": 64470,
+      "price": "1-9:0.4849,10-29:0.3775,30-99:0.3319,100-499:0.275,500-999:0.249,1000-:0.2343",
+      "category": "Power Management (PMIC)",
+      "subcategory": "DC-DC Converters",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 841384,
+      "mfr": "LMR33630ADDAR",
+      "package": "ESOP-8",
+      "description": "-40\u2103~+125\u2103@(TJ) 1 1V~24V 24uA 3.8V~36V 3A 400kHz Adjustable Buck Buck Built-in Yes ESOP-8 DC-DC Converters ROHS",
+      "stock": 27055,
+      "price": "1-9:0.6947,10-29:0.5939,30-99:0.5223,100-499:0.4637,500-999:0.4474,1000-:0.436",
+      "category": "Power Management (PMIC)",
+      "subcategory": "DC-DC Converters",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 5383002,
+      "mfr": "LMR51420YDDCR",
+      "package": "SOT-23-6",
+      "description": "-40\u2103~+150\u2103@(TJ) 1 1.1MHz 2A 4.5V~36V 600mV~34.2V 65uA Adjustable Buck Buck Built-in Yes SOT-23-6 DC-DC Converters ROHS",
+      "stock": 3479,
+      "price": "1-9:0.9632,10-29:0.8509,30-99:0.7712,100-499:0.7061,500-999:0.685,1000-:0.6719",
+      "category": "Power Management (PMIC)",
+      "subcategory": "DC-DC Converters",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 305174,
+      "mfr": "SWPA5040S4R7NT",
+      "package": "SMD,5x5mm",
+      "description": "3.9A 30m\u03a9 3A 4.7uH \u00b130% SMD,5x5mm Power Inductors ROHS",
+      "stock": 14936,
+      "price": "1-99:0.0721,100-299:0.0588,300-1499:0.0523,1500-4499:0.0461,4500-10499:0.0422,10500-:0.0402",
+      "category": "Inductors, Coils, Chokes",
+      "subcategory": "Power Inductors",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 15269,
+      "mfr": "SWPA4030S3R3MT",
+      "package": "SMD,4x4mm",
+      "description": "2.4A 3.3uH 3.6A 52m\u03a9 \u00b120% SMD,4x4mm Power Inductors ROHS",
+      "stock": 19434,
+      "price": "1-99:0.0829,100-299:0.0726,300-1999:0.0674,2000-3999:0.0607,4000-9999:0.0576,10000-:0.056",
+      "category": "Inductors, Coils, Chokes",
+      "subcategory": "Power Inductors",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 2827655,
+      "mfr": "TPRT9193-25GB",
+      "package": "SOT-23-5",
+      "description": "-40\u2103~+85\u2103@(Ta) 1 2.5V 300mA 50uVrms 6V 70dB@(1kHz) 70uA 90mV@(100mA)\u3001230mV@(200mA) Enable Fixed Positive SOT-23-5 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",
+      "stock": 2313,
+      "price": "1-99:0.0765,100-299:0.0619,300-2999:0.0547,3000-5999:0.0461,6000-8999:0.0417,9000-:0.0394",
+      "category": "Power Management (PMIC)",
+      "subcategory": "Voltage Regulators - Linear, Low Drop Out (LDO) Regulators",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 24330,
+      "mfr": "SGM2019-ADJYN5G/TR",
+      "package": "SOT-23-5",
+      "description": "-40\u2103~+85\u2103@(Ta) 1 1.2V~5V 100uA 300mA 30uVrms 400mV@(300mA) 5.5V 74dB@(1kHz) Adjustable Over Current Protection\u3001Over Temperature Protection\u3001Enable Positive SOT-23-5 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",
+      "stock": 3398,
+      "price": "1-49:0.2534,50-149:0.2002,150-499:0.1774,500-2999:0.1489,3000-5999:0.1489,6000-:0.1489",
+      "category": "Power Management (PMIC)",
+      "subcategory": "Voltage Regulators - Linear, Low Drop Out (LDO) Regulators",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 2829190,
+      "mfr": "STM32G0B1CEU6",
+      "package": "UFQFPN-48(7x7)",
+      "description": "-40\u2103~+85\u2103 1.7V~3.6V 144KB 32 Bit 44 512KB 64MHz ARM Cortex-M0+ Built-in+External FLASH UFQFPN-48(7x7) Microcontrollers (MCU/MPU/SOC) ROHS",
+      "stock": 408,
+      "price": "1-9:5.398,10-29:4.6919,30-259:4.2722,260-519:3.846,520-1039:3.6507,1040-:3.5629",
+      "category": "Embedded Processors & Controllers",
+      "subcategory": "Microcontrollers (MCU/MPU/SOC)",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 190642,
+      "mfr": "STM32F411CCU6TR",
+      "package": "UFQFPN-48(7x7)",
+      "description": "-40\u2103~+85\u2103 1.7V~3.6V 100MHz 128KB 12bit 256KB 32 Bit 36 ARM Cortex-M4 Built-in FLASH UFQFPN-48(7x7) Microcontrollers (MCU/MPU/SOC) ROHS",
+      "stock": 1599,
+      "price": "1-9:3.4929,10-29:3.013,30-99:2.7283,100-499:2.4403,500-999:2.3069,1000-:2.2468",
+      "category": "Embedded Processors & Controllers",
+      "subcategory": "Microcontrollers (MCU/MPU/SOC)",
+      "is_basic": false,
+      "is_preferred": false
+    },
+    {
+      "lcsc": 2040,
+      "mfr": "RP2040",
+      "package": "LQFN-56(7x7)",
+      "description": "12bit 133MHz 30 LQFN-56(7x7) Microcontrollers (MCU/MPU/SOC) ROHS",
+      "stock": 80469,
+      "price": "1-9:0.9941,10-29:0.9078,30-99:0.8249,100-499:0.7647,500-999:0.7386,1000-:0.7256",
+      "category": "Embedded Processors & Controllers",
+      "subcategory": "Microcontrollers (MCU/MPU/SOC)",
+      "is_basic": false,
+      "is_preferred": false
+    }
+  ]
+}

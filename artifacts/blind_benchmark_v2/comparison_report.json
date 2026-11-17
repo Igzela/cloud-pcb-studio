@@ -1,0 +1,410 @@
+{
+  "blind_solver": {
+    "label": "Case 1 v2 (Blind)",
+    "pcb_path": "artifacts/blind_benchmark_v2/routed.kicad_pcb",
+    "board_dims_mm": [
+      55.0,
+      45.0
+    ],
+    "origin_shift_mm": [
+      0.0,
+      0.0
+    ],
+    "footprint_sides": {
+      "F.Cu": 50
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 4,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "GND"
+    ],
+    "segments_count": 569,
+    "arcs_count": 0,
+    "total_wirelength_mm": 963.586,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 375.7,
+      "F.Cu": 587.886
+    },
+    "segments_by_layer": {
+      "B.Cu": 126,
+      "F.Cu": 443
+    },
+    "trace_width_histogram": {
+      "0.120": 40,
+      "0.160": 241,
+      "0.180": 3,
+      "0.187": 23,
+      "0.190": 69,
+      "0.220": 25,
+      "0.250": 168
+    },
+    "vias_total": 86,
+    "vias_signal": 34,
+    "vias_gnd": 52,
+    "via_sizes": {
+      "0.55/0.30": 59,
+      "0.60/0.30": 27
+    },
+    "diff_pairs": [
+      {
+        "pos_net": "CAN_H",
+        "neg_net": "CAN_L",
+        "pos_len_mm": 68.03,
+        "neg_len_mm": 71.042,
+        "length_mismatch_mm": 3.012
+      }
+    ],
+    "decoupling_cap_distances": {
+      "C1": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U4.2(+3V3)",
+        "dist_mm": 5.178
+      },
+      "C10": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.5(+3V3)",
+        "dist_mm": 3.879
+      },
+      "C11": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U1.5(+3V3)",
+        "dist_mm": 5.632
+      },
+      "C12": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U1.5(+3V3)",
+        "dist_mm": 3.939
+      },
+      "C2": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U4.3(+5V)",
+        "dist_mm": 3.337
+      },
+      "C3": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "Y1.4(+3V3)",
+        "dist_mm": 4.523
+      },
+      "C4": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U1.3(+5V)",
+        "dist_mm": 3.176
+      },
+      "C5": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.8(+3V3)",
+        "dist_mm": 3.65
+      },
+      "C6": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.5(+3V3)",
+        "dist_mm": 4.267
+      },
+      "C7": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "Y1.4(+3V3)",
+        "dist_mm": 5.379
+      },
+      "C9": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.17(+3V3)",
+        "dist_mm": 2.907
+      }
+    },
+    "avg_decoupling_dist_mm": 4.17,
+    "max_decoupling_dist_mm": 5.632,
+    "header_edge_distances_mm": {
+      "J1": 2.8,
+      "J10": 5.2,
+      "J11": 5.2,
+      "J12": 5.2,
+      "J13": 3.8,
+      "J14": 6.8,
+      "J15": 6.8,
+      "J16": 7.5,
+      "J17": 3.6,
+      "J2": 2.8,
+      "J3": 3.2,
+      "J4": 2.8,
+      "J5": 3.2,
+      "J6": 3.2,
+      "J7": 2.8,
+      "J8": 2.8
+    },
+    "avg_header_edge_dist_mm": 4.23,
+    "drc_lvs": {
+      "footprints": 50,
+      "vias": 86,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [],
+      "min_inter_net_clearance_mm": 0.1317,
+      "worst_clearance_pair": "F.Cu:CAN_RX<->CAN_TX"
+    }
+  },
+  "human_reference": {
+    "label": "Case 1 Human Ref",
+    "pcb_path": "benchmark_case/sealed_reference/can_sensor_board_kicad/Sensor_Board.kicad_pcb",
+    "board_dims_mm": [
+      55.0,
+      45.0
+    ],
+    "origin_shift_mm": [
+      94.0,
+      44.0
+    ],
+    "footprint_sides": {
+      "F.Cu": 50,
+      "B.Cu": 1
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 74,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "+3V3",
+      "+5V",
+      "/NRST",
+      "GND",
+      "GPIO_LED1",
+      "GPIO_LED2",
+      "IMU_CS",
+      "IMU_IDO",
+      "TIM1_CH1",
+      "TIM1_CH2",
+      "TIM1_CH3",
+      "TIM2_CH1",
+      "TIM2_CH2",
+      "UART2_CTS",
+      "UART2_RX",
+      "UART2_TX"
+    ],
+    "segments_count": 472,
+    "arcs_count": 0,
+    "total_wirelength_mm": 1086.862,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 302.639,
+      "F.Cu": 784.223
+    },
+    "segments_by_layer": {
+      "B.Cu": 122,
+      "F.Cu": 350
+    },
+    "trace_width_histogram": {
+      "0.200": 88,
+      "0.300": 191,
+      "0.500": 90,
+      "0.800": 103
+    },
+    "vias_total": 118,
+    "vias_signal": 41,
+    "vias_gnd": 77,
+    "via_sizes": {
+      "0.70/0.30": 115,
+      "0.60/0.30": 3
+    },
+    "diff_pairs": [
+      {
+        "pos_net": "CAN_H",
+        "neg_net": "CAN_L",
+        "pos_len_mm": 35.595,
+        "neg_len_mm": 44.279,
+        "length_mismatch_mm": 8.684
+      }
+    ],
+    "decoupling_cap_distances": {
+      "C1": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U4.2(+3V3)",
+        "dist_mm": 2.903
+      },
+      "C10": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.1(+3V3)",
+        "dist_mm": 1.589
+      },
+      "C11": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.5(+3V3)",
+        "dist_mm": 2.035
+      },
+      "C12": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "Y1.4(+3V3)",
+        "dist_mm": 2.503
+      },
+      "C2": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U4.3(+5V)",
+        "dist_mm": 1.803
+      },
+      "C3": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U1.5(+3V3)",
+        "dist_mm": 2.276
+      },
+      "C4": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U1.3(+5V)",
+        "dist_mm": 2.279
+      },
+      "C5": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.8(+3V3)",
+        "dist_mm": 1.618
+      },
+      "C6": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.5(+3V3)",
+        "dist_mm": 1.675
+      },
+      "C7": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "Y1.4(+3V3)",
+        "dist_mm": 1.712
+      },
+      "C9": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.17(+3V3)",
+        "dist_mm": 1.771
+      }
+    },
+    "avg_decoupling_dist_mm": 2.015,
+    "max_decoupling_dist_mm": 2.903,
+    "header_edge_distances_mm": {
+      "J1": 3.5,
+      "J10": 2.5,
+      "J11": 3.8,
+      "J12": 12.0,
+      "J13": 8.0,
+      "J14": 3.75,
+      "J15": 2.5,
+      "J16": 6.5,
+      "J17": 7.5,
+      "J2": 3.5,
+      "J3": 3.5,
+      "J4": 3.5,
+      "J5": 3.5,
+      "J6": 3.5,
+      "J7": 3.5,
+      "J8": 3.5
+    },
+    "avg_header_edge_dist_mm": 4.66,
+    "drc_lvs": {
+      "footprints": 51,
+      "vias": 118,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [],
+      "min_inter_net_clearance_mm": 0.15,
+      "worst_clearance_pair": "B.Cu:IMU_IDO<->TIM2_CH2"
+    }
+  },
+  "deltas": {
+    "wirelength_ratio_blind_vs_ref": 0.887,
+    "vias_total_blind_vs_ref": [
+      86,
+      118
+    ],
+    "vias_signal_blind_vs_ref": [
+      34,
+      41
+    ],
+    "vias_gnd_blind_vs_ref": [
+      52,
+      77
+    ],
+    "avg_decoupling_dist_mm_blind_vs_ref": [
+      4.17,
+      2.015
+    ],
+    "avg_header_edge_dist_mm_blind_vs_ref": [
+      4.23,
+      4.66
+    ],
+    "diff_pairs_blind_vs_ref": [
+      [
+        {
+          "pos_net": "CAN_H",
+          "neg_net": "CAN_L",
+          "pos_len_mm": 68.03,
+          "neg_len_mm": 71.042,
+          "length_mismatch_mm": 3.012
+        }
+      ],
+      [
+        {
+          "pos_net": "CAN_H",
+          "neg_net": "CAN_L",
+          "pos_len_mm": 35.595,
+          "neg_len_mm": 44.279,
+          "length_mismatch_mm": 8.684
+        }
+      ]
+    ]
+  }
+}

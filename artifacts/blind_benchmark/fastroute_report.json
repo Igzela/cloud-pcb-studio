@@ -1,0 +1,14 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/home/antigravity/cloud-pcb-studio/artifacts/blind_benchmark/board.dsn",
+  "time_s": {"load": 6.846, "route": 68.3252, "total": 76.0412, "diagnose": null},
+  "stats": {"layers": 4, "components": 46, "nets": 37, "pins": 164, "connections": 120, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 3, "violations_unfixable": 3, "vias": 49, "vias_blind": 0, "vias_buried": 0, "traces": 371, "trace_length_mm": 991.8823, "bends_90": 15, "bends_45": 264, "bends_other": 0, "router_score": 999.6893, "optimizer_score": 425.715},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+    {"layer": "F.Cu", "xy": [26.962, 31.466], "clearance_mm": 0.18, "actual_mm": 0.1501, "unfixable": true, "first": {"kind": "pin", "component": "U3", "pin": "14", "layers": ["F.Cu", "F.Cu"]}, "second": {"kind": "pin", "component": "U3", "pin": "13", "layers": ["F.Cu", "F.Cu"]}},
+    {"layer": "F.Cu", "xy": [26.962, 30.966], "clearance_mm": 0.18, "actual_mm": 0.1501, "unfixable": true, "first": {"kind": "pin", "component": "U3", "pin": "13", "layers": ["F.Cu", "F.Cu"]}, "second": {"kind": "pin", "component": "U3", "pin": "12", "layers": ["F.Cu", "F.Cu"]}},
+    {"layer": "F.Cu", "xy": [27.374, 32.378], "clearance_mm": 0.18, "actual_mm": 0.1501, "unfixable": true, "first": {"kind": "pin", "component": "U3", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "second": {"kind": "pin", "component": "U3", "pin": "1", "layers": ["F.Cu", "F.Cu"]}}
+  ]
+}

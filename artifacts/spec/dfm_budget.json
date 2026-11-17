@@ -1,0 +1,537 @@
+{
+  "board": "Board 1: USB-C PD Telemetry & Smart Actuator Node",
+  "all_safety_checks_passed": true,
+  "stackup_selection": {
+    "selected_material_label": "FR4-MidTg (JLC04161H-7628)",
+    "stackup": {
+      "id": "JLC04161H-7628",
+      "layers": 4,
+      "board_thickness_mm": 1.6,
+      "outer_cu_oz": 1.0,
+      "inner_cu_oz": 0.5,
+      "prepreg_type": "7628",
+      "prepreg_thickness_mm": 0.2104,
+      "prepreg_er": 4.4,
+      "core_thickness_mm": 1.065,
+      "surface_finish": "ENIG",
+      "substrate": "FR4-MidTg",
+      "w_50ohm_mil": 12.06,
+      "w_90diff_mil": 8.31,
+      "s_90diff_mil": 5.0,
+      "min_trace_mil": 3.5,
+      "min_space_mil": 3.5,
+      "min_drill_mm": 0.2,
+      "min_annular_ring_mm": 0.1,
+      "copper_to_edge_mm": 0.3
+    },
+    "layer_stack": [
+      "L1: Signal + Components (1 oz)",
+      "L2: Solid GND Plane (0.5 oz)",
+      "L3: Solid GND / Power Reference (0.5 oz)",
+      "L4: Signal + Actuator Return (1 oz)"
+    ],
+    "substrate_evaluations": [
+      {
+        "material_key": "FR4-Std",
+        "stackup_id": "FR4-Std-2L",
+        "layers": 2,
+        "prepreg_type": "Core-FR4",
+        "prepreg_thickness_mm": 1.6,
+        "w_50ohm_mil": 108.0,
+        "w_90diff_mil": 75.0,
+        "s_90diff_mil": 7.0,
+        "status": "REJECTED",
+        "notes": [
+          "Only 2 layers; 4-layer Sig-GND-GND-Sig stackup required.",
+          "No tight inner GND reference plane for controlled 50R/90R impedance.",
+          "Trace/space rules too coarse for 0.5mm pitch UFQFPN-48 / SOT-23-6L."
+        ]
+      },
+      {
+        "material_key": "FR4-MidTg (JLC04161H-7628)",
+        "stackup_id": "JLC04161H-7628",
+        "layers": 4,
+        "prepreg_type": "7628",
+        "prepreg_thickness_mm": 0.2104,
+        "w_50ohm_mil": 12.06,
+        "w_90diff_mil": 8.31,
+        "s_90diff_mil": 5.0,
+        "status": "SELECTED",
+        "notes": [
+          "Selected 4L Sig-GND-GND-Sig stackup: 0.2104mm 7628 prepreg yields comfortable W_50=12.06 mil and W_90diff=8.31 mil / S=5.0 mil well above JLCPCB 3.5 mil etch floor, while dual solid inner GND planes give low-inductance return paths and EMI shielding."
+        ]
+      },
+      {
+        "material_key": "FR4-MidTg-Thin (JLC04161H-3313)",
+        "stackup_id": "JLC04161H-3313",
+        "layers": 4,
+        "prepreg_type": "3313",
+        "prepreg_thickness_mm": 0.0994,
+        "w_50ohm_mil": 5.55,
+        "w_90diff_mil": 3.85,
+        "s_90diff_mil": 5.0,
+        "status": "RUNNER_UP",
+        "notes": [
+          "Rejected in favor of FR4-MidTg (JLC04161H-7628): thinner 0.0994mm 3313 prepreg shrinks 90R diff trace to 3.85 mil (higher copper-etch tolerance sensitivity and capacitive loading)."
+        ]
+      },
+      {
+        "material_key": "Al-MCPCB",
+        "stackup_id": "JLC-Al-MCPCB-1L",
+        "layers": 1,
+        "prepreg_type": "Thermal-Dielectric",
+        "prepreg_thickness_mm": 0.1,
+        "w_50ohm_mil": 6.0,
+        "w_90diff_mil": 4.2,
+        "s_90diff_mil": 5.0,
+        "status": "REJECTED",
+        "notes": [
+          "Al-MCPCB is single-layer and cannot route 4L QFN + USB-C diff pairs.",
+          "Only 1 layers; 4-layer Sig-GND-GND-Sig stackup required.",
+          "No tight inner GND reference plane for controlled 50R/90R impedance.",
+          "Trace/space rules too coarse for 0.5mm pitch UFQFPN-48 / SOT-23-6L."
+        ]
+      },
+      {
+        "material_key": "Polyimide-Flex",
+        "stackup_id": "JLC-FPC-2L",
+        "layers": 2,
+        "prepreg_type": "Polyimide",
+        "prepreg_thickness_mm": 0.025,
+        "w_50ohm_mil": 2.2,
+        "w_90diff_mil": 1.6,
+        "s_90diff_mil": 4.0,
+        "status": "REJECTED",
+        "notes": [
+          "Polyimide-Flex is unnecessary and costly for rigid controller/actuator node.",
+          "Only 2 layers; 4-layer Sig-GND-GND-Sig stackup required.",
+          "No tight inner GND reference plane for controlled 50R/90R impedance."
+        ]
+      }
+    ],
+    "finish_evaluations": [
+      {
+        "finish": "HASL",
+        "status": "REJECTED",
+        "notes": [
+          "Leaded Sn/Pb HASL violates RoHS compliance.",
+          "Uneven solder meniscus threatens tombstoning & bridging on 0.5mm UFQFPN-48 / SOT-23-6L."
+        ]
+      },
+      {
+        "finish": "LeadFree-HASL",
+        "status": "REJECTED",
+        "notes": [
+          "Uneven solder meniscus threatens tombstoning & bridging on 0.5mm UFQFPN-48 / SOT-23-6L."
+        ]
+      },
+      {
+        "finish": "ENIG",
+        "status": "SELECTED",
+        "notes": [
+          "Flat Au/Ni pad coplanarity ideal for 0.5mm UFQFPN-48, SOT-23-6L, and gold-plated touch/RF pads; RoHS compliant."
+        ]
+      },
+      {
+        "finish": "OSP",
+        "status": "REJECTED",
+        "notes": [
+          "Organic coating degrades across multi-pass reflow and probe testing; shorter shelf life."
+        ]
+      }
+    ],
+    "rationale": "Selected FR4-MidTg (JLC04161H-7628) + ENIG (Sig-GND-GND-Sig): 4-layer construction keeps controlled 90-ohm USB D+/D- at practical 8.31 mil width / 5 mil spacing and 50-ohm lines at 12.06 mil width directly over unbroken L2 GND plane, while ENIG guarantees coplanarity for 0.5mm-pitch UFQFPN-48 and USB-C 16P fine-pitch pins."
+  },
+  "impedance_calibration": {
+    "single_ended_50ohm": {
+      "w_drawn_mil": 12.06,
+      "w_eff_trapezoid_mil": 11.665,
+      "er_eff_bare": 3.2679,
+      "er_eff_masked": 4.2564,
+      "z0_bare_ohm": 57.15,
+      "z0_masked_ohm": 50.08,
+      "solder_mask_drop_ohm": 7.07
+    },
+    "diff_pair_90ohm": {
+      "w_drawn_mil": 8.31,
+      "s_drawn_mil": 5.0,
+      "w_eff_trapezoid_mil": 7.915,
+      "s_eff_trapezoid_mil": 5.395,
+      "z0_se_masked_ohm": 60.3,
+      "zdiff_bare_ohm": 104.96,
+      "zdiff_masked_ohm": 89.64,
+      "solder_mask_drop_ohm": 15.33
+    },
+    "solved_w_50ohm_mil": 12.09,
+    "solved_w_90diff_mil": 8.22
+  },
+  "ampacity_and_vias": {
+    "trace_sizing": {
+      "VBUS_20V_2A": {
+        "current_a": 2.0,
+        "ipc2221_width_mil": 30.765,
+        "ipc2152_width_mil": 22.344
+      },
+      "PWR_3V3_1A2": {
+        "current_a": 1.2,
+        "ipc2221_width_mil": 15.208,
+        "ipc2152_width_mil": 11.045
+      },
+      "COIL_DRIVE_2A5": {
+        "current_a": 2.5,
+        "ipc2221_width_mil": 41.853,
+        "ipc2152_width_mil": 30.397
+      }
+    },
+    "via_030mm_barrel": {
+      "drill_mm": 0.3,
+      "plating_um": 20.32,
+      "temp_rise_c": 10.0,
+      "barrel_area_mil2": 29.684,
+      "ampacity_a": 0.772,
+      "barrel_resistance_mohm": 1.437
+    },
+    "thermal_via_array_mcu_9x": {
+      "num_vias": 9,
+      "drill_mm": 0.3,
+      "plating_um": 25.0,
+      "single_via_r_theta_c_per_w": 192.41,
+      "array_r_theta_c_per_w": 23.18
+    },
+    "thermal_via_array_buck_6x": {
+      "num_vias": 6,
+      "drill_mm": 0.3,
+      "plating_um": 25.0,
+      "single_via_r_theta_c_per_w": 192.41,
+      "array_r_theta_c_per_w": 33.87
+    }
+  },
+  "electrical_safety_checks": {
+    "mlcc_dc_bias": {
+      "check": "mlcc_dc_bias_derating",
+      "passed": true,
+      "capacitors_checked": 18,
+      "violations": [],
+      "details": [
+        {
+          "refdes": "C1",
+          "mpn": "GRM21BR61H106KE43L",
+          "package": "0805",
+          "value": "10uF 50V X5R",
+          "dielectric": "X5R",
+          "vdc_v": 20.0,
+          "vrated_v": 50.0,
+          "derating_factor": 2.5,
+          "effective_cap_ratio": 0.804,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C2",
+          "mpn": "GRM21BR61H106KE43L",
+          "package": "0805",
+          "value": "10uF 50V X5R",
+          "dielectric": "X5R",
+          "vdc_v": 20.0,
+          "vrated_v": 50.0,
+          "derating_factor": 2.5,
+          "effective_cap_ratio": 0.804,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C3",
+          "mpn": "CL21A106KAYNNNE",
+          "package": "0805",
+          "value": "10uF 25V X5R",
+          "dielectric": "X5R",
+          "vdc_v": 3.3,
+          "vrated_v": 25.0,
+          "derating_factor": 7.58,
+          "effective_cap_ratio": 0.962,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C4",
+          "mpn": "CL21A106KAYNNNE",
+          "package": "0805",
+          "value": "10uF 25V X5R",
+          "dielectric": "X5R",
+          "vdc_v": 3.3,
+          "vrated_v": 25.0,
+          "derating_factor": 7.58,
+          "effective_cap_ratio": 0.962,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C18",
+          "mpn": "CL21A106KAYNNNE",
+          "package": "0805",
+          "value": "10uF 25V X5R",
+          "dielectric": "X5R",
+          "vdc_v": 3.3,
+          "vrated_v": 25.0,
+          "derating_factor": 7.58,
+          "effective_cap_ratio": 0.962,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C17",
+          "mpn": "CL21A106KAYNNNE",
+          "package": "0805",
+          "value": "10uF 25V X5R",
+          "dielectric": "X5R",
+          "vdc_v": 2.5,
+          "vrated_v": 25.0,
+          "derating_factor": 10.0,
+          "effective_cap_ratio": 0.976,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C5",
+          "mpn": "CC0603KRX7R9BB104",
+          "package": "0603",
+          "value": "100nF 50V X7R",
+          "dielectric": "X7R",
+          "vdc_v": 20.0,
+          "vrated_v": 50.0,
+          "derating_factor": 2.5,
+          "effective_cap_ratio": 0.832,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C6",
+          "mpn": "CC0603KRX7R9BB104",
+          "package": "0603",
+          "value": "100nF 50V X7R",
+          "dielectric": "X7R",
+          "vdc_v": 5.0,
+          "vrated_v": 50.0,
+          "derating_factor": 10.0,
+          "effective_cap_ratio": 0.98,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C7",
+          "mpn": "CC0603KRX7R9BB104",
+          "package": "0603",
+          "value": "100nF 50V X7R",
+          "dielectric": "X7R",
+          "vdc_v": 3.3,
+          "vrated_v": 50.0,
+          "derating_factor": 15.15,
+          "effective_cap_ratio": 0.99,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C8",
+          "mpn": "CC0603KRX7R9BB104",
+          "package": "0603",
+          "value": "100nF 50V X7R",
+          "dielectric": "X7R",
+          "vdc_v": 3.3,
+          "vrated_v": 50.0,
+          "derating_factor": 15.15,
+          "effective_cap_ratio": 0.99,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C9",
+          "mpn": "CC0603KRX7R9BB104",
+          "package": "0603",
+          "value": "100nF 50V X7R",
+          "dielectric": "X7R",
+          "vdc_v": 3.3,
+          "vrated_v": 50.0,
+          "derating_factor": 15.15,
+          "effective_cap_ratio": 0.99,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C10",
+          "mpn": "CC0603KRX7R9BB104",
+          "package": "0603",
+          "value": "100nF 50V X7R",
+          "dielectric": "X7R",
+          "vdc_v": 3.3,
+          "vrated_v": 50.0,
+          "derating_factor": 15.15,
+          "effective_cap_ratio": 0.99,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C11",
+          "mpn": "CC0603KRX7R9BB104",
+          "package": "0603",
+          "value": "100nF 50V X7R",
+          "dielectric": "X7R",
+          "vdc_v": 2.5,
+          "vrated_v": 50.0,
+          "derating_factor": 20.0,
+          "effective_cap_ratio": 0.99,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C12",
+          "mpn": "CC0603KRX7R9BB104",
+          "package": "0603",
+          "value": "100nF 50V X7R",
+          "dielectric": "X7R",
+          "vdc_v": 2.5,
+          "vrated_v": 50.0,
+          "derating_factor": 20.0,
+          "effective_cap_ratio": 0.99,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C13",
+          "mpn": "CL10C220JB8NNNC",
+          "package": "0603",
+          "value": "22pF 50V C0G",
+          "dielectric": "C0G",
+          "vdc_v": 1.8,
+          "vrated_v": 50.0,
+          "derating_factor": 27.78,
+          "effective_cap_ratio": 1.0,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C14",
+          "mpn": "CL10C220JB8NNNC",
+          "package": "0603",
+          "value": "22pF 50V C0G",
+          "dielectric": "C0G",
+          "vdc_v": 1.8,
+          "vrated_v": 50.0,
+          "derating_factor": 27.78,
+          "effective_cap_ratio": 1.0,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C15",
+          "mpn": "CL10C101JB8NNNC",
+          "package": "0603",
+          "value": "100pF 50V C0G",
+          "dielectric": "C0G",
+          "vdc_v": 2.5,
+          "vrated_v": 50.0,
+          "derating_factor": 20.0,
+          "effective_cap_ratio": 1.0,
+          "passed": true,
+          "issues": []
+        },
+        {
+          "refdes": "C16",
+          "mpn": "CL10C101JB8NNNC",
+          "package": "0603",
+          "value": "100pF 50V C0G",
+          "dielectric": "C0G",
+          "vdc_v": 2.5,
+          "vrated_v": 50.0,
+          "derating_factor": 20.0,
+          "effective_cap_ratio": 1.0,
+          "passed": true,
+          "issues": []
+        }
+      ]
+    },
+    "thermal_crossover": {
+      "board1_3v3_sync_buck": {
+        "rail": "PWR_3V3",
+        "topology": "Buck",
+        "package": "TSOT-23-6",
+        "vin_max_v": 20.0,
+        "vout_nom_v": 3.3,
+        "iout_max_a": 1.2,
+        "ambient_temp_c": 40.0,
+        "r_theta_ja_datasheet_c_per_w": 105.0,
+        "pcb_derating_factor": 1.4,
+        "power_dissipation_w": 0.28199,
+        "power_dissipation_mw": 281.99,
+        "junction_temp_c": 81.45,
+        "tj_limit_c": 125.0,
+        "passed": true,
+        "verdict": "PASS (Tj=81.5C <= 125C)"
+      },
+      "board1_2v5_post_ldo": {
+        "rail": "ANA_2V5",
+        "topology": "LDO",
+        "package": "SOT-23-5",
+        "vin_max_v": 3.3,
+        "vout_nom_v": 2.5,
+        "iout_max_a": 0.04,
+        "ambient_temp_c": 40.0,
+        "r_theta_ja_datasheet_c_per_w": 220.0,
+        "pcb_derating_factor": 1.4,
+        "power_dissipation_w": 0.03223,
+        "power_dissipation_mw": 32.23,
+        "junction_temp_c": 49.93,
+        "tj_limit_c": 125.0,
+        "passed": true,
+        "verdict": "PASS (Tj=49.9C <= 125C)"
+      },
+      "trap_5v_to_3v3_300ma_ldo": {
+        "rail": "TRAP_5V_3V3_300mA",
+        "topology": "LDO",
+        "package": "SOT-23-5",
+        "vin_max_v": 5.0,
+        "vout_nom_v": 3.3,
+        "iout_max_a": 0.3,
+        "ambient_temp_c": 40.0,
+        "r_theta_ja_datasheet_c_per_w": 220.0,
+        "pcb_derating_factor": 1.4,
+        "power_dissipation_w": 0.51035,
+        "power_dissipation_mw": 510.35,
+        "junction_temp_c": 197.19,
+        "tj_limit_c": 125.0,
+        "passed": false,
+        "verdict": "THERMAL_FAIL (Tj=197.2C > 125C; use Synchronous Buck)"
+      },
+      "trap_20v_to_3v3_1a2_ldo": {
+        "rail": "PWR_3V3",
+        "topology": "LDO",
+        "package": "SOT-23-5",
+        "vin_max_v": 20.0,
+        "vout_nom_v": 3.3,
+        "iout_max_a": 1.2,
+        "ambient_temp_c": 40.0,
+        "r_theta_ja_datasheet_c_per_w": 220.0,
+        "pcb_derating_factor": 1.4,
+        "power_dissipation_w": 20.0414,
+        "power_dissipation_mw": 20041.4,
+        "junction_temp_c": 6212.75,
+        "tj_limit_c": 125.0,
+        "passed": false,
+        "verdict": "THERMAL_FAIL (Tj=6212.8C > 125C; use Synchronous Buck)"
+      }
+    },
+    "usbc_and_esd": {
+      "check": "usbc_and_esd_safety",
+      "passed": true,
+      "cc1_refdes": "R1",
+      "cc2_refdes": "R2",
+      "cc_nets_independent": true,
+      "esd_tvs_distance_mm": 3.5,
+      "esd_tvs_max_distance_mm": 5.0,
+      "esd_trace_via_count": 0,
+      "esd_1k_limiter_count": 4,
+      "residual_ic_clamp_current_ma": 10.0,
+      "latchup_threshold_ma": 20.0,
+      "issues": []
+    }
+  }
+}

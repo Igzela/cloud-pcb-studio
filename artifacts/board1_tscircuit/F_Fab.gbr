@@ -1,0 +1,143 @@
+%TF.GenerationSoftware,tscircuit,circuit-json-to-gerber,0.0.122*%
+%TF.CreationDate,2026-11-14T03:57:36.540Z*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Other,Fab,Top*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+%MOMM*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by tscircuit (builder) date 2026-11-14T03:57:36.540Z*
+G01*
+%LPD*%
+G75*
+G04 APERTURE MACROS START*
+%AMHORZPILL*
+0 Horizontal pill (stadium) shape macro*
+0 Parameters:*
+0 $1 = Total width*
+0 $2 = Total height*
+0 $3 = Circle diameter (equal to height)*
+0 $4 = Circle center offset
+0 21 = Center Line(Exposure, Width, Height, Center X, Center Y, Rotation)*
+0 1 = Circle(Exposure, Diameter, Center X, Center Y, Rotation)*
+21,1,$1-$3,$2,0.0,0.0,0.0*
+1,1,$3,0.0-$4,0.0*
+1,1,$3,$4,0.0*%
+%AMVERTPILL*
+0 Vertical pill (stadium) shape macro*
+0 Parameters:*
+0 $1 = Total width*
+0 $2 = Total height*
+0 $3 = Circle diameter (equal to width)*
+0 $4 = Circle center offset
+0 21 = Center Line(Exposure, Width, Height, Center X, Center Y, Rotation)*
+21,1,$1,$2-$3,0.0,0.0,0.0*
+1,1,$3,0.0,0.0-$4*
+1,1,$3,0.0,$4*%
+%AMROUNDRECT*
+0 Rectangle with rounded corners*
+0 $1 Corner radius*
+0 $2 $3 $4 $5 $6 $7 $8 $9 X,Y Position of each corner*
+0 Polygon box body*
+4,1,4,$2,$3,$4,$5,$6,$7,$8,$9,$2,$3,0*
+0 Circles for rounded corners*
+1,1,$1+$1,$2,$3*
+1,1,$1+$1,$4,$5*
+1,1,$1+$1,$6,$7*
+1,1,$1+$1,$8,$9*
+0 Rectangles between the rounded corners*
+20,1,$1+$1,$2,$3,$4,$5,0*
+20,1,$1+$1,$4,$5,$6,$7,0*
+20,1,$1+$1,$6,$7,$8,$9,0*
+20,1,$1+$1,$8,$9,$2,$3,0*%
+%AMROTATEDPILL*
+0 Rotated pill: diameter, endpoint offset X, endpoint offset Y*
+20,1,$1,0-$2,0-$3,$2,$3,0*
+1,1,$1,0-$2,0-$3*
+1,1,$1,$2,$3*%
+G04 APERTURE MACROS END*
+G04 aperture START LIST*
+%ADD10C,0.260000*%
+%ADD11C,0.250000*%
+%ADD12C,0.237500*%
+%ADD13C,0.225000*%
+%ADD14C,0.306000*%
+%ADD15C,0.150000*%
+%ADD16C,0.200000*%
+%ADD17C,0.175000*%
+%ADD18C,0.350000*%
+%ADD19C,0.262500*%
+%ADD20C,0.175000*%
+%ADD21C,0.187500*%
+%ADD22C,0.600000*%
+%ADD23C,0.540000*%
+%ADD24C,0.325000*%
+%ADD25C,1.075000*%
+%ADD26C,1.125000*%
+%ADD27C,1.100000*%
+%ADD28C,0.550000*%
+%ADD29C,0.575000*%
+%ADD30C,0.575000*%
+%ADD31C,1.025000*%
+%ADD32C,2.100000*%
+%ADD33C,2.025000*%
+%ADD34C,1.975000*%
+%ADD35C,1.275000*%
+%ADD36C,1.200000*%
+%ADD37C,1.675000*%
+%ADD38C,1.225000*%
+%ADD39C,1.475000*%
+%ADD40C,1.850000*%
+%ADD41C,0.787500*%
+%ADD42C,0.211000*%
+%ADD43C,0.042000*%
+%ADD44C,0.027000*%
+%ADD45C,0.033250*%
+%ADD46C,0.021375*%
+%TD*%
+G04 aperture END LIST*
+D43*
+X-03920000Y006000000D02*
+X-03768800Y006000000D01*
+D43*
+X-03768800Y006336000D02*
+X-03231200Y006000000D01*
+X-03768800Y005664000D01*
+X-03768800Y006336000D01*
+D43*
+X-03231200Y006336000D02*
+X-03231200Y005664000D01*
+D43*
+X-03231200Y006000000D02*
+X-03080000Y006000000D01*
+D44*
+X-05169784Y005964625D02*
+X-05061400Y005964625D01*
+X-05115593Y006015073D02*
+X-05115593Y005914181D01*
+D44*
+X-01992304Y005960933D02*
+X-01938881Y005960933D01*
+D45*
+X015755000Y-04500000D02*
+X015843200Y-04500000D01*
+D45*
+X015843200Y-04234000D02*
+X016156800Y-04500000D01*
+X015843200Y-04766000D01*
+X015843200Y-04234000D01*
+D45*
+X016156800Y-04234000D02*
+X016156800Y-04766000D01*
+D45*
+X016156800Y-04500000D02*
+X016245000Y-04500000D01*
+D46*
+X015006212Y-04528005D02*
+X015092016Y-04528005D01*
+X015049114Y-04488067D02*
+X015049114Y-04567940D01*
+D46*
+X016865468Y-04530928D02*
+X016907761Y-04530928D01*
+M02*

@@ -1,0 +1,10 @@
+.venv/
+.mamba/
+.run/
+.pytest_cache/
+__pycache__/
+*.pyc
+node_modules/
+bin/micromamba
+*.log
+.DS_Store

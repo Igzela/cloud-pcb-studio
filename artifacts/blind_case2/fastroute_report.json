@@ -1,0 +1,13 @@
+{
+  "fastroute": "0.1.14",
+  "input": "artifacts/blind_case2/board.dsn",
+  "time_s": {"load": 1.2363, "route": 15.6516, "total": 18.6005, "diagnose": null},
+  "stats": {"layers": 4, "components": 61, "nets": 50, "pins": 266, "connections": 101, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 2, "violations_unfixable": 2, "vias": 57, "vias_blind": 0, "vias_buried": 0, "traces": 326, "trace_length_mm": 1210.0057, "bends_90": 13, "bends_45": 228, "bends_other": 0, "router_score": 999.8496, "optimizer_score": 635.6279},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+    {"layer": "F.Cu", "xy": [9.94, 42.05], "clearance_mm": 0.05, "actual_mm": 0, "unfixable": true, "first": {"kind": "pin", "component": "J9", "pin": "B12", "layers": ["F.Cu", "F.Cu"]}, "second": {"kind": "pin", "component": "J9", "pin": "A1", "layers": ["F.Cu", "F.Cu"]}},
+    {"layer": "F.Cu", "xy": [9.94, 48.45], "clearance_mm": 0.05, "actual_mm": 0, "unfixable": true, "first": {"kind": "pin", "component": "J9", "pin": "B1", "layers": ["F.Cu", "F.Cu"]}, "second": {"kind": "pin", "component": "J9", "pin": "A12", "layers": ["F.Cu", "F.Cu"]}}
+  ]
+}

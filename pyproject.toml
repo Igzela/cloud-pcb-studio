@@ -1,0 +1,9 @@
+[project]
+name = "cloud-pcb-studio"
+version = "0.1.0"
+description = "Headless Cloud Multi-Agent EDA Workbench: Materials/DFM/LCSC Selection, Dual Routing (tscircuit + FastRoute/FreeRouting), Special Planar Coils & CapTouch, ngspice Verification, and Shapely Gerber DRC"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

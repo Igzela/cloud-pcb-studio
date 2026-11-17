@@ -1,0 +1,13 @@
+{
+  "url": "file:///home/antigravity/cloud-pcb-studio/artifacts/verify/workbench.html",
+  "dom_returncode": 0,
+  "shot_returncode": 0,
+  "dom_length": 1045708,
+  "dom_non_blank": true,
+  "console_errors": [],
+  "screenshot_path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/workbench_screenshot.png",
+  "screenshot_width": 1440,
+  "screenshot_height": 1080,
+  "screenshot_pixel_std": 63.96,
+  "passed": true
+}

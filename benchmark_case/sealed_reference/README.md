@@ -1,0 +1,1 @@
+![CAN sensor board 3D view](./can_sensor_board.png)
