@@ -1,0 +1,1332 @@
+{
+  "status": "complete",
+  "hypothesis": "依据单一有类型IC供电端、回流电容及RLC端点证明局部供电域；未知电流局部采用独立布线意图，骨干与明确载流和线宽需求保持优先",
+  "baseline": {
+    "format": "v3_freeze",
+    "manifest": "artifacts/blind_v3_freeze.json",
+    "sha256": "e2e141a907321b27ef511a8d4bc08dc9d7e70c17ccf4d2d0f887c037418d6a59",
+    "source_archive": "artifacts/v3_validation/frozen-source.tar.gz",
+    "source_archive_sha256": "12e1f4d30f521a432e68ea27fc95e3a46468b953bea282834181071461766be2"
+  },
+  "measurements": {
+    "case1": {
+      "values": {
+        "unrouted": 0,
+        "opens": 0,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.0,
+        "rf_failures": 0,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 46,
+        "cap_distance_mm": 3.345,
+        "ground_fill_deficit": 0.0,
+        "wirelength_mm": 953.306
+      },
+      "failed_gates": [
+        "mechanical_zero_with_verified_envelopes"
+      ],
+      "hard_pass": false,
+      "evidence_errors": []
+    },
+    "case2": {
+      "values": {
+        "unrouted": 0,
+        "opens": 0,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.0,
+        "rf_failures": 1,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 59,
+        "cap_distance_mm": 7.706,
+        "ground_fill_deficit": 0.0,
+        "wirelength_mm": 1248.608
+      },
+      "failed_gates": [
+        "mechanical_zero_with_verified_envelopes",
+        "rf_all_four_layers_clear"
+      ],
+      "hard_pass": false,
+      "evidence_errors": []
+    },
+    "case3": {
+      "values": {
+        "unrouted": 1,
+        "opens": 1,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.0,
+        "rf_failures": 0,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 74,
+        "cap_distance_mm": 3.949,
+        "ground_fill_deficit": 0.0,
+        "wirelength_mm": 1144.005
+      },
+      "failed_gates": [
+        "independent_lvs_opens_zero",
+        "mechanical_zero_with_verified_envelopes",
+        "unrouted_zero"
+      ],
+      "hard_pass": false,
+      "evidence_errors": []
+    },
+    "case4": {
+      "values": {
+        "unrouted": 0,
+        "opens": 0,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.0,
+        "rf_failures": 0,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 108,
+        "cap_distance_mm": 10.423,
+        "ground_fill_deficit": 0.0,
+        "wirelength_mm": 3344.655
+      },
+      "failed_gates": [
+        "mechanical_zero_with_verified_envelopes"
+      ],
+      "hard_pass": false,
+      "evidence_errors": []
+    },
+    "case5": {
+      "values": {
+        "unrouted": 12,
+        "opens": 11,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.2,
+        "rf_failures": 0,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 52,
+        "cap_distance_mm": 5.089,
+        "ground_fill_deficit": 0.10619999999999996,
+        "wirelength_mm": 927.696
+      },
+      "failed_gates": [
+        "copper_edge_ge_050",
+        "independent_lvs_opens_zero",
+        "mechanical_zero_with_verified_envelopes",
+        "unrouted_zero"
+      ],
+      "hard_pass": false,
+      "evidence_errors": []
+    }
+  },
+  "case_details": {
+    "case1": {
+      "ground_fill_ratio": 0.8649,
+      "artifact_directory": "artifacts/optimization/runs/20261117T084530422384Z-scoped-supply/case1",
+      "electrical_derivations": [],
+      "input_conflicts": []
+    },
+    "case2": {
+      "ground_fill_ratio": 0.9154,
+      "artifact_directory": "artifacts/optimization/runs/20261117T084530422384Z-scoped-supply/case2",
+      "electrical_derivations": [],
+      "input_conflicts": []
+    },
+    "case3": {
+      "ground_fill_ratio": 0.8933,
+      "artifact_directory": "artifacts/optimization/runs/20261117T084530422384Z-scoped-supply/case3",
+      "electrical_derivations": [],
+      "input_conflicts": []
+    },
+    "case4": {
+      "ground_fill_ratio": 0.9373,
+      "artifact_directory": "artifacts/optimization/runs/20261117T084530422384Z-scoped-supply/case4",
+      "electrical_derivations": [
+        {
+          "net": "/3V3",
+          "nominal_v": 3.3,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "voltage_label",
+              "nominal_v": 3.3
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U1",
+              "pin": "2",
+              "function": "3V3",
+              "pin_type": "power_in"
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U4",
+              "pin": "9",
+              "function": "VDD",
+              "pin_type": "power_in"
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "board_distribution",
+          "routing_scope_evidence": {
+            "scope": "board_distribution",
+            "reason": "local supply domain not proven"
+          }
+        },
+        {
+          "net": "/3V3_M1",
+          "nominal_v": 3.3,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "voltage_label",
+              "nominal_v": 3.3
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "board_distribution",
+          "routing_scope_evidence": {
+            "scope": "board_distribution",
+            "reason": "local supply domain not proven"
+          }
+        },
+        {
+          "net": "/3V3_M2",
+          "nominal_v": 3.3,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "voltage_label",
+              "nominal_v": 3.3
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "board_distribution",
+          "routing_scope_evidence": {
+            "scope": "board_distribution",
+            "reason": "local supply domain not proven"
+          }
+        },
+        {
+          "net": "/3V3_m3",
+          "nominal_v": 3.3,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "voltage_label",
+              "nominal_v": 3.3
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "board_distribution",
+          "routing_scope_evidence": {
+            "scope": "board_distribution",
+            "reason": "local supply domain not proven"
+          }
+        },
+        {
+          "net": "/3v3_light",
+          "nominal_v": 3.3,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "voltage_label",
+              "nominal_v": 3.3
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "board_distribution",
+          "routing_scope_evidence": {
+            "scope": "board_distribution",
+            "reason": "local supply domain not proven"
+          }
+        },
+        {
+          "net": "/5V_USB",
+          "nominal_v": 5.0,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "voltage_label",
+              "nominal_v": 5.0
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "board_distribution",
+          "routing_scope_evidence": {
+            "scope": "board_distribution",
+            "reason": "local supply domain not proven",
+            "external_interface": true
+          }
+        }
+      ],
+      "input_conflicts": []
+    },
+    "case5": {
+      "ground_fill_ratio": 0.7438,
+      "artifact_directory": "artifacts/optimization/runs/20261117T084530422384Z-scoped-supply/case5",
+      "electrical_derivations": [
+        {
+          "net": "/V12",
+          "nominal_v": null,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "4",
+              "function": "AVDD10",
+              "pin_type": "power_in"
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "9",
+              "function": "AVDD10",
+              "pin_type": "power_in"
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "13",
+              "function": "U3VDD10",
+              "pin_type": "power_in"
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "20",
+              "function": "U3VDD10",
+              "pin_type": "power_in"
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "24",
+              "function": "U2VDD10",
+              "pin_type": "power_in"
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "31",
+              "function": "DVDD10",
+              "pin_type": "power_in"
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "42",
+              "function": "DVDD10",
+              "pin_type": "power_in"
+            },
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "46",
+              "function": "AVDD10",
+              "pin_type": "power_in"
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "single_ic_domain",
+          "routing_scope_evidence": {
+            "scope": "single_ic_domain",
+            "owner_ref": "U3",
+            "shunt_caps": [
+              "C16",
+              "C17",
+              "C18",
+              "C19",
+              "C20",
+              "C21",
+              "C24",
+              "C25",
+              "C26"
+            ],
+            "passive_members": [
+              "C16",
+              "C17",
+              "C18",
+              "C19",
+              "C20",
+              "C21",
+              "C24",
+              "C25",
+              "C26",
+              "L1",
+              "R15"
+            ],
+            "supply_pins": [
+              "13",
+              "20",
+              "24",
+              "31",
+              "4",
+              "42",
+              "46",
+              "9"
+            ],
+            "current_verified": false,
+            "reason": "one typed IC supply owner, shunt return capacitors and only passive R/L/C endpoints"
+          }
+        },
+        {
+          "net": "/VBUS",
+          "nominal_v": null,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "USB1",
+              "pin": "1",
+              "function": "VBUS",
+              "pin_type": "power_out"
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "board_distribution",
+          "routing_scope_evidence": {
+            "scope": "board_distribution",
+            "reason": "local supply domain not proven",
+            "external_interface": true
+          }
+        },
+        {
+          "net": "Net-(U3-DVDD10_UPS)",
+          "nominal_v": null,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "27",
+              "function": "DVDD10_UPS",
+              "pin_type": "power_out"
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "single_ic_domain",
+          "routing_scope_evidence": {
+            "scope": "single_ic_domain",
+            "owner_ref": "U3",
+            "shunt_caps": [
+              "C22"
+            ],
+            "passive_members": [
+              "C22"
+            ],
+            "supply_pins": [
+              "27"
+            ],
+            "current_verified": false,
+            "reason": "one typed IC supply owner, shunt return capacitors and only passive R/L/C endpoints"
+          }
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "nominal_v": null,
+          "requirements_source": "derived from blind electrical evidence",
+          "evidence": [
+            {
+              "kind": "typed_supply_pin",
+              "refdes": "U3",
+              "pin": "26",
+              "function": "VDD5",
+              "pin_type": "power_in"
+            }
+          ],
+          "current_verified": false,
+          "routing_scope": "board_distribution",
+          "routing_scope_evidence": {
+            "scope": "board_distribution",
+            "reason": "local supply domain not proven"
+          }
+        }
+      ],
+      "input_conflicts": [
+        {
+          "kind": "fixed_interface_edge",
+          "refdes": "USB1",
+          "pin": "0",
+          "actual_mm": 0.3,
+          "required_mm": 0.5,
+          "outside_board": false,
+          "action": "revise mechanical input through explicit engineering review; never silently move interface or waive gate"
+        },
+        {
+          "kind": "fixed_interface_edge",
+          "refdes": "USB1",
+          "pin": "0",
+          "actual_mm": 0.3,
+          "required_mm": 0.5,
+          "outside_board": false,
+          "action": "revise mechanical input through explicit engineering review; never silently move interface or waive gate"
+        }
+      ]
+    }
+  },
+  "tasks": [
+    {
+      "id": "7447e78cdbab",
+      "case": "case1",
+      "category": "mechanical",
+      "priority": 1,
+      "kind": "input_and_solver",
+      "title": "处理装配碰撞并补齐有依据的外壳尺寸",
+      "evidence": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C9",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "J1",
+          "J10",
+          "J11",
+          "J12",
+          "J13",
+          "J14",
+          "J15",
+          "J16",
+          "J17",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8",
+          "J9",
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "Y1"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "5ca6aa3f5fb2",
+      "case": "case2",
+      "category": "rf",
+      "priority": 1,
+      "kind": "input_and_solver",
+      "title": "补齐天线几何证据并保证四层净空",
+      "evidence": {
+        "unresolved": [
+          {
+            "refdes": "U1",
+            "confidence": "unknown",
+            "reason": "antenna candidate lacks body geometry or explicit keepout"
+          }
+        ],
+        "layers": []
+      }
+    },
+    {
+      "id": "87888d43221c",
+      "case": "case2",
+      "category": "mechanical",
+      "priority": 1,
+      "kind": "input_and_solver",
+      "title": "处理装配碰撞并补齐有依据的外壳尺寸",
+      "evidence": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "BZ1",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "F1",
+          "J1",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J9",
+          "L1",
+          "Q1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "SW1",
+          "SW2",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "U5",
+          "U6"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "9095e413af45",
+      "case": "case2",
+      "category": "decoupling",
+      "priority": 2,
+      "kind": "solver",
+      "title": "改进去耦优先级与供电脚局部摆位",
+      "evidence": {
+        "proxy_average_mm": 7.706,
+        "target_mm": 4.5,
+        "limitation": "bulk caps may be included"
+      }
+    },
+    {
+      "id": "16d11a2f5145",
+      "case": "case3",
+      "category": "connectivity",
+      "priority": 1,
+      "kind": "solver",
+      "title": "按独立 LVS 断开组诊断布线拥塞",
+      "evidence": {
+        "unrouted": 1,
+        "opens": [
+          {
+            "net": "/M1_TACHO",
+            "components": 2,
+            "pad_count": 3,
+            "pad_groups": {
+              "0": [
+                "J1-9",
+                "J1-9",
+                "J1-9",
+                "J1-9",
+                "R33-2"
+              ],
+              "2": [
+                "U201-6"
+              ]
+            }
+          }
+        ],
+        "routing_candidates": [
+          {
+            "mode": "standard",
+            "unrouted": 1,
+            "real_violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "dba9bda77b30",
+      "case": "case3",
+      "category": "mechanical",
+      "priority": 1,
+      "kind": "input_and_solver",
+      "title": "处理装配碰撞并补齐有依据的外壳尺寸",
+      "evidence": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "D1",
+          "D10",
+          "D11",
+          "D12",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "J1",
+          "J102",
+          "J2",
+          "J201",
+          "J202",
+          "J3",
+          "J301",
+          "J302",
+          "Q1",
+          "Q2",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R2",
+          "R20",
+          "R21",
+          "R22",
+          "R23",
+          "R24",
+          "R25",
+          "R26",
+          "R3",
+          "R33",
+          "R34",
+          "R35",
+          "R36",
+          "R37",
+          "R38",
+          "R39",
+          "R4",
+          "R40",
+          "R41",
+          "R42",
+          "R43",
+          "R44",
+          "R45",
+          "R46",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U201",
+          "U301"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "9a2d50027ff1",
+      "case": "case4",
+      "category": "mechanical",
+      "priority": 1,
+      "kind": "input_and_solver",
+      "title": "处理装配碰撞并补齐有依据的外壳尺寸",
+      "evidence": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C11",
+          "C12",
+          "C14",
+          "C15",
+          "C17",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C22",
+          "C23",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C9",
+          "C_CS1",
+          "C_CS2",
+          "C_CS3",
+          "C_CS4",
+          "C_CS5",
+          "C_CS6",
+          "C_CS7",
+          "C_CS8",
+          "D1",
+          "D2",
+          "D3",
+          "D5",
+          "D6",
+          "J1",
+          "J10",
+          "J11",
+          "J12",
+          "J13",
+          "J15",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8",
+          "J9",
+          "L1",
+          "Q1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R2",
+          "R3",
+          "R38",
+          "R4",
+          "R42",
+          "R44",
+          "R45",
+          "R46",
+          "R47",
+          "R48",
+          "R49",
+          "R5",
+          "R50",
+          "R51",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "R_CS1",
+          "R_CS2",
+          "R_CS3",
+          "R_CS4",
+          "R_CS5",
+          "R_CS6",
+          "R_CS7",
+          "R_INA1",
+          "R_INA2",
+          "R_INA3",
+          "R_INA4",
+          "R_INB1",
+          "R_INB2",
+          "R_INB3",
+          "R_INB4",
+          "R_LED1",
+          "R_LED2",
+          "R_LED3",
+          "R_LED4",
+          "R_PWM1",
+          "R_PWM2",
+          "R_PWM3",
+          "R_PWM4",
+          "SW1",
+          "SW2",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "U5",
+          "U6",
+          "U7",
+          "U8"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "7adc194e43f7",
+      "case": "case4",
+      "category": "decoupling",
+      "priority": 2,
+      "kind": "solver",
+      "title": "改进去耦优先级与供电脚局部摆位",
+      "evidence": {
+        "proxy_average_mm": 10.423,
+        "target_mm": 4.5,
+        "limitation": "bulk caps may be included"
+      }
+    },
+    {
+      "id": "d1dfd4f44472",
+      "case": "case5",
+      "category": "input_constraints",
+      "priority": 0,
+      "kind": "input_blocker",
+      "title": "固定机械接口与制造规则冲突",
+      "evidence": [
+        {
+          "kind": "fixed_interface_edge",
+          "refdes": "USB1",
+          "pin": "0",
+          "actual_mm": 0.3,
+          "required_mm": 0.5,
+          "outside_board": false,
+          "action": "revise mechanical input through explicit engineering review; never silently move interface or waive gate"
+        },
+        {
+          "kind": "fixed_interface_edge",
+          "refdes": "USB1",
+          "pin": "0",
+          "actual_mm": 0.3,
+          "required_mm": 0.5,
+          "outside_board": false,
+          "action": "revise mechanical input through explicit engineering review; never silently move interface or waive gate"
+        }
+      ]
+    },
+    {
+      "id": "c2e203b23f1d",
+      "case": "case5",
+      "category": "connectivity",
+      "priority": 1,
+      "kind": "solver",
+      "title": "按独立 LVS 断开组诊断布线拥塞",
+      "evidence": {
+        "unrouted": 12,
+        "opens": [
+          {
+            "net": "+3V3",
+            "components": 2,
+            "pad_count": 19,
+            "pad_groups": {
+              "4": [
+                "C10-2",
+                "C11-2",
+                "C14-2",
+                "C15-2",
+                "C27-1",
+                "C6-2",
+                "LAN1-13",
+                "LAN1-13",
+                "LAN1-13",
+                "LAN1-13",
+                "R11-2",
+                "R13-1",
+                "R9-1",
+                "U2-8",
+                "U3-1",
+                "U3-12",
+                "U3-25",
+                "U3-34",
+                "U3-35",
+                "U3-43",
+                "U3-48"
+              ],
+              "9": [
+                "U3-28"
+              ]
+            }
+          },
+          {
+            "net": "Net-(U3-VDD5)",
+            "components": 2,
+            "pad_count": 5,
+            "pad_groups": {
+              "3": [
+                "C12-1",
+                "FB1-2",
+                "U4-1",
+                "U4-4"
+              ],
+              "1": [
+                "U3-26"
+              ]
+            }
+          },
+          {
+            "net": "/V12",
+            "components": 2,
+            "pad_count": 19,
+            "pad_groups": {
+              "6": [
+                "C16-2",
+                "C17-1",
+                "C18-2",
+                "C19-2",
+                "C20-2",
+                "C21-2",
+                "C24-2",
+                "C25-2",
+                "C26-2",
+                "L1-2",
+                "R15-1",
+                "U3-9",
+                "U3-13",
+                "U3-20",
+                "U3-24",
+                "U3-31",
+                "U3-42",
+                "U3-46"
+              ],
+              "2": [
+                "U3-4"
+              ]
+            }
+          },
+          {
+            "net": "/U3TX_N",
+            "components": 2,
+            "pad_count": 2,
+            "pad_groups": {
+              "0": [
+                "C2-1"
+              ],
+              "1": [
+                "U3-19"
+              ]
+            }
+          },
+          {
+            "net": "Net-(U3-CKXTAL2)",
+            "components": 2,
+            "pad_count": 3,
+            "pad_groups": {
+              "1": [
+                "C8-1",
+                "X1-1"
+              ],
+              "0": [
+                "U3-45"
+              ]
+            }
+          },
+          {
+            "net": "/M1_N",
+            "components": 2,
+            "pad_count": 2,
+            "pad_groups": {
+              "0": [
+                "LAN1-4",
+                "LAN1-4",
+                "LAN1-4",
+                "LAN1-4"
+              ],
+              "1": [
+                "U3-6"
+              ]
+            }
+          },
+          {
+            "net": "/M2_N",
+            "components": 2,
+            "pad_count": 2,
+            "pad_groups": {
+              "1": [
+                "LAN1-8",
+                "LAN1-8",
+                "LAN1-8",
+                "LAN1-8"
+              ],
+              "0": [
+                "U3-8"
+              ]
+            }
+          },
+          {
+            "net": "/M3_P",
+            "components": 2,
+            "pad_count": 2,
+            "pad_groups": {
+              "1": [
+                "LAN1-9",
+                "LAN1-9",
+                "LAN1-9",
+                "LAN1-9"
+              ],
+              "0": [
+                "U3-10"
+              ]
+            }
+          },
+          {
+            "net": "/M3_N",
+            "components": 2,
+            "pad_count": 2,
+            "pad_groups": {
+              "1": [
+                "LAN1-10",
+                "LAN1-10",
+                "LAN1-10",
+                "LAN1-10"
+              ],
+              "0": [
+                "U3-11"
+              ]
+            }
+          },
+          {
+            "net": "/U2_P",
+            "components": 2,
+            "pad_count": 2,
+            "pad_groups": {
+              "0": [
+                "R2-1"
+              ],
+              "1": [
+                "U3-23"
+              ]
+            }
+          },
+          {
+            "net": "/U3SRX_P",
+            "components": 2,
+            "pad_count": 2,
+            "pad_groups": {
+              "0": [
+                "U3-14"
+              ],
+              "1": [
+                "USB1-9"
+              ]
+            }
+          }
+        ],
+        "routing_candidates": [
+          {
+            "mode": "coupled_pairs",
+            "unrouted": 22,
+            "real_violations": 0
+          },
+          {
+            "mode": "individual_with_length_tuning",
+            "unrouted": 12,
+            "real_violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "383c46192fe7",
+      "case": "case5",
+      "category": "mechanical",
+      "priority": 1,
+      "kind": "input_and_solver",
+      "title": "处理装配碰撞并补齐有依据的外壳尺寸",
+      "evidence": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C22",
+          "C24",
+          "C25",
+          "C26",
+          "C27",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "FB1",
+          "FID1",
+          "FID2",
+          "FID3",
+          "FID4",
+          "L1",
+          "LAN1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U2",
+          "U3",
+          "U4",
+          "USB1",
+          "X1"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "6002e3407c36",
+      "case": "case5",
+      "category": "decoupling",
+      "priority": 2,
+      "kind": "solver",
+      "title": "改进去耦优先级与供电脚局部摆位",
+      "evidence": {
+        "proxy_average_mm": 5.089,
+        "target_mm": 4.5,
+        "limitation": "bulk caps may be included"
+      }
+    },
+    {
+      "id": "0ee0f830844c",
+      "case": "case5",
+      "category": "ground_reference",
+      "priority": 2,
+      "kind": "solver",
+      "title": "改善地参考完整性",
+      "evidence": {
+        "deficit": 0.10619999999999996,
+        "target": 0.85
+      }
+    }
+  ],
+  "failures": [],
+  "decision": {
+    "eligible_for_baseline": false,
+    "hard_gates_passed": false,
+    "engineering_pass": null,
+    "engineering_acceptance": "not_certified: endpoint SI, verified current/thermal limits and human wirelength comparison require separate evidence",
+    "regressions": [
+      {
+        "case": "case5",
+        "metric": "unrouted",
+        "before": 9,
+        "after": 12
+      },
+      {
+        "case": "case5",
+        "metric": "opens",
+        "before": 9,
+        "after": 11
+      },
+      {
+        "case": "case5",
+        "metric": "ground_fill_deficit",
+        "before": 0.09489999999999998,
+        "after": 0.10619999999999996
+      }
+    ],
+    "improvements": [
+      {
+        "case": "case4",
+        "metric": "unrouted_zero",
+        "before": false,
+        "after": true
+      },
+      {
+        "case": "case4",
+        "metric": "independent_lvs_opens_zero",
+        "before": false,
+        "after": true
+      },
+      {
+        "case": "case4",
+        "metric": "unrouted",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "case": "case4",
+        "metric": "opens",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "case": "case4",
+        "metric": "cap_distance_mm",
+        "before": 13.875,
+        "after": 10.423
+      },
+      {
+        "case": "case5",
+        "metric": "cap_distance_mm",
+        "before": 6.884,
+        "after": 5.089
+      }
+    ],
+    "invalid": [],
+    "full_suite": true,
+    "tests_passed": true,
+    "policy": "per-case Pareto: every safety/QoR metric non-worse; incomplete wire length never rewarded; improvement is not engineering acceptance"
+  },
+  "runtime_s": 1050.063
+}

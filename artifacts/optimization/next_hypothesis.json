@@ -1,0 +1,41 @@
+{
+  "status": "proposed_not_implemented",
+  "completed_hypothesis": "single-IC supply scope",
+  "evidence_manifest": {
+    "format": "optimization_round",
+    "manifest": "artifacts/optimization/runs/20261117T084530422384Z-scoped-supply/manifest.json",
+    "sha256": "ae6c991e2926f460ed29ffacc73c0ea3f86a5cb7e89e1c126b0efba322f8112f"
+  },
+  "title": "Use geometry-aware congestion evidence and generic escape/rip-up strategy for remaining connectivity failures",
+  "remaining_connections": {
+    "case3": 1,
+    "case5": 12
+  },
+  "regressions": [
+    {
+      "case": "case5",
+      "metric": "unrouted",
+      "before": 9,
+      "after": 12
+    },
+    {
+      "case": "case5",
+      "metric": "opens",
+      "before": 9,
+      "after": 11
+    },
+    {
+      "case": "case5",
+      "metric": "ground_fill_deficit",
+      "before": 0.09489999999999998,
+      "after": 0.10619999999999996
+    }
+  ],
+  "constraints": [
+    "all exposed cases remain regression only",
+    "no project-specific nets or coordinates",
+    "do not loosen DRC or erase failure evidence",
+    "current limits and envelope dimensions remain unverified where missing",
+    "full suite before baseline promotion"
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "project": "can_sensor_board_hw",
+  "total_placed": 46,
+  "gnd_fanout_stats": {
+    "fanout_vias_added": 25,
+    "gnd_smd_pads_total": 28,
+    "unvia_gnd_pins": []
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "success": true,
+      "routed_nets": 36,
+      "total_nets": 36,
+      "unrouted_nets": 0,
+      "via_count": 35,
+      "total_wirelength_mm": 922.6215,
+      "runtime_ms": 6476.28,
+      "notes": "rc=0, raw_violations=0, real_violations=0, layers=['B.Cu', 'F.Cu', 'In2.Cu']"
+    },
+    {
+      "engine": "freerouting_cli_v2.5.0",
+      "success": false,
+      "routed_nets": 0,
+      "total_nets": 36,
+      "unrouted_nets": 36,
+      "via_count": 0,
+      "total_wirelength_mm": 0.0,
+      "runtime_ms": 60008.03,
+      "notes": "timeout_60s"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 2443.372,
+    "pour_area_mm2": 2113.341,
+    "fill_ratio": 0.8649,
+    "f_cu_pour_mm2": 1702.718,
+    "b_cu_pour_mm2": 2081.214,
+    "stitching_vias_added": 22,
+    "antipad_cutouts": 68,
+    "is_empty": false,
+    "power_islands": [
+      {
+        "net": "+5V",
+        "layer": "In2.Cu",
+        "plated_anchor_count": 6,
+        "area_mm2": 347.5825755348036
+      }
+    ]
+  },
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "B_Mask.gbr": true,
+      "F_Paste.gbr": true,
+      "B_Paste.gbr": true,
+      "F_SilkS.gbr": true,
+      "B_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 122,
+    "npth_hole_count": 4,
+    "min_annular_ring_mm": 0.1247,
+    "annular_ring_violations": 0,
+    "silk_to_mask_overlap_mm2": 0.0,
+    "silk_to_mask_overlap_by_side_mm2": {
+      "F": 0.0,
+      "B": 0.0
+    },
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "lvs_opens": [],
+    "lvs_shorts": [],
+    "min_inter_net_clearance_mm": 0.1317,
+    "legacy_projected_lvs_opens": [],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C9",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "J1",
+          "J10",
+          "J11",
+          "J12",
+          "J13",
+          "J14",
+          "J15",
+          "J16",
+          "J17",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8",
+          "J9",
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "Y1"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": true
+    }
+  }
+}

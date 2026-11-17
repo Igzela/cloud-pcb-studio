@@ -1,0 +1,18 @@
+{
+  "case": 5,
+  "source_commit": "e30a671f84527391f9f351bd8a0563ab36cceb6f",
+  "source_path": "HARDWARE/USB-GIGABIT-Rev.E/USB-GIGABIT_Rev_E.kicad_pcb",
+  "repo_url": "https://github.com/OLIMEX/USB-GIGABIT.git",
+  "sealed_at": "2026-11-17T05:17:17.223285+00:00",
+  "reference_sha256": "9575bc4e67fd7f524e01df221945cbebf04ddfefbc9074a5fe615050a9062c5b",
+  "spec_sha256": "109598de944bbc3e65940e82828f4684f977d2dff2fd0c68274899e2a91a6a41",
+  "component_count": 52,
+  "net_count": 51,
+  "differential_pair_count": 9,
+  "layer_count": 4,
+  "reference_path": "benchmark_case/sealed_case5/reference.kicad_pcb",
+  "status": "unsealed",
+  "metamorphic_placement_route_test": "passed",
+  "unsealed_at": "2026-11-17T06:40:56.416625+00:00",
+  "freeze_manifest": "artifacts/blind_v3_freeze.json"
+}

@@ -1,0 +1,18 @@
+{
+  "case": 4,
+  "source_commit": "66a2616b3bff252392b95749a6af20d1ba99755e",
+  "source_path": "hardware/esp32_s3_vnh7040_quad_motor.kicad_pcb",
+  "repo_url": "https://github.com/jonathanrandall/four_motor_controller.git",
+  "sealed_at": "2026-11-17T05:17:16.673136+00:00",
+  "reference_sha256": "f0d138943eeac9d8fa10c11b3f7ceac338779a6bad3208b84d9854e4efdc2f72",
+  "spec_sha256": "48f5c2332f5985b816cf70ca8dabcdfac9d805d08fef916c668dc4e541363604",
+  "component_count": 113,
+  "net_count": 131,
+  "differential_pair_count": 1,
+  "layer_count": 4,
+  "reference_path": "benchmark_case/sealed_case4/reference.kicad_pcb",
+  "status": "unsealed",
+  "metamorphic_placement_route_test": "passed",
+  "unsealed_at": "2026-11-17T06:40:56.415115+00:00",
+  "freeze_manifest": "artifacts/blind_v3_freeze.json"
+}

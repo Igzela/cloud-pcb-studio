@@ -1,0 +1,277 @@
+{
+  "project": "holdout_case4",
+  "total_placed": 113,
+  "gnd_fanout_stats": {
+    "fanout_vias_added": 60,
+    "gnd_smd_pads_total": 98,
+    "unvia_gnd_pins": [
+      "U4-10"
+    ]
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "success": false,
+      "routed_nets": 97,
+      "total_nets": 98,
+      "unrouted_nets": 1,
+      "via_count": 120,
+      "total_wirelength_mm": 3116.0337,
+      "runtime_ms": 121658.69,
+      "notes": "rc=0, raw_violations=2, real_violations=0, layers=['B.Cu', 'F.Cu', 'In2.Cu']"
+    },
+    {
+      "engine": "freerouting_cli_v2.5.0",
+      "success": false,
+      "routed_nets": 0,
+      "total_nets": 98,
+      "unrouted_nets": 98,
+      "via_count": 0,
+      "total_wirelength_mm": 0.0,
+      "runtime_ms": 60018.53,
+      "notes": "timeout_60s"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 10045.227,
+    "pour_area_mm2": 9446.369,
+    "fill_ratio": 0.9404,
+    "f_cu_pour_mm2": 7718.147,
+    "b_cu_pour_mm2": 9175.33,
+    "stitching_vias_added": 122,
+    "antipad_cutouts": 219,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "B_Mask.gbr": true,
+      "F_Paste.gbr": true,
+      "B_Paste.gbr": true,
+      "F_SilkS.gbr": true,
+      "B_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 424,
+    "npth_hole_count": 6,
+    "min_annular_ring_mm": 0.1247,
+    "annular_ring_violations": 0,
+    "silk_to_mask_overlap_mm2": 0.0,
+    "silk_to_mask_overlap_by_side_mm2": {
+      "F": 0.0,
+      "B": 0.0
+    },
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "lvs_opens": [
+      {
+        "net": "Net-(D3-K)",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "D3-1",
+            "J15-2",
+            "J15-2",
+            "J15-2",
+            "J15-2"
+          ],
+          "1": [
+            "J15-1",
+            "J15-1",
+            "J15-1",
+            "J15-1"
+          ]
+        }
+      }
+    ],
+    "lvs_shorts": [],
+    "min_inter_net_clearance_mm": 0.1317,
+    "legacy_projected_lvs_opens": [
+      "Net-(D3-K) (2 islands)"
+    ],
+    "independent_4layer": {
+      "lvs_opens": [
+        {
+          "net": "Net-(D3-K)",
+          "components": 2,
+          "pad_count": 3,
+          "pad_groups": {
+            "0": [
+              "D3-1",
+              "J15-2",
+              "J15-2",
+              "J15-2",
+              "J15-2"
+            ],
+            "1": [
+              "J15-1",
+              "J15-1",
+              "J15-1",
+              "J15-1"
+            ]
+          }
+        }
+      ],
+      "lvs_shorts": [],
+      "rf_keepout": [
+        {
+          "refdes": "U1",
+          "layer": "F.Cu",
+          "copper_mm2": 0.0,
+          "coverage_fraction": 0.0,
+          "passed": true
+        },
+        {
+          "refdes": "U1",
+          "layer": "In1.Cu",
+          "copper_mm2": 0.0,
+          "coverage_fraction": 0.0,
+          "passed": true
+        },
+        {
+          "refdes": "U1",
+          "layer": "In2.Cu",
+          "copper_mm2": 0.0,
+          "coverage_fraction": 0.0,
+          "passed": true
+        },
+        {
+          "refdes": "U1",
+          "layer": "B.Cu",
+          "copper_mm2": 0.0,
+          "coverage_fraction": 0.0,
+          "passed": true
+        }
+      ],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C11",
+          "C12",
+          "C14",
+          "C15",
+          "C17",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C22",
+          "C23",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C9",
+          "C_CS1",
+          "C_CS2",
+          "C_CS3",
+          "C_CS4",
+          "C_CS5",
+          "C_CS6",
+          "C_CS7",
+          "C_CS8",
+          "D1",
+          "D2",
+          "D3",
+          "D5",
+          "D6",
+          "J1",
+          "J10",
+          "J11",
+          "J12",
+          "J13",
+          "J15",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8",
+          "J9",
+          "L1",
+          "Q1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R2",
+          "R3",
+          "R38",
+          "R4",
+          "R42",
+          "R44",
+          "R45",
+          "R46",
+          "R47",
+          "R48",
+          "R49",
+          "R5",
+          "R50",
+          "R51",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "R_CS1",
+          "R_CS2",
+          "R_CS3",
+          "R_CS4",
+          "R_CS5",
+          "R_CS6",
+          "R_CS7",
+          "R_INA1",
+          "R_INA2",
+          "R_INA3",
+          "R_INA4",
+          "R_INB1",
+          "R_INB2",
+          "R_INB3",
+          "R_INB4",
+          "R_LED1",
+          "R_LED2",
+          "R_LED3",
+          "R_LED4",
+          "R_PWM1",
+          "R_PWM2",
+          "R_PWM3",
+          "R_PWM4",
+          "SW1",
+          "SW2",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "U5",
+          "U6",
+          "U7",
+          "U8"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": false
+    }
+  }
+}

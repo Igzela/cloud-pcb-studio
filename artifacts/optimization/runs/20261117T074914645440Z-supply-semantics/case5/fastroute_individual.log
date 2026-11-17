@@ -1,0 +1,66 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.001 INFO  parsed 'board.dsn' in 1.1 ms: 4 layers, 52 components, 43 nets, 0 wires
+    0.006 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.006 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.010 INFO  built board in 8.7 ms: 399 items (186 pins, 0 vias, 0 traces)
+    0.010 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.010 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.010 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    0.381 INFO  Fanout pass #1 completed in 0.37 seconds with 45 SMD pins fanouted, 73 not routed, 0 insert errors, +7 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+    0.728 INFO  Fanout pass #2 completed in 0.35 seconds with 9 SMD pins fanouted, 86 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+    1.000 INFO  Fanout pass #3 completed in 0.27 seconds with 0 SMD pins fanouted, 87 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+    1.000 INFO  Fanout stage completed: 3 passes, completed in 0.99 seconds.
+    1.008 INFO  checkpoint: best board so far (55 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+    1.008 INFO  Auto-routing stage started with baseline score 296.30 for 55 unrouted items.
+   10.151 INFO  Auto-routing pass #1 was completed in 9.14 seconds with score 501.68 (37 unrouted and 0 violations) (routed 63, failed 14, ripped 52).
+   10.153 INFO  checkpoint: best board so far (37 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   14.967 INFO  Auto-routing pass #2 was completed in 4.81 seconds with score 636.36 (27 unrouted and 0 violations) (routed 35, failed 12, ripped 34).
+   14.969 INFO  checkpoint: best board so far (27 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   18.875 INFO  Auto-routing pass #3 was completed in 3.91 seconds with score 649.83 (26 unrouted and 0 violations) (routed 24, failed 6, ripped 33).
+   18.877 INFO  checkpoint: best board so far (26 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   22.044 INFO  Auto-routing pass #4 was completed in 3.17 seconds with score 703.70 (22 unrouted and 0 violations) (routed 21, failed 5, ripped 27).
+   22.046 INFO  checkpoint: best board so far (22 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   26.887 INFO  Auto-routing pass #5 was completed in 4.84 seconds with score 717.17 (21 unrouted and 0 violations) (routed 18, failed 6, ripped 27).
+   26.888 INFO  checkpoint: best board so far (21 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   30.759 INFO  Auto-routing pass #6 was completed in 3.87 seconds with score 730.64 (20 unrouted and 0 violations) (routed 15, failed 6, ripped 21).
+   30.760 INFO  checkpoint: best board so far (20 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   34.811 INFO  Auto-routing pass #7 was completed in 4.05 seconds with score 744.11 (19 unrouted and 0 violations) (routed 13, failed 7, ripped 30).
+   34.813 INFO  checkpoint: best board so far (19 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   39.235 INFO  Auto-routing pass #8 was completed in 4.42 seconds with score 717.17 (21 unrouted and 0 violations) (routed 13, failed 9, ripped 26).
+   42.618 INFO  Auto-routing pass #9 was completed in 3.38 seconds with score 784.51 (16 unrouted and 0 violations) (routed 16, failed 5, ripped 17).
+   42.619 INFO  checkpoint: best board so far (16 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   46.783 INFO  Auto-routing pass #10 was completed in 4.16 seconds with score 757.58 (18 unrouted and 0 violations) (routed 10, failed 6, ripped 24).
+   50.724 INFO  Auto-routing pass #11 was completed in 3.94 seconds with score 730.64 (20 unrouted and 0 violations) (routed 12, failed 6, ripped 17).
+   54.920 INFO  Auto-routing pass #12 was completed in 4.20 seconds with score 717.17 (21 unrouted and 0 violations) (routed 18, failed 5, ripped 33).
+   58.784 INFO  Auto-routing pass #13 was completed in 3.85 seconds with score 757.58 (18 unrouted and 0 violations) (routed 18, failed 6, ripped 30).
+   62.743 INFO  Auto-routing pass #14 was completed in 3.96 seconds with score 744.11 (19 unrouted and 0 violations) (routed 11, failed 8, ripped 17).
+   66.403 INFO  Auto-routing pass #15 was completed in 3.66 seconds with score 797.98 (15 unrouted and 0 violations) (routed 13, failed 8, ripped 17).
+   66.405 INFO  checkpoint: best board so far (15 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses'
+   68.874 INFO  Auto-routing pass #16 was completed in 2.47 seconds with score 771.04 (17 unrouted and 0 violations) (routed 9, failed 6, ripped 25).
+   73.274 INFO  Auto-routing pass #17 was completed in 4.40 seconds with score 771.04 (17 unrouted and 0 violations) (routed 10, failed 7, ripped 30).
+   76.002 INFO  Auto-routing pass #18 was completed in 2.73 seconds with score 771.04 (17 unrouted and 0 violations) (routed 10, failed 7, ripped 24).
+   79.586 INFO  Auto-routing pass #19 was completed in 3.58 seconds with score 609.43 (29 unrouted and 0 violations) (routed 11, failed 6, ripped 12).
+   84.876 INFO  Auto-routing pass #20 was completed in 5.29 seconds with score 569.02 (32 unrouted and 0 violations) (routed 20, failed 9, ripped 18).
+   89.081 INFO  Auto-routing pass #21 was completed in 4.20 seconds with score 744.11 (19 unrouted and 0 violations) (routed 26, failed 5, ripped 38).
+   91.863 INFO  Auto-routing pass #22 was completed in 2.78 seconds with score 717.17 (21 unrouted and 0 violations) (routed 12, failed 7, ripped 28).
+   96.883 INFO  Auto-routing pass #23 was completed in 5.02 seconds with score 744.11 (19 unrouted and 0 violations) (routed 12, failed 8, ripped 27).
+   99.585 INFO  Auto-routing pass #24 was completed in 2.70 seconds with score 717.17 (21 unrouted and 0 violations) (routed 11, failed 8, ripped 26).
+  103.171 INFO  Auto-routing pass #25 was completed in 3.59 seconds with score 515.15 (36 unrouted and 0 violations) (routed 13, failed 7, ripped 26).
+  103.193 INFO  Auto-routing pass #25 left 36 items unrouted (best so far 15): continuing from the best board (15 unrouted); failing connections no longer rip their whole net.
+  103.194 INFO  The router's score (797.98) has not improved by more than 0.5 points in the last 10 passes (15 items still unconnected). Stopping the auto-router.
+  103.206 INFO  Auto-routing stage completed: started with 94 unrouted nets, completed in 102.20 seconds, final score: 797.98 (15 unrouted and 0 violations).
+  103.206 INFO  12 item(s) cannot be routed even on the board as loaded (blocked by pins, keepouts or fixed wiring); they were skipped after their second failure.
+  103.225 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+  103.570 INFO  Fanout pass #1 completed in 0.34 seconds with 45 SMD pins fanouted, 73 not routed, 0 insert errors, +7 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+  103.907 INFO  Fanout pass #2 completed in 0.34 seconds with 9 SMD pins fanouted, 86 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+  104.167 INFO  Fanout pass #3 completed in 0.26 seconds with 0 SMD pins fanouted, 87 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+  104.167 INFO  Fanout stage completed: 3 passes, completed in 0.94 seconds.
+  104.174 INFO  Auto-routing stage started with baseline score 296.30 for 55 unrouted items.
+  110.010 WARN  --max-time (110 s) reached: finishing with the best result so far
+  110.029 INFO  Auto-routing pass #1 was completed in 5.86 seconds with score 461.22 (40 unrouted and 1 violation) (routed 47, failed 15, ripped 46).
+  110.051 INFO  Auto-routing stage completed: started with 94 unrouted nets, completed in 5.88 seconds, final score: 461.22 (40 unrouted and 1 violation).
+  110.059 INFO  Multi-start variant 1: 40 unrouted, 1 violations, router score 461.22.
+  110.061 INFO  routing finished in 110.05 s
+  110.071 INFO  saved '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/board_fastroute_individual.ses' (56123 bytes)
+  110.089 INFO  report written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T074914645440Z-supply-semantics/case5/fastroute_individual_report.json'

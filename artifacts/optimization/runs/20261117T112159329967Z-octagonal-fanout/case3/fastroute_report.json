@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T112159329967Z-octagonal-fanout/case3/board.dsn",
+  "time_s": {"load": 0.0171, "route": 109.2452, "total": 109.2775, "diagnose": null},
+  "stats": {"layers": 4, "components": 74, "nets": 56, "pins": 230, "connections": 123, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 69, "vias_blind": 0, "vias_buried": 0, "traces": 417, "trace_length_mm": 1113.1157, "bends_90": 0, "bends_45": 439, "bends_other": 0, "router_score": 989.1599, "optimizer_score": 420.2423},
+  "unrouted": [
+    {"net": "/Left Driver/ADVANCE", "length_mm": 6.9757, "from": {"kind": "pin", "component": "U201", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [23.535, 21.3], "to": {"kind": "pin", "component": "R5", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [18.384, 26.004]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

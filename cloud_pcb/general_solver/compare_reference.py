@@ -67,6 +67,7 @@ def _extract_metrics(
     pcb_path: Path,
     name: str,
     spec: dict[str, Any] | None = None,
+    *, independent_audit: bool = True,
 ) -> dict[str, Any]:
     board = Board.from_file(str(pcb_path))
     ox, oy, bw, bh = _board_bounds(board)
@@ -107,7 +108,8 @@ def _extract_metrics(
         p1 = (float(a.start.X), float(a.start.Y))
         pm = (float(a.mid.X), float(a.mid.Y))
         p2 = (float(a.end.X), float(a.end.Y))
-        dl = math.hypot(pm[0] - p1[0], pm[1] - p1[1]) + math.hypot(p2[0] - pm[0], p2[1] - pm[1])
+        from cloud_pcb.general_solver.geometry import arc_length_mm
+        dl = arc_length_mm(a)
         total_len += dl
         len_by_layer[a.layer] += dl
         width_hist[f"{float(a.width):.3f}"] += 1
@@ -117,8 +119,11 @@ def _extract_metrics(
     gnd_vias = 0
     sig_vias = 0
     via_sizes: Counter[str] = Counter()
+    planar_net_lengths=dict(net_len);via_barrel_total=0.0
     for v in vias:
         nn = net_names.get(int(v.net), "")
+        from cloud_pcb.general_solver.geometry import via_barrel_length_mm
+        barrel=via_barrel_length_mm(board,v);via_barrel_total+=barrel;net_len[nn]+=barrel
         if _is_gnd(nn):
             gnd_vias += 1
         else:
@@ -209,11 +214,30 @@ def _extract_metrics(
             "length_mismatch_mm": round(abs(pl - nl), 3),
         })
 
+    extra = {}
+    if spec:
+        from cloud_pcb.general_solver.topology import topology_metrics
+        from cloud_pcb.general_solver.power import width_distribution
+        from cloud_pcb.general_solver.semantics import rf_keepouts
+        from cloud_pcb.verify_gate.gerber_drc import audit_general_board
+        placed={r:(float(f.position.X)-ox,float(f.position.Y)-oy,float(f.position.angle or 0)) for r,f in fp_by_ref.items()}
+        extra['topology']=topology_metrics(spec,placed)
+        power_nets={r['net'] for r in spec.get('design_requirements',{}).get('power_rails',[])}
+        extra['power_width_length_distribution_mm']=width_distribution(board,power_nets)
+        # Derive keepout in the measured board's frame, including reference origin.
+        world_placed={r:(float(f.position.X),float(f.position.Y),float(f.position.angle or 0)) for r,f in fp_by_ref.items()}
+        regions,unknown=rf_keepouts(spec,world_placed)
+        extra['rf_semantics_unresolved']=unknown
+        if independent_audit:
+            audit=audit_general_board(board,spec,world_placed,regions)
+            extra['independent_4layer']=audit
+
     # Footprint side breakdown (F.Cu vs B.Cu)
     fp_sides = Counter(str(fp.layer or "F.Cu") for fp in board.footprints)
     drc_lvs = _check_kicad_drc_and_lvs(pcb_path)
 
     return {
+        **extra,
         "label": name,
         "pcb_path": str(pcb_path),
         "board_dims_mm": [round(bw, 3), round(bh, 3)],
@@ -226,6 +250,8 @@ def _extract_metrics(
         "segments_count": len(segs),
         "arcs_count": len(arcs),
         "total_wirelength_mm": round(total_len, 3),
+        "via_barrel_length_mm": round(via_barrel_total,3),
+        "wirelength_with_vias_mm": round(total_len+via_barrel_total,3),
         "wirelength_by_layer_mm": {k: round(v, 3) for k, v in sorted(len_by_layer.items())},
         "segments_by_layer": dict(sorted(seg_by_layer.items())),
         "trace_width_histogram": dict(sorted(width_hist.items())),
@@ -335,6 +361,13 @@ def compare_boards(
     title_blind: str = "Blind Solver (cloud-pcb-studio)",
     title_ref: str = "Human Reference",
 ) -> dict[str, Any]:
+    # New references cannot be compared until the uniform run was frozen and
+    # the explicit unseal command verified all output hashes.
+    for parent in ref_pcb.resolve().parents:
+        if parent.name.startswith('sealed_case') and parent.name[len('sealed_case'):].isdigit() and int(parent.name[len('sealed_case'):])>=4:
+            manifest=json.loads((parent/'manifest.json').read_text())
+            if manifest.get('status')!='unsealed': raise PermissionError('holdout reference is still sealed')
+            break
     spec = json.loads(spec_path.read_text(encoding="utf-8")) if spec_path and spec_path.exists() else None
     blind_m = _extract_metrics(blind_pcb, title_blind, spec=spec)
     ref_m = _extract_metrics(ref_pcb, title_ref, spec=spec)

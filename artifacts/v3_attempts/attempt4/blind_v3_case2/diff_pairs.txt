@@ -1,0 +1,2 @@
+pair /usb+ /usb- gap=0.18 skew=0.2
+pair /usb_mcu+ /usb_mcu- gap=0.18 skew=0.2

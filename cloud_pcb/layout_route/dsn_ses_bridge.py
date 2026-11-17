@@ -72,9 +72,21 @@ def board_to_dsn(
     via_drill_mm: float = 0.30,
     skip_nets: set[str] | None = None,
     override_net_pins: dict[str, list[str]] | None = None,
+    net_rules: dict[str, NetClassRule] | None = None,
+    board_outline_mm: list[tuple[float, float]] | None = None,
+    routing_layers_by_class: dict[str, tuple[str, ...]] | None = None,
 ) -> Path:
     """Export a kiutils Board to a Specctra .dsn file."""
     x0, y0, x1, y1 = board_bounds_mm
+    # fastroute assigns explicit classes after reading per-net rules. Compile
+    # overrides into exclusive singleton classes to preserve rule precedence.
+    netclasses=dict(netclasses); net_to_class=dict(net_to_class)
+    if net_rules:
+        from dataclasses import replace
+        for i,(net,rule) in enumerate(sorted(net_rules.items())):
+            name=f'NET_RULE_{i:04d}'
+            netclasses[name]=replace(rule,name=name)
+            net_to_class[net]=name
     # Specctra uses Y-up: KiCad y in [0, 40] -> Specctra y in [-40, 0]
     bx0 = round(x0 * 1000)
     by0 = round(-y1 * 1000)
@@ -128,7 +140,7 @@ def board_to_dsn(
             px_um = round(lx_kicad * 1000)
             py_um = round(-ly_kicad * 1000)
 
-            pad_angle = float(pad.position.angle) if pad.position.angle is not None else fangle
+            pad_angle = float(pad.position.angle or 0.0)
             pw, ph = _pad_world_dims(float(pad.size.X), float(pad.size.Y), pad_angle)
             pw_um = max(100, round(pw * 1000))
             ph_um = max(100, round(ph * 1000))
@@ -195,7 +207,12 @@ def board_to_dsn(
         kx1 = round(ko["x_max"] * 1000)
         ky1 = round(-ko["y_min"] * 1000)
         for lyr in ko.get("layers", ["F.Cu", "B.Cu"]):
-            keepout_lines.append(f'    (keepout "" (rect {lyr} {kx0} {ky0} {kx1} {ky1}))')
+            kind=ko.get('dsn_kind','keepout')
+            if kind not in ('keepout','wire_keepout','via_keepout'): raise ValueError('unsupported DSN keepout kind')
+            if ko.get('polygon_mm'):
+                coords=' '.join(f'{round(x*1000)} {round(-y*1000)}' for x,y in ko['polygon_mm'])
+                keepout_lines.append(f'    ({kind} "" (polygon {lyr} 0 {coords}))')
+            else: keepout_lines.append(f'    ({kind} "" (rect {lyr} {kx0} {ky0} {kx1} {ky1}))')
 
     # Group nets by netclass
     class_to_nets: dict[str, list[str]] = {cname: [] for cname in netclasses}
@@ -225,8 +242,9 @@ def board_to_dsn(
         clr_um = round(rule.clearance_mm * 1000)
         network_lines.append(f"    (class {_quote(cname)} {net_tokens}")
         if rule.zero_via_allowed:
+            layers=' '.join((routing_layers_by_class or {}).get(cname,('F.Cu','B.Cu')))
             network_lines.append(
-                f"      (circuit (use_via {_quote(via_name)}) (use_layer F.Cu B.Cu))"
+                f"      (circuit (use_via {_quote(via_name)}) (use_layer {layers}))"
             )
         else:
             network_lines.append("      (circuit (use_layer F.Cu))")
@@ -253,7 +271,7 @@ def board_to_dsn(
         "      (property (index 1))",
         "    )",
         "    (layer In2.Cu",
-        "      (type power)",
+        "      (type signal)" if routing_layers_by_class and any('In2.Cu' in layers for layers in routing_layers_by_class.values()) else "      (type power)",
         "      (property (index 2))",
         "    )",
         "    (layer B.Cu",
@@ -261,7 +279,7 @@ def board_to_dsn(
         "      (property (index 3))",
         "    )",
         "    (boundary",
-        f"      (rect pcb {bx0} {by0} {bx1} {by1})",
+        ('      (path pcb 0 '+' '.join(f'{round(x*1000)} {round(-y*1000)}' for x,y in board_outline_mm)+')') if board_outline_mm else f"      (rect pcb {bx0} {by0} {bx1} {by1})",
         "    )",
         *keepout_lines,
         f"    (via {_quote(via_name)})",

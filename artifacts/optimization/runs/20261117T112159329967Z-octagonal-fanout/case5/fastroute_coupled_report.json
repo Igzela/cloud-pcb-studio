@@ -1,0 +1,29 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261117T112159329967Z-octagonal-fanout/case5/board.dsn",
+  "time_s": {"load": 12.8961, "route": 97.1645, "total": 110.073, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 100, "unrouted": 18, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 67, "vias_blind": 0, "vias_buried": 0, "traces": 395, "trace_length_mm": 915.42, "bends_90": 11, "bends_45": 439, "bends_other": 0, "router_score": 760, "optimizer_score": 365.4985},
+  "unrouted": [
+    {"net": "+3V3", "length_mm": 1.2, "from": {"kind": "pin", "component": "U3", "pin": "25", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [28.733, 10.75], "to": {"kind": "pin", "component": "U3", "pin": "28", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [28.734, 9.55]},
+    {"net": "+3V3", "length_mm": 2.4532, "from": {"kind": "pin", "component": "C10", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [20.367, 5.842], "to": {"kind": "pin", "component": "U3", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [22.767, 6.35]},
+    {"net": "+3V3", "length_mm": 6.7622, "from": {"kind": "pin", "component": "C11", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [37.615, 10.642], "to": {"kind": "pin", "component": "R9", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [44.181, 12.259]},
+    {"net": "/LED0", "length_mm": 25.6394, "from": {"kind": "pin", "component": "U3", "pin": "30", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [28.734, 8.75], "to": {"kind": "pin", "component": "LAN1", "pin": "11", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [3.802, 2.769]},
+    {"net": "/LED1", "length_mm": 10.1125, "from": {"kind": "pin", "component": "R7", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [18.794, 6.09], "to": {"kind": "pin", "component": "U3", "pin": "32", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [28.734, 7.95]},
+    {"net": "/LED2", "length_mm": 4.3903, "from": {"kind": "pin", "component": "U3", "pin": "41", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [26.35, 5.566], "to": {"kind": "pin", "component": "R13", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [22.943, 2.797]},
+    {"net": "/LED2", "length_mm": 7.6535, "from": {"kind": "via", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [39.2683, 15.2968], "to": {"kind": "pin", "component": "R1", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [44.03, 9.305]},
+    {"net": "/M0_N", "length_mm": 7.8208, "from": {"kind": "pin", "component": "U3", "pin": "3", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.767, 7.15], "to": {"kind": "pin", "component": "LAN1", "pin": "2", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [15.232, 5.055]},
+    {"net": "/M1_N", "length_mm": 3.812, "from": {"kind": "pin", "component": "U3", "pin": "6", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.766, 8.35], "to": {"kind": "via", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [19.568, 6.2753]},
+    {"net": "/M2_N", "length_mm": 8.3179, "from": {"kind": "pin", "component": "U3", "pin": "8", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.766, 9.15], "to": {"kind": "pin", "component": "LAN1", "pin": "8", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [15.232, 12.675]},
+    {"net": "/M3_N", "length_mm": 8.9682, "from": {"kind": "pin", "component": "LAN1", "pin": "10", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [15.232, 15.215], "to": {"kind": "pin", "component": "U3", "pin": "11", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [22.766, 10.35]},
+    {"net": "/U3SRX_N", "length_mm": 20.7845, "from": {"kind": "pin", "component": "U3", "pin": "15", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [24.35, 11.533], "to": {"kind": "via", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [45.128, 12.0509]},
+    {"net": "/U3TX_P", "length_mm": 9.5192, "from": {"kind": "via", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [34.1639, 7.4823], "to": {"kind": "pin", "component": "U3", "pin": "18", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [25.55, 11.534]},
+    {"net": "/V12", "length_mm": 1.6, "from": {"kind": "pin", "component": "U3", "pin": "20", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [26.35, 11.534], "to": {"kind": "pin", "component": "U3", "pin": "24", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [27.95, 11.534]},
+    {"net": "/V12", "length_mm": 2, "from": {"kind": "pin", "component": "U3", "pin": "4", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.766, 7.55], "to": {"kind": "pin", "component": "U3", "pin": "9", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [22.766, 9.55]},
+    {"net": "Net-(LAN1-Pad12)", "length_mm": 16.3489, "from": {"kind": "pin", "component": "R7", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [17.778, 6.09], "to": {"kind": "pin", "component": "LAN1", "pin": "12", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [1.77, 2.769]},
+    {"net": "Net-(U3-CKXTAL1)", "length_mm": 9.3695, "from": {"kind": "pin", "component": "U3", "pin": "44", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [25.15, 5.566], "to": {"kind": "pin", "component": "X1", "pin": "3", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [25.25, 14.935]},
+    {"net": "Net-(U3-RSET)", "length_mm": 19.2938, "from": {"kind": "pin", "component": "U3", "pin": "47", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [23.95, 5.566], "to": {"kind": "pin", "component": "R8", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [43.177, 7.17]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

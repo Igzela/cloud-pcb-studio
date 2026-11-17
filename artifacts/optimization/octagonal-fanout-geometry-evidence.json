@@ -1,0 +1,46 @@
+{
+  "round": "artifacts/optimization/runs/20261117T112159329967Z-octagonal-fanout",
+  "definition": "DSN reconstructed by replacing each via octagon by its bounding square; continuous protection circle certified by minimum center-to-boundary distance",
+  "cases": {
+    "case1": {
+      "baseline_dsn_sha256": "3aa3a1e2b9509efd80f398e39e809e8236c34d4a447b8296a537b3f640ad01bd",
+      "candidate_dsn_sha256": "6abf2ed90cedc5e5f48e15e544619d451b1a37cd92fc0611162c823df25c891a",
+      "other_dsn_bytes_identical": true,
+      "guard_polygons_per_layer": 100,
+      "all_protection_circles_verified": true,
+      "recovered_area_sum_across_layers_mm2": 12.1032
+    },
+    "case2": {
+      "baseline_dsn_sha256": "d4fea3e6a1efe7778bafe773054ab26592ebfb8536798b200620d7d3c70df825",
+      "candidate_dsn_sha256": "ec08d763c83cd9b832070b3cb17a45efcc441eca1e33798c030fe27da222f890",
+      "other_dsn_bytes_identical": true,
+      "guard_polygons_per_layer": 175,
+      "all_protection_circles_verified": true,
+      "recovered_area_sum_across_layers_mm2": 21.13767
+    },
+    "case3": {
+      "baseline_dsn_sha256": "77db709d27ede07ae785f3d78f3adecaf13f6c957e5f12739b6751e51324d36d",
+      "candidate_dsn_sha256": "a1f86ed6c204303e8c078d9b4a5dca25afded12e216c883a2fa73ea5608513a6",
+      "other_dsn_bytes_identical": true,
+      "guard_polygons_per_layer": 166,
+      "all_protection_circles_verified": true,
+      "recovered_area_sum_across_layers_mm2": 20.005452
+    },
+    "case4": {
+      "baseline_dsn_sha256": "9f52f75b495ef95dc421672bc4797bad9953c0aeadca7af0248b76dc6b51e3a4",
+      "candidate_dsn_sha256": "1b4db7d30ffdcd74a7c68ae15004b6abe6dbaf13fd937f66dc076690eddc25a3",
+      "other_dsn_bytes_identical": true,
+      "guard_polygons_per_layer": 240,
+      "all_protection_circles_verified": true,
+      "recovered_area_sum_across_layers_mm2": 29.04768
+    },
+    "case5": {
+      "baseline_dsn_sha256": "29020fe4aede146b17b7e65835fd8a1b1872103e6f4307b31f46e5173bd51301",
+      "candidate_dsn_sha256": "36a113cdf7a0394bbe6456c74b5922498ff82f0bbbef662401c27cec79f14cca",
+      "other_dsn_bytes_identical": true,
+      "guard_polygons_per_layer": 136,
+      "all_protection_circles_verified": true,
+      "recovered_area_sum_across_layers_mm2": 16.460352
+    }
+  }
+}

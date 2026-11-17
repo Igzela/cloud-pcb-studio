@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "error": "Error: page.evaluate: TypeError: Cannot read properties of undefined (reading 'traverse')\n    at eval (eval at evaluate (:290:30), <anonymous>:3:21)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+  "console_errors": [],
+  "external_requests": []
+}

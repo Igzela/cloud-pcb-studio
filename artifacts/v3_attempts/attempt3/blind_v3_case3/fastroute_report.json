@@ -1,0 +1,13 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case3/board.dsn",
+  "time_s": {"load": 0.0063, "route": 110.0134, "total": 110.0243, "diagnose": null},
+  "stats": {"layers": 4, "components": 74, "nets": 56, "pins": 230, "connections": 123, "unrouted": 2, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 75, "vias_blind": 0, "vias_buried": 0, "traces": 418, "trace_length_mm": 1066.3318, "bends_90": 1, "bends_45": 437, "bends_other": 0, "router_score": 978.3198, "optimizer_score": 451.8509},
+  "unrouted": [
+    {"net": "/Left Driver/HNA", "length_mm": 0.8, "from": {"kind": "pin", "component": "U201", "pin": "22", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [25.13, 21.035], "to": {"kind": "pin", "component": "U201", "pin": "20", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [25.93, 21.035]},
+    {"net": "/M1_DIR", "length_mm": 11.4544, "from": {"kind": "pin", "component": "U201", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [23.535, 21.7], "to": {"kind": "pin", "component": "D5", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [34.984, 22.053]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

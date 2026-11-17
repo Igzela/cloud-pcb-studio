@@ -1,0 +1,1069 @@
+{
+  "project_name": "can_sensor_board_hw",
+  "repo_url": "https://github.com/HardyYu/can_sensor_board_hw",
+  "commit_sha": "d92c5c1b4860bafcf65c3d8498ee4abc9876a7e6",
+  "total_runtime_ms": 96191.45,
+  "placement_meta": {
+    "board_width_mm": 55.0,
+    "board_height_mm": 45.0,
+    "corner_radius_mm": 6.0,
+    "groups": {
+      "edge_connectors": [
+        "J9"
+      ],
+      "ics": [
+        "U2",
+        "U3",
+        "U1",
+        "Y1"
+      ],
+      "regulators": [
+        "U4"
+      ],
+      "multi_pin_headers": [
+        "J14",
+        "J17",
+        "J10",
+        "J16",
+        "J12",
+        "J13",
+        "J15",
+        "J11"
+      ],
+      "single_pad_tp": [
+        "J2",
+        "J6",
+        "J5",
+        "J3",
+        "J4",
+        "J1",
+        "J7",
+        "J8"
+      ],
+      "signal_passives": [
+        "R2",
+        "R5",
+        "R4",
+        "R9",
+        "R3",
+        "R1",
+        "D2",
+        "D1",
+        "R6",
+        "R7",
+        "D4",
+        "R8",
+        "D3"
+      ],
+      "bypass_caps": [
+        "C1",
+        "C10",
+        "C11",
+        "C12",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C9"
+      ]
+    },
+    "total_placed": 46,
+    "hierarchy": {
+      "communities": [
+        [
+          "J11",
+          "J12",
+          "J13",
+          "J5",
+          "J6",
+          "J7",
+          "J8",
+          "R2",
+          "U1"
+        ],
+        [
+          "J10",
+          "J14",
+          "J15",
+          "J16",
+          "J17",
+          "U2",
+          "U3"
+        ],
+        [
+          "J9",
+          "R1",
+          "R9"
+        ],
+        [
+          "D4",
+          "R6",
+          "R7"
+        ],
+        [
+          "R3",
+          "Y1"
+        ],
+        [
+          "D3",
+          "R8"
+        ],
+        [
+          "D1",
+          "R4"
+        ],
+        [
+          "D2",
+          "R5"
+        ],
+        [
+          "U4"
+        ],
+        [
+          "J1"
+        ],
+        [
+          "J2"
+        ],
+        [
+          "J3"
+        ],
+        [
+          "J4"
+        ],
+        [
+          "C7"
+        ],
+        [
+          "C2"
+        ],
+        [
+          "C1"
+        ],
+        [
+          "C10"
+        ],
+        [
+          "C11"
+        ],
+        [
+          "C3"
+        ],
+        [
+          "C4"
+        ],
+        [
+          "C5"
+        ],
+        [
+          "C6"
+        ],
+        [
+          "C9"
+        ],
+        [
+          "C12"
+        ]
+      ],
+      "repeated_channels": [],
+      "signal_edges": 41,
+      "algorithm": "weighted Louvain + WL filter + exact attributed isomorphism",
+      "seed": 0
+    },
+    "component_sides": {
+      "C1": "top",
+      "C10": "top",
+      "C11": "top",
+      "C12": "top",
+      "C2": "top",
+      "C3": "top",
+      "C4": "top",
+      "C5": "top",
+      "C6": "top",
+      "C7": "top",
+      "C9": "top",
+      "D1": "top",
+      "D2": "top",
+      "D3": "top",
+      "D4": "top",
+      "J1": "top",
+      "J10": "top",
+      "J11": "top",
+      "J12": "top",
+      "J13": "top",
+      "J14": "top",
+      "J15": "top",
+      "J16": "top",
+      "J17": "top",
+      "J2": "top",
+      "J3": "top",
+      "J4": "top",
+      "J5": "top",
+      "J6": "top",
+      "J7": "top",
+      "J8": "top",
+      "J9": "top",
+      "R1": "top",
+      "R2": "top",
+      "R3": "top",
+      "R4": "top",
+      "R5": "top",
+      "R6": "top",
+      "R7": "top",
+      "R8": "top",
+      "R9": "top",
+      "U1": "top",
+      "U2": "top",
+      "U3": "top",
+      "U4": "top",
+      "Y1": "top"
+    }
+  },
+  "placed_positions": {
+    "J9": [
+      3.799999999999997,
+      21.819999999999993,
+      -90.0
+    ],
+    "U2": [
+      27.5,
+      20.25,
+      0.0
+    ],
+    "U4": [
+      17.289,
+      21.368,
+      270.0
+    ],
+    "U3": [
+      25.018,
+      11.902,
+      0.0
+    ],
+    "U1": [
+      32.381,
+      29.681,
+      0.0
+    ],
+    "Y1": [
+      19.01,
+      14.41,
+      270.0
+    ],
+    "J14": [
+      16.0,
+      38.2,
+      90.0
+    ],
+    "J17": [
+      14.5,
+      5.2,
+      90.0
+    ],
+    "J10": [
+      31.0,
+      3.6,
+      90.0
+    ],
+    "J16": [
+      25.0,
+      41.4,
+      90.0
+    ],
+    "J12": [
+      11.5,
+      41.4,
+      90.0
+    ],
+    "J13": [
+      32.5,
+      38.2,
+      90.0
+    ],
+    "J15": [
+      47.5,
+      20.5,
+      180.0
+    ],
+    "J11": [
+      38.5,
+      41.4,
+      90.0
+    ],
+    "J2": [
+      11.5,
+      2.8,
+      0.0
+    ],
+    "J6": [
+      51.8,
+      14.8,
+      0.0
+    ],
+    "J5": [
+      51.8,
+      18.4,
+      0.0
+    ],
+    "J3": [
+      51.8,
+      22.0,
+      0.0
+    ],
+    "J4": [
+      51.8,
+      25.6,
+      0.0
+    ],
+    "J1": [
+      22.0,
+      42.2,
+      0.0
+    ],
+    "J7": [
+      44.5,
+      42.2,
+      0.0
+    ],
+    "J8": [
+      51.8,
+      34.0,
+      0.0
+    ],
+    "C1": [
+      13.824,
+      15.147,
+      180.0
+    ],
+    "C2": [
+      12.734,
+      19.289,
+      270.0
+    ],
+    "C12": [
+      20.401,
+      11.311,
+      180.0
+    ],
+    "C10": [
+      28.194,
+      11.237,
+      90.0
+    ],
+    "C11": [
+      35.273,
+      33.95,
+      0.0
+    ],
+    "C3": [
+      16.97,
+      11.34,
+      180.0
+    ],
+    "C4": [
+      27.137,
+      30.733,
+      270.0
+    ],
+    "C5": [
+      25.117,
+      27.21,
+      0.0
+    ],
+    "C6": [
+      25.178,
+      8.78,
+      180.0
+    ],
+    "C9": [
+      34.475,
+      23.05,
+      90.0
+    ],
+    "C7": [
+      20.989,
+      9.353,
+      0.0
+    ],
+    "R2": [
+      31.651,
+      35.635,
+      180.0
+    ],
+    "R5": [
+      32.775,
+      8.895,
+      180.0
+    ],
+    "R4": [
+      30.929,
+      13.029,
+      0.0
+    ],
+    "R9": [
+      9.28,
+      21.32,
+      90.0
+    ],
+    "R3": [
+      16.761,
+      9.094,
+      0.0
+    ],
+    "R1": [
+      10.372,
+      24.653,
+      0.0
+    ],
+    "D2": [
+      34.675,
+      16.206,
+      270.0
+    ],
+    "D1": [
+      31.165,
+      11.04,
+      180.0
+    ],
+    "R6": [
+      21.829,
+      31.817,
+      0.0
+    ],
+    "R7": [
+      24.909,
+      30.996,
+      90.0
+    ],
+    "D4": [
+      20.679,
+      29.133,
+      90.0
+    ],
+    "R8": [
+      37.988,
+      13.856,
+      270.0
+    ],
+    "D3": [
+      29.127,
+      8.089,
+      180.0
+    ]
+  },
+  "gnd_fanout_stats": {
+    "fanout_vias_added": 25,
+    "gnd_smd_pads_total": 28,
+    "unvia_gnd_pins": []
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "board_name": "can_sensor_board_hw",
+      "success": true,
+      "runtime_ms": 16182.1,
+      "total_nets": 36,
+      "routed_nets": 36,
+      "unrouted_nets": 0,
+      "via_count": 34,
+      "total_wirelength_mm": 895.4639,
+      "notes": "rc=0, raw_violations=0, real_violations=0, layers=['B.Cu', 'F.Cu', 'In2.Cu']"
+    },
+    {
+      "engine": "freerouting_cli_v2.5.0",
+      "board_name": "can_sensor_board_hw",
+      "success": false,
+      "runtime_ms": 60020.03,
+      "total_nets": 36,
+      "routed_nets": 0,
+      "unrouted_nets": 36,
+      "via_count": 0,
+      "total_wirelength_mm": 0.0,
+      "notes": "timeout_60s"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 2443.372,
+    "pour_area_mm2": 2114.247,
+    "fill_ratio": 0.8653,
+    "f_cu_pour_mm2": 1690.162,
+    "b_cu_pour_mm2": 2075.95,
+    "stitching_vias_added": 21,
+    "antipad_cutouts": 67,
+    "is_empty": false,
+    "power_islands": [
+      {
+        "net": "+5V",
+        "layer": "In2.Cu",
+        "plated_anchor_count": 6,
+        "area_mm2": 321.1015798951987
+      }
+    ]
+  },
+  "gerber_files": [
+    "B_Cu.gbr",
+    "B_Mask.gbr",
+    "B_Paste.gbr",
+    "B_SilkS.gbr",
+    "Edge_Cuts.gbr",
+    "F_Cu.gbr",
+    "F_Mask.gbr",
+    "F_Paste.gbr",
+    "F_SilkS.gbr",
+    "In1_Cu.gbr",
+    "In2_Cu.gbr",
+    "NPTH.drl",
+    "PTH.drl"
+  ],
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "F_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 120,
+    "npth_hole_count": 4,
+    "min_annular_ring_mm": 0.1247,
+    "annular_ring_violations": 0,
+    "silk_to_mask_overlap_mm2": 0.0,
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "lvs_opens": [],
+    "lvs_shorts": [
+      {
+        "layer": "F.Cu",
+        "net_a": "+3V3",
+        "net_b": "GND",
+        "overlap_mm2": 0.038426
+      }
+    ],
+    "min_inter_net_clearance_mm": 0.0,
+    "legacy_projected_lvs_opens": [],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [
+        {
+          "layer": "F.Cu",
+          "net_a": "+3V3",
+          "net_b": "GND",
+          "overlap_mm2": 0.038426
+        }
+      ],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C9",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "J1",
+          "J10",
+          "J11",
+          "J12",
+          "J13",
+          "J14",
+          "J15",
+          "J16",
+          "J17",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8",
+          "J9",
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "Y1"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": false
+    }
+  },
+  "hard_gates": {
+    "unrouted_zero": true,
+    "router_spacing_zero": true,
+    "independent_lvs_opens_zero": true,
+    "independent_lvs_shorts_zero": false,
+    "nonthermal_via_in_pad_zero": true,
+    "gerber_all_parsed": true,
+    "annular_ring_ge_010": true,
+    "silk_overlap_zero": true,
+    "copper_edge_ge_050": true,
+    "rf_all_four_layers_clear": true,
+    "mechanical_zero_with_verified_envelopes": false
+  },
+  "hard_gates_passed": false,
+  "router_spacing": {
+    "raw_count": 0,
+    "excluded_same_net_pad_overlaps": 0,
+    "real_count": 0,
+    "excluded": [],
+    "real": []
+  },
+  "routing_mode": "coupled_pairs",
+  "routing_candidates": [
+    {
+      "mode": "coupled_pairs",
+      "unrouted": 0,
+      "real_violations": 0
+    }
+  ],
+  "full_width_at_pin_diff_classes": [
+    "DIFF_PAIR_000"
+  ],
+  "keepouts": [
+    {
+      "x_min": 3.3,
+      "y_min": 3.3,
+      "x_max": 8.7,
+      "y_max": 8.7,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 3.3,
+      "y_min": 36.3,
+      "x_max": 8.7,
+      "y_max": 41.7,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 46.3,
+      "y_min": 3.3,
+      "x_max": 51.7,
+      "y_max": 8.7,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 46.3,
+      "y_min": 36.3,
+      "x_max": 51.7,
+      "y_max": 41.7,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 10.549,
+      "y_min": 14.727,
+      "x_max": 11.389,
+      "y_max": 15.567,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 20.135,
+      "y_min": 16.83,
+      "x_max": 20.975,
+      "y_max": 17.67,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 52.86,
+      "y_min": 21.58,
+      "x_max": 53.7,
+      "y_max": 22.42,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 52.86,
+      "y_min": 25.18,
+      "x_max": 53.7,
+      "y_max": 26.02,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 28.077,
+      "y_min": 28.264,
+      "x_max": 28.917,
+      "y_max": 29.104,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 35.589,
+      "y_min": 26.469,
+      "x_max": 36.429,
+      "y_max": 27.309,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 27.774,
+      "y_min": 9.087,
+      "x_max": 28.614,
+      "y_max": 9.927,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 36.583,
+      "y_min": 33.53,
+      "x_max": 37.423,
+      "y_max": 34.37,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 18.251,
+      "y_min": 10.891,
+      "x_max": 19.091,
+      "y_max": 11.731,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 12.314,
+      "y_min": 20.599,
+      "x_max": 13.154,
+      "y_max": 21.439,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 14.82,
+      "y_min": 10.92,
+      "x_max": 15.66,
+      "y_max": 11.76,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 26.717,
+      "y_min": 32.043,
+      "x_max": 27.557,
+      "y_max": 32.883,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 26.147,
+      "y_min": 27.465,
+      "x_max": 26.987,
+      "y_max": 28.305,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 23.308,
+      "y_min": 7.685,
+      "x_max": 24.148,
+      "y_max": 8.525,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 22.299,
+      "y_min": 8.933,
+      "x_max": 23.139,
+      "y_max": 9.773,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 34.055,
+      "y_min": 20.9,
+      "x_max": 34.895,
+      "y_max": 21.74,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 11.732,
+      "y_min": 24.233,
+      "x_max": 12.572,
+      "y_max": 25.073,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 24.489,
+      "y_min": 28.796,
+      "x_max": 25.329,
+      "y_max": 29.636,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 37.568,
+      "y_min": 15.216,
+      "x_max": 38.408,
+      "y_max": 16.056,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 9.535,
+      "y_min": 19.4,
+      "x_max": 10.375,
+      "y_max": 20.24,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 30.565,
+      "y_min": 25.027,
+      "x_max": 31.405,
+      "y_max": 25.867,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 23.595,
+      "y_min": 14.633,
+      "x_max": 24.435,
+      "y_max": 15.473,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 17.195,
+      "y_min": 15.475,
+      "x_max": 18.035,
+      "y_max": 16.315,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 22.36,
+      "y_min": 11.927,
+      "x_max": 23.2,
+      "y_max": 12.767,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 25.819,
+      "y_min": 13.71,
+      "x_max": 26.659,
+      "y_max": 14.55,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    }
+  ],
+  "rf_unresolved": [],
+  "power_width_distribution_mm": {
+    "+3V3": {
+      "0.500": 112.73288743426991,
+      "0.375": 5.942781671592127,
+      "0.160": 2.613787776955823,
+      "0.300": 0.10634885989045634,
+      "0.350": 0.6137000000000015
+    },
+    "+5V": {
+      "0.500": 113.64210112837414,
+      "0.375": 3.256009031670276
+    }
+  },
+  "assembly": {
+    "html": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case1/assembly.html",
+    "scene": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case1/assembly_scene.json",
+    "component_models": 46,
+    "mechanical": {
+      "collision_count": 0,
+      "collisions": [],
+      "unverified_envelopes": [
+        "C1",
+        "C10",
+        "C11",
+        "C12",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C9",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "J1",
+        "J10",
+        "J11",
+        "J12",
+        "J13",
+        "J14",
+        "J15",
+        "J16",
+        "J17",
+        "J2",
+        "J3",
+        "J4",
+        "J5",
+        "J6",
+        "J7",
+        "J8",
+        "J9",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "U1",
+        "U2",
+        "U3",
+        "U4",
+        "Y1"
+      ],
+      "all_envelopes_verified": false,
+      "passed": false
+    }
+  }
+}

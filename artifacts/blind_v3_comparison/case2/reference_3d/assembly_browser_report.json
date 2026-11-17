@@ -1,0 +1,13 @@
+{
+  "componentCount": 61,
+  "trackCount": 993,
+  "componentMeshes": 336,
+  "nonFlatMeshes": 336,
+  "webgl": true,
+  "canvasWidth": 1440,
+  "layerToggleWorked": true,
+  "maskSwitchWorked": true,
+  "console_errors": [],
+  "external_requests": [],
+  "passed": true
+}

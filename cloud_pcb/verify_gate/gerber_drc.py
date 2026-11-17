@@ -150,8 +150,9 @@ def _gerbonara_obj_to_shapely(obj: Any) -> Any:
 def _gerber_layer_union(gbr_path: Path) -> tuple[Any, list[Any], list[float]]:
     """Load Gerber via gerbonara and return (net_dark_union, flashes, trace_widths_mm)."""
     gb = GbGerberFile.open(gbr_path)
-    dark: list[Any] = []
-    clear: list[Any] = []
+    batch: list[Any] = []
+    polarity: bool | None = None
+    copper=Polygon()
     flashes: list[Any] = []
     widths: list[float] = []
     for obj in gb.objects:
@@ -164,14 +165,16 @@ def _gerber_layer_union(gbr_path: Path) -> tuple[Any, list[Any], list[float]]:
         geom = _gerbonara_obj_to_shapely(obj)
         if geom is None or geom.is_empty:
             continue
-        if obj.polarity_dark:
-            dark.append(geom)
-        else:
-            clear.append(geom)
-    u_dark = unary_union(dark) if dark else Polygon()
-    if clear and not u_dark.is_empty:
-        u_dark = u_dark.difference(unary_union(clear))
-    return u_dark, flashes, widths
+        if polarity is not None and obj.polarity_dark!=polarity:
+            group=unary_union(batch)
+            copper=copper.union(group) if polarity else copper.difference(group)
+            batch=[]
+        polarity=obj.polarity_dark
+        batch.append(geom)
+    if batch:
+        group=unary_union(batch)
+        copper=copper.union(group) if polarity else copper.difference(group)
+    return copper, flashes, widths
 
 
 def _strict_pygerber_parse(
@@ -286,6 +289,24 @@ def _compute_min_annular_ring(
     return min_ar, violations
 
 
+def audit_annular_geometry(pth: ExcellonFile,front: Any,back: Any) -> tuple[float | None,list[dict[str,Any]]]:
+    """Measure actual minimum copper around every drilled circle or slot.
+
+    Unlike nearest-flash matching, missing pads and drill offsets cannot be
+    skipped, and region-based land shapes are covered too.
+    """
+    minimum=None;violations=[]
+    for hole in pth.objects:
+        radius=float(hole.aperture.diameter)/2
+        if isinstance(hole,GbLine): centerline=LineString([(hole.x1,hole.y1),(hole.x2,hole.y2)])
+        else: centerline=Point(hole.x,hole.y)
+        for layer,copper in (('F.Cu',front),('B.Cu',back)):
+            ring=float(centerline.distance(copper.boundary))-radius if not copper.is_empty and copper.covers(centerline) else -radius
+            minimum=ring if minimum is None else min(minimum,ring)
+            if ring<.10-1e-6: violations.append(dict(layer=layer,annular_ring_mm=ring,drill_diameter_mm=2*radius))
+    return minimum,violations
+
+
 def _check_kicad_drc_and_lvs(
     pcb_path: Path,
     *,
@@ -331,7 +352,7 @@ def _check_kicad_drc_and_lvs(
             gx = fx + px * ca - py * sa
             gy = fy + px * sa + py * ca
             sx, sy = _fval(p.size.X), _fval(p.size.Y)
-            pang = float(p.position.angle) if p.position.angle is not None else ang
+            pang = float(p.position.angle or 0.0)
             if p.shape == "circle":
                 geom = Point(gx, gy).buffer(max(sx / 2.0, 1e-4))
             elif p.shape == "oval":
@@ -553,6 +574,134 @@ def _check_kicad_drc_and_lvs(
         "min_inter_net_clearance_mm": round(min_clearance_mm, 4) if min_clearance_mm is not None else None,
         "worst_clearance_pair": worst_pair,
     }
+
+
+def classify_router_violations(report: dict[str, Any], spec: dict[str, Any]) -> dict[str, Any]:
+    """Only exclude evidenced same-footprint, same-net intersecting pads.
+
+    Ground pads omitted from the router network can appear to be different
+    unassigned nets there. Retain raw records and proof; never exempt a whole
+    component, net class, or unevidenced missing violation record.
+    """
+    comps={c['refdes']:c for c in spec['components']}; real=[]; excluded=[]
+    for violation in report.get('clearance_violations',[]):
+        a,b=violation.get('first',{}),violation.get('second',{})
+        proof=None
+        if a.get('kind')==b.get('kind')=='pin' and a.get('component')==b.get('component'):
+            c=comps.get(a.get('component'),{})
+            p=next((p for p in c.get('pads',[]) if p['num']==a.get('pin')),None)
+            q=next((p for p in c.get('pads',[]) if p['num']==b.get('pin')),None)
+            if p and q and p.get('net') and p.get('net')==q.get('net'):
+                def shape(p):
+                    from cloud_pcb.general_solver.semantics import local_pad_polygon
+                    return local_pad_polygon(p)
+                overlap=shape(p).intersection(shape(q)).area
+                if overlap>1e-8: proof=dict(net=p['net'],local_overlap_mm2=overlap,component=c['refdes'])
+        if proof: excluded.append(dict(violation=violation,proof=proof))
+        else: real.append(violation)
+    raw=int(report.get('stats',{}).get('violations',len(real)+len(excluded)))
+    # Missing detailed records cannot be silently counted as cleared violations.
+    return dict(raw_count=raw,excluded_same_net_pad_overlaps=len(excluded),real_count=max(raw-len(excluded),len(real)),excluded=excluded,real=real)
+
+
+def audit_general_board(board: Board, spec: dict[str, Any], placed: dict[str, Any], keepouts: list[dict[str, Any]]) -> dict[str, Any]:
+    """Layer-resolved copper LVS. Cross-layer joins require actual plated features.
+
+    Keep each disconnected filled polygon separate; do not project all layers
+    onto a single plane, or assume every same-net zone island is connected.
+    """
+    from collections import defaultdict
+    from kiutils.items.brditems import Segment, Via, Arc
+    from shapely.geometry import MultiPoint
+    from cloud_pcb.general_solver.run_blind import _pad_world_polygon_kicad
+    from cloud_pcb.general_solver.semantics import mechanical_check
+    from shapely.strtree import STRtree
+    copper={l:defaultdict(list) for l in COPPER_LAYERS}; plated=defaultdict(list); terminals=defaultdict(list)
+    names={n.number:n.name for n in board.nets}
+    for fp in board.footprints:
+        for p in fp.pads:
+            if p.type=='np_thru_hole' or not p.net or not p.net.name: continue
+            layers=set(COPPER_LAYERS) if '*.Cu' in p.layers else set(p.layers)&set(COPPER_LAYERS)
+            if not layers: continue
+            g=_pad_world_polygon_kicad(fp,p); n=p.net.name
+            for l in layers: copper[l][n].append(g)
+            terminals[n].append((layers,g.centroid,f"{fp.properties.get('Reference','?')}-{p.number}"))
+            if p.type=='thru_hole': plated[n].append((layers,g))
+    for t in board.traceItems:
+        n=names.get(t.net,'')
+        if not n: continue
+        if isinstance(t,Segment):
+            copper[t.layer][n].append(LineString([(t.start.X,t.start.Y),(t.end.X,t.end.Y)]).buffer(t.width/2))
+        elif isinstance(t,Arc):
+            from cloud_pcb.general_solver.geometry import copper_arc_points
+            copper[t.layer][n].append(LineString(copper_arc_points(t)).buffer(t.width/2))
+        elif isinstance(t,Via):
+            g=Point(t.position.X,t.position.Y).buffer(t.size/2)
+            start,end=[COPPER_LAYERS.index(l) for l in t.layers]
+            layers=set(COPPER_LAYERS[min(start,end):max(start,end)+1])
+            for l in layers: copper[l][n].append(g)
+            plated[n].append((layers,g))
+    for z in board.zones:
+        if z.keepoutSettings: continue
+        n=names.get(z.net,z.netName)
+        for poly in z.filledPolygons:
+            if poly.layer in copper and len(poly.coordinates)>=3:
+                g=Polygon([(p.X,p.Y) for p in poly.coordinates]).buffer(0)
+                copper[poly.layer][n].append(g)
+    shorts=[]; unions={l:{n:unary_union(gs) for n,gs in m.items()} for l,m in copper.items()}
+    for l,m in unions.items():
+        entries=list(m.items())
+        for i,(n,g) in enumerate(entries):
+            for other,og in entries[i+1:]:
+                area=g.intersection(og).area
+                if area>1e-6: shorts.append(dict(layer=l,net_a=n,net_b=other,overlap_mm2=round(area,6)))
+    opens=[]
+    for n,pads in terminals.items():
+        if len(pads)<2: continue
+        nodes=[]
+        for l,m in unions.items():
+            g=m.get(n)
+            if g is None or g.is_empty: continue
+            pieces=list(g.geoms) if hasattr(g,'geoms') else [g]
+            nodes.extend((l,p) for p in pieces if not p.is_empty)
+        parent=list(range(len(nodes)))
+        def find(i):
+            while parent[i]!=i: parent[i]=parent[parent[i]]; i=parent[i]
+            return i
+        def join(ids):
+            if ids:
+                root=find(ids[0])
+                for i in ids[1:]: parent[find(i)]=root
+        for layers,g in plated[n]:
+            join([i for i,(l,p) in enumerate(nodes) if l in layers and p.intersection(g).area>1e-7])
+        roots=set(); pad_groups=defaultdict(list)
+        for layers,pt,label in pads:
+            ids=[i for i,(l,p) in enumerate(nodes) if l in layers and p.distance(pt)<=0.0002]
+            roots.update(find(i) for i in ids)
+            for i in ids: pad_groups[str(find(i))].append(label)
+            if not ids: roots.add(('missing',len(roots)))
+        if len(roots)>1: opens.append(dict(net=n,components=len(roots),pad_count=len(pads),pad_groups=dict(pad_groups)))
+    rf=[]
+    for ko in keepouts:
+        if ko.get('kind')!='rf': continue
+        region=box(ko['x_min'],ko['y_min'],ko['x_max'],ko['y_max'])
+        for l in COPPER_LAYERS:
+            covered=unary_union(list(unions[l].values())).intersection(region).area
+            rf.append(dict(refdes=ko.get('refdes'),layer=l,copper_mm2=round(covered,8),coverage_fraction=covered/region.area if region.area else None,passed=covered<=1e-8))
+    vip=[]
+    # Use the existing gate's proven thermal-pad classification as additional evidence.
+    for t in board.traceItems:
+        if not isinstance(t,Via): continue
+        vg=Point(t.position.X,t.position.Y).buffer(t.size/2)
+        for fp in board.footprints:
+            ps=[p for p in fp.pads if p.type=='smd' and any(l.endswith('.Cu') for l in p.layers)]
+            for p in ps:
+                local=Point(p.position.X,p.position.Y)
+                centers=[Point(q.position.X,q.position.Y) for q in ps if q is not p]
+                thermal=(len(ps)>=6 and centers and MultiPoint([(q.x,q.y) for q in centers]).convex_hull.contains(local) and min(p.size.X,p.size.Y)>=0.8 and p.net and p.net.number==t.net)
+                if not thermal and vg.intersection(_pad_world_polygon_kicad(fp,p)).area>1e-6:
+                    vip.append(dict(refdes=fp.properties.get('Reference',''),pad=p.number,x=t.position.X,y=t.position.Y))
+    return dict(lvs_opens=opens,lvs_shorts=shorts,rf_keepout=rf,via_in_pad_violations=vip,mechanical=mechanical_check(spec,placed),passed=not opens and not shorts and not vip and all(x['passed'] for x in rf))
 
 
 def audit_board1_spec(spec_dir: Path) -> GateReport:

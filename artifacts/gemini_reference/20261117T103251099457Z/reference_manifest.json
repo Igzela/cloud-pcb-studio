@@ -1,0 +1,37 @@
+{
+  "status": "placement_generated_unverified",
+  "requested_model": "gemini-4-hydrogen",
+  "reported_model_version": "gemini-4-hydrogen",
+  "spec_sha256": "e88bf39640276f4e78bec2519af73ed4f3ea5368afd581b467e6b7a20cfe8e67",
+  "anonymous_input_sha256": "96fd672c8bc4e8cf0fd5be67f6bc16b7989efec7841aaafa99681b755f1e3ee7",
+  "response_sha256": "640af3a85f5a0a016093fe46aec2fa48d5298cf238aef43575ea51ecec78a973",
+  "protocol_sha256": "482aa07100ff78ec4d647525fde596ec846b39d2bfaf40af8d46c9f1dd8aa1a4",
+  "runner_sha256": "d48a7527e062466289df631f8ee1705e1f9d2ea09e72a23eb543bada180fff87",
+  "generation_config": {
+    "responseMimeType": "application/json",
+    "maxOutputTokens": 32768,
+    "thinkingConfig": {
+      "thinkingLevel": "LOW",
+      "includeThoughts": false
+    }
+  },
+  "retry_of": {
+    "manifest": "artifacts/gemini_reference/20261117T090956487803Z/reference_manifest.json",
+    "sha256": "e1e495efc74d455fa0568b6e83c8be582e17e7027a3b1e1515769d36ccaff2e2",
+    "original_status": "invalid_model_output",
+    "prompt_unchanged": true,
+    "original_generation_config": {
+      "responseMimeType": "application/json",
+      "maxOutputTokens": 12000
+    }
+  },
+  "reference_kind": "independent placement proposal; not a routed PCB",
+  "engineering_pass": null,
+  "artifacts": {
+    "anonymous_spec.json": "96fd672c8bc4e8cf0fd5be67f6bc16b7989efec7841aaafa99681b755f1e3ee7",
+    "model_reply.json": "640af3a85f5a0a016093fe46aec2fa48d5298cf238aef43575ea51ecec78a973",
+    "identity_mapping.json": "f63f094fc847357281e3a5453a9648589d55f4c6572e58a191d94818535ecf59",
+    "request.json": "907270dfe5572133b10b76ee0aa1532e533a4828d17482a5794439aedba436ab",
+    "placement.json": "743d216f0a8ac419e0c18a0dd6e68b0bdeff2e7eb112313a60ff91fd8dd754fb"
+  }
+}

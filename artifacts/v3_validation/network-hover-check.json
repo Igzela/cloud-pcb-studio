@@ -1,0 +1,26 @@
+[
+  {
+    "case": 1,
+    "networkHoverWorked": true,
+    "found": {
+      "x": 420,
+      "y": 220,
+      "text": "网络 GND",
+      "highlighted": 401
+    },
+    "errors": [],
+    "passed": true
+  },
+  {
+    "case": 5,
+    "networkHoverWorked": true,
+    "found": {
+      "x": 462,
+      "y": 388,
+      "text": "LAN1 · 焊盘 SH1 · 网络 Net-(C9-Pad1)",
+      "highlighted": 23
+    },
+    "errors": [],
+    "passed": true
+  }
+]

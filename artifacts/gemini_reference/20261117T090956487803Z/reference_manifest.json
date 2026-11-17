@@ -1,0 +1,17 @@
+{
+  "status": "invalid_model_output",
+  "requested_model": "gemini-4-hydrogen",
+  "reported_model_version": "gemini-4-hydrogen",
+  "spec_sha256": "e88bf39640276f4e78bec2519af73ed4f3ea5368afd581b467e6b7a20cfe8e67",
+  "anonymous_input_sha256": "96fd672c8bc4e8cf0fd5be67f6bc16b7989efec7841aaafa99681b755f1e3ee7",
+  "response_sha256": "fda1baf3c6295427fbfbe4850e69db32c892b8d203d3ccd53dd87bbf1b52eace",
+  "reference_kind": "independent placement proposal; not a routed PCB",
+  "engineering_pass": null,
+  "error": "model response is not a complete single final answer",
+  "artifacts": {
+    "anonymous_spec.json": "96fd672c8bc4e8cf0fd5be67f6bc16b7989efec7841aaafa99681b755f1e3ee7",
+    "model_reply.json": "fda1baf3c6295427fbfbe4850e69db32c892b8d203d3ccd53dd87bbf1b52eace",
+    "identity_mapping.json": "f63f094fc847357281e3a5453a9648589d55f4c6572e58a191d94818535ecf59",
+    "request.json": "e2861390fae04b4b8e9f2d5798c7bbcdef974638a4c2214654277da787250f7f"
+  }
+}

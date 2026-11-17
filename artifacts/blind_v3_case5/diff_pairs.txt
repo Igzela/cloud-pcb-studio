@@ -1,0 +1,9 @@
+pair /M0_P /M0_N gap=0.33 skew=0.2
+pair /M1_P /M1_N gap=0.33 skew=0.2
+pair /M2_P /M2_N gap=0.33 skew=0.2
+pair /M3_P /M3_N gap=0.33 skew=0.2
+pair /U2D_P /U2D_N gap=0.18 skew=0.2
+pair /U2_P /U2_N gap=0.18 skew=0.2
+pair /U3SRX_P /U3SRX_N gap=0.18 skew=0.2
+pair /U3STX_P /U3STX_N gap=0.18 skew=0.2
+pair /U3TX_P /U3TX_N gap=0.18 skew=0.2

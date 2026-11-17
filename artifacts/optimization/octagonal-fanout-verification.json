@@ -1,0 +1,213 @@
+{
+  "status": "verified",
+  "manifest": {
+    "format": "optimization_round",
+    "manifest": "artifacts/optimization/runs/20261117T112159329967Z-octagonal-fanout/manifest.json",
+    "sha256": "e1826a4d39e170b6dd74a66ed3a34bb0e9c3765e21f1eb969042b6f1b00e541b"
+  },
+  "source_files": 66,
+  "source_archive_members_verified": true,
+  "all_input_and_artifact_hashes_match": true,
+  "active_baseline_unchanged": true,
+  "historical_completed_rounds_verified": [
+    "artifacts/optimization/runs/20261117T074914645440Z-supply-semantics",
+    "artifacts/optimization/runs/20261117T084530422384Z-scoped-supply",
+    "artifacts/optimization/runs/20261117T104333444712Z-external-placement-compat"
+  ],
+  "historical_v3_verified": true,
+  "geometry_evidence_sha256": "f5325c07c13dce792c9ef52771fc33920bf51ed265a17db0423570d277c87683",
+  "pytest": {
+    "returncode": 0,
+    "passed": true,
+    "summary": "================ 123 passed, 5156 warnings in 73.42s (0:01:13) =================",
+    "sha256": "21e28e842ad7cef41af5591d9e090ec30d2cf992fd99bd24505b4658a190da88"
+  },
+  "runtime_s": 1174.201,
+  "promoted": false,
+  "decision": {
+    "eligible_for_baseline": false,
+    "hard_gates_passed": false,
+    "engineering_pass": null,
+    "engineering_acceptance": "not_certified: endpoint SI, verified current/thermal limits and human wirelength comparison require separate evidence",
+    "regressions": [
+      {
+        "case": "case2",
+        "metric": "wirelength_mm",
+        "before": 1248.608,
+        "after": 1262.94
+      },
+      {
+        "case": "case4",
+        "metric": "unrouted",
+        "before": 1,
+        "after": 2
+      },
+      {
+        "case": "case5",
+        "metric": "ground_fill_deficit",
+        "before": 0.09489999999999998,
+        "after": 0.09960000000000002
+      }
+    ],
+    "improvements": [
+      {
+        "case": "case1",
+        "metric": "wirelength_mm",
+        "before": 953.306,
+        "after": 919.241
+      },
+      {
+        "case": "case5",
+        "metric": "unrouted",
+        "before": 9,
+        "after": 7
+      },
+      {
+        "case": "case5",
+        "metric": "opens",
+        "before": 9,
+        "after": 7
+      }
+    ],
+    "invalid": [],
+    "full_suite": true,
+    "tests_passed": true,
+    "policy": "per-case Pareto: every safety/QoR metric non-worse; incomplete wire length never rewarded; improvement is not engineering acceptance"
+  },
+  "cases": [
+    {
+      "case": "case1",
+      "unrouted_before": 0,
+      "unrouted_after": 0,
+      "lvs_opens_before": 0,
+      "lvs_opens_after": 0,
+      "wirelength_after_mm": 919.241,
+      "ground_fill_before": 0.8649,
+      "ground_fill_after": 0.8654,
+      "gerber_passed": 11,
+      "gerber_total": 11,
+      "min_annular_ring_mm": 0.1247,
+      "minimum_edge_copper_mm": 0.5,
+      "fanout": {
+        "fanout_vias_added": 25,
+        "gnd_smd_pads_total": 28,
+        "unvia_gnd_pins": [],
+        "via_guard_geometry": "circumscribed_octagon",
+        "via_guard_area_reclaimed_sum_mm2": 3.0258,
+        "via_guard_area_statistic": "sum over vias, not union area; original protection radii unchanged"
+      },
+      "pose_and_initial_copper_unchanged": true,
+      "freerouting_native_runtime_failure": true,
+      "browser_passed": true
+    },
+    {
+      "case": "case2",
+      "unrouted_before": 0,
+      "unrouted_after": 0,
+      "lvs_opens_before": 0,
+      "lvs_opens_after": 0,
+      "wirelength_after_mm": 1262.94,
+      "ground_fill_before": 0.9154,
+      "ground_fill_after": 0.914,
+      "gerber_passed": 11,
+      "gerber_total": 11,
+      "min_annular_ring_mm": 0.1247,
+      "minimum_edge_copper_mm": 0.5,
+      "fanout": {
+        "fanout_vias_added": 44,
+        "gnd_smd_pads_total": 59,
+        "unvia_gnd_pins": [
+          "U4-11"
+        ],
+        "via_guard_geometry": "circumscribed_octagon",
+        "via_guard_area_reclaimed_sum_mm2": 5.311098,
+        "via_guard_area_statistic": "sum over vias, not union area; original protection radii unchanged"
+      },
+      "pose_and_initial_copper_unchanged": true,
+      "freerouting_native_runtime_failure": true,
+      "browser_passed": true
+    },
+    {
+      "case": "case3",
+      "unrouted_before": 1,
+      "unrouted_after": 1,
+      "lvs_opens_before": 1,
+      "lvs_opens_after": 1,
+      "wirelength_after_mm": 1162.052,
+      "ground_fill_before": 0.8933,
+      "ground_fill_after": 0.8947,
+      "gerber_passed": 11,
+      "gerber_total": 11,
+      "min_annular_ring_mm": 0.1247,
+      "minimum_edge_copper_mm": 0.5,
+      "fanout": {
+        "fanout_vias_added": 42,
+        "gnd_smd_pads_total": 46,
+        "unvia_gnd_pins": [],
+        "via_guard_geometry": "circumscribed_octagon",
+        "via_guard_area_reclaimed_sum_mm2": 5.054724,
+        "via_guard_area_statistic": "sum over vias, not union area; original protection radii unchanged"
+      },
+      "pose_and_initial_copper_unchanged": true,
+      "freerouting_native_runtime_failure": true,
+      "browser_passed": true
+    },
+    {
+      "case": "case4",
+      "unrouted_before": 1,
+      "unrouted_after": 2,
+      "lvs_opens_before": 1,
+      "lvs_opens_after": 1,
+      "wirelength_after_mm": 3175.318,
+      "ground_fill_before": 0.9404,
+      "ground_fill_after": 0.9398,
+      "gerber_passed": 11,
+      "gerber_total": 11,
+      "min_annular_ring_mm": 0.1247,
+      "minimum_edge_copper_mm": 0.5,
+      "fanout": {
+        "fanout_vias_added": 60,
+        "gnd_smd_pads_total": 98,
+        "unvia_gnd_pins": [
+          "U4-10"
+        ],
+        "via_guard_geometry": "circumscribed_octagon",
+        "via_guard_area_reclaimed_sum_mm2": 7.26192,
+        "via_guard_area_statistic": "sum over vias, not union area; original protection radii unchanged"
+      },
+      "pose_and_initial_copper_unchanged": true,
+      "freerouting_native_runtime_failure": true,
+      "browser_passed": true
+    },
+    {
+      "case": "case5",
+      "unrouted_before": 9,
+      "unrouted_after": 7,
+      "lvs_opens_before": 9,
+      "lvs_opens_after": 7,
+      "wirelength_after_mm": 976.115,
+      "ground_fill_before": 0.7551,
+      "ground_fill_after": 0.7504,
+      "gerber_passed": 11,
+      "gerber_total": 11,
+      "min_annular_ring_mm": 0.1247,
+      "minimum_edge_copper_mm": 0.3,
+      "fanout": {
+        "fanout_vias_added": 34,
+        "gnd_smd_pads_total": 40,
+        "unvia_gnd_pins": [
+          "R4-2",
+          "C15-1",
+          "U3-21",
+          "U3-33"
+        ],
+        "via_guard_geometry": "circumscribed_octagon",
+        "via_guard_area_reclaimed_sum_mm2": 4.115088,
+        "via_guard_area_statistic": "sum over vias, not union area; original protection radii unchanged"
+      },
+      "pose_and_initial_copper_unchanged": true,
+      "freerouting_native_runtime_failure": true,
+      "browser_passed": true
+    }
+  ]
+}

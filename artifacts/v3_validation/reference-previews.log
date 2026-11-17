@@ -1,0 +1,5 @@
+{"case": 1, "reference_component_models": 46, "browser_passed": true}
+{"case": 2, "reference_component_models": 61, "browser_passed": true}
+{"case": 3, "reference_component_models": 74, "browser_passed": true}
+{"case": 4, "reference_component_models": 113, "browser_passed": true}
+{"case": 5, "reference_component_models": 52, "browser_passed": true}

@@ -1,0 +1,15 @@
+{
+  "status": "verified",
+  "proposal_manifest_sha256": "dd53652a2466332c263cf67615e6449ea104b21d45a2c33f0e853ca05c3b300a",
+  "routed_manifest_sha256": "6cea59672f266e93f476105d2fc2eefcda6e5a57de975c6865b2fea068805f75",
+  "source_files": 62,
+  "routed_artifacts": 36,
+  "model_identity_confirmed": true,
+  "prompt_unchanged_from_truncated_request": true,
+  "all_actual_routed_poses_and_sides_match_model": true,
+  "coordinate_repair": false,
+  "geometry_and_electrical_pass": false,
+  "browser_pass": true,
+  "source_archive_and_artifact_hashes_match": true,
+  "report": "docs/gemini-hydrogen-comparison.zh-CN.md"
+}

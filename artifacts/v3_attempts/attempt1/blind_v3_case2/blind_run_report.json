@@ -1,0 +1,1317 @@
+{
+  "project_name": "esp32_flight_controller_rev2",
+  "repo_url": "https://github.com/shazmeenShz/ESP32-Flight-Controller",
+  "commit_sha": "d6dfbbb90a5bd5004c119a9a1ffc37b7ca904f28",
+  "total_runtime_ms": 91254.86,
+  "placement_meta": {
+    "board_width_mm": 67.525,
+    "board_height_mm": 53.525,
+    "corner_radius_mm": 0.0,
+    "groups": {
+      "edge_connectors": [
+        "J9"
+      ],
+      "ics": [
+        "U1",
+        "U6",
+        "U4",
+        "U3",
+        "U5",
+        "Q1",
+        "D2",
+        "SW1",
+        "SW2"
+      ],
+      "regulators": [
+        "U2"
+      ],
+      "multi_pin_headers": [
+        "J4",
+        "J5",
+        "J6",
+        "J3",
+        "BZ1",
+        "J1"
+      ],
+      "single_pad_tp": [],
+      "signal_passives": [
+        "R7",
+        "R6",
+        "R13",
+        "R12",
+        "R5",
+        "R4",
+        "R11",
+        "R10",
+        "F1",
+        "C15",
+        "D3",
+        "C17",
+        "L1",
+        "D5",
+        "R9",
+        "R8",
+        "R3",
+        "R2",
+        "R1",
+        "C6",
+        "R17",
+        "C18",
+        "R16",
+        "R15",
+        "R14",
+        "C9",
+        "C8",
+        "C10",
+        "D1"
+      ],
+      "bypass_caps": [
+        "C1",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C16",
+        "C19",
+        "C2",
+        "C20",
+        "C21",
+        "C3",
+        "C4",
+        "C5",
+        "C7",
+        "D4"
+      ]
+    },
+    "total_placed": 61,
+    "hierarchy": {
+      "communities": [
+        [
+          "C17",
+          "C18",
+          "D5",
+          "L1",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R3",
+          "U6"
+        ],
+        [
+          "C15",
+          "C8",
+          "F1",
+          "J9",
+          "R12",
+          "R13",
+          "R8",
+          "R9",
+          "U3",
+          "U5"
+        ],
+        [
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "R4",
+          "R5",
+          "SW1",
+          "SW2",
+          "U1"
+        ],
+        [
+          "C10",
+          "C9",
+          "R10",
+          "R11",
+          "U4"
+        ],
+        [
+          "BZ1",
+          "D3",
+          "Q1",
+          "R6"
+        ],
+        [
+          "C6",
+          "R1",
+          "R2"
+        ],
+        [
+          "D2",
+          "R7"
+        ],
+        [
+          "D4"
+        ],
+        [
+          "C1"
+        ],
+        [
+          "C12"
+        ],
+        [
+          "C13"
+        ],
+        [
+          "C16"
+        ],
+        [
+          "C2"
+        ],
+        [
+          "C20"
+        ],
+        [
+          "C5"
+        ],
+        [
+          "C7"
+        ],
+        [
+          "C11"
+        ],
+        [
+          "C4"
+        ],
+        [
+          "C19"
+        ],
+        [
+          "C21"
+        ],
+        [
+          "C3"
+        ],
+        [
+          "U2"
+        ],
+        [
+          "D1"
+        ],
+        [
+          "C14"
+        ],
+        [
+          "J1"
+        ]
+      ],
+      "repeated_channels": [],
+      "signal_edges": 58,
+      "algorithm": "weighted Louvain + WL filter + exact attributed isomorphism",
+      "seed": 0
+    },
+    "component_sides": {
+      "BZ1": "top",
+      "C1": "top",
+      "C10": "top",
+      "C11": "top",
+      "C12": "top",
+      "C13": "top",
+      "C14": "top",
+      "C15": "top",
+      "C16": "top",
+      "C17": "top",
+      "C18": "top",
+      "C19": "top",
+      "C2": "top",
+      "C20": "top",
+      "C21": "top",
+      "C3": "top",
+      "C4": "top",
+      "C5": "top",
+      "C6": "top",
+      "C7": "top",
+      "C8": "top",
+      "C9": "top",
+      "D1": "top",
+      "D2": "top",
+      "D3": "top",
+      "D4": "top",
+      "D5": "top",
+      "F1": "top",
+      "J1": "top",
+      "J3": "top",
+      "J4": "top",
+      "J5": "top",
+      "J6": "top",
+      "J9": "top",
+      "L1": "top",
+      "Q1": "top",
+      "R1": "top",
+      "R10": "top",
+      "R11": "top",
+      "R12": "top",
+      "R13": "top",
+      "R14": "top",
+      "R15": "top",
+      "R16": "top",
+      "R17": "top",
+      "R2": "top",
+      "R3": "top",
+      "R4": "top",
+      "R5": "top",
+      "R6": "top",
+      "R7": "top",
+      "R8": "top",
+      "R9": "top",
+      "SW1": "top",
+      "SW2": "top",
+      "U1": "top",
+      "U2": "top",
+      "U3": "top",
+      "U4": "top",
+      "U5": "top",
+      "U6": "top"
+    }
+  },
+  "placed_positions": {
+    "J9": [
+      6.260000000000019,
+      45.25,
+      -90.0
+    ],
+    "U1": [
+      33.763,
+      24.086,
+      0.0
+    ],
+    "U2": [
+      19.026,
+      17.507,
+      90.0
+    ],
+    "U6": [
+      5.627,
+      4.753,
+      0.0
+    ],
+    "U4": [
+      38.378,
+      10.925,
+      270.0
+    ],
+    "U3": [
+      48.775,
+      20.862,
+      0.0
+    ],
+    "U5": [
+      13.183,
+      43.688,
+      90.0
+    ],
+    "Q1": [
+      54.181,
+      7.719,
+      180.0
+    ],
+    "D2": [
+      57.549,
+      14.485,
+      270.0
+    ],
+    "SW1": [
+      27.576,
+      11.009,
+      0.0
+    ],
+    "SW2": [
+      47.673,
+      33.938,
+      270.0
+    ],
+    "J4": [
+      25.0,
+      46.725,
+      90.0
+    ],
+    "J5": [
+      28.0,
+      49.925,
+      270.0
+    ],
+    "J6": [
+      35.5,
+      3.6,
+      90.0
+    ],
+    "J3": [
+      43.0,
+      50.925,
+      270.0
+    ],
+    "BZ1": [
+      55.0,
+      3.6,
+      0.0
+    ],
+    "J1": [
+      63.725,
+      17.5,
+      270.0
+    ],
+    "C1": [
+      11.779,
+      7.795,
+      90.0
+    ],
+    "C3": [
+      17.861,
+      23.978,
+      180.0
+    ],
+    "C14": [
+      19.548,
+      26.388,
+      180.0
+    ],
+    "C19": [
+      13.823,
+      19.448,
+      90.0
+    ],
+    "C21": [
+      16.226,
+      27.331,
+      270.0
+    ],
+    "C4": [
+      13.175,
+      15.806,
+      180.0
+    ],
+    "D4": [
+      14.854,
+      4.922,
+      90.0
+    ],
+    "C12": [
+      21.383,
+      11.356,
+      180.0
+    ],
+    "C13": [
+      34.173,
+      10.996,
+      270.0
+    ],
+    "C16": [
+      8.306,
+      8.914,
+      0.0
+    ],
+    "C2": [
+      50.833,
+      14.053,
+      180.0
+    ],
+    "C20": [
+      20.115,
+      28.565,
+      180.0
+    ],
+    "C5": [
+      42.491,
+      11.262,
+      90.0
+    ],
+    "C7": [
+      20.613,
+      9.485,
+      180.0
+    ],
+    "C11": [
+      47.509,
+      14.101,
+      180.0
+    ],
+    "R7": [
+      50.856,
+      27.605,
+      0.0
+    ],
+    "R6": [
+      46.895,
+      27.694,
+      0.0
+    ],
+    "R13": [
+      31.824,
+      36.539,
+      180.0
+    ],
+    "R12": [
+      27.861,
+      36.613,
+      180.0
+    ],
+    "R5": [
+      45.258,
+      11.694,
+      0.0
+    ],
+    "R4": [
+      27.801,
+      6.005,
+      180.0
+    ],
+    "R11": [
+      34.169,
+      7.354,
+      90.0
+    ],
+    "R10": [
+      37.45,
+      6.655,
+      0.0
+    ],
+    "F1": [
+      14.348,
+      39.26,
+      0.0
+    ],
+    "C15": [
+      13.315,
+      47.294,
+      0.0
+    ],
+    "D3": [
+      58.275,
+      7.904,
+      90.0
+    ],
+    "C17": [
+      7.341,
+      11.882,
+      270.0
+    ],
+    "L1": [
+      8.696,
+      20.846,
+      90.0
+    ],
+    "D5": [
+      5.577,
+      15.486,
+      0.0
+    ],
+    "R9": [
+      12.273,
+      50.492,
+      270.0
+    ],
+    "R8": [
+      8.738,
+      38.735,
+      180.0
+    ],
+    "R3": [
+      18.731,
+      7.51,
+      180.0
+    ],
+    "R2": [
+      31.376,
+      6.609,
+      180.0
+    ],
+    "R1": [
+      24.994,
+      5.714,
+      90.0
+    ],
+    "C6": [
+      22.875,
+      5.664,
+      270.0
+    ],
+    "R17": [
+      3.164,
+      18.12,
+      0.0
+    ],
+    "C18": [
+      2.948,
+      20.152,
+      0.0
+    ],
+    "R16": [
+      3.313,
+      22.108,
+      0.0
+    ],
+    "R15": [
+      12.743,
+      26.24,
+      0.0
+    ],
+    "R14": [
+      15.128,
+      9.991,
+      0.0
+    ],
+    "C9": [
+      41.305,
+      6.729,
+      0.0
+    ],
+    "C8": [
+      54.059,
+      21.029,
+      270.0
+    ],
+    "C10": [
+      45.193,
+      9.332,
+      0.0
+    ],
+    "D1": [
+      26.095,
+      2.544,
+      0.0
+    ]
+  },
+  "gnd_fanout_stats": {
+    "fanout_vias_added": 43,
+    "gnd_smd_pads_total": 59,
+    "unvia_gnd_pins": [
+      "U4-11",
+      "U4-9"
+    ]
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "board_name": "esp32_flight_controller_rev2",
+      "success": false,
+      "runtime_ms": 10282.47,
+      "total_nets": 50,
+      "routed_nets": 50,
+      "unrouted_nets": 0,
+      "via_count": 51,
+      "total_wirelength_mm": 1161.7156,
+      "notes": "rc=0, violations=2, layers=['B.Cu', 'F.Cu']"
+    },
+    {
+      "engine": "freerouting_cli_v2.5.0",
+      "board_name": "esp32_flight_controller_rev2",
+      "success": false,
+      "runtime_ms": 60064.44,
+      "total_nets": 50,
+      "routed_nets": 0,
+      "unrouted_nets": 50,
+      "via_count": 0,
+      "total_wirelength_mm": 0.0,
+      "notes": "timeout_60s"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 3614.276,
+    "pour_area_mm2": 3310.396,
+    "fill_ratio": 0.9159,
+    "f_cu_pour_mm2": 2616.291,
+    "b_cu_pour_mm2": 3012.367,
+    "stitching_vias_added": 29,
+    "antipad_cutouts": 75,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "gerber_files": [
+    "B_Cu.gbr",
+    "B_Mask.gbr",
+    "B_Paste.gbr",
+    "B_SilkS.gbr",
+    "Edge_Cuts.gbr",
+    "F_Cu.gbr",
+    "F_Mask.gbr",
+    "F_Paste.gbr",
+    "F_SilkS.gbr",
+    "In1_Cu.gbr",
+    "In2_Cu.gbr",
+    "NPTH.drl",
+    "PTH.drl"
+  ],
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "F_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 163,
+    "npth_hole_count": 5,
+    "min_annular_ring_mm": 0.125,
+    "annular_ring_violations": 0,
+    "silk_to_mask_overlap_mm2": 0.0,
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "lvs_opens": [],
+    "lvs_shorts": [],
+    "min_inter_net_clearance_mm": 0.1267,
+    "legacy_projected_lvs_opens": [],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "BZ1",
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "F1",
+          "J1",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J9",
+          "L1",
+          "Q1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "SW1",
+          "SW2",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "U5",
+          "U6"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": true
+    }
+  },
+  "hard_gates": {
+    "unrouted_zero": true,
+    "router_spacing_zero": false,
+    "independent_lvs_opens_zero": true,
+    "independent_lvs_shorts_zero": true,
+    "nonthermal_via_in_pad_zero": true,
+    "gerber_all_parsed": true,
+    "annular_ring_ge_010": true,
+    "silk_overlap_zero": true,
+    "copper_edge_ge_050": true,
+    "rf_all_four_layers_clear": false,
+    "mechanical_zero_with_verified_envelopes": false
+  },
+  "hard_gates_passed": false,
+  "keepouts": [
+    {
+      "x_min": 1.4250000000000167,
+      "y_min": 8.674999999999995,
+      "x_max": 5.725000000000017,
+      "y_max": 12.974999999999996,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 61.475,
+      "y_min": 47.225,
+      "x_max": 65.775,
+      "y_max": 51.525,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 61.55000000000002,
+      "y_min": 8.999999999999998,
+      "x_max": 65.85000000000002,
+      "y_max": 13.299999999999999,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 5.232,
+      "y_min": 4.358,
+      "x_max": 6.022,
+      "y_max": 5.148,
+      "layers": [
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 11.359,
+      "y_min": 13.705,
+      "x_max": 12.199,
+      "y_max": 14.545,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 14.434,
+      "y_min": 8.382,
+      "x_max": 15.274,
+      "y_max": 9.222,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 12.761,
+      "y_min": 23.558,
+      "x_max": 13.601,
+      "y_max": 24.398,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 1.427,
+      "y_min": 15.066,
+      "x_max": 2.267,
+      "y_max": 15.906,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 15.433,
+      "y_min": 21.432,
+      "x_max": 16.273,
+      "y_max": 22.272,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 16.973,
+      "y_min": 25.968,
+      "x_max": 17.813,
+      "y_max": 26.808,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 13.403,
+      "y_min": 16.873,
+      "x_max": 14.243,
+      "y_max": 17.713,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 15.806,
+      "y_min": 29.066,
+      "x_max": 16.646,
+      "y_max": 29.906,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 10.6,
+      "y_min": 15.386,
+      "x_max": 11.44,
+      "y_max": 16.226,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 54.792,
+      "y_min": 17.535,
+      "x_max": 55.632,
+      "y_max": 18.375,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 23.698,
+      "y_min": 14.572,
+      "x_max": 24.538,
+      "y_max": 15.412,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 27.0,
+      "y_min": 34.231,
+      "x_max": 27.84,
+      "y_max": 35.071,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 42.988,
+      "y_min": 14.572,
+      "x_max": 43.828,
+      "y_max": 15.412,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 45.172,
+      "y_min": 14.726,
+      "x_max": 46.012,
+      "y_max": 15.566,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 8.835,
+      "y_min": 7.125,
+      "x_max": 9.675,
+      "y_max": 7.965,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 55.554,
+      "y_min": 9.116,
+      "x_max": 56.394,
+      "y_max": 9.956,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 46.503,
+      "y_min": 8.912,
+      "x_max": 47.343,
+      "y_max": 9.752,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 45.359,
+      "y_min": 13.681,
+      "x_max": 46.199,
+      "y_max": 14.521,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 19.233,
+      "y_min": 10.936,
+      "x_max": 20.073,
+      "y_max": 11.776,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 33.753,
+      "y_min": 12.306,
+      "x_max": 34.593,
+      "y_max": 13.146,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 14.625,
+      "y_min": 46.874,
+      "x_max": 15.465,
+      "y_max": 47.714,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 9.616,
+      "y_min": 8.494,
+      "x_max": 10.456,
+      "y_max": 9.334,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 4.258,
+      "y_min": 19.732,
+      "x_max": 5.098,
+      "y_max": 20.572,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 48.963,
+      "y_min": 12.958,
+      "x_max": 49.803,
+      "y_max": 13.798,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 17.965,
+      "y_min": 28.145,
+      "x_max": 18.805,
+      "y_max": 28.985,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 42.071,
+      "y_min": 9.112,
+      "x_max": 42.911,
+      "y_max": 9.952,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 22.455,
+      "y_min": 3.514,
+      "x_max": 23.295,
+      "y_max": 4.354,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 18.463,
+      "y_min": 9.065,
+      "x_max": 19.303,
+      "y_max": 9.905,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 53.639,
+      "y_min": 22.339,
+      "x_max": 54.479,
+      "y_max": 23.179,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 42.615,
+      "y_min": 6.309,
+      "x_max": 43.455,
+      "y_max": 7.149,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 12.763,
+      "y_min": 45.549,
+      "x_max": 13.603,
+      "y_max": 46.389,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 24.574,
+      "y_min": 3.514,
+      "x_max": 25.414,
+      "y_max": 4.354,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 16.488,
+      "y_min": 9.571,
+      "x_max": 17.328,
+      "y_max": 10.411,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 1.113,
+      "y_min": 21.688,
+      "x_max": 1.953,
+      "y_max": 22.528,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 4.524,
+      "y_min": 17.7,
+      "x_max": 5.364,
+      "y_max": 18.54,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 6.538,
+      "y_min": 38.315,
+      "x_max": 7.378,
+      "y_max": 39.155,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 11.853,
+      "y_min": 51.852,
+      "x_max": 12.693,
+      "y_max": 52.692,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 23.325,
+      "y_min": 8.195,
+      "x_max": 24.165,
+      "y_max": 9.035,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 30.987,
+      "y_min": 8.195,
+      "x_max": 31.827,
+      "y_max": 9.035,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 49.647,
+      "y_min": 29.687,
+      "x_max": 50.487,
+      "y_max": 30.527,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 49.647,
+      "y_min": 37.349,
+      "x_max": 50.487,
+      "y_max": 38.189,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 39.899,
+      "y_min": 13.533,
+      "x_max": 40.739,
+      "y_max": 14.373,
+      "layers": [
+        "F.Cu",
+        "B.Cu"
+      ]
+    }
+  ],
+  "rf_unresolved": [
+    {
+      "refdes": "U1",
+      "confidence": "unknown",
+      "reason": "antenna candidate lacks body geometry or explicit keepout"
+    }
+  ],
+  "power_width_distribution_mm": {
+    "+3.3V": {
+      "0.160": 1.0706953677743243,
+      "0.500": 91.62042308143181,
+      "0.300": 0.06940000000000168,
+      "0.375": 0.279786745802977
+    },
+    "+3V3": {
+      "0.500": 10.870702054653027
+    },
+    "+5V": {
+      "0.500": 70.70016558557765,
+      "0.375": 1.7836951795962939
+    },
+    "+BATT": {
+      "0.500": 48.98240727666533
+    },
+    "/VIN": {
+      "0.500": 28.0597791437243
+    }
+  },
+  "assembly": {
+    "html": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case2/assembly.html",
+    "scene": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case2/assembly_scene.json",
+    "component_models": 61,
+    "mechanical": {
+      "collision_count": 0,
+      "collisions": [],
+      "unverified_envelopes": [
+        "BZ1",
+        "C1",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C2",
+        "C20",
+        "C21",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "F1",
+        "J1",
+        "J3",
+        "J4",
+        "J5",
+        "J6",
+        "J9",
+        "L1",
+        "Q1",
+        "R1",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "SW1",
+        "SW2",
+        "U1",
+        "U2",
+        "U3",
+        "U4",
+        "U5",
+        "U6"
+      ],
+      "all_envelopes_verified": false,
+      "passed": false
+    }
+  }
+}

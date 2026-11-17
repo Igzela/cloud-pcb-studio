@@ -1,0 +1,735 @@
+(pcb board_freerouting.dsn
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "KiCad's Pcbnew")
+    (host_version "8.0.0")
+  )
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu
+      (type signal)
+      (property (index 0))
+    )
+    (layer In1.Cu
+      (type power)
+      (property (index 1))
+    )
+    (layer In2.Cu
+      (type power)
+      (property (index 2))
+    )
+    (layer B.Cu
+      (type signal)
+      (property (index 3))
+    )
+    (boundary
+      (path pcb 0 49000 0 50170 -115 51296 -457 52333 -1011 53243 -1757 53989 -2667 54543 -3704 54885 -4830 55000 -6000 55000 -39000 54885 -40170 54543 -41296 53989 -42333 53243 -43243 52333 -43989 51296 -44543 50170 -44885 49000 -45000 6000 -45000 4830 -44885 3704 -44543 2667 -43989 1757 -43243 1011 -42333 457 -41296 115 -40170 0 -39000 0 -6000 115 -4830 457 -3704 1011 -2667 1757 -1757 2667 -1011 3704 -457 4830 -115 6000 0 49000 0)
+    )
+    (keepout "" (rect F.Cu 3300 -8700 8700 -3300))
+    (keepout "" (rect B.Cu 3300 -8700 8700 -3300))
+    (keepout "" (rect F.Cu 3300 -41700 8700 -36300))
+    (keepout "" (rect B.Cu 3300 -41700 8700 -36300))
+    (keepout "" (rect F.Cu 46300 -8700 51700 -3300))
+    (keepout "" (rect B.Cu 46300 -8700 51700 -3300))
+    (keepout "" (rect F.Cu 46300 -41700 51700 -36300))
+    (keepout "" (rect B.Cu 46300 -41700 51700 -36300))
+    (keepout "" (rect F.Cu 10549 -15567 11389 -14727))
+    (keepout "" (rect B.Cu 10549 -15567 11389 -14727))
+    (keepout "" (rect F.Cu 20135 -17670 20975 -16830))
+    (keepout "" (rect B.Cu 20135 -17670 20975 -16830))
+    (keepout "" (rect F.Cu 52860 -22420 53700 -21580))
+    (keepout "" (rect B.Cu 52860 -22420 53700 -21580))
+    (keepout "" (rect F.Cu 52860 -26020 53700 -25180))
+    (keepout "" (rect B.Cu 52860 -26020 53700 -25180))
+    (keepout "" (rect F.Cu 28077 -29104 28917 -28264))
+    (keepout "" (rect B.Cu 28077 -29104 28917 -28264))
+    (keepout "" (rect F.Cu 35589 -27309 36429 -26469))
+    (keepout "" (rect B.Cu 35589 -27309 36429 -26469))
+    (keepout "" (rect F.Cu 27774 -9927 28614 -9087))
+    (keepout "" (rect B.Cu 27774 -9927 28614 -9087))
+    (keepout "" (rect F.Cu 36583 -34370 37423 -33530))
+    (keepout "" (rect B.Cu 36583 -34370 37423 -33530))
+    (keepout "" (rect F.Cu 18251 -11731 19091 -10891))
+    (keepout "" (rect B.Cu 18251 -11731 19091 -10891))
+    (keepout "" (rect F.Cu 12314 -21439 13154 -20599))
+    (keepout "" (rect B.Cu 12314 -21439 13154 -20599))
+    (keepout "" (rect F.Cu 14820 -11760 15660 -10920))
+    (keepout "" (rect B.Cu 14820 -11760 15660 -10920))
+    (keepout "" (rect F.Cu 26717 -32883 27557 -32043))
+    (keepout "" (rect B.Cu 26717 -32883 27557 -32043))
+    (keepout "" (rect F.Cu 26427 -27630 27267 -26790))
+    (keepout "" (rect B.Cu 26427 -27630 27267 -26790))
+    (keepout "" (rect F.Cu 23028 -9200 23868 -8360))
+    (keepout "" (rect B.Cu 23028 -9200 23868 -8360))
+    (keepout "" (rect F.Cu 22299 -9773 23139 -8933))
+    (keepout "" (rect B.Cu 22299 -9773 23139 -8933))
+    (keepout "" (rect F.Cu 34055 -21740 34895 -20900))
+    (keepout "" (rect B.Cu 34055 -21740 34895 -20900))
+    (keepout "" (rect F.Cu 11732 -25073 12572 -24233))
+    (keepout "" (rect B.Cu 11732 -25073 12572 -24233))
+    (keepout "" (rect F.Cu 24489 -29636 25329 -28796))
+    (keepout "" (rect B.Cu 24489 -29636 25329 -28796))
+    (keepout "" (rect F.Cu 37568 -16056 38408 -15216))
+    (keepout "" (rect B.Cu 37568 -16056 38408 -15216))
+    (keepout "" (rect F.Cu 8860 -19960 9700 -19120))
+    (keepout "" (rect B.Cu 8860 -19960 9700 -19120))
+    (keepout "" (rect F.Cu 30565 -25867 31405 -25027))
+    (keepout "" (rect B.Cu 30565 -25867 31405 -25027))
+    (keepout "" (rect F.Cu 23595 -15473 24435 -14633))
+    (keepout "" (rect B.Cu 23595 -15473 24435 -14633))
+    (keepout "" (rect F.Cu 17195 -16315 18035 -15475))
+    (keepout "" (rect B.Cu 17195 -16315 18035 -15475))
+    (keepout "" (rect F.Cu 22360 -12767 23200 -11927))
+    (keepout "" (rect B.Cu 22360 -12767 23200 -11927))
+    (keepout "" (rect F.Cu 25713 -14357 26553 -13517))
+    (keepout "" (rect B.Cu 25713 -14357 26553 -13517))
+    (via Via[0-3]_550:300_um)
+    (rule
+      (width 200)
+      (clearance 150)
+      (clearance 150 (type default_smd))
+      (clearance 50 (type smd_smd))
+    )
+  )
+  (placement
+    (component IMG_C1
+      (place C1 13824 -15147 front 0)
+    )
+    (component IMG_C10
+      (place C10 28194 -11237 front 0)
+    )
+    (component IMG_C11
+      (place C11 35273 -33950 front 0)
+    )
+    (component IMG_C12
+      (place C12 20401 -11311 front 0)
+    )
+    (component IMG_C2
+      (place C2 12734 -19289 front 0)
+    )
+    (component IMG_C3
+      (place C3 16970 -11340 front 0)
+    )
+    (component IMG_C4
+      (place C4 27137 -30733 front 0)
+    )
+    (component IMG_C5
+      (place C5 25117 -27210 front 0)
+    )
+    (component IMG_C6
+      (place C6 25178 -8780 front 0)
+    )
+    (component IMG_C7
+      (place C7 20989 -9353 front 0)
+    )
+    (component IMG_C9
+      (place C9 34475 -23050 front 0)
+    )
+    (component IMG_D1
+      (place D1 31165 -11040 front 0)
+    )
+    (component IMG_D2
+      (place D2 34675 -16206 front 0)
+    )
+    (component IMG_D3
+      (place D3 29127 -8089 front 0)
+    )
+    (component IMG_D4
+      (place D4 20679 -29133 front 0)
+    )
+    (component IMG_J1
+      (place J1 22000 -42200 front 0)
+    )
+    (component IMG_J10
+      (place J10 31000 -3600 front 0)
+    )
+    (component IMG_J11
+      (place J11 38500 -41400 front 0)
+    )
+    (component IMG_J12
+      (place J12 11500 -41400 front 0)
+    )
+    (component IMG_J13
+      (place J13 32500 -38200 front 0)
+    )
+    (component IMG_J14
+      (place J14 16000 -38200 front 0)
+    )
+    (component IMG_J15
+      (place J15 47500 -20500 front 0)
+    )
+    (component IMG_J16
+      (place J16 25000 -41400 front 0)
+    )
+    (component IMG_J17
+      (place J17 14500 -5200 front 0)
+    )
+    (component IMG_J2
+      (place J2 11500 -2800 front 0)
+    )
+    (component IMG_J3
+      (place J3 51800 -22000 front 0)
+    )
+    (component IMG_J4
+      (place J4 51800 -25600 front 0)
+    )
+    (component IMG_J5
+      (place J5 51800 -18400 front 0)
+    )
+    (component IMG_J6
+      (place J6 51800 -14800 front 0)
+    )
+    (component IMG_J7
+      (place J7 44500 -42200 front 0)
+    )
+    (component IMG_J8
+      (place J8 51800 -34000 front 0)
+    )
+    (component IMG_J9
+      (place J9 3800 -21820 front 0)
+    )
+    (component IMG_R1
+      (place R1 10372 -24653 front 0)
+    )
+    (component IMG_R2
+      (place R2 31651 -35635 front 0)
+    )
+    (component IMG_R3
+      (place R3 16761 -9094 front 0)
+    )
+    (component IMG_R4
+      (place R4 30929 -13029 front 0)
+    )
+    (component IMG_R5
+      (place R5 32775 -8895 front 0)
+    )
+    (component IMG_R6
+      (place R6 21829 -31817 front 0)
+    )
+    (component IMG_R7
+      (place R7 24909 -30996 front 0)
+    )
+    (component IMG_R8
+      (place R8 37988 -13856 front 0)
+    )
+    (component IMG_R9
+      (place R9 9280 -21320 front 0)
+    )
+    (component IMG_U1
+      (place U1 32381 -29681 front 0)
+    )
+    (component IMG_U2
+      (place U2 27500 -20250 front 0)
+    )
+    (component IMG_U3
+      (place U3 25018 -11902 front 0)
+    )
+    (component IMG_U4
+      (place U4 17289 -21368 front 0)
+    )
+    (component IMG_Y1
+      (place Y1 19010 -14410 front 0)
+    )
+    (component IMG_H1
+      (place H1 6000 -6000 front 0)
+    )
+    (component IMG_H2
+      (place H2 6000 -39000 front 0)
+    )
+    (component IMG_H3
+      (place H3 49000 -6000 front 0)
+    )
+    (component IMG_H4
+      (place H4 49000 -39000 front 0)
+    )
+  )
+  (library
+    (image IMG_C1
+      (pin Rect_T_1150x1800_um 1 1475 0)
+      (pin Rect_T_1150x1800_um 2 -1475 0)
+    )
+    (image IMG_C10
+      (pin Rect_T_950x900_um 1 0 -775)
+      (pin Rect_T_950x900_um 2 0 775)
+    )
+    (image IMG_C11
+      (pin Rect_T_900x950_um 1 -775 0)
+      (pin Rect_T_900x950_um 2 775 0)
+    )
+    (image IMG_C12
+      (pin Rect_T_900x950_um 1 775 0)
+      (pin Rect_T_900x950_um 2 -775 0)
+    )
+    (image IMG_C2
+      (pin Rect_T_950x900_um 1 0 775)
+      (pin Rect_T_950x900_um 2 0 -775)
+    )
+    (image IMG_C3
+      (pin Rect_T_900x950_um 1 775 0)
+      (pin Rect_T_900x950_um 2 -775 0)
+    )
+    (image IMG_C4
+      (pin Rect_T_950x900_um 1 0 775)
+      (pin Rect_T_950x900_um 2 0 -775)
+    )
+    (image IMG_C5
+      (pin Rect_T_900x950_um 1 -775 0)
+      (pin Rect_T_900x950_um 2 775 0)
+    )
+    (image IMG_C6
+      (pin Rect_T_900x950_um 1 775 0)
+      (pin Rect_T_900x950_um 2 -775 0)
+    )
+    (image IMG_C7
+      (pin Rect_T_900x950_um 1 -775 0)
+      (pin Rect_T_900x950_um 2 775 0)
+    )
+    (image IMG_C9
+      (pin Rect_T_950x900_um 1 0 -775)
+      (pin Rect_T_950x900_um 2 0 775)
+    )
+    (image IMG_D1
+      (pin Rect_T_875x950_um 1 788 0)
+      (pin Rect_T_875x950_um 2 -788 0)
+    )
+    (image IMG_D2
+      (pin Rect_T_950x875_um 1 0 788)
+      (pin Rect_T_950x875_um 2 0 -788)
+    )
+    (image IMG_D3
+      (pin Rect_T_875x950_um 1 788 0)
+      (pin Rect_T_875x950_um 2 -788 0)
+    )
+    (image IMG_D4
+      (pin Rect_T_950x875_um 1 0 -788)
+      (pin Rect_T_950x875_um 2 0 788)
+    )
+    (image IMG_J1
+      (pin Rect_T_1000x2000_um 1 0 0)
+    )
+    (image IMG_J10
+      (pin Rect_TH_1700x1700_um 1 0 0)
+      (pin Rect_TH_1700x1700_um 2 2540 0)
+      (pin Rect_TH_1700x1700_um 3 5080 0)
+      (pin Rect_TH_1700x1700_um 4 7620 0)
+      (pin Rect_TH_1700x1700_um 5 10160 0)
+    )
+    (image IMG_J11
+      (pin Rect_TH_1700x1700_um 1 0 0)
+      (pin Rect_TH_1700x1700_um 2 2540 0)
+    )
+    (image IMG_J12
+      (pin Rect_TH_1700x1700_um 1 0 0)
+      (pin Rect_TH_1700x1700_um 2 2540 0)
+      (pin Rect_TH_1700x1700_um 3 5080 0)
+      (pin Rect_TH_1700x1700_um 4 7620 0)
+    )
+    (image IMG_J13
+      (pin Rect_TH_1700x1700_um 1 0 0)
+      (pin Rect_TH_1700x1700_um 2 2540 0)
+      (pin Rect_TH_1700x1700_um 3 5080 0)
+      (pin Rect_TH_1700x1700_um 4 7620 0)
+    )
+    (image IMG_J14
+      (pin Rect_TH_1700x1700_um 1 0 0)
+      (pin Rect_TH_1700x1700_um 2 2540 0)
+      (pin Rect_TH_1700x1700_um 3 5080 0)
+      (pin Rect_TH_1700x1700_um 4 7620 0)
+      (pin Rect_TH_1700x1700_um 5 10160 0)
+      (pin Rect_TH_1700x1700_um 6 12700 0)
+    )
+    (image IMG_J15
+      (pin Rect_TH_1700x1700_um 1 0 0)
+      (pin Rect_TH_1700x1700_um 2 0 2540)
+      (pin Rect_TH_1700x1700_um 3 0 5080)
+      (pin Rect_TH_1700x1700_um 4 0 7620)
+    )
+    (image IMG_J16
+      (pin Rect_TH_1700x1700_um 1 0 0)
+      (pin Rect_TH_1700x1700_um 2 2540 0)
+      (pin Rect_TH_1700x1700_um 3 5080 0)
+      (pin Rect_TH_1700x1700_um 4 7620 0)
+      (pin Rect_TH_1700x1700_um 5 10160 0)
+    )
+    (image IMG_J17
+      (pin Rect_TH_1700x1700_um 1 0 0)
+      (pin Rect_TH_1700x1700_um 2 2540 0)
+      (pin Rect_TH_1700x1700_um 3 5080 0)
+      (pin Rect_TH_1700x1700_um 4 7620 0)
+      (pin Rect_TH_1700x1700_um 5 10160 0)
+      (pin Rect_TH_1700x1700_um 6 12700 0)
+    )
+    (image IMG_J2
+      (pin Rect_T_1000x2000_um 1 0 0)
+    )
+    (image IMG_J3
+      (pin Rect_T_1000x2000_um 1 0 0)
+    )
+    (image IMG_J4
+      (pin Rect_T_1000x2000_um 1 0 0)
+    )
+    (image IMG_J5
+      (pin Rect_T_1000x2000_um 1 0 0)
+    )
+    (image IMG_J6
+      (pin Rect_T_1000x2000_um 1 0 0)
+    )
+    (image IMG_J7
+      (pin Rect_T_1000x2000_um 1 0 0)
+    )
+    (image IMG_J8
+      (pin Rect_T_1000x2000_um 1 0 0)
+    )
+    (image IMG_J9
+      (pin Rect_T_1200x700_um A5 3080 500)
+      (pin Rect_T_1200x760_um A9 3080 -1520)
+      (pin Rect_T_1200x800_um A12 3080 -2750)
+      (pin Rect_T_1200x700_um B5 3080 -500)
+      (pin Rect_T_1200x760_um B9 3080 1520)
+      (pin Rect_T_1200x800_um B12 3080 2750)
+      (pin Rect_TH_1700x1100_um S1 3000 4320)
+      (pin Rect_TH_1700x1100_um S1 -800 4320)
+      (pin Rect_TH_1700x1100_um S1 3000 -4320)
+      (pin Rect_TH_1700x1100_um S1 -800 -4320)
+    )
+    (image IMG_R1
+      (pin Rect_T_800x950_um 1 -825 0)
+      (pin Rect_T_800x950_um 2 825 0)
+    )
+    (image IMG_R2
+      (pin Rect_T_800x950_um 1 825 0)
+      (pin Rect_T_800x950_um 2 -825 0)
+    )
+    (image IMG_R3
+      (pin Rect_T_800x950_um 1 -825 0)
+      (pin Rect_T_800x950_um 2 825 0)
+    )
+    (image IMG_R4
+      (pin Rect_T_800x950_um 1 -825 0)
+      (pin Rect_T_800x950_um 2 825 0)
+    )
+    (image IMG_R5
+      (pin Rect_T_800x950_um 1 825 0)
+      (pin Rect_T_800x950_um 2 -825 0)
+    )
+    (image IMG_R6
+      (pin Rect_T_800x950_um 1 -825 0)
+      (pin Rect_T_800x950_um 2 825 0)
+    )
+    (image IMG_R7
+      (pin Rect_T_950x800_um 1 0 -825)
+      (pin Rect_T_950x800_um 2 0 825)
+    )
+    (image IMG_R8
+      (pin Rect_T_950x800_um 1 0 825)
+      (pin Rect_T_950x800_um 2 0 -825)
+    )
+    (image IMG_R9
+      (pin Rect_T_950x800_um 1 0 -825)
+      (pin Rect_T_950x800_um 2 0 825)
+    )
+    (image IMG_U1
+      (pin Rect_T_1950x600_um 1 -2475 1905)
+      (pin Rect_T_1950x600_um 2 -2475 635)
+      (pin Rect_T_1950x600_um 3 -2475 -635)
+      (pin Rect_T_1950x600_um 4 -2475 -1905)
+      (pin Rect_T_1950x600_um 5 2475 -1905)
+      (pin Rect_T_1950x600_um 6 2475 -635)
+      (pin Rect_T_1950x600_um 7 2475 635)
+      (pin Rect_T_1950x600_um 8 2475 1905)
+    )
+    (image IMG_U2
+      (pin Rect_T_1500x500_um 1 -4175 2800)
+      (pin Rect_T_1500x500_um 2 -4175 2000)
+      (pin Rect_T_1500x500_um 3 -4175 1200)
+      (pin Rect_T_1500x500_um 4 -4175 400)
+      (pin Rect_T_1500x500_um 5 -4175 -400)
+      (pin Rect_T_1500x500_um 6 -4175 -1200)
+      (pin Rect_T_1500x500_um 7 -4175 -2000)
+      (pin Rect_T_1500x500_um 8 -4175 -2800)
+      (pin Rect_T_500x1500_um 9 -2800 -4175)
+      (pin Rect_T_500x1500_um 10 -2000 -4175)
+      (pin Rect_T_500x1500_um 11 -1200 -4175)
+      (pin Rect_T_500x1500_um 12 -400 -4175)
+      (pin Rect_T_500x1500_um 13 400 -4175)
+      (pin Rect_T_500x1500_um 14 1200 -4175)
+      (pin Rect_T_500x1500_um 15 2000 -4175)
+      (pin Rect_T_500x1500_um 16 2800 -4175)
+      (pin Rect_T_1500x500_um 17 4175 -2800)
+      (pin Rect_T_1500x500_um 18 4175 -2000)
+      (pin Rect_T_1500x500_um 19 4175 -1200)
+      (pin Rect_T_1500x500_um 20 4175 -400)
+      (pin Rect_T_1500x500_um 21 4175 400)
+      (pin Rect_T_1500x500_um 22 4175 1200)
+      (pin Rect_T_1500x500_um 23 4175 2000)
+      (pin Rect_T_1500x500_um 24 4175 2800)
+      (pin Rect_T_500x1500_um 25 2800 4175)
+      (pin Rect_T_500x1500_um 26 2000 4175)
+      (pin Rect_T_500x1500_um 27 1200 4175)
+      (pin Rect_T_500x1500_um 28 400 4175)
+      (pin Rect_T_500x1500_um 29 -400 4175)
+      (pin Rect_T_500x1500_um 30 -1200 4175)
+      (pin Rect_T_500x1500_um 31 -2000 4175)
+      (pin Rect_T_500x1500_um 32 -2800 4175)
+    )
+    (image IMG_U3
+      (pin Rect_T_575x350_um 1 -1162 750)
+      (pin Rect_T_575x350_um 2 -1162 250)
+      (pin Rect_T_575x350_um 3 -1162 -250)
+      (pin Rect_T_575x350_um 4 -1162 -750)
+      (pin Rect_T_350x575_um 5 -500 -912)
+      (pin Rect_T_350x575_um 6 0 -912)
+      (pin Rect_T_350x575_um 7 500 -912)
+      (pin Rect_T_575x350_um 8 1162 -750)
+      (pin Rect_T_575x350_um 9 1162 -250)
+      (pin Rect_T_575x350_um 10 1162 250)
+      (pin Rect_T_575x350_um 11 1162 750)
+      (pin Rect_T_350x575_um 12 500 912)
+      (pin Rect_T_350x575_um 13 0 912)
+      (pin Rect_T_350x575_um 14 -500 912)
+    )
+    (image IMG_U4
+      (pin Rect_T_950x2150_um 1 2300 2900)
+      (pin Rect_T_950x2150_um 2 0 2900)
+      (pin Rect_T_3250x2150_um 2 0 -2900)
+      (pin Rect_T_950x2150_um 3 -2300 2900)
+    )
+    (image IMG_Y1
+      (pin Rect_T_850x650_um 1 -775 825)
+      (pin Rect_T_850x650_um 2 -775 -825)
+      (pin Rect_T_850x650_um 3 775 -825)
+      (pin Rect_T_850x650_um 4 775 825)
+    )
+    (padstack Via[0-3]_550:300_um
+      (shape (circle F.Cu 550))
+      (shape (circle In1.Cu 550))
+      (shape (circle In2.Cu 550))
+      (shape (circle B.Cu 550))
+      (attach off)
+    )
+    (padstack Rect_T_1150x1800_um
+      (shape (rect F.Cu -575 -900 575 900))
+      (attach off)
+    )
+    (padstack Rect_T_950x900_um
+      (shape (rect F.Cu -475 -450 475 450))
+      (attach off)
+    )
+    (padstack Rect_T_900x950_um
+      (shape (rect F.Cu -450 -475 450 475))
+      (attach off)
+    )
+    (padstack Rect_T_875x950_um
+      (shape (rect F.Cu -437 -475 437 475))
+      (attach off)
+    )
+    (padstack Rect_T_950x875_um
+      (shape (rect F.Cu -475 -437 475 437))
+      (attach off)
+    )
+    (padstack Rect_T_1000x2000_um
+      (shape (rect F.Cu -500 -1000 500 1000))
+      (attach off)
+    )
+    (padstack Rect_TH_1700x1700_um
+      (shape (rect F.Cu -850 -850 850 850))
+      (shape (rect In1.Cu -850 -850 850 850))
+      (shape (rect In2.Cu -850 -850 850 850))
+      (shape (rect B.Cu -850 -850 850 850))
+      (attach off)
+    )
+    (padstack Rect_T_1200x700_um
+      (shape (rect F.Cu -600 -350 600 350))
+      (attach off)
+    )
+    (padstack Rect_T_1200x760_um
+      (shape (rect F.Cu -600 -380 600 380))
+      (attach off)
+    )
+    (padstack Rect_T_1200x800_um
+      (shape (rect F.Cu -600 -400 600 400))
+      (attach off)
+    )
+    (padstack Rect_TH_1700x1100_um
+      (shape (rect F.Cu -850 -550 850 550))
+      (shape (rect In1.Cu -850 -550 850 550))
+      (shape (rect In2.Cu -850 -550 850 550))
+      (shape (rect B.Cu -850 -550 850 550))
+      (attach off)
+    )
+    (padstack Rect_T_800x950_um
+      (shape (rect F.Cu -400 -475 400 475))
+      (attach off)
+    )
+    (padstack Rect_T_950x800_um
+      (shape (rect F.Cu -475 -400 475 400))
+      (attach off)
+    )
+    (padstack Rect_T_1950x600_um
+      (shape (rect F.Cu -975 -300 975 300))
+      (attach off)
+    )
+    (padstack Rect_T_1500x500_um
+      (shape (rect F.Cu -750 -250 750 250))
+      (attach off)
+    )
+    (padstack Rect_T_500x1500_um
+      (shape (rect F.Cu -250 -750 250 750))
+      (attach off)
+    )
+    (padstack Rect_T_575x350_um
+      (shape (rect F.Cu -287 -175 287 175))
+      (attach off)
+    )
+    (padstack Rect_T_350x575_um
+      (shape (rect F.Cu -175 -287 175 287))
+      (attach off)
+    )
+    (padstack Rect_T_950x2150_um
+      (shape (rect F.Cu -475 -1075 475 1075))
+      (attach off)
+    )
+    (padstack Rect_T_3250x2150_um
+      (shape (rect F.Cu -1625 -1075 1625 1075))
+      (attach off)
+    )
+    (padstack Rect_T_850x650_um
+      (shape (rect F.Cu -425 -325 425 325))
+      (attach off)
+    )
+  )
+  (network
+    (net +3V3
+      (pins C1-1 C10-1 C11-1 C12-1 C3-1 C5-1 C6-1 C7-1 C9-1 D1-2 D2-2 D3-2 J10-1 J2-1 R3-2 U1-5 U2-1 U2-5 U2-17 U3-5 U3-8 U4-2 U4-2 Y1-4)
+    )
+    (net +5V
+      (pins C2-1 C4-1 D4-2 J1-1 J12-1 J13-1 J14-1 J15-1 J16-1 J17-1 J9-A9 J9-B9 U1-3 U4-3)
+    )
+    (net /NRST
+      (pins J10-4 U2-4)
+    )
+    (net /RCC_OSC_IN
+      (pins U2-2 Y1-3)
+    )
+    (net /SWCLK
+      (pins J10-3 U2-24)
+    )
+    (net /SWDIO
+      (pins J10-2 U2-23)
+    )
+    (net CAN_H
+      (pins J12-2 J13-2 J7-1 R2-1 U1-7)
+    )
+    (net CAN_L
+      (pins J11-1 J12-3 J13-3 J8-1 U1-6)
+    )
+    (net CAN_RX
+      (pins J6-1 U1-4 U2-21)
+    )
+    (net CAN_TX
+      (pins J5-1 U1-1 U2-22)
+    )
+    (net GPIO_LED1
+      (pins R4-2 U2-27)
+    )
+    (net GPIO_LED2
+      (pins R5-2 U2-28)
+    )
+    (net IMU_CLK
+      (pins J17-2 U2-11 U3-13)
+    )
+    (net IMU_CS
+      (pins J17-5 U2-10 U3-12)
+    )
+    (net IMU_IDO
+      (pins J17-3 U2-12 U3-1)
+    )
+    (net IMU_SDI
+      (pins J17-4 U2-13 U3-14)
+    )
+    (net "Net-(D1-K)"
+      (pins D1-1 R4-1)
+    )
+    (net "Net-(D2-K)"
+      (pins D2-1 R5-1)
+    )
+    (net "Net-(D3-K)"
+      (pins D3-1 R8-1)
+    )
+    (net "Net-(D4-K)"
+      (pins D4-1 R6-1)
+    )
+    (net "Net-(J11-Pin_2)"
+      (pins J11-2 R2-2)
+    )
+    (net "Net-(J9-CC1)"
+      (pins J9-A5 R9-1)
+    )
+    (net "Net-(J9-CC2)"
+      (pins J9-B5 R1-1)
+    )
+    (net "Net-(R6-Pad2)"
+      (pins R6-2 R7-1)
+    )
+    (net "Net-(Y1-TRI_STATE)"
+      (pins R3-1 Y1-1)
+    )
+    (net TIM1_CH1
+      (pins J16-2 U2-18)
+    )
+    (net TIM1_CH2
+      (pins J16-3 U2-19)
+    )
+    (net TIM1_CH3
+      (pins J16-4 U2-20)
+    )
+    (net TIM2_CH1
+      (pins U2-25 U3-4)
+    )
+    (net TIM2_CH2
+      (pins U2-26 U3-9)
+    )
+    (net UART1_RX
+      (pins J15-3 U2-30)
+    )
+    (net UART1_TX
+      (pins J15-2 U2-29)
+    )
+    (net UART2_CTS
+      (pins J14-4 U2-6)
+    )
+    (net UART2_RTS
+      (pins J14-5 U2-7)
+    )
+    (net UART2_RX
+      (pins J14-3 U2-9)
+    )
+    (net UART2_TX
+      (pins J14-2 U2-8)
+    )
+    (class HIGH_SPEED /RCC_OSC_IN IMU_CLK IMU_CS IMU_IDO IMU_SDI
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 160) (clearance 130))
+    )
+    (class DEFAULT /NRST /SWCLK /SWDIO CAN_RX CAN_TX GPIO_LED1 GPIO_LED2 "Net-(D1-K)" "Net-(D2-K)" "Net-(D3-K)" "Net-(D4-K)" "Net-(J11-Pin_2)" "Net-(J9-CC1)" "Net-(J9-CC2)" "Net-(R6-Pad2)" "Net-(Y1-TRI_STATE)" TIM1_CH1 TIM1_CH2 TIM1_CH3 TIM2_CH1 TIM2_CH2 UART1_RX UART1_TX UART2_CTS UART2_RTS UART2_RX UART2_TX
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 160) (clearance 130))
+    )
+    (class POWER_000 +3V3
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 500) (clearance 148))
+    )
+    (class POWER_001 +5V
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 500) (clearance 150))
+    )
+    (class DIFF_PAIR_000 CAN_H CAN_L
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 190) (clearance 290))
+    )
+  )
+  (wiring
+  )
+)

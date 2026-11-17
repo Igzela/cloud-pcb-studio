@@ -1,0 +1,160 @@
+{
+  "created_at": "2026-11-17",
+  "status": "research_only_project_missing",
+  "references_not_opened": true,
+  "core_solver_modified": false,
+  "python_autorouter_pytest_executed": false,
+  "fastroute": {
+    "repository": "https://github.com/parisxmas/fastroute",
+    "tag": "v0.1.14",
+    "commit": "19c3b75322da6a0dc2f87a616fc0afe34a98f07e"
+  },
+  "candidate_commit_queries": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "commits": [
+            {
+              "sha": "67f2547e582de59cb77d4b3c2a25c8a6326ed864",
+              "message": "Update README.md",
+              "url": "https://api.github.com/repos/Neumi/ethersweep/commits/67f2547e582de59cb77d4b3c2a25c8a6326ed864",
+              "html_url": "https://github.com/Neumi/ethersweep/commit/67f2547e582de59cb77d4b3c2a25c8a6326ed864",
+              "diff": null,
+              "files": null,
+              "repository_full_name": "Neumi/ethersweep",
+              "comments": null,
+              "author": null,
+              "committer": null,
+              "created_at": "2025-04-23T17:39:52Z",
+              "git_author_email": null,
+              "display_url": "https://github.com/Neumi/ethersweep/commit/67f2547e582de59cb77d4b3c2a25c8a6326ed864",
+              "display_title": "Update README.md"
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "commits": [
+            {
+              "sha": "66a2616b3bff252392b95749a6af20d1ba99755e",
+              "message": "Update README.md",
+              "url": "https://api.github.com/repos/jonathanrandall/four_motor_controller/commits/66a2616b3bff252392b95749a6af20d1ba99755e",
+              "html_url": "https://github.com/jonathanrandall/four_motor_controller/commit/66a2616b3bff252392b95749a6af20d1ba99755e",
+              "diff": null,
+              "files": null,
+              "repository_full_name": "jonathanrandall/four_motor_controller",
+              "comments": null,
+              "author": null,
+              "committer": null,
+              "created_at": "2026-05-21T02:04:31Z",
+              "git_author_email": null,
+              "display_url": "https://github.com/jonathanrandall/four_motor_controller/commit/66a2616b3bff252392b95749a6af20d1ba99755e",
+              "display_title": "Update README.md"
+            }
+          ]
+        },
+        "isError": false
+      }
+    }
+  ],
+  "source_reads": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "content": "# fastroute\n\n[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/parisxmas)\n[![Open Collective](https://img.shields.io/badge/Open%20Collective-support-7FADF2?logo=opencollective&logoColor=white)](https://opencollective.com/parismxas)\n[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)\n\n**PCB autorouter for KiCad and Specctra DSN** — a Rust port of the\n[Freerouting](https://github.com/freerouting/freerouting) PCB autorouter.\n(Not related to the FastRoute global router for IC design used in OpenROAD.)\n\nSame algorithms, same input/output (Specctra `.dsn` → `.ses`), same\ncommand line — without Java, several times faster and with a fraction of the memory.\n\n- **Exact mode** (`--parity`) produces SES output byte-identical to Freerouting's\n  deterministic mode (source commit `aa909a3`, single-threaded optimizer, count-based\n  time limits) on all 20 benchmark boards.\n- **Default mode** runs the optimizer in parallel; results are deterministic for any\n  thread count.\n- **Live view** (`--live`): watch the board being routed in your browser.\n- **KiCad plugin** in [`integrations/kicad`](integrations/kicad/README.md).\n\n## What is different from Freerouting\n\nThe bug fixes and routing improvements are on by default; `--no-enhancements` switches them\noff (the DSN parser fixes stay), `--parity` gives byte-identical Freerouting results. The new\nfeatures are used when asked for (an option, or a rule in the KiCad board). Details,\nmeasurements and the reasoning for each change: [docs/IMPROVEMENTS.md](docs/IMPROVEMENTS.md).\n\n### Bugs fixed\n\n| Freerouting behaviour | fastroute |\n|---|---|\n| The optimizer never runs after the autorouter stopped itself: the stop request stays set, so every optimizer candidate fails to route | The router's own stop is withdrawn before the optimizer |\n| When the stagnation rule stops the autorouter, the final tail removal is skipped and unused fanout escapes (via + stub) stay on the board | Tails are removed in every case |\n| The optimizer's score is clamped at 0; on boards whose score is below 0 (e.g. DAC2020_bm01) no candidate can ever be accepted | Unclamped scores are compared (bm01: −182 → 107) |\n| A connection that ends in a via into its net's plane layer is rejected (\"layers disabled\"), so plane nets only reach the plane through fanout | Such connections are accepted |\n| `ignore_net_classes` is honoured by the autorouter but not by the fanout, which still adds stubs to the ignored nets | No fanout on ignored classes |\n| A failing connection rips its whole net on every failure from the second on; unroutable connections make large nets (GND, 3V3) oscillate | Only once per net |\n| Class-pair clearances from the DSN only reach the clearance classes named after the net classes, not the pin/SMD classes of the same nets | Applied to all item classes of both net classes |\n| Nets with a pad on or outside the board edge (edge connectors, castellated pads, headers across Edge.Cuts) ignore the outline completely, so their traces can run outside the board anywhere | The area outside the outline is a keepout except right around those pads |\n| DSN lexer: non-ASCII letters dropped from names, desynchronisation on some quoted strings, a pin token swallowing a character of the next pin | Parsed correctly |\n\n### Routing and optimizer improvements\n\n- **Optimizer on partly routed boards** (Freerouting skips it as soon as one connection is\n  unrouted); **greedy passes** that apply every improving candidate instead of one per pass;\n  re-routing only the ripped item's nets; skipping connections that were unrouted from the\n  start; a time budget equal to the routing time.\n- **Parallel autorouting passes** (`router.autorouter.max_threads`) and a **parallel\n  optimizer**, deterministic for a given thread count.\n- **Multi-start routing** (`--multi-start`): if connections stay unrouted, the autorouter is\n  rerun with shuffled orders in parallel and the best result is kept.\n- **Undo of bad passes**, stagnation stop for slow passes, fanout that stops when it only\n  re-fans, minimum track width for neck-down (`router.min_trace_width_um`).\n- **Checkpoints and time limits**: the session file always holds the best board so far;\n  `--max-time`, Ctrl+C / SIGTERM stop the run and keep the result.\n\n### New features\n\n- **Live routing view** (`--live[=PORT]`, a checkbox in the KiCad plugin): a local page at\n  `http://127.0.0.1:7878` shows the board as it is routed — traces appearing and being ripped\n  up, the remaining airlines, progress of each pass, unrouted connections per pass, clearance\n  violations, score and the log — with zoom, layer toggles, net highlighting and a Stop\n  button that keeps the best result. Served by fastroute itself (no internet needed);\n  results are the same with or without it.\n\n  ![Live routing view: the board being routed, with unrouted connections, pass progress, a chart of unrouted connections per pass and the log](docs/img/live-view.webp)\n- **Length matching** (`--tune`): groups of nets (buses, pair skew) are matched with\n  meanders after routing; every meander is clearance-checked, via heights count as in KiCad.\n- **Controlled impedance**: trace widths per layer from the board stackup (microstrip,\n  stripline, differential), no neck-down for those classes (`--no-neckdown-classes`).\n- **Differential pairs** (`--pairs`): pairs are routed first with the second net following\n  the first at the pair gap, held while the rest of the board is routed; afterwards the\n  shorter net gets meanders until the two lengths match (`--pair-skew`, default 0.1 mm).\n\n### KiCad plugin\n\nThe plugin ([`integrations/kicad`](integrations/kicad/README.md)) exports the board, fills\nthe gaps of KiCad's Specctra export and imports the result:\n- `.kicad_dru` rules are carried over: class clearances, per-layer track widths, length and\n  skew rules, differential pair gaps; minimum track width and copper-to-edge clearance too.\n- Zones, copper texts and rule areas are exported correctly (KiCad exports every zone as a\n  plane and every rule area as a keepout); zones are refilled after routing.\n- An option shows the routing live in the web browser (see *Live routing view* above).\n- `impedance_cli.py` computes controlled-impedance widths and writes the DRC rules.\n- Checked with KiCad's own DRC on the KiCad demo boards (see the results table in\n  [docs/IMPROVEMENTS.md](docs/IMPROVEMENTS.md)).\n\n## Build and run\n\n```sh\ncargo build --release -p fastroute          # or scripts/build-pgo.sh (~15 % faster)\ntarget/release/fastroute -de board.dsn -do board.ses\n```\n\nThe session file (`-do`) is rewritten with the best board so far whenever routing or\noptimizing improves, so a run that is stopped or killed still leaves its best result.\nCtrl+C, SIGTERM and Ctrl+Break stop the run and write the best result (a second signal exits\nat once). `fastroute --help` lists the options and the common `--router.*` settings.\n\nWindows x64 build (cross-compiled with MinGW-w64): `scripts/build-windows.sh` →\n`dist/windows/fastroute.exe`. Linux x64 and arm64 builds (cargo-zigbuild, glibc 2.17):\n`scripts/build-linux.sh` → `dist/linux-*/fastroute`. The KiCad package can bundle several\nplatforms: `integrations/kicad/package.sh --bin <macos binary> macos-arm64 --bin\ndist/windows/fastroute.exe windows-x64 --bin dist/linux-x64/fastroute linux-x64 ...`.\n\nFreerouting's options are accepted: `-mp <passes>`, `--router.<path>=<value>` (e.g.\n`--router.optimizer.enabled=false`, `--router.scoring.via_costs=80`); GUI/API options such\nas `--gui.enabled` are ignored. fastroute adds:\n\n| Option | Meaning |\n|---|---|\n| `--parity` | Exact Freerouting results: java-compatible optimizer, count-based time limits |\n| `--optimizer-mode=java-compat\\|parallel` | Optimizer strategy (default: parallel if more than one thread) |\n| `--time-limit-mode=wall\\|count\\|disabled`, `--time-limit-factor=N` | How Freerouting's internal time limits are evaluated |\n| `--router.min_trace_width_um=<w>` | Never neck traces down below this width |\n| `--multi-start=N` | Rerun the autorouter with N−1 shuffled orders in parallel if connections remain unrouted (default 4) |\n| `--no-enhancements` | Freerouting's behaviour without fastroute's routing/optimizer improvements (see [docs/IMPROVEMENTS.md](docs/IMPROVEMENTS.md)) |\n| `--router.autorouter.max_threads=N` | Threads of the parallel autorouting pass (default: all cores; 1 = sequential pass) |\n| `--tune=FILE` | Length matching after routing: groups of nets matched with meanders (see `fastroute --help`) |\n| `--layer-heights=MM,..` | Height of each copper layer (stackup), so that vias count in length matching |\n| `--pairs=FILE` | Differential pairs: routed first, the second net following the first at the pair gap |\n| `--no-neckdown-classes=A,B` | Keep the full trace width of these classes at pins (controlled impedance) |\n| `--max-time=SECONDS` | Stop after this time and write the best result so far |\n| `--router.autorouter.min_passes=N` | The stagnation rules do not stop the autorouter before N passes (for long runs bounded by `--max-time`) |\n| `--initial-session=FILE` | Start from the wiring of a session file (e.g. a checkpoint of an earlier run) and continue routing and optimizing it |\n| `--live[=PORT]` | Watch the routing live in the web browser (`http://127.0.0.1:7878` by default, opened automatically): traces and airlines as they change, pass progress, unrouted connections per pass, log, and a Stop button. Results are unaffected |\n| `--report=FILE` | Write a JSON summary: statistics, timings, every unrouted connection and clearance violation |\n| `--diagnose` | With `--report`: route each unrouted connection alone on the loaded board, classifying it as congestion (other traces in the way) or blocked (geometry or rules) |\n| `-V`, `--version` | Print the version |\n| `-v` | Verbose progress |\n\n## Performance\n\nFull pipeline (autorouter + optimizer), exact mode, 20 benchmark boards\n([docs/PERFORMANCE.md](docs/PERFORMANCE.md)):\n\n| | Freerouting (Java) | fastroute | fastroute + PGO |\n|---|---|---|---|\n| Sum of 20 boards | 2102 s | 510 s | 420 s |\n| DAC2020_bm01 | 960 s | 380 s | 310 s |\n| CM5_MINIMA_3 | 410 s | 23 s | 20 s |\n| Peak memory (typical) | 1–2 GB | 20–300 MB | |\n\nThe parallel optimizer mode is another 1.5–3× faster on most boards.\n\n## Layout\n\n| Crate | Contents |\n|---|---|\n| `fr-dsn` | Specctra S-expression reader and typed DSN model |\n| `fr-geom` | Planar geometry (port of `geometry.planar`) |\n| `fr-jcompat` | Bit-exact emulation of the Java library behaviour the router depends on |\n| `fr-settings` | Router settings, defaults, CLI/DSN settings sources |\n| `fr-engine` | Board model, search trees, autorouter, pull-tight/shove/optimizer, DRC, scoring, pipeline |\n| `fr-io` | DSN → board loader, post-load processing, SES writer/reader |\n| `fastroute` | Command-line tool |\n\nHow the port was done and how parity is tested: [docs/PORTING.md](docs/PORTING.md).\nThe Java reference build and scripts: `scripts/java-parity.sh`, `scripts/parity-route.sh`.\n\n## Support\n\nfastroute is developed in spare time. If it saves you routing hours or a Java setup, you can\nsupport its development through [GitHub Sponsors](https://github.com/sponsors/parisxmas) or\n[Open Collective](https://opencollective.com/parismxas). Bug reports with a board that shows\nthe problem (a `.dsn` file is enough) are just as welcome.\n\n## License\n\nGPL-3.0-or-later ([LICENSE](LICENSE)). fastroute is a derivative work of Freerouting\n(GPL-3.0); all credit for the routing algorithms goes to the Freerouting authors. See\n[NOTICE](NOTICE) for the attribution, the Freerouting version it is based on, and the\nthird-party crates.\n",
+          "encoding": "utf-8",
+          "sha": "51b896b63ca8f8baf0e453d19518f3868efb8103",
+          "display_url": "https://github.com/parisxmas/fastroute/blob/v0.1.14/README.md",
+          "display_title": "README.md"
+        },
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "content": "# NOTE\n\nThis was originally done in kicad 9.0 and updated to kicad 10.0. Need to check the symbol for the NMOS transistor against the data sheet for the transistor in the bom file\n\n# four_motor_controller\n\nA 4-layer PCB motor controller for robotics applications. Drives 4 DC motors with encoder feedback using an ESP32-S3 microcontroller, \nInlcudes:\n* 4× VNH7040AYTR high-current motor drivers, which is rated for 35A, but the current is limited by the board and not the motor driver. I'm using 2oz copper on the outer layers and 1oz copper on the inner layers, so this should provide ~12A continuous current on each motor driver; and a\n* MCP23017 I2C GPIO expander for direction control.\n\nThe design files are for KiCad 10.0.\n\nThe ROS2 control code used in the video is at https://github.com/jonathanrandall/new_pcb_robot\n\n## Repository Contents\n\n```\nhardware/                   # KiCad schematic, PCB layout, and project files\n  symbols/                  # Custom KiCad symbol and footprint for VNH7040AYTR\ndocs_and_outputs/           # BOM (JLCPCB format), Gerbers (zip), PINMAP, and datasheets\nfirmware/esp32_bridge/      # PlatformIO firmware project (Arduino framework, C++17)\n  src/                      # main.cpp, Motor, PIDController, QuadratureEncoder,\n                            #   RobotController, Mcp23017Bus, WebDashboard, PanTiltController\n  include/                  # Header files\n  platformio.ini            # Build configuration\n```\n\n## Important Notes\n\n**The BOM and PINMAP in `docs_and_outputs/` may be out of date.** Always cross-reference against the schematic and PCB files before ordering parts or assembling hardware.\n\n**The custom VNH7040AYTR symbol/footprint** (`hardware/symbols/`) must be added to your KiCad library if opening the project on a new machine.\n\n**The firmware has not been validated on hardware.** It compiles and is provided as a starting point.\n\n**WiFi credentials are not included.** Before building the firmware, set your SSID and password in `firmware/esp32_bridge/src/main.cpp`.\n\n## Building the Firmware\n\nRequires [PlatformIO](https://platformio.org/). All commands run from `firmware/esp32_bridge/`.\n\n```bash\n# Build\npio run\n\n# Flash (USB-C, use BOOT mode if required)\npio run --target upload\n\n# Monitor serial output (115200 baud)\npio device monitor\n```\n\n## Contributing\n\nContributions are welcome. If you have your own motor controller design or variant you would like to share, please add it in its own directory rather than modifying the existing files. Pull requests with bug fixes or improvements to the existing design are welcome.\n\n## Disclaimer\n\nThis hardware design is provided as-is, with no warranty of any kind. Anyone who uses, manufactures, or builds upon these files does so entirely at their own risk. The author accepts no responsibility for any damage to property, equipment, or persons resulting from the use of this design. Always verify the design independently before fabrication or use in any application.\n\n## Licence\n\nThe hardware design files in this repository are licensed under the\nCERN Open Hardware Licence Version 2 - Permissive (CERN-OHL-P-2.0).\n\nSee the `LICENSE` file for the full licence text.\n",
+          "encoding": "utf-8",
+          "sha": "1b3245d5032d65e4f838440e4a6634b97d21c1bd",
+          "display_url": "https://github.com/jonathanrandall/four_motor_controller/blob/main/README.md",
+          "display_title": "README.md"
+        },
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "content": "![Ethersweep Logo](/img/logo.png)\n\n# Ethersweep\n### An Open Source Ethernet controllable stepper motor. Easy interfacing with JSON and UDP from any device on the network in any language you choose.\n\nWant to stay updated or participate? Join my [Discord](https://discord.com/invite/rerCyqAcrw)!\n\n*As there is quite some interest in buying a controller, please fill out this form to help me better understand what Ethersweep would be used for https://forms.gle/FLgfvCP1hjCCp2636*\n\nMore media/press material:\nhttps://drive.google.com/drive/folders/1qrk8QeEkzJ8hkr-H0x3y7xxhLTKhMb_F?usp=share_link\n\n    \n\n> *NEWS NOTE:*  Ethersweep is a project still in development. If you plan to order boards for yourself, you can, but expect it to take some work to get everything running! If you have any questions, please write me on Discord: https://discord.com/invite/rerCyqAcrw or\nLinkedIn: https://www.linkedin.com/in/neumi/\nIf you need a custom assembly code or have a special use case in mind, contact me.\nThe latest running version is in the [production](electronic_design/production) directory. It is now an STM32f103 version with TMC2209 stepper driver. The assembly files contain LCSC part numbers and can be directly ordered at JLCPCB including assembly. Only some THT parts and SMD AS5600 encoder must be soldered by hand.\n\n\n<img alt=\"linear axis\" src=\"/img/linear_axis.png\">\n\n\n## What it does\nEthersweep is a motor controller for NEMA17 stepper motors that can be controlled from normal Ethernet networks. This means that you will be able to control motion from normal computers (laptop/server/raspberrypi), mobile devices, microcontrollers, PLCs and any other machine that is capable of sending UDP messages. On top you can control as many motors as you like because every motor gets an IP address from the DHCP server on your network.\nYou can also connect End and E-Stops to the controller. Sensor data like encoder feedback, voltage, running and button states can also be requested via network requests.\n\nAll you need is a network and power between 5v and 30v.\n<img alt=\"PCB Photo\" src=\"/img/pcb_top_v4.png\">\n\n\n\n## What it needs\nEvery motor has to be connected to an Ethernet network (optimally with DHCP) and a power supply between 5...30V. USB can be used for programming the controller with new firmware. End and E-Stops can be connected with JST3-pin connectors. To send instructions to Ethersweep you just send a JSON-encoded message via UDP to the controller's IP and port.\n\n\n## Features:\n- W5500 Ethernet controller\n- STM32f103 Microcontroller @ 72MHz\n- Trinamic TMC2209 Stepper motor driver\n- AS5600 magnetic rotary encoder\n- XT30 power connector\n- Oled 128x32 Display\n- USB programmable\n- Inputs for E-Stop and End-Stop\n- Reset button\n- Fits on a NEMA17 stepper motor\n- standard RJ45 network connector\n\n<img alt=\"Display content\" src=\"/img/display.png\" width=\"100%\">\n\n\n## How to get started:\nBuild an (or multiple) Ethersweep controller. All manufacturing/assembly files work with JLCPCB and only some easy THT soldering is needed when the boards arrive. The code is available in the repository.\n\nConnect your Ethersweep controller to your network via ethernet and connect to a 5.5...30V power source. Stick an encoder magnet (radial magnetized) on a NEMA17 motor shaft and connect the controller to the four M3 screws of the motor.\nOnce connected to power and Ethernet, it searches for an IP address using DHCP. When an IP is found, the controller shows it on the display and it's ready to use. When no IP is found, it defaults to 192.168.1.111 if available. (It is recommended to use DHCP)\n\nNow you can use the Python script to control the motor.\n\n![PCB raw B](/img/ETHERSWEEP4.png)\n![cad rotation](/img/rotation/animation.gif)\n![pcb layout](/img/component_overview.png)\n\n## Using Python to control a stepper motor:\n\n```python\nimport socket\nimport json\n\nIP_MOTOR = \"192.168.1.185\" # ethersweep IP (change to motors IP)\nUDP_PORT = 8888 # ethersweep port\n\n\ndef drive_motor(steps, speed, direction, mode, motor_ip):\n    json_data = json.dumps({'steps': steps, 'speed': speed, 'direction': direction, 'mode': mode})\n    message = json_data.encode()\n    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\n    sock.sendto(message, (motor_ip, UDP_PORT))\n\n\ndrive_motor(100, 9500, 1, 32, IP_MOTOR) # this will spin the motor 100 steps\n```\n\n## Video:\n[![LINK TO VIDEO](https://img.youtube.com/vi/80j7L1H61Hw/0.jpg)](https://www.youtube.com/watch?v=80j7L1H61Hw)\n\nFollow the project on hackaday.io: https://hackaday.io/project/187187-ethersweep\n\n## Upcoming Features:\n- [ ] improved Broadcast mode + motor synchronization for multiple motors\n- [ ] motor servo mode\n- [ ] TMC2209 software interface\n- [ ] scheduler\n\n## Big thanks to the sponsors of this project!\n![sponsor_banner](/img/sponsoring_banner.png)\n",
+          "encoding": "utf-8",
+          "sha": "65324da296bd2c093043b1a313155130bb1d797d",
+          "display_url": "https://github.com/Neumi/ethersweep/blob/master/README.md",
+          "display_title": "README.md"
+        },
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "content": "# @tscircuit/simple-3d-svg\n\nAn extremely simple 3D SVG renderer.\n\n[Online Playground](https://simple-3d-svg.vercel.app/?fixture=%7B%22path%22%3A%22examples%2Finteractive.page.tsx%22%7D) ・ [Blog Post](https://seve.blog/p/i-made-a-3d-svg-renderer-that-projects)\n\n![simple svg](./tests/__snapshots__/scene1.snap.svg)\n\n## Usage\n\n```ts\nimport { renderScene } from \"@tscircuit/simple-3d-svg\"\n\nrenderScene({\n  boxes: [\n    {\n      center: { x: -1.5, y: 0, z: 6 },\n      topLabel: \"Hello World\",\n      topLabelColor: \"white\",\n      faceImages: { top: \"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==\" },\n      size: { x: 2, y: 2, z: 2 },\n      color: \"rgba(255, 0, 0, 0.9)\",\n    },\n    {\n      center: { x: 1.5, y: 0, z: 8 },\n      size: { x: 2, y: 2, z: 2 },\n      color: [0, 128, 255, 0.9],\n    },\n  ],\n  camera: { position: { x: -3, y: 4, z: 0 }, lookAt: { x: 0, y: 0, z: 6 } },\n})\n// \"<svg>...</svg>\"\n```\n\n## Motivation\n\n[tscircuit](https://github.com/tscircuit/tscircuit) projects often need to check\nthe position of 3D objects relative to each other or see \"3D Previews\" of\nprinted circuit boards for visual snapshot testing. However, 3D viewers are often reliant on heavy\ndependencies or browser features making them less portable and consistent.\n\n`@tscircuit/simple-3d-svg` is a fully-typescript, zero-dependency SVG 3d\nrenderer that allows checking the positions and sizes of 3D objects in a scene\nfor visual snapshot testing.\n\n## Notes\n\n- To correctly transform text for 3D, you need a perspective transform. However, the SVG spec only provides affine transforms. As a result, the text on the top of boxes will always look slighly \"off\".\n- You can project an image onto the top face of a box by providing `faceImages.top` with a data URI. The renderer uses two clipped images to achieve a perspective-correct mapping.\n\n## Advanced Configuration\n\nYou can customize the rendering behavior by providing an options object as the second argument to `renderScene`.\n\n### `focalLength`\n\nThe `focalLength` option (default: `2`) controls the perspective effect. Smaller values create a more pronounced perspective (wide-angle lens), while larger values create a flatter perspective (telephoto lens).\n\n```ts\nrenderScene(\n  {\n    /* ... scene definition ... */\n    camera: {\n      position: { x: -3, y: 4, z: 0 },\n      lookAt: { x: 0, y: 0, z: 6 },\n      focalLength: 1.5, // Closer to a wide-angle lens\n    },\n  },\n  {\n    /* ... other options ... */\n  },\n)\n```\n\n### `backgroundColor`\n\nThe `backgroundColor` option allows you to set the background color of the SVG. It accepts a color string (e.g., `\"white\"`, `\"#FF0000\"`) or an RGBA tuple (e.g., `[255, 255, 255, 1]`).\n\n```ts\nrenderScene(\n  {\n    /* ... scene definition ... */\n  },\n  {\n    backgroundColor: \"lightblue\",\n    // or\n    // backgroundColor: [173, 216, 230, 1]\n  },\n)\n```\n\n### `showAxes`\n\nSet `showAxes` to `true` to draw a small XYZ axis guide (about 8% of the SVG size)\nin the lower left corner. Each arrow is labeled and points toward the positive\nX, Y, or Z direction.\n\n```ts\nrenderScene(\n  {\n    /* ... scene definition ... */\n  },\n  {\n    showAxes: true,\n  },\n)\n```\n\n### `showOrigin`\n\nEnable `showOrigin` to draw lines extending from the world origin along the X, Y,\nand Z axes. Segments going in the negative direction are dotted.\n\n```ts\nrenderScene(\n  {\n    /* ... scene definition ... */\n  },\n  {\n    showOrigin: true,\n  },\n)\n```\n",
+          "encoding": "utf-8",
+          "sha": "7e5da2211e0fc5d30d6426c812a9d7d257471471",
+          "display_url": "https://github.com/tscircuit/simple-3d-svg/blob/main/README.md",
+          "display_title": "README.md"
+        },
+        "isError": false
+      }
+    }
+  ],
+  "excluded_candidate": {
+    "repository": "charlesportwoodii/pbrick",
+    "reason": "README limits use to non-commercial purposes"
+  }
+}

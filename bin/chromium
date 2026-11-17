@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Use the project's Playwright Chromium when installed. The system Chromium
+# build on some cloud hosts hangs even on about:blank.
+set -euo pipefail
+pcb_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+for pcb_browser in "$pcb_root"/.run/cache/ms-playwright/chromium_headless_shell-*/chrome-linux/headless_shell; do
+  if [[ -x "$pcb_browser" ]]; then exec "$pcb_browser" "$@"; fi
+done
+exec /usr/bin/chromium "$@"

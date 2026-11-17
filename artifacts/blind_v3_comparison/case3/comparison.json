@@ -1,0 +1,634 @@
+{
+  "blind_solver": {
+    "topology": {
+      "community_count": 22,
+      "repeated_channel_groups": 1,
+      "community_hpwl_mm": [
+        48.729000000000006,
+        55.023,
+        22.516,
+        26.288999999999998,
+        14.673999999999998,
+        14.540999999999997,
+        14.947,
+        3.863999999999997,
+        10.790000000000004,
+        7.787000000000003,
+        8.543,
+        6.274999999999999,
+        3.985999999999997,
+        3.542,
+        3.041999999999998,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_alignment_error_mm": [
+        5.0
+      ]
+    },
+    "power_width_length_distribution_mm": {
+      "GND": {
+        "0.220": 46.87599836843354,
+        "0.180": 2.060000000000006
+      },
+      "+3V3": {
+        "0.500": 17.355501919787308,
+        "0.375": 7.418929709533845
+      },
+      "+6V": {
+        "0.375": 2.26118156391088,
+        "0.500": 111.99853988426466,
+        "0.200": 0.2536047906683481
+      },
+      "/Left Driver/+5V": {
+        "0.500": 41.64632212443607,
+        "0.375": 2.675669711064378,
+        "0.160": 2.694948014364755,
+        "0.300": 0.06293250352560428
+      },
+      "/Right Driver/+5V": {
+        "0.500": 35.14013961242003,
+        "0.125": 1.2583121066536407,
+        "0.160": 0.15520000000000067
+      }
+    },
+    "rf_semantics_unresolved": [],
+    "independent_4layer": {
+      "lvs_opens": [
+        {
+          "net": "/M1_TACHO",
+          "components": 2,
+          "pad_count": 3,
+          "pad_groups": {
+            "0": [
+              "J1-9",
+              "J1-9",
+              "J1-9",
+              "J1-9",
+              "R33-2"
+            ],
+            "2": [
+              "U201-6"
+            ]
+          }
+        }
+      ],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "D1",
+          "D10",
+          "D11",
+          "D12",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "J1",
+          "J102",
+          "J2",
+          "J201",
+          "J202",
+          "J3",
+          "J301",
+          "J302",
+          "Q1",
+          "Q2",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R2",
+          "R20",
+          "R21",
+          "R22",
+          "R23",
+          "R24",
+          "R25",
+          "R26",
+          "R3",
+          "R33",
+          "R34",
+          "R35",
+          "R36",
+          "R37",
+          "R38",
+          "R39",
+          "R4",
+          "R40",
+          "R41",
+          "R42",
+          "R43",
+          "R44",
+          "R45",
+          "R46",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U201",
+          "U301"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": false
+    },
+    "label": "Blind v3 \u2014 Case 3",
+    "pcb_path": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case3/routed.kicad_pcb",
+    "board_dims_mm": [
+      50.0,
+      50.0
+    ],
+    "origin_shift_mm": [
+      0.0,
+      0.0
+    ],
+    "footprint_sides": {
+      "F.Cu": 74
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 4,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "GND"
+    ],
+    "segments_count": 914,
+    "arcs_count": 0,
+    "total_wirelength_mm": 1144.005,
+    "via_barrel_length_mm": 227.147,
+    "wirelength_with_vias_mm": 1371.152,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 260.842,
+      "F.Cu": 627.55,
+      "In2.Cu": 255.613
+    },
+    "segments_by_layer": {
+      "B.Cu": 106,
+      "F.Cu": 682,
+      "In2.Cu": 126
+    },
+    "trace_width_histogram": {
+      "0.125": 72,
+      "0.160": 625,
+      "0.180": 4,
+      "0.200": 3,
+      "0.220": 40,
+      "0.300": 1,
+      "0.375": 12,
+      "0.500": 157
+    },
+    "vias_total": 146,
+    "vias_signal": 73,
+    "vias_gnd": 73,
+    "via_sizes": {
+      "0.50/0.25": 2,
+      "0.55/0.30": 113,
+      "0.60/0.30": 31
+    },
+    "diff_pairs": [],
+    "decoupling_cap_distances": {
+      "C11": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U201.8(+6V)",
+        "dist_mm": 2.391
+      },
+      "C12": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U301.8(+6V)",
+        "dist_mm": 2.068
+      },
+      "C13": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U201.8(+6V)",
+        "dist_mm": 3.197
+      },
+      "C14": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U301.8(+6V)",
+        "dist_mm": 2.905
+      },
+      "C3": {
+        "rails": [
+          "/Left Driver/+5V"
+        ],
+        "nearest_ic_pin": "U201.15(/Left Driver/+5V)",
+        "dist_mm": 2.522
+      },
+      "C4": {
+        "rails": [
+          "/Right Driver/+5V"
+        ],
+        "nearest_ic_pin": "U301.15(/Right Driver/+5V)",
+        "dist_mm": 1.989
+      },
+      "C5": {
+        "rails": [
+          "/Left Driver/HNA"
+        ],
+        "nearest_ic_pin": "U201.20(/Left Driver/HNA)",
+        "dist_mm": 6.262
+      },
+      "C6": {
+        "rails": [
+          "/Right Driver/HNA"
+        ],
+        "nearest_ic_pin": "U301.20(/Right Driver/HNA)",
+        "dist_mm": 10.259
+      }
+    },
+    "avg_decoupling_dist_mm": 3.949,
+    "max_decoupling_dist_mm": 10.259,
+    "header_edge_distances_mm": {
+      "J1": 7.5,
+      "J102": 2.6,
+      "J2": 5.2,
+      "J201": 5.5,
+      "J202": 3.8,
+      "J3": 5.2,
+      "J301": 6.8,
+      "J302": 3.8
+    },
+    "avg_header_edge_dist_mm": 5.05,
+    "drc_lvs": {
+      "footprints": 74,
+      "vias": 146,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [
+        {
+          "net": "/M1_TACHO",
+          "pad_count": 3,
+          "components": 2
+        }
+      ],
+      "min_inter_net_clearance_mm": 0.1317,
+      "worst_clearance_pair": "F.Cu:/M1_FAULT<->/M2_FAULT"
+    },
+    "serialized_gnd_fill_by_layer": {
+      "F.Cu": 0.694448,
+      "In1.Cu": 0.89334,
+      "In2.Cu": 0.838271,
+      "B.Cu": 0.83236
+    }
+  },
+  "human_reference": {
+    "topology": {
+      "community_count": 22,
+      "repeated_channel_groups": 1,
+      "community_hpwl_mm": [
+        44.875,
+        62.653699999999986,
+        16.087500000000006,
+        12.625000000000007,
+        14.400000000000006,
+        24.541300000000007,
+        6.511300000000006,
+        2.5,
+        2.6413000000000153,
+        2.6413000000000153,
+        2.6413000000000153,
+        2.5,
+        2.5,
+        2.6413000000000153,
+        2.5,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_alignment_error_mm": [
+        1.8700000000000045
+      ]
+    },
+    "power_width_length_distribution_mm": {
+      "+6V": {
+        "0.200": 36.5477268735626,
+        "0.300": 8.607132931699711,
+        "0.400": 6.414213562373095
+      },
+      "GND": {
+        "0.200": 114.85250927991001
+      },
+      "/Left Driver/+5V": {
+        "0.200": 51.43407867060538
+      },
+      "/Right Driver/+5V": {
+        "0.200": 52.75002923138573
+      },
+      "+3V3": {
+        "0.200": 106.75225890368615
+      }
+    },
+    "rf_semantics_unresolved": [],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "D1",
+          "D10",
+          "D11",
+          "D12",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "J1",
+          "J102",
+          "J2",
+          "J201",
+          "J202",
+          "J3",
+          "J301",
+          "J302",
+          "Q1",
+          "Q2",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R2",
+          "R20",
+          "R21",
+          "R22",
+          "R23",
+          "R24",
+          "R25",
+          "R26",
+          "R3",
+          "R33",
+          "R34",
+          "R35",
+          "R36",
+          "R37",
+          "R38",
+          "R39",
+          "R4",
+          "R40",
+          "R41",
+          "R42",
+          "R43",
+          "R44",
+          "R45",
+          "R46",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U201",
+          "U301"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": true
+    },
+    "label": "Human reference \u2014 Case 3",
+    "pcb_path": "/workspace/cloud-pcb-studio/artifacts/blind_v3_comparison/case3/reference_for_analysis.kicad_pcb",
+    "board_dims_mm": [
+      50.0,
+      50.0
+    ],
+    "origin_shift_mm": [
+      135.0,
+      56.0
+    ],
+    "footprint_sides": {
+      "F.Cu": 73,
+      "B.Cu": 1
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 2,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "+6V",
+      "GND"
+    ],
+    "segments_count": 700,
+    "arcs_count": 0,
+    "total_wirelength_mm": 1506.242,
+    "via_barrel_length_mm": 207.03,
+    "wirelength_with_vias_mm": 1713.272,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 554.916,
+      "F.Cu": 951.326
+    },
+    "segments_by_layer": {
+      "B.Cu": 151,
+      "F.Cu": 549
+    },
+    "trace_width_histogram": {
+      "0.200": 668,
+      "0.300": 7,
+      "0.400": 25
+    },
+    "vias_total": 134,
+    "vias_signal": 98,
+    "vias_gnd": 36,
+    "via_sizes": {
+      "0.60/0.30": 134
+    },
+    "diff_pairs": [],
+    "decoupling_cap_distances": {
+      "C11": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U201.8(+6V)",
+        "dist_mm": 5.524
+      },
+      "C12": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U301.8(+6V)",
+        "dist_mm": 4.114
+      },
+      "C13": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U201.8(+6V)",
+        "dist_mm": 3.524
+      },
+      "C14": {
+        "rails": [
+          "+6V"
+        ],
+        "nearest_ic_pin": "U301.8(+6V)",
+        "dist_mm": 2.605
+      },
+      "C3": {
+        "rails": [
+          "/Left Driver/+5V"
+        ],
+        "nearest_ic_pin": "U201.15(/Left Driver/+5V)",
+        "dist_mm": 4.129
+      },
+      "C4": {
+        "rails": [
+          "/Right Driver/+5V"
+        ],
+        "nearest_ic_pin": "U301.15(/Right Driver/+5V)",
+        "dist_mm": 2.769
+      },
+      "C5": {
+        "rails": [
+          "/Left Driver/HNA"
+        ],
+        "nearest_ic_pin": "U201.18(/Left Driver/HNA)",
+        "dist_mm": 3.594
+      },
+      "C6": {
+        "rails": [
+          "/Right Driver/HNA"
+        ],
+        "nearest_ic_pin": "U301.18(/Right Driver/HNA)",
+        "dist_mm": 3.825
+      }
+    },
+    "avg_decoupling_dist_mm": 3.76,
+    "max_decoupling_dist_mm": 5.524,
+    "header_edge_distances_mm": {
+      "J1": 2.81,
+      "J102": 2.5,
+      "J2": 4.53,
+      "J201": 4.0,
+      "J202": 4.53,
+      "J3": 4.03,
+      "J301": 4.0,
+      "J302": 5.03
+    },
+    "avg_header_edge_dist_mm": 3.93,
+    "drc_lvs": {
+      "footprints": 74,
+      "vias": 134,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [],
+      "min_inter_net_clearance_mm": 0.2,
+      "worst_clearance_pair": "F.Cu:/Left Driver/CP<->/M1_TACHO"
+    },
+    "serialized_gnd_fill_by_layer": {
+      "F.Cu": 0.391183,
+      "In1.Cu": 0.819023,
+      "B.Cu": 0.63533
+    }
+  },
+  "deltas": {
+    "wirelength_ratio_blind_vs_ref": 0.76,
+    "vias_total_blind_vs_ref": [
+      146,
+      134
+    ],
+    "vias_signal_blind_vs_ref": [
+      73,
+      98
+    ],
+    "vias_gnd_blind_vs_ref": [
+      73,
+      36
+    ],
+    "avg_decoupling_dist_mm_blind_vs_ref": [
+      3.949,
+      3.76
+    ],
+    "avg_header_edge_dist_mm_blind_vs_ref": [
+      5.05,
+      3.93
+    ],
+    "diff_pairs_blind_vs_ref": [
+      [],
+      []
+    ]
+  }
+}

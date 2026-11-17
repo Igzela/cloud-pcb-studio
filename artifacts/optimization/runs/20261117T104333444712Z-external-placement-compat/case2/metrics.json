@@ -1,0 +1,25 @@
+{
+  "values": {
+    "unrouted": 0,
+    "opens": 0,
+    "shorts": 0,
+    "spacing": 0,
+    "via_in_pad": 0,
+    "gerber_failures": 0,
+    "annular_failures": 0,
+    "silk_overlap_mm2": 0.0,
+    "edge_deficit_mm": 0.0,
+    "rf_failures": 1,
+    "mechanical_collisions": 0,
+    "unverified_envelopes": 59,
+    "cap_distance_mm": 7.706,
+    "ground_fill_deficit": 0.0,
+    "wirelength_mm": 1248.608
+  },
+  "failed_gates": [
+    "mechanical_zero_with_verified_envelopes",
+    "rf_all_four_layers_clear"
+  ],
+  "hard_pass": false,
+  "evidence_errors": []
+}

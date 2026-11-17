@@ -1,0 +1,114 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0 -- /workspace/cloud-pcb-studio/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/cloud-pcb-studio
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 43 items
+
+tests/test_general_v3.py::test_topology_detects_exact_repeated_channels_without_ground_merge PASSED [  2%]
+tests/test_general_v3.py::test_topology_rename_invariance PASSED         [  4%]
+tests/test_general_v3.py::test_one_fine_pitch_part_does_not_collapse_power_trunks PASSED [  6%]
+tests/test_general_v3.py::test_dsn_overrides_compile_to_exclusive_classes PASSED [  9%]
+tests/test_general_v3.py::test_rf_requires_geometry_evidence_and_rotates_four_layers PASSED [ 11%]
+tests/test_general_v3.py::test_mechanical_detects_rotated_bodies_holes_and_unknown_heights PASSED [ 13%]
+tests/test_general_v3.py::test_layered_lvs_rejects_projected_crossing_and_requires_plating PASSED [ 16%]
+tests/test_general_v3.py::test_rf_audit_catches_inner_layer_copper PASSED [ 18%]
+tests/test_general_v3.py::test_power_plane_rejects_unplated_projection PASSED [ 20%]
+tests/test_general_v3.py::test_assembly_is_self_contained_and_has_real_height PASSED [ 23%]
+tests/test_general_v3.py::test_zone_partition_preserves_connected_copper_without_micron_slots PASSED [ 25%]
+tests/test_general_v3.py::test_import_omitted_angle_is_absolute_zero_not_footprint_angle PASSED [ 27%]
+tests/test_general_v3.py::test_same_net_overlap_filter_keeps_foreign_net_and_missing_records PASSED [ 30%]
+tests/test_general_v3.py::test_power_island_is_not_pierced_by_added_ground_stitching PASSED [ 32%]
+tests/test_general_v3.py::test_inner_signal_is_cut_out_of_inner_ground_fill PASSED [ 34%]
+tests/test_general_v3.py::test_annular_geometry_rejects_missing_copper_and_checks_slots PASSED [ 37%]
+tests/test_general_v3.py::test_gerber_polarity_order_preserves_late_dark_flash PASSED [ 39%]
+tests/test_layout_route.py::test_sanitize_kicad_sexpr_strips_bare_models_preserves_valid PASSED [ 41%]
+tests/test_layout_route.py::test_parse_ses_coordinate_and_resolution_scaling PASSED [ 44%]
+tests/test_layout_route.py::test_pipeline_a_tscircuit_artifacts_and_physics PASSED [ 46%]
+tests/test_layout_route.py::test_pipeline_b_kicad_fastroute_artifacts_and_physics PASSED [ 48%]
+tests/test_layout_route.py::test_autorouter_bakeoff_comparison PASSED    [ 51%]
+tests/test_layout_route.py::test_board_to_dsn_skips_non_copper_paste_pads_and_uses_pad_angle PASSED [ 53%]
+tests/test_parts_dfm.py::test_catalog_loading_and_offline_resilience PASSED [ 55%]
+tests/test_parts_dfm.py::test_board1_bom_selection_and_cost_math PASSED  [ 58%]
+tests/test_parts_dfm.py::test_stackup_finish_state_machine PASSED        [ 60%]
+tests/test_parts_dfm.py::test_impedance_calibration_and_ampacity_physics PASSED [ 62%]
+tests/test_parts_dfm.py::test_ai_trap_rejections_and_board1_passes PASSED [ 65%]
+tests/test_parts_dfm.py::test_ngspice_ac_imag_frequency_sanitizer PASSED [ 67%]
+tests/test_parts_dfm.py::test_ngspice_simulations_and_cli_artifacts PASSED [ 69%]
+tests/test_special_ip.py::test_planar_coil_geometry_and_constructive_flux_invariant PASSED [ 72%]
+tests/test_special_ip.py::test_planar_coil_counterfactual_canceling_fails_flux_addition PASSED [ 74%]
+tests/test_special_ip.py::test_planar_coil_ngspice_step_and_pwm_flyback PASSED [ 76%]
+tests/test_special_ip.py::test_captouch_chevron_slider_clearances PASSED [ 79%]
+tests/test_special_ip.py::test_curved_routing_chaikin_arcs_and_meander_obstacle_avoidance PASSED [ 81%]
+tests/test_special_ip.py::test_full_board_assembly_kicad_and_gerbonara_pygerber_roundtrip PASSED [ 83%]
+tests/test_verify_gate.py::test_strict_pygerber_rejects_malformed_g75_without_star PASSED [ 86%]
+tests/test_verify_gate.py::test_spec_gate_rejects_low_stock_nan_mc_and_high_esd PASSED [ 88%]
+tests/test_verify_gate.py::test_board2_gate_rejects_tau_over_2pct_and_bad_edge_margin PASSED [ 90%]
+tests/test_verify_gate.py::test_real_board1_spec_and_board2_special_pass_all_gates PASSED [ 93%]
+tests/test_verify_gate.py::test_real_board1_pipelines_excellon_and_bakeoff PASSED [ 95%]
+tests/test_verify_gate.py::test_full_verify_gate_renders_workbench_and_chromium PASSED [ 97%]
+tests/test_verify_gate.py::test_kicad_drc_lvs_interior_epad_exemption_and_multilayer_zone_layer_filter PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/test_general_v3.py::test_inner_signal_is_cut_out_of_inner_ground_fill
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/shapely/decorators.py:184: DeprecationWarning: The 'resolution' argument is deprecated. Use 'quad_segs' instead
+    result = func(*args, **kwargs)
+
+tests/test_layout_route.py::test_pipeline_a_tscircuit_artifacts_and_physics
+tests/test_verify_gate.py::test_real_board1_pipelines_excellon_and_bakeoff
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/gerbonara/excellon.py:573: SyntaxWarning: /workspace/cloud-pcb-studio/artifacts/board1_tscircuit/PTH.drl:16 "G90": G90 header statement found after end of header
+    warnings.warn(f'{self.filename}:{self.lineno} "{self.line}": {msg}', SyntaxWarning)
+
+tests/test_layout_route.py::test_pipeline_a_tscircuit_artifacts_and_physics
+tests/test_verify_gate.py::test_real_board1_pipelines_excellon_and_bakeoff
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/gerbonara/excellon.py:573: SyntaxWarning: /workspace/cloud-pcb-studio/artifacts/board1_tscircuit/NPTH.drl:12 "G90": G90 header statement found after end of header
+    warnings.warn(f'{self.filename}:{self.lineno} "{self.line}": {msg}', SyntaxWarning)
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:399: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Literal("LM") + oneOf("N XY Y X").set_results_name("mirroring"),
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:405: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Literal("LP") + oneOf("C D").set_results_name("polarity"),
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:435: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Literal("AS") + oneOf("AXBY AYBX").set_results_name("correspondence"),
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:296: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Literal("IP") + oneOf("POS NEG").set_results_name("image_polarity"),
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:459: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    + oneOf("L T").set_results_name("zeros_mode").set_name("zeros mode")
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:460: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    + oneOf("A I")
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:327: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    + oneOf("MM IN").set_results_name("unit").set_name("unit"),
+
+tests/test_special_ip.py: 114 warnings
+tests/test_verify_gate.py: 492 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:1002: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Combine(Opt(oneOf("+ -")) + Word(nums)),
+
+tests/test_special_ip.py: 722 warnings
+tests/test_verify_gate.py: 3116 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:856: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Suppress(oneOf("x X")),
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================= 43 passed, 5156 warnings in 71.15s (0:01:11) =================

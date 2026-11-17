@@ -1,0 +1,1332 @@
+{
+  "blind_solver": {
+    "topology": {
+      "community_count": 14,
+      "repeated_channel_groups": 0,
+      "community_hpwl_mm": [
+        36.719,
+        51.640499999999996,
+        26.051999999999996,
+        40.256,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_alignment_error_mm": []
+    },
+    "power_width_length_distribution_mm": {
+      "GND": {
+        "0.220": 34.53064184487215,
+        "0.180": 1.0576153601380798,
+        "0.160": 36.88737547192059,
+        "0.125": 3.240271752343999
+      },
+      "+3V3": {
+        "0.500": 85.68056814168658,
+        "0.125": 16.959548684029205,
+        "0.200": 2.7565877559297496,
+        "0.375": 1.9540666868424401
+      }
+    },
+    "rf_semantics_unresolved": [],
+    "independent_4layer": {
+      "lvs_opens": [
+        {
+          "net": "/U3TX_P",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "C1-1"
+            ],
+            "0": [
+              "U3-18"
+            ]
+          }
+        },
+        {
+          "net": "/U3TX_N",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "C2-1"
+            ],
+            "1": [
+              "U3-19"
+            ]
+          }
+        },
+        {
+          "net": "Net-(U3-CKXTAL2)",
+          "components": 2,
+          "pad_count": 3,
+          "pad_groups": {
+            "2": [
+              "C8-1",
+              "X1-1"
+            ],
+            "0": [
+              "U3-45"
+            ]
+          }
+        },
+        {
+          "net": "/M0_P",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "LAN1-1",
+              "LAN1-1",
+              "LAN1-1",
+              "LAN1-1"
+            ],
+            "1": [
+              "U3-2"
+            ]
+          }
+        },
+        {
+          "net": "/M1_P",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "LAN1-3",
+              "LAN1-3",
+              "LAN1-3",
+              "LAN1-3"
+            ],
+            "1": [
+              "U3-5"
+            ]
+          }
+        },
+        {
+          "net": "/M1_N",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "LAN1-4",
+              "LAN1-4",
+              "LAN1-4",
+              "LAN1-4"
+            ],
+            "1": [
+              "U3-6"
+            ]
+          }
+        },
+        {
+          "net": "/M2_N",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "LAN1-8",
+              "LAN1-8",
+              "LAN1-8",
+              "LAN1-8"
+            ],
+            "0": [
+              "U3-8"
+            ]
+          }
+        },
+        {
+          "net": "/M3_P",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "LAN1-9",
+              "LAN1-9",
+              "LAN1-9",
+              "LAN1-9"
+            ],
+            "0": [
+              "U3-10"
+            ]
+          }
+        },
+        {
+          "net": "/U3SRX_P",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "U3-14"
+            ],
+            "1": [
+              "USB1-9"
+            ]
+          }
+        }
+      ],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 3,
+        "collisions": [
+          {
+            "kind": "body_body",
+            "refdes": "C15",
+            "other": "FB1",
+            "overlap_mm2": 0.49477330559999766
+          },
+          {
+            "kind": "body_body",
+            "refdes": "C17",
+            "other": "C5",
+            "overlap_mm2": 0.3512819999999991
+          },
+          {
+            "kind": "body_body",
+            "refdes": "FB1",
+            "other": "R12",
+            "overlap_mm2": 0.2861783455999974
+          }
+        ],
+        "unverified_envelopes": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C22",
+          "C24",
+          "C25",
+          "C26",
+          "C27",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "FB1",
+          "FID1",
+          "FID2",
+          "FID3",
+          "FID4",
+          "L1",
+          "LAN1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U2",
+          "U3",
+          "U4",
+          "USB1",
+          "X1"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": false
+    },
+    "label": "Blind v3 \u2014 Case 5",
+    "pcb_path": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case5/routed.kicad_pcb",
+    "board_dims_mm": [
+      51.5,
+      19.0
+    ],
+    "origin_shift_mm": [
+      0.0,
+      0.0
+    ],
+    "footprint_sides": {
+      "F.Cu": 48,
+      "B.Cu": 4
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 4,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "GND"
+    ],
+    "segments_count": 808,
+    "arcs_count": 0,
+    "total_wirelength_mm": 935.4,
+    "via_barrel_length_mm": 163.359,
+    "wirelength_with_vias_mm": 1098.759,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 234.26,
+      "F.Cu": 349.077,
+      "In2.Cu": 352.063
+    },
+    "segments_by_layer": {
+      "B.Cu": 155,
+      "F.Cu": 464,
+      "In2.Cu": 189
+    },
+    "trace_width_histogram": {
+      "0.125": 140,
+      "0.145": 1,
+      "0.160": 461,
+      "0.168": 1,
+      "0.174": 2,
+      "0.180": 1,
+      "0.200": 9,
+      "0.210": 4,
+      "0.217": 5,
+      "0.220": 34,
+      "0.280": 60,
+      "0.290": 16,
+      "0.375": 4,
+      "0.500": 70
+    },
+    "vias_total": 105,
+    "vias_signal": 67,
+    "vias_gnd": 38,
+    "via_sizes": {
+      "0.55/0.30": 102,
+      "0.60/0.30": 3
+    },
+    "diff_pairs": [
+      {
+        "pos_net": "/M0_P",
+        "neg_net": "/M0_N",
+        "pos_len_mm": 0.0,
+        "neg_len_mm": 10.207,
+        "length_mismatch_mm": 10.207,
+        "valid_connected_pair": false
+      },
+      {
+        "pos_net": "/M1_P",
+        "neg_net": "/M1_N",
+        "pos_len_mm": 0.0,
+        "neg_len_mm": 0.0,
+        "length_mismatch_mm": 0.0,
+        "valid_connected_pair": false
+      },
+      {
+        "pos_net": "/M2_P",
+        "neg_net": "/M2_N",
+        "pos_len_mm": 13.134,
+        "neg_len_mm": 0.0,
+        "length_mismatch_mm": 13.134,
+        "valid_connected_pair": false
+      },
+      {
+        "pos_net": "/M3_P",
+        "neg_net": "/M3_N",
+        "pos_len_mm": 0.0,
+        "neg_len_mm": 15.03,
+        "length_mismatch_mm": 15.03,
+        "valid_connected_pair": false
+      },
+      {
+        "pos_net": "/U2D_P",
+        "neg_net": "/U2D_N",
+        "pos_len_mm": 16.718,
+        "neg_len_mm": 17.592,
+        "length_mismatch_mm": 0.874,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/U2_P",
+        "neg_net": "/U2_N",
+        "pos_len_mm": 20.48,
+        "neg_len_mm": 25.739,
+        "length_mismatch_mm": 5.259,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/U3SRX_P",
+        "neg_net": "/U3SRX_N",
+        "pos_len_mm": 0.0,
+        "neg_len_mm": 32.368,
+        "length_mismatch_mm": 32.368,
+        "valid_connected_pair": false
+      },
+      {
+        "pos_net": "/U3STX_P",
+        "neg_net": "/U3STX_N",
+        "pos_len_mm": 15.466,
+        "neg_len_mm": 8.943,
+        "length_mismatch_mm": 6.523,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/U3TX_P",
+        "neg_net": "/U3TX_N",
+        "pos_len_mm": 0.0,
+        "neg_len_mm": 0.0,
+        "length_mismatch_mm": 0.0,
+        "valid_connected_pair": false
+      }
+    ],
+    "decoupling_cap_distances": {
+      "C10": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.1(+3V3)",
+        "dist_mm": 2.453
+      },
+      "C11": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.8(+3V3)",
+        "dist_mm": 1.852
+      },
+      "C12": {
+        "rails": [
+          "Net-(U3-VDD5)"
+        ],
+        "nearest_ic_pin": "U4.1(Net-(U3-VDD5))",
+        "dist_mm": 4.027
+      },
+      "C14": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.12(+3V3)",
+        "dist_mm": 2.453
+      },
+      "C15": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.8(+3V3)",
+        "dist_mm": 3.741
+      },
+      "C16": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.31(/V12)",
+        "dist_mm": 12.187
+      },
+      "C17": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.31(/V12)",
+        "dist_mm": 12.514
+      },
+      "C18": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.46(/V12)",
+        "dist_mm": 4.3
+      },
+      "C19": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.31(/V12)",
+        "dist_mm": 10.478
+      },
+      "C20": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.31(/V12)",
+        "dist_mm": 9.192
+      },
+      "C21": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.31(/V12)",
+        "dist_mm": 9.252
+      },
+      "C22": {
+        "rails": [
+          "Net-(U3-DVDD10_UPS)"
+        ],
+        "nearest_ic_pin": "U3.27(Net-(U3-DVDD10_UPS))",
+        "dist_mm": 3.668
+      },
+      "C24": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.31(/V12)",
+        "dist_mm": 8.435
+      },
+      "C25": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.9(/V12)",
+        "dist_mm": 4.01
+      },
+      "C26": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.24(/V12)",
+        "dist_mm": 10.872
+      },
+      "C27": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.43(+3V3)",
+        "dist_mm": 3.394
+      },
+      "C3": {
+        "rails": [
+          "Net-(LAN1-P5)"
+        ],
+        "nearest_ic_pin": "LAN1.5(Net-(LAN1-P5))",
+        "dist_mm": 6.85
+      },
+      "C4": {
+        "rails": [
+          "Net-(LAN1-P6)"
+        ],
+        "nearest_ic_pin": "LAN1.6(Net-(LAN1-P6))",
+        "dist_mm": 2.224
+      },
+      "C5": {
+        "rails": [
+          "Net-(C5-Pad1)"
+        ],
+        "nearest_ic_pin": "USB1.0(Net-(C5-Pad1))",
+        "dist_mm": 6.558
+      },
+      "C6": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.35(+3V3)",
+        "dist_mm": 3.917
+      },
+      "C7": {
+        "rails": [
+          "Net-(U3-CKXTAL1)"
+        ],
+        "nearest_ic_pin": "X1.3(Net-(U3-CKXTAL1))",
+        "dist_mm": 16.003
+      },
+      "C8": {
+        "rails": [
+          "Net-(U3-CKXTAL2)"
+        ],
+        "nearest_ic_pin": "X1.1(Net-(U3-CKXTAL2))",
+        "dist_mm": 13.82
+      },
+      "C9": {
+        "rails": [
+          "Net-(C9-Pad1)"
+        ],
+        "nearest_ic_pin": "LAN1.SH1(Net-(C9-Pad1))",
+        "dist_mm": 6.122
+      }
+    },
+    "avg_decoupling_dist_mm": 6.884,
+    "max_decoupling_dist_mm": 16.003,
+    "header_edge_distances_mm": {},
+    "avg_header_edge_dist_mm": null,
+    "drc_lvs": {
+      "footprints": 52,
+      "vias": 105,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [
+        {
+          "net": "/U3TX_P",
+          "pad_count": 2,
+          "components": 2
+        },
+        {
+          "net": "/U3TX_N",
+          "pad_count": 2,
+          "components": 2
+        },
+        {
+          "net": "Net-(U3-CKXTAL2)",
+          "pad_count": 3,
+          "components": 2
+        },
+        {
+          "net": "/M0_P",
+          "pad_count": 2,
+          "components": 2
+        },
+        {
+          "net": "/M1_P",
+          "pad_count": 2,
+          "components": 2
+        },
+        {
+          "net": "/M1_N",
+          "pad_count": 2,
+          "components": 2
+        },
+        {
+          "net": "/M2_N",
+          "pad_count": 2,
+          "components": 2
+        },
+        {
+          "net": "/M3_P",
+          "pad_count": 2,
+          "components": 2
+        },
+        {
+          "net": "/U3SRX_P",
+          "pad_count": 2,
+          "components": 2
+        }
+      ],
+      "min_inter_net_clearance_mm": 0.1266,
+      "worst_clearance_pair": "B.Cu:GND<->/LED0"
+    },
+    "serialized_gnd_fill_by_layer": {
+      "F.Cu": 0.492243,
+      "In1.Cu": 0.755098,
+      "In2.Cu": 0.587141,
+      "B.Cu": 0.615499
+    }
+  },
+  "human_reference": {
+    "topology": {
+      "community_count": 14,
+      "repeated_channel_groups": 0,
+      "community_hpwl_mm": [
+        36.32199999999999,
+        42.7985,
+        23.918999999999997,
+        21.208999999999996,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_alignment_error_mm": []
+    },
+    "power_width_length_distribution_mm": {
+      "GND": {
+        "0.508": 46.1964793353141,
+        "0.200": 9.346693199941662,
+        "0.762": 3.290836795288968,
+        "0.203": 15.942378777105157,
+        "0.254": 15.88872324413502,
+        "1.016": 16.08168195874215,
+        "0.152": 1.5856307345282967,
+        "0.406": 34.79373476738279
+      },
+      "+3V3": {
+        "0.508": 13.268342769683253,
+        "0.203": 5.868668658815429,
+        "0.305": 3.979306864263229,
+        "0.254": 5.5020650595958775,
+        "0.200": 1.7987269999999853,
+        "0.406": 3.3544768363207575,
+        "0.152": 19.433889993659015,
+        "1.016": 1.8053504850456066,
+        "0.762": 1.6600256121069181
+      }
+    },
+    "rf_semantics_unresolved": [],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [
+        {
+          "refdes": "",
+          "pad": "2",
+          "x": 85.217,
+          "y": 63.246
+        },
+        {
+          "refdes": "",
+          "pad": "2",
+          "x": 89.281,
+          "y": 72.263
+        },
+        {
+          "refdes": "",
+          "pad": "1",
+          "x": 86.995,
+          "y": 64.262
+        }
+      ],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C22",
+          "C24",
+          "C25",
+          "C26",
+          "C27",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "FB1",
+          "FID1",
+          "FID2",
+          "FID3",
+          "FID4",
+          "L1",
+          "LAN1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U2",
+          "U3",
+          "U4",
+          "USB1",
+          "X1"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": false
+    },
+    "label": "Human reference \u2014 Case 5",
+    "pcb_path": "/workspace/cloud-pcb-studio/artifacts/blind_v3_comparison/case5/reference_for_analysis.kicad_pcb",
+    "board_dims_mm": [
+      51.5,
+      19.0
+    ],
+    "origin_shift_mm": [
+      55.0,
+      60.5
+    ],
+    "footprint_sides": {
+      "F.Cu": 51,
+      "B.Cu": 8
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 150,
+    "zone_layers": [
+      "B.Cu",
+      "F&B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "",
+      "+3V3",
+      "/LED0",
+      "/LED1",
+      "/LED2",
+      "/M0_N",
+      "/M0_P",
+      "/M1_N",
+      "/M1_P",
+      "/M2_N",
+      "/M2_P",
+      "/M3_N",
+      "/M3_P",
+      "/U2D_N",
+      "/U2D_P",
+      "/U2_N",
+      "/U2_P",
+      "/U3SRX_N",
+      "/U3SRX_P",
+      "/U3STX_N",
+      "/U3STX_P",
+      "/U3TX_N",
+      "/U3TX_P",
+      "/V12",
+      "/VBUS",
+      "GND",
+      "Net-(C5-Pad1)",
+      "Net-(C9-Pad1)",
+      "Net-(LAN1-P5)",
+      "Net-(LAN1-P6)",
+      "Net-(LAN1-Pad12)",
+      "Net-(LAN1-Pad14)",
+      "Net-(U2-CLK)",
+      "Net-(U2-CS)",
+      "Net-(U2-DI)",
+      "Net-(U3-CKXTAL1)",
+      "Net-(U3-CKXTAL2)",
+      "Net-(U3-DVDD10_UPS)",
+      "Net-(U3-GPIO)",
+      "Net-(U3-RSET)",
+      "Net-(U3-VDD5)",
+      "Net-(U3-XTALDET)",
+      "Net-(U4-LX)"
+    ],
+    "segments_count": 680,
+    "arcs_count": 0,
+    "total_wirelength_mm": 875.467,
+    "via_barrel_length_mm": 115.875,
+    "wirelength_with_vias_mm": 991.342,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 120.122,
+      "F.Cu": 689.363,
+      "In1.Cu": 20.473,
+      "In2.Cu": 45.509
+    },
+    "segments_by_layer": {
+      "B.Cu": 66,
+      "F.Cu": 585,
+      "In1.Cu": 7,
+      "In2.Cu": 22
+    },
+    "trace_width_histogram": {
+      "0.127": 67,
+      "0.152": 96,
+      "0.155": 2,
+      "0.178": 75,
+      "0.200": 17,
+      "0.203": 75,
+      "0.250": 1,
+      "0.254": 37,
+      "0.305": 24,
+      "0.406": 52,
+      "0.508": 132,
+      "0.762": 28,
+      "1.016": 73,
+      "1.524": 1
+    },
+    "vias_total": 75,
+    "vias_signal": 48,
+    "vias_gnd": 27,
+    "via_sizes": {
+      "0.80/0.40": 44,
+      "1.00/0.60": 31
+    },
+    "diff_pairs": [
+      {
+        "pos_net": "/M0_P",
+        "neg_net": "/M0_N",
+        "pos_len_mm": 12.612,
+        "neg_len_mm": 11.958,
+        "length_mismatch_mm": 0.654,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/M1_P",
+        "neg_net": "/M1_N",
+        "pos_len_mm": 11.802,
+        "neg_len_mm": 10.819,
+        "length_mismatch_mm": 0.983,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/M2_P",
+        "neg_net": "/M2_N",
+        "pos_len_mm": 10.729,
+        "neg_len_mm": 10.746,
+        "length_mismatch_mm": 0.017,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/M3_P",
+        "neg_net": "/M3_N",
+        "pos_len_mm": 11.705,
+        "neg_len_mm": 11.731,
+        "length_mismatch_mm": 0.026,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/U2D_P",
+        "neg_net": "/U2D_N",
+        "pos_len_mm": 6.092,
+        "neg_len_mm": 5.755,
+        "length_mismatch_mm": 0.337,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/U2_P",
+        "neg_net": "/U2_N",
+        "pos_len_mm": 20.184,
+        "neg_len_mm": 21.538,
+        "length_mismatch_mm": 1.354,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/U3SRX_P",
+        "neg_net": "/U3SRX_N",
+        "pos_len_mm": 35.0,
+        "neg_len_mm": 35.061,
+        "length_mismatch_mm": 0.061,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/U3STX_P",
+        "neg_net": "/U3STX_N",
+        "pos_len_mm": 5.905,
+        "neg_len_mm": 6.487,
+        "length_mismatch_mm": 0.582,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/U3TX_P",
+        "neg_net": "/U3TX_N",
+        "pos_len_mm": 30.042,
+        "neg_len_mm": 28.885,
+        "length_mismatch_mm": 1.157,
+        "valid_connected_pair": true
+      }
+    ],
+    "decoupling_cap_distances": {
+      "C10": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.1(+3V3)",
+        "dist_mm": 1.786
+      },
+      "C11": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.12(+3V3)",
+        "dist_mm": 3.481
+      },
+      "C12": {
+        "rails": [
+          "Net-(U3-VDD5)"
+        ],
+        "nearest_ic_pin": "U4.4(Net-(U3-VDD5))",
+        "dist_mm": 3.041
+      },
+      "C14": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.28(+3V3)",
+        "dist_mm": 2.431
+      },
+      "C15": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.43(+3V3)",
+        "dist_mm": 5.119
+      },
+      "C16": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.4(/V12)",
+        "dist_mm": 4.392
+      },
+      "C17": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.31(/V12)",
+        "dist_mm": 7.516
+      },
+      "C18": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.9(/V12)",
+        "dist_mm": 3.675
+      },
+      "C19": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.46(/V12)",
+        "dist_mm": 3.657
+      },
+      "C20": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.31(/V12)",
+        "dist_mm": 4.989
+      },
+      "C21": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.42(/V12)",
+        "dist_mm": 4.054
+      },
+      "C22": {
+        "rails": [
+          "Net-(U3-DVDD10_UPS)"
+        ],
+        "nearest_ic_pin": "U3.27(Net-(U3-DVDD10_UPS))",
+        "dist_mm": 2.583
+      },
+      "C24": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.13(/V12)",
+        "dist_mm": 2.14
+      },
+      "C25": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.13(/V12)",
+        "dist_mm": 2.744
+      },
+      "C26": {
+        "rails": [
+          "/V12"
+        ],
+        "nearest_ic_pin": "U3.24(/V12)",
+        "dist_mm": 2.049
+      },
+      "C27": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U3.35(+3V3)",
+        "dist_mm": 1.751
+      },
+      "C3": {
+        "rails": [
+          "Net-(LAN1-P5)"
+        ],
+        "nearest_ic_pin": "LAN1.5(Net-(LAN1-P5))",
+        "dist_mm": 5.229
+      },
+      "C4": {
+        "rails": [
+          "Net-(LAN1-P6)"
+        ],
+        "nearest_ic_pin": "LAN1.6(Net-(LAN1-P6))",
+        "dist_mm": 2.669
+      },
+      "C5": {
+        "rails": [
+          "Net-(C5-Pad1)"
+        ],
+        "nearest_ic_pin": "USB1.0(Net-(C5-Pad1))",
+        "dist_mm": 2.877
+      },
+      "C6": {
+        "rails": [
+          "+3V3"
+        ],
+        "nearest_ic_pin": "U2.8(+3V3)",
+        "dist_mm": 2.231
+      },
+      "C7": {
+        "rails": [
+          "Net-(U3-CKXTAL1)"
+        ],
+        "nearest_ic_pin": "X1.3(Net-(U3-CKXTAL1))",
+        "dist_mm": 1.604
+      },
+      "C8": {
+        "rails": [
+          "Net-(U3-CKXTAL2)"
+        ],
+        "nearest_ic_pin": "X1.1(Net-(U3-CKXTAL2))",
+        "dist_mm": 1.888
+      },
+      "C9": {
+        "rails": [
+          "Net-(C9-Pad1)"
+        ],
+        "nearest_ic_pin": "LAN1.SH2(Net-(C9-Pad1))",
+        "dist_mm": 2.134
+      }
+    },
+    "avg_decoupling_dist_mm": 3.219,
+    "max_decoupling_dist_mm": 7.516,
+    "header_edge_distances_mm": {},
+    "avg_header_edge_dist_mm": null,
+    "drc_lvs": {
+      "footprints": 59,
+      "vias": 75,
+      "via_in_pad_violations": [
+        {
+          "footprint": "R_0402_5MIL_DWS",
+          "pad": "2",
+          "net": "GND",
+          "x": 85.217,
+          "y": 63.246
+        },
+        {
+          "footprint": "R_0402_5MIL_DWS",
+          "pad": "2",
+          "net": "+3V3",
+          "x": 89.281,
+          "y": 72.263
+        },
+        {
+          "footprint": "R_0402_5MIL_DWS",
+          "pad": "1",
+          "net": "+3V3",
+          "x": 86.995,
+          "y": 64.262
+        }
+      ],
+      "lvs_shorts": [],
+      "lvs_opens": [
+        {
+          "net": "GND",
+          "pad_count": 45,
+          "components": 2
+        }
+      ],
+      "min_inter_net_clearance_mm": 0.1265,
+      "worst_clearance_pair": "F.Cu:+3V3<->/V12"
+    },
+    "serialized_gnd_fill_by_layer": {
+      "F.Cu": 0.104509,
+      "B.Cu": 0.501567,
+      "In1.Cu": 0.567045
+    }
+  },
+  "deltas": {
+    "wirelength_ratio_blind_vs_ref": 1.068,
+    "vias_total_blind_vs_ref": [
+      105,
+      75
+    ],
+    "vias_signal_blind_vs_ref": [
+      67,
+      48
+    ],
+    "vias_gnd_blind_vs_ref": [
+      38,
+      27
+    ],
+    "avg_decoupling_dist_mm_blind_vs_ref": [
+      6.884,
+      3.219
+    ],
+    "avg_header_edge_dist_mm_blind_vs_ref": [
+      null,
+      null
+    ],
+    "diff_pairs_blind_vs_ref": [
+      [
+        {
+          "pos_net": "/M0_P",
+          "neg_net": "/M0_N",
+          "pos_len_mm": 0.0,
+          "neg_len_mm": 10.207,
+          "length_mismatch_mm": 10.207,
+          "valid_connected_pair": false
+        },
+        {
+          "pos_net": "/M1_P",
+          "neg_net": "/M1_N",
+          "pos_len_mm": 0.0,
+          "neg_len_mm": 0.0,
+          "length_mismatch_mm": 0.0,
+          "valid_connected_pair": false
+        },
+        {
+          "pos_net": "/M2_P",
+          "neg_net": "/M2_N",
+          "pos_len_mm": 13.134,
+          "neg_len_mm": 0.0,
+          "length_mismatch_mm": 13.134,
+          "valid_connected_pair": false
+        },
+        {
+          "pos_net": "/M3_P",
+          "neg_net": "/M3_N",
+          "pos_len_mm": 0.0,
+          "neg_len_mm": 15.03,
+          "length_mismatch_mm": 15.03,
+          "valid_connected_pair": false
+        },
+        {
+          "pos_net": "/U2D_P",
+          "neg_net": "/U2D_N",
+          "pos_len_mm": 16.718,
+          "neg_len_mm": 17.592,
+          "length_mismatch_mm": 0.874,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/U2_P",
+          "neg_net": "/U2_N",
+          "pos_len_mm": 20.48,
+          "neg_len_mm": 25.739,
+          "length_mismatch_mm": 5.259,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/U3SRX_P",
+          "neg_net": "/U3SRX_N",
+          "pos_len_mm": 0.0,
+          "neg_len_mm": 32.368,
+          "length_mismatch_mm": 32.368,
+          "valid_connected_pair": false
+        },
+        {
+          "pos_net": "/U3STX_P",
+          "neg_net": "/U3STX_N",
+          "pos_len_mm": 15.466,
+          "neg_len_mm": 8.943,
+          "length_mismatch_mm": 6.523,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/U3TX_P",
+          "neg_net": "/U3TX_N",
+          "pos_len_mm": 0.0,
+          "neg_len_mm": 0.0,
+          "length_mismatch_mm": 0.0,
+          "valid_connected_pair": false
+        }
+      ],
+      [
+        {
+          "pos_net": "/M0_P",
+          "neg_net": "/M0_N",
+          "pos_len_mm": 12.612,
+          "neg_len_mm": 11.958,
+          "length_mismatch_mm": 0.654,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/M1_P",
+          "neg_net": "/M1_N",
+          "pos_len_mm": 11.802,
+          "neg_len_mm": 10.819,
+          "length_mismatch_mm": 0.983,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/M2_P",
+          "neg_net": "/M2_N",
+          "pos_len_mm": 10.729,
+          "neg_len_mm": 10.746,
+          "length_mismatch_mm": 0.017,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/M3_P",
+          "neg_net": "/M3_N",
+          "pos_len_mm": 11.705,
+          "neg_len_mm": 11.731,
+          "length_mismatch_mm": 0.026,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/U2D_P",
+          "neg_net": "/U2D_N",
+          "pos_len_mm": 6.092,
+          "neg_len_mm": 5.755,
+          "length_mismatch_mm": 0.337,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/U2_P",
+          "neg_net": "/U2_N",
+          "pos_len_mm": 20.184,
+          "neg_len_mm": 21.538,
+          "length_mismatch_mm": 1.354,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/U3SRX_P",
+          "neg_net": "/U3SRX_N",
+          "pos_len_mm": 35.0,
+          "neg_len_mm": 35.061,
+          "length_mismatch_mm": 0.061,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/U3STX_P",
+          "neg_net": "/U3STX_N",
+          "pos_len_mm": 5.905,
+          "neg_len_mm": 6.487,
+          "length_mismatch_mm": 0.582,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/U3TX_P",
+          "neg_net": "/U3TX_N",
+          "pos_len_mm": 30.042,
+          "neg_len_mm": 28.885,
+          "length_mismatch_mm": 1.157,
+          "valid_connected_pair": true
+        }
+      ]
+    ]
+  }
+}

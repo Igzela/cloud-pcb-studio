@@ -1,0 +1,42 @@
+{
+  "status": "generated",
+  "requested_model": "gemini-4-hydrogen",
+  "reported_model_version": "gemini-4-hydrogen",
+  "usage": {
+    "promptTokenCount": 16836,
+    "candidatesTokenCount": 3,
+    "totalTokenCount": 28836,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16836
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 3
+      }
+    ],
+    "thoughtsTokenCount": 11997,
+    "serviceTier": "standard"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "error": "The read operation timed out",
+      "runtime_s": 120.074
+    },
+    {
+      "attempt": 2,
+      "http_status": 200,
+      "runtime_s": 79.311
+    }
+  ],
+  "candidates": [
+    {
+      "text": "",
+      "finish_reason": "MAX_TOKENS"
+    }
+  ]
+}

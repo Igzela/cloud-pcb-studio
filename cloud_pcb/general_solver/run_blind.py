@@ -20,6 +20,7 @@ import argparse
 import json
 import math
 import re
+import shutil
 import subprocess
 import time
 import uuid
@@ -62,6 +63,9 @@ from cloud_pcb.verify_gate.gerber_drc import (
     _gerber_layer_union,
 )
 from contracts.schemas import NetClassRule, RoutingBenchmark, save_json
+from cloud_pcb.general_solver.topology import analyze_topology, macro_targets
+from cloud_pcb.general_solver.semantics import component_envelope, infer_rf, rf_keepouts, world_box, pad_bounds
+from cloud_pcb.general_solver.power import specialize_power_rules, power_islands, width_distribution
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_BLIND_SPEC = PROJECT_ROOT / "benchmark_case" / "blind_spec.json"
@@ -94,11 +98,10 @@ def _comp_local_bbox(comp: dict[str, Any]) -> tuple[float, float, float, float]:
     pads = comp.get("pads", [])
     if not pads:
         return (-1.0, -1.0, 1.0, 1.0)
-    min_x = min(float(p["x_rel_mm"]) - float(p["w_mm"]) / 2.0 for p in pads)
-    max_x = max(float(p["x_rel_mm"]) + float(p["w_mm"]) / 2.0 for p in pads)
-    min_y = min(float(p["y_rel_mm"]) - float(p["h_mm"]) / 2.0 for p in pads)
-    max_y = max(float(p["y_rel_mm"]) + float(p["h_mm"]) / 2.0 for p in pads)
-    return (min_x, min_y, max_x, max_y)
+    min_x,min_y,max_x,max_y=pad_bounds(comp)
+    body=component_envelope(comp)['bbox_mm']
+    if comp.get('side')=='bottom': min_x,max_x=-max_x,-min_x
+    return (min(min_x,body[0]),min(min_y,body[1]),max(max_x,body[2]),max(max_y,body[3]))
 
 
 def _rotated_bbox(
@@ -180,7 +183,7 @@ def _classify_components_and_place(
     oy = float(outline.get("origin_y", 0.0))
     cr = float(outline.get("corner_radius_mm", 0.0))
 
-    board_poly = ShpPolygon(_rounded_rect_points(W, H, cr))
+    board_poly = ShpPolygon(outline.get('vertices_mm') or _rounded_rect_points(W, H, cr))
     safe_inner_poly = board_poly.buffer(-1.0)
 
     placed: dict[str, tuple[float, float, float]] = {}
@@ -196,9 +199,12 @@ def _classify_components_and_place(
 
     comp_by_ref: dict[str, dict[str, Any]] = {c["refdes"]: c for c in spec["components"]}
     local_bboxes = {ref: _comp_local_bbox(c) for ref, c in comp_by_ref.items()}
+    hierarchy=analyze_topology(spec)
+    targets=macro_targets(spec,hierarchy)
 
     def _world_pad_pos(ref: str, pad: dict[str, Any], x: float, y: float, ang: float) -> tuple[float, float]:
-        dx, dy = _rotate_kicad(float(pad["x_rel_mm"]), float(pad["y_rel_mm"]), ang)
+        flip=-1 if comp_by_ref[ref].get('side')=='bottom' else 1
+        dx, dy = _rotate_kicad(flip*float(pad["x_rel_mm"]), float(pad["y_rel_mm"]), ang)
         return x + dx, y + dy
 
     def _courtyard_geom(ref: str, x: float, y: float, ang: float, pad_margin: float) -> Any:
@@ -214,6 +220,13 @@ def _classify_components_and_place(
                 return False
         for oref, occ in occupied_by_ref.items():
             if oref == ignore_ref:
+                continue
+            if comp_by_ref[oref].get('side','top')!=comp_by_ref[ref].get('side','top'):
+                # Bodies may overlap across sides, but plated pins occupy both sides.
+                thru=[p for p in comp_by_ref[oref]['pads'] if p.get('type') in ('thru_hole','np_thru_hole')]
+                for p in thru:
+                    px,py=_world_pad_pos(oref,p,*placed[oref])
+                    if g.intersects(ShpPoint(px,py).buffer(max(p['w_mm'],p['h_mm'])/2+0.3)): return False
                 continue
             if g.intersects(occ):
                 return False
@@ -234,6 +247,27 @@ def _classify_components_and_place(
         edge_refs.add(ref)
         if ec.get("edge_side"):
             edge_sides.add(str(ec["edge_side"]).lower())
+
+    # Antenna lobes inferred in footprint coordinates must face a board edge.
+    for ref,comp in comp_by_ref.items():
+        rf=infer_rf(comp)
+        if ref in placed or not rf or 'local_bbox_mm' not in rf: continue
+        best=None
+        for angle in (0.,90.,180.,270.):
+            b=_rotated_bbox(tuple(pad_bounds(comp)),angle)
+            lobe=world_box(rf['local_bbox_mm'],(0,0,angle)).centroid
+            candidates=[(-b[0]+0.51,H/2),(W-b[2]-0.51,H/2),(W/2,-b[1]+0.51),(W/2,H-b[3]-0.51)]
+            for x,y in candidates:
+                physical=world_box(local_bboxes[ref],(x,y,angle))
+                pads_geom=world_box(pad_bounds(comp),(x,y,angle))
+                if not board_poly.buffer(-.50).covers(pads_geom): continue
+                if any(physical.intersects(g) for g in fixed_obstacles+list(occupied_by_ref.values())): continue
+                antenna=world_box(rf['local_bbox_mm'],(x,y,angle))
+                score=antenna.intersection(board_poly).area
+                if best is None or score<best[0]: best=(score,(x,y,angle))
+        if best:
+            placed[ref]=best[1]; occupied_by_ref[ref]=_courtyard_geom(ref,*best[1],0.65); edge_refs.add(ref)
+            kg=world_box(rf['local_bbox_mm'],best[1]); fixed_obstacles.append(kg)
 
     # 2. Build netlist topology purely from spec["nets"]
     nets: dict[str, list[list[str]]] = spec.get("nets", {})
@@ -370,6 +404,10 @@ def _classify_components_and_place(
                 ref, tx, ty, prefer_angles, margin=max(0.28, margin - 0.25), step=0.5, max_radius=45.0,
                 ignore_self=ignore_self, custom_cost=custom_cost
             )
+        if comp_by_ref[ref].get('side','top')=='top' and len(comp_by_ref[ref]['pads'])<=2 and all(p.get('type')=='smd' for p in comp_by_ref[ref]['pads']):
+            comp_by_ref[ref]['side']='bottom'
+            local_bboxes[ref]=_comp_local_bbox(comp_by_ref[ref])
+            return _find_nearest_legal(ref,tx,ty,prefer_angles,margin=0.55,step=0.5,max_radius=45.0,ignore_self=ignore_self,custom_cost=custom_cost)
         raise RuntimeError(f"Unable to place component {ref} without overlap on {W}x{H} mm board")
 
     def _barycenter(ref: str, default_xy: tuple[float, float]) -> tuple[float, float]:
@@ -417,7 +455,9 @@ def _classify_components_and_place(
     for idx, ref in enumerate(rem_ics):
         ang0 = (idx + 0.5) * (2.0 * math.pi / max(len(rem_ics), 1))
         fallback = (W * 0.55 + 11.0 * math.cos(ang0), H * 0.50 + 9.0 * math.sin(ang0))
-        tx, ty = _barycenter(ref, fallback)
+        target=targets.get(ref,fallback)
+        bx,by=_barycenter(ref,target)
+        tx,ty=(0.75*target[0]+0.25*bx,0.75*target[1]+0.25*by)
         pos = _find_nearest_legal(ref, tx, ty, margin=1.0)
         placed[ref] = pos
         occupied_by_ref[ref] = _courtyard_geom(ref, *pos, 0.85)
@@ -500,36 +540,11 @@ def _classify_components_and_place(
     # 6. Refine secondary ICs (now that headers are placed!)
     for ref in rem_ics:
         tx, ty = _barycenter(ref, (placed[ref][0], placed[ref][1]))
+        if any(ref in g['anchors'] for g in hierarchy['repeated_channels']):
+            tx,ty=targets[ref]
         pos = _find_nearest_legal(ref, tx, ty, margin=0.85, ignore_self=True)
         placed[ref] = pos
         occupied_by_ref[ref] = _courtyard_geom(ref, *pos, 0.75)
-
-    # 7. Place signal_passives using dynamic placed-neighbor degree + micro-clustering
-    rem_passives = set(signal_passives)
-    ordered_passives: list[str] = []
-    while rem_passives:
-        # Pick passive with highest number of already-placed neighbors (tie-break: smallest pad count / ref)
-        nxt = max(
-            rem_passives,
-            key=lambda r: (
-                sum(1 for nb in comp_signal_neighbors[r] if nb in placed),
-                len(comp_signal_nets[r]),
-                r,
-            ),
-        )
-        rem_passives.remove(nxt)
-        ordered_passives.append(nxt)
-        tx, ty = _barycenter(nxt, (W * 0.5, H * 0.5))
-        pos = _find_nearest_legal(nxt, tx, ty, margin=0.55)
-        placed[nxt] = pos
-        occupied_by_ref[nxt] = _courtyard_geom(nxt, *pos, 0.48)
-
-    # 1 refinement pass on signal_passives so coupled chains (e.g., LED <-> R) pull tight
-    for ref in ordered_passives:
-        tx, ty = _barycenter(ref, (placed[ref][0], placed[ref][1]))
-        pos = _find_nearest_legal(ref, tx, ty, margin=0.52, ignore_self=True)
-        placed[ref] = pos
-        occupied_by_ref[ref] = _courtyard_geom(ref, *pos, 0.46)
 
     # 8. IC-Specific Value- and Pin-Capacity-Aware Decoupling Capacitor Assignment
     # Collect exact world coords of every non-GND power pin on ICs, regulators, edge connectors
@@ -603,6 +618,34 @@ def _classify_components_and_place(
         placed[ref] = pos
         occupied_by_ref[ref] = _courtyard_geom(ref, *pos, 0.42)
 
+
+    # 7. Place signal_passives using dynamic placed-neighbor degree + micro-clustering
+    rem_passives = set(signal_passives)
+    ordered_passives: list[str] = []
+    while rem_passives:
+        # Pick passive with highest number of already-placed neighbors (tie-break: smallest pad count / ref)
+        nxt = max(
+            rem_passives,
+            key=lambda r: (
+                sum(1 for nb in comp_signal_neighbors[r] if nb in placed),
+                len(comp_signal_nets[r]),
+                r,
+            ),
+        )
+        rem_passives.remove(nxt)
+        ordered_passives.append(nxt)
+        tx, ty = _barycenter(nxt, (W * 0.5, H * 0.5))
+        pos = _find_nearest_legal(nxt, tx, ty, margin=0.55)
+        placed[nxt] = pos
+        occupied_by_ref[nxt] = _courtyard_geom(nxt, *pos, 0.48)
+
+    # 1 refinement pass on signal_passives so coupled chains (e.g., LED <-> R) pull tight
+    for ref in ordered_passives:
+        tx, ty = _barycenter(ref, (placed[ref][0], placed[ref][1]))
+        pos = _find_nearest_legal(ref, tx, ty, margin=0.52, ignore_self=True)
+        placed[ref] = pos
+        occupied_by_ref[ref] = _courtyard_geom(ref, *pos, 0.46)
+
     meta = {
         "board_width_mm": W,
         "board_height_mm": H,
@@ -617,6 +660,8 @@ def _classify_components_and_place(
             "bypass_caps": bypass_caps,
         },
         "total_placed": len(placed),
+        "hierarchy": hierarchy,
+        "component_sides": {r:c.get('side','top') for r,c in comp_by_ref.items()},
     }
     return placed, meta
 
@@ -669,7 +714,7 @@ def _build_blind_kicad_board(
     oy = float(outline.get("origin_y", 0.0))
     cr = float(outline.get("corner_radius_mm", 0.0))
 
-    board_poly = ShpPolygon(_rounded_rect_points(W, H, cr))
+    board_poly = ShpPolygon(outline.get('vertices_mm') or _rounded_rect_points(W, H, cr))
 
     board = Board.create_new()
     board.version = "20231120"
@@ -730,9 +775,11 @@ def _build_blind_kicad_board(
         fp = Footprint()
         fp.libraryNickname = "cloud_pcb_blind"
         fp.entryName = comp.get("footprint_name", ref)
-        fp.layer = "F.Cu"
+        fp.layer = 'B.Cu' if comp.get('side')=='bottom' else 'F.Cu'
         fp.position = Position(X=fx, Y=fy, angle=fang)
         fp.properties = {"Reference": ref, "Value": comp.get("value", "")}
+        envelope=component_envelope(comp)
+        fp.properties['MCAD_Envelope']='family='+envelope['family']+';bbox_mm='+','.join(f'{v:.4f}' for v in envelope['bbox_mm'])+f";height_mm={envelope['height_mm']:.4f};verified={str(envelope['verified']).lower()};height_source="+envelope['height_source']
         bx0, by0, bx1, by1 = _comp_local_bbox(comp)
         eff = Effects(font=Font(width=0.6, height=0.6, thickness=0.12))
         fp.graphicItems = [
@@ -746,13 +793,21 @@ def _build_blind_kicad_board(
             pad.type = pspec.get("type", "smd")
             pad.shape = pspec.get("shape", "rect")
             # KiCad stores pad angle as board-absolute orientation
-            pad.position = Position(X=float(pspec["x_rel_mm"]), Y=float(pspec["y_rel_mm"]), angle=fang if abs(fang) > 1e-6 else None)
+            flip=-1 if fp.layer=='B.Cu' else 1
+            pad.position = Position(X=flip*float(pspec["x_rel_mm"]), Y=float(pspec["y_rel_mm"]), angle=fang+flip*float(pspec.get('angle_rel_deg',0)))
             pad.size = Position(X=float(pspec["w_mm"]), Y=float(pspec["h_mm"]))
+            pad.pinType=pspec.get('pin_type');pad.pinFunction=pspec.get('pin_function')
+            if 'roundrect_ratio' in pspec: pad.roundrectRatio=float(pspec['roundrect_ratio'])
             if pad.type in ("thru_hole", "np_thru_hole"):
                 pad.drill = DrillDefinition(diameter=float(pspec.get("drill_mm") or 0.9))
+                if pspec.get('drill_shape')=='oval':
+                    pad.drill.oval=True;pad.drill.diameter=float(pspec['drill_width_mm']);pad.drill.width=float(pspec['drill_height_mm'])
+                if 'drill_offset_mm' in pspec:
+                    dx,dy=pspec['drill_offset_mm'];pad.drill.offset=Position(X=flip*dx,Y=dy)
                 pad.layers = ["*.Cu", "*.Mask"]
             else:
                 pad.layers = list(pspec.get("layers") or ["F.Cu", "F.Paste", "F.Mask"])
+                if fp.layer=='B.Cu': pad.layers=[l.replace('F.','B.') for l in pad.layers]
             nname = pspec.get("net")
             if nname and nname in net_map:
                 pad.net = net_map[nname]
@@ -826,6 +881,22 @@ def _build_blind_kicad_board(
         "DEFAULT": NetClassRule(name="DEFAULT", trace_width_mm=sig_w, clearance_mm=_safe_clr("DEFAULT", des_clr), via_drill_mm=via_drill, via_pad_mm=via_pad, max_current_a=0.5, zero_via_allowed=True),
     }
 
+    netclasses,net_to_class,_=specialize_power_rules(spec,netclasses,net_to_class)
+    from dataclasses import replace
+    for i,pair in enumerate(dreq.get('differential_pairs',[])):
+        width,gap=_calibrate_diff_pair_geometry(float(pair.get('target_diff_impedance_ohm',100)))
+        name=f'DIFF_PAIR_{i:03d}'
+        netclasses[name]=replace(netclasses['DIFF_PAIR'],name=name,trace_width_mm=width,diff_pair_gap_mm=gap,impedance_ohm=float(pair.get('target_diff_impedance_ohm',100)))
+        net_to_class[pair['pos_net']]=name;net_to_class[pair['neg_net']]=name
+    rf_regions,_=rf_keepouts(spec,placed)
+    keepouts.extend(rf_regions)
+    from kiutils.items.zones import KeepoutSettings
+    for ko in rf_regions:
+        zone=Zone(); zone.layers=list(ko['layers']); zone.name='RF_antenna'
+        zone.keepoutSettings=KeepoutSettings(tracks='not_allowed',vias='not_allowed',pads='not_allowed',copperpour='not_allowed',footprints='allowed')
+        zone.polygons=[ZonePolygon(coordinates=[Coordinate(X=x,Y=y) for x,y in ko['polygon_mm']])]
+        board.zones.append(zone)
+
     return board, netclasses, net_to_class, keepouts, board_poly
 
 
@@ -836,7 +907,7 @@ def _pad_world_polygon_kicad(fp: Footprint, pad: Pad) -> Any:
     dx, dy = _rotate_kicad(float(pad.position.X), float(pad.position.Y), fang)
     gx, gy = fx + dx, fy + dy
     sx, sy = float(pad.size.X), float(pad.size.Y)
-    pang = float(pad.position.angle) if pad.position.angle is not None else fang
+    pang = float(pad.position.angle or 0.0)
     if pad.shape == "circle":
         return ShpPoint(gx, gy).buffer(max(sx / 2.0, 1e-4))
     if pad.shape == "oval":
@@ -861,6 +932,8 @@ def _add_gnd_fanout_vias(
     board: Board,
     board_poly: ShpPolygon,
     keepouts: list[dict[str, Any]],
+    channel_corridors: Any = None,
+    *, octagonal_keepouts: bool = False,
 ) -> tuple[set[str], dict[str, list[str]], dict[str, Any]]:
     """Place verified outward SMD GND fanout vias (and interior thermal EPAD vias) to In1.Cu/In2.Cu."""
     gnd_net_obj = next((n for n in board.nets if _is_gnd_net(n.name)), None)
@@ -870,6 +943,8 @@ def _add_gnd_fanout_vias(
     gnd_net_num = int(gnd_net_obj.number)
     gnd_net_name = str(gnd_net_obj.name)
     safe_zone = board_poly.buffer(-0.65)
+    rf_obstacles=[shp_box(k['x_min'],k['y_min'],k['x_max'],k['y_max']) for k in keepouts if k.get('kind')=='rf']
+    if rf_obstacles: safe_zone=safe_zone.difference(unary_union(rf_obstacles))
 
     non_gnd_pads: list[Any] = []
     all_smd_pads: list[Any] = []
@@ -893,14 +968,15 @@ def _add_gnd_fanout_vias(
             fp_pad_polys.append(pg)
             if pad.type == "np_thru_hole":
                 d = float(pad.drill.diameter) if pad.drill and pad.drill.diameter else 2.2
-                hole_obst.append(ShpPoint(fx, fy).buffer(d / 2.0 + 0.50))
+                from cloud_pcb.general_solver.geometry import drill_geometry
+                hole_obst.append(drill_geometry(fp,pad).buffer(.50))
                 continue
             fp_cu_local_pts.append((float(pad.position.X), float(pad.position.Y)))
             pnet = pad.net.name if pad.net else ""
             if pad.type == "thru_hole":
                 if _is_gnd_net(pnet):
                     gnd_th_pins.append(f"{ref}-{pad.number}")
-                    fp_grounded_geoms[idx].append(pg.buffer(0.05))
+                    fp_grounded_geoms[idx].append(pg)
                 else:
                     non_gnd_pads.append(pg)
                     hole_obst.append(pg)
@@ -959,6 +1035,7 @@ def _add_gnd_fanout_vias(
                     "ic_interior": ic_interior,
                     "is_interior_epad": is_interior_epad,
                     "is_fine_pitch": (ic_interior is not None and min_ng_dist < 0.75),
+                    "layer": 'B.Cu' if 'B.Cu' in pad.layers and 'F.Cu' not in pad.layers else 'F.Cu',
                 })
 
     # Place largest/interior thermal pads first so overlapping sub-pads inherit connectivity
@@ -973,6 +1050,17 @@ def _add_gnd_fanout_vias(
     via_pad_d = 0.55
     via_drill_d = 0.30
     via_r = via_pad_d / 2.0
+    guard_area_reclaimed = 0.0
+
+    def add_via_guard(vx,vy,radius,layers):
+        nonlocal guard_area_reclaimed
+        if octagonal_keepouts:
+            from cloud_pcb.general_solver.routing_guards import conservative_via_guard
+            guard=conservative_via_guard(vx,vy,radius,layers)
+            guard_area_reclaimed += max(0.0,4*radius*radius-ShpPolygon(guard['polygon_mm']).area)
+        else:
+            guard=dict(x_min=round(vx-radius,3),y_min=round(vy-radius,3),x_max=round(vx+radius,3),y_max=round(vy+radius,3),layers=layers)
+        keepouts.append(guard)
 
     for rec in gnd_smd_pads:
         fp_idx = rec["fp_idx"]
@@ -1010,7 +1098,7 @@ def _add_gnd_fanout_vias(
             if chosen_ep is not None:
                 vx, vy = chosen_ep
                 placed_via_pts.append((vx, vy))
-                fp_grounded_geoms[fp_idx].append(pg.buffer(0.05))
+                fp_grounded_geoms[fp_idx].append(pg)
                 board.traceItems.append(
                     Via(
                         position=Position(X=vx, Y=vy),
@@ -1022,13 +1110,7 @@ def _add_gnd_fanout_vias(
                     )
                 )
                 kr = ep_r + 0.145
-                keepouts.append({
-                    "x_min": round(vx - kr, 3),
-                    "y_min": round(vy - kr, 3),
-                    "x_max": round(vx + kr, 3),
-                    "y_max": round(vy + kr, 3),
-                    "layers": ["B.Cu"],
-                })
+                add_via_guard(vx,vy,kr,["B.Cu", "In1.Cu", "In2.Cu"])
                 continue
 
         # 2. Check if an already-grounded pad/EPAD on the SAME footprint (e.g. QFN center EPAD) is within short bridge reach
@@ -1046,13 +1128,13 @@ def _add_gnd_fanout_vias(
                         bridged_xy = (bx, by)
                         break
         if bridged_xy is not None:
-            fp_grounded_geoms[fp_idx].append(pg.buffer(0.05))
+            fp_grounded_geoms[fp_idx].append(pg)
             board.traceItems.append(
                 Segment(
                     start=Position(X=px, Y=py),
                     end=Position(X=bridged_xy[0], Y=bridged_xy[1]),
                     width=0.18,
-                    layer="F.Cu",
+                    layer=rec["layer"],
                     net=gnd_net_num,
                     tstamp=str(uuid.uuid4()),
                 )
@@ -1068,13 +1150,13 @@ def _add_gnd_fanout_vias(
                     shared_via = (oxv, oyv)
                     break
         if shared_via is not None:
-            fp_grounded_geoms[fp_idx].append(pg.buffer(0.05))
+            fp_grounded_geoms[fp_idx].append(pg)
             board.traceItems.append(
                 Segment(
                     start=Position(X=px, Y=py),
                     end=Position(X=shared_via[0], Y=shared_via[1]),
                     width=0.22,
-                    layer="F.Cu",
+                    layer=rec["layer"],
                     net=gnd_net_num,
                     tstamp=str(uuid.uuid4()),
                 )
@@ -1087,7 +1169,7 @@ def _add_gnd_fanout_vias(
 
         pad_r = rec["pad_r"]
         if rec["is_fine_pitch"]:
-            dists = [round(max(1.28, pad_r + 0.85) + off, 3) for off in (0.0, 0.22, 0.45, 0.70)]
+            dists = [round(max(1.28, pad_r + 0.85) + off, 3) for off in (0.0, 0.22, 0.45, 0.70, 1.10)]
             req_ng_via = 0.28
         else:
             d0 = max(0.85, pad_r + 0.48)
@@ -1095,12 +1177,13 @@ def _add_gnd_fanout_vias(
             req_ng_via = 0.165
 
         chosen_xy: tuple[float, float] | None = None
+        best_channel_cost=float('inf')
         for dist in dists:
             for ang in dirs:
                 vx = round(px + dist * math.cos(ang), 3)
                 vy = round(py + dist * math.sin(ang), 3)
                 vp_pt = ShpPoint(vx, vy)
-                if not safe_zone.contains(vp_pt):
+                if not safe_zone.covers(vp_pt.buffer(via_r)):
                     continue
                 if ic_interior is not None and ic_interior.contains(vp_pt):
                     continue
@@ -1119,21 +1202,21 @@ def _add_gnd_fanout_vias(
                     continue
                 if any(math.hypot(vx - oxv, vy - oyv) < 0.72 for oxv, oyv in placed_via_pts):
                     continue
-                chosen_xy = (vx, vy)
-                break
-            if chosen_xy is not None:
-                break
+                channel_cost=dist+(40*full_geom.intersection(channel_corridors).area if channel_corridors is not None else 0)
+                if channel_cost<best_channel_cost:
+                    best_channel_cost=channel_cost
+                    chosen_xy = (vx, vy)
 
         if chosen_xy is not None:
             vx, vy = chosen_xy
             placed_via_pts.append((vx, vy))
-            fp_grounded_geoms[fp_idx].append(pg.buffer(0.05))
+            fp_grounded_geoms[fp_idx].append(pg)
             board.traceItems.append(
                 Segment(
                     start=Position(X=px, Y=py),
                     end=Position(X=vx, Y=vy),
                     width=0.22,
-                    layer="F.Cu",
+                    layer=rec["layer"],
                     net=gnd_net_num,
                     tstamp=str(uuid.uuid4()),
                 )
@@ -1149,13 +1232,7 @@ def _add_gnd_fanout_vias(
                 )
             )
             kr = via_r + 0.145
-            keepouts.append({
-                "x_min": round(vx - kr, 3),
-                "y_min": round(vy - kr, 3),
-                "x_max": round(vx + kr, 3),
-                "y_max": round(vy + kr, 3),
-                "layers": ["F.Cu", "B.Cu"],
-            })
+            add_via_guard(vx,vy,kr,["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"])
         else:
             unvia_pins.append(f"{ref}-{pnum}")
 
@@ -1164,7 +1241,8 @@ def _add_gnd_fanout_vias(
     if not unvia_pins:
         skip_nets.add(gnd_net_name)
     else:
-        anchor = gnd_th_pins[0] if gnd_th_pins else None
+        grounded_pins=[f"{p['ref']}-{p['pnum']}" for p in gnd_smd_pads if f"{p['ref']}-{p['pnum']}" not in unvia_pins]
+        anchor = gnd_th_pins[0] if gnd_th_pins else (grounded_pins[0] if grounded_pins else None)
         if anchor:
             override_pins[gnd_net_name] = unvia_pins + [anchor]
         elif len(unvia_pins) >= 2:
@@ -1172,29 +1250,47 @@ def _add_gnd_fanout_vias(
         else:
             skip_nets.add(gnd_net_name)
 
+    # The router must see the pre-routed STUBS as well as their via pads.
+    # Wire/via-only keepouts protect their physical copper without falsely
+    # treating same-net footprint pads as foreign copper obstacles.
+    ground_pads=unary_union([_pad_world_polygon_kicad(fp,p) for fp in board.footprints for p in fp.pads if p.net and p.net.number==gnd_net_num and _is_copper_pad(p)])
+    for item in board.traceItems:
+        if not isinstance(item,Segment) or item.net!=gnd_net_num: continue
+        copper=ShpLineString([(item.start.X,item.start.Y),(item.end.X,item.end.Y)]).buffer(item.width/2+.001)
+        for kind,geom in (('wire_keepout',copper.difference(ground_pads)),('via_keepout',copper)):
+            pieces=list(geom.geoms) if hasattr(geom,'geoms') else [geom]
+            for piece in pieces:
+                if piece.is_empty or piece.geom_type!='Polygon':continue
+                for polygon in _slit_polygon_no_holes(piece):
+                    x0,y0,x1,y1=polygon.bounds
+                    keepouts.append(dict(kind='fixed_ground_stub',dsn_kind=kind,x_min=x0,y_min=y0,x_max=x1,y_max=y1,layers=[item.layer],polygon_mm=list(polygon.exterior.coords)))
     return skip_nets, override_pins, {
         "fanout_vias_added": len(placed_via_pts),
         "gnd_smd_pads_total": len(gnd_smd_pads),
         "unvia_gnd_pins": unvia_pins,
+        "via_guard_geometry": 'circumscribed_octagon' if octagonal_keepouts else 'legacy_square',
+        "via_guard_area_reclaimed_sum_mm2": round(guard_area_reclaimed,6),
+        "via_guard_area_statistic": 'sum over vias, not union area; original protection radii unchanged',
     }
 
 
 def _slit_polygon_no_holes(poly: ShpPolygon, depth: int = 0) -> list[ShpPolygon]:
-    """Recursively slice a Shapely polygon with interior holes into simply-connected pieces for KiCad Zone."""
-    if poly.is_empty or poly.area < 0.05:
-        return []
-    if not poly.interiors or depth > 12:
-        return [poly] if not poly.interiors else []
-    ring = poly.interiors[0]
-    minx, miny, maxx, maxy = poly.bounds
-    cx = sum(p[0] for p in ring.coords) / len(ring.coords)
-    slit = ShpLineString([(cx, miny - 1.0), (cx, maxy + 1.0)]).buffer(5e-4)
-    res = poly.difference(slit)
-    pieces = list(res.geoms) if hasattr(res, "geoms") else [res]
-    out: list[ShpPolygon] = []
-    for g in pieces:
-        if g.geom_type == "Polygon" and g.area >= 0.05:
-            out.extend(_slit_polygon_no_holes(g, depth + 1))
+    """Partition holes with ZERO-width cuts; never etch artificial plane slots.
+
+    The previous buffered cuts created 1 um gaps across entire planes, which
+    projected LVS concealed. Adjacent pieces now share their exact boundary.
+    """
+    pending=[poly]; out=[]
+    while pending:
+        current=pending.pop()
+        if current.is_empty: continue
+        if not current.interiors:
+            out.append(current); continue
+        ring=ShpPolygon(current.interiors[0]); cx=ring.representative_point().x
+        minx,miny,maxx,maxy=current.bounds
+        pieces=list(shp_split(current,ShpLineString([(cx,miny-1),(cx,maxy+1)])).geoms)
+        if len(pieces)<2: raise RuntimeError('unable to partition plane hole without loss of copper')
+        pending.extend(p for p in pieces if p.geom_type=='Polygon' and p.area>1e-10)
     return out
 
 
@@ -1202,15 +1298,20 @@ def _build_4layer_pours_and_stitching(
     board: Board,
     board_poly: ShpPolygon,
     edge_margin: float = 0.50,
+    keepouts: list[dict[str, Any]] | None = None,
+    islands: list[dict[str, Any]] | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Build In1.Cu/In2.Cu solid GND planes + F.Cu/B.Cu GND pours + stitching via fence."""
     gnd_net_obj = next((n for n in board.nets if _is_gnd_net(n.name)), None)
     gnd_net_num = int(gnd_net_obj.number) if gnd_net_obj else 1
     gnd_net_name = str(gnd_net_obj.name) if gnd_net_obj else "GND"
     base_poly = board_poly.buffer(-edge_margin)
+    rf_geoms=[shp_box(k['x_min'],k['y_min'],k['x_max'],k['y_max']) for k in keepouts or [] if k.get('kind')=='rf']
+    copper_base=base_poly.difference(unary_union(rf_geoms)) if rf_geoms else base_poly
 
     # 1. Inner planes (In1.Cu / In2.Cu): subtract NPTH + non-GND PTH/vias
     inner_cutouts: list[Any] = []
+    inner_layer_cutouts: dict[str,list[Any]]={'In1.Cu':[],'In2.Cu':[]}
     outer_cutouts: dict[str, list[Any]] = {"F.Cu": [], "B.Cu": []}
     gnd_bridges: list[Any] = []
     existing_vias: list[tuple[float, float]] = []
@@ -1226,7 +1327,8 @@ def _build_4layer_pours_and_stitching(
             px, py = fx + dx, fy + dy
             if pad.type == "np_thru_hole":
                 drill_d = float(pad.drill.diameter) if pad.drill and pad.drill.diameter else 2.2
-                c = ShpPoint(px, py).buffer(drill_d / 2.0 + 0.50, resolution=32)
+                from cloud_pcb.general_solver.geometry import drill_geometry
+                c = drill_geometry(fp,pad).buffer(.50)
                 inner_cutouts.append(c)
                 outer_cutouts["F.Cu"].append(c)
                 outer_cutouts["B.Cu"].append(c)
@@ -1236,8 +1338,7 @@ def _build_4layer_pours_and_stitching(
             pnet = int(pad.net.number) if pad.net else 0
             if pad.type == "thru_hole":
                 if pnet != gnd_net_num:
-                    r = max(float(pad.size.X), float(pad.size.Y)) / 2.0 + 0.25
-                    inner_cutouts.append(ShpPoint(px, py).buffer(r, resolution=24))
+                    inner_cutouts.append(pg.buffer(0.25))
                     c_out = pg.buffer(0.24)
                     outer_cutouts["F.Cu"].append(c_out)
                     outer_cutouts["B.Cu"].append(c_out)
@@ -1270,12 +1371,17 @@ def _build_4layer_pours_and_stitching(
                 w_half = max(float(item.width) / 2.0, 0.05)
                 outer_cutouts[item.layer].append(ls.buffer(w_half + 0.22))
                 non_gnd_copper_all.append(ls.buffer(w_half))
+        elif isinstance(item,Segment) and item.layer in inner_layer_cutouts and int(item.net)!=gnd_net_num:
+            ls=ShpLineString([(float(item.start.X),float(item.start.Y)),(float(item.end.X),float(item.end.Y))])
+            # Polygonized circular caps must conservatively contain the intended
+            # clearance even after 0.1 um coordinate serialization.
+            inner_layer_cutouts[item.layer].append(ls.buffer(float(item.width)/2+0.221,resolution=32))
 
-    inner_pour = base_poly.difference(unary_union(inner_cutouts)) if inner_cutouts else base_poly
+    inner_pour = copper_base.difference(unary_union(inner_cutouts)) if inner_cutouts else copper_base
 
     # 2. Outer layer pours (F.Cu / B.Cu) - keep only non-floating islands (>= 2.0 mm2 and touching GND via/TH)
     def _clean_outer_pour(lyr: str) -> Any:
-        raw = base_poly.difference(unary_union(outer_cutouts[lyr])) if outer_cutouts[lyr] else base_poly
+        raw = copper_base.difference(unary_union(outer_cutouts[lyr])) if outer_cutouts[lyr] else copper_base
         if raw.is_empty:
             return ShpPolygon()
         br_u = unary_union(gnd_bridges) if gnd_bridges else None
@@ -1296,6 +1402,10 @@ def _build_4layer_pours_and_stitching(
     stitch_added = 0
     non_gnd_u = unary_union(non_gnd_copper_all) if non_gnd_copper_all else None
     safe_inner_stitch = board_poly.buffer(-1.25)
+    if islands:
+        safe_inner_stitch=safe_inner_stitch.difference(unary_union([i['geometry'].buffer(.65) for i in islands]))
+    if inner_layer_cutouts['In2.Cu']:
+        safe_inner_stitch=safe_inner_stitch.difference(unary_union(inner_layer_cutouts['In2.Cu']).buffer(.4))
     minx, miny, maxx, maxy = safe_inner_stitch.bounds
     step = 6.5
     x = minx + 1.0
@@ -1332,10 +1442,12 @@ def _build_4layer_pours_and_stitching(
 
     pours = {
         "F.Cu": f_pour,
-        "In1.Cu": inner_pour,
-        "In2.Cu": inner_pour,
+        "In1.Cu": inner_pour.difference(unary_union(inner_layer_cutouts['In1.Cu'])),
+        "In2.Cu": inner_pour.difference(unary_union(inner_layer_cutouts['In2.Cu'])),
         "B.Cu": b_pour,
     }
+    if islands:
+        pours['In2.Cu']=pours['In2.Cu'].difference(unary_union([i['geometry'].buffer(0.25) for i in islands]))
 
     # Inject real KiCad Zone items with slit hole-free filledPolygons
     ext_pts = [Coordinate(X=round(px, 4), Y=round(py, 4)) for px, py in base_poly.exterior.coords]
@@ -1360,6 +1472,15 @@ def _build_4layer_pours_and_stitching(
                     z.filledPolygons.append(FilledPolygon(layer=lyr, coordinates=coords))
         board.zones.append(z)
 
+    for island in islands or []:
+        z=Zone(); z.net=next(n.number for n in board.nets if n.name==island['net']); z.netName=island['net']; z.layers=['In2.Cu']; z.name='POWER_island'; z.connectPads='yes'; z.minThickness=0.20; z.clearance=0.25
+        z.fillSettings=FillSettings(yes=True,mode='solid',thermalGap=0.30,thermalBridgeWidth=0.35)
+        geom=island['geometry']; pieces=list(geom.geoms) if geom.geom_type=='MultiPolygon' else [geom]
+        for piece in pieces:
+            z.polygons.append(ZonePolygon(coordinates=[Coordinate(X=x,Y=y) for x,y in piece.exterior.coords]))
+            for part in _slit_polygon_no_holes(piece): z.filledPolygons.append(FilledPolygon(layer='In2.Cu',coordinates=[Position(X=x,Y=y) for x,y in part.exterior.coords]))
+        board.zones.append(z)
+
     board_area = float(board_poly.area)
     stats = {
         "board_area_mm2": round(board_area, 3),
@@ -1370,7 +1491,10 @@ def _build_4layer_pours_and_stitching(
         "stitching_vias_added": stitch_added,
         "antipad_cutouts": len(inner_cutouts),
         "is_empty": inner_pour.is_empty,
+        "power_islands": [{k:v for k,v in i.items() if k!='geometry'}|{'area_mm2':i['geometry'].area} for i in islands or []],
     }
+    # Export aggregate copper while KiCad zones retain individual net identity.
+    if islands: pours['In2.Cu']=unary_union([pours['In2.Cu']]+[i['geometry'] for i in islands])
     return pours, stats
 
 
@@ -1439,13 +1563,21 @@ def _export_blind_gerbers(
             rx, ry = _rotate_kicad(float(pad.position.X), float(pad.position.Y), fang)
             px, py = fx + rx, _gy(fy + ry)
             pw, ph = float(pad.size.X), float(pad.size.Y)
-            pang = float(pad.position.angle) if pad.position.angle is not None else fang
+            pang = float(pad.position.angle or 0.0)
+            def _drill_object(plated):
+                dr=pad.drill;w=float(dr.diameter);h=float(dr.width or w) if dr.oval else w
+                offset=dr.offset or Position(X=0,Y=0)
+                oxp,oyp=_rotate_kicad(float(offset.X),float(offset.Y),pang)
+                cx,cy=px+oxp,py-oyp
+                if abs(w-h)<1e-8: return Flash(cx,cy,ExcellonTool(w,plated=plated,unit=MM),unit=MM)
+                dx,dy=((abs(w-h)/2,0) if w>h else (0,abs(h-w)/2));dx,dy=_rotate_kicad(dx,dy,pang)
+                return Line(cx-dx,cy+dy,cx+dx,cy-dy,aperture=ExcellonTool(min(w,h),plated=plated,unit=MM),unit=MM)
             if round(pang) % 180 == 90:
                 pw, ph = ph, pw
 
             if pad.type == "np_thru_hole":
                 drill_d = float(pad.drill.diameter) if pad.drill and pad.drill.diameter else 2.2
-                npth_objs.append(Flash(px, py, ExcellonTool(drill_d, plated=False, unit=MM), unit=MM))
+                npth_objs.append(_drill_object(False))
                 mask_openings.append(ShpPoint(px, py).buffer(drill_d / 2.0 + 0.25))
                 continue
 
@@ -1462,32 +1594,39 @@ def _export_blind_gerbers(
                 ap_mask = RectangleAperture(pw + 0.10, ph + 0.10, unit=MM)
                 mask_openings.append(shp_box(px - (pw + 0.5) / 2.0, py - (ph + 0.5) / 2.0, px + (pw + 0.5) / 2.0, py + (ph + 0.5) / 2.0))
 
+            def _pad_artwork(mask=False):
+                if pad.shape=='roundrect' or abs(pang/90-round(pang/90))>1e-8:
+                    geom=_pad_world_polygon_kicad(fp,pad)
+                    if mask: geom=geom.buffer(.05)
+                    return Region([(float(x),_gy(float(y))) for x,y in geom.exterior.coords],unit=MM)
+                return Flash(px,py,ap_mask if mask else ap_cu,unit=MM)
+
             if pad.type == "thru_hole":
-                layer_objs["F_Cu"].append(Flash(px, py, ap_cu, unit=MM))
-                layer_objs["B_Cu"].append(Flash(px, py, ap_cu, unit=MM))
-                layer_objs["F_Mask"].append(Flash(px, py, ap_mask, unit=MM))
-                layer_objs["B_Mask"].append(Flash(px, py, ap_mask, unit=MM))
+                layer_objs["F_Cu"].append(_pad_artwork())
+                layer_objs["B_Cu"].append(_pad_artwork())
+                layer_objs["F_Mask"].append(_pad_artwork(True))
+                layer_objs["B_Mask"].append(_pad_artwork(True))
                 if pad.net and _is_gnd_net(pad.net.name):
-                    layer_objs["In1_Cu"].append(Flash(px, py, ap_cu, unit=MM))
-                    layer_objs["In2_Cu"].append(Flash(px, py, ap_cu, unit=MM))
+                    layer_objs["In1_Cu"].append(_pad_artwork())
+                    layer_objs["In2_Cu"].append(_pad_artwork())
                 drill_d = float(pad.drill.diameter) if pad.drill and pad.drill.diameter else 0.9
-                pth_objs.append(Flash(px, py, ExcellonTool(drill_d, plated=True, unit=MM), unit=MM))
+                pth_objs.append(_drill_object(True))
             elif not _is_copper_pad(pad):
                 pad_lyrs = set(pad.layers or [])
                 if "F.Paste" in pad_lyrs:
-                    layer_objs["F_Paste"].append(Flash(px, py, ap_cu, unit=MM))
+                    layer_objs["F_Paste"].append(_pad_artwork())
                 if "B.Paste" in pad_lyrs:
-                    layer_objs["B_Paste"].append(Flash(px, py, ap_cu, unit=MM))
+                    layer_objs["B_Paste"].append(_pad_artwork())
             else:
                 pad_lyrs = set(pad.layers or ["F.Cu"])
                 if "B.Cu" in pad_lyrs and "F.Cu" not in pad_lyrs:
-                    layer_objs["B_Cu"].append(Flash(px, py, ap_cu, unit=MM))
-                    layer_objs["B_Mask"].append(Flash(px, py, ap_mask, unit=MM))
-                    layer_objs["B_Paste"].append(Flash(px, py, ap_cu, unit=MM))
+                    layer_objs["B_Cu"].append(_pad_artwork())
+                    layer_objs["B_Mask"].append(_pad_artwork(True))
+                    layer_objs["B_Paste"].append(_pad_artwork())
                 else:
-                    layer_objs["F_Cu"].append(Flash(px, py, ap_cu, unit=MM))
-                    layer_objs["F_Mask"].append(Flash(px, py, ap_mask, unit=MM))
-                    layer_objs["F_Paste"].append(Flash(px, py, ap_cu, unit=MM))
+                    layer_objs["F_Cu"].append(_pad_artwork())
+                    layer_objs["F_Mask"].append(_pad_artwork(True))
+                    layer_objs["F_Paste"].append(_pad_artwork())
 
     mask_guard = unary_union(mask_openings) if mask_openings else None
     for a, b in candidate_silk:
@@ -1551,7 +1690,9 @@ def _audit_blind_output(
     pygerber_ok: dict[str, bool] = {}
     cu_unions: dict[str, Any] = {}
     flashes: dict[str, list[Any]] = {}
-    for gname in ("F_Cu.gbr", "In1_Cu.gbr", "In2_Cu.gbr", "B_Cu.gbr", "F_Mask.gbr", "F_SilkS.gbr", "Edge_Cuts.gbr"):
+    for gname in ("F_Cu.gbr", "In1_Cu.gbr", "In2_Cu.gbr", "B_Cu.gbr",
+                  "F_Mask.gbr", "B_Mask.gbr", "F_Paste.gbr", "B_Paste.gbr",
+                  "F_SilkS.gbr", "B_SilkS.gbr", "Edge_Cuts.gbr"):
         gp = gerber_dir / gname
         try:
             PyGerberFile.from_file(gp).parse().get_info()
@@ -1567,8 +1708,13 @@ def _audit_blind_output(
         pth = ExcellonFile.open(gerber_dir / "PTH.drl")
         npth = ExcellonFile.open(gerber_dir / "NPTH.drl")
 
-    min_ar, ar_viols = _compute_min_annular_ring(pth, flashes["F_Cu.gbr"], flashes["B_Cu.gbr"])
-    silk_mask_overlap = float(cu_unions["F_SilkS.gbr"].intersection(cu_unions["F_Mask.gbr"]).area)
+    from cloud_pcb.verify_gate.gerber_drc import audit_annular_geometry
+    min_ar, ar_viols = audit_annular_geometry(pth,cu_unions['F_Cu.gbr'],cu_unions['B_Cu.gbr'])
+    silk_mask_overlap_by_side = {
+        side: float(cu_unions[f"{side}_SilkS.gbr"].intersection(cu_unions[f"{side}_Mask.gbr"]).area)
+        for side in ("F", "B")
+    }
+    silk_mask_overlap = sum(silk_mask_overlap_by_side.values())
 
     g_poly = ShpPolygon([(x, H - y) for x, y in board_poly.exterior.coords])
     edge_margins: dict[str, float] = {}
@@ -1670,6 +1816,7 @@ def _audit_blind_output(
         "min_annular_ring_mm": round(min_ar, 4) if min_ar is not None else None,
         "annular_ring_violations": len(ar_viols),
         "silk_to_mask_overlap_mm2": round(silk_mask_overlap, 4),
+        "silk_to_mask_overlap_by_side_mm2": silk_mask_overlap_by_side,
         "copper_edge_margins_mm": edge_margins,
         "lvs_opens": lvs_opens,
         "lvs_shorts": lvs_shorts,
@@ -1677,81 +1824,171 @@ def _audit_blind_output(
     }
 
 
-def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR) -> dict[str, Any]:
+def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False) -> dict[str, Any]:
     """Execute end-to-end blind PCB build on any blind_spec.json."""
-    spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    from cloud_pcb.general_solver.electrical import derive_electrical_requirements
+    raw_spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    spec, electrical_derivations = derive_electrical_requirements(raw_spec, scoped=scoped_power) if derive_power or scoped_power else (raw_spec, [])
     outdir.mkdir(parents=True, exist_ok=True)
     gerber_dir = outdir / "gerbers"
+    save_json(outdir / 'effective_spec.json', spec)
+    for stale in ('board_fastroute.ses','fastroute_report.json','board_freerouting.ses','blind_run_report.json'):
+        (outdir/stale).unlink(missing_ok=True)
 
     t_start = time.perf_counter()
-    placed, place_meta = _classify_components_and_place(spec)
+    if external_placement is None:
+        placed, place_meta = _classify_components_and_place(spec)
+    else:
+        from cloud_pcb.general_solver.placement_input import apply_external_placement
+        placed, place_meta = apply_external_placement(spec, external_placement)
     board, netclasses, net_to_class, keepouts, board_poly = _build_blind_kicad_board(spec, placed)
     W = float(spec["board_outline_mm"]["width"])
     H = float(spec["board_outline_mm"]["height"])
 
     # Pre-route SMD GND fanout vias to In1.Cu/In2.Cu
-    skip_nets, override_net_pins, fanout_stats = _add_gnd_fanout_vias(board, board_poly, keepouts)
+    corridor_lines=[]
+    by_ref={c['refdes']:c for c in spec['components']}
+    protected={n for p in spec.get('design_requirements',{}).get('differential_pairs',[]) for n in (p['pos_net'],p['neg_net'])}
+    for net in protected:
+        points=[]
+        for ref,pnum in spec.get('nets',{}).get(net,[]):
+            pad=next((p for p in by_ref[ref]['pads'] if p['num']==pnum),None)
+            if pad:
+                x,y,a=placed[ref]; dx,dy=_rotate_kicad(pad['x_rel_mm'],pad['y_rel_mm'],a); points.append((x+dx,y+dy))
+        if len(points)>1: corridor_lines.append(ShpLineString(points).buffer(0.6))
+    # Reserve radial escape corridors for every dense IC's non-ground pins,
+    # not just already identified differential buses.
+    for fp in board.footprints:
+        copper_pads=[p for p in fp.pads if _is_copper_pad(p)]
+        if len(copper_pads)<6: continue
+        for p in copper_pads:
+            if not p.net or _is_gnd_net(p.net.name): continue
+            g=_pad_world_polygon_kicad(fp,p);x,y=g.centroid.x,g.centroid.y
+            dx,dy=x-float(fp.position.X),y-float(fp.position.Y);norm=math.hypot(dx,dy)
+            if norm<.2:continue
+            corridor_lines.append(ShpLineString([(x,y),(x+2.5*dx/norm,y+2.5*dy/norm)]).buffer(.20))
+    corridors=unary_union(corridor_lines) if corridor_lines else None
+    skip_nets, override_net_pins, fanout_stats = _add_gnd_fanout_vias(board, board_poly, keepouts,corridors,octagonal_keepouts=octagonal_fanout)
 
     unrouted_path = outdir / "board_unrouted.kicad_pcb"
     board.to_file(str(unrouted_path))
 
     dsn_path = outdir / "board.dsn"
+    routing_layers={c:('F.Cu','B.Cu') if c.startswith('DIFF_PAIR') else ('F.Cu','In2.Cu','B.Cu') for c in netclasses}
     board_to_dsn(
         board,
         dsn_path,
         netclasses=netclasses,
         net_to_class=net_to_class,
         board_bounds_mm=(0.0, 0.0, W, H),
+        board_outline_mm=list(board_poly.exterior.coords),
         keepouts_mm=keepouts,
         skip_nets=skip_nets,
         override_net_pins=override_net_pins,
+        routing_layers_by_class=routing_layers,
     )
 
     pairs_lines = []
     for dp in spec.get("design_requirements", {}).get("differential_pairs", []):
-        gap_mm = max(0.15, round(netclasses["DIFF_PAIR"].clearance_mm, 3))
-        pairs_lines.append(f"pair {dp['pos_net']} {dp['neg_net']} gap={gap_mm} skew=0.20")
+        rule=netclasses[net_to_class[dp['pos_net']]]
+        gap_mm=rule.diff_pair_gap_mm or rule.clearance_mm
+        skew=float(dp.get('max_skew_mm',0.20))
+        pairs_lines.append(f"pair {dp['pos_net']} {dp['neg_net']} gap={gap_mm} skew={skew}")
     pairs_path = outdir / "diff_pairs.txt"
     pairs_path.write_text("\n".join(pairs_lines) + ("\n" if pairs_lines else ""), encoding="utf-8")
 
     # 1. FastRoute v0.1.14
     fr_ses = outdir / "board_fastroute.ses"
     fr_rep_path = outdir / "fastroute_report.json"
+    no_neckdown=[]
+    for cname,rule in netclasses.items():
+        if not cname.startswith('DIFF_PAIR'): continue
+        endpoint_pads=[p for c in spec['components'] for p in c['pads'] if net_to_class.get(p.get('net'))==cname]
+        if endpoint_pads and all(min(p['w_mm'],p['h_mm'])>=rule.trace_width_mm for p in endpoint_pads): no_neckdown.append(cname)
     fr_cmd = [
         "fastroute", "-de", str(dsn_path), "-do", str(fr_ses),
         f"--report={fr_rep_path}",
-        "--no-neckdown-classes=DIFF_PAIR",
         "--max-time=110",
         "--multi-start=2",
         "--router.autorouter.max_threads=2",
         "--router.neck_width_um=160",
+        "--router.min_trace_width_um=125",
         "--layer-heights=0.035,0.245,1.328,1.591",
         "--router.copper_to_edge_clearance_um=500",
     ]
+    if no_neckdown: fr_cmd.append('--no-neckdown-classes='+','.join(no_neckdown))
     if pairs_lines:
         fr_cmd.append(f"--pairs={pairs_path}")
     t0 = time.perf_counter()
     fr_rc = -1
+    from cloud_pcb.general_solver.router_logs import save_router_log
+    router_processes=[]
+    fr_stdout=fr_stderr=None
+    fr_timed_out=False
     try:
         fr_proc = subprocess.run(fr_cmd, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=150, check=False)
         fr_rc = fr_proc.returncode
-    except subprocess.TimeoutExpired:
+        fr_stdout,fr_stderr=fr_proc.stdout,fr_proc.stderr
+    except subprocess.TimeoutExpired as exc:
         fr_rc = -1
+        fr_timed_out=True
+        fr_stdout,fr_stderr=exc.stdout,exc.stderr
     fr_ms = round((time.perf_counter() - t0) * 1000.0, 2)
+    router_processes.append(save_router_log(outdir/'fastroute_primary.log',fr_cmd,fr_rc,fr_stdout,fr_stderr,timed_out=fr_timed_out))
     fr_ok = fr_rc == 0 and fr_ses.exists()
-    fr_stats = json.loads(fr_rep_path.read_text(encoding="utf-8")).get("stats", {}) if fr_rep_path.exists() else {}
+    fr_report=json.loads(fr_rep_path.read_text(encoding='utf-8')) if fr_rep_path.exists() else {}
+    fr_stats = fr_report.get('stats',{})
+    from cloud_pcb.verify_gate.gerber_drc import classify_router_violations
+    spacing=classify_router_violations(fr_report,spec)
+    route_mode='coupled_pairs' if pairs_lines else 'standard'
+    route_candidates=[dict(mode=route_mode,unrouted=fr_stats.get('unrouted'),real_violations=spacing['real_count'])]
+    if pairs_lines and fr_stats.get('unrouted',0)>0:
+        # Dense endpoints may not admit the coupled router's full-width entry.
+        # Try independently routed controlled-width nets with length tuning;
+        # keep the candidate only if its actual routing/DRC objective improves.
+        tune=outdir/'pair_tuning.txt';lines=[]
+        for i,pair in enumerate(spec['design_requirements']['differential_pairs']):
+            lines.extend([f"group pair_{i} tolerance={float(pair.get('max_skew_mm',.2))}",'  '+pair['pos_net'],'  '+pair['neg_net']])
+        tune.write_text('\n'.join(lines)+'\n')
+        alt_ses=outdir/'board_fastroute_individual.ses';alt_rep=outdir/'fastroute_individual_report.json'
+        alt_ses.unlink(missing_ok=True);alt_rep.unlink(missing_ok=True)
+        alt_cmd=[v for v in fr_cmd if not v.startswith('--pairs=') and not v.startswith('--report=')]
+        alt_cmd[alt_cmd.index('-do')+1]=str(alt_ses)
+        alt_cmd=[v.replace('--router.neck_width_um=160','--router.neck_width_um=125') for v in alt_cmd]
+        alt_cmd.extend([f'--report={alt_rep}',f'--tune={tune}'])
+        ta=time.perf_counter()
+        alt_stdout=alt_stderr=None
+        alt_timed_out=False
+        try:
+            alternate=subprocess.run(alt_cmd,cwd=PROJECT_ROOT,capture_output=True,text=True,timeout=150,check=False)
+            alt_stdout,alt_stderr=alternate.stdout,alternate.stderr
+            alt_rc=alternate.returncode
+        except subprocess.TimeoutExpired as exc:
+            alt_rc=-1;alt_timed_out=True
+            alt_stdout,alt_stderr=exc.stdout,exc.stderr
+        fr_ms+=round((time.perf_counter()-ta)*1000,2)
+        router_processes.append(save_router_log(outdir/'fastroute_individual.log',alt_cmd,alt_rc,alt_stdout,alt_stderr,timed_out=alt_timed_out))
+        if alt_rep.exists() and alt_ses.exists() and alt_rc==0:
+            alt_report=json.loads(alt_rep.read_text());alt_spacing=classify_router_violations(alt_report,spec);alt_stats=alt_report.get('stats',{})
+            route_candidates.append(dict(mode='individual_with_length_tuning',unrouted=alt_stats.get('unrouted'),real_violations=alt_spacing['real_count']))
+            def objective(stats,spacing):return (spacing['real_count'],stats.get('unrouted',999),stats.get('trace_length_mm',float('inf')))
+            if objective(alt_stats,alt_spacing)<objective(fr_stats,spacing):
+                shutil.copyfile(fr_ses,outdir/'board_fastroute_coupled.ses');shutil.copyfile(fr_rep_path,outdir/'fastroute_coupled_report.json')
+                shutil.copyfile(alt_ses,fr_ses);shutil.copyfile(alt_rep,fr_rep_path)
+                fr_report,fr_stats,spacing,fr_rc,fr_ok=alt_report,alt_stats,alt_spacing,alt_rc,True
+                route_mode='individual_with_length_tuning'
     fr_ses_info = parse_ses(fr_ses) if fr_ok else {"routed_nets": 0, "via_count": 0, "total_wirelength_mm": 0.0, "layers_used": []}
     fr_bench = RoutingBenchmark(
         engine="fastroute_v0.1.14",
         board_name=spec["project_name"],
-        success=fr_ok and fr_stats.get("unrouted", 1) == 0 and fr_stats.get("violations", 1) == 0,
+        success=fr_ok and fr_stats.get("unrouted", 1) == 0 and spacing['real_count']==0,
         runtime_ms=fr_ms,
         total_nets=int(fr_stats.get("nets", fr_ses_info["routed_nets"])),
         routed_nets=int(fr_stats.get("nets", 0)) - int(fr_stats.get("unrouted", 0)) if fr_stats else fr_ses_info["routed_nets"],
         unrouted_nets=int(fr_stats.get("unrouted", 99)),
         via_count=int(fr_stats.get("vias", fr_ses_info["via_count"])),
         total_wirelength_mm=float(fr_stats.get("trace_length_mm", fr_ses_info["total_wirelength_mm"])),
-        notes=f"rc={fr_rc}, violations={fr_stats.get('violations', 'NA')}, layers={fr_ses_info.get('layers_used')}",
+        notes=f"rc={fr_rc}, raw_violations={fr_stats.get('violations', 'NA')}, real_violations={spacing['real_count']}, layers={fr_ses_info.get('layers_used')}",
     )
 
     # 2. Freerouting CLI v2.5.0
@@ -1762,28 +1999,36 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         netclasses=netclasses,
         net_to_class=net_to_class,
         board_bounds_mm=(0.0, 0.0, W, H),
-        keepouts_mm=[],
+        board_outline_mm=list(board_poly.exterior.coords),
+        keepouts_mm=keepouts,
         skip_nets=skip_nets,
         override_net_pins=override_net_pins,
+        routing_layers_by_class=routing_layers,
     )
     free_ses = outdir / "board_freerouting.ses"
     t1 = time.perf_counter()
     free_rc = -1
     free_out = ""
+    free_stdout=free_stderr=None
+    free_timed_out=False
+    free_cmd=["freerouting-cli", "-de", str(free_dsn), "-do", str(free_ses),
+              "--gui.enabled=false", "--router.copperToEdgeClearanceUm=500",
+              "--router.autorouter.max_passes=1", "--router.optimizer.enabled=false"]
     try:
         free_proc = subprocess.run(
-            [
-                "freerouting-cli", "-de", str(free_dsn), "-do", str(free_ses),
-                "--gui.enabled=false", "--router.copperToEdgeClearanceUm=500",
-                "--router.autorouter.max_passes=1", "--router.optimizer.enabled=false",
-            ],
+            free_cmd,
             cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=60, check=False,
         )
         free_rc = free_proc.returncode
         free_out = (free_proc.stdout or "") + "\n" + (free_proc.stderr or "")
-    except subprocess.TimeoutExpired:
+        free_stdout,free_stderr=free_proc.stdout,free_proc.stderr
+    except subprocess.TimeoutExpired as exc:
         free_out = "timeout_60s"
+        free_timed_out=True
+        free_stdout,free_stderr=exc.stdout,exc.stderr
     free_ms = round((time.perf_counter() - t1) * 1000.0, 2)
+    router_processes.append(save_router_log(outdir/'freerouting.log',free_cmd,free_rc,free_stdout,free_stderr,timed_out=free_timed_out))
+    save_json(outdir/'router_processes.json',router_processes)
     free_ok = free_rc == 0 and free_ses.exists()
     free_ses_info = parse_ses(free_ses) if free_ok else {"routed_nets": 0, "via_count": 0, "total_wirelength_mm": 0.0, "layers_used": []}
     free_unr = max(0, fr_bench.total_nets - free_ses_info["routed_nets"])
@@ -1810,15 +2055,44 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
     if chosen_ses.exists():
         routed_board, _ = merge_ses_into_board(routed_board, chosen_ses)
 
-    pours, pour_stats = _build_4layer_pours_and_stitching(routed_board, board_poly)
+    islands=power_islands(routed_board,board_poly,spec,keepouts)
+    pours, pour_stats = _build_4layer_pours_and_stitching(routed_board, board_poly,keepouts=keepouts,islands=islands)
     routed_pcb = outdir / "routed.kicad_pcb"
     routed_board.to_file(str(routed_pcb))
 
     gerbers = _export_blind_gerbers(routed_board, board_poly, pours, H, gerber_dir)
     audit = _audit_blind_output(routed_board, board_poly, pours, gerber_dir, H)
+    from cloud_pcb.verify_gate.gerber_drc import audit_general_board
+    from cloud_pcb.general_solver.assembly import export_assembly
+    independent=audit_general_board(routed_board,spec,placed,keepouts)
+    audit['legacy_projected_lvs_opens']=audit['lvs_opens']
+    audit['lvs_opens']=independent['lvs_opens']; audit['lvs_shorts']=independent['lvs_shorts']
+    audit['independent_4layer']=independent
+    assembly=export_assembly(routed_board,spec,placed,outdir)
+    rf_unknown=rf_keepouts(spec,placed)[1]
+    hard_gates={
+        'unrouted_zero':fr_ok and fr_stats.get('unrouted')==0,
+        'router_spacing_zero':fr_ok and spacing['real_count']==0,
+        'independent_lvs_opens_zero':not independent['lvs_opens'],
+        'independent_lvs_shorts_zero':not independent['lvs_shorts'],
+        'nonthermal_via_in_pad_zero':not independent['via_in_pad_violations'],
+        'gerber_all_parsed':audit['pygerber_all_ok'],
+        'annular_ring_ge_010':audit['min_annular_ring_mm'] is not None and audit['min_annular_ring_mm']>=.10 and audit['annular_ring_violations']==0,
+        'silk_overlap_zero':audit['silk_to_mask_overlap_mm2']==0,
+        'copper_edge_ge_050':all(d>=.50-1e-4 for d in audit['copper_edge_margins_mm'].values()) and len(audit['copper_edge_margins_mm'])==4,
+        'rf_all_four_layers_clear':not rf_unknown and all(k['passed'] for k in independent['rf_keepout']),
+        'mechanical_zero_with_verified_envelopes':independent['mechanical']['passed'],
+    }
 
     summary = {
         "project_name": spec["project_name"],
+        "electrical_derivations": electrical_derivations,
+        "power_routing_intent": {
+            net: dict(class_name=cls, target_width_mm=netclasses[cls].trace_width_mm,
+                      routing_scope=next((r.get('routing_scope', 'board_distribution') for r in spec.get('design_requirements', {}).get('power_rails', []) if r['net'] == net), 'board_distribution'),
+                      current_verified=any(r['net'] == net and (r.get('max_current_a') is not None or r.get('current_a') is not None) for r in spec.get('design_requirements', {}).get('power_rails', [])))
+            for net, cls in net_to_class.items() if cls.startswith('POWER')
+        },
         "repo_url": spec["repo_url"],
         "commit_sha": spec["commit_sha"],
         "total_runtime_ms": round((time.perf_counter() - t_start) * 1000.0, 2),
@@ -1829,6 +2103,17 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         "gnd_pour_stats": pour_stats,
         "gerber_files": gerbers,
         "audit": audit,
+        "hard_gates": hard_gates,
+        "hard_gates_passed": all(hard_gates.values()),
+        "router_spacing": spacing,
+        "routing_mode": route_mode,
+        "router_processes": router_processes,
+        "routing_candidates": route_candidates,
+        "full_width_at_pin_diff_classes": no_neckdown,
+        "keepouts": keepouts,
+        "rf_unresolved": rf_unknown,
+        "power_width_distribution_mm": width_distribution(routed_board,{n for n,c in net_to_class.items() if c.startswith('POWER')}),
+        "assembly": assembly,
     }
     save_json(outdir / "blind_run_report.json", summary)
     return summary
@@ -1838,8 +2123,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run board-agnostic blind PCB solver")
     parser.add_argument("--spec", type=Path, default=DEFAULT_BLIND_SPEC)
     parser.add_argument("--outdir", type=Path, default=DEFAULT_OUTDIR)
+    parser.add_argument("--derive-power", action="store_true", help="Evaluate evidence-based supply inference as an experimental variant")
+    parser.add_argument("--scoped-power", action="store_true", help="Experimental single-IC supply scope; implies supply inference")
+    parser.add_argument("--octagonal-fanout", action="store_true", help="Use circumscribed via guards with unchanged circular protection radius")
     args = parser.parse_args()
-    res = run_blind_solver(args.spec, args.outdir)
+    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout)
     print(json.dumps({
         "project": res["project_name"],
         "total_placed": res["placement_meta"]["total_placed"],

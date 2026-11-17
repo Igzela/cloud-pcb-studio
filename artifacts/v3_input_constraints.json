@@ -1,0 +1,18 @@
+[
+  {
+    "case": 5,
+    "refdes": "USB1",
+    "pad": "0",
+    "fixed_interface_copper_edge_mm": 0.3,
+    "required_mm": 0.5,
+    "reason": "fixed interface geometry conflicts with the requested copper edge margin"
+  },
+  {
+    "case": 5,
+    "refdes": "USB1",
+    "pad": "0",
+    "fixed_interface_copper_edge_mm": 0.3,
+    "required_mm": 0.5,
+    "reason": "fixed interface geometry conflicts with the requested copper edge margin"
+  }
+]

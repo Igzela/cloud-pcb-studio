@@ -1,0 +1,39 @@
+{
+  "status": "generated",
+  "requested_model": "gemini-4-hydrogen",
+  "reported_model_version": "gemini-4-hydrogen",
+  "response_id": "Uy38atjPIcXHiLMPjqWF6Ao",
+  "usage": {
+    "promptTokenCount": 16836,
+    "candidatesTokenCount": 1973,
+    "totalTokenCount": 21660,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16836
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1973
+      }
+    ],
+    "thoughtsTokenCount": 2851,
+    "serviceTier": "standard"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "http_status": 200,
+      "runtime_s": 77.987
+    }
+  ],
+  "candidates": [
+    {
+      "text": "{\"placements\":[{\"id\":\"C0001\",\"x_mm\":18.5,\"y_mm\":18.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0002\",\"x_mm\":10.5,\"y_mm\":15.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0003\",\"x_mm\":34.0,\"y_mm\":17.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0004\",\"x_mm\":8.0,\"y_mm\":26.0,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0005\",\"x_mm\":33.0,\"y_mm\":41.5,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0006\",\"x_mm\":27.5,\"y_mm\":31.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0007\",\"x_mm\":44.5,\"y_mm\":22.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0008\",\"x_mm\":21.5,\"y_mm\":25.0,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0009\",\"x_mm\":28.5,\"y_mm\":15.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0010\",\"x_mm\":21.5,\"y_mm\":22.0,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0011\",\"x_mm\":3.8,\"y_mm\":21.82,\"angle_deg\":-90,\"side\":\"top\"},{\"id\":\"C0012\",\"x_mm\":14.0,\"y_mm\":41.5,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0013\",\"x_mm\":33.5,\"y_mm\":25.0,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0014\",\"x_mm\":51.5,\"y_mm\":14.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0015\",\"x_mm\":38.5,\"y_mm\":22.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0016\",\"x_mm\":27.5,\"y_mm\":22.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0017\",\"x_mm\":28.5,\"y_mm\":13.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0018\",\"x_mm\":14.0,\"y_mm\":3.5,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0019\",\"x_mm\":17.0,\"y_mm\":25.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0020\",\"x_mm\":14.5,\"y_mm\":25.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0021\",\"x_mm\":10.5,\"y_mm\":13.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0022\",\"x_mm\":33.0,\"y_mm\":3.5,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0023\",\"x_mm\":46.5,\"y_mm\":18.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0024\",\"x_mm\":14.5,\"y_mm\":19.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0025\",\"x_mm\":25.0,\"y_mm\":28.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0026\",\"x_mm\":30.0,\"y_mm\":28.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0027\",\"x_mm\":24.5,\"y_mm\":16.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0028\",\"x_mm\":44.5,\"y_mm\":25.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0029\",\"x_mm\":8.0,\"y_mm\":29.0,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0030\",\"x_mm\":8.0,\"y_mm\":19.0,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0031\",\"x_mm\":11.5,\"y_mm\":28.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0032\",\"x_mm\":15.5,\"y_mm\":31.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0033\",\"x_mm\":15.5,\"y_mm\":15.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0034\",\"x_mm\":36.0,\"y_mm\":17.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0035\",\"x_mm\":43.5,\"y_mm\":19.5,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0036\",\"x_mm\":12.0,\"y_mm\":22.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0037\",\"x_mm\":32.0,\"y_mm\":15.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0038\",\"x_mm\":20.5,\"y_mm\":19.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0039\",\"x_mm\":10.5,\"y_mm\":11.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0040\",\"x_mm\":17.0,\"y_mm\":19.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0041\",\"x_mm\":15.5,\"y_mm\":13.5,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0042\",\"x_mm\":32.0,\"y_mm\":13.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0043\",\"x_mm\":33.5,\"y_mm\":22.0,\"angle_deg\":90,\"side\":\"top\"},{\"id\":\"C0044\",\"x_mm\":51.5,\"y_mm\":25.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0045\",\"x_mm\":15.5,\"y_mm\":28.0,\"angle_deg\":0,\"side\":\"top\"},{\"id\":\"C0046\",\"x_mm\":8.0,\"y_mm\":22.5,\"angle_deg\":90,\"side\":\"top\"}],\"design_notes\":[\"Retained fixed USB-C receptacle C0011 at (3.8, 21.82, -90 deg) and placed 5.1k CC resistors C0030/C0046 and 3.3V LDO C0036 with input/output bulk capacitors adjacent to it.\",\"Centered MCU C0016 at (27.5, 22.5) with 100nF/10nF decoupling capacitors (C0008, C0010, C0013, C0025, C0026, C0027, C0043) and 8 MHz oscillator C0038 + pullup C0001 closely coupled to VDD and OSC pins.\",\"Placed IMU C0006 north of C0016 and CAN transceiver C0015 east of C0016 with 120R termination C0035 and jumper C0023 near CANH/CANL.\",\"Arranged pin headers (C0005, C0012, C0014, C0018, C0022, C0031, C0044) along board edges clear of corner mounting holes and 0.50 mm edge keepout.\"]}",
+      "finish_reason": "STOP",
+      "continuation_token": null
+    }
+  ]
+}

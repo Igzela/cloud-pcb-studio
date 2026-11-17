@@ -1,0 +1,1681 @@
+{
+  "project_name": "holdout_case5",
+  "repo_url": "https://github.com/OLIMEX/USB-GIGABIT.git",
+  "commit_sha": "e30a671f84527391f9f351bd8a0563ab36cceb6f",
+  "total_runtime_ms": 200667.82,
+  "placement_meta": {
+    "board_width_mm": 51.5,
+    "board_height_mm": 19.0,
+    "corner_radius_mm": 0.0,
+    "groups": {
+      "edge_connectors": [
+        "LAN1",
+        "USB1"
+      ],
+      "ics": [
+        "U3",
+        "U2",
+        "U4",
+        "X1"
+      ],
+      "regulators": [],
+      "multi_pin_headers": [],
+      "single_pad_tp": [
+        "FID1",
+        "FID2",
+        "FID3",
+        "FID4"
+      ],
+      "signal_passives": [
+        "R1",
+        "FB1",
+        "R14",
+        "R13",
+        "C12",
+        "R7",
+        "R5",
+        "R3",
+        "R2",
+        "R15",
+        "L1",
+        "C26",
+        "C25",
+        "C24",
+        "C21",
+        "C20",
+        "C19",
+        "C18",
+        "C17",
+        "C16",
+        "C2",
+        "C1",
+        "R6",
+        "R12",
+        "C8",
+        "C7",
+        "R9",
+        "R10",
+        "R8",
+        "R4",
+        "C5",
+        "R11",
+        "C9",
+        "C4",
+        "C3",
+        "C22"
+      ],
+      "bypass_caps": [
+        "C10",
+        "C11",
+        "C14",
+        "C15",
+        "C27",
+        "C6"
+      ]
+    },
+    "total_placed": 52,
+    "hierarchy": {
+      "communities": [
+        [
+          "C12",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C20",
+          "C21",
+          "C24",
+          "C25",
+          "C26",
+          "L1",
+          "R12",
+          "R15",
+          "U4"
+        ],
+        [
+          "C22",
+          "C3",
+          "C4",
+          "C7",
+          "C8",
+          "C9",
+          "LAN1",
+          "R10",
+          "R11",
+          "R7",
+          "R8",
+          "R9",
+          "U3",
+          "X1"
+        ],
+        [
+          "C1",
+          "C2",
+          "C5",
+          "FB1",
+          "R2",
+          "R3",
+          "R4",
+          "USB1"
+        ],
+        [
+          "R1",
+          "R13",
+          "R14",
+          "R5",
+          "R6",
+          "U2"
+        ],
+        [
+          "FID3"
+        ],
+        [
+          "FID4"
+        ],
+        [
+          "C6"
+        ],
+        [
+          "C10"
+        ],
+        [
+          "C11"
+        ],
+        [
+          "C14"
+        ],
+        [
+          "C15"
+        ],
+        [
+          "C27"
+        ],
+        [
+          "FID1"
+        ],
+        [
+          "FID2"
+        ]
+      ],
+      "repeated_channels": [],
+      "signal_edges": 122,
+      "algorithm": "weighted Louvain + WL filter + exact attributed isomorphism",
+      "seed": 0
+    },
+    "component_sides": {
+      "C1": "top",
+      "C10": "top",
+      "C11": "top",
+      "C12": "top",
+      "C14": "top",
+      "C15": "top",
+      "C16": "top",
+      "C17": "top",
+      "C18": "top",
+      "C19": "top",
+      "C2": "top",
+      "C20": "top",
+      "C21": "top",
+      "C22": "top",
+      "C24": "top",
+      "C25": "top",
+      "C26": "top",
+      "C27": "top",
+      "C3": "top",
+      "C4": "top",
+      "C5": "bottom",
+      "C6": "top",
+      "C7": "top",
+      "C8": "top",
+      "C9": "bottom",
+      "FB1": "bottom",
+      "FID1": "top",
+      "FID2": "top",
+      "FID3": "top",
+      "FID4": "top",
+      "L1": "top",
+      "LAN1": "top",
+      "R1": "top",
+      "R10": "top",
+      "R11": "top",
+      "R12": "top",
+      "R13": "top",
+      "R14": "top",
+      "R15": "top",
+      "R2": "top",
+      "R3": "top",
+      "R4": "bottom",
+      "R5": "top",
+      "R6": "top",
+      "R7": "top",
+      "R8": "top",
+      "R9": "top",
+      "U2": "top",
+      "U3": "top",
+      "U4": "top",
+      "USB1": "top",
+      "X1": "top"
+    }
+  },
+  "placed_positions": {
+    "LAN1": [
+      6.3415000000000035,
+      9.5,
+      -90.0
+    ],
+    "USB1": [
+      51.849999999999994,
+      9.5,
+      -90.0
+    ],
+    "U3": [
+      25.75,
+      8.55,
+      270.0
+    ],
+    "U2": [
+      33.883,
+      7.737,
+      180.0
+    ],
+    "U4": [
+      29.935,
+      15.615,
+      0.0
+    ],
+    "X1": [
+      24.15,
+      15.735,
+      0.0
+    ],
+    "FID1": [
+      43.0,
+      2.8,
+      0.0
+    ],
+    "FID2": [
+      43.0,
+      16.2,
+      0.0
+    ],
+    "FID3": [
+      40.0,
+      2.8,
+      0.0
+    ],
+    "FID4": [
+      40.0,
+      16.2,
+      0.0
+    ],
+    "C10": [
+      20.367,
+      6.35,
+      90.0
+    ],
+    "C11": [
+      37.615,
+      11.15,
+      90.0
+    ],
+    "C14": [
+      20.367,
+      10.75,
+      90.0
+    ],
+    "C15": [
+      33.804,
+      13.127,
+      180.0
+    ],
+    "C27": [
+      27.534,
+      3.263,
+      180.0
+    ],
+    "C6": [
+      29.745,
+      2.458,
+      270.0
+    ],
+    "R1": [
+      44.03,
+      9.813,
+      90.0
+    ],
+    "FB1": [
+      34.806,
+      13.514,
+      0.0
+    ],
+    "R14": [
+      33.491,
+      15.671,
+      270.0
+    ],
+    "R13": [
+      22.943,
+      2.289,
+      270.0
+    ],
+    "C12": [
+      35.026,
+      16.097,
+      270.0
+    ],
+    "R7": [
+      18.286,
+      6.09,
+      0.0
+    ],
+    "R5": [
+      32.226,
+      1.946,
+      0.0
+    ],
+    "R3": [
+      39.325,
+      11.017,
+      90.0
+    ],
+    "R2": [
+      38.247,
+      8.609,
+      0.0
+    ],
+    "R15": [
+      19.738,
+      8.451,
+      180.0
+    ],
+    "L1": [
+      18.88,
+      15.264,
+      90.0
+    ],
+    "C26": [
+      39.1,
+      13.758,
+      180.0
+    ],
+    "C25": [
+      18.8,
+      10.649,
+      90.0
+    ],
+    "C24": [
+      35.105,
+      2.286,
+      180.0
+    ],
+    "C21": [
+      38.37,
+      6.845,
+      180.0
+    ],
+    "C20": [
+      37.942,
+      5.383,
+      180.0
+    ],
+    "C19": [
+      38.194,
+      3.338,
+      270.0
+    ],
+    "C18": [
+      20.353,
+      3.053,
+      0.0
+    ],
+    "C17": [
+      41.708,
+      5.102,
+      0.0
+    ],
+    "C16": [
+      41.363,
+      9.613,
+      180.0
+    ],
+    "C2": [
+      41.056,
+      7.706,
+      0.0
+    ],
+    "C1": [
+      41.649,
+      11.859,
+      0.0
+    ],
+    "R6": [
+      17.499,
+      8.149,
+      270.0
+    ],
+    "R12": [
+      36.507,
+      13.315,
+      0.0
+    ],
+    "C8": [
+      36.868,
+      15.771,
+      90.0
+    ],
+    "C7": [
+      41.692,
+      13.454,
+      180.0
+    ],
+    "R9": [
+      44.181,
+      12.767,
+      270.0
+    ],
+    "R10": [
+      25.506,
+      2.547,
+      270.0
+    ],
+    "R8": [
+      43.685,
+      7.17,
+      0.0
+    ],
+    "R4": [
+      45.552,
+      4.82,
+      90.0
+    ],
+    "C5": [
+      42.644,
+      4.506,
+      90.0
+    ],
+    "R11": [
+      27.902,
+      1.97,
+      180.0
+    ],
+    "C9": [
+      9.542,
+      9.5,
+      90.0
+    ],
+    "C4": [
+      17.204,
+      11.671,
+      270.0
+    ],
+    "C3": [
+      17.783,
+      3.774,
+      90.0
+    ],
+    "C22": [
+      31.489,
+      12.849,
+      0.0
+    ]
+  },
+  "gnd_fanout_stats": {
+    "fanout_vias_added": 34,
+    "gnd_smd_pads_total": 40,
+    "unvia_gnd_pins": [
+      "R4-2",
+      "C15-1",
+      "U3-21",
+      "U3-33"
+    ]
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "board_name": "holdout_case5",
+      "success": false,
+      "runtime_ms": 110078.24,
+      "total_nets": 43,
+      "routed_nets": 23,
+      "unrouted_nets": 20,
+      "via_count": 64,
+      "total_wirelength_mm": 851.7406,
+      "notes": "rc=0, raw_violations=1, real_violations=1, layers=['B.Cu', 'F.Cu', 'In2.Cu']"
+    },
+    {
+      "engine": "freerouting_cli_v2.5.0",
+      "board_name": "holdout_case5",
+      "success": false,
+      "runtime_ms": 60069.82,
+      "total_nets": 43,
+      "routed_nets": 0,
+      "unrouted_nets": 43,
+      "via_count": 0,
+      "total_wirelength_mm": 0.0,
+      "notes": "timeout_60s"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 741.308,
+    "fill_ratio": 0.7576,
+    "f_cu_pour_mm2": 495.359,
+    "b_cu_pour_mm2": 606.047,
+    "stitching_vias_added": 1,
+    "antipad_cutouts": 85,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "gerber_files": [
+    "B_Cu.gbr",
+    "B_Mask.gbr",
+    "B_Paste.gbr",
+    "B_SilkS.gbr",
+    "Edge_Cuts.gbr",
+    "F_Cu.gbr",
+    "F_Mask.gbr",
+    "F_Paste.gbr",
+    "F_SilkS.gbr",
+    "In1_Cu.gbr",
+    "In2_Cu.gbr",
+    "NPTH.drl",
+    "PTH.drl"
+  ],
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "F_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 122,
+    "npth_hole_count": 4,
+    "min_annular_ring_mm": 0.1247,
+    "annular_ring_violations": 0,
+    "silk_to_mask_overlap_mm2": 0.0,
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 0.3,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.3
+    },
+    "lvs_opens": [
+      {
+        "net": "/U3TX_P",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "C1-1"
+          ],
+          "0": [
+            "U3-18"
+          ]
+        }
+      },
+      {
+        "net": "Net-(U3-VDD5)",
+        "components": 2,
+        "pad_count": 5,
+        "pad_groups": {
+          "1": [
+            "C12-1",
+            "FB1-2",
+            "U4-1",
+            "U4-4"
+          ],
+          "0": [
+            "U3-26"
+          ]
+        }
+      },
+      {
+        "net": "/V12",
+        "components": 6,
+        "pad_count": 19,
+        "pad_groups": {
+          "10": [
+            "C16-2"
+          ],
+          "4": [
+            "C17-1",
+            "C18-2",
+            "C19-2",
+            "C20-2",
+            "C21-2",
+            "C24-2",
+            "C25-2",
+            "C26-2",
+            "L1-2",
+            "R15-1",
+            "U3-20",
+            "U3-24",
+            "U3-42",
+            "U3-46"
+          ],
+          "1": [
+            "U3-4"
+          ],
+          "7": [
+            "U3-9"
+          ],
+          "9": [
+            "U3-13"
+          ],
+          "6": [
+            "U3-31"
+          ]
+        }
+      },
+      {
+        "net": "/U3TX_N",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "0": [
+            "C2-1"
+          ],
+          "1": [
+            "U3-19"
+          ]
+        }
+      },
+      {
+        "net": "Net-(U3-DVDD10_UPS)",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "C22-1"
+          ],
+          "0": [
+            "U3-27"
+          ]
+        }
+      },
+      {
+        "net": "Net-(U3-CKXTAL2)",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "2": [
+            "C8-1",
+            "X1-1"
+          ],
+          "0": [
+            "U3-45"
+          ]
+        }
+      },
+      {
+        "net": "/M0_N",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "0": [
+            "LAN1-2",
+            "LAN1-2",
+            "LAN1-2",
+            "LAN1-2"
+          ],
+          "1": [
+            "U3-3"
+          ]
+        }
+      },
+      {
+        "net": "/M1_N",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "0": [
+            "LAN1-4",
+            "LAN1-4",
+            "LAN1-4",
+            "LAN1-4"
+          ],
+          "2": [
+            "U3-6"
+          ]
+        }
+      },
+      {
+        "net": "/M2_N",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "LAN1-8",
+            "LAN1-8",
+            "LAN1-8",
+            "LAN1-8"
+          ],
+          "0": [
+            "U3-8"
+          ]
+        }
+      },
+      {
+        "net": "/M3_P",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "LAN1-9",
+            "LAN1-9",
+            "LAN1-9",
+            "LAN1-9"
+          ],
+          "0": [
+            "U3-10"
+          ]
+        }
+      },
+      {
+        "net": "Net-(LAN1-Pad14)",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "LAN1-14",
+            "LAN1-14",
+            "LAN1-14",
+            "LAN1-14"
+          ],
+          "0": [
+            "R1-1"
+          ]
+        }
+      },
+      {
+        "net": "/LED2",
+        "components": 3,
+        "pad_count": 5,
+        "pad_groups": {
+          "3": [
+            "R1-2"
+          ],
+          "1": [
+            "R13-2",
+            "R14-1",
+            "U2-4"
+          ],
+          "2": [
+            "U3-41"
+          ]
+        }
+      },
+      {
+        "net": "Net-(U3-GPIO)",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "0": [
+            "R11-1"
+          ],
+          "1": [
+            "U3-29"
+          ]
+        }
+      },
+      {
+        "net": "/U2_N",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "0": [
+            "R3-1"
+          ],
+          "1": [
+            "U3-22"
+          ]
+        }
+      },
+      {
+        "net": "Net-(U3-RSET)",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "R8-1"
+          ],
+          "0": [
+            "U3-47"
+          ]
+        }
+      }
+    ],
+    "lvs_shorts": [],
+    "min_inter_net_clearance_mm": 0.095,
+    "legacy_projected_lvs_opens": [
+      "/U3TX_P (2 islands)",
+      "Net-(U3-VDD5) (2 islands)",
+      "/V12 (6 islands)",
+      "/U3TX_N (2 islands)",
+      "Net-(U3-DVDD10_UPS) (2 islands)",
+      "Net-(U3-CKXTAL2) (2 islands)",
+      "/M0_N (2 islands)",
+      "/M1_N (2 islands)",
+      "/M2_N (2 islands)",
+      "/M3_P (2 islands)",
+      "Net-(LAN1-Pad14) (2 islands)",
+      "/LED2 (3 islands)",
+      "Net-(U3-GPIO) (2 islands)",
+      "/U2_N (2 islands)",
+      "Net-(U3-RSET) (2 islands)"
+    ],
+    "independent_4layer": {
+      "lvs_opens": [
+        {
+          "net": "/U3TX_P",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "C1-1"
+            ],
+            "0": [
+              "U3-18"
+            ]
+          }
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "components": 2,
+          "pad_count": 5,
+          "pad_groups": {
+            "1": [
+              "C12-1",
+              "FB1-2",
+              "U4-1",
+              "U4-4"
+            ],
+            "0": [
+              "U3-26"
+            ]
+          }
+        },
+        {
+          "net": "/V12",
+          "components": 6,
+          "pad_count": 19,
+          "pad_groups": {
+            "10": [
+              "C16-2"
+            ],
+            "4": [
+              "C17-1",
+              "C18-2",
+              "C19-2",
+              "C20-2",
+              "C21-2",
+              "C24-2",
+              "C25-2",
+              "C26-2",
+              "L1-2",
+              "R15-1",
+              "U3-20",
+              "U3-24",
+              "U3-42",
+              "U3-46"
+            ],
+            "1": [
+              "U3-4"
+            ],
+            "7": [
+              "U3-9"
+            ],
+            "9": [
+              "U3-13"
+            ],
+            "6": [
+              "U3-31"
+            ]
+          }
+        },
+        {
+          "net": "/U3TX_N",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "C2-1"
+            ],
+            "1": [
+              "U3-19"
+            ]
+          }
+        },
+        {
+          "net": "Net-(U3-DVDD10_UPS)",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "C22-1"
+            ],
+            "0": [
+              "U3-27"
+            ]
+          }
+        },
+        {
+          "net": "Net-(U3-CKXTAL2)",
+          "components": 2,
+          "pad_count": 3,
+          "pad_groups": {
+            "2": [
+              "C8-1",
+              "X1-1"
+            ],
+            "0": [
+              "U3-45"
+            ]
+          }
+        },
+        {
+          "net": "/M0_N",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "LAN1-2",
+              "LAN1-2",
+              "LAN1-2",
+              "LAN1-2"
+            ],
+            "1": [
+              "U3-3"
+            ]
+          }
+        },
+        {
+          "net": "/M1_N",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "LAN1-4",
+              "LAN1-4",
+              "LAN1-4",
+              "LAN1-4"
+            ],
+            "2": [
+              "U3-6"
+            ]
+          }
+        },
+        {
+          "net": "/M2_N",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "LAN1-8",
+              "LAN1-8",
+              "LAN1-8",
+              "LAN1-8"
+            ],
+            "0": [
+              "U3-8"
+            ]
+          }
+        },
+        {
+          "net": "/M3_P",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "LAN1-9",
+              "LAN1-9",
+              "LAN1-9",
+              "LAN1-9"
+            ],
+            "0": [
+              "U3-10"
+            ]
+          }
+        },
+        {
+          "net": "Net-(LAN1-Pad14)",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "LAN1-14",
+              "LAN1-14",
+              "LAN1-14",
+              "LAN1-14"
+            ],
+            "0": [
+              "R1-1"
+            ]
+          }
+        },
+        {
+          "net": "/LED2",
+          "components": 3,
+          "pad_count": 5,
+          "pad_groups": {
+            "3": [
+              "R1-2"
+            ],
+            "1": [
+              "R13-2",
+              "R14-1",
+              "U2-4"
+            ],
+            "2": [
+              "U3-41"
+            ]
+          }
+        },
+        {
+          "net": "Net-(U3-GPIO)",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "R11-1"
+            ],
+            "1": [
+              "U3-29"
+            ]
+          }
+        },
+        {
+          "net": "/U2_N",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "0": [
+              "R3-1"
+            ],
+            "1": [
+              "U3-22"
+            ]
+          }
+        },
+        {
+          "net": "Net-(U3-RSET)",
+          "components": 2,
+          "pad_count": 2,
+          "pad_groups": {
+            "1": [
+              "R8-1"
+            ],
+            "0": [
+              "U3-47"
+            ]
+          }
+        }
+      ],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C22",
+          "C24",
+          "C25",
+          "C26",
+          "C27",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "FB1",
+          "FID1",
+          "FID2",
+          "FID3",
+          "FID4",
+          "L1",
+          "LAN1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "U2",
+          "U3",
+          "U4",
+          "USB1",
+          "X1"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": false
+    }
+  },
+  "hard_gates": {
+    "unrouted_zero": false,
+    "router_spacing_zero": false,
+    "independent_lvs_opens_zero": false,
+    "independent_lvs_shorts_zero": true,
+    "nonthermal_via_in_pad_zero": true,
+    "gerber_all_parsed": true,
+    "annular_ring_ge_010": true,
+    "silk_overlap_zero": true,
+    "copper_edge_ge_050": false,
+    "rf_all_four_layers_clear": true,
+    "mechanical_zero_with_verified_envelopes": false
+  },
+  "hard_gates_passed": false,
+  "router_spacing": {
+    "raw_count": 1,
+    "excluded_same_net_pad_overlaps": 0,
+    "real_count": 1,
+    "excluded": [],
+    "real": [
+      {
+        "layer": "F.Cu",
+        "xy": [
+          23.825,
+          5.0979
+        ],
+        "clearance_mm": 0.15,
+        "actual_mm": 0.0822,
+        "unfixable": false,
+        "first": {
+          "kind": "trace",
+          "layers": [
+            "F.Cu",
+            "F.Cu"
+          ]
+        },
+        "second": {
+          "kind": "pin",
+          "component": "U3",
+          "pin": "47",
+          "layers": [
+            "F.Cu",
+            "F.Cu"
+          ]
+        }
+      }
+    ]
+  },
+  "full_width_at_pin_diff_classes": [
+    "DIFF_PAIR_004",
+    "DIFF_PAIR_007"
+  ],
+  "keepouts": [
+    {
+      "x_min": 43.466,
+      "y_min": 5.102,
+      "x_max": 44.306,
+      "y_max": 5.942,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 9.122,
+      "y_min": 12.227,
+      "x_max": 9.962,
+      "y_max": 13.067,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 25.014,
+      "y_min": 17.281,
+      "x_max": 25.854,
+      "y_max": 18.121,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 22.446,
+      "y_min": 13.349,
+      "x_max": 23.286,
+      "y_max": 14.189,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 31.799,
+      "y_min": 11.479,
+      "x_max": 32.639,
+      "y_max": 12.319,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 34.606,
+      "y_min": 17.554,
+      "x_max": 35.446,
+      "y_max": 18.394,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 43.335,
+      "y_min": 5.84,
+      "x_max": 44.175,
+      "y_max": 6.68,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 44.946,
+      "y_min": 6.432,
+      "x_max": 45.786,
+      "y_max": 7.272,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 44.9,
+      "y_min": 9.08,
+      "x_max": 45.74,
+      "y_max": 9.92,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 31.895,
+      "y_min": 15.195,
+      "x_max": 32.735,
+      "y_max": 16.035,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 20.548,
+      "y_min": 7.039,
+      "x_max": 21.388,
+      "y_max": 7.879,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 37.796,
+      "y_min": 11.839,
+      "x_max": 38.636,
+      "y_max": 12.679,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 21.008,
+      "y_min": 11.899,
+      "x_max": 21.848,
+      "y_max": 12.739,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 42.301,
+      "y_min": 9.193,
+      "x_max": 43.141,
+      "y_max": 10.033,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 18.575,
+      "y_min": 2.633,
+      "x_max": 19.415,
+      "y_max": 3.473,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 37.774,
+      "y_min": 1.56,
+      "x_max": 38.614,
+      "y_max": 2.4,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 38.88,
+      "y_min": 4.963,
+      "x_max": 39.72,
+      "y_max": 5.803,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 39.308,
+      "y_min": 6.425,
+      "x_max": 40.148,
+      "y_max": 7.265,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 31.577,
+      "y_min": 13.279,
+      "x_max": 32.417,
+      "y_max": 14.119,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 36.043,
+      "y_min": 1.866,
+      "x_max": 36.883,
+      "y_max": 2.706,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 18.38,
+      "y_min": 11.587,
+      "x_max": 19.22,
+      "y_max": 12.427,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 39.789,
+      "y_min": 13.939,
+      "x_max": 40.629,
+      "y_max": 14.779,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 26.005,
+      "y_min": 2.242,
+      "x_max": 26.845,
+      "y_max": 3.082,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 17.363,
+      "y_min": 1.996,
+      "x_max": 18.203,
+      "y_max": 2.836,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 17.385,
+      "y_min": 12.36,
+      "x_max": 18.225,
+      "y_max": 13.2,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 29.325,
+      "y_min": 0.68,
+      "x_max": 30.165,
+      "y_max": 1.52,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 41.78,
+      "y_min": 13.884,
+      "x_max": 42.62,
+      "y_max": 14.724,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 37.049,
+      "y_min": 14.242,
+      "x_max": 37.889,
+      "y_max": 15.082,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 25.086,
+      "y_min": 0.769,
+      "x_max": 25.926,
+      "y_max": 1.609,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 37.196,
+      "y_min": 13.496,
+      "x_max": 38.036,
+      "y_max": 14.336,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 33.071,
+      "y_min": 16.609,
+      "x_max": 33.911,
+      "y_max": 17.449,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 16.478,
+      "y_min": 8.838,
+      "x_max": 17.318,
+      "y_max": 9.678,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 44.374,
+      "y_min": 7.351,
+      "x_max": 45.214,
+      "y_max": 8.191,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    },
+    {
+      "x_min": 24.915,
+      "y_min": 12.289,
+      "x_max": 25.755,
+      "y_max": 13.129,
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ]
+    }
+  ],
+  "rf_unresolved": [],
+  "power_width_distribution_mm": {
+    "+3V3": {
+      "0.160": 42.95663298818187,
+      "0.500": 68.77419872691917,
+      "0.200": 3.6382417741353414,
+      "0.125": 0.6737958072086101,
+      "0.375": 2.561346137686198
+    }
+  },
+  "assembly": {
+    "html": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case5/assembly.html",
+    "scene": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case5/assembly_scene.json",
+    "component_models": 52,
+    "mechanical": {
+      "collision_count": 0,
+      "collisions": [],
+      "unverified_envelopes": [
+        "C1",
+        "C10",
+        "C11",
+        "C12",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C2",
+        "C20",
+        "C21",
+        "C22",
+        "C24",
+        "C25",
+        "C26",
+        "C27",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "FB1",
+        "FID1",
+        "FID2",
+        "FID3",
+        "FID4",
+        "L1",
+        "LAN1",
+        "R1",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "U2",
+        "U3",
+        "U4",
+        "USB1",
+        "X1"
+      ],
+      "all_envelopes_verified": false,
+      "passed": false
+    }
+  }
+}

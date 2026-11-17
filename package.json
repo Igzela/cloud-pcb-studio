@@ -9,6 +9,10 @@
     "circuit-json-to-kicad": "^0.0.275",
     "circuit-to-svg": "^0.0.458",
     "esbuild": "^0.28.2",
+    "three": "0.179.1",
     "tscircuit": "^0.0.3169"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
   }
 }

@@ -1,0 +1,826 @@
+{
+  "blind_solver": {
+    "topology": {
+      "community_count": 25,
+      "repeated_channel_groups": 0,
+      "community_hpwl_mm": [
+        77.80099999999999,
+        63.231,
+        83.35,
+        17.444999999999993,
+        24.119,
+        4.6080000000000005,
+        17.895,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_alignment_error_mm": []
+    },
+    "power_width_length_distribution_mm": {
+      "GND": {
+        "0.220": 50.403019286180424,
+        "0.180": 1.2410076550932276,
+        "0.160": 46.07137170325814,
+        "0.125": 0.9142671498536845
+      },
+      "+3.3V": {
+        "0.500": 111.29464565189821,
+        "0.300": 0.7320935208311316,
+        "0.160": 2.645911269837221,
+        "0.125": 0.5681147396518327,
+        "0.375": 4.273131846177935
+      },
+      "+3V3": {
+        "0.500": 10.870702054653027
+      },
+      "+5V": {
+        "0.500": 138.92511273911137
+      },
+      "+BATT": {
+        "0.500": 50.23197590836631
+      },
+      "/VIN": {
+        "0.500": 40.139546814565676,
+        "0.375": 4.191663390338182
+      }
+    },
+    "rf_semantics_unresolved": [
+      {
+        "refdes": "U1",
+        "confidence": "unknown",
+        "reason": "antenna candidate lacks body geometry or explicit keepout"
+      }
+    ],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "BZ1",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "F1",
+          "J1",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J9",
+          "L1",
+          "Q1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "SW1",
+          "SW2",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "U5",
+          "U6"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": true
+    },
+    "label": "Blind v3 \u2014 Case 2",
+    "pcb_path": "/workspace/cloud-pcb-studio/artifacts/blind_v3_case2/routed.kicad_pcb",
+    "board_dims_mm": [
+      67.525,
+      53.525
+    ],
+    "origin_shift_mm": [
+      0.0,
+      0.0
+    ],
+    "footprint_sides": {
+      "F.Cu": 64
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 6,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+    ],
+    "zone_nets": [
+      "+3.3V",
+      "+5V",
+      "GND"
+    ],
+    "segments_count": 628,
+    "arcs_count": 0,
+    "total_wirelength_mm": 1248.608,
+    "via_barrel_length_mm": 202.254,
+    "wirelength_with_vias_mm": 1450.862,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 133.753,
+      "F.Cu": 651.846,
+      "In2.Cu": 463.009
+    },
+    "segments_by_layer": {
+      "B.Cu": 38,
+      "F.Cu": 498,
+      "In2.Cu": 92
+    },
+    "trace_width_histogram": {
+      "0.125": 54,
+      "0.160": 302,
+      "0.180": 2,
+      "0.220": 43,
+      "0.280": 57,
+      "0.300": 2,
+      "0.375": 14,
+      "0.500": 154
+    },
+    "vias_total": 130,
+    "vias_signal": 53,
+    "vias_gnd": 77,
+    "via_sizes": {
+      "0.50/0.25": 1,
+      "0.55/0.30": 97,
+      "0.60/0.30": 32
+    },
+    "diff_pairs": [
+      {
+        "pos_net": "/usb+",
+        "neg_net": "/usb-",
+        "pos_len_mm": 8.143,
+        "neg_len_mm": 8.243,
+        "length_mismatch_mm": 0.1,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/usb_mcu+",
+        "neg_net": "/usb_mcu-",
+        "pos_len_mm": 31.014,
+        "neg_len_mm": 25.053,
+        "length_mismatch_mm": 5.961,
+        "valid_connected_pair": true
+      }
+    ],
+    "decoupling_cap_distances": {
+      "C1": {
+        "rails": [
+          "/VIN"
+        ],
+        "nearest_ic_pin": "U6.7(/VIN)",
+        "dist_mm": 12.773
+      },
+      "C10": {
+        "rails": [
+          "Net-(U4-CPOUT)"
+        ],
+        "nearest_ic_pin": "U4.20(Net-(U4-CPOUT))",
+        "dist_mm": 6.744
+      },
+      "C11": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U3.16(+3.3V)",
+        "dist_mm": 3.763
+      },
+      "C12": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U2.2(+3.3V)",
+        "dist_mm": 4.042
+      },
+      "C13": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U4.8(+3.3V)",
+        "dist_mm": 3.51
+      },
+      "C14": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 8.39
+      },
+      "C15": {
+        "rails": [
+          "Net-(U5-VBUS)"
+        ],
+        "nearest_ic_pin": "U5.5(Net-(U5-VBUS))",
+        "dist_mm": 5.27
+      },
+      "C16": {
+        "rails": [
+          "/VIN"
+        ],
+        "nearest_ic_pin": "U6.7(/VIN)",
+        "dist_mm": 7.021
+      },
+      "C18": {
+        "rails": [
+          "Net-(U6-COMP)"
+        ],
+        "nearest_ic_pin": "U6.3(Net-(U6-COMP))",
+        "dist_mm": 13.091
+      },
+      "C19": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 9.468
+      },
+      "C2": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U3.16(+3.3V)",
+        "dist_mm": 2.391
+      },
+      "C20": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 9.629
+      },
+      "C21": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 10.124
+      },
+      "C3": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 4.877
+      },
+      "C4": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U2.2(+3.3V)",
+        "dist_mm": 9.952
+      },
+      "C5": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U4.13(+3.3V)",
+        "dist_mm": 5.428
+      },
+      "C6": {
+        "rails": [
+          "SENOR_VP"
+        ],
+        "nearest_ic_pin": "U1.4(SENOR_VP)",
+        "dist_mm": 15.849
+      },
+      "C7": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U4.8(+3.3V)",
+        "dist_mm": 5.764
+      },
+      "C8": {
+        "rails": [
+          "Net-(U3-V3)"
+        ],
+        "nearest_ic_pin": "U3.4(Net-(U3-V3))",
+        "dist_mm": 7.759
+      },
+      "C9": {
+        "rails": [
+          "Net-(U4-REGOUT)"
+        ],
+        "nearest_ic_pin": "U4.10(Net-(U4-REGOUT))",
+        "dist_mm": 8.279
+      }
+    },
+    "avg_decoupling_dist_mm": 7.706,
+    "max_decoupling_dist_mm": 15.849,
+    "header_edge_distances_mm": {
+      "J1": 3.6,
+      "J3": 2.6,
+      "J4": 2.6,
+      "J5": 6.8,
+      "J6": 7.5
+    },
+    "avg_header_edge_dist_mm": 4.62,
+    "drc_lvs": {
+      "footprints": 64,
+      "vias": 130,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [],
+      "min_inter_net_clearance_mm": 0.1267,
+      "worst_clearance_pair": "F.Cu:RX<->TX"
+    },
+    "serialized_gnd_fill_by_layer": {
+      "F.Cu": 0.721047,
+      "In1.Cu": 0.915373,
+      "In2.Cu": 0.79109,
+      "B.Cu": 0.895872
+    }
+  },
+  "human_reference": {
+    "topology": {
+      "community_count": 25,
+      "repeated_channel_groups": 0,
+      "community_hpwl_mm": [
+        27.689999999999984,
+        31.780000000000015,
+        67.24999999999997,
+        19.174999999999983,
+        15.449999999999989,
+        3.200000000000017,
+        7.949999999999974,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_alignment_error_mm": []
+    },
+    "power_width_length_distribution_mm": {
+      "+3V3": {
+        "0.200": 30.507451828513883
+      },
+      "GND": {
+        "0.200": 663.0628905887662
+      },
+      "/VIN": {
+        "0.200": 69.74496272537085
+      },
+      "+3.3V": {
+        "0.200": 222.34626388666513
+      },
+      "+5V": {
+        "0.600": 164.81820114783292
+      },
+      "+BATT": {
+        "1.200": 55.386938922885356
+      }
+    },
+    "rf_semantics_unresolved": [
+      {
+        "refdes": "U1",
+        "confidence": "unknown",
+        "reason": "antenna candidate lacks body geometry or explicit keepout"
+      }
+    ],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "BZ1",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C21",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "F1",
+          "J1",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J9",
+          "L1",
+          "Q1",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "SW1",
+          "SW2",
+          "U1",
+          "U2",
+          "U3",
+          "U4",
+          "U5",
+          "U6"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": true
+    },
+    "label": "Human reference \u2014 Case 2",
+    "pcb_path": "/workspace/cloud-pcb-studio/artifacts/blind_v3_comparison/case2/reference_for_analysis.kicad_pcb",
+    "board_dims_mm": [
+      67.525,
+      53.525
+    ],
+    "origin_shift_mm": [
+      145.35,
+      48.825
+    ],
+    "footprint_sides": {
+      "F.Cu": 65
+    },
+    "copper_layers_in_stackup": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "zones_count": 2,
+    "zone_layers": [
+      "B.Cu",
+      "F.Cu"
+    ],
+    "zone_nets": [
+      "GND"
+    ],
+    "segments_count": 993,
+    "arcs_count": 0,
+    "total_wirelength_mm": 2400.636,
+    "via_barrel_length_mm": 69.525,
+    "wirelength_with_vias_mm": 2470.161,
+    "wirelength_by_layer_mm": {
+      "B.Cu": 747.189,
+      "F.Cu": 1653.448
+    },
+    "segments_by_layer": {
+      "B.Cu": 145,
+      "F.Cu": 848
+    },
+    "trace_width_histogram": {
+      "0.200": 937,
+      "0.600": 43,
+      "1.200": 13
+    },
+    "vias_total": 45,
+    "vias_signal": 41,
+    "vias_gnd": 4,
+    "via_sizes": {
+      "0.60/0.30": 25,
+      "0.45/0.20": 19,
+      "1.00/0.50": 1
+    },
+    "diff_pairs": [
+      {
+        "pos_net": "/usb+",
+        "neg_net": "/usb-",
+        "pos_len_mm": 47.58,
+        "neg_len_mm": 10.702,
+        "length_mismatch_mm": 36.878,
+        "valid_connected_pair": true
+      },
+      {
+        "pos_net": "/usb_mcu+",
+        "neg_net": "/usb_mcu-",
+        "pos_len_mm": 2.93,
+        "neg_len_mm": 3.995,
+        "length_mismatch_mm": 1.065,
+        "valid_connected_pair": true
+      }
+    ],
+    "decoupling_cap_distances": {
+      "C1": {
+        "rails": [
+          "/VIN"
+        ],
+        "nearest_ic_pin": "U6.7(/VIN)",
+        "dist_mm": 12.216
+      },
+      "C10": {
+        "rails": [
+          "Net-(U4-CPOUT)"
+        ],
+        "nearest_ic_pin": "U4.20(Net-(U4-CPOUT))",
+        "dist_mm": 4.272
+      },
+      "C11": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U1.2(+3.3V)",
+        "dist_mm": 5.043
+      },
+      "C12": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U4.8(+3.3V)",
+        "dist_mm": 5.013
+      },
+      "C13": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U4.8(+3.3V)",
+        "dist_mm": 3.524
+      },
+      "C14": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 8.536
+      },
+      "C15": {
+        "rails": [
+          "Net-(U5-VBUS)"
+        ],
+        "nearest_ic_pin": "U5.5(Net-(U5-VBUS))",
+        "dist_mm": 6.105
+      },
+      "C16": {
+        "rails": [
+          "/VIN"
+        ],
+        "nearest_ic_pin": "U6.7(/VIN)",
+        "dist_mm": 12.083
+      },
+      "C18": {
+        "rails": [
+          "Net-(U6-COMP)"
+        ],
+        "nearest_ic_pin": "U6.3(Net-(U6-COMP))",
+        "dist_mm": 6.185
+      },
+      "C19": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 5.927
+      },
+      "C2": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U1.2(+3.3V)",
+        "dist_mm": 1.962
+      },
+      "C20": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 7.218
+      },
+      "C21": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 14.528
+      },
+      "C3": {
+        "rails": [
+          "+5V"
+        ],
+        "nearest_ic_pin": "U2.3(+5V)",
+        "dist_mm": 12.345
+      },
+      "C4": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U2.2(+3.3V)",
+        "dist_mm": 5.1
+      },
+      "C5": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U1.2(+3.3V)",
+        "dist_mm": 3.496
+      },
+      "C6": {
+        "rails": [
+          "SENOR_VP"
+        ],
+        "nearest_ic_pin": "U1.4(SENOR_VP)",
+        "dist_mm": 29.954
+      },
+      "C7": {
+        "rails": [
+          "+3.3V"
+        ],
+        "nearest_ic_pin": "U3.16(+3.3V)",
+        "dist_mm": 7.264
+      },
+      "C8": {
+        "rails": [
+          "Net-(U3-V3)"
+        ],
+        "nearest_ic_pin": "U3.4(Net-(U3-V3))",
+        "dist_mm": 8.578
+      },
+      "C9": {
+        "rails": [
+          "Net-(U4-REGOUT)"
+        ],
+        "nearest_ic_pin": "U4.10(Net-(U4-REGOUT))",
+        "dist_mm": 6.867
+      }
+    },
+    "avg_decoupling_dist_mm": 8.311,
+    "max_decoupling_dist_mm": 29.954,
+    "header_edge_distances_mm": {
+      "J1": 17.28,
+      "J3": 10.3,
+      "J4": 26.27,
+      "J5": 12.65,
+      "J6": 24.47
+    },
+    "avg_header_edge_dist_mm": 18.19,
+    "drc_lvs": {
+      "footprints": 65,
+      "vias": 45,
+      "via_in_pad_violations": [],
+      "lvs_shorts": [],
+      "lvs_opens": [],
+      "min_inter_net_clearance_mm": 0.1996,
+      "worst_clearance_pair": "F.Cu:GND<->Net-(U4-REGOUT)"
+    },
+    "serialized_gnd_fill_by_layer": {
+      "F.Cu": 0.430999,
+      "B.Cu": 0.693878
+    }
+  },
+  "deltas": {
+    "wirelength_ratio_blind_vs_ref": 0.52,
+    "vias_total_blind_vs_ref": [
+      130,
+      45
+    ],
+    "vias_signal_blind_vs_ref": [
+      53,
+      41
+    ],
+    "vias_gnd_blind_vs_ref": [
+      77,
+      4
+    ],
+    "avg_decoupling_dist_mm_blind_vs_ref": [
+      7.706,
+      8.311
+    ],
+    "avg_header_edge_dist_mm_blind_vs_ref": [
+      4.62,
+      18.19
+    ],
+    "diff_pairs_blind_vs_ref": [
+      [
+        {
+          "pos_net": "/usb+",
+          "neg_net": "/usb-",
+          "pos_len_mm": 8.143,
+          "neg_len_mm": 8.243,
+          "length_mismatch_mm": 0.1,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/usb_mcu+",
+          "neg_net": "/usb_mcu-",
+          "pos_len_mm": 31.014,
+          "neg_len_mm": 25.053,
+          "length_mismatch_mm": 5.961,
+          "valid_connected_pair": true
+        }
+      ],
+      [
+        {
+          "pos_net": "/usb+",
+          "neg_net": "/usb-",
+          "pos_len_mm": 47.58,
+          "neg_len_mm": 10.702,
+          "length_mismatch_mm": 36.878,
+          "valid_connected_pair": true
+        },
+        {
+          "pos_net": "/usb_mcu+",
+          "neg_net": "/usb_mcu-",
+          "pos_len_mm": 2.93,
+          "neg_len_mm": 3.995,
+          "length_mismatch_mm": 1.065,
+          "valid_connected_pair": true
+        }
+      ]
+    ]
+  }
+}
