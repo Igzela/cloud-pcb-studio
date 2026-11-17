@@ -1,6 +1,6 @@
 {
   "status": "baseline_diagnosed",
-  "created_at": "2026-11-17T11:21:59.055582+00:00",
+  "created_at": "2026-11-17T12:27:36.221497+00:00",
   "baseline": {
     "format": "v3_freeze",
     "manifest": "artifacts/blind_v3_freeze.json",

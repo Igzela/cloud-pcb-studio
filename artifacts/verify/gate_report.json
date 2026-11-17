@@ -105,8 +105,8 @@
         ],
         "copper_areas_mm2": {
           "F_Cu.gbr": 200.33,
-          "In1_Cu.gbr": 2206.91,
-          "In2_Cu.gbr": 2206.91,
+          "In1_Cu.gbr": 2224.52,
+          "In2_Cu.gbr": 2224.52,
           "B_Cu.gbr": 60.65
         },
         "copper_edge_margins_mm": {
@@ -179,7 +179,7 @@
   ],
   "renders": {
     "board1_top": {
-      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board1_top.png",
+      "path": "/workspace/artifacts/verify/renders/board1_top.png",
       "width_px": 1200,
       "height_px": 825,
       "bytes": 79569,
@@ -187,7 +187,7 @@
       "non_blank": true
     },
     "board1_bottom": {
-      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board1_bottom.png",
+      "path": "/workspace/artifacts/verify/renders/board1_bottom.png",
       "width_px": 1200,
       "height_px": 825,
       "bytes": 35693,
@@ -195,7 +195,7 @@
       "non_blank": true
     },
     "board1_tscircuit_top": {
-      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board1_tscircuit_top.png",
+      "path": "/workspace/artifacts/verify/renders/board1_tscircuit_top.png",
       "width_px": 1200,
       "height_px": 825,
       "bytes": 108352,
@@ -203,7 +203,7 @@
       "non_blank": true
     },
     "board2_top": {
-      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board2_top.png",
+      "path": "/workspace/artifacts/verify/renders/board2_top.png",
       "width_px": 1200,
       "height_px": 1200,
       "bytes": 259328,
@@ -211,7 +211,7 @@
       "non_blank": true
     },
     "board2_inner1": {
-      "path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/renders/board2_inner1.png",
+      "path": "/workspace/artifacts/verify/renders/board2_inner1.png",
       "width_px": 1200,
       "height_px": 1200,
       "bytes": 202765,
@@ -221,17 +221,17 @@
   },
   "tickets": [],
   "chromium_inspect": {
-    "url": "file:///home/antigravity/cloud-pcb-studio/artifacts/verify/workbench.html",
+    "url": "file:///workspace/artifacts/verify/workbench.html",
     "dom_returncode": 0,
     "shot_returncode": 0,
-    "dom_length": 1045708,
+    "dom_length": 1050460,
     "dom_non_blank": true,
     "console_errors": [],
-    "screenshot_path": "/home/antigravity/cloud-pcb-studio/artifacts/verify/workbench_screenshot.png",
+    "screenshot_path": "/workspace/artifacts/verify/workbench_screenshot.png",
     "screenshot_width": 1440,
     "screenshot_height": 1080,
-    "screenshot_pixel_std": 63.96,
+    "screenshot_pixel_std": 64.77,
     "passed": true
   },
-  "workbench_html": "/home/antigravity/cloud-pcb-studio/artifacts/verify/workbench.html"
+  "workbench_html": "/workspace/artifacts/verify/workbench.html"
 }
