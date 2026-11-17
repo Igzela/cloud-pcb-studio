@@ -180,6 +180,7 @@ def run_round(args):
                 if args.variant in ('supply-semantics','scoped-supply'):command.append('--derive-power')
                 if args.variant=='scoped-supply':command.append('--scoped-power')
                 if args.variant=='octagonal-fanout':command.append('--octagonal-fanout')
+                if args.variant=='value-normalize':command.append('--value-normalize')
                 rc=sourced_process(command,out/'solver.log',args.case_timeout)
                 if rc!=0:raise RuntimeError('solver process exit '+str(rc))
                 report=json.loads((out/'blind_run_report.json').read_text());spec=json.loads(copied.read_text());browser=inspect_browser(out)
@@ -232,7 +233,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--suite',type=Path,default=DEFAULT_SUITE)
     sub=parser.add_subparsers(dest='command',required=True)
     sub.add_parser('status');sub.add_parser('history')
-    run=sub.add_parser('run');run.add_argument('--label',required=True);run.add_argument('--hypothesis',required=True);run.add_argument('--cases',default='all');run.add_argument('--case-timeout',type=int,default=900);run.add_argument('--variant',choices=('stable','supply-semantics','scoped-supply','octagonal-fanout'),default='stable')
+    run=sub.add_parser('run');run.add_argument('--label',required=True);run.add_argument('--hypothesis',required=True);run.add_argument('--cases',default='all');run.add_argument('--case-timeout',type=int,default=900);run.add_argument('--variant',choices=('stable','supply-semantics','scoped-supply','octagonal-fanout','value-normalize'),default='stable')
     args=parser.parse_args()
     if os.environ.get('PCB_STUDIO_ROOT')!=str(ROOT):parser.error('run source scripts/env.sh before invoking Python')
     if args.command=='history':

@@ -61,7 +61,7 @@ def test_external_entry_bypasses_internal_placer_but_default_entry_keeps_it(tmp_
     spec,doc=fixture();path=tmp_path/'input.json';path.write_text(json.dumps(spec));calls=[]
     class Constructed(Exception):pass
     def build(s,positions):calls.append(('build',positions));raise Constructed()
-    def place(s):calls.append(('internal',None));return {'one':(1,1,0),'two':(2,2,0)},{}
+    def place(s, **kwargs):calls.append(('internal',None));return {'one':(1,1,0),'two':(2,2,0)},{}
     monkeypatch.setattr(solver,'_build_blind_kicad_board',build);monkeypatch.setattr(solver,'_classify_components_and_place',place)
     with pytest.raises(Constructed):solver.run_blind_solver(path,tmp_path/'external',external_placement=doc)
     assert [c[0] for c in calls]==['build'] and calls[0][1]['two']==(15.,5.,0.)

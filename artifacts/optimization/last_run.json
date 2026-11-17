@@ -1,5 +1,5 @@
 {
-  "directory": "artifacts/optimization/runs/20261117T112159329967Z-octagonal-fanout",
-  "manifest_sha256": "e1826a4d39e170b6dd74a66ed3a34bb0e9c3765e21f1eb969042b6f1b00e541b",
+  "directory": "artifacts/optimization/runs/20261117T133839160986Z-value-normalize",
+  "manifest_sha256": "16bfe655fbd430fb194eb973913e3552d5033682221a6f10d4a44cc976c63b56",
   "promoted": false
 }

@@ -174,6 +174,8 @@ def _is_copper_pad(pad: Pad) -> bool:
 
 def _classify_components_and_place(
     spec: dict[str, Any],
+    *,
+    value_normalize: bool = False,
 ) -> tuple[dict[str, tuple[float, float, float]], dict[str, Any]]:
     """General topology-aware placement + perimeter rail alignment + IC-specific cap matching."""
     outline = spec["board_outline_mm"]
@@ -199,7 +201,7 @@ def _classify_components_and_place(
 
     comp_by_ref: dict[str, dict[str, Any]] = {c["refdes"]: c for c in spec["components"]}
     local_bboxes = {ref: _comp_local_bbox(c) for ref, c in comp_by_ref.items()}
-    hierarchy=analyze_topology(spec)
+    hierarchy=analyze_topology(spec,value_normalize=value_normalize)
     targets=macro_targets(spec,hierarchy)
 
     def _world_pad_pos(ref: str, pad: dict[str, Any], x: float, y: float, ang: float) -> tuple[float, float]:
@@ -1824,7 +1826,7 @@ def _audit_blind_output(
     }
 
 
-def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False) -> dict[str, Any]:
+def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False) -> dict[str, Any]:
     """Execute end-to-end blind PCB build on any blind_spec.json."""
     from cloud_pcb.general_solver.electrical import derive_electrical_requirements
     raw_spec = json.loads(spec_path.read_text(encoding="utf-8"))
@@ -1837,7 +1839,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
 
     t_start = time.perf_counter()
     if external_placement is None:
-        placed, place_meta = _classify_components_and_place(spec)
+        placed, place_meta = _classify_components_and_place(spec, value_normalize=value_normalize)
     else:
         from cloud_pcb.general_solver.placement_input import apply_external_placement
         placed, place_meta = apply_external_placement(spec, external_placement)
@@ -2126,8 +2128,9 @@ if __name__ == "__main__":
     parser.add_argument("--derive-power", action="store_true", help="Evaluate evidence-based supply inference as an experimental variant")
     parser.add_argument("--scoped-power", action="store_true", help="Experimental single-IC supply scope; implies supply inference")
     parser.add_argument("--octagonal-fanout", action="store_true", help="Use circumscribed via guards with unchanged circular protection radius")
+    parser.add_argument("--value-normalize", action="store_true", help="Topology-only case-insensitive equivalence for value spellings that this spec itself uses inconsistently; raw values stay untouched")
     args = parser.parse_args()
-    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout)
+    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize)
     print(json.dumps({
         "project": res["project_name"],
         "total_placed": res["placement_meta"]["total_placed"],
