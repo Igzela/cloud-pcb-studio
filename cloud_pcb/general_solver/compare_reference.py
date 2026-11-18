@@ -229,7 +229,9 @@ def _extract_metrics(
         regions,unknown=rf_keepouts(spec,world_placed)
         extra['rf_semantics_unresolved']=unknown
         if independent_audit:
-            audit=audit_general_board(board,spec,world_placed,regions)
+            # Copper and RF regions are in board coordinates. Mechanical
+            # envelopes use the same local frame as the spec mounting holes.
+            audit=audit_general_board(board,spec,placed,regions)
             extra['independent_4layer']=audit
 
     # Footprint side breakdown (F.Cu vs B.Cu)
