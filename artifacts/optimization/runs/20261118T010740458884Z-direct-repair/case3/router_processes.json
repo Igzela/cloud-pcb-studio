@@ -1,0 +1,40 @@
+[
+  {
+    "command": [
+      "fastroute",
+      "-de",
+      "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case3/board.dsn",
+      "-do",
+      "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case3/board_fastroute.ses",
+      "--report=/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case3/fastroute_report.json",
+      "--max-time=110",
+      "--multi-start=2",
+      "--router.autorouter.max_threads=2",
+      "--router.neck_width_um=160",
+      "--router.min_trace_width_um=125",
+      "--layer-heights=0.035,0.245,1.328,1.591",
+      "--router.copper_to_edge_clearance_um=500"
+    ],
+    "returncode": 0,
+    "timed_out": false,
+    "log": "fastroute_primary.log"
+  },
+  {
+    "command": [
+      "/workspace/cloud-pcb-studio/.run/tools/freerouting/jdk-25.0.5+8-jre/bin/java",
+      "-jar",
+      "/workspace/cloud-pcb-studio/.run/tools/freerouting/freerouting-2.5.0.jar",
+      "-de",
+      "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case3/board_freerouting.dsn",
+      "-do",
+      "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case3/board_freerouting.ses",
+      "--gui.enabled=false",
+      "--router.copperToEdgeClearanceUm=500",
+      "--router.autorouter.max_passes=1",
+      "--router.optimizer.enabled=false"
+    ],
+    "returncode": 0,
+    "timed_out": false,
+    "log": "freerouting.log"
+  }
+]

@@ -1,14 +1,14 @@
 # 仓库接手入口
 
-本仓库已包含 v3 求解器、五板冻结产物、3D 预览、四轮持续优化实验，以及独立 Gemini 布局参考。原始起点为 `aff93d3`；不能仅依据早期 README 或原来的 26 项测试判断当前状态。
+本仓库保留求解器、五板冻结产物、3D 预览、持续优化实验及独立 Gemini 布局参考。原始起点为 `aff93d3`。
 
 ## 先读与先查
 
 1. 读取根目录 `AGENTS.md` 和 [优化流程](optimization-workflow.zh-CN.md)。
-2. 读取 [最新实验报告](optimization-octagonal-fanout.zh-CN.md)、`artifacts/optimization/last_run.json` 及其指向的 `result.json` / `manifest.json`。
+2. 读取 `artifacts/optimization/last_run.json` 及其指向的 `result.json` 和 `manifest.json`。[最新直连实验](optimization-direct-repair.zh-CN.md) · [Freerouting JVM 比较流程](optimization-freerouting-jvm.zh-CN.md)
 3. 按下面的环境要求安装依赖，然后执行 `source scripts/env.sh && python -m scripts.optimize_pcb status`。
 
-Case 1–5 均已暴露，只能用作回归。冻结 v3 仍为活动基线；实验变体未获晋升，不可按案例挑选变体。新泛化成绩须另做密封实验。历史失败、归档和日志均随仓库保留。
+Case 1–5 均已暴露，只能用作回归。直连实验的产物已晋升为回归基线，指针保存在 `artifacts/optimization/state.json`。五板统一启用 `direct-repair` 变体可以复现这次设置。新泛化成绩须另做密封实验。
 
 ## 环境与凭据
 
@@ -36,10 +36,8 @@ Gemini 凭据不写入公开 Git 历史。独立模型流程读取运行时 `GEM
 
 ## 当前结果与已知故障
 
-最新源码冻结轮次为 `20261117T112159329967Z-octagonal-fanout`，完整测试实测 **123 passed，73.42 秒**，五板运行完整，但存在退步而未晋升。该轮 `pytest.log`、各路由器日志和源码归档均随产物保留，原有 `*.log` 忽略规则没有导致这些冻结证据丢失。
+最新源码冻结轮次为 `20261118T010740458884Z-direct-repair`，完整测试实测 **171 项通过，74.37 秒**。Case 4 未布通与独立开路均从 1 降到 0，其余四板的比较指标持平。Case 3 和 5 仍分别有 1 和 9 个开路网络，Case 2 的 RF 几何、Case 5 的固定接口板边铜距，以及五板机械尺寸证据仍限制工程验收。[实测报告](optimization-direct-repair.zh-CN.md)
 
-本轮实测 Case 1 线长缩短约 3.6%，Case 5 未布通及 LVS 开路从 9 降至 7；但 Case 2 线长、Case 4 未布通数、Case 5 地填充不足量退步。所有结论、机械未知项和板边约束冲突以 [完整报告](optimization-octagonal-fanout.zh-CN.md) 为准，不能宣称已经达到最终工程验收目标。
-
-Freerouting 原生程序存在 GraalVM `ObstacleArea` 序列化异常，工作线程退出后主进程等待至超时。现有第二引擎结果不是有效布线对比；修复时还需核验封装解析警告。主 fastroute 的独立板级审计证据单独保留。
+Freerouting 原生程序存在 GraalVM `ObstacleArea` 序列化异常。需要第二引擎时，安装官方 JVM 发行版并指定 `freerouting-jvm` 变体，见 [安装命令与逐板证据](optimization-freerouting-jvm.zh-CN.md)。
 
 接手者可使用 Agent 集群分别研究工具链、拥塞/扇出、布局、ECAD/MCAD 和独立审查；由主 Agent 控制文件所有权和冻结屏障。完整优化轮次运行期间，全体 Agent 停止修改源码、测试、配置、输入和工具二进制。

@@ -1,0 +1,85 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 1.5 ms: 4 layers, 64 components, 50 nets, 0 wires
+    0.008 INFO  net class 'DIFF_PAIR_000': no neck-down
+    0.008 INFO  net class 'DIFF_PAIR_001': no neck-down
+    0.016 WARN  Board has 2 pre-existing clearance violation(s) in the loaded design (2 unfixable).
+    0.017 INFO  built board in 14.9 ms: 538 items (266 pins, 0 vias, 0 traces)
+    0.017 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.017 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    1.910 INFO  diff pair /usb+//usb- (pre-routed): coupled 1.10 -> 1.10 mm of 5.22 mm, skew +3.03 mm (no improvement)
+    1.910 INFO  diff pair /usb_mcu+//usb_mcu- (pre-routed): coupled 0.00 -> 27.88 mm of 38.53 mm, skew +2.26 mm
+    1.910 INFO  diff pairs pre-routed in 1.89 s (7 items fixed during routing)
+    1.911 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    2.107 INFO  Fanout pass #1 completed in 0.20 seconds with 43 SMD pins fanouted, 77 not routed, 0 insert errors, +12 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+    2.290 INFO  Fanout pass #2 completed in 0.18 seconds with 2 SMD pins fanouted, 101 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+    2.487 INFO  Fanout pass #3 completed in 0.20 seconds with 0 SMD pins fanouted, 103 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+    2.487 INFO  Fanout stage completed: 3 passes, completed in 0.58 seconds.
+    2.498 INFO  checkpoint: best board so far (60 unrouted, 2 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses'
+    2.498 INFO  Auto-routing stage started with baseline score 270.53 for 60 unrouted items.
+    3.767 INFO  Auto-routing pass #1 was completed in 1.27 seconds with score 973.46 (2 unrouted and 3 violations, 2 of them pre-existing between fixed items) (routed 62, failed 3, ripped 3).
+    3.769 INFO  checkpoint: best board so far (2 unrouted, 3 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses'
+    4.597 INFO  Auto-routing pass #2 was completed in 0.83 seconds with score 986.66 (1 unrouted and 3 violations, 2 of them pre-existing between fixed items) (routed 1, failed 2, ripped 0).
+    4.598 INFO  checkpoint: best board so far (1 unrouted, 3 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses'
+    4.599 INFO  Auto-routing pass #3 was completed in 0.00 seconds with score 986.66 (1 unrouted and 3 violations, 2 of them pre-existing between fixed items) (routed 0, failed 0, ripped 0).
+    4.599 INFO  Auto-routing stage completed: started with 93 unrouted nets, completed in 2.10 seconds, final score: 986.66 (1 unrouted and 3 violations, 2 of them pre-existing between fixed items).
+    4.599 INFO  2 item(s) cannot be routed even on the board as loaded (blocked by pins, keepouts or fixed wiring); they were skipped after their second failure.
+    4.612 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    4.819 INFO  Fanout pass #1 completed in 0.21 seconds with 43 SMD pins fanouted, 77 not routed, 0 insert errors, +12 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+    5.012 INFO  Fanout pass #2 completed in 0.19 seconds with 2 SMD pins fanouted, 101 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+    5.195 INFO  Fanout pass #3 completed in 0.18 seconds with 0 SMD pins fanouted, 103 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+    5.195 INFO  Fanout stage completed: 3 passes, completed in 0.58 seconds.
+    5.204 INFO  Auto-routing stage started with baseline score 270.53 for 60 unrouted items.
+    6.934 INFO  Auto-routing pass #1 was completed in 1.73 seconds with score 894.29 (8 unrouted and 2 violations, 2 of them pre-existing between fixed items) (routed 64, failed 3, ripped 12).
+    7.835 INFO  Auto-routing pass #2 was completed in 0.90 seconds with score 960.30 (3 unrouted and 2 violations, 2 of them pre-existing between fixed items) (routed 7, failed 3, ripped 2).
+    7.879 INFO  Auto-routing pass #3 was completed in 0.04 seconds with score 986.70 (1 unrouted and 2 violations, 2 of them pre-existing between fixed items) (routed 2, failed 0, ripped 0).
+    7.880 INFO  checkpoint: best board so far (1 unrouted, 2 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses'
+    7.882 INFO  Auto-routing pass #4 was completed in 0.00 seconds with score 986.70 (1 unrouted and 2 violations, 2 of them pre-existing between fixed items) (routed 0, failed 0, ripped 0).
+    7.896 INFO  Auto-routing stage completed: started with 93 unrouted nets, completed in 2.69 seconds, final score: 986.70 (1 unrouted and 2 violations, 2 of them pre-existing between fixed items).
+    7.896 INFO  2 item(s) cannot be routed even on the board as loaded (blocked by pins, keepouts or fixed wiring); they were skipped after their second failure.
+    7.908 INFO  Multi-start variant 1: 1 unrouted, 2 violations, router score 986.70.
+    7.908 INFO  Multi-start: variant 1 is better (1 unrouted, 2 violations; first run 1 unrouted, 3 violations).
+    7.920 INFO  Optimization stage started. Baseline router score: 986.70, optimizer score: 722.24, incomplete connections: 1, clearance violations: 2.
+    7.920 INFO  Optimizer time budget: 60 s (as long as routing took; set router.optimizer.timeout to change).
+   13.477 INFO  Optimizer greedy phase stopped after 43 of 102 candidates (0.7 s, no further improvements).
+   13.477 INFO  Optimizer pass #1: applied 8 more improving candidate(s).
+   13.489 INFO  Optimizer pass #1 was completed in 5.57 seconds (160 of 160 candidates) with the score of 762.53 (1 unrouted and 2 violations, 2 of them pre-existing between fixed items).
+   13.491 INFO  checkpoint: best board so far (1 unrouted, 2 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses'
+   13.491 INFO  Optimizer pass #1: optimizer score 722.24 -> 762.53 (IMPROVED, 5.5785%), router score: 986.70, incomplete connections: 1, clearance violations: 2.
+   19.016 INFO  Optimizer greedy phase stopped after 21 of 86 candidates (1.1 s, no further improvements).
+   19.016 INFO  Optimizer pass #2: applied 3 more improving candidate(s).
+   19.029 INFO  Optimizer pass #2 was completed in 5.54 seconds (149 of 149 candidates) with the score of 769.42 (1 unrouted and 2 violations, 2 of them pre-existing between fixed items).
+   19.030 INFO  checkpoint: best board so far (1 unrouted, 2 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses'
+   19.030 INFO  Optimizer pass #2: optimizer score 762.53 -> 769.42 (IMPROVED, 0.9039%), router score: 986.70, incomplete connections: 1, clearance violations: 2.
+   19.030 INFO  Stopping optimizer because the improvement in this pass (0.9039%) is below the threshold (2.50%).
+   19.031 INFO  Optimization stage completed: Baseline router score: 986.70, baseline optimizer score: 722.24, final router score: 986.70, final optimizer score: 769.42, completed in 11.11 seconds.
+   19.031 INFO  diff pairs released: 1 connections unrouted with the pairs fixed, routing again
+   19.031 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+   19.037 INFO  Fanout pass #1 completed in 0.01 seconds with 0 SMD pins fanouted, 2 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+   19.037 INFO  Fanout stage completed: 1 passes, completed in 0.01 seconds.
+   19.047 INFO  Auto-routing stage started with baseline score 986.70 for 1 unrouted item.
+   19.085 INFO  Auto-routing pass #1 was completed in 0.04 seconds with score 986.70 (1 unrouted and 2 violations, 2 of them pre-existing between fixed items) (routed 1, failed 0, ripped 1).
+   19.132 INFO  Auto-routing pass #2 was completed in 0.05 seconds with score 999.90 (0 unrouted and 2 violations, 2 of them pre-existing between fixed items) (routed 1, failed 0, ripped 0).
+   19.133 INFO  checkpoint: best board so far (0 unrouted, 2 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses'
+   19.133 INFO  Auto-routing pass #3 was completed in 0.00 seconds with score 999.90 (0 unrouted and 2 violations, 2 of them pre-existing between fixed items) (routed 0, failed 0, ripped 0).
+   19.134 INFO  Auto-routing stage completed: started with 1 unrouted nets, completed in 0.09 seconds, final score: 999.90 (0 unrouted and 2 violations, 2 of them pre-existing between fixed items).
+   19.157 INFO  Optimization stage started. Baseline router score: 999.90, optimizer score: 769.42, incomplete connections: 0, clearance violations: 2.
+   19.157 INFO  Optimizer time budget: 60 s (as long as routing took; set router.optimizer.timeout to change).
+   24.573 INFO  Optimizer greedy phase stopped after 18 of 91 candidates (0.5 s, no further improvements).
+   24.573 INFO  Optimizer pass #1: applied 2 more improving candidate(s).
+   24.586 INFO  Optimizer pass #1 was completed in 5.43 seconds (156 of 156 candidates) with the score of 780.08 (0 unrouted and 2 violations, 2 of them pre-existing between fixed items).
+   24.587 INFO  checkpoint: best board so far (0 unrouted, 2 violations) written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses'
+   24.587 INFO  Optimizer pass #1: optimizer score 769.42 -> 780.08 (IMPROVED, 1.3844%), router score: 999.90, incomplete connections: 0, clearance violations: 2.
+   24.587 INFO  Stopping optimizer because the improvement in this pass (1.3844%) is below the threshold (2.50%).
+   24.587 INFO  Optimization stage completed: Baseline router score: 999.90, baseline optimizer score: 769.42, final router score: 999.90, final optimizer score: 780.08, completed in 5.43 seconds.
+   24.588 INFO  routing finished in 22.68 s
+   26.103 INFO  diff pair /usb+//usb- (after routing): coupled 1.10 -> 1.10 mm of 5.22 mm, skew +3.03 mm (no improvement)
+   26.103 INFO  diff pair /usb_mcu+//usb_mcu- (after routing): coupled 1.51 -> 16.83 mm of 33.73 mm, skew -5.96 mm
+   26.111 INFO  diff pair /usb+ / /usb-: length difference +3.026 -> +0.100 mm (tolerance 0.20)
+   26.111 INFO  diff pair /usb_mcu+ / /usb_mcu-: length difference -5.961 -> -5.961 mm (tolerance 0.20): no room for the meanders
+   26.111 INFO  diff pairs finished in 1.52 s
+   26.122 WARN  2 clearance violation(s) in the result:
+   26.122 WARN    F.Cu at (9.940, 42.050) mm: clearance 0.050 mm, actual 0.000 mm (pre-existing, unfixable): pin J9 [] / pin J9 []
+   26.122 WARN    F.Cu at (9.940, 48.450) mm: clearance 0.050 mm, actual 0.000 mm (pre-existing, unfixable): pin J9 [] / pin J9 []
+   26.123 INFO  saved '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/board_fastroute.ses' (54416 bytes)
+   26.144 INFO  report written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261118T004500921717Z-freerouting-jvm/case2/fastroute_report.json'

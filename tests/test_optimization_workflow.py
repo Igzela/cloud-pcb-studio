@@ -12,6 +12,30 @@ from cloud_pcb.general_solver.optimization import GERBER_LAYERS,REQUIRED_GATES,c
 from scripts import optimize_pcb as workflow
 
 
+def test_latest_round_reports_missing_evidence_without_changing_baseline(tmp_path, monkeypatch):
+    monkeypatch.setattr(workflow, "ROOT", tmp_path)
+    root = tmp_path / "artifacts/optimization"
+    run = root / "round"
+    run.mkdir(parents=True)
+    pytest_log = run / "pytest.log"
+    pytest_log.write_text("example recorded evidence")
+    manifest = run / "manifest.json"
+    manifest.write_text(json.dumps({
+        "status": "complete", "cases": [],
+        "evidence": {str(pytest_log.relative_to(tmp_path)): digest(pytest_log)},
+    }))
+    (root / "last_run.json").write_text(json.dumps({
+        "directory": str(run.relative_to(tmp_path)),
+        "manifest_sha256": digest(manifest), "promoted": False,
+    }))
+    assert workflow.latest_round_status()["integrity"] == "verified"
+    pytest_log.unlink()
+    status = workflow.latest_round_status()
+    assert status["recorded_status"] == "complete"
+    assert status["integrity"] == "unverified"
+    assert "pytest.log" in status["error"]
+
+
 def supply_spec():
     return dict(board_outline_mm=dict(width=20,height=20,origin_x=100,origin_y=50),components=[dict(refdes='arbitrary',pads=[dict(num='1',net='opaque',pin_type='power_in',pin_function='AVDD10',x_rel_mm=0,y_rel_mm=0,w_mm=.6,h_mm=.2,shape='rect',type='smd',layers=['F.Cu'])])],nets={'opaque':[['arbitrary','1']],'/domain/1V2_aux':[]},design_requirements=dict(power_rails=[],differential_pairs=[]),edge_connectors=[])
 
