@@ -1,5 +1,5 @@
 {
-  "directory": "artifacts/optimization/runs/20261117T133839160986Z-value-normalize",
-  "manifest_sha256": "16bfe655fbd430fb194eb973913e3552d5033682221a6f10d4a44cc976c63b56",
-  "promoted": false
+  "directory": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair",
+  "manifest_sha256": "023dff403ab73c77ecd4653ffae4e4db87516c7ff1b21ea341a516134c403cd8",
+  "promoted": true
 }

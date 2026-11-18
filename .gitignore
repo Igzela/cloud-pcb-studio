@@ -7,4 +7,5 @@ __pycache__/
 node_modules/
 bin/micromamba
 *.log
+!artifacts/optimization/runs/**/*.log
 .DS_Store

@@ -77,6 +77,24 @@ def active_pointer(suite):
     return json.loads(STATE.read_text())['active_baseline'] if STATE.exists() else suite['baseline']
 
 
+def latest_round_status():
+    """Check the published round separately from the active baseline."""
+    pointer_path = ROOT / 'artifacts/optimization/last_run.json'
+    if not pointer_path.is_file():
+        return None
+    details = {}
+    try:
+        latest = json.loads(pointer_path.read_text())
+        path = local_path(latest['directory']) / 'manifest.json'
+        pointer = {'manifest': str(path.relative_to(ROOT)), 'sha256': latest['manifest_sha256']}
+        details = {'directory': latest['directory'], 'promoted': latest['promoted']}
+        details['recorded_status'] = json.loads(path.read_text()).get('status')
+        verify_manifest(pointer)
+        return dict(details, integrity='verified')
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        return dict(details, integrity='unverified', error=str(exc))
+
+
 def baseline_measurements(suite,pointer):
     manifest=verify_manifest(pointer)
     entries={str(c.get('id',c.get('case'))):c for c in manifest['cases']};result={};reports={};details={}
@@ -148,7 +166,13 @@ def run_round(args):
     if not selected or not selected.issubset(all_ids):raise ValueError('run accepts exposed regression IDs only; sealed holdouts cannot be optimization cases')
     if not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,47}',args.label):raise ValueError('label must be a short lowercase filename token')
     snapshot=source_snapshot(args.suite)
-    experiment_key=digest_bytes(dict(code=snapshot,variant=args.variant,inputs={c['id']:c['spec_sha256'] for c in suite['cases'] if c['id'] in selected},case_timeout_s=args.case_timeout))
+    experiment = dict(code=snapshot, variant=args.variant, inputs={c['id']:c['spec_sha256'] for c in suite['cases'] if c['id'] in selected}, case_timeout_s=args.case_timeout)
+    jvm_runtime = None
+    if args.variant in ('freerouting-jvm', 'direct-repair'):
+        from cloud_pcb.layout_route.freerouting_runtime import resolve_freerouting_jvm
+        jvm_runtime = resolve_freerouting_jvm(ROOT).provenance
+        experiment['freerouting_runtime'] = jvm_runtime
+    experiment_key = digest_bytes(experiment)
     runs=ROOT/'artifacts/optimization/runs';runs.mkdir(parents=True,exist_ok=True)
     for previous in runs.glob('*/manifest.json'):
         record=json.loads(previous.read_text())
@@ -159,6 +183,8 @@ def run_round(args):
     with tarfile.open(source_archive,'w:gz') as archive:
         for name in sorted(snapshot):archive.add(ROOT/name,arcname=name,recursive=False)
     manifest=dict(schema_version=1,status='running',started_at=now(),hypothesis=args.hypothesis,variant=args.variant,experiment_key=experiment_key,code=snapshot,source_archive_sha256=digest(source_archive),baseline=pointer,python=sys.version,platform=platform.platform(),cases=[])
+    if jvm_runtime is not None:
+        manifest['freerouting_runtime'] = jvm_runtime
     atomic_json(directory/'manifest.json',manifest)
     baseline,reports,details=baseline_measurements(suite,pointer)
     result=dict(status='running',hypothesis=args.hypothesis,baseline=pointer,measurements={},case_details={},tasks=[],failures=[])
@@ -181,11 +207,21 @@ def run_round(args):
                 if args.variant=='scoped-supply':command.append('--scoped-power')
                 if args.variant=='octagonal-fanout':command.append('--octagonal-fanout')
                 if args.variant=='value-normalize':command.append('--value-normalize')
+                if jvm_runtime is not None:
+                    command.append('--freerouting-jvm')
+                if args.variant == 'direct-repair':
+                    command.append('--direct-repair')
                 rc=sourced_process(command,out/'solver.log',args.case_timeout)
                 if rc!=0:raise RuntimeError('solver process exit '+str(rc))
                 report=json.loads((out/'blind_run_report.json').read_text());spec=json.loads(copied.read_text());browser=inspect_browser(out)
                 metrics=report_metrics(report,out/'routed.kicad_pcb',spec)
                 if not browser['passed']:metrics['evidence_errors'].append('browser assembly verification failed')
+                if jvm_runtime is not None:
+                    comparison = report.get('freerouting_comparison') or {}
+                    if comparison.get('runtime') != jvm_runtime:
+                        metrics['evidence_errors'].append('Freerouting JVM runtime differs from the frozen provenance')
+                    if comparison.get('status') != 'completed':
+                        metrics['evidence_errors'].append('Freerouting comparison did not complete: '+comparison.get('error','missing comparison'))
                 conflicts=input_conflicts(spec);result['measurements'][case_id]=metrics
                 result['case_details'][case_id]=dict(ground_fill_ratio=report['gnd_pour_stats']['fill_ratio'],artifact_directory=str(out.relative_to(ROOT)),electrical_derivations=report.get('electrical_derivations',[]),input_conflicts=conflicts)
                 result['tasks'].extend(triage(case_id,report,metrics,conflicts));atomic_json(out/'metrics.json',metrics)
@@ -233,7 +269,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--suite',type=Path,default=DEFAULT_SUITE)
     sub=parser.add_subparsers(dest='command',required=True)
     sub.add_parser('status');sub.add_parser('history')
-    run=sub.add_parser('run');run.add_argument('--label',required=True);run.add_argument('--hypothesis',required=True);run.add_argument('--cases',default='all');run.add_argument('--case-timeout',type=int,default=900);run.add_argument('--variant',choices=('stable','supply-semantics','scoped-supply','octagonal-fanout','value-normalize'),default='stable')
+    run=sub.add_parser('run');run.add_argument('--label',required=True);run.add_argument('--hypothesis',required=True);run.add_argument('--cases',default='all');run.add_argument('--case-timeout',type=int,default=900);run.add_argument('--variant',choices=('stable','supply-semantics','scoped-supply','octagonal-fanout','value-normalize','freerouting-jvm','direct-repair'),default='stable')
     args=parser.parse_args()
     if os.environ.get('PCB_STUDIO_ROOT')!=str(ROOT):parser.error('run source scripts/env.sh before invoking Python')
     if args.command=='history':
@@ -242,8 +278,10 @@ def main():
         return 0
     suite=read_suite(args.suite)
     if args.command=='status':
-        result=diagnose(suite,active_pointer(suite));target=ROOT/'artifacts/optimization/status';target.mkdir(parents=True,exist_ok=True);atomic_json(target/'result.json',result);write_review(target,result)
-        print(json.dumps(dict(cases=len(result['measurements']),tasks=len(result['tasks']),report=str((target/'review.md').relative_to(ROOT))),ensure_ascii=False));return 0
+        result=diagnose(suite,active_pointer(suite));target=ROOT/'artifacts/optimization/status';target.mkdir(parents=True,exist_ok=True)
+        result['last_round'] = latest_round_status()
+        atomic_json(target/'result.json',result);write_review(target,result)
+        print(json.dumps(dict(cases=len(result['measurements']),tasks=len(result['tasks']),report=str((target/'review.md').relative_to(ROOT)), last_round=result['last_round']),ensure_ascii=False));return 0
     lock=ROOT/'artifacts/optimization/.run.lock';lock.parent.mkdir(parents=True,exist_ok=True)
     with lock.open('w') as handle:
         try:fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)

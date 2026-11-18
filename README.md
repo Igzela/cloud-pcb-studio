@@ -1,4 +1,4 @@
-> **Current handoff — 2026-11-17:** the repository now includes the v3 solver, five-board frozen artifacts, 3D previews and optimization history. Latest recorded tests: **123 passed in 73.42 s**. The latest candidate was **not promoted**; remaining electrical, RF and mechanical failures are documented. Start with [the handoff guide](docs/repository-handoff.zh-CN.md) and [the measured round](docs/optimization-octagonal-fanout.zh-CN.md). Historical showcase sections retain the earlier v2/workbench measurements.
+> **Current handoff — 2026-11-18:** The latest five-board run recorded **171 passing tests in 74.37 s**. The candidate closed the remaining Case 4 connection and became the new regression baseline. Case 3 and 5 still have open networks, and the RF, mechanical and board-edge findings remain in the reports. [Handoff guide](docs/repository-handoff.zh-CN.md) · [Measured round](docs/optimization-direct-repair.zh-CN.md)
 
 <div align="center">
 

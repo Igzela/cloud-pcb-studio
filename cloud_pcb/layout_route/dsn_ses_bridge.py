@@ -22,6 +22,8 @@ from kiutils.items.common import Position
 from contracts.schemas import NetClassRule
 
 DEFAULT_VIA_NAME = "Via[0-3]_550:300_um"
+COPPER_LAYERS = ("F.Cu", "In1.Cu", "In2.Cu", "B.Cu")
+NPTH_COPPER_CLEARANCE_MM = 0.50
 
 
 def _quote(token: str) -> str:
@@ -61,6 +63,44 @@ def _footprint_ref(fp: Any, idx: int) -> str:
     return f"FP{idx}"
 
 
+def _npth_keepout_lines(fp: Any, pad: Any) -> list[str]:
+    """Protect the non-plated round or oblong drill on all layers."""
+    from shapely.geometry import MultiPoint
+
+    drill = pad.drill
+    if drill is None:
+        raise ValueError("NPTH pad has no drill definition")
+    width = float(drill.diameter)
+    height = float(drill.width) if drill.oval and drill.width is not None else width
+    if any(not math.isfinite(dimension) or dimension <= 0 for dimension in (width, height)):
+        raise ValueError("NPTH drill dimensions must be finite and positive")
+
+    dx, dy = _rotate_kicad(pad.position.X, pad.position.Y, fp.position.angle or 0.0)
+    pad_angle = pad.position.angle or 0.0
+    offset = drill.offset or Position(X=0.0, Y=0.0)
+    ox, oy = _rotate_kicad(offset.X, offset.Y, pad_angle)
+    x, y = fp.position.X + dx + ox, fp.position.Y + dy + oy
+    sx, sy = _rotate_kicad(max(0.0, width - height) / 2,
+                           max(0.0, height - width) / 2, pad_angle)
+
+    # The slot is swept by a circular drill between the two endpoints.
+    # Circumscribe each end disk with a 16-gon, then form their convex hull.
+    # The extra micron covers the <1 µm displacement of quantized vertices.
+    sides = 16
+    radius = min(width, height) / 2 + NPTH_COPPER_CLEARANCE_MM
+    vertex_radius = (radius + .001) / math.cos(math.pi / sides)
+    vertices = []
+    for cx, cy in ((x - sx, y - sy), (x + sx, y + sy)):
+        for index in range(sides):
+            angle = (index + .5) * math.tau / sides
+            vx = cx + vertex_radius * math.cos(angle)
+            vy = cy + vertex_radius * math.sin(angle)
+            vertices.append((round(vx * 1000), round(-vy * 1000)))
+    hull = MultiPoint(vertices).convex_hull
+    coordinates = " ".join(f"{int(vx)} {int(vy)}" for vx, vy in hull.exterior.coords)
+    return [f'    (keepout "" (polygon {layer} 0 {coordinates}))' for layer in COPPER_LAYERS]
+
+
 def board_to_dsn(
     board: Board,
     dsn_path: Path,
@@ -75,8 +115,14 @@ def board_to_dsn(
     net_rules: dict[str, NetClassRule] | None = None,
     board_outline_mm: list[tuple[float, float]] | None = None,
     routing_layers_by_class: dict[str, tuple[str, ...]] | None = None,
+    *,
+    protect_mechanical_holes: bool = False,
 ) -> Path:
-    """Export a kiutils Board to a Specctra .dsn file."""
+    """Export a kiutils Board to a Specctra .dsn file.
+
+    The secondary router can opt into four-layer NPTH obstacles and explicit
+    images for footprints without electrical pins.
+    """
     x0, y0, x1, y1 = board_bounds_mm
     # fastroute assigns explicit classes after reading per-net rules. Compile
     # overrides into exclusive singleton classes to preserve rule precedence.
@@ -101,6 +147,7 @@ def board_to_dsn(
     images: list[str] = []
     placements: list[str] = []
     net_pins: dict[str, list[str]] = {}
+    mechanical_keepout_lines: list[str] = []
 
     # Register via padstack across all 4 copper layers
     padstacks[via_name] = [
@@ -132,6 +179,8 @@ def board_to_dsn(
         for pad_idx, pad in enumerate(fp.pads):
             pad_num = str(pad.number or f"P{pad_idx+1}").strip()
             if pad.type == "np_thru_hole":
+                if protect_mechanical_holes:
+                    mechanical_keepout_lines.extend(_npth_keepout_lines(fp, pad))
                 continue
 
             lx_kicad, ly_kicad = _rotate_kicad(
@@ -187,7 +236,7 @@ def board_to_dsn(
                     continue
                 net_pins.setdefault(pad.net.name, []).append(f"{ref}-{pad_num}")
 
-        if pin_lines:
+        if pin_lines or protect_mechanical_holes:
             images.append(f"    (image {_quote(img_name)}")
             images.extend(pin_lines)
             images.append("    )")
@@ -282,6 +331,7 @@ def board_to_dsn(
         ('      (path pcb 0 '+' '.join(f'{round(x*1000)} {round(-y*1000)}' for x,y in board_outline_mm)+')') if board_outline_mm else f"      (rect pcb {bx0} {by0} {bx1} {by1})",
         "    )",
         *keepout_lines,
+        *mechanical_keepout_lines,
         f"    (via {_quote(via_name)})",
         "    (rule",
         "      (width 200)",
