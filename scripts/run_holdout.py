@@ -122,18 +122,38 @@ def _check_sources(code, path, registry_digest):
     read_cohort(path)
 
 
+def _recorded_failure_matches(case_dir: Path, reason: str) -> bool:
+    solver_log = case_dir / "solver.log"
+    if reason == "placement_exhaustion":
+        lines = solver_log.read_text().rstrip().splitlines() if solver_log.is_file() else []
+        return bool(lines) and lines[-1].startswith(
+            ("RuntimeError: Unable to place component ", "PlacementExhausted: ")
+        )
+    if reason == "jvm_dsn_pin_grammar":
+        log = case_dir / "freerouting.log"
+        record = case_dir / "freerouting_comparison.json"
+        if not log.is_file() or not record.is_file():
+            return False
+        failure = json.loads(record.read_text())
+        details = log.read_text()
+        return failure.get("status") == "failed" and "DSN structure parsing failed" in details and (
+            "Network.read_net_pins" in details or "Network.readNetPins" in details
+        )
+    return False
+
+
 def run_frozen(registry_path: Path, directory: Path, *, variant: str, case_timeout: int,
-               retry_of: str | None = None) -> dict:
+               retry_of: str | None = None, retry_reason: str = "placement_exhaustion") -> dict:
     lock_path = _safe(ROOT, Path("artifacts/holdouts/.run.lock"))
     lock_path.parent.mkdir(parents=True, exist_ok=True)
     with lock_path.open("w") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         return _run_frozen(registry_path, directory, variant=variant, case_timeout=case_timeout,
-                           retry_of=retry_of)
+                           retry_of=retry_of, retry_reason=retry_reason)
 
 
 def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_timeout: int,
-                retry_of: str | None) -> dict:
+                retry_of: str | None, retry_reason: str) -> dict:
     registry_path = _safe(ROOT, registry_path)
     directory = _safe(ROOT, directory)
     cohort = read_cohort(registry_path)
@@ -163,14 +183,16 @@ def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_time
             or previous["cohort_sha256"] != registry_digest
             or previous["evidence"] != _evidence(committed.parent)
         ):
-            raise ValueError("Retry requires the verified latest incomplete, still-sealed cohort and changed placement code")
+            raise ValueError("Retry requires the verified latest incomplete, still-sealed cohort and changed code")
         failures = [entry for entry in previous["cases"] if entry["status"] == "failed"]
-        if not failures or any(
-            not (committed.parent / entry["id"] / "solver.log").read_text().rstrip().splitlines()[-1]
-            .startswith(("RuntimeError: Unable to place component ", "PlacementExhausted: "))
-            for entry in failures
+        if (
+            [entry["id"] for entry in previous["cases"]] != [entry["id"] for entry in cohort["cases"]]
+            or not failures or any(
+                not _recorded_failure_matches(committed.parent / entry["id"], retry_reason)
+                for entry in failures
+            )
         ):
-            raise ValueError("Retry is limited to cohorts interrupted by placement exhaustion")
+            raise ValueError("Retry must match a recorded placement or DSN importer failure on the complete cohort")
         expected_name += f"-retry-{len(earlier):02d}"
     elif retry_of:
         raise ValueError("Retry digest has no recorded parent")
@@ -196,7 +218,7 @@ def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_time
         "registered_cases": cohort["cases"], "cases": [],
     }
     if earlier:
-        manifest["retry"] = {"parent_freeze_sha256": retry_of, "reason": "placement_exhaustion",
+        manifest["retry"] = {"parent_freeze_sha256": retry_of, "reason": retry_reason,
                              "first_pass": False}
     freeze_path = directory / "freeze.json"
     atomic_json(freeze_path, manifest)
@@ -352,7 +374,9 @@ def main():
         command.add_argument("--cohort", type=Path, required=True)
         command.add_argument("--directory", type=Path, required=True)
     run.add_argument("--variant", choices=VARIANTS, default="direct-repair")
-    run.add_argument("--retry-of", help="Freeze SHA-256 of an incomplete placement-failure attempt")
+    run.add_argument("--retry-of", help="Freeze SHA-256 of the verified incomplete attempt")
+    run.add_argument("--retry-reason", choices=("placement_exhaustion", "jvm_dsn_pin_grammar"),
+                     default="placement_exhaustion")
     run.add_argument("--case-timeout", type=int, default=1200)
     compare.add_argument("--freeze-sha256", required=True)
     compare.add_argument("--vault", type=Path, default=ROOT / ".run/holdout-vault")
@@ -362,7 +386,7 @@ def main():
         parser.error("Run source scripts/env.sh first")
     if args.mode == "run":
         result = run_frozen(args.cohort, args.directory, variant=args.variant,
-                            case_timeout=args.case_timeout, retry_of=args.retry_of)
+                            case_timeout=args.case_timeout, retry_of=args.retry_of, retry_reason=args.retry_reason)
         return 0 if result["status"] == "frozen" else 1
     directory = _safe(ROOT, args.directory)
     if digest(_safe(ROOT, directory / "freeze.json")) != args.freeze_sha256:

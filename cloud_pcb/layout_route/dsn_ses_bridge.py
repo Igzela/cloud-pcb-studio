@@ -33,6 +33,19 @@ def _quote(token: str) -> str:
     return token
 
 
+def _quoted_pin_identifier(token: str) -> str:
+    """Quote one identifier using Freerouting's network token grammar."""
+    if not token or '"' in token or any(ord(ch) < 32 or ord(ch) == 127 for ch in token):
+        raise ValueError("Freerouting pin identifiers cannot contain quotes or control characters")
+    return f'"{token}"'
+
+
+def _secondary_pin_reference(ref: str, number: str) -> str:
+    # The JVM reader scans the component, a literal hyphen, then the pin.
+    # Quoting a combined identifier hides the separator from that reader.
+    return f'{_quoted_pin_identifier(ref)}-{_quoted_pin_identifier(number)}'
+
+
 def _rotate_kicad(dx: float, dy: float, angle_deg: float) -> tuple[float, float]:
     """Rotate local KiCad footprint offset (dx, dy) by KiCad footprint angle (CCW in Y-up)."""
     if abs(angle_deg) < 1e-9:
@@ -117,11 +130,13 @@ def board_to_dsn(
     routing_layers_by_class: dict[str, tuple[str, ...]] | None = None,
     *,
     protect_mechanical_holes: bool = False,
+    safe_pin_references: bool = False,
 ) -> Path:
     """Export a kiutils Board to a Specctra .dsn file.
 
     The secondary router can opt into four-layer NPTH obstacles and explicit
-    images for footprints without electrical pins.
+    images for footprints without electrical pins, and independent quoting of
+    component and pad names in pin references.
     """
     x0, y0, x1, y1 = board_bounds_mm
     # fastroute assigns explicit classes after reading per-net rules. Compile
@@ -148,6 +163,7 @@ def board_to_dsn(
     placements: list[str] = []
     net_pins: dict[str, list[str]] = {}
     mechanical_keepout_lines: list[str] = []
+    override_references: dict[str, set[str]] = {}
 
     # Register via padstack across all 4 copper layers
     padstacks[via_name] = [
@@ -231,10 +247,16 @@ def board_to_dsn(
 
             pin_lines.append(f"      (pin {_quote(ps_name)} {_quote(pad_num)} {px_um} {py_um})")
 
+            logical_reference = f"{ref}-{pad_num}"
+            pin_reference = logical_reference
+            if safe_pin_references:
+                pin_reference = _secondary_pin_reference(ref, pad_num)
+                if override_net_pins:
+                    override_references.setdefault(logical_reference, set()).add(pin_reference)
             if pad.net and pad.net.name:
                 if skip_nets and pad.net.name in skip_nets:
                     continue
-                net_pins.setdefault(pad.net.name, []).append(f"{ref}-{pad_num}")
+                net_pins.setdefault(pad.net.name, []).append(pin_reference)
 
         if pin_lines or protect_mechanical_holes:
             images.append(f"    (image {_quote(img_name)}")
@@ -243,10 +265,18 @@ def board_to_dsn(
 
     if override_net_pins:
         for nname, plist in override_net_pins.items():
-            if len(plist) >= 2:
-                net_pins[nname] = list(plist)
-            else:
+            if len(plist) < 2:
                 net_pins.pop(nname, None)
+            elif safe_pin_references:
+                resolved = []
+                for pin in plist:
+                    matches = override_references.get(pin, set())
+                    if len(matches) != 1:
+                        raise ValueError(f"Unresolved or ambiguous pin override for network {nname!r}: {pin!r}")
+                    resolved.append(next(iter(matches)))
+                net_pins[nname] = resolved
+            else:
+                net_pins[nname] = list(plist)
 
     # Keepout rectangles (e.g. RF corner keepout, QFN thermal via B.Cu keepout)
     keepout_lines: list[str] = []
@@ -277,7 +307,7 @@ def board_to_dsn(
     for net_name, pins in sorted(net_pins.items()):
         if len(pins) < 2:
             continue
-        pin_str = " ".join(_quote(p) for p in pins)
+        pin_str = " ".join(pins if safe_pin_references else (_quote(p) for p in pins))
         network_lines.append(f"    (net {_quote(net_name)}")
         network_lines.append(f"      (pins {pin_str})")
         network_lines.append("    )")

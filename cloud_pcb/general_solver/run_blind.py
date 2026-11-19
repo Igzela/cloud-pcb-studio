@@ -129,6 +129,35 @@ def _is_gnd_net(name: str) -> bool:
     return u in {"GND", "AGND", "DGND", "PGND", "VSS"}
 
 
+def _fastroute_connectivity(report: dict) -> dict:
+    """Keep the engine's connection count separate from its named-net count."""
+    stats = report.get("stats", {})
+    entries = report.get("unrouted", [])
+    net_count = int(stats.get("nets", 0))
+    connection_count = int(stats.get("unrouted", 0))
+    names = sorted({entry["net"] for entry in entries if entry.get("net")})
+    has_net_breakdown = len(entries) == connection_count and all(entry.get("net") for entry in entries)
+    return {
+        "nets": net_count, "connections": stats.get("connections"),
+        "unrouted_connections": connection_count,
+        "unrouted_net_names": names if has_net_breakdown else None,
+        "routed_nets": max(0, net_count - (len(names) if has_net_breakdown else connection_count)),
+    }
+
+
+def _plane_ground_net(board: Board) -> Net | None:
+    """Select one connected plane domain without equating different net IDs."""
+    recognized = [net for net in board.nets if _is_gnd_net(net.name)]
+    if len(recognized) <= 1:
+        return recognized[0] if recognized else None
+    used = {
+        p.net.number
+        for footprint in board.footprints for p in footprint.pads
+        if p.net and p.type != "np_thru_hole" and _is_copper_pad(p)
+    }
+    return next((net for net in recognized if net.number in used), recognized[0])
+
+
 def _parse_capacitance_farads(val: str, fp_name: str = "") -> float:
     """Parse capacitor value like '100nF', '10uF', '22pF', '0.1u' -> Farads."""
     s = (val or "").strip().lower().replace("μ", "u")
@@ -1008,7 +1037,7 @@ def _add_gnd_fanout_vias(
     *, octagonal_keepouts: bool = False,
 ) -> tuple[set[str], dict[str, list[str]], dict[str, Any]]:
     """Place verified outward SMD GND fanout vias (and interior thermal EPAD vias) to In1.Cu/In2.Cu."""
-    gnd_net_obj = next((n for n in board.nets if _is_gnd_net(n.name)), None)
+    gnd_net_obj = _plane_ground_net(board)
     if gnd_net_obj is None:
         return set(), {}, {"fanout_vias_added": 0, "unvia_gnd_pins": []}
 
@@ -1044,9 +1073,9 @@ def _add_gnd_fanout_vias(
                 hole_obst.append(drill_geometry(fp,pad).buffer(.50))
                 continue
             fp_cu_local_pts.append((float(pad.position.X), float(pad.position.Y)))
-            pnet = pad.net.name if pad.net else ""
+            owns_ground = pad.net is not None and pad.net.number == gnd_net_num
             if pad.type == "thru_hole":
-                if _is_gnd_net(pnet):
+                if owns_ground:
                     gnd_th_pins.append(f"{ref}-{pad.number}")
                     fp_grounded_geoms[idx].append(pg)
                 else:
@@ -1056,7 +1085,7 @@ def _add_gnd_fanout_vias(
                     fp_non_gnd_centers.append((fx + dx, fy + dy))
             else:
                 all_smd_pads.append(pg)
-                if not _is_gnd_net(pnet):
+                if not owns_ground:
                     non_gnd_pads.append(pg)
                     dx, dy = _rotate_kicad(float(pad.position.X), float(pad.position.Y), fang)
                     fp_non_gnd_centers.append((fx + dx, fy + dy))
@@ -1076,7 +1105,7 @@ def _add_gnd_fanout_vias(
             fp_min_x = fp_max_x = fp_min_y = fp_max_y = 0.0
 
         for pad in cu_pads:
-            if pad.type == "smd" and pad.net and _is_gnd_net(pad.net.name):
+            if pad.type == "smd" and pad.net and pad.net.number == gnd_net_num:
                 lx, ly = float(pad.position.X), float(pad.position.Y)
                 dx, dy = _rotate_kicad(lx, ly, fang)
                 px, py = fx + dx, fy + dy
@@ -1340,6 +1369,7 @@ def _add_gnd_fanout_vias(
         "fanout_vias_added": len(placed_via_pts),
         "gnd_smd_pads_total": len(gnd_smd_pads),
         "unvia_gnd_pins": unvia_pins,
+        "selected_ground_net": gnd_net_name,
         "via_guard_geometry": 'circumscribed_octagon' if octagonal_keepouts else 'legacy_square',
         "via_guard_area_reclaimed_sum_mm2": round(guard_area_reclaimed,6),
         "via_guard_area_statistic": 'sum over vias, not union area; original protection radii unchanged',
@@ -1374,7 +1404,7 @@ def _build_4layer_pours_and_stitching(
     islands: list[dict[str, Any]] | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Build In1.Cu/In2.Cu solid GND planes + F.Cu/B.Cu GND pours + stitching via fence."""
-    gnd_net_obj = next((n for n in board.nets if _is_gnd_net(n.name)), None)
+    gnd_net_obj = _plane_ground_net(board)
     gnd_net_num = int(gnd_net_obj.number) if gnd_net_obj else 1
     gnd_net_name = str(gnd_net_obj.name) if gnd_net_obj else "GND"
     base_poly = board_poly.buffer(-edge_margin)
@@ -1712,7 +1742,8 @@ def _export_blind_gerbers(
                 for p1, p2 in zip(coords, coords[1:]):
                     layer_objs["F_SilkS"].append(Line(float(p1[0]), float(p1[1]), float(p2[0]), float(p2[1]), aperture=silk_ap, unit=MM))
 
-    gnd_net = next((n.number for n in board.nets if _is_gnd_net(n.name)), 1)
+    selected_ground = _plane_ground_net(board)
+    gnd_net = selected_ground.number if selected_ground else 1
     for item in board.traceItems:
         if isinstance(item, Via):
             vx, vy = float(item.position.X), _gy(float(item.position.Y))
@@ -2088,7 +2119,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         success=fr_ok and fr_stats.get("unrouted", 1) == 0 and spacing['real_count']==0,
         runtime_ms=fr_ms,
         total_nets=int(fr_stats.get("nets", fr_ses_info["routed_nets"])),
-        routed_nets=int(fr_stats.get("nets", 0)) - int(fr_stats.get("unrouted", 0)) if fr_stats else fr_ses_info["routed_nets"],
+        routed_nets=_fastroute_connectivity(fr_report)["routed_nets"] if fr_stats else fr_ses_info["routed_nets"],
         unrouted_nets=int(fr_stats.get("unrouted", 99)),
         via_count=int(fr_stats.get("vias", fr_ses_info["via_count"])),
         total_wirelength_mm=float(fr_stats.get("trace_length_mm", fr_ses_info["total_wirelength_mm"])),
@@ -2109,6 +2140,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         override_net_pins=override_net_pins,
         routing_layers_by_class=routing_layers,
         protect_mechanical_holes=freerouting_jvm,
+        safe_pin_references=freerouting_jvm,
     )
     free_ses = outdir / "board_freerouting.ses"
     t1 = time.perf_counter()
@@ -2272,7 +2304,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
                 total_wirelength_mm=round(
                     fr_bench.total_wirelength_mm + sum(math.dist(r.start_xy, r.end_xy) for r in repairs), 4
                 ),
-                routed_nets=fr_bench.total_nets - fr_stats['unrouted'], unrouted_nets=fr_stats['unrouted'],
+                routed_nets=_fastroute_connectivity(fr_report)["routed_nets"], unrouted_nets=fr_stats['unrouted'],
                 notes=fr_bench.notes + "; fixed trace verified by matched fastroute replay and layered LVS",
             )
         fr_bench = replace(fr_bench, runtime_ms=round(fr_bench.runtime_ms + 1000 * (time.perf_counter() - replay_start), 2))
@@ -2327,6 +2359,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         "hard_gates": hard_gates,
         "hard_gates_passed": all(hard_gates.values()),
         "router_spacing": spacing,
+        "fastroute_connectivity": _fastroute_connectivity(fr_report),
         "routing_mode": route_mode,
         "router_processes": router_processes,
         "freerouting_comparison": secondary_comparison,
