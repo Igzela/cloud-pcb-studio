@@ -14,11 +14,25 @@
         "manifest": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/manifest.json",
         "sha256": "023dff403ab73c77ecd4653ffae4e4db87516c7ff1b21ea341a516134c403cd8"
       }
+    },
+    {
+      "at": "2026-11-19T16:48:49.546830+00:00",
+      "previous": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/manifest.json",
+        "sha256": "023dff403ab73c77ecd4653ffae4e4db87516c7ff1b21ea341a516134c403cd8"
+      },
+      "new": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/baselines/exposed-seven-20261119.json",
+        "sha256": "2717c7238a82581165a6c2b9d06558454a1607af04e85983704e118f6b4c1108"
+      },
+      "reason": "exposed_case_registration"
     }
   ],
   "active_baseline": {
     "format": "optimization_round",
-    "manifest": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/manifest.json",
-    "sha256": "023dff403ab73c77ecd4653ffae4e4db87516c7ff1b21ea341a516134c403cd8"
+    "manifest": "artifacts/optimization/baselines/exposed-seven-20261119.json",
+    "sha256": "2717c7238a82581165a6c2b9d06558454a1607af04e85983704e118f6b4c1108"
   }
 }

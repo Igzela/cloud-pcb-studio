@@ -12,6 +12,8 @@ Freerouting 的 DSN 端点分别引用元件名与焊盘号，中间保留语法
 
 上一轮五板布局回归已记录 Case 1–3 完成、Case 4 完成主板求解及独立 LVS，但执行环境中断时未写完浏览器和最终逐板记录。Case 5 未开始。保留原清单，不能用前三块结果代表全量回归。[中断轮次](../artifacts/optimization/runs/20261119T085316988092Z-placement-recovery/manifest.json)
 
+回流域修复后的五板回归全量完成，耗时 1117.221 秒，pytest 206 项通过，耗时 77.24 秒。五块板的浏览器验证均通过。Case 1、2、4 的未布通、独立 LVS 开短路和真实间距均为零。Case 3 仍有 1 处开路，Case 5 仍有 9 处。与当时的五板基线相比没有退步或指标改善，未晋升。Case 10–11 解封后归入回归集，基线索引保留前五块板的原记录并追加两块板的冻结记录。[五板回归](../artifacts/optimization/runs/20261119T092502081033Z-return-domain-isolation/review.md) · [七板基线](../artifacts/optimization/baselines/exposed-seven-20261119.json)
+
 完整 Case 10 重测中，主引擎未完成连接 55 → 4，独立 LVS 开路 5 → 2，短路 2 → 0；地填充 80.81% → 86.84%。JVM 现在完成真实导入和路由，保留 31 条未完成连接和 12 条间距记录。主引擎仍有 12 条按当前门禁计入的间距记录，最小孔环为 0.0997 mm，未过 0.10 mm 门槛。Gerber 解析、非热焊盘 Via-in-Pad 和浏览器检查通过。Case 10 的放置仍为常规路径。[重测证据](../artifacts/holdouts/power-and-industrial-02-retry-01/case10/metrics.json)
 
 12 条主引擎记录全部是焊盘间距。8 条涉及原网表的同一回流网，DSN 报告相距 0.0001 mm；实际板上测得距离为 0，现有豁免所要求的正面积重叠未由此前检查证明。4 条来自同一对异网焊盘在四个铜层的记录，早先独立测距指出矩形 padstack 和实际椭圆/圆角轮廓可能导致差异。当前门禁状态保留。应分别修正 DSN 的网络归属表达和保守形状表示，再用独立 LVS 核对物理连通。

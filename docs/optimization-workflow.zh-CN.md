@@ -37,10 +37,11 @@ python -m scripts.optimize_pcb status
 source scripts/env.sh
 python -m scripts.optimize_pcb run \
   --label my-generic-change \
+  --variant placement-recovery \
   --hypothesis '说明改动依据、预期改善指标和适用条件'
 ```
 
-这条命令默认使用稳定求解行为。第一个新增实验变体为电源语义推导：
+当前回归产物使用 `placement-recovery`。命令省略 `--variant` 时使用原有的 `stable`。首个电源语义实验可单独复现：
 
 ```bash
 source scripts/env.sh
@@ -93,11 +94,11 @@ python -m scripts.optimize_pcb history
 
 ## 过程完整性
 
-- 注册表 `benchmark_case/optimization_suite.json` 固定数据集、输入哈希和历史基线哈希。当前 Case 1–5 全部是回归集；Case 4/5 已暴露，绝不再记为新盲测。
+- 注册表 `benchmark_case/optimization_suite.json` 固定数据集、输入哈希 和历史基线哈希。Case 1–5、10–11 共七块板用于回归。Case 10–11 完成整组冻结和人工参考对比后加入，沿用解封前产物作为基线。Case 6–9 保持密封。
 - `sealed_holdout` 必须带密封元数据。已解封案例不能被改标签冒充 holdout；未解封案例不能进入日常优化的训练/回归运行。流程只读取密封状态元数据，不打开参考 PCB，也不自动解封。新泛化实验仍须走独立密封、代码冻结、完整产物冻结和解封比较流程。
 - 每轮保存源码、测试、工具、依赖锁文件和注册表的哈希与 `source.tar.gz`；输入复制到该轮 `inputs/`，与原规范哈希一致。
 - 每个阶段前后检查源码及输入。途中改代码或输入会使轮次失效，禁止晋升；候选进程失败、超时或 3D 出错均记录为失败。
-- 测试失败就不启动昂贵的五板路由。子进程有超时及进程组清理；外层执行锁防止两个优化轮次同时修改基线状态。
+- 测试失败就不启动全量路由。子进程有超时及进程组清理。外层执行锁防止两个优化轮次同时修改基线状态。
 - 同一源码、同一输入、同一变体和预算的完整轮次不能再次执行。改变 label 或假设文字不构成新实验；这减少重复消耗与择优报喜。
 - 全部 Python/pytest/求解器子进程先通过 `source scripts/env.sh`；没有跳过 DRC 或放松门禁的快捷模式。
 

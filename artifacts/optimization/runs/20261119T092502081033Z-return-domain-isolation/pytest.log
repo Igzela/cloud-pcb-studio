@@ -1,0 +1,277 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0 -- /workspace/cloud-pcb-studio/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/cloud-pcb-studio
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 206 items
+
+tests/test_direct_repair.py::test_full_width_proposal_is_immutable_and_leaves_inputs_untouched PASSED [  0%]
+tests/test_direct_repair.py::test_endpoint_matches_specctra_placement_and_local_micron_rounding PASSED [  0%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[duplicate_pin] PASSED [  1%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[duplicate_ref] PASSED [  1%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[wrong_net] PASSED [  2%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[stale_coordinate] PASSED [  2%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[cross_footprint] PASSED [  3%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[smd] PASSED [  3%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[non_45] PASSED [  4%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[bad_drill] PASSED [  4%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[different_class] PASSED [  5%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[pair] PASSED [  5%]
+tests/test_direct_repair.py::test_uncertain_or_constrained_connections_do_not_qualify[layer_limited] PASSED [  6%]
+tests/test_direct_repair.py::test_layer_fallback_uses_only_configured_layers_and_keeps_class_clearance PASSED [  6%]
+tests/test_direct_repair.py::test_exact_path_checks_sweep_holes_and_copper[via] PASSED [  7%]
+tests/test_direct_repair.py::test_exact_path_checks_sweep_holes_and_copper[slot] PASSED [  7%]
+tests/test_direct_repair.py::test_exact_path_checks_sweep_holes_and_copper[outline_hole] PASSED [  8%]
+tests/test_direct_repair.py::test_exact_path_checks_sweep_holes_and_copper[board_edge] PASSED [  8%]
+tests/test_direct_repair.py::test_exact_path_checks_sweep_holes_and_copper[rf_polygon] PASSED [  9%]
+tests/test_direct_repair.py::test_exact_path_checks_sweep_holes_and_copper[filled_zone] PASSED [  9%]
+tests/test_direct_repair.py::test_exact_path_checks_sweep_holes_and_copper[track_keepout_zone] PASSED [ 10%]
+tests/test_direct_repair.py::test_exact_path_checks_sweep_holes_and_copper[unknown_pad_shape] PASSED [ 10%]
+tests/test_direct_repair.py::test_via_only_keepout_does_not_block_a_via_free_repair PASSED [ 11%]
+tests/test_direct_repair.py::test_crossing_proposals_are_checked_together_in_deterministic_order PASSED [ 11%]
+tests/test_direct_repair_replay.py::test_add_fixed_wire_with_dsn_coordinates_without_editing_rules PASSED [ 12%]
+tests/test_direct_repair_replay.py::test_replay_rejects_bad_connectivity_or_changed_input[mutation0-connectivity gain] PASSED [ 12%]
+tests/test_direct_repair_replay.py::test_replay_rejects_bad_connectivity_or_changed_input[mutation1-clearance violation] PASSED [ 13%]
+tests/test_direct_repair_replay.py::test_replay_rejects_bad_connectivity_or_changed_input[mutation2-pin, connection] PASSED [ 13%]
+tests/test_direct_repair_replay.py::test_unchanged_count_cannot_hide_different_violation PASSED [ 14%]
+tests/test_external_placement.py::test_external_coordinates_are_applied_exactly_and_others_not_filled PASSED [ 14%]
+tests/test_external_placement.py::test_invalid_external_documents_do_not_partially_mutate_spec[x_mm-True] PASSED [ 15%]
+tests/test_external_placement.py::test_invalid_external_documents_do_not_partially_mutate_spec[y_mm-inf] PASSED [ 15%]
+tests/test_external_placement.py::test_invalid_external_documents_do_not_partially_mutate_spec[angle_deg-nan] PASSED [ 16%]
+tests/test_external_placement.py::test_invalid_external_documents_do_not_partially_mutate_spec[side-unknown] PASSED [ 16%]
+tests/test_external_placement.py::test_fixed_mating_interface_is_not_corrected_or_moved PASSED [ 16%]
+tests/test_external_placement.py::test_bottom_assignment_is_input_not_a_new_internal_placement PASSED [ 17%]
+tests/test_external_placement.py::test_overlapping_input_stays_overlapping_and_independent_mechanics_fails PASSED [ 17%]
+tests/test_external_placement.py::test_external_entry_bypasses_internal_placer_but_default_entry_keeps_it PASSED [ 18%]
+tests/test_external_placement.py::test_reference_source_and_placement_hashes_cannot_be_changed PASSED [ 18%]
+tests/test_freerouting_comparison.py::test_completed_session_reports_engine_counts_and_parses_copper[ and ] PASSED [ 19%]
+tests/test_freerouting_comparison.py::test_completed_session_reports_engine_counts_and_parses_copper[, ] PASSED [ 19%]
+tests/test_freerouting_comparison.py::test_a_file_alone_does_not_establish_valid_comparison[-1-log0-process did not finish] PASSED [ 20%]
+tests/test_freerouting_comparison.py::test_a_file_alone_does_not_establish_valid_comparison[0-Auto-routing stage completed: final score: 950.0 (3 unrouted and 2 violations)-missing Freerouting COMPLETED] PASSED [ 20%]
+tests/test_freerouting_comparison.py::test_a_file_alone_does_not_establish_valid_comparison[0-Job '1234' finished with state: COMPLETED (elapsed: 1 second)-missing Freerouting final routing score] PASSED [ 21%]
+tests/test_freerouting_comparison.py::test_a_file_alone_does_not_establish_valid_comparison[0-log3-discarded] PASSED [ 21%]
+tests/test_freerouting_comparison.py::test_session_rejects_unknown_net_and_layer PASSED [ 22%]
+tests/test_freerouting_dsn.py::test_mechanical_images_resolve_all_placements_without_electrical_pins PASSED [ 22%]
+tests/test_freerouting_dsn.py::test_npth_round_hole_and_rotated_offset_slot_have_conservative_four_layer_guards PASSED [ 23%]
+tests/test_freerouting_dsn.py::test_mechanical_export_refuses_missing_drill_geometry PASSED [ 23%]
+tests/test_freerouting_dsn.py::test_secondary_pin_quoting_only_changes_network_endpoint_delimiters PASSED [ 24%]
+tests/test_freerouting_dsn.py::test_secondary_resolves_override_pins_without_splitting_names PASSED [ 24%]
+tests/test_freerouting_dsn.py::test_secondary_rejects_unresolvable_override[False] PASSED [ 25%]
+tests/test_freerouting_dsn.py::test_secondary_rejects_unresolvable_override[True] PASSED [ 25%]
+tests/test_freerouting_runtime.py::test_resolver_identifies_verified_launch_and_java_runtime PASSED [ 26%]
+tests/test_freerouting_runtime.py::test_unverified_jar_fails_before_starting_java PASSED [ 26%]
+tests/test_freerouting_runtime.py::test_explicit_java_is_not_silently_replaced_on_version_error PASSED [ 27%]
+tests/test_freerouting_runtime.py::test_download_bad_checksum_keeps_existing_release PASSED [ 27%]
+tests/test_gemini_reference.py::test_anonymous_request_excludes_project_and_solver_answers PASSED [ 28%]
+tests/test_gemini_reference.py::test_decoded_proposal_never_claims_routing_or_engineering_pass PASSED [ 28%]
+tests/test_gemini_reference.py::test_thinking_and_final_output_share_a_recorded_bounded_budget PASSED [ 29%]
+tests/test_gemini_reference.py::test_retry_keeps_task_and_identity_and_cannot_resample_a_valid_proposal PASSED [ 29%]
+tests/test_gemini_reference.py::test_invalid_poses_and_moved_fixed_interfaces_are_rejected[changes0] PASSED [ 30%]
+tests/test_gemini_reference.py::test_invalid_poses_and_moved_fixed_interfaces_are_rejected[changes1] PASSED [ 30%]
+tests/test_gemini_reference.py::test_invalid_poses_and_moved_fixed_interfaces_are_rejected[changes2] PASSED [ 31%]
+tests/test_gemini_reference.py::test_invalid_poses_and_moved_fixed_interfaces_are_rejected[changes3] PASSED [ 31%]
+tests/test_gemini_reference.py::test_invalid_poses_and_moved_fixed_interfaces_are_rejected[changes4] PASSED [ 32%]
+tests/test_gemini_reference.py::test_incomplete_or_truncated_model_output_is_not_a_reference PASSED [ 32%]
+tests/test_gemini_reference.py::test_bounded_service_retries_do_not_change_model_or_leak_key PASSED [ 33%]
+tests/test_gemini_reference.py::test_authorization_error_is_not_retried_and_no_model_url_injection PASSED [ 33%]
+tests/test_gemini_reference.py::test_reported_model_version_and_usage_are_preserved_and_thoughts_filtered PASSED [ 33%]
+tests/test_general_v3.py::test_topology_detects_exact_repeated_channels_without_ground_merge PASSED [ 34%]
+tests/test_general_v3.py::test_topology_rename_invariance PASSED         [ 34%]
+tests/test_general_v3.py::test_value_normalization_merges_case_only_signature_splits PASSED [ 35%]
+tests/test_general_v3.py::test_value_normalization_keeps_genuinely_different_values_apart PASSED [ 35%]
+tests/test_general_v3.py::test_value_normalization_never_merges_mega_with_milli PASSED [ 36%]
+tests/test_general_v3.py::test_value_normalization_is_inert_when_spelling_is_consistent PASSED [ 36%]
+tests/test_general_v3.py::test_one_fine_pitch_part_does_not_collapse_power_trunks PASSED [ 37%]
+tests/test_general_v3.py::test_dsn_overrides_compile_to_exclusive_classes PASSED [ 37%]
+tests/test_general_v3.py::test_rf_requires_geometry_evidence_and_rotates_four_layers PASSED [ 38%]
+tests/test_general_v3.py::test_mechanical_detects_rotated_bodies_holes_and_unknown_heights PASSED [ 38%]
+tests/test_general_v3.py::test_layered_lvs_rejects_projected_crossing_and_requires_plating PASSED [ 39%]
+tests/test_general_v3.py::test_rf_audit_catches_inner_layer_copper PASSED [ 39%]
+tests/test_general_v3.py::test_power_plane_rejects_unplated_projection PASSED [ 40%]
+tests/test_general_v3.py::test_assembly_is_self_contained_and_has_real_height PASSED [ 40%]
+tests/test_general_v3.py::test_zone_partition_preserves_connected_copper_without_micron_slots PASSED [ 41%]
+tests/test_general_v3.py::test_import_omitted_angle_is_absolute_zero_not_footprint_angle PASSED [ 41%]
+tests/test_general_v3.py::test_same_net_overlap_filter_keeps_foreign_net_and_missing_records PASSED [ 42%]
+tests/test_general_v3.py::test_power_island_is_not_pierced_by_added_ground_stitching PASSED [ 42%]
+tests/test_general_v3.py::test_inner_signal_is_cut_out_of_inner_ground_fill PASSED [ 43%]
+tests/test_general_v3.py::test_annular_geometry_rejects_missing_copper_and_checks_slots PASSED [ 43%]
+tests/test_general_v3.py::test_gerber_polarity_order_preserves_late_dark_flash PASSED [ 44%]
+tests/test_general_v3.py::test_preexisting_ground_stubs_are_visible_to_both_router_obstacle_types PASSED [ 44%]
+tests/test_general_v3.py::test_electrolytic_identity_uses_diameter_and_height_not_flat_mlcc PASSED [ 45%]
+tests/test_holdout_protocol.py::test_extract_discards_instance_pose_copper_and_global_annotations PASSED [ 45%]
+tests/test_holdout_protocol.py::test_extract_retains_only_edge_interface_and_mounting_hole_coordinates PASSED [ 46%]
+tests/test_holdout_protocol.py::test_intake_rebases_only_permitted_coordinates_and_hides_source_identity PASSED [ 46%]
+tests/test_holdout_protocol.py::test_intake_does_not_expose_pose_for_chip_with_edge_connector_keywords PASSED [ 47%]
+tests/test_holdout_protocol.py::test_read_cohort_accepts_anonymous_registry_then_rejects_spec_tampering PASSED [ 47%]
+tests/test_holdout_protocol.py::test_read_cohort_rejects_private_metadata_in_public_registry[repo_url] PASSED [ 48%]
+tests/test_holdout_protocol.py::test_read_cohort_rejects_private_metadata_in_public_registry[source_path] PASSED [ 48%]
+tests/test_holdout_protocol.py::test_read_cohort_rejects_private_metadata_in_public_registry[reference_path] PASSED [ 49%]
+tests/test_holdout_protocol.py::test_read_cohort_rejects_exposed_case_even_with_valid_spec_hash PASSED [ 49%]
+tests/test_holdout_protocol.py::test_read_cohort_rejects_spec_symlink_even_inside_root PASSED [ 50%]
+tests/test_holdout_protocol.py::test_read_cohort_rejects_traversal_even_when_target_is_inside_root PASSED [ 50%]
+tests/test_holdout_protocol.py::test_compare_rejects_invalid_freeze_before_even_resolving_vault PASSED [ 50%]
+tests/test_holdout_protocol.py::test_verify_frozen_rejects_drift_in_actual_recorded_run[source] PASSED [ 51%]
+tests/test_holdout_protocol.py::test_verify_frozen_rejects_drift_in_actual_recorded_run[copied_spec] PASSED [ 51%]
+tests/test_holdout_protocol.py::test_verify_frozen_rejects_drift_in_actual_recorded_run[board] PASSED [ 52%]
+tests/test_holdout_protocol.py::test_verify_frozen_rejects_drift_in_actual_recorded_run[added_file] PASSED [ 52%]
+tests/test_holdout_protocol.py::test_verify_frozen_rejects_drift_in_actual_recorded_run[deleted_file] PASSED [ 53%]
+tests/test_holdout_protocol.py::test_verify_frozen_rejects_drift_in_actual_recorded_run[symlink] PASSED [ 53%]
+tests/test_holdout_protocol.py::test_completed_cohort_cannot_be_retried_even_with_new_source PASSED [ 54%]
+tests/test_holdout_protocol.py::test_compare_verifies_entire_cohort_before_using_any_reference PASSED [ 54%]
+tests/test_layout_route.py::test_sanitize_kicad_sexpr_strips_bare_models_preserves_valid PASSED [ 55%]
+tests/test_layout_route.py::test_parse_ses_coordinate_and_resolution_scaling PASSED [ 55%]
+tests/test_layout_route.py::test_pipeline_a_tscircuit_artifacts_and_physics PASSED [ 56%]
+tests/test_layout_route.py::test_pipeline_b_kicad_fastroute_artifacts_and_physics PASSED [ 56%]
+tests/test_layout_route.py::test_autorouter_bakeoff_comparison PASSED    [ 57%]
+tests/test_layout_route.py::test_board_to_dsn_skips_non_copper_paste_pads_and_uses_pad_angle PASSED [ 57%]
+tests/test_optimization_workflow.py::test_latest_round_reports_missing_evidence_without_changing_baseline PASSED [ 58%]
+tests/test_optimization_workflow.py::test_voltage_labels_are_lexical_not_substring_matches[/domain/1V2_aux-1.2] PASSED [ 58%]
+tests/test_optimization_workflow.py::test_voltage_labels_are_lexical_not_substring_matches[+2.5V-2.5] PASSED [ 59%]
+tests/test_optimization_workflow.py::test_voltage_labels_are_lexical_not_substring_matches[-12V--12] PASSED [ 59%]
+tests/test_optimization_workflow.py::test_voltage_labels_are_lexical_not_substring_matches[clock_12V-None] PASSED [ 60%]
+tests/test_optimization_workflow.py::test_voltage_labels_are_lexical_not_substring_matches[3V3CLK-None] PASSED [ 60%]
+tests/test_optimization_workflow.py::test_voltage_labels_are_lexical_not_substring_matches[VREF-None] PASSED [ 61%]
+tests/test_optimization_workflow.py::test_supply_derivation_preserves_explicit_constraints_and_input PASSED [ 61%]
+tests/test_optimization_workflow.py::test_supply_inference_survives_arbitrary_net_and_reference_renaming PASSED [ 62%]
+tests/test_optimization_workflow.py::test_reference_ground_switch_and_explicit_bus_are_not_supply_trunks PASSED [ 62%]
+tests/test_optimization_workflow.py::test_an_aggregate_gain_cannot_hide_a_new_open_on_another_board PASSED [ 63%]
+tests/test_optimization_workflow.py::test_shortening_an_incomplete_board_never_earns_promotion PASSED [ 63%]
+tests/test_optimization_workflow.py::test_complete_suite_tests_and_meaningful_gain_required_for_promotion PASSED [ 64%]
+tests/test_optimization_workflow.py::test_regressing_qor_or_omitting_a_case_blocks_promotion PASSED [ 64%]
+tests/test_optimization_workflow.py::test_missing_evidence_and_fabricated_passes_fail_closed PASSED [ 65%]
+tests/test_optimization_workflow.py::test_rf_audit_requires_all_four_layers_and_actual_zero_copper PASSED [ 65%]
+tests/test_optimization_workflow.py::test_fixed_interface_conflict_accounts_for_rotation_and_board_origin PASSED [ 66%]
+tests/test_optimization_workflow.py::test_exposed_holdout_and_input_hash_changes_are_rejected PASSED [ 66%]
+tests/test_optimization_workflow.py::test_historical_artifact_changes_and_added_files_are_detected PASSED [ 66%]
+tests/test_optimization_workflow.py::test_source_change_invalidates_a_round PASSED [ 67%]
+tests/test_optimization_workflow.py::test_timeout_terminates_the_managed_process_group PASSED [ 67%]
+tests/test_optimization_workflow.py::test_failing_tests_prevent_solver_start_and_baseline_promotion PASSED [ 68%]
+tests/test_parts_dfm.py::test_catalog_loading_and_offline_resilience PASSED [ 68%]
+tests/test_parts_dfm.py::test_board1_bom_selection_and_cost_math PASSED  [ 69%]
+tests/test_parts_dfm.py::test_stackup_finish_state_machine PASSED        [ 69%]
+tests/test_parts_dfm.py::test_impedance_calibration_and_ampacity_physics PASSED [ 70%]
+tests/test_parts_dfm.py::test_ai_trap_rejections_and_board1_passes PASSED [ 70%]
+tests/test_parts_dfm.py::test_ngspice_ac_imag_frequency_sanitizer PASSED [ 71%]
+tests/test_parts_dfm.py::test_ngspice_simulations_and_cli_artifacts PASSED [ 71%]
+tests/test_placement_recovery.py::test_fragmentation_recovery_places_long_footprint_first[area] PASSED [ 72%]
+tests/test_placement_recovery.py::test_fragmentation_recovery_places_long_footprint_first[long-side] PASSED [ 72%]
+tests/test_placement_recovery.py::test_recovers_a_legal_pose_beyond_the_old_search_radius PASSED [ 73%]
+tests/test_placement_recovery.py::test_impossible_fixed_keepout_is_neither_moved_nor_committed PASSED [ 73%]
+tests/test_placement_recovery.py::test_candidate_order_obeys_actual_outline_and_round_keepouts PASSED [ 74%]
+tests/test_placement_recovery.py::test_single_probe_budget_allows_a_legal_target_and_live_target_update PASSED [ 74%]
+tests/test_placement_recovery.py::test_full_placer_recovers_the_compact_synthetic_layout_without_overlap PASSED [ 75%]
+tests/test_return_domain_fanout.py::test_other_return_smd_pad_is_foreign_copper_not_a_fanout_target PASSED [ 75%]
+tests/test_return_domain_fanout.py::test_other_return_plated_pad_on_same_footprint_cannot_be_bridge_target PASSED [ 76%]
+tests/test_return_domain_fanout.py::test_blocked_selected_pad_uses_same_net_plated_pin_as_dsn_anchor PASSED [ 76%]
+tests/test_return_domain_fanout.py::test_unused_ground_label_cannot_steal_fanout_or_copper_pours PASSED [ 77%]
+tests/test_routing_guards.py::test_guard_contains_full_circle_and_recovers_only_square_corners[0-0-0.42] PASSED [ 77%]
+tests/test_routing_guards.py::test_guard_contains_full_circle_and_recovers_only_square_corners[-3.127-7.859-0.395] PASSED [ 78%]
+tests/test_routing_guards.py::test_guard_contains_full_circle_and_recovers_only_square_corners[19.361--22.613-0.333] PASSED [ 78%]
+tests/test_routing_guards.py::test_quantization_never_undercuts_non_grid_protection[0.00049--0.00049-0.42001] PASSED [ 79%]
+tests/test_routing_guards.py::test_quantization_never_undercuts_non_grid_protection[-9.1236-5.2346-0.3952] PASSED [ 79%]
+tests/test_routing_guards.py::test_quantization_never_undercuts_non_grid_protection[2-3-0.0001] PASSED [ 80%]
+tests/test_routing_guards.py::test_invalid_guard_input_is_rejected[nan-0-0.4] PASSED [ 80%]
+tests/test_routing_guards.py::test_invalid_guard_input_is_rejected[0-inf-0.4] PASSED [ 81%]
+tests/test_routing_guards.py::test_invalid_guard_input_is_rejected[0-0--0.1] PASSED [ 81%]
+tests/test_routing_guards.py::test_invalid_guard_input_is_rejected[0-0-0] PASSED [ 82%]
+tests/test_routing_guards.py::test_invalid_guard_input_is_rejected[True-0-0.4] PASSED [ 82%]
+tests/test_routing_guards.py::test_fanout_preserves_copper_connectivity_and_thermal_layer_exception PASSED [ 83%]
+tests/test_routing_guards.py::test_exported_dsn_polygons_protect_disk_after_coordinate_quantization PASSED [ 83%]
+tests/test_routing_guards.py::test_router_log_preserves_actual_failure_and_timeout_evidence PASSED [ 83%]
+tests/test_special_ip.py::test_planar_coil_geometry_and_constructive_flux_invariant PASSED [ 84%]
+tests/test_special_ip.py::test_planar_coil_counterfactual_canceling_fails_flux_addition PASSED [ 84%]
+tests/test_special_ip.py::test_planar_coil_ngspice_step_and_pwm_flyback PASSED [ 85%]
+tests/test_special_ip.py::test_captouch_chevron_slider_clearances PASSED [ 85%]
+tests/test_special_ip.py::test_curved_routing_chaikin_arcs_and_meander_obstacle_avoidance PASSED [ 86%]
+tests/test_special_ip.py::test_full_board_assembly_kicad_and_gerbonara_pygerber_roundtrip PASSED [ 86%]
+tests/test_supply_scope.py::test_one_ic_and_shunt_cap_require_typed_supply_and_return_evidence PASSED [ 87%]
+tests/test_supply_scope.py::test_filter_inductor_and_feedback_resistor_can_belong_to_one_ic_domain PASSED [ 87%]
+tests/test_supply_scope.py::test_opaque_two_terminal_packages_require_value_unit_evidence[3.3uH/1A] PASSED [ 88%]
+tests/test_supply_scope.py::test_opaque_two_terminal_packages_require_value_unit_evidence[47nF/16V] PASSED [ 88%]
+tests/test_supply_scope.py::test_opaque_two_terminal_packages_require_value_unit_evidence[4k7/1%] PASSED [ 89%]
+tests/test_supply_scope.py::test_other_ic_interface_or_unknown_endpoint_prevents_local_scope[extra0] PASSED [ 89%]
+tests/test_supply_scope.py::test_other_ic_interface_or_unknown_endpoint_prevents_local_scope[extra1] PASSED [ 90%]
+tests/test_supply_scope.py::test_other_ic_interface_or_unknown_endpoint_prevents_local_scope[extra2] PASSED [ 90%]
+tests/test_supply_scope.py::test_connector_cannot_masquerade_as_an_ic_even_without_edge_metadata PASSED [ 91%]
+tests/test_supply_scope.py::test_open_or_unconnected_cap_is_not_return_evidence PASSED [ 91%]
+tests/test_supply_scope.py::test_numeric_reference_switch_and_ground_pin_labels_cannot_prove_supply[123] PASSED [ 92%]
+tests/test_supply_scope.py::test_numeric_reference_switch_and_ground_pin_labels_cannot_prove_supply[VREF] PASSED [ 92%]
+tests/test_supply_scope.py::test_numeric_reference_switch_and_ground_pin_labels_cannot_prove_supply[VDD_SW] PASSED [ 93%]
+tests/test_supply_scope.py::test_numeric_reference_switch_and_ground_pin_labels_cannot_prove_supply[VSS] PASSED [ 93%]
+tests/test_supply_scope.py::test_numeric_reference_switch_and_ground_pin_labels_cannot_prove_supply[GND] PASSED [ 94%]
+tests/test_supply_scope.py::test_inconsistent_net_and_pad_tables_prevent_narrowing PASSED [ 94%]
+tests/test_supply_scope.py::test_scope_and_width_survive_arbitrary_ref_net_and_input_order_changes PASSED [ 95%]
+tests/test_supply_scope.py::test_explicit_current_and_width_override_local_domain_default PASSED [ 95%]
+tests/test_supply_scope.py::test_backbone_width_is_not_collapsed_and_earlier_variant_remains_unchanged PASSED [ 96%]
+tests/test_supply_scope.py::test_local_rules_reach_dsn_as_exclusive_classes PASSED [ 96%]
+tests/test_verify_gate.py::test_strict_pygerber_rejects_malformed_g75_without_star PASSED [ 97%]
+tests/test_verify_gate.py::test_spec_gate_rejects_low_stock_nan_mc_and_high_esd PASSED [ 97%]
+tests/test_verify_gate.py::test_board2_gate_rejects_tau_over_2pct_and_bad_edge_margin PASSED [ 98%]
+tests/test_verify_gate.py::test_real_board1_spec_and_board2_special_pass_all_gates PASSED [ 98%]
+tests/test_verify_gate.py::test_real_board1_pipelines_excellon_and_bakeoff PASSED [ 99%]
+tests/test_verify_gate.py::test_full_verify_gate_renders_workbench_and_chromium PASSED [ 99%]
+tests/test_verify_gate.py::test_kicad_drc_lvs_interior_epad_exemption_and_multilayer_zone_layer_filter PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/test_general_v3.py::test_inner_signal_is_cut_out_of_inner_ground_fill
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/shapely/decorators.py:184: DeprecationWarning: The 'resolution' argument is deprecated. Use 'quad_segs' instead
+    result = func(*args, **kwargs)
+
+tests/test_layout_route.py::test_pipeline_a_tscircuit_artifacts_and_physics
+tests/test_verify_gate.py::test_real_board1_pipelines_excellon_and_bakeoff
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/gerbonara/excellon.py:573: SyntaxWarning: /workspace/cloud-pcb-studio/artifacts/board1_tscircuit/PTH.drl:16 "G90": G90 header statement found after end of header
+    warnings.warn(f'{self.filename}:{self.lineno} "{self.line}": {msg}', SyntaxWarning)
+
+tests/test_layout_route.py::test_pipeline_a_tscircuit_artifacts_and_physics
+tests/test_verify_gate.py::test_real_board1_pipelines_excellon_and_bakeoff
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/gerbonara/excellon.py:573: SyntaxWarning: /workspace/cloud-pcb-studio/artifacts/board1_tscircuit/NPTH.drl:12 "G90": G90 header statement found after end of header
+    warnings.warn(f'{self.filename}:{self.lineno} "{self.line}": {msg}', SyntaxWarning)
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:399: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Literal("LM") + oneOf("N XY Y X").set_results_name("mirroring"),
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:405: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Literal("LP") + oneOf("C D").set_results_name("polarity"),
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:435: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Literal("AS") + oneOf("AXBY AYBX").set_results_name("correspondence"),
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:296: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Literal("IP") + oneOf("POS NEG").set_results_name("image_polarity"),
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:459: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    + oneOf("L T").set_results_name("zeros_mode").set_name("zeros mode")
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:460: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    + oneOf("A I")
+
+tests/test_special_ip.py: 19 warnings
+tests/test_verify_gate.py: 82 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:327: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    + oneOf("MM IN").set_results_name("unit").set_name("unit"),
+
+tests/test_special_ip.py: 114 warnings
+tests/test_verify_gate.py: 492 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:1002: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Combine(Opt(oneOf("+ -")) + Word(nums)),
+
+tests/test_special_ip.py: 722 warnings
+tests/test_verify_gate.py: 3116 warnings
+  /workspace/cloud-pcb-studio/.venv/lib/python3.12/site-packages/pygerber/gerberx3/tokenizer/grammar.py:856: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    Suppress(oneOf("x X")),
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================ 206 passed, 5156 warnings in 77.24s (0:01:17) =================
