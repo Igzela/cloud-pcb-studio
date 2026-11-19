@@ -1,0 +1,6 @@
+group pair_0 tolerance=0.2
+  /Ethernet/PHY_RD+
+  /Ethernet/PHY_RD-
+group pair_1 tolerance=0.2
+  /Ethernet/PHY_TD+
+  /Ethernet/PHY_TD-

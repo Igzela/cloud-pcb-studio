@@ -1,0 +1,142 @@
+{
+  "cohort": "power-and-industrial-02",
+  "status": "compared",
+  "compared_at": "2026-11-19T09:27:38.710270+00:00",
+  "freeze_sha256": "660923f6e434af7923f5b7268da0ce9e10366a6f843096bdaf0a963b2248b064",
+  "cases": [
+    {
+      "id": "case10",
+      "source": {
+        "repo_url": "https://github.com/balthazar-space/Balthazar-PSU-v.3",
+        "source_path": "kicad/BalthazarPSU3.kicad_pcb",
+        "source_commit": "a7038cd21d99fd1a46fc7791039e0a3209fceb8b",
+        "license": "CERN-OHL-S-2.0",
+        "reference_sha256": "5e9698313889bdae513fd8f63f0e6659e95ec8cfc7574f6daaf2968ee742ab2f"
+      },
+      "deltas": {
+        "wirelength_ratio_blind_vs_ref": 2.64,
+        "vias_total_blind_vs_ref": [
+          123,
+          83
+        ],
+        "vias_signal_blind_vs_ref": [
+          78,
+          28
+        ],
+        "vias_gnd_blind_vs_ref": [
+          45,
+          55
+        ],
+        "avg_decoupling_dist_mm_blind_vs_ref": [
+          12.392,
+          6.942
+        ],
+        "avg_header_edge_dist_mm_blind_vs_ref": [
+          4.27,
+          2.88
+        ],
+        "diff_pairs_blind_vs_ref": [
+          [
+            {
+              "pos_net": "/D+",
+              "neg_net": "/D-",
+              "pos_len_mm": 55.202,
+              "neg_len_mm": 55.102,
+              "length_mismatch_mm": 0.1
+            }
+          ],
+          [
+            {
+              "pos_net": "/D+",
+              "neg_net": "/D-",
+              "pos_len_mm": 30.075,
+              "neg_len_mm": 31.208,
+              "length_mismatch_mm": 1.133
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "case11",
+      "source": {
+        "repo_url": "https://github.com/grodansparadis/can4vscp-frankfurt-eth.git",
+        "source_path": "esp32-version/kicad/frakfurt_eth.kicad_pcb",
+        "source_commit": "cbaa9d3670674f2c2b027690248653f3bbd7b984",
+        "license": "CERN-OHL-1.2",
+        "reference_sha256": "8f66c29fcc4b13b653cfb443219f953cb8b6e31ccb0710ff663305695ca8314c",
+        "build_evidence": [
+          {
+            "source_path": "README.md",
+            "claim": "Author documents physically fabricated sponsored prototype PCBs of this Ethernet/CAN bus controller family."
+          },
+          {
+            "source_path": "esp32-version/firmware_basic_test/images/IMG_20260512_173735_048.jpg",
+            "claim": "Photographic evidence file is present in the corresponding standard-version hardware bring-up/test directory. Contents were not opened."
+          },
+          {
+            "source_path": "esp32-version/kicad/gerbers/frakfurt_eth_rev_d.zip",
+            "claim": "Author manufacturing archive exists for this board family at the exact source commit."
+          }
+        ]
+      },
+      "deltas": {
+        "wirelength_ratio_blind_vs_ref": 1.149,
+        "vias_total_blind_vs_ref": [
+          124,
+          104
+        ],
+        "vias_signal_blind_vs_ref": [
+          70,
+          66
+        ],
+        "vias_gnd_blind_vs_ref": [
+          54,
+          38
+        ],
+        "avg_decoupling_dist_mm_blind_vs_ref": [
+          14.28,
+          4.2
+        ],
+        "avg_header_edge_dist_mm_blind_vs_ref": [
+          6.17,
+          3.82
+        ],
+        "diff_pairs_blind_vs_ref": [
+          [
+            {
+              "pos_net": "/Ethernet/PHY_RD+",
+              "neg_net": "/Ethernet/PHY_RD-",
+              "pos_len_mm": 33.561,
+              "neg_len_mm": 33.661,
+              "length_mismatch_mm": 0.1
+            },
+            {
+              "pos_net": "/Ethernet/PHY_TD+",
+              "neg_net": "/Ethernet/PHY_TD-",
+              "pos_len_mm": 39.754,
+              "neg_len_mm": 39.854,
+              "length_mismatch_mm": 0.1
+            }
+          ],
+          [
+            {
+              "pos_net": "/Ethernet/PHY_RD+",
+              "neg_net": "/Ethernet/PHY_RD-",
+              "pos_len_mm": 34.785,
+              "neg_len_mm": 28.872,
+              "length_mismatch_mm": 5.913
+            },
+            {
+              "pos_net": "/Ethernet/PHY_TD+",
+              "neg_net": "/Ethernet/PHY_TD-",
+              "pos_len_mm": 30.45,
+              "neg_len_mm": 22.842,
+              "length_mismatch_mm": 7.608
+            }
+          ]
+        ]
+      }
+    }
+  ]
+}

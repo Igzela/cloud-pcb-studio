@@ -1,0 +1,23 @@
+{
+  "freeze_sha256": "660923f6e434af7923f5b7268da0ce9e10366a6f843096bdaf0a963b2248b064",
+  "method": "post-freeze named-net serialization for kiutils; non-net AST and ordered copper net assignments compared for equality",
+  "cases": {
+    "case10": {
+      "changed_network_fields": {},
+      "original_sha256": "5e9698313889bdae513fd8f63f0e6659e95ec8cfc7574f6daaf2968ee742ab2f",
+      "comparison_input_sha256": "5e9698313889bdae513fd8f63f0e6659e95ec8cfc7574f6daaf2968ee742ab2f",
+      "geometry_and_net_assignments_verified": true
+    },
+    "case11": {
+      "changed_network_fields": {
+        "pad": 270,
+        "segment": 609,
+        "via": 104,
+        "zone": 4
+      },
+      "original_sha256": "8f66c29fcc4b13b653cfb443219f953cb8b6e31ccb0710ff663305695ca8314c",
+      "comparison_input_sha256": "66dffe12b9251987838d9e494fdc12cfde8467446d32fccdb202b9b894ed244a",
+      "geometry_and_net_assignments_verified": true
+    }
+  }
+}

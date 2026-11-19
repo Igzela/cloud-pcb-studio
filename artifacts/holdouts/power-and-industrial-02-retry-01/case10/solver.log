@@ -1,0 +1,322 @@
+{
+  "project": "holdout_case10",
+  "total_placed": 84,
+  "gnd_fanout_stats": {
+    "fanout_vias_added": 37,
+    "gnd_smd_pads_total": 55,
+    "unvia_gnd_pins": [
+      "U3-15",
+      "C5-2",
+      "CPMID1-1",
+      "CBUS7-1",
+      "R41-2",
+      "U1-15",
+      "U1-2",
+      "U4-5"
+    ],
+    "selected_ground_net": "PGND",
+    "via_guard_geometry": "legacy_square",
+    "via_guard_area_reclaimed_sum_mm2": 0.0,
+    "via_guard_area_statistic": "sum over vias, not union area; original protection radii unchanged"
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "success": false,
+      "routed_nets": 48,
+      "total_nets": 50,
+      "unrouted_nets": 4,
+      "via_count": 82,
+      "total_wirelength_mm": 1679.9014,
+      "runtime_ms": 215240.44,
+      "notes": "rc=0, raw_violations=12, real_violations=12, layers=['B.Cu', 'F.Cu', 'In2.Cu']"
+    },
+    {
+      "engine": "freerouting_jvm_v2.5.0",
+      "success": false,
+      "routed_nets": 48,
+      "total_nets": 50,
+      "unrouted_nets": 21,
+      "via_count": 79,
+      "total_wirelength_mm": 1074.744,
+      "runtime_ms": 18929.71,
+      "notes": "LVS open-network count after pours; router counts and layer checks reported separately"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 2180.641,
+    "pour_area_mm2": 1893.761,
+    "fill_ratio": 0.8684,
+    "f_cu_pour_mm2": 1326.928,
+    "b_cu_pour_mm2": 1623.858,
+    "stitching_vias_added": 4,
+    "antipad_cutouts": 107,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "B_Mask.gbr": true,
+      "F_Paste.gbr": true,
+      "B_Paste.gbr": true,
+      "F_SilkS.gbr": true,
+      "B_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 178,
+    "npth_hole_count": 0,
+    "min_annular_ring_mm": 0.0997,
+    "annular_ring_violations": 10,
+    "silk_to_mask_overlap_mm2": 0.0,
+    "silk_to_mask_overlap_by_side_mm2": {
+      "F": 0.0,
+      "B": 0.0
+    },
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "lvs_opens": [
+      {
+        "net": "VBUS",
+        "components": 4,
+        "pad_count": 16,
+        "pad_groups": {
+          "3": [
+            "C25-2",
+            "J2-A9",
+            "J2-A9",
+            "J2-A9",
+            "J2-A9",
+            "R42-1"
+          ],
+          "5": [
+            "CBUS3-2",
+            "CBUS3a1-2",
+            "CPSU2-2",
+            "IC1-1",
+            "IC1-24",
+            "J2-A4",
+            "J2-A4",
+            "J2-A4",
+            "J2-A4",
+            "Q1-1",
+            "Q1-2",
+            "Q1-3",
+            "R20-2",
+            "R28-2"
+          ],
+          "4": [
+            "J2-B4",
+            "J2-B4",
+            "J2-B4",
+            "J2-B4"
+          ],
+          "1": [
+            "J2-B9",
+            "J2-B9",
+            "J2-B9",
+            "J2-B9"
+          ]
+        }
+      },
+      {
+        "net": "Net-(IC1-TS1)",
+        "components": 2,
+        "pad_count": 6,
+        "pad_groups": {
+          "1": [
+            "IC1-11",
+            "IC1-12",
+            "R10-1",
+            "R8-2",
+            "THERM1-2",
+            "THERM1-2",
+            "THERM1-2",
+            "THERM1-2"
+          ],
+          "3": [
+            "THERMISTOR(103-AT)1-2"
+          ]
+        }
+      }
+    ],
+    "lvs_shorts": [],
+    "min_inter_net_clearance_mm": 0.1317,
+    "legacy_projected_lvs_opens": [
+      "VBUS (3 islands)",
+      "Net-(IC1-TS1) (2 islands)"
+    ],
+    "independent_4layer": {
+      "lvs_opens": [
+        {
+          "net": "VBUS",
+          "components": 4,
+          "pad_count": 16,
+          "pad_groups": {
+            "3": [
+              "C25-2",
+              "J2-A9",
+              "J2-A9",
+              "J2-A9",
+              "J2-A9",
+              "R42-1"
+            ],
+            "5": [
+              "CBUS3-2",
+              "CBUS3a1-2",
+              "CPSU2-2",
+              "IC1-1",
+              "IC1-24",
+              "J2-A4",
+              "J2-A4",
+              "J2-A4",
+              "J2-A4",
+              "Q1-1",
+              "Q1-2",
+              "Q1-3",
+              "R20-2",
+              "R28-2"
+            ],
+            "4": [
+              "J2-B4",
+              "J2-B4",
+              "J2-B4",
+              "J2-B4"
+            ],
+            "1": [
+              "J2-B9",
+              "J2-B9",
+              "J2-B9",
+              "J2-B9"
+            ]
+          }
+        },
+        {
+          "net": "Net-(IC1-TS1)",
+          "components": 2,
+          "pad_count": 6,
+          "pad_groups": {
+            "1": [
+              "IC1-11",
+              "IC1-12",
+              "R10-1",
+              "R8-2",
+              "THERM1-2",
+              "THERM1-2",
+              "THERM1-2",
+              "THERM1-2"
+            ],
+            "3": [
+              "THERMISTOR(103-AT)1-2"
+            ]
+          }
+        }
+      ],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "BATT1",
+          "C1",
+          "C12",
+          "C14",
+          "C24",
+          "C25",
+          "C3",
+          "C5",
+          "C7",
+          "C9",
+          "CBAT1",
+          "CBTST1",
+          "CBUS1",
+          "CBUS2",
+          "CBUS3",
+          "CBUS3a1",
+          "CBUS3a2",
+          "CBUS4",
+          "CBUS5",
+          "CBUS7",
+          "CBUS8",
+          "CPMID1",
+          "CPMID1a1",
+          "CPSU2",
+          "CREGN1",
+          "CSYS1",
+          "CSYS3",
+          "D1",
+          "D2",
+          "D4",
+          "D7",
+          "H3",
+          "H4",
+          "IC1",
+          "J1",
+          "J2",
+          "J3",
+          "J4",
+          "J7",
+          "J8",
+          "J9",
+          "L1",
+          "L2",
+          "L4",
+          "Q1",
+          "Q2",
+          "Q3",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R2",
+          "R20",
+          "R21",
+          "R22",
+          "R23",
+          "R25",
+          "R27",
+          "R28",
+          "R3",
+          "R38",
+          "R39",
+          "R4",
+          "R40",
+          "R41",
+          "R42",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "RBTST1",
+          "RF1",
+          "RF2",
+          "THERM1",
+          "THERMISTOR(103-AT)1",
+          "U1",
+          "U3",
+          "U4"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": false
+    }
+  }
+}
