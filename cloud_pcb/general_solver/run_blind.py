@@ -1793,6 +1793,7 @@ def _audit_blind_output(
     pygerber_ok: dict[str, bool] = {}
     cu_unions: dict[str, Any] = {}
     flashes: dict[str, list[Any]] = {}
+    circle_lands: dict[str, list[Any]] = {"F.Cu": [], "B.Cu": []}
     for gname in ("F_Cu.gbr", "In1_Cu.gbr", "In2_Cu.gbr", "B_Cu.gbr",
                   "F_Mask.gbr", "B_Mask.gbr", "F_Paste.gbr", "B_Paste.gbr",
                   "F_SilkS.gbr", "B_SilkS.gbr", "Edge_Cuts.gbr"):
@@ -1802,7 +1803,12 @@ def _audit_blind_output(
             pygerber_ok[gname] = True
         except Exception:
             pygerber_ok[gname] = False
-        u, fl, _ = _gerber_layer_union(gp)
+        # This path just generated native absolute metric artwork, with no
+        # image transform or negative image polarity. Only use strictly
+        # parsed sides as candidates for analytic copper witnesses.
+        layer = gname.removesuffix(".gbr").replace("_", ".")
+        lands = circle_lands.get(layer) if pygerber_ok[gname] else None
+        u, fl, _ = _gerber_layer_union(gp, circle_lands=lands)
         cu_unions[gname] = u
         flashes[gname] = fl
 
@@ -1812,7 +1818,12 @@ def _audit_blind_output(
         npth = ExcellonFile.open(gerber_dir / "NPTH.drl")
 
     from cloud_pcb.verify_gate.gerber_drc import audit_annular_geometry
-    min_ar, ar_viols = audit_annular_geometry(pth,cu_unions['F_Cu.gbr'],cu_unions['B_Cu.gbr'])
+    annular_witnesses = []
+    min_ar, ar_viols = audit_annular_geometry(
+        pth, cu_unions["F_Cu.gbr"], cu_unions["B_Cu.gbr"],
+        circle_lands=circle_lands, source_drills_are_plated=True,
+        witness_records=annular_witnesses,
+    )
     silk_mask_overlap_by_side = {
         side: float(cu_unions[f"{side}_SilkS.gbr"].intersection(cu_unions[f"{side}_Mask.gbr"]).area)
         for side in ("F", "B")
@@ -1918,6 +1929,7 @@ def _audit_blind_output(
         "npth_hole_count": len(npth.objects),
         "min_annular_ring_mm": round(min_ar, 4) if min_ar is not None else None,
         "annular_ring_violations": len(ar_viols),
+        "annular_circle_witnesses": annular_witnesses,
         "silk_to_mask_overlap_mm2": round(silk_mask_overlap, 4),
         "silk_to_mask_overlap_by_side_mm2": silk_mask_overlap_by_side,
         "copper_edge_margins_mm": edge_margins,

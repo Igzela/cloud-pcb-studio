@@ -14,6 +14,9 @@ from __future__ import annotations
 import json
 import math
 import warnings
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
+from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
@@ -24,6 +27,7 @@ from gerbonara.graphic_objects import Flash as GbFlash
 from gerbonara.graphic_objects import Line as GbLine
 from gerbonara.graphic_objects import Region as GbRegion
 from gerbonara.rs274x import GerberFile as GbGerberFile
+from gerbonara.utils import MM
 from kiutils.board import Board
 from kiutils.items.brditems import Arc as KiArc
 from kiutils.items.brditems import Segment as KiSegment
@@ -147,9 +151,67 @@ def _gerbonara_obj_to_shapely(obj: Any) -> Any:
     return None
 
 
-def _gerber_layer_union(gbr_path: Path) -> tuple[Any, list[Any], list[float]]:
-    """Load Gerber via gerbonara and return (net_dark_union, flashes, trace_widths_mm)."""
+_ANNULAR_LIMIT_MM = Decimal("0.10")
+_WITNESS_GRID_MM = Decimal("0.00001")
+
+
+@dataclass(frozen=True)
+class CircularLand:
+    """A positive, solid circular flash in the Gerber's final dark epoch."""
+
+    x_mm: Decimal
+    y_mm: Decimal
+    diameter_mm: Decimal
+    object_index: int
+
+
+def _exact_solver_mm(*values: float) -> tuple[Decimal, ...] | None:
+    """Recover decimal values on the solver's native 5-place metric grid.
+
+    The caller admits only solver-native absolute metric artwork/drills.
+    Gerbonara decodes each coordinate from a decimal token. Do not snap an
+    off-grid, converted, or non-finite value onto this proof grid.
+    """
+    decimal_values = tuple(Decimal(str(value)) for value in values)
+    if any(
+        not value.is_finite() or abs(value) >= 100000
+        or value != value.quantize(_WITNESS_GRID_MM)
+        for value in decimal_values
+    ):
+        return None
+    return decimal_values
+
+
+def _final_dark_solid_lands(gerber: GbGerberFile) -> list[CircularLand]:
+    settings = gerber.import_settings
+    if settings is None or settings.unit != MM or not settings.is_absolute:
+        return []
+    result = []
+    for index, obj in enumerate(gerber.objects):
+        if not obj.polarity_dark:
+            # Any later clear operation disqualifies earlier flashes. A
+            # future version could prove disjointness rather than skip them.
+            result.clear()
+        elif isinstance(obj, GbFlash) and isinstance(obj.aperture, CircleAperture):
+            aperture = obj.aperture
+            if obj.unit != MM or aperture.unit != MM or aperture.hole_dia not in (None, 0):
+                continue
+            values = _exact_solver_mm(obj.x, obj.y, aperture.diameter)
+            if values and values[2] > 0:
+                result.append(CircularLand(*values, object_index=index))
+    return result
+
+
+def _gerber_layer_union(
+    gbr_path: Path, *, circle_lands: list[CircularLand] | None = None
+) -> tuple[Any, list[Any], list[float]]:
+    """Return (net_dark_union, flashes, widths) and opt-in analytic witnesses.
+
+    Supply the output list only for strict-parsed, solver-native artwork.
+    """
     gb = GbGerberFile.open(gbr_path)
+    if circle_lands is not None:
+        circle_lands[:] = _final_dark_solid_lands(gb)
     batch: list[Any] = []
     polarity: bool | None = None
     copper=Polygon()
@@ -289,22 +351,83 @@ def _compute_min_annular_ring(
     return min_ar, violations
 
 
-def audit_annular_geometry(pth: ExcellonFile,front: Any,back: Any) -> tuple[float | None,list[dict[str,Any]]]:
-    """Measure actual minimum copper around every drilled circle or slot.
+def _solid_land_witness(
+    hole: Any, lands: Sequence[CircularLand], *, source_drills_are_plated: bool
+) -> tuple[CircularLand, Decimal] | None:
+    if not isinstance(hole, GbFlash) or hole.unit != MM or hole.aperture.unit != MM:
+        return None
+    plated = getattr(hole.aperture, "plated", None)
+    if plated is False or (plated is None and not source_drills_are_plated):
+        return None
+    values = _exact_solver_mm(hole.x, hole.y, hole.aperture.diameter)
+    if not values or values[2] <= 0:
+        return None
+    x_mm, y_mm, drill_diameter = values
+    for land in lands:
+        offset_budget = (land.diameter_mm - drill_diameter) / 2 - _ANNULAR_LIMIT_MM
+        if offset_budget < 0:
+            continue
+        offset_squared = (land.x_mm - x_mm) ** 2 + (land.y_mm - y_mm) ** 2
+        if offset_squared <= offset_budget ** 2:
+            return land, offset_squared
+    return None
 
-    Unlike nearest-flash matching, missing pads and drill offsets cannot be
-    skipped, and region-based land shapes are covered too.
+
+def audit_annular_geometry(
+    pth: ExcellonFile,
+    front: Any,
+    back: Any,
+    *,
+    circle_lands: Mapping[str, Sequence[CircularLand]] | None = None,
+    source_drills_are_plated: bool = False,
+    witness_records: list[dict[str, Any]] | None = None,
+) -> tuple[float | None, list[dict[str, Any]]]:
+    """Measure copper around circles and slots, using exact native lands when known.
+
+    The analytic witness proves the same limit as the geometry check. It
+    replaces only an inconclusive polygon lower bound, never rounds a deficit
+    upward, and is disabled for unknown plating, slots, or unsupported shapes.
+    The trusted drill-file role is required for our pure-plated XNC exports:
+    Gerbonara 1.5.0 omits per-tool plating tags in such files.
     """
-    minimum=None;violations=[]
+    minimum = None
+    violations = []
+    settings = pth.import_settings
+    native_drills = settings is not None and settings.unit == MM and settings.is_absolute
     for hole in pth.objects:
-        radius=float(hole.aperture.diameter)/2
-        if isinstance(hole,GbLine): centerline=LineString([(hole.x1,hole.y1),(hole.x2,hole.y2)])
-        else: centerline=Point(hole.x,hole.y)
-        for layer,copper in (('F.Cu',front),('B.Cu',back)):
-            ring=float(centerline.distance(copper.boundary))-radius if not copper.is_empty and copper.covers(centerline) else -radius
-            minimum=ring if minimum is None else min(minimum,ring)
-            if ring<.10-1e-6: violations.append(dict(layer=layer,annular_ring_mm=ring,drill_diameter_mm=2*radius))
-    return minimum,violations
+        radius = float(hole.aperture.diameter) / 2
+        if isinstance(hole, GbLine):
+            centerline = LineString([(hole.x1, hole.y1), (hole.x2, hole.y2)])
+        else:
+            centerline = Point(hole.x, hole.y)
+        for layer, copper in (("F.Cu", front), ("B.Cu", back)):
+            ring = (
+                float(centerline.distance(copper.boundary)) - radius
+                if not copper.is_empty and copper.covers(centerline) else -radius
+            )
+            if native_drills and circle_lands and ring < float(_ANNULAR_LIMIT_MM):
+                witness = _solid_land_witness(
+                    hole, circle_lands.get(layer, ()), source_drills_are_plated=source_drills_are_plated
+                )
+                if witness:
+                    land, offset_squared = witness
+                    if witness_records is not None:
+                        witness_records.append({
+                            "layer": layer,
+                            "drill_center_mm": [hole.x, hole.y],
+                            "drill_diameter_mm": hole.aperture.diameter,
+                            "land_center_mm": [str(land.x_mm), str(land.y_mm)],
+                            "land_diameter_mm": str(land.diameter_mm),
+                            "land_gerber_object_index": land.object_index,
+                            "center_offset_squared_mm2": str(offset_squared),
+                            "polygon_lower_bound_mm": ring,
+                            "proven_lower_bound_mm": float(_ANNULAR_LIMIT_MM),
+                        })
+                    ring = float(_ANNULAR_LIMIT_MM)
+            minimum = ring if minimum is None else min(minimum, ring)
+            if ring < float(_ANNULAR_LIMIT_MM) - 1e-6:
+                violations.append(dict(layer=layer, annular_ring_mm=ring, drill_diameter_mm=2 * radius))
+    return minimum, violations
 
 
 def _check_kicad_drc_and_lvs(
