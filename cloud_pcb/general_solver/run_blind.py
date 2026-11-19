@@ -173,10 +173,16 @@ def _is_copper_pad(pad: Pad) -> bool:
     return any(l.endswith(".Cu") or l == "*.Cu" for l in (pad.layers or []))
 
 
+class PlacementExhausted(RuntimeError):
+    """The conventional placer used all of its candidate slots."""
+
+
 def _classify_components_and_place(
     spec: dict[str, Any],
     *,
     value_normalize: bool = False,
+    packing_order: str | None = None,
+    packing_compact: bool = False,
 ) -> tuple[dict[str, tuple[float, float, float]], dict[str, Any]]:
     """General topology-aware placement + perimeter rail alignment + IC-specific cap matching."""
     outline = spec["board_outline_mm"]
@@ -187,7 +193,8 @@ def _classify_components_and_place(
     cr = float(outline.get("corner_radius_mm", 0.0))
 
     board_poly = ShpPolygon(outline.get('vertices_mm') or _rounded_rect_points(W, H, cr))
-    safe_inner_poly = board_poly.buffer(-1.0)
+    body_edge_buffer = .50 if packing_order is not None and packing_compact else 1.0
+    safe_inner_poly = board_poly.buffer(-body_edge_buffer)
 
     placed: dict[str, tuple[float, float, float]] = {}
     occupied_by_ref: dict[str, Any] = {}
@@ -411,7 +418,7 @@ def _classify_components_and_place(
             comp_by_ref[ref]['side']='bottom'
             local_bboxes[ref]=_comp_local_bbox(comp_by_ref[ref])
             return _find_nearest_legal(ref,tx,ty,prefer_angles,margin=0.55,step=0.5,max_radius=45.0,ignore_self=ignore_self,custom_cost=custom_cost)
-        raise RuntimeError(f"Unable to place component {ref} without overlap on {W}x{H} mm board")
+        raise PlacementExhausted(f"Unable to place component {ref} without overlap on {W}x{H} mm board")
 
     def _barycenter(ref: str, default_xy: tuple[float, float]) -> tuple[float, float]:
         xs: list[float] = []
@@ -433,6 +440,68 @@ def _classify_components_and_place(
         if not xs:
             return default_xy
         return (sum(xs) / len(xs), sum(ys) / len(ys))
+
+    if packing_order is not None:
+        from cloud_pcb.general_solver.placement_recovery import PackingExhausted, pack_movable
+
+        margin = .28  # The ordinary nearest-slot search already uses this fallback.
+        occupied_margin = {
+            ref: distance
+            for group, distance in ((ics, .85), (regulators, .85), (multi_pin_headers, .55),
+                                    (single_pad_tp, .50), (signal_passives, .48), (bypass_caps, .45))
+            for ref in group
+        }
+        if ics:
+            occupied_margin[ics[0]] = 1.10
+
+        def commit(ref, x, y, angle):
+            placed[ref] = (x, y, angle)
+            space = margin if packing_compact else occupied_margin.get(ref, .48)
+            occupied_by_ref[ref] = _courtyard_geom(ref, x, y, angle, space)
+
+        def support_bounds(ref):
+            return [geometry.bounds for geometry in [*fixed_obstacles, *occupied_by_ref.values()]]
+
+        header_refs = set(multi_pin_headers)
+
+        def recovery_target(ref):
+            x, y = _barycenter(ref, targets.get(ref, (W / 2, H / 2)))
+            if packing_compact:
+                return (0 if x <= W / 2 else W, 0 if y <= H / 2 else H)
+            if ref in header_refs:
+                x0, y0, x1, y1 = local_bboxes[ref]
+                length = max(x1 - x0, y1 - y0) + 2 * (body_edge_buffer + margin)
+                sides = []
+                if length <= H:
+                    sides.extend(((0, y), (W, y)))
+                if length <= W:
+                    sides.extend(((x, 0), (x, H)))
+                if sides:
+                    return min(sides, key=lambda point: math.hypot(point[0] - x, point[1] - y))
+            return x, y
+
+        try:
+            pack_movable(
+                [ref for ref in comp_by_ref if ref not in placed], local_bboxes,
+                recovery_target,
+                lambda ref, x, y, angle: _is_valid_slot(ref, x, y, angle, margin),
+                commit, (W, H), mode=packing_order, clearance=margin, support_bounds=support_bounds,
+                edge_inset=body_edge_buffer,
+            )
+        except PackingExhausted as exc:
+            raise PlacementExhausted(str(exc)) from exc
+        return placed, {
+            "board_width_mm": W, "board_height_mm": H, "corner_radius_mm": cr,
+            "groups": {
+                "edge_connectors": sorted(edge_refs), "ics": ics, "regulators": regulators,
+                "multi_pin_headers": multi_pin_headers, "single_pad_tp": single_pad_tp,
+                "signal_passives": signal_passives, "bypass_caps": bypass_caps,
+            },
+            "total_placed": len(placed), "hierarchy": hierarchy,
+            "component_sides": {ref: part.get("side", "top") for ref, part in comp_by_ref.items()},
+            "placement_recovery": {"order": packing_order, "courtyard_margin_mm": margin,
+                                   "body_edge_buffer_mm": body_edge_buffer, "compact": packing_compact},
+        }
 
     # 3. Place central MCU & Regulators & Secondary ICs
     if ics:
@@ -1827,7 +1896,7 @@ def _audit_blind_output(
     }
 
 
-def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False, freerouting_jvm: bool = False, direct_repair: bool = False) -> dict[str, Any]:
+def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False, freerouting_jvm: bool = False, direct_repair: bool = False, placement_recovery: bool = False) -> dict[str, Any]:
     """Execute end-to-end blind PCB build on any blind_spec.json."""
     from cloud_pcb.general_solver.electrical import derive_electrical_requirements
     secondary_runtime = None
@@ -1844,7 +1913,35 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
 
     t_start = time.perf_counter()
     if external_placement is None:
-        placed, place_meta = _classify_components_and_place(spec, value_normalize=value_normalize)
+        if placement_recovery:
+            from copy import deepcopy
+
+            pristine_spec = deepcopy(spec)
+            try:
+                placed, place_meta = _classify_components_and_place(spec, value_normalize=value_normalize)
+            except PlacementExhausted as original:
+                failures = []
+                for order, compact in (("area", False), ("long-side", False),
+                                       ("area", True), ("long-side", True)):
+                    recovery_spec = deepcopy(pristine_spec)
+                    try:
+                        placed, place_meta = _classify_components_and_place(
+                            recovery_spec, value_normalize=value_normalize, packing_order=order,
+                            packing_compact=compact,
+                        )
+                    except PlacementExhausted as exhausted:
+                        failures.append(f"{order}, compact={compact}: {exhausted}")
+                    else:
+                        spec = recovery_spec
+                        place_meta["placement_recovery"]["original_failure"] = str(original)
+                        place_meta["placement_recovery"]["previous_attempts"] = failures
+                        break
+                else:
+                    raise PlacementExhausted(
+                        f"{original}; deterministic recovery attempts: {'; '.join(failures)}"
+                    ) from original
+        else:
+            placed, place_meta = _classify_components_and_place(spec, value_normalize=value_normalize)
     else:
         from cloud_pcb.general_solver.placement_input import apply_external_placement
         placed, place_meta = apply_external_placement(spec, external_placement)
@@ -2255,8 +2352,9 @@ if __name__ == "__main__":
     parser.add_argument("--value-normalize", action="store_true", help="Topology-only case-insensitive equivalence for value spellings that this spec itself uses inconsistently; raw values stay untouched")
     parser.add_argument("--freerouting-jvm", action="store_true", help="Compare the pinned Freerouting JVM release with independent copper validation")
     parser.add_argument("--direct-repair", action="store_true", help="Experimentally complete verified direct links between same-footprint through-hole pins")
+    parser.add_argument("--placement-recovery", action="store_true", help="Retry exhausted placement with deterministic constrained packing")
     args = parser.parse_args()
-    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize, freerouting_jvm=args.freerouting_jvm, direct_repair=args.direct_repair)
+    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize, freerouting_jvm=args.freerouting_jvm, direct_repair=args.direct_repair, placement_recovery=args.placement_recovery)
     print(json.dumps({
         "project": res["project_name"],
         "total_placed": res["placement_meta"]["total_placed"],

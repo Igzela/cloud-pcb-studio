@@ -266,6 +266,17 @@ def test_verify_frozen_rejects_drift_in_actual_recorded_run(frozen_synthetic_run
         runner.verify_frozen(registry, directory)
 
 
+def test_completed_cohort_cannot_be_retried_even_with_new_source(frozen_synthetic_run):
+    runner, registry, directory, source = frozen_synthetic_run
+    parent_digest = sha256((directory / 'freeze.json').read_bytes())
+    source.write_text('different solver source')
+    retry = directory.with_name('synthetic-retry-01')
+    with pytest.raises(ValueError, match='incomplete'):
+        runner.run_frozen(registry, retry, variant='placement-recovery', case_timeout=1,
+                          retry_of=parent_digest)
+    assert not retry.exists()
+
+
 def test_compare_verifies_entire_cohort_before_using_any_reference(frozen_synthetic_run, monkeypatch):
     from cloud_pcb.general_solver import compare_reference
 

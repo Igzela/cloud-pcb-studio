@@ -21,6 +21,7 @@ from scripts.run_blind_v3 import code_fingerprint
 
 ROOT = Path(__file__).resolve().parents[1]
 COHORT_NAME = re.compile(r"[a-z][a-z0-9-]{0,47}")
+VARIANTS = ("stable", "freerouting-jvm", "direct-repair", "placement-recovery")
 BOARD_FILES = {"routed.kicad_pcb", "blind_run_report.json", "metrics.json",
                "assembly.html", "assembly_oblique.png", "assembly_top.png",
                "assembly_side.png", "assembly_browser_report.json", "solver.log", "browser.log",
@@ -121,34 +122,62 @@ def _check_sources(code, path, registry_digest):
     read_cohort(path)
 
 
-def run_frozen(registry_path: Path, directory: Path, *, variant: str, case_timeout: int) -> dict:
+def run_frozen(registry_path: Path, directory: Path, *, variant: str, case_timeout: int,
+               retry_of: str | None = None) -> dict:
     lock_path = _safe(ROOT, Path("artifacts/holdouts/.run.lock"))
     lock_path.parent.mkdir(parents=True, exist_ok=True)
     with lock_path.open("w") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        return _run_frozen(registry_path, directory, variant=variant, case_timeout=case_timeout)
+        return _run_frozen(registry_path, directory, variant=variant, case_timeout=case_timeout,
+                           retry_of=retry_of)
 
 
-def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_timeout: int) -> dict:
+def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_timeout: int,
+                retry_of: str | None) -> dict:
     registry_path = _safe(ROOT, registry_path)
     directory = _safe(ROOT, directory)
     cohort = read_cohort(registry_path)
-    if variant not in ("stable", "freerouting-jvm", "direct-repair") or not 1 <= case_timeout <= 7200:
+    if variant not in VARIANTS or not 1 <= case_timeout <= 7200:
         raise ValueError("Unknown uniform variant or unsupported solver time budget")
     runs_root = ROOT / "artifacts/holdouts"
-    if directory.parent != runs_root or directory.name != cohort["cohort"]:
-        raise ValueError("Use one new directory per cohort in artifacts/holdouts")
-    for committed in runs_root.glob("*/freeze.json"):
-        previous = json.loads(committed.read_text())
+    earlier = []
+    for committed in sorted(runs_root.glob("*/freeze.json")):
+        previous = json.loads(_safe(ROOT, committed).read_text())
         if any(
             old["id"] == new["id"] or old["reference_sha256"] == new["reference_sha256"]
             for old in previous["registered_cases"] for new in cohort["cases"]
         ):
-            raise ValueError("A registered holdout board already has a recorded attempt")
+            if previous["cohort"] != cohort["cohort"]:
+                raise ValueError("A registered board already belongs to another attempted cohort")
+            earlier.append((committed, previous))
     code = code_fingerprint()
     registry_digest = digest(registry_path)
+    expected_name = cohort["cohort"]
+    if earlier:
+        committed, previous = earlier[-1]
+        if (
+            retry_of != digest(committed) or variant != "placement-recovery"
+            or any(attempt["status"] == "frozen" for _, attempt in earlier)
+            or previous["status"] != "incomplete" or previous["code"] == code
+            or previous["registered_cases"] != cohort["cases"]
+            or previous["cohort_sha256"] != registry_digest
+            or previous["evidence"] != _evidence(committed.parent)
+        ):
+            raise ValueError("Retry requires the verified latest incomplete, still-sealed cohort and changed placement code")
+        failures = [entry for entry in previous["cases"] if entry["status"] == "failed"]
+        if not failures or any(
+            not (committed.parent / entry["id"] / "solver.log").read_text().rstrip().splitlines()[-1]
+            .startswith(("RuntimeError: Unable to place component ", "PlacementExhausted: "))
+            for entry in failures
+        ):
+            raise ValueError("Retry is limited to cohorts interrupted by placement exhaustion")
+        expected_name += f"-retry-{len(earlier):02d}"
+    elif retry_of:
+        raise ValueError("Retry digest has no recorded parent")
+    if directory.parent != runs_root or directory.name != expected_name:
+        raise ValueError(f"Expected fresh run directory artifacts/holdouts/{expected_name}")
     runtime = None
-    if variant in ("freerouting-jvm", "direct-repair"):
+    if variant in ("freerouting-jvm", "direct-repair", "placement-recovery"):
         from cloud_pcb.layout_route.freerouting_runtime import resolve_freerouting_jvm
         runtime = resolve_freerouting_jvm(ROOT).provenance
     directory.mkdir(parents=True, exist_ok=False)
@@ -166,6 +195,9 @@ def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_time
         "code": code, "cohort_sha256": registry_digest, "runtime": runtime,
         "registered_cases": cohort["cases"], "cases": [],
     }
+    if earlier:
+        manifest["retry"] = {"parent_freeze_sha256": retry_of, "reason": "placement_exhaustion",
+                             "first_pass": False}
     freeze_path = directory / "freeze.json"
     atomic_json(freeze_path, manifest)
     print(json.dumps({"event": "holdout_start", "cohort": cohort["cohort"],
@@ -191,8 +223,10 @@ def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_time
                            "--spec", copied, "--outdir", outdir]
                 if runtime:
                     command.append("--freerouting-jvm")
-                if variant == "direct-repair":
+                if variant in ("direct-repair", "placement-recovery"):
                     command.append("--direct-repair")
+                if variant == "placement-recovery":
+                    command.append("--placement-recovery")
                 rc = sourced_process(command, outdir / "solver.log", case_timeout)
                 if rc != 0:
                     raise ValueError(f"Solver exited with status {rc}")
@@ -317,7 +351,8 @@ def main():
     for command in (run, compare):
         command.add_argument("--cohort", type=Path, required=True)
         command.add_argument("--directory", type=Path, required=True)
-    run.add_argument("--variant", choices=("stable", "freerouting-jvm", "direct-repair"), default="direct-repair")
+    run.add_argument("--variant", choices=VARIANTS, default="direct-repair")
+    run.add_argument("--retry-of", help="Freeze SHA-256 of an incomplete placement-failure attempt")
     run.add_argument("--case-timeout", type=int, default=1200)
     compare.add_argument("--freeze-sha256", required=True)
     compare.add_argument("--vault", type=Path, default=ROOT / ".run/holdout-vault")
@@ -326,7 +361,8 @@ def main():
     if os.environ.get("PCB_STUDIO_ROOT") != str(ROOT):
         parser.error("Run source scripts/env.sh first")
     if args.mode == "run":
-        result = run_frozen(args.cohort, args.directory, variant=args.variant, case_timeout=args.case_timeout)
+        result = run_frozen(args.cohort, args.directory, variant=args.variant,
+                            case_timeout=args.case_timeout, retry_of=args.retry_of)
         return 0 if result["status"] == "frozen" else 1
     directory = _safe(ROOT, args.directory)
     if digest(_safe(ROOT, directory / "freeze.json")) != args.freeze_sha256:
