@@ -1,0 +1,17 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/holdouts/diverse-four-layer-01-retry-01/case8/board.dsn",
+  "time_s": {"load": 0.0284, "route": 21.0916, "total": 21.1375, "diagnose": null},
+  "stats": {"layers": 4, "components": 61, "nets": 27, "pins": 172, "connections": 116, "unrouted": 6, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 31, "vias_blind": 0, "vias_buried": 0, "traces": 331, "trace_length_mm": 948.3255, "bends_90": 0, "bends_45": 268, "bends_other": 0, "router_score": 931.0345, "optimizer_score": 709.0745},
+  "unrouted": [
+    {"net": "/VREF", "length_mm": 2.54, "from": {"kind": "pin", "component": "J1", "pin": "6", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [28.58, 9.34], "to": {"kind": "pin", "component": "J1", "pin": "4", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [26.04, 9.34]},
+    {"net": "/VREF", "length_mm": 2.54, "from": {"kind": "pin", "component": "J1", "pin": "8", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [31.12, 9.34], "to": {"kind": "pin", "component": "J1", "pin": "6", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [28.58, 9.34]},
+    {"net": "/VREF", "length_mm": 2.54, "from": {"kind": "pin", "component": "J1", "pin": "10", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [33.66, 9.34], "to": {"kind": "pin", "component": "J1", "pin": "8", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [31.12, 9.34]},
+    {"net": "/VREF", "length_mm": 2.54, "from": {"kind": "pin", "component": "J1", "pin": "12", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [36.2, 9.34], "to": {"kind": "pin", "component": "J1", "pin": "10", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [33.66, 9.34]},
+    {"net": "/VREF", "length_mm": 2.54, "from": {"kind": "pin", "component": "J1", "pin": "12", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [36.2, 9.34], "to": {"kind": "pin", "component": "J1", "pin": "14", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [38.74, 9.34]},
+    {"net": "VAA", "length_mm": 3.9412, "from": {"kind": "pin", "component": "C6", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [50.782, 16.06], "to": {"kind": "pin", "component": "C3", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [47.655, 18.459]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

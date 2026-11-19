@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/workspace/cloud-pcb-studio/cloud_pcb/general_solver/run_blind.py", line 1921, in run_blind_solver
+    placed, place_meta = _classify_components_and_place(spec, value_normalize=value_normalize)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/cloud-pcb-studio/cloud_pcb/general_solver/run_blind.py", line 578, in _classify_components_and_place
+    best_edge_pos = _find_nearest_legal(ref, bx, by, margin=0.65)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/cloud-pcb-studio/cloud_pcb/general_solver/run_blind.py", line 413, in _find_nearest_legal
+    return _find_nearest_legal(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/cloud-pcb-studio/cloud_pcb/general_solver/run_blind.py", line 413, in _find_nearest_legal
+    return _find_nearest_legal(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/cloud-pcb-studio/cloud_pcb/general_solver/run_blind.py", line 421, in _find_nearest_legal
+    raise PlacementExhausted(f"Unable to place component {ref} without overlap on {W}x{H} mm board")
+PlacementExhausted: Unable to place component J4 without overlap on 50.0x30.0 mm board
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/cloud-pcb-studio/cloud_pcb/general_solver/run_blind.py", line 2357, in <module>
+    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize, freerouting_jvm=args.freerouting_jvm, direct_repair=args.direct_repair, placement_recovery=args.placement_recovery)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/cloud-pcb-studio/cloud_pcb/general_solver/run_blind.py", line 1940, in run_blind_solver
+    raise PlacementExhausted(
+PlacementExhausted: Unable to place component J4 without overlap on 50.0x30.0 mm board; deterministic recovery attempts: area, compact=False: No legal recovery pose for C7 after 40000 probes; long-side, compact=False: No legal recovery pose for C13 after 40000 probes; area, compact=True: No legal recovery pose for C9 after 40000 probes; long-side, compact=True: No legal recovery pose for C13 after 40000 probes

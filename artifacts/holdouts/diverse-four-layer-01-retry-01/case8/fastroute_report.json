@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/holdouts/diverse-four-layer-01-retry-01/case8/direct_repair_replay/fixed.dsn",
+  "time_s": {"load": 0.0373, "route": 0, "total": 0.0541, "diagnose": null},
+  "stats": {"layers": 4, "components": 61, "nets": 27, "pins": 172, "connections": 116, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 31, "vias_blind": 0, "vias_buried": 0, "traces": 378, "trace_length_mm": 972.6846, "bends_90": 0, "bends_45": 268, "bends_other": 0, "router_score": 988.5057, "optimizer_score": 683.3324},
+  "unrouted": [
+    {"net": "VAA", "length_mm": 3.9412, "from": {"kind": "pin", "component": "C3", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [47.655, 18.459], "to": {"kind": "pin", "component": "C6", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [50.782, 16.06]}
+  ],
+  "clearance_violations": [
+
+  ]
+}
