@@ -1,5 +1,5 @@
 {
-  "directory": "artifacts/optimization/runs/20261119T092502081033Z-return-domain-isolation",
-  "manifest_sha256": "a9223d87ecb9c8590001a0c687703996d1dc64751defcf7f4598b73b23241000",
-  "promoted": false
+  "directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven",
+  "manifest_sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f",
+  "promoted": true
 }

@@ -28,11 +28,24 @@
         "sha256": "2717c7238a82581165a6c2b9d06558454a1607af04e85983704e118f6b4c1108"
       },
       "reason": "exposed_case_registration"
+    },
+    {
+      "at": "2026-11-19T17:19:11.912339+00:00",
+      "previous": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/baselines/exposed-seven-20261119.json",
+        "sha256": "2717c7238a82581165a6c2b9d06558454a1607af04e85983704e118f6b4c1108"
+      },
+      "new": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/manifest.json",
+        "sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f"
+      }
     }
   ],
   "active_baseline": {
     "format": "optimization_round",
-    "manifest": "artifacts/optimization/baselines/exposed-seven-20261119.json",
-    "sha256": "2717c7238a82581165a6c2b9d06558454a1607af04e85983704e118f6b4c1108"
+    "manifest": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/manifest.json",
+    "sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f"
   }
 }

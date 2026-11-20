@@ -14,6 +14,22 @@ Freerouting 的 DSN 端点分别引用元件名与焊盘号，中间保留语法
 
 回流域修复后的五板回归全量完成，耗时 1117.221 秒，pytest 206 项通过，耗时 77.24 秒。五块板的浏览器验证均通过。Case 1、2、4 的未布通、独立 LVS 开短路和真实间距均为零。Case 3 仍有 1 处开路，Case 5 仍有 9 处。与当时的五板基线相比没有退步或指标改善，未晋升。Case 10–11 解封后归入回归集，基线索引保留前五块板的原记录并追加两块板的冻结记录。[五板回归](../artifacts/optimization/runs/20261119T092502081033Z-return-domain-isolation/review.md) · [七板基线](../artifacts/optimization/baselines/exposed-seven-20261119.json)
 
+## 首次七板回归
+
+七块板用同一个 `placement-recovery` 变体完成，耗时 1717.994 秒。pytest 全部 214 项通过，耗时 77.01 秒。七块板均通过离线 Chromium 3D 渲染检查，板的四层铜 Gerber 和镀通孔钻孔文件与各自原基线逐字节一致。Case 10 的 10 项孔环低读数出现在圆形铜面的内接多边形近似中。对每项使用最终未被清除的实心铜闪与圆钻孔的真实直径及圆心偏移，证明最小孔环为 0.1000 mm。栅格以外、槽孔、未知镀孔和被后续清除的铜继续使用原几何审计。门限保留 0.10 mm。[完整测试](../artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/pytest.log) · [Case 10 测量与证明](../artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case10/blind_run_report.json)
+
+| Case | 未完成连接 | LVS 开路 / 短路 | 引擎真实间距项 | 最小孔环 mm | 地平面填充 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 1 | 0 | 0 / 0 | 0 | 0.1247 | 86.49% |
+| 2 | 0 | 0 / 0 | 0 | 0.1247 | 91.54% |
+| 3 | 1 | 1 / 0 | 0 | 0.1247 | 89.33% |
+| 4 | 0 | 0 / 0 | 0 | 0.1247 | 94.04% |
+| 5 | 9 | 9 / 0 | 0 | 0.1247 | 75.51% |
+| 10 | 4 | 2 / 0 | 12 | 0.1000 | 86.84% |
+| 11 | 1 | 1 / 0 | 0 | 0.1247 | 90.03% |
+
+七块板的非热焊盘 Via-in-Pad 和双面丝印重叠均为零，11 层 Gerber 均可解析。Case 2 的 RF 几何仍待核实。Case 5 固定接口铜距 0.30 mm，低于 0.50 mm 门限。各板测得包络碰撞均为零，共 492 个包络仍缺尺寸证据。该轮按无退步且有指标改善的规则更新了回归基线，完整硬门禁仍未满足。[七板冻结报告](../artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/review.md) · [Case 10 斜视](../artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case10/assembly_oblique.png) · [Case 11 侧视](../artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case11/assembly_side.png)
+
 完整 Case 10 重测中，主引擎未完成连接 55 → 4，独立 LVS 开路 5 → 2，短路 2 → 0；地填充 80.81% → 86.84%。JVM 现在完成真实导入和路由，保留 31 条未完成连接和 12 条间距记录。主引擎仍有 12 条按当前门禁计入的间距记录，最小孔环为 0.0997 mm，未过 0.10 mm 门槛。Gerber 解析、非热焊盘 Via-in-Pad 和浏览器检查通过。Case 10 的放置仍为常规路径。[重测证据](../artifacts/holdouts/power-and-industrial-02-retry-01/case10/metrics.json)
 
 12 条主引擎记录全部是焊盘间距。8 条涉及原网表的同一回流网，DSN 报告相距 0.0001 mm；实际板上测得距离为 0，现有豁免所要求的正面积重叠未由此前检查证明。4 条来自同一对异网焊盘在四个铜层的记录，早先独立测距指出矩形 padstack 和实际椭圆/圆角轮廓可能导致差异。当前门禁状态保留。应分别修正 DSN 的网络归属表达和保守形状表示，再用独立 LVS 核对物理连通。

@@ -1,6 +1,6 @@
 # 多板型独立盲测
 
-Case 1–5 是已暴露回归。新批次 `diverse-four-layer-01` 来自四个不同的已制作或实测开源硬件项目。隔离筛选确认实际四层铜、固定源提交、许可、闭合可表达板框和可提取网表。含自定义铜焊盘或输入无法表示的切口的候选未进入本批次，结果无法代表这些特征。筛选参考了公开 PCB 基准对真实板型和难度跨度的处理。这里由求解器重新摆放元件，也使用未布通、制造、RF 和机械门禁。[PCBench](https://github.com/PCBench/PCBench) · [PCBWorld](https://arxiv.org/html/2607.05915)
+Case 1–5、10–11 是已暴露回归。`diverse-four-layer-01` 来自四个不同的已制作或实测开源硬件项目，参考板仍密封。隔离筛选确认实际四层铜、固定源提交、许可、闭合可表达板框和可提取网表。含自定义铜焊盘或输入无法表示的切口的候选未进入本批次，结果无法代表这些特征。筛选参考了公开 PCB 基准对真实板型和难度跨度的处理。这里由求解器重新摆放元件，也使用未布通、制造、RF 和机械门禁。[PCBench](https://github.com/PCBench/PCBench) · [PCBWorld](https://arxiv.org/html/2607.05915)
 
 | 案例 | 板型 | 元件 | 命名网络 | 推断差分对 |
 | --- | --- | ---: | ---: | ---: |
@@ -49,7 +49,7 @@ Case 10 为已制作的多电源轨子板，84 个器件、52 个命名网络，
 | 10 | 55 | 5 / 2 | 4 | 0.0997 mm | 通过 / 通过 |
 | 11 | 1 | 1 / 0 | 0 | 0.1247 mm | 通过 / 通过 |
 
-首跑完整 pytest **198 项通过，78.15 秒**。两板都在常规布局阶段成功。Case 10 主板有审计数据，但 Freerouting JVM 读入含括号和连字符的引脚引用失败，整组状态为 `incomplete`。Case 11 的两个引擎均完成。独立核验了本批 90 个证据文件、80 个源码归档文件和两板盲输入哈希。两批人类参考均未打开。[第二批清单](../artifacts/holdouts/power-and-industrial-02/freeze.json) · [Case 10 工程审计](../artifacts/holdouts/power-and-industrial-02/case10/metrics.json) · [Case 11 3D](../artifacts/holdouts/power-and-industrial-02/case11/assembly.html)
+首跑完整 pytest **198 项通过，78.15 秒**。两板都在常规布局阶段成功。Case 10 主板有审计数据，但 Freerouting JVM 读入含括号和连字符的引脚引用失败，整组状态为 `incomplete`。Case 11 的两个引擎均完成。独立核验了本批 90 个证据文件、80 个源码归档文件和两板盲输入哈希。首跑期间两批人类参考均未打开。第二批在整组重测冻结后完成参考对比，之后正式纳入回归。[第二批首跑清单](../artifacts/holdouts/power-and-industrial-02/freeze.json) · [重测与对照](return-domain-repair.zh-CN.md) · [Case 11 3D](../artifacts/holdouts/power-and-industrial-02-retry-01/case11/assembly.html)
 
 ## 后续修复顺序
 
