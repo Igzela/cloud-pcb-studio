@@ -55,14 +55,18 @@ def read_suite(path):
     return suite
 
 
-def verify_manifest(pointer):
+def verify_manifest(pointer, *, require_complete=True):
     path=local_path(pointer['manifest'])
     if digest(path)!=pointer['sha256']:raise ValueError('baseline manifest hash changed')
     manifest=json.loads(path.read_text())
-    if manifest.get('status') not in ('frozen','complete'):raise ValueError('baseline is not a completed immutable run')
+    accepted_statuses={'frozen','complete'}
+    if not require_complete:
+        accepted_statuses.update(('incomplete', 'invalidated'))
+    if manifest.get('status') not in accepted_statuses:raise ValueError('manifest is not a finalized eligible record')
     if pointer.get('source_archive') and digest(local_path(pointer['source_archive']))!=pointer['source_archive_sha256']:raise ValueError('baseline source archive changed')
     for entry in manifest['cases']:
-        if entry['status']!='complete':raise ValueError('baseline has incomplete case')
+        if entry['status']!='complete' and (require_complete or entry['status']!='failed'):
+            raise ValueError('manifest has an ineligible case status')
         for name,sha in entry['artifacts'].items():
             if digest(local_path(name))!=sha:raise ValueError('baseline artifact changed: '+name)
         directory=local_path(entry['outdir'])
@@ -89,7 +93,7 @@ def latest_round_status():
         pointer = {'manifest': str(path.relative_to(ROOT)), 'sha256': latest['manifest_sha256']}
         details = {'directory': latest['directory'], 'promoted': latest['promoted']}
         details['recorded_status'] = json.loads(path.read_text()).get('status')
-        verify_manifest(pointer)
+        verify_manifest(pointer, require_complete=False)
         return dict(details, integrity='verified')
     except (OSError, ValueError, KeyError, TypeError) as exc:
         return dict(details, integrity='unverified', error=str(exc))

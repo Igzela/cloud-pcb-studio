@@ -2025,13 +2025,14 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
     gerber_dir = outdir / "gerbers"
     save_json(outdir / 'effective_spec.json', spec)
     for stale in ('board_fastroute.ses','fastroute_report.json','board_freerouting.ses','blind_run_report.json',
-                  'placement_side_decisions.json'):
+                  'placement_side_decisions.json', 'placement_legacy_validation.json'):
         (outdir/stale).unlink(missing_ok=True)
 
     t_start = time.perf_counter()
     if two_sided_recovery and external_placement is not None:
         raise ValueError("Two-sided recovery is only supported with internal placement")
     input_sides = {part["refdes"]: part.get("side") for part in spec["components"]} if two_sided_recovery else None
+    legacy_pose_validation = None
     if external_placement is None:
         if placement_recovery or two_sided_recovery:
             from copy import deepcopy
@@ -2039,9 +2040,25 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
             pristine_spec = deepcopy(spec)
             try:
                 placed, place_meta = _classify_components_and_place(
-                    spec, value_normalize=value_normalize, protect_sides=two_sided_recovery,
+                    spec, value_normalize=value_normalize,
                 )
+                if two_sided_recovery:
+                    from cloud_pcb.general_solver.two_side_packing import validate_legacy_placement
+                    outline = pristine_spec["board_outline_mm"]
+                    vertices = outline.get("vertices_mm") or _rounded_rect_points(
+                        float(outline["width"]), float(outline["height"]), float(outline.get("corner_radius_mm", 0)),
+                    )
+                    legacy_pose_validation = validate_legacy_placement(
+                        pristine_spec, placed, place_meta["component_sides"],
+                        set(place_meta["groups"]["edge_connectors"]), ShpPolygon(vertices),
+                    )
+                    save_json(outdir / "placement_legacy_validation.json", legacy_pose_validation)
+                    if legacy_pose_validation["status"] == "rejected":
+                        raise PlacementExhausted("Legacy placement did not satisfy the original side/geometry contract")
             except PlacementExhausted as original:
+                if two_sided_recovery and legacy_pose_validation is None:
+                    legacy_pose_validation = {"status": "exhausted", "reason": str(original)}
+                    save_json(outdir / "placement_legacy_validation.json", legacy_pose_validation)
                 failures = []
                 attempts = [("area", False, False), ("long-side", False, False),
                             ("area", True, False), ("long-side", True, False)]
@@ -2073,6 +2090,12 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         from cloud_pcb.general_solver.placement_input import apply_external_placement
         placed, place_meta = apply_external_placement(spec, external_placement)
     if input_sides is not None:
+        recovery = place_meta.get("placement_recovery")
+        legacy_pose_validation["selected_path"] = (
+            "legacy" if recovery is None else "typed_two_sided" if recovery.get("two_sided") else "ordinary_repack"
+        )
+        place_meta["legacy_pose_validation"] = legacy_pose_validation
+        save_json(outdir / "placement_legacy_validation.json", legacy_pose_validation)
         fixed = set(place_meta.get("groups", {}).get("edge_connectors", []))
         side_decisions = {
             part["refdes"]: {

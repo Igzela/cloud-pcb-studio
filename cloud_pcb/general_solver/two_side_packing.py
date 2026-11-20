@@ -5,17 +5,18 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from functools import lru_cache
+from itertools import combinations
 
 from kiutils.footprint import DrillDefinition, Footprint, Pad
 from kiutils.items.common import Position
 from shapely.affinity import rotate, scale, translate
-from shapely.geometry import Polygon, box
+from shapely.geometry import Point, Polygon, box
 from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
 
 from cloud_pcb.general_solver.geometry import drill_geometry
 from cloud_pcb.general_solver.placement_recovery import PackingExhausted, pack_movable
-from cloud_pcb.general_solver.semantics import component_envelope, infer_rf, local_pad_polygon
+from cloud_pcb.general_solver.semantics import component_elevation, component_envelope, infer_rf, local_pad_polygon
 
 
 COPPER_EDGE_MM = 0.50
@@ -51,13 +52,15 @@ def mechanical_keepouts(spec: dict) -> tuple:
 
 
 def component_z_range(part: dict, side: str) -> tuple[float, float]:
-    standoff = float(part.get("standoff_mm", 0))
-    height = component_envelope(part)["height_mm"]
-    if not (math.isfinite(standoff) and math.isfinite(height) and standoff >= 0 and height > 0):
-        raise PlacementGeometryUnsupported("Height and standoff must describe a positive body")
-    if side == "bottom":
-        return -PCB_THICKNESS_MM - standoff - height, -PCB_THICKNESS_MM - standoff
-    return standoff, standoff + height
+    try:
+        elevation = component_elevation(
+            side=side, board_thickness_mm=PCB_THICKNESS_MM,
+            height_mm=component_envelope(part)["height_mm"],
+            standoff_mm=float(part.get("standoff_mm", 0)),
+        )
+    except (TypeError, ValueError) as exc:
+        raise PlacementGeometryUnsupported(str(exc)) from exc
+    return elevation["z_range_mm"]
 
 
 def hits_mechanical_keepout(body, z_range, regions) -> bool:
@@ -192,6 +195,72 @@ def in_outline(board: Polygon, boundary, shape: Occupancy) -> bool:
             and (shape.holes.is_empty or board.covers(shape.holes))
             and (shape.copper.is_empty or (board.covers(shape.copper)
                  and boundary.distance(shape.copper) >= COPPER_EDGE_MM - 1e-9)))
+
+
+def validate_legacy_placement(spec: dict, placed: dict, sides: dict, fixed: set,
+                              board: Polygon) -> dict:
+    """Accept legacy placements only after checking the original side contract."""
+    parts = {part["refdes"]: part for part in spec["components"]}
+    if set(placed) != parts.keys() or set(sides) != parts.keys():
+        return {"status": "rejected", "issues": [{"kind":"incomplete_placement"}]}
+    requested = {entry["refdes"]: entry for entry in spec.get("edge_connectors", [])}
+    fixed = fixed | requested.keys()
+    protected_nets = frozenset(
+        pair[key] for pair in spec.get("design_requirements", {}).get("differential_pairs", [])
+        for key in ("pos_net", "neg_net") if key in pair
+    )
+    outline = spec["board_outline_mm"]
+    ox, oy = outline.get("origin_x", 0), outline.get("origin_y", 0)
+    mounting = [
+        Point(hole["x_mm"] - ox, hole["y_mm"] - oy).buffer(mounting_guard_radius(hole), resolution=24)
+        for hole in spec.get("mounting_holes", [])
+    ]
+    regions = mechanical_keepouts(spec)
+    boundary = board.boundary
+    issues, preserved_fixed_outline = [], []
+    occupancy = {}
+    for ref in sorted(parts):
+        part, side = parts[ref], sides[ref]
+        pose = placed[ref]
+        if side not in side_options(part, protected_nets=protected_nets):
+            issues.append({"kind": "source_side_constraint", "refdes": ref, "side": side})
+            continue
+        if not all(math.isfinite(value) for value in pose):
+            issues.append({"kind": "nonfinite_pose", "refdes": ref})
+            continue
+        if ref in requested:
+            entry = requested[ref]
+            expected = entry["x_mm"] - ox, entry["y_mm"] - oy, entry.get("angle_deg", 0)
+            if tuple(pose) != expected:
+                issues.append({"kind": "fixed_pose_changed", "refdes": ref})
+        x, y, angle = pose
+        try:
+            shape = local_occupancy(part, side).rotate(angle).translate(x, y)
+        except PlacementGeometryUnsupported as exc:
+            issues.append({"kind": "unsupported_geometry", "refdes": ref, "detail": str(exc)})
+            continue
+        occupancy[ref] = shape
+        if not in_outline(board, boundary, shape):
+            if ref in fixed:
+                # A prescribed interface can have a pre-existing edge conflict.
+                # Keep it pinned and report the exception for the final gate.
+                preserved_fixed_outline.append(ref)
+            else:
+                issues.append({"kind": "movable_outline", "refdes": ref})
+        if ref in fixed:
+            continue
+        if any(shape.combined.intersects(guard) for guard in mounting):
+            issues.append({"kind": "mounting_guard", "refdes": ref})
+        if hits_mechanical_keepout(shape.body, component_z_range(part, side), regions):
+            issues.append({"kind": "mechanical_keepout", "refdes": ref})
+    for ref, other in combinations(occupancy, 2):
+        if sides[ref] == sides[other] and ref in fixed and other in fixed:
+            continue
+        if not noninterfering(sides[ref], occupancy[ref], sides[other], occupancy[other]):
+            issues.append({"kind": "same_side_occupancy" if sides[ref] == sides[other]
+                           else "opposite_side_drill_guard", "refdes": ref, "other_refdes": other})
+    return {"status": "rejected" if issues else "accepted", "issues": issues,
+            "preserved_fixed_outline": preserved_fixed_outline}
 
 
 def _support_for_box(obstacle, projection, search, spacing):
