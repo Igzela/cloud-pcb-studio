@@ -1,0 +1,30 @@
+2026-11-20 04:47:07.643 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)
+2026-11-20 04:47:07.967 INFO   Hardware: 2 CPU cores, 403 CPU score, 2048 MB RAM
+2026-11-20 04:47:07.971 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
+2026-11-20 04:47:07.976 INFO   Configured network proxy: proxy:8080
+2026-11-20 04:47:09.259 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 04:47:09.588 INFO   [ADFD00\56202D] Loading board file 'board_freerouting.dsn'...
+2026-11-20 04:47:09.647 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 04:47:09.783 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 04:47:09.836 INFO   [ADFD00\56202D] Job 'ADFD00\56202D' started at 2026-11-20T04:47:09.836114684Z.
+2026-11-20 04:47:10.196 WARN   Design Warning: Board has 2 pre-existing clearance violation(s) in the loaded design (before routing):
+  - 2 unfixable violation(s) (cannot be resolved by Freerouting):
+      * 2 pin-to-pin clearance violations:
+          - J1.B12 <-> J1.A1
+          - J1.B1 <-> J1.A12
+  - 0 potentially fixable violations
+Notice: Freerouting does not modify component placement, board outlines, or fixed items.
+Resolving these 2 unfixable violation(s) is the responsibility of the board author in their EDA tool (e.g. KiCad).
+2026-11-20 04:47:10.254 INFO   [ADFD00\56202D] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=1.
+2026-11-20 04:47:10.427 INFO   [ADFD00\56202D] Fanout stage started on board 'f4d1a0fb00f094686cc41511d7f2ec9c' with 310 of 440 SMD pins needing fanout (0 already connected, 130 netless).
+2026-11-20 04:47:14.171 INFO   [ADFD00\56202D] Fanout pass #1 on board '86c00f1f93dd8110f35de65b6c07c7ea' completed in 3.65 seconds with 143 SMD pins fanouted, 157 not routed, 0 insert errors, +11 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-20 04:47:15.407 INFO   [ADFD00\56202D] Fanout pass #2 on board '0c9ef0a85af7a1613abad451a26e52b3' completed in 1.21 seconds with 7 SMD pins fanouted, 111 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-20 04:47:15.731 INFO   [ADFD00\56202D] Fanout pass #3 on board '0c9ef0a85af7a1613abad451a26e52b3' completed in 0.28 seconds with 0 SMD pins fanouted, 26 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-20 04:47:15.750 INFO   [ADFD00\56202D] Fanout stage completed: started with 310 total SMD pins, completed in 5.28 seconds, escaped pins: 166/310 (53.5%), using 4.68 total CPU seconds, 2.38 GB total allocated, and 197.6 MB peak heap usage.
+2026-11-20 04:47:16.015 INFO   [ADFD00\56202D] Auto-routing stage started on board '0c9ef0a85af7a1613abad451a26e52b3' with baseline score 280.44 for 179 unrouted items.
+2026-11-20 04:47:44.879 INFO   [ADFD00\56202D] Auto-routing pass #1 on board '0c9ef0a85af7a1613abad451a26e52b3' was completed in 28.74 seconds with score 909.35 (21 unrouted and 2 violations), using 27.43 CPU seconds and the job allocated 20.50 GB of memory so far.
+2026-11-20 04:47:45.375 INFO   [ADFD00\56202D] Auto-routing stage completed: started with 307 unrouted nets, completed in 34.92 seconds, final score: 909.35 (21 unrouted and 2 violations), using 27.43 total CPU seconds, 20.50 GB total allocated, and 337.7 MB peak heap usage.
+2026-11-20 04:47:45.524 INFO   [ADFD00\56202D] Job 'ADFD00\56202D' finished with state: COMPLETED (elapsed: 35.65 seconds, finished at UTC: 2026-11-20T04:47:45.486848734Z).
+2026-11-20 04:47:45.529 INFO   Saving output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/case4/board_freerouting.ses' (SES)...
+2026-11-20 04:47:45.531 INFO   Successfully saved output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/case4/board_freerouting.ses' (125710 bytes).
+

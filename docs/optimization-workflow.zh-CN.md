@@ -154,3 +154,5 @@ python -m scripts.optimize_pcb run \
 `two-sided-recovery` 在常规摆放和既有四种整板恢复均耗尽后，才尝试分别检查两个板面的外壳、焊盘和钻槽。允许自动换面的器件必须是未指定侧面、没有钻孔、只有两个独立顶层 SMD 焊盘的器件，并排除 RF 及已声明差分网端点。显式侧面与固定接口保持原约束。铜与板边维持 0.50 mm，外壳边界、通孔双面冲突与机械禁布区分别检查。实际侧面写入 `placement_side_decisions.json`，源规范保持原样。
 
 候选用统一变体运行全量七板回归。密封批次只有在此前产物确实因布局耗尽而不完整时才可用该变体整批重测，并须出示上一轮冻结哈希。重测继续单独记录，板和参考身份仍按整批冻结流程处理。[盲测流程](holdout-cohorts.zh-CN.md)
+
+首次候选将常规布局中的自动换面全部推迟到了恢复阶段。七板轮次用时 2351.059 秒，230 项 pytest 均通过，耗时 80.46 秒。Case 1–4 和 11 的比较指标与基线一致。Case 5 进入双面恢复后，未完成连接由 9 增至 29，独立 LVS 开路由 9 增至 25，电容距离代理由 6.884 增至 8.307 mm。Case 10 耗尽了全部布局尝试。该候选未晋升，密封批次重测未启动。轮次的源码归档和七个案例的 259 个产物文件已复核哈希。[失败轮次清单](../artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/manifest.json) · [比较结果](../artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/result.json)

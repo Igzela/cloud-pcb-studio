@@ -1,5 +1,5 @@
 {
-  "directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven",
-  "manifest_sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f",
-  "promoted": true
+  "directory": "artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement",
+  "manifest_sha256": "482766e3d0e3f12989341e3fa06a49781722191f8aa199b9055b88a75a424ef1",
+  "promoted": false
 }
