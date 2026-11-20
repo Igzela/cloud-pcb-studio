@@ -1,0 +1,12 @@
+(pcb partition.dsn
+  (parser (string_quote ") (space_in_quoted_tokens on) (host_cad "KiCad's Pcbnew") (host_version "8.0.0"))
+  (resolution um 10) (unit um)
+  (structure (layer F.Cu (type signal) (property (index 0))) (layer In1.Cu (type signal) (property (index 1))) (layer In2.Cu (type signal) (property (index 2))) (layer B.Cu (type signal) (property (index 3))) (boundary (rect pcb 0 -32000 32000 0)) (via Via[0-3]_550:300_um)
+     (keepout "" (rect F.Cu 14500 -32000 15500 0)) (keepout "" (rect In1.Cu 14500 -32000 15500 0)) (keepout "" (rect In2.Cu 14500 -32000 15500 0)) (keepout "" (rect B.Cu 14500 -32000 15500 0)) (rule (width 160) (clearance 150)))
+  (placement (component PADIMAGE (place PA0 1100 -2800 front 0) (place PB0 30900 -4120 front 0) (place PA1 1100 -4120 front 0) (place PB1 30900 -2800 front 0) (place PA2 1100 -5440 front 0) (place PB2 30900 -5440 front 0) (place PA3 2800 -1100 front 0) (place PB3 4120 -30900 front 0) (place PA4 4120 -1100 front 0) (place PB4 2800 -30900 front 0) (place PA5 5440 -1100 front 0) (place PB5 5440 -30900 front 0)))
+  (library (image PADIMAGE (pin PAD 1 0 0))
+    (padstack PAD (shape (rect F.Cu -250 -250 250 250)) (attach off))
+    (padstack Via[0-3]_550:300_um (shape (circle F.Cu 550)) (shape (circle In1.Cu 550)) (shape (circle In2.Cu 550)) (shape (circle B.Cu 550)) (attach off)))
+  (network (net NET0 (pins PA0-1 PB0-1)) (net NET1 (pins PA1-1 PB1-1)) (net NET2 (pins PA2-1 PB2-1)) (net NET3 (pins PA3-1 PB3-1)) (net NET4 (pins PA4-1 PB4-1)) (net NET5 (pins PA5-1 PB5-1))
+    (class PLAIN NET0 NET1 NET2 NET3 NET4 NET5 (circuit (use_layer F.Cu In1.Cu In2.Cu B.Cu)) (rule (width 160) (clearance 150))))
+  (wiring))

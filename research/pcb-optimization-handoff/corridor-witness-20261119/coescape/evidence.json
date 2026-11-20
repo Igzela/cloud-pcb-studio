@@ -1,0 +1,82 @@
+{
+  "synthetic": {
+    "status": "feasible",
+    "routes": [
+      [
+        [
+          1000,
+          3000
+        ],
+        [
+          2000,
+          3000
+        ],
+        [
+          3000,
+          3000
+        ],
+        [
+          3000,
+          4000
+        ],
+        [
+          3000,
+          5000
+        ],
+        [
+          4000,
+          5000
+        ],
+        [
+          5000,
+          5000
+        ],
+        [
+          5000,
+          4000
+        ],
+        [
+          5000,
+          3000
+        ],
+        [
+          6000,
+          3000
+        ],
+        [
+          7000,
+          3000
+        ],
+        [
+          8000,
+          3000
+        ]
+      ],
+      [
+        [
+          4000,
+          2000
+        ],
+        [
+          4000,
+          3000
+        ],
+        [
+          4000,
+          4000
+        ]
+      ]
+    ],
+    "route_search_count": 32,
+    "graph_expansions": 482
+  },
+  "actual_case3_previously_tested_migration": {
+    "original_open_nets": [
+      "/M1_TACHO"
+    ],
+    "new_open_nets": [
+      "/Left Driver/CP"
+    ],
+    "accepted": false
+  }
+}

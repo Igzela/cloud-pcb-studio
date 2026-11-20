@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": ".run/dsn-physical-plane-probe/narrow_plane.dsn",
+  "time_s": {"load": 0.0385, "route": 0.0118, "total": 0.0508, "diagnose": null},
+  "stats": {"layers": 4, "components": 5, "nets": 2, "pins": 5, "connections": 4, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 3, "vias_blind": 0, "vias_buried": 0, "traces": 5, "trace_length_mm": 34.6764, "bends_90": 0, "bends_45": 2, "bends_other": 0, "router_score": 1000, "optimizer_score": 377.4547},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

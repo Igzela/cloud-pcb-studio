@@ -1,0 +1,13 @@
+{
+  "fastroute": "0.1.14",
+  "input": ".run/dsn-physical-plane-probe/antipad_window.dsn",
+  "time_s": {"load": 0.0013, "route": 0, "total": 0.002, "diagnose": null},
+  "stats": {"layers": 4, "components": 5, "nets": 2, "pins": 5, "connections": 4, "unrouted": 2, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 2, "vias_blind": 0, "vias_buried": 0, "traces": 2, "trace_length_mm": 6, "bends_90": 0, "bends_45": 0, "bends_other": 0, "router_score": 333.3333, "optimizer_score": 733.3333},
+  "unrouted": [
+    {"net": "RETURN", "length_mm": 2.5495, "from": {"kind": "plane", "layers": ["In1.Cu", "In1.Cu"]}, "from_xy": [19.5, 7.5], "to": {"kind": "pin", "component": "C", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [20, 5]},
+    {"net": "SIG", "length_mm": 15, "from": {"kind": "pin", "component": "E", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [20, 15], "to": {"kind": "pin", "component": "D", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [5, 15]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

@@ -1,0 +1,64 @@
+(session crossings
+  (base_design crossings)
+  (placement
+    (resolution um 10)
+    (component PADIMAGE
+      (place PA0 11000 -28000 front 0)
+      (place PB0 309000 -28000 front 0)
+      (place PA1 11000 -41200 front 0)
+      (place PB1 309000 -94000 front 0)
+      (place PA2 11000 -54400 front 0)
+      (place PB2 309000 -67600 front 0)
+      (place PA3 11000 -67600 front 0)
+      (place PB3 309000 -41200 front 0)
+      (place PA4 11000 -80800 front 0)
+      (place PB4 309000 -107200 front 0)
+      (place PA5 11000 -94000 front 0)
+      (place PB5 309000 -80800 front 0)
+      (place PA6 11000 -107200 front 0)
+      (place PB6 309000 -54400 front 0)
+      (place PA7 28000 -11000 front 0)
+      (place PB7 28000 -309000 front 0)
+      (place PA8 41200 -11000 front 0)
+      (place PB8 94000 -309000 front 0)
+      (place PA9 54400 -11000 front 0)
+      (place PB9 67600 -309000 front 0)
+      (place PA10 67600 -11000 front 0)
+      (place PB10 41200 -309000 front 0)
+      (place PA11 80800 -11000 front 0)
+      (place PB11 107200 -309000 front 0)
+      (place PA12 94000 -11000 front 0)
+      (place PB12 80800 -309000 front 0)
+      (place PA13 107200 -11000 front 0)
+      (place PB13 54400 -309000 front 0)
+    )
+  )
+  (was_is
+  )
+  (routes 
+    (resolution um 10)
+    (parser
+      (host_cad "KiCad's Pcbnew")
+      (host_version "8.0.0")
+    )
+    (library_out 
+      (padstack "Via[0-3]_550:300_um"
+        (shape
+          (circle F.Cu 5500 0 0)
+        )
+        (shape
+          (circle In1.Cu 5500 0 0)
+        )
+        (shape
+          (circle In2.Cu 5500 0 0)
+        )
+        (shape
+          (circle B.Cu 5500 0 0)
+        )
+        (attach off)
+      )
+    )
+    (network_out 
+    )
+  )
+)

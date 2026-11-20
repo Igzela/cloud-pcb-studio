@@ -1,0 +1,56 @@
+(session design
+  (base_design design)
+  (placement
+    (resolution um 10)
+    (component "IMG_Device0"
+      (place Device0 50000 -60000 front 0)
+    )
+    (component "IMG_Device1"
+      (place Device1 250000 -60000 front 0)
+    )
+  )
+  (was_is
+  )
+  (routes 
+    (resolution um 10)
+    (parser
+      (host_cad "KiCad's Pcbnew")
+      (host_version "8.0.0")
+    )
+    (library_out 
+      (padstack "Via[0-3]_550:300_um"
+        (shape
+          (circle F.Cu 5500 0 0)
+        )
+        (shape
+          (circle In1.Cu 5500 0 0)
+        )
+        (shape
+          (circle In2.Cu 5500 0 0)
+        )
+        (shape
+          (circle B.Cu 5500 0 0)
+        )
+        (attach off)
+      )
+    )
+    (network_out 
+      (net "lane_n"
+        (wire
+          (path F.Cu 2498
+            250000 -62500
+            50000 -62500
+          )
+        )
+      )
+      (net "lane_p"
+        (wire
+          (path F.Cu 2498
+            250000 -57500
+            50000 -57500
+          )
+        )
+      )
+    )
+  )
+)

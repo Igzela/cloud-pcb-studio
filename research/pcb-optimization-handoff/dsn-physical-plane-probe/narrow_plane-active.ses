@@ -1,0 +1,67 @@
+(session "narrow_plane"
+  (base_design "narrow_plane")
+  (placement
+    (resolution um 10)
+    (component "IMG_PAD"
+      (place A 50000 -50000 front 0)
+      (place B 54000 -50000 front 0)
+      (place C 200000 -50000 front 0)
+      (place D 50000 -150000 front 0)
+      (place E 200000 -150000 front 0)
+    )
+  )
+  (was_is
+  )
+  (routes 
+    (resolution um 10)
+    (parser
+      (host_cad "KiCad's Pcbnew")
+      (host_version "8.0.0")
+    )
+    (library_out 
+      (padstack "Via[0-3]_550:300_um"
+        (shape
+          (circle F.Cu 5500 0 0)
+        )
+        (shape
+          (circle In1.Cu 5500 0 0)
+        )
+        (shape
+          (circle In2.Cu 5500 0 0)
+        )
+        (shape
+          (circle B.Cu 5500 0 0)
+        )
+        (attach off)
+      )
+    )
+    (network_out 
+      (net RETURN
+        (wire
+          (path F.Cu 2000
+            200307 -41481
+            200000 -41788
+            200000 -50000
+          )
+        )
+        (wire
+          (path In1.Cu 2000
+            77820 -27888
+            186714 -27888
+            200307 -41481
+          )
+        )
+        (via "Via[0-3]_550:300_um" 200307 -41481
+        )
+      )
+      (net SIG
+        (wire
+          (path F.Cu 2000
+            200000 -150000
+            50000 -150000
+          )
+        )
+      )
+    )
+  )
+)

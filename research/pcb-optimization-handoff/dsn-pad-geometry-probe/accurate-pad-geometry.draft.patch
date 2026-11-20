@@ -1,0 +1,230 @@
+--- a/cloud_pcb/layout_route/dsn_ses_bridge.py
++++ b/cloud_pcb/layout_route/dsn_ses_bridge.py
+@@ -9,6 +9,7 @@
+ 
+ from __future__ import annotations
+ 
++import hashlib
+ import math
+ import re
+ import uuid
+@@ -24,6 +25,8 @@
+ DEFAULT_VIA_NAME = "Via[0-3]_550:300_um"
+ COPPER_LAYERS = ("F.Cu", "In1.Cu", "In2.Cu", "B.Cu")
+ NPTH_COPPER_CLEARANCE_MM = 0.50
++PAD_POLYGON_VERTEX_COUNT = 32
++PAD_POLYGON_GRID_MARGIN_MM = .002
+ 
+ 
+ def _quote(token: str) -> str:
+@@ -64,6 +67,55 @@
+     return w, h
+ 
+ 
++def _convex_pad_vertices(
++    pad: Any, angle_deg: float,
++) -> tuple[tuple[int, int], ...]:
++    """Conservative copper outline in DSN y-up micrometres, relative to its pin."""
++    from shapely.geometry import MultiPoint
++
++    width, height = float(pad.size.X), float(pad.size.Y)
++    if not all(math.isfinite(n) for n in (width, height, angle_deg)) or min(width, height) <= 0:
++        raise ValueError("Pad polygon requires positive dimensions and a finite angle")
++    if getattr(pad, "chamfer", None) or getattr(pad, "chamferRatio", None):
++        raise ValueError("Chamfered copper needs its own pad geometry")
++    if pad.shape == "oval":
++        radius = min(width, height) / 2.0
++    elif pad.shape == "roundrect":
++        ratio = .25 if pad.roundrectRatio is None else float(pad.roundrectRatio)
++        if not math.isfinite(ratio) or not 0.0 <= ratio <= .5:
++            raise ValueError("Roundrect pad radius ratio must be in [0, .5]")
++        radius = min(width, height) * ratio
++    elif pad.shape == "rect":
++        radius = 0.0
++    else:
++        raise ValueError("Unsupported convex pad shape")
++
++    # The true pad is a core box (a line for an oval) plus a disk.
++    # Circumscribe that disk with a regular polygon. After rounding, any
++    # support function can lose at most sqrt(2)*0.5 µm at a vertex, and at
++    # most the same amount again when the absolute pin center is quantized.
++    # The 2 µm bias protects both independently rounded coordinates.
++    half_x, half_y = width / 2.0 - radius, height / 2.0 - radius
++    sides = PAD_POLYGON_VERTEX_COUNT
++    vertex_radius = (radius + PAD_POLYGON_GRID_MARGIN_MM) / math.cos(math.pi / sides)
++    theta = math.radians(angle_deg % 180)
++    c, s = math.cos(theta), math.sin(theta)
++    angles = [(index + .5) * math.tau / sides for index in range(sides)]
++    disk_offsets = [(vertex_radius * math.cos(a), vertex_radius * math.sin(a)) for a in angles]
++    samples = [
++        (round(1000 * (x*c - y*s + dx)), round(1000 * (x*s + y*c + dy)))
++        for x in (-half_x, half_x)
++        for y in (-half_y, half_y)
++        for dx, dy in disk_offsets
++    ]
++    polygon = MultiPoint(samples).convex_hull
++    if polygon.geom_type != "Polygon" or not polygon.is_valid:
++        raise ValueError("Pad copper is degenerate on the DSN grid")
++    vertices = tuple((int(x), int(y)) for x, y in polygon.exterior.coords[:-1])
++    start = vertices.index(min(vertices))
++    return vertices[start:] + vertices[:start]
++
++
+ def _footprint_ref(fp: Any, idx: int) -> str:
+     for prop_key in ("Reference", "reference"):
+         if prop_key in getattr(fp, "properties", {}):
+@@ -131,12 +183,15 @@
+     *,
+     protect_mechanical_holes: bool = False,
+     safe_pin_references: bool = False,
++    accurate_pad_geometry: bool = False,
+ ) -> Path:
+     """Export a kiutils Board to a Specctra .dsn file.
+ 
+     The secondary router can opt into four-layer NPTH obstacles and explicit
+     images for footprints without electrical pins, and independent quoting of
+     component and pad names in pin references.
++    Opt-in pad polygons model roundrect, oval, and off-axis rectangular copper.
++    The existing routing angle and clearance rules continue to apply.
+     """
+     x0, y0, x1, y1 = board_bounds_mm
+     # fastroute assigns explicit classes after reading per-net rules. Compile
+@@ -224,7 +279,25 @@
+                 layer_tag = "B" if layer_list == ["B.Cu"] else "T"
+ 
+             shape_kind = pad.shape
+-            if shape_kind == "circle":
++            off_axis_rect = shape_kind == "rect" and abs(math.remainder(pad_angle, 90.0)) > 1e-8
++            if accurate_pad_geometry and (shape_kind in ("oval", "roundrect") or off_axis_rect):
++                vertices = _convex_pad_vertices(pad, pad_angle)
++                layers = tuple(layer for layer in COPPER_LAYERS if layer in layer_list)
++                if set(layers) != set(layer_list):
++                    raise ValueError("Pad polygon contains an unknown copper layer")
++                # Avoid cumulative quantization of independently rounded
++                # footprint and local position. The router still places front 0.
++                px_um = round((fx + lx_kicad) * 1000) - fx_um
++                py_um = round(-(fy + ly_kicad) * 1000) - fy_um
++                digest = hashlib.sha256(repr((layers, vertices)).encode("ascii")).hexdigest()
++                ps_name = f"PAD_POLY_{digest}"
++                coords = " ".join(f"{x} {y}" for x, y in (*vertices, vertices[0]))
++                lines = [f"    (padstack {ps_name}"]
++                lines.extend(f"      (shape (polygon {layer} 0 {coords}))" for layer in layers)
++                lines.extend(("      (attach off)", "    )"))
++                if padstacks.setdefault(ps_name, lines) != lines:
++                    raise ValueError("Conflicting copper polygons use the same padstack key")
++            elif shape_kind == "circle":
+                 ps_name = f"Circ_{layer_tag}_{pw_um}_um"
+                 if ps_name not in padstacks:
+                     lines = [f"    (padstack {_quote(ps_name)}"]
+--- /dev/null
++++ b/tests/test_dsn_pad_geometry.py
+@@ -0,0 +1,109 @@
++"""Copper containment and layer identity in the optional polygon pad export."""
++
++import math
++
++import pytest
++from kiutils.board import Board
++from kiutils.footprint import Footprint, Pad
++from kiutils.items.common import Net, Position
++from shapely.geometry import LineString, Point, Polygon, box
++from shapely.affinity import rotate, translate
++
++from cloud_pcb.layout_route.dsn_ses_bridge import _parse_sexpr, board_to_dsn
++from contracts.schemas import NetClassRule
++
++
++def _child(parent, key):
++    return next(item for item in parent if isinstance(item, list) and item[0] == key)
++
++
++def _capacitor(ref, pad_shape='roundrect', pad_angle=-17.0, side='F.Cu', ratio=.35):
++    return Footprint(
++        position=Position(X=8.2344, Y=4.2066, angle=37),
++        properties={'Reference': ref},
++        pads=[Pad(number='1', shape=pad_shape,
++                  position=Position(X=.3455, Y=-.92125, angle=pad_angle),
++                  layers=[side], size=Position(X=1.1753, Y=.5437), roundrectRatio=ratio)],
++    )
++
++
++def _export(footprints, path, **options):
++    board = Board.create_new()
++    net = Net(1, 'LINK')
++    board.nets.append(net)
++    board.footprints.extend(footprints)
++    for footprint in footprints:
++        footprint.pads[0].net = net
++    text = board_to_dsn(board, path, {'DEFAULT': NetClassRule('DEFAULT', .16, .13, .30, .55, .5)}, {}, **options).read_text()
++    return text, _parse_sexpr(text)[0]
++
++
++def _stacks(dsn):
++    library = _child(dsn, 'library')
++    pads = {item[1]: _child(item, 'pin')[1] for item in library[1:] if item[0] == 'image'}
++    shapes = {item[1]: [node[1] for node in item[2:] if node[0]=='shape']
++              for item in library[1:] if item[0] == 'padstack'}
++    return pads, shapes
++
++
++@pytest.mark.parametrize(('shape', 'side', 'angle', 'ratio'), [
++    ('roundrect', 'F.Cu', -17, .35), ('roundrect', 'B.Cu', 31, 0),
++    ('oval', 'B.Cu', 63, None), ('rect', 'F.Cu', 179.98, None),
++])
++def test_pad_polygon_contains_true_world_copper_with_absolute_position_rounding(tmp_path, shape, side, angle, ratio):
++    fp = _capacitor('CAP', shape, angle, side, ratio)
++    _, dsn = _export([fp], tmp_path/'precise.dsn', accurate_pad_geometry=True)
++    pads, stacks = _stacks(dsn)
++    shape_line, = stacks[pads['IMG_CAP']]
++    assert shape_line[:3] == ['polygon', side, '0']
++    placement = _child(_child(_child(dsn, 'placement'), 'component'), 'place')
++    pin = _child(_child(_child(dsn, 'library'), 'image'), 'pin')
++    center_x = (int(placement[2])+int(pin[3])) / 1000
++    center_y = (int(placement[3])+int(pin[4])) / 1000
++    points = [(center_x+int(x)/1000, center_y+int(y)/1000)
++              for x,y in zip(shape_line[3::2],shape_line[4::2])]
++    emitted = Polygon(points)
++    assert emitted.equals(emitted.convex_hull)
++
++    # Independent capsule/roundrect from KiCad y-down -> DSN y-up, using
++    # physical transforms rather than reconstructing exporter vertices.
++    th = math.radians(37)
++    local_x,local_y = .3455,.92125
++    cx = 8.2344 + local_x*math.cos(th) - local_y*math.sin(th)
++    cy = -4.2066 + local_x*math.sin(th) + local_y*math.cos(th)
++    w,h = 1.1753,.5437
++    radius = h/2 if shape=='oval' else h*ratio if shape=='roundrect' else 0
++    if shape=='oval':
++        core = LineString(((-w/2+radius,0),(w/2-radius,0)))
++    else:
++        core = box(-w/2+radius,-h/2+radius,w/2-radius,h/2-radius)
++    physical = translate(rotate(core.buffer(radius,quad_segs=256),angle,origin=(0,0)),cx,cy)
++    assert emitted.covers(physical)
++    assert emitted.difference(physical.buffer(.006)).area < 1e-12
++    assert Point(cx,cy).distance(Point(center_x,center_y)) <= math.sqrt(2)/2000
++
++
++def test_padstack_keys_distinguish_radius_and_exact_layers_without_changing_legacy(tmp_path):
++    footprints = [_capacitor('A'),_capacitor('B',ratio=.15),
++                  _capacitor('C',side='B.Cu'),_capacitor('D')]
++    footprints[-1].pads[0].type = 'thru_hole'
++    footprints.append(_capacitor('E'))
++    path = tmp_path/'board.dsn'
++    before, legacy = _export(footprints,path)
++    after, accurate = _export(footprints,path,accurate_pad_geometry=True)
++    assert _export(footprints,path,accurate_pad_geometry=False)[0]==before
++    for scope in ('structure','network','placement','wiring'):
++        assert _child(legacy,scope)==_child(accurate,scope)
++    ids, stacks = _stacks(accurate)
++    assert len(set(ids[ref] for ref in ('IMG_A','IMG_B','IMG_C','IMG_D')))==4
++    assert ids['IMG_E']==ids['IMG_A']
++    assert tuple(shape[1] for shape in stacks[ids['IMG_D']])==('F.Cu','In1.Cu','In2.Cu','B.Cu')
++    assert all('.' not in name for name in ids.values())
++    assert _export(footprints,path,accurate_pad_geometry=True)[0]==after
++
++
++def test_rounded_polygon_mode_fails_closed_if_chamfer_is_known_but_unsupported(tmp_path):
++    fp = _capacitor('A')
++    fp.pads[0].chamfer = ['top_left']
++    with pytest.raises(ValueError, match='Chamfered copper'):
++        _export([fp],tmp_path/'board.dsn',accurate_pad_geometry=True)

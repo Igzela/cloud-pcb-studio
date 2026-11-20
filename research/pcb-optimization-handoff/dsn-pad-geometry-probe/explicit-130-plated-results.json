@@ -1,0 +1,303 @@
+{
+  "plated_130_box": {
+    "physical_gap_mm": 0.1480975464705582,
+    "explicit_rule_mm": 0.13,
+    "fast": {
+      "unrouted": 0,
+      "raw_violations": 4,
+      "pin_pairs": [
+        {
+          "layer": "F.Cu",
+          "xy": [
+            8.436,
+            7.824
+          ],
+          "clearance_mm": 0.13,
+          "actual_mm": 0.0736,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          }
+        },
+        {
+          "layer": "In1.Cu",
+          "xy": [
+            8.436,
+            7.824
+          ],
+          "clearance_mm": 0.13,
+          "actual_mm": 0.0736,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          }
+        },
+        {
+          "layer": "In2.Cu",
+          "xy": [
+            8.436,
+            7.824
+          ],
+          "clearance_mm": 0.13,
+          "actual_mm": 0.0736,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          }
+        },
+        {
+          "layer": "B.Cu",
+          "xy": [
+            8.436,
+            7.824
+          ],
+          "clearance_mm": 0.13,
+          "actual_mm": 0.0736,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          }
+        }
+      ],
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 4,
+      "vias": 0
+    },
+    "jvm": {
+      "unrouted": 0,
+      "raw_violations": 4,
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 4,
+      "vias": 0
+    }
+  },
+  "plated_130_polygon": {
+    "physical_gap_mm": 0.1480975464705582,
+    "explicit_rule_mm": 0.13,
+    "fast": {
+      "unrouted": 0,
+      "raw_violations": 0,
+      "pin_pairs": [],
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 3,
+      "vias": 0
+    },
+    "jvm": {
+      "unrouted": 0,
+      "raw_violations": 0,
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 3,
+      "vias": 0
+    }
+  },
+  "plated_130_real_violation": {
+    "physical_gap_mm": 0.11698484809835039,
+    "explicit_rule_mm": 0.13,
+    "fast": {
+      "unrouted": 0,
+      "raw_violations": 4,
+      "pin_pairs": [
+        {
+          "layer": "F.Cu",
+          "xy": [
+            8.4366,
+            7.8235
+          ],
+          "clearance_mm": 0.13,
+          "actual_mm": 0.1132,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          }
+        },
+        {
+          "layer": "In1.Cu",
+          "xy": [
+            8.4366,
+            7.8235
+          ],
+          "clearance_mm": 0.13,
+          "actual_mm": 0.1132,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          }
+        },
+        {
+          "layer": "In2.Cu",
+          "xy": [
+            8.4366,
+            7.8235
+          ],
+          "clearance_mm": 0.13,
+          "actual_mm": 0.1132,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          }
+        },
+        {
+          "layer": "B.Cu",
+          "xy": [
+            8.4366,
+            7.8235
+          ],
+          "clearance_mm": 0.13,
+          "actual_mm": 0.1132,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "B.Cu"
+            ]
+          }
+        }
+      ],
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 3,
+      "vias": 0
+    },
+    "jvm": {
+      "unrouted": 0,
+      "raw_violations": 4,
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 3,
+      "vias": 0
+    }
+  }
+}

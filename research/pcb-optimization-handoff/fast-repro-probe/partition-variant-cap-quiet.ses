@@ -1,0 +1,95 @@
+(session partition
+  (base_design partition)
+  (placement
+    (resolution um 10)
+    (component PADIMAGE
+      (place PA0 11000 -28000 front 0)
+      (place PB0 309000 -41200 front 0)
+      (place PA1 11000 -41200 front 0)
+      (place PB1 309000 -28000 front 0)
+      (place PA2 11000 -54400 front 0)
+      (place PB2 309000 -54400 front 0)
+      (place PA3 28000 -11000 front 0)
+      (place PB3 41200 -309000 front 0)
+      (place PA4 41200 -11000 front 0)
+      (place PB4 28000 -309000 front 0)
+      (place PA5 54400 -11000 front 0)
+      (place PB5 54400 -309000 front 0)
+    )
+  )
+  (was_is
+  )
+  (routes 
+    (resolution um 10)
+    (parser
+      (host_cad "KiCad's Pcbnew")
+      (host_version "8.0.0")
+    )
+    (library_out 
+      (padstack "Via[0-3]_550:300_um"
+        (shape
+          (circle F.Cu 5500 0 0)
+        )
+        (shape
+          (circle In1.Cu 5500 0 0)
+        )
+        (shape
+          (circle In2.Cu 5500 0 0)
+        )
+        (shape
+          (circle B.Cu 5500 0 0)
+        )
+        (attach off)
+      )
+    )
+    (network_out 
+      (net NET3
+        (wire
+          (path F.Cu 1600
+            28000 -11000
+            28000 -15817
+          )
+        )
+        (wire
+          (path F.Cu 1600
+            41200 -309000
+            36383 -309000
+          )
+        )
+        (wire
+          (path F.Cu 1600
+            36383 -309000
+            31433 -313950
+            24255 -313950
+            23183 -312878
+            23183 -20634
+            28000 -15817
+          )
+        )
+      )
+      (net NET4
+        (wire
+          (path F.Cu 1600
+            28000 -304183
+            41200 -290983
+            41200 -11000
+          )
+        )
+        (wire
+          (path F.Cu 1600
+            28000 -309000
+            28000 -304183
+          )
+        )
+      )
+      (net NET5
+        (wire
+          (path F.Cu 1600
+            54400 -309000
+            54400 -11000
+          )
+        )
+      )
+    )
+  )
+)

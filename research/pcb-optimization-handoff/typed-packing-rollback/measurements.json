@@ -1,0 +1,78 @@
+{
+  "area": {
+    "greedy": "exhausted",
+    "proposal": {
+      "status": "repacked",
+      "poses": {
+        "pin": [
+          11.3,
+          6.7,
+          0.0,
+          "top"
+        ],
+        "big": [
+          9.0,
+          3.44,
+          0.0,
+          "top"
+        ],
+        "small": [
+          2.0,
+          3.5,
+          0.0,
+          "top"
+        ]
+      },
+      "probes": 2370,
+      "branches": 4,
+      "moved": [
+        "big"
+      ]
+    }
+  },
+  "long-side": {
+    "greedy": "exhausted",
+    "proposal": {
+      "status": "repacked",
+      "poses": {
+        "pin": [
+          11.3,
+          6.7,
+          0.0,
+          "top"
+        ],
+        "big": [
+          9.0,
+          3.44,
+          0.0,
+          "top"
+        ],
+        "small": [
+          2.0,
+          3.5,
+          0.0,
+          "top"
+        ]
+      },
+      "probes": 2370,
+      "branches": 4,
+      "moved": [
+        "big"
+      ]
+    }
+  },
+  "impossible": {
+    "status": "search_exhausted",
+    "poses": null,
+    "probes": 3573,
+    "branches": 9,
+    "moved": []
+  },
+  "budget": {
+    "status": "probe_budget_exhausted",
+    "poses": null,
+    "probes": 1,
+    "branches": 0,
+    "moved": []
+  }
+}

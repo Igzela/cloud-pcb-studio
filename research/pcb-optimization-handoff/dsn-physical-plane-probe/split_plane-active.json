@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": ".run/dsn-physical-plane-probe/split_plane.dsn",
+  "time_s": {"load": 0.0018, "route": 0.012, "total": 0.0141, "diagnose": null},
+  "stats": {"layers": 4, "components": 5, "nets": 2, "pins": 5, "connections": 5, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 2, "vias_blind": 0, "vias_buried": 0, "traces": 3, "trace_length_mm": 21, "bends_90": 0, "bends_45": 0, "bends_other": 0, "router_score": 733.3333, "optimizer_score": 733.3333},
+  "unrouted": [
+    {"net": "RETURN", "length_mm": 7, "from": {"kind": "plane", "layers": ["In1.Cu", "In1.Cu"]}, "from_xy": [10, 12], "to": {"kind": "plane", "layers": ["In1.Cu", "In1.Cu"]}, "to_xy": [17, 12]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "axis_clear_box": {
+    "physical_copper_gap_mm": 0.16158997051973303,
+    "emitted_polygon_gap_mm": 0.1576848122046011,
+    "predicted_45deg_envelope_gap_mm": 0.15768481220460187,
+    "legacy_rect_gap_mm": 0.031112698372208866,
+    "tested_threshold_mm": 0.13,
+    "effective_output_rule_mm": 0.15,
+    "fast": {
+      "unrouted": 0,
+      "raw_violations": 1,
+      "pin_pairs": [
+        {
+          "layer": "F.Cu",
+          "xy": [
+            8.371,
+            7.779
+          ],
+          "clearance_mm": 0.15,
+          "actual_mm": 0.0312,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "F.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "F.Cu"
+            ]
+          }
+        }
+      ],
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 2,
+      "vias": 0
+    },
+    "jvm": {
+      "unrouted": 0,
+      "raw_violations": 1,
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 2,
+      "vias": 0
+    }
+  },
+  "axis_clear_polygon": {
+    "physical_copper_gap_mm": 0.16158997051973303,
+    "emitted_polygon_gap_mm": 0.1576848122046011,
+    "predicted_45deg_envelope_gap_mm": 0.15768481220460187,
+    "legacy_rect_gap_mm": 0.031112698372208866,
+    "tested_threshold_mm": 0.13,
+    "effective_output_rule_mm": 0.15,
+    "fast": {
+      "unrouted": 0,
+      "raw_violations": 0,
+      "pin_pairs": [],
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 2,
+      "vias": 0
+    },
+    "jvm": {
+      "unrouted": 0,
+      "raw_violations": 0,
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 2,
+      "vias": 0
+    }
+  },
+  "tilted_clear_45": {
+    "physical_copper_gap_mm": 0.18000566033705684,
+    "emitted_polygon_gap_mm": 0.17493870977405934,
+    "predicted_45deg_envelope_gap_mm": 0.0,
+    "legacy_rect_gap_mm": 0.10899999999999964,
+    "tested_threshold_mm": 0.13,
+    "effective_output_rule_mm": 0.15,
+    "fast": {
+      "unrouted": 2,
+      "raw_violations": 1,
+      "pin_pairs": [
+        {
+          "layer": "F.Cu",
+          "xy": [
+            7.8675,
+            7.7705
+          ],
+          "clearance_mm": 0.15,
+          "actual_mm": 0,
+          "unfixable": true,
+          "first": {
+            "kind": "pin",
+            "component": "B",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "F.Cu"
+            ]
+          },
+          "second": {
+            "kind": "pin",
+            "component": "A",
+            "pin": "1",
+            "layers": [
+              "F.Cu",
+              "F.Cu"
+            ]
+          }
+        }
+      ],
+      "routed_net_names": [],
+      "segments": 0,
+      "vias": 0
+    },
+    "jvm": {
+      "unrouted": 2,
+      "raw_violations": 1,
+      "routed_net_names": [],
+      "segments": 0,
+      "vias": 0
+    }
+  },
+  "tilted_clear_unrestricted_probe": {
+    "physical_copper_gap_mm": 0.18000566033705684,
+    "emitted_polygon_gap_mm": 0.17493870977405934,
+    "predicted_45deg_envelope_gap_mm": 0.0,
+    "legacy_rect_gap_mm": 0.10899999999999964,
+    "tested_threshold_mm": 0.13,
+    "effective_output_rule_mm": 0.15,
+    "fast": {
+      "unrouted": 0,
+      "raw_violations": 0,
+      "pin_pairs": [],
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 4,
+      "vias": 0
+    },
+    "jvm": {
+      "unrouted": 0,
+      "raw_violations": 0,
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 4,
+      "vias": 0
+    }
+  },
+  "slot_manufacturing_margin": {
+    "physical_copper_gap_mm": 5.579999999999998,
+    "emitted_polygon_gap_mm": 5.5760000000000005,
+    "predicted_45deg_envelope_gap_mm": 5.5760000000000005,
+    "legacy_rect_gap_mm": 5.58,
+    "tested_threshold_mm": 0.13,
+    "effective_output_rule_mm": 0.15,
+    "fast": {
+      "unrouted": 0,
+      "raw_violations": 0,
+      "pin_pairs": [],
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 5,
+      "vias": 0,
+      "min_routed_trace_copper_to_milled_slot_mm": 0.6806852588579294
+    },
+    "jvm": {
+      "unrouted": 0,
+      "raw_violations": 0,
+      "routed_net_names": [
+        "A_NET",
+        "B_NET"
+      ],
+      "segments": 5,
+      "vias": 0,
+      "min_routed_trace_copper_to_milled_slot_mm": 0.6806852588579294
+    }
+  }
+}
