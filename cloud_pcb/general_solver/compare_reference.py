@@ -63,6 +63,80 @@ def _pad_world_xy(fp: Any, pad: Any, ox: float, oy: float) -> tuple[float, float
     return (fx + dx, fy + dy)
 
 
+def _footprint_reference(fp: Any) -> str:
+    if isinstance(fp.properties, dict) and fp.properties.get("Reference"):
+        return str(fp.properties["Reference"])
+    for item in fp.graphicItems:
+        if getattr(item, "type", "") == "reference":
+            return str(getattr(item, "text", ""))
+    return ""
+
+
+def _mcad_projection(board, spec, poses, footprints_by_ref):
+    """Use measured PCB poses and blind package envelopes in one local frame.
+
+    The solver writer emits its blind package geometry unchanged on F.Cu and
+    reflects its footprint-local X coordinates on B.Cu. Legacy intake may
+    already have retained mirrored local geometry from an external B.Cu
+    footprint. Without that writer contract, only mirror-invariant boxes can
+    be assigned a bottom-side envelope from a legacy specification.
+    """
+    from cloud_pcb.general_solver.semantics import component_envelope
+
+    side_for_layer = {"F.Cu": "top", "B.Cu": "bottom"}
+    projected_components = []
+    projected_poses = {}
+    unverified = {}
+    expected = Counter(part["refdes"] for part in spec["components"])
+    for part in spec["components"]:
+        ref = part["refdes"]
+        actual = footprints_by_ref.get(ref, [])
+        if expected[ref] != 1 or len(actual) != 1:
+            unverified[ref] = "missing or non-unique component reference"
+            continue
+        fp = actual[0]
+        side = side_for_layer.get(fp.layer)
+        if not side or ref not in poses or not all(math.isfinite(value) for value in poses[ref]):
+            unverified[ref] = "invalid footprint side or pose"
+            continue
+
+        component = {**part, "side": side}
+        try:
+            envelope = component_envelope(component)
+            x0, y0, x1, y1 = envelope["bbox_mm"]
+            height = envelope["height_mm"]
+            standoff = float(component.get("standoff_mm", 0))
+            if not all(math.isfinite(value) for value in (x0, y0, x1, y1, height, standoff)):
+                raise ValueError("nonfinite body geometry")
+            if x1 <= x0 or y1 <= y0 or height <= 0 or standoff < 0:
+                raise ValueError("invalid body geometry")
+        except (KeyError, TypeError, ValueError, IndexError, OverflowError):
+            unverified[ref] = "invalid blind body envelope"
+            continue
+
+        solver_footprint = (
+            board.generator == "cloud_pcb_general_solver"
+            and fp.libraryNickname == "cloud_pcb_blind"
+        )
+        if solver_footprint and part.get("footprint_name", ref) != fp.entryName:
+            unverified[ref] = "solver footprint identity differs from blind package"
+            continue
+        if side == "bottom" and not solver_footprint and abs(x0 + x1) > 1e-6:
+            unverified[ref] = "asymmetric bottom envelope lacks proven local handedness"
+            continue
+        projected_components.append(component)
+        projected_poses[ref] = poses[ref]
+
+    # Mounting-hole footprints and board-only drawings carry no package body.
+    for ref, footprints in footprints_by_ref.items():
+        if ref not in expected and any(
+            any(pad.type != "np_thru_hole" for pad in footprint.pads)
+            for footprint in footprints
+        ):
+            unverified[ref] = "board footprint has no matching blind package"
+    return {**spec, "components": projected_components}, projected_poses, unverified
+
+
 def _extract_metrics(
     pcb_path: Path,
     name: str,
@@ -74,15 +148,10 @@ def _extract_metrics(
     net_names = {int(n.number): str(n.name) for n in board.nets}
 
     fp_by_ref: dict[str, Any] = {}
-    for fp in board.footprints:
-        ref = ""
-        if isinstance(fp.properties, dict):
-            ref = str(fp.properties.get("Reference", ""))
-        if not ref:
-            for gi in fp.graphicItems:
-                if getattr(gi, "type", "") == "reference":
-                    ref = str(getattr(gi, "text", ""))
-                    break
+    footprints_by_ref = defaultdict(list)
+    for index, fp in enumerate(board.footprints, start=1):
+        ref = _footprint_reference(fp)
+        footprints_by_ref[ref or f"unnamed footprint #{index}"].append(fp)
         if ref:
             fp_by_ref[ref] = fp
 
@@ -231,8 +300,19 @@ def _extract_metrics(
         if independent_audit:
             # Copper and RF regions are in board coordinates. Mechanical
             # envelopes use the same local frame as the spec mounting holes.
-            audit=audit_general_board(board,spec,placed,regions)
-            extra['independent_4layer']=audit
+            mechanical_spec, mechanical_poses, unverified = _mcad_projection(
+                board, spec, placed, footprints_by_ref,
+            )
+            audit = audit_general_board(board, mechanical_spec, mechanical_poses, regions)
+            if unverified:
+                mechanical = audit["mechanical"]
+                mechanical["unverified_envelopes"] = sorted(
+                    set(mechanical["unverified_envelopes"]) | unverified.keys()
+                )
+                mechanical["unverified_board_projection"] = unverified
+                mechanical["all_envelopes_verified"] = False
+                mechanical["passed"] = False
+            extra["independent_4layer"] = audit
 
     # Footprint side breakdown (F.Cu vs B.Cu)
     fp_sides = Counter(str(fp.layer or "F.Cu") for fp in board.footprints)

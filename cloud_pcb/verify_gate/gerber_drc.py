@@ -824,7 +824,9 @@ def audit_general_board(board: Board, spec: dict[str, Any], placed: dict[str, An
                 thermal=(len(ps)>=6 and centers and MultiPoint([(q.x,q.y) for q in centers]).convex_hull.contains(local) and min(p.size.X,p.size.Y)>=0.8 and p.net and p.net.number==t.net)
                 if not thermal and vg.intersection(_pad_world_polygon_kicad(fp,p)).area>1e-6:
                     vip.append(dict(refdes=fp.properties.get('Reference',''),pad=p.number,x=t.position.X,y=t.position.Y))
-    return dict(lvs_opens=opens,lvs_shorts=shorts,rf_keepout=rf,via_in_pad_violations=vip,mechanical=mechanical_check(spec,placed),passed=not opens and not shorts and not vip and all(x['passed'] for x in rf))
+    return dict(lvs_opens=opens,lvs_shorts=shorts,rf_keepout=rf,via_in_pad_violations=vip,
+                mechanical=mechanical_check(spec, placed, board_thickness_mm=float(board.general.thickness)),
+                passed=not opens and not shorts and not vip and all(x['passed'] for x in rf))
 
 
 def audit_board1_spec(spec_dir: Path) -> GateReport:
