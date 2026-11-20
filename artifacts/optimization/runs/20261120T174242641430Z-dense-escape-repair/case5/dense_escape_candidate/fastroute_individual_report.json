@@ -1,0 +1,16 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case5/dense_escape_candidate/board.dsn",
+  "time_s": {"load": 0.5369, "route": 110.5838, "total": 111.2872, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 5, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 110, "vias_blind": 0, "vias_buried": 0, "traces": 377, "trace_length_mm": 967.4418, "bends_90": 2, "bends_45": 395, "bends_other": 0, "router_score": 950.9804, "optimizer_score": 333.321},
+  "unrouted": [
+    {"net": "/M0_P", "length_mm": 10.5022, "from": {"kind": "pin", "component": "U3", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.767, 6.75], "to": {"kind": "pin", "component": "LAN1", "pin": "1", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [12.692, 3.785]},
+    {"net": "/M2_P", "length_mm": 10.418, "from": {"kind": "pin", "component": "U3", "pin": "7", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.766, 8.75], "to": {"kind": "pin", "component": "LAN1", "pin": "7", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [12.692, 11.405]},
+    {"net": "/M3_N", "length_mm": 8.9682, "from": {"kind": "pin", "component": "U3", "pin": "11", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.766, 10.35], "to": {"kind": "pin", "component": "LAN1", "pin": "10", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [15.232, 15.215]},
+    {"net": "/U3TX_P", "length_mm": 15.5944, "from": {"kind": "pin", "component": "U3", "pin": "18", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [25.55, 11.534], "to": {"kind": "pin", "component": "C1", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [41.141, 11.859]},
+    {"net": "/V12", "length_mm": 1.6, "from": {"kind": "pin", "component": "U3", "pin": "46", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [24.35, 5.566], "to": {"kind": "pin", "component": "U3", "pin": "42", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [25.95, 5.566]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

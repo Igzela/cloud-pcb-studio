@@ -1,0 +1,39 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.001 INFO  parsed 'board.dsn' in 0.9 ms: 4 layers, 50 components, 36 nets, 0 wires
+    0.008 INFO  net class 'DIFF_PAIR_000': no neck-down
+    0.016 INFO  built board in 15.2 ms: 329 items (164 pins, 0 vias, 0 traces)
+    0.016 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.017 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    2.545 INFO  diff pair CAN_H/CAN_L (pre-routed): coupled 0.00 -> 25.05 mm of 48.26 mm, skew +8.02 mm
+    2.545 INFO  diff pairs pre-routed in 2.53 s (11 items fixed during routing)
+    2.545 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    2.773 INFO  Fanout pass #1 completed in 0.23 seconds with 46 SMD pins fanouted, 31 not routed, 0 insert errors, +14 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+    2.909 INFO  Fanout pass #2 completed in 0.14 seconds with 5 SMD pins fanouted, 36 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=200).
+    2.977 INFO  Fanout pass #3 completed in 0.07 seconds with 0 SMD pins fanouted, 32 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+    2.977 INFO  Fanout stage completed: 3 passes, completed in 0.43 seconds.
+    2.988 INFO  checkpoint: best board so far (39 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case1/board_fastroute.ses'
+    2.988 INFO  Auto-routing stage started with baseline score 365.85 for 39 unrouted items.
+    3.872 INFO  Auto-routing pass #1 was completed in 0.88 seconds with score 902.44 (6 unrouted and 0 violations) (routed 40, failed 1, ripped 7).
+    3.873 INFO  checkpoint: best board so far (6 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case1/board_fastroute.ses'
+    3.978 INFO  Auto-routing pass #2 was completed in 0.10 seconds with score 951.22 (3 unrouted and 0 violations) (routed 6, failed 0, ripped 3).
+    3.979 INFO  checkpoint: best board so far (3 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case1/board_fastroute.ses'
+    4.103 INFO  Auto-routing pass #3 was completed in 0.12 seconds with score 1000.00 (0 unrouted and 0 violations) (routed 3, failed 0, ripped 1).
+    4.104 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case1/board_fastroute.ses'
+    4.104 INFO  Auto-routing pass #4 was completed in 0.00 seconds with score 1000.00 (0 unrouted and 0 violations) (routed 0, failed 0, ripped 0).
+    4.116 INFO  Auto-routing stage completed: started with 74 unrouted nets, completed in 1.13 seconds, final score: 1000.00 (0 unrouted and 0 violations).
+    4.136 INFO  Optimization stage started. Baseline router score: 1000.00, optimizer score: 646.78, incomplete connections: 0, clearance violations: 0.
+    4.136 INFO  Optimizer time budget: 60 s (as long as routing took; set router.optimizer.timeout to change).
+    5.834 INFO  Stopping optimization pass #1 early after 12 consecutive items could not be improved.
+    6.525 INFO  Optimizer pass #1: applied 4 more improving candidate(s).
+    6.535 INFO  Optimizer pass #1 was completed in 2.40 seconds (74 of 113 candidates) with the score of 661.98 (0 unrouted and 0 violations).
+    6.537 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case1/board_fastroute.ses'
+    6.537 INFO  Optimizer pass #1: optimizer score 646.78 -> 661.98 (IMPROVED, 2.3501%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+    6.537 INFO  Stopping optimizer because the improvement in this pass (2.3501%) is below the threshold (2.50%).
+    6.537 INFO  Optimization stage completed: Baseline router score: 1000.00, baseline optimizer score: 646.78, final router score: 1000.00, final optimizer score: 661.98, completed in 2.40 seconds.
+    6.539 INFO  routing finished in 3.99 s
+    7.536 INFO  diff pair CAN_H/CAN_L (after routing): coupled 25.05 -> 25.05 mm of 48.26 mm, skew +8.02 mm (no improvement)
+    7.576 INFO  diff pair CAN_H / CAN_L: length difference +8.020 -> +0.100 mm (tolerance 0.20): 8.0 mm of meanders compensate a detour of CAN_L; a shorter route for it would be better
+    7.576 INFO  diff pairs finished in 1.04 s
+    7.586 INFO  saved '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case1/board_fastroute.ses' (42607 bytes)
+    7.607 INFO  report written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case1/fastroute_report.json'
