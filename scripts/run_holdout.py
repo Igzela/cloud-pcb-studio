@@ -15,13 +15,21 @@ from pathlib import Path
 
 from cloud_pcb.general_solver.optimization import GERBER_LAYERS, atomic_json, digest, report_metrics
 from scripts.intake_holdout import CASE_ID, GIT_SHA, SHA256, prepare_spec, sha256
+from scripts.kicad_reference_compat import normalize_named_reference
 from scripts.optimize_pcb import inspect_browser, now, sourced_process
 from scripts.run_blind_v3 import code_fingerprint
 
 
 ROOT = Path(__file__).resolve().parents[1]
 COHORT_NAME = re.compile(r"[a-z][a-z0-9-]{0,47}")
-VARIANTS = ("stable", "freerouting-jvm", "direct-repair", "placement-recovery")
+PLACEMENT_VARIANTS = ("placement-recovery", "two-sided-recovery")
+DIRECT_REPAIR_VARIANTS = ("direct-repair", *PLACEMENT_VARIANTS)
+JVM_VARIANTS = ("freerouting-jvm", *DIRECT_REPAIR_VARIANTS)
+VARIANTS = ("stable", *JVM_VARIANTS)
+RETRY_VARIANTS = {
+    "placement_exhaustion": PLACEMENT_VARIANTS,
+    "jvm_dsn_pin_grammar": ("placement-recovery",),
+}
 BOARD_FILES = {"routed.kicad_pcb", "blind_run_report.json", "metrics.json",
                "assembly.html", "assembly_oblique.png", "assembly_top.png",
                "assembly_side.png", "assembly_browser_report.json", "solver.log", "browser.log",
@@ -176,7 +184,7 @@ def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_time
     if earlier:
         committed, previous = earlier[-1]
         if (
-            retry_of != digest(committed) or variant != "placement-recovery"
+            retry_of != digest(committed) or variant not in RETRY_VARIANTS.get(retry_reason, ())
             or any(attempt["status"] == "frozen" for _, attempt in earlier)
             or previous["status"] != "incomplete" or previous["code"] == code
             or previous["registered_cases"] != cohort["cases"]
@@ -199,7 +207,7 @@ def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_time
     if directory.parent != runs_root or directory.name != expected_name:
         raise ValueError(f"Expected fresh run directory artifacts/holdouts/{expected_name}")
     runtime = None
-    if variant in ("freerouting-jvm", "direct-repair", "placement-recovery"):
+    if variant in JVM_VARIANTS:
         from cloud_pcb.layout_route.freerouting_runtime import resolve_freerouting_jvm
         runtime = resolve_freerouting_jvm(ROOT).provenance
     directory.mkdir(parents=True, exist_ok=False)
@@ -245,10 +253,10 @@ def _run_frozen(registry_path: Path, directory: Path, *, variant: str, case_time
                            "--spec", copied, "--outdir", outdir]
                 if runtime:
                     command.append("--freerouting-jvm")
-                if variant in ("direct-repair", "placement-recovery"):
+                if variant in DIRECT_REPAIR_VARIANTS:
                     command.append("--direct-repair")
-                if variant == "placement-recovery":
-                    command.append("--placement-recovery")
+                if variant in PLACEMENT_VARIANTS:
+                    command.append(f"--{variant}")
                 rc = sourced_process(command, outdir / "solver.log", case_timeout)
                 if rc != 0:
                     raise ValueError(f"Solver exited with status {rc}")
@@ -341,7 +349,10 @@ def compare_frozen(registry_path: Path, directory: Path, vault: Path, output: Pa
         for key in ("build_evidence", "source_board_sha256", "conversion"):
             if key in source:
                 public_source[key] = source[key]
-        references.append((case, raw, public_source))
+        analysis_bytes, converted = normalize_named_reference(raw)
+        if analysis_bytes != raw and prepare_spec(analysis_bytes, int(case[4:])) != spec:
+            raise ValueError(f"Reference conversion changed the frozen input for {case}")
+        references.append((case, analysis_bytes, public_source, converted))
     from cloud_pcb.general_solver.compare_reference import compare_boards
     result = {"cohort": manifest["cohort"], "status": "compared", "compared_at": now(),
               "freeze_sha256": digest(directory / "freeze.json"), "cases": []}
@@ -349,17 +360,20 @@ def compare_frozen(registry_path: Path, directory: Path, vault: Path, output: Pa
     with tempfile.TemporaryDirectory(dir=output.parent) as staging:
         exports = Path(staging) / output.name
         exports.mkdir()
-        for case, raw, source in references:
+        for case, analysis_bytes, source, converted in references:
             # The board itself remains in the vault; the temp file is removed.
             with tempfile.NamedTemporaryFile(suffix=".kicad_pcb") as board:
-                board.write(raw)
+                board.write(analysis_bytes)
                 board.flush()
                 comparison = compare_boards(
                     directory / case / "routed.kicad_pcb", Path(board.name),
                     exports / f"{case}.json", exports / f"{case}.png",
                     spec_path=directory / "inputs" / f"{case}.json",
                 )
-            result["cases"].append({"id": case, "source": source, "deltas": comparison["deltas"]})
+            result["cases"].append({
+                "id": case, "source": source, "deltas": comparison["deltas"],
+                "analysis_input": {"sha256": sha256(analysis_bytes), "converted_net_bindings": converted},
+            })
         atomic_json(exports / "comparison.json", result)
         exports.rename(output)
     return result
@@ -375,7 +389,7 @@ def main():
         command.add_argument("--directory", type=Path, required=True)
     run.add_argument("--variant", choices=VARIANTS, default="direct-repair")
     run.add_argument("--retry-of", help="Freeze SHA-256 of the verified incomplete attempt")
-    run.add_argument("--retry-reason", choices=("placement_exhaustion", "jvm_dsn_pin_grammar"),
+    run.add_argument("--retry-reason", choices=tuple(RETRY_VARIANTS),
                      default="placement_exhaustion")
     run.add_argument("--case-timeout", type=int, default=1200)
     compare.add_argument("--freeze-sha256", required=True)

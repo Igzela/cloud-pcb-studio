@@ -212,6 +212,8 @@ def _classify_components_and_place(
     value_normalize: bool = False,
     packing_order: str | None = None,
     packing_compact: bool = False,
+    packing_two_sided: bool = False,
+    protect_sides: bool = False,
 ) -> tuple[dict[str, tuple[float, float, float]], dict[str, Any]]:
     """General topology-aware placement + perimeter rail alignment + IC-specific cap matching."""
     outline = spec["board_outline_mm"]
@@ -228,12 +230,21 @@ def _classify_components_and_place(
     placed: dict[str, tuple[float, float, float]] = {}
     occupied_by_ref: dict[str, Any] = {}
     fixed_obstacles: list[Any] = []
+    mechanical_regions = ()
+    if protect_sides:
+        from cloud_pcb.general_solver.two_side_packing import (
+            PlacementGeometryUnsupported, component_z_range, hits_mechanical_keepout,
+            mechanical_keepouts, mounting_guard_radius, noninterfering,
+        )
+        mechanical_regions = mechanical_keepouts(spec)
+        if any(part.get("side", "top") not in ("top", "bottom") for part in spec["components"]):
+            raise PlacementGeometryUnsupported("Unknown explicit component side")
 
     # Reserve mounting hole keepout circles
     for mh in spec.get("mounting_holes", []):
         mx = float(mh["x_mm"]) - ox
         my = float(mh["y_mm"]) - oy
-        r = float(mh["drill_mm"]) / 2.0 + 1.0
+        r = mounting_guard_radius(mh) if protect_sides else float(mh["drill_mm"]) / 2.0 + 1.0
         fixed_obstacles.append(ShpPoint(mx, my).buffer(r, resolution=24))
 
     comp_by_ref: dict[str, dict[str, Any]] = {c["refdes"]: c for c in spec["components"]}
@@ -250,6 +261,22 @@ def _classify_components_and_place(
         bx0, by0, bx1, by1 = _rotated_bbox(local_bboxes[ref], ang)
         return shp_box(x + bx0 - pad_margin, y + by0 - pad_margin, x + bx1 + pad_margin, y + by1 + pad_margin)
 
+    side_geometry_local = {}
+    side_geometry_placed = {}
+
+    def typed_pose(ref, pose, side, *, cached=False):
+        from cloud_pcb.general_solver.two_side_packing import local_occupancy
+        x, y, angle = pose
+        key = (ref, side, angle)
+        if key not in side_geometry_local:
+            side_geometry_local[key] = local_occupancy(comp_by_ref[ref], side).rotate(angle)
+        if not cached:
+            return side_geometry_local[key].translate(x, y)
+        if (entry := side_geometry_placed.get(ref)) is None or entry[:2] != (pose, side):
+            entry = (pose, side, side_geometry_local[key].translate(x, y))
+            side_geometry_placed[ref] = entry
+        return entry[2]
+
     def _is_valid_slot(ref: str, x: float, y: float, ang: float, margin: float = 0.65, ignore_ref: str | None = None) -> bool:
         g = _courtyard_geom(ref, x, y, ang, margin)
         if not safe_inner_poly.contains(g):
@@ -257,10 +284,30 @@ def _classify_components_and_place(
         for obs in fixed_obstacles:
             if g.intersects(obs):
                 return False
+        side = comp_by_ref[ref].get("side", "top")
+        # In the opt-in path explicit assembly restrictions also count before
+        # reaching the final two-sided packing attempt.
+        if mechanical_regions:
+            try:
+                shape = typed_pose(ref, (x, y, ang), side)
+                if hits_mechanical_keepout(shape.body, component_z_range(comp_by_ref[ref], side), mechanical_regions):
+                    return False
+            except PlacementGeometryUnsupported as exc:
+                raise PlacementExhausted(str(exc)) from exc
         for oref, occ in occupied_by_ref.items():
             if oref == ignore_ref:
                 continue
             if comp_by_ref[oref].get('side','top')!=comp_by_ref[ref].get('side','top'):
+                if protect_sides:
+                    old_side = comp_by_ref[oref].get('side', 'top')
+                    try:
+                        new_shape = typed_pose(ref, (x, y, ang), side)
+                        old_shape = typed_pose(oref, placed[oref], old_side, cached=True)
+                    except PlacementGeometryUnsupported as exc:
+                        raise PlacementExhausted(str(exc)) from exc
+                    if not noninterfering(side, new_shape, old_side, old_shape):
+                        return False
+                    continue
                 # Bodies may overlap across sides, but plated pins occupy both sides.
                 thru=[p for p in comp_by_ref[oref]['pads'] if p.get('type') in ('thru_hole','np_thru_hole')]
                 for p in thru:
@@ -443,7 +490,7 @@ def _classify_components_and_place(
                 ref, tx, ty, prefer_angles, margin=max(0.28, margin - 0.25), step=0.5, max_radius=45.0,
                 ignore_self=ignore_self, custom_cost=custom_cost
             )
-        if comp_by_ref[ref].get('side','top')=='top' and len(comp_by_ref[ref]['pads'])<=2 and all(p.get('type')=='smd' for p in comp_by_ref[ref]['pads']):
+        if not protect_sides and comp_by_ref[ref].get('side','top')=='top' and len(comp_by_ref[ref]['pads'])<=2 and all(p.get('type')=='smd' for p in comp_by_ref[ref]['pads']):
             comp_by_ref[ref]['side']='bottom'
             local_bboxes[ref]=_comp_local_bbox(comp_by_ref[ref])
             return _find_nearest_legal(ref,tx,ty,prefer_angles,margin=0.55,step=0.5,max_radius=45.0,ignore_self=ignore_self,custom_cost=custom_cost)
@@ -509,16 +556,43 @@ def _classify_components_and_place(
                     return min(sides, key=lambda point: math.hypot(point[0] - x, point[1] - y))
             return x, y
 
-        try:
-            pack_movable(
-                [ref for ref in comp_by_ref if ref not in placed], local_bboxes,
-                recovery_target,
-                lambda ref, x, y, angle: _is_valid_slot(ref, x, y, angle, margin),
-                commit, (W, H), mode=packing_order, clearance=margin, support_bounds=support_bounds,
-                edge_inset=body_edge_buffer,
+        if packing_two_sided:
+            from cloud_pcb.general_solver.two_side_packing import PlacementGeometryUnsupported, pack_two_sided
+            protected_nets = frozenset(
+                pair[key] for pair in spec.get("design_requirements", {}).get("differential_pairs", [])
+                for key in ("pos_net", "neg_net")
             )
-        except PackingExhausted as exc:
-            raise PlacementExhausted(str(exc)) from exc
+
+            def commit_side(ref, pose, side):
+                if side == "bottom" and "side" not in comp_by_ref[ref]:
+                    comp_by_ref[ref]["side"] = side
+                placed[ref] = pose
+
+            try:
+                auto_bottom = pack_two_sided(
+                    comp_by_ref, placed, board_poly, fixed_obstacles, recovery_target, commit_side,
+                    board_size=(W, H), mode=packing_order, protected_nets=protected_nets,
+                    mechanical_regions=mechanical_regions,
+                )
+            except (PackingExhausted, PlacementGeometryUnsupported) as exc:
+                raise PlacementExhausted(str(exc)) from exc
+        else:
+            auto_bottom = None
+            try:
+                pack_movable(
+                    [ref for ref in comp_by_ref if ref not in placed], local_bboxes,
+                    recovery_target,
+                    lambda ref, x, y, angle: _is_valid_slot(ref, x, y, angle, margin),
+                    commit, (W, H), mode=packing_order, clearance=margin, support_bounds=support_bounds,
+                    edge_inset=body_edge_buffer,
+                )
+            except PackingExhausted as exc:
+                raise PlacementExhausted(str(exc)) from exc
+        recovery_meta = {"order": packing_order, "courtyard_margin_mm": margin,
+                         "body_edge_buffer_mm": 0 if packing_two_sided else body_edge_buffer,
+                         "compact": packing_compact}
+        if auto_bottom is not None:
+            recovery_meta.update(two_sided=True, auto_bottom=auto_bottom, copper_edge_mm=.50)
         return placed, {
             "board_width_mm": W, "board_height_mm": H, "corner_radius_mm": cr,
             "groups": {
@@ -528,8 +602,7 @@ def _classify_components_and_place(
             },
             "total_placed": len(placed), "hierarchy": hierarchy,
             "component_sides": {ref: part.get("side", "top") for ref, part in comp_by_ref.items()},
-            "placement_recovery": {"order": packing_order, "courtyard_margin_mm": margin,
-                                   "body_edge_buffer_mm": body_edge_buffer, "compact": packing_compact},
+            "placement_recovery": recovery_meta,
         }
 
     # 3. Place central MCU & Regulators & Secondary ICs
@@ -1939,7 +2012,7 @@ def _audit_blind_output(
     }
 
 
-def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False, freerouting_jvm: bool = False, direct_repair: bool = False, placement_recovery: bool = False) -> dict[str, Any]:
+def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False, freerouting_jvm: bool = False, direct_repair: bool = False, placement_recovery: bool = False, two_sided_recovery: bool = False) -> dict[str, Any]:
     """Execute end-to-end blind PCB build on any blind_spec.json."""
     from cloud_pcb.general_solver.electrical import derive_electrical_requirements
     secondary_runtime = None
@@ -1951,29 +2024,40 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
     outdir.mkdir(parents=True, exist_ok=True)
     gerber_dir = outdir / "gerbers"
     save_json(outdir / 'effective_spec.json', spec)
-    for stale in ('board_fastroute.ses','fastroute_report.json','board_freerouting.ses','blind_run_report.json'):
+    for stale in ('board_fastroute.ses','fastroute_report.json','board_freerouting.ses','blind_run_report.json',
+                  'placement_side_decisions.json'):
         (outdir/stale).unlink(missing_ok=True)
 
     t_start = time.perf_counter()
+    if two_sided_recovery and external_placement is not None:
+        raise ValueError("Two-sided recovery is only supported with internal placement")
+    input_sides = {part["refdes"]: part.get("side") for part in spec["components"]} if two_sided_recovery else None
     if external_placement is None:
-        if placement_recovery:
+        if placement_recovery or two_sided_recovery:
             from copy import deepcopy
 
             pristine_spec = deepcopy(spec)
             try:
-                placed, place_meta = _classify_components_and_place(spec, value_normalize=value_normalize)
+                placed, place_meta = _classify_components_and_place(
+                    spec, value_normalize=value_normalize, protect_sides=two_sided_recovery,
+                )
             except PlacementExhausted as original:
                 failures = []
-                for order, compact in (("area", False), ("long-side", False),
-                                       ("area", True), ("long-side", True)):
+                attempts = [("area", False, False), ("long-side", False, False),
+                            ("area", True, False), ("long-side", True, False)]
+                if two_sided_recovery:
+                    attempts.extend((("area", True, True), ("long-side", True, True)))
+                for order, compact, both_sides in attempts:
                     recovery_spec = deepcopy(pristine_spec)
                     try:
                         placed, place_meta = _classify_components_and_place(
                             recovery_spec, value_normalize=value_normalize, packing_order=order,
-                            packing_compact=compact,
+                            packing_compact=compact, packing_two_sided=both_sides,
+                            protect_sides=two_sided_recovery,
                         )
                     except PlacementExhausted as exhausted:
-                        failures.append(f"{order}, compact={compact}: {exhausted}")
+                        label = f"{order}, compact={compact}, two_sided={both_sides}" if two_sided_recovery else f"{order}, compact={compact}"
+                        failures.append(f"{label}: {exhausted}")
                     else:
                         spec = recovery_spec
                         place_meta["placement_recovery"]["original_failure"] = str(original)
@@ -1988,6 +2072,19 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
     else:
         from cloud_pcb.general_solver.placement_input import apply_external_placement
         placed, place_meta = apply_external_placement(spec, external_placement)
+    if input_sides is not None:
+        fixed = set(place_meta.get("groups", {}).get("edge_connectors", []))
+        side_decisions = {
+            part["refdes"]: {
+                "source_side": input_sides[part["refdes"]],
+                "placed_side": part.get("side", "top"),
+                "automatic_bottom": input_sides[part["refdes"]] is None and part.get("side") == "bottom",
+                "fixed": part["refdes"] in fixed,
+            }
+            for part in spec["components"]
+        }
+        place_meta["side_decisions"] = side_decisions
+        save_json(outdir / "placement_side_decisions.json", side_decisions)
     board, netclasses, net_to_class, keepouts, board_poly = _build_blind_kicad_board(spec, placed)
     W = float(spec["board_outline_mm"]["width"])
     H = float(spec["board_outline_mm"]["height"])
@@ -2398,8 +2495,9 @@ if __name__ == "__main__":
     parser.add_argument("--freerouting-jvm", action="store_true", help="Compare the pinned Freerouting JVM release with independent copper validation")
     parser.add_argument("--direct-repair", action="store_true", help="Experimentally complete verified direct links between same-footprint through-hole pins")
     parser.add_argument("--placement-recovery", action="store_true", help="Retry exhausted placement with deterministic constrained packing")
+    parser.add_argument("--two-sided-recovery", action="store_true", help="After ordinary placement fails, attempt typed two-sided occupancy recovery")
     args = parser.parse_args()
-    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize, freerouting_jvm=args.freerouting_jvm, direct_repair=args.direct_repair, placement_recovery=args.placement_recovery)
+    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize, freerouting_jvm=args.freerouting_jvm, direct_repair=args.direct_repair, placement_recovery=args.placement_recovery, two_sided_recovery=args.two_sided_recovery)
     print(json.dumps({
         "project": res["project_name"],
         "total_placed": res["placement_meta"]["total_placed"],

@@ -148,3 +148,9 @@ python -m scripts.optimize_pcb run \
 ```
 
 每板目录新增 `fastroute_primary.log`、适用时的 `fastroute_individual.log`、`freerouting.log`，以及 `router_processes.json`。日志保留原 stdout/stderr；超时也保留已输出内容，退出码记为 null，并明确标注超时。路由器本身的线程异常、进程超时与板级 DRC/LVS 失败应分别判断。不能把崩溃引擎的未完成输出当作一次有效路由结果；同时也不能以次要比较引擎崩溃否认主引擎已有的板级审计证据。
+
+## 双面布局恢复候选
+
+`two-sided-recovery` 在常规摆放和既有四种整板恢复均耗尽后，才尝试分别检查两个板面的外壳、焊盘和钻槽。允许自动换面的器件必须是未指定侧面、没有钻孔、只有两个独立顶层 SMD 焊盘的器件，并排除 RF 及已声明差分网端点。显式侧面与固定接口保持原约束。铜与板边维持 0.50 mm，外壳边界、通孔双面冲突与机械禁布区分别检查。实际侧面写入 `placement_side_decisions.json`，源规范保持原样。
+
+候选用统一变体运行全量七板回归。密封批次只有在此前产物确实因布局耗尽而不完整时才可用该变体整批重测，并须出示上一轮冻结哈希。重测继续单独记录，板和参考身份仍按整批冻结流程处理。[盲测流程](holdout-cohorts.zh-CN.md)

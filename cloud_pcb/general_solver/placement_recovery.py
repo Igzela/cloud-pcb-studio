@@ -108,6 +108,7 @@ def pack_movable(
     clearance: float = 0.28,
     edge_inset: float = 1.0,
     support_bounds: Callable[[str], Iterable[Bounds]] | None = None,
+    angle_support_bounds: Callable[[str, int], Iterable[Bounds]] | None = None,
     probe_budget: int = 40000,
 ) -> None:
     """Pack one deterministic order using the caller's exact legality test.
@@ -142,7 +143,11 @@ def pack_movable(
             raise ValueError("Recovery target must be finite")
         occupied = tuple(support_bounds(ref)) if support_bounds else ()
         ranked = heapq.merge(*(
-            _angle_candidates(bboxes[ref], target, board_size, angle, occupied, clearance, edge_inset)
+            _angle_candidates(
+                bboxes[ref], target, board_size, angle,
+                occupied + tuple(angle_support_bounds(ref, angle)) if angle_support_bounds else occupied,
+                clearance, edge_inset,
+            )
             for angle in ANGLES
         ))
         probes = 0

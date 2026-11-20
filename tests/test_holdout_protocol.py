@@ -266,15 +266,65 @@ def test_verify_frozen_rejects_drift_in_actual_recorded_run(frozen_synthetic_run
         runner.verify_frozen(registry, directory)
 
 
-def test_completed_cohort_cannot_be_retried_even_with_new_source(frozen_synthetic_run):
+@pytest.mark.parametrize('variant', ['placement-recovery', 'two-sided-recovery'])
+def test_completed_cohort_cannot_be_retried_even_with_new_source(frozen_synthetic_run, variant):
     runner, registry, directory, source = frozen_synthetic_run
     parent_digest = sha256((directory / 'freeze.json').read_bytes())
     source.write_text('different solver source')
     retry = directory.with_name('synthetic-retry-01')
     with pytest.raises(ValueError, match='incomplete'):
-        runner.run_frozen(registry, retry, variant='placement-recovery', case_timeout=1,
+        runner.run_frozen(registry, retry, variant=variant, case_timeout=1,
                           retry_of=parent_digest)
     assert not retry.exists()
+
+
+def test_two_sided_retry_requires_recorded_placement_failure(frozen_synthetic_run, monkeypatch):
+    from types import SimpleNamespace
+
+    from cloud_pcb.layout_route import freerouting_runtime
+
+    runner, registry, directory, source = frozen_synthetic_run
+    freeze = directory / 'freeze.json'
+    manifest = json.loads(freeze.read_bytes())
+    manifest['status'] = 'incomplete'
+    manifest['cases'][0]['status'] = 'failed'
+    source.write_text('changed recovery implementation')
+    retry = directory.with_name('synthetic-retry-01')
+    write_json(freeze, manifest)
+    with pytest.raises(ValueError, match='Retry must match'):
+        runner.run_frozen(registry, retry, variant='two-sided-recovery',
+                          case_timeout=1, retry_of=sha256(freeze.read_bytes()))
+    assert not retry.exists()
+
+    (directory / 'case6/solver.log').write_text('PlacementExhausted: No legal pose\n')
+    manifest['evidence'] = runner._evidence(directory)
+    write_json(freeze, manifest)
+    provenance = {'sha256': 'pinned synthetic engine'}
+    monkeypatch.setattr(freerouting_runtime, 'resolve_freerouting_jvm',
+                        lambda _: SimpleNamespace(provenance=provenance))
+    original_process = runner.sourced_process
+    invocations = []
+
+    def fake_process(command, log, timeout):
+        rc = original_process(command, log, timeout)
+        if command[2] != 'pytest':
+            invocations.append(list(command))
+            write_json(log.parent / 'blind_run_report.json', {
+                'freerouting_comparison': {'runtime': provenance, 'status': 'completed'},
+            })
+        return rc
+
+    monkeypatch.setattr(runner, 'sourced_process', fake_process)
+    expected_parent = sha256(freeze.read_bytes())
+    result = runner.run_frozen(registry, retry, variant='two-sided-recovery',
+                               case_timeout=1, retry_of=expected_parent)
+    assert result['status'] == 'frozen'
+    assert result['retry'] == {
+        'parent_freeze_sha256': expected_parent, 'reason': 'placement_exhaustion', 'first_pass': False,
+    }
+    assert len(invocations) == 2
+    assert all(command[-3:] == ['--freerouting-jvm', '--direct-repair', '--two-sided-recovery']
+               for command in invocations)
 
 
 def test_compare_verifies_entire_cohort_before_using_any_reference(frozen_synthetic_run, monkeypatch):

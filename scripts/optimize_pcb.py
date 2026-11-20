@@ -168,7 +168,7 @@ def run_round(args):
     snapshot=source_snapshot(args.suite)
     experiment = dict(code=snapshot, variant=args.variant, inputs={c['id']:c['spec_sha256'] for c in suite['cases'] if c['id'] in selected}, case_timeout_s=args.case_timeout)
     jvm_runtime = None
-    if args.variant in ('freerouting-jvm', 'direct-repair', 'placement-recovery'):
+    if args.variant in ('freerouting-jvm', 'direct-repair', 'placement-recovery', 'two-sided-recovery'):
         from cloud_pcb.layout_route.freerouting_runtime import resolve_freerouting_jvm
         jvm_runtime = resolve_freerouting_jvm(ROOT).provenance
         experiment['freerouting_runtime'] = jvm_runtime
@@ -209,10 +209,12 @@ def run_round(args):
                 if args.variant=='value-normalize':command.append('--value-normalize')
                 if jvm_runtime is not None:
                     command.append('--freerouting-jvm')
-                if args.variant in ('direct-repair', 'placement-recovery'):
+                if args.variant in ('direct-repair', 'placement-recovery', 'two-sided-recovery'):
                     command.append('--direct-repair')
                 if args.variant == 'placement-recovery':
                     command.append('--placement-recovery')
+                if args.variant == 'two-sided-recovery':
+                    command.append('--two-sided-recovery')
                 rc=sourced_process(command,out/'solver.log',args.case_timeout)
                 if rc!=0:raise RuntimeError('solver process exit '+str(rc))
                 report=json.loads((out/'blind_run_report.json').read_text());spec=json.loads(copied.read_text());browser=inspect_browser(out)
@@ -271,7 +273,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--suite',type=Path,default=DEFAULT_SUITE)
     sub=parser.add_subparsers(dest='command',required=True)
     sub.add_parser('status');sub.add_parser('history')
-    run=sub.add_parser('run');run.add_argument('--label',required=True);run.add_argument('--hypothesis',required=True);run.add_argument('--cases',default='all');run.add_argument('--case-timeout',type=int,default=900);run.add_argument('--variant',choices=('stable','supply-semantics','scoped-supply','octagonal-fanout','value-normalize','freerouting-jvm','direct-repair','placement-recovery'),default='stable')
+    run=sub.add_parser('run');run.add_argument('--label',required=True);run.add_argument('--hypothesis',required=True);run.add_argument('--cases',default='all');run.add_argument('--case-timeout',type=int,default=900);run.add_argument('--variant',choices=('stable','supply-semantics','scoped-supply','octagonal-fanout','value-normalize','freerouting-jvm','direct-repair','placement-recovery','two-sided-recovery'),default='stable')
     args=parser.parse_args()
     if os.environ.get('PCB_STUDIO_ROOT')!=str(ROOT):parser.error('run source scripts/env.sh before invoking Python')
     if args.command=='history':
