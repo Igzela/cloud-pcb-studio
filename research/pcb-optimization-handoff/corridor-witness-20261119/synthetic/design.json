@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": ".run/corridor-witness-20261119/synthetic/design.dsn",
+  "time_s": {"load": 0.0192, "route": 0.0002, "total": 0.0304, "diagnose": null},
+  "stats": {"layers": 4, "components": 2, "nets": 2, "pins": 8, "connections": 2, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 0, "vias_blind": 0, "vias_buried": 0, "traces": 2, "trace_length_mm": 40, "bends_90": 0, "bends_45": 0, "bends_other": 0, "router_score": 1000, "optimizer_score": 1000},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

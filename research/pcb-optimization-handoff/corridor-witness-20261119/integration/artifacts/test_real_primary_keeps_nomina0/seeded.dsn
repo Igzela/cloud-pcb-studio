@@ -1,0 +1,93 @@
+(pcb control.dsn
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "KiCad's Pcbnew")
+    (host_version "8.0.0")
+  )
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu
+      (type signal)
+      (property (index 0))
+    )
+    (layer In1.Cu
+      (type power)
+      (property (index 1))
+    )
+    (layer In2.Cu
+      (type signal)
+      (property (index 2))
+    )
+    (layer B.Cu
+      (type signal)
+      (property (index 3))
+    )
+    (boundary
+      (path pcb 0 30000 0 30000 -12000 0 -12000 0 0 30000 0)
+    )
+    (via Via[0-3]_550:300_um)
+    (rule
+      (width 200)
+      (clearance 150)
+      (clearance 150 (type default_smd))
+      (clearance 50 (type smd_smd))
+    )
+  )
+  (placement
+    (component IMG_Part0
+      (place Part0 4000 -6000 front 0)
+    )
+    (component IMG_Part1
+      (place Part1 26000 -6000 front 0)
+    )
+  )
+  (library
+    (image IMG_Part0
+      (pin Rect_T_875x250_um 1 1000 750)
+      (pin Rect_T_875x250_um 2 1000 250)
+      (pin Rect_T_875x250_um 3 1000 -250)
+      (pin Rect_T_875x250_um 4 1000 -750)
+    )
+    (image IMG_Part1
+      (pin Rect_T_875x250_um 1 -1000 750)
+      (pin Rect_T_875x250_um 2 -1000 250)
+      (pin Rect_T_875x250_um 3 -1000 -250)
+      (pin Rect_T_875x250_um 4 -1000 -750)
+    )
+    (padstack Via[0-3]_550:300_um
+      (shape (circle F.Cu 550))
+      (shape (circle In1.Cu 550))
+      (shape (circle In2.Cu 550))
+      (shape (circle B.Cu 550))
+      (attach off)
+    )
+    (padstack Rect_T_875x250_um
+      (shape (rect F.Cu -437 -125 437 125))
+      (attach off)
+    )
+  )
+  (network
+    (net line_N
+      (pins Part0-3 Part1-3)
+    )
+    (net line_P
+      (pins Part0-2 Part1-2)
+    )
+    (class DPAIR line_N line_P
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 290) (clearance 248))
+    )
+  )
+  (wiring
+    (wire (path F.Cu 125 5000 -5750 5748 -5750 5810 -5688) (net line_P) (type fix))
+    (wire (path F.Cu 290 5810 -5688 6390 -5688) (net line_P) (type fix))
+    (wire (path F.Cu 125 5000 -6250 5748 -6250 5810 -6312) (net line_N) (type fix))
+    (wire (path F.Cu 290 5810 -6312 6390 -6312) (net line_N) (type fix))
+    (wire (path F.Cu 125 25000 -5750 24252 -5750 24190 -5688) (net line_P) (type fix))
+    (wire (path F.Cu 290 24190 -5688 23610 -5688) (net line_P) (type fix))
+    (wire (path F.Cu 125 25000 -6250 24252 -6250 24190 -6312) (net line_N) (type fix))
+    (wire (path F.Cu 290 24190 -6312 23610 -6312) (net line_N) (type fix))
+  )
+)

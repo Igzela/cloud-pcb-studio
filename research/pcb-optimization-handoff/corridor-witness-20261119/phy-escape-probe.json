@@ -1,0 +1,210 @@
+{
+  "pre_route//Ethernet/PHY_TD+": {
+    "pin": "21",
+    "position_mm": [
+      19.112,
+      32.15
+    ],
+    "width_probes": {
+      "0.29": {
+        "pin_center_is_clear": false,
+        "min_class_margin_mm": [
+          [
+            -0.018527,
+            "/Ethernet/PHY_RD-"
+          ],
+          [
+            -0.018527,
+            "/Ethernet/PHY_TD-"
+          ],
+          [
+            -0.018,
+            "/Ethernet/PHY_RD-"
+          ]
+        ],
+        "reachable_cells": 0,
+        "via_sites": 0,
+        "nearest_via": null
+      },
+      "0.125": {
+        "pin_center_is_clear": true,
+        "min_class_margin_mm": [
+          [
+            0.063973,
+            "/Ethernet/PHY_RD-"
+          ],
+          [
+            0.063973,
+            "/Ethernet/PHY_TD-"
+          ],
+          [
+            0.0645,
+            "/Ethernet/PHY_RD-"
+          ]
+        ],
+        "reachable_cells": 3478,
+        "via_sites": 2223,
+        "nearest_via": [
+          1.0000000000000002,
+          [
+            18.112,
+            32.15
+          ]
+        ]
+      }
+    }
+  },
+  "pre_route//Ethernet/PHY_TD-": {
+    "pin": "20",
+    "position_mm": [
+      19.112,
+      31.65
+    ],
+    "width_probes": {
+      "0.29": {
+        "pin_center_is_clear": false,
+        "min_class_margin_mm": [
+          [
+            -0.018527,
+            "/Ethernet/PHY_TD+"
+          ],
+          [
+            -0.018527,
+            "Net-(U2-VDD1A)"
+          ],
+          [
+            -0.018,
+            "/Ethernet/PHY_TD+"
+          ]
+        ],
+        "reachable_cells": 0,
+        "via_sites": 0,
+        "nearest_via": null
+      },
+      "0.125": {
+        "pin_center_is_clear": true,
+        "min_class_margin_mm": [
+          [
+            0.063973,
+            "/Ethernet/PHY_TD+"
+          ],
+          [
+            0.063973,
+            "Net-(U2-VDD1A)"
+          ],
+          [
+            0.0645,
+            "/Ethernet/PHY_TD+"
+          ]
+        ],
+        "reachable_cells": 4006,
+        "via_sites": 2710,
+        "nearest_via": [
+          1.0000000000000002,
+          [
+            18.112,
+            31.65
+          ]
+        ]
+      }
+    }
+  },
+  "selected//Ethernet/PHY_TD+": {
+    "pin": "21",
+    "position_mm": [
+      19.112,
+      32.15
+    ],
+    "width_probes": {
+      "0.29": {
+        "pin_center_is_clear": false,
+        "min_class_margin_mm": [
+          [
+            -0.018527,
+            "/Ethernet/PHY_RD-"
+          ],
+          [
+            -0.018527,
+            "/Ethernet/PHY_TD-"
+          ],
+          [
+            -0.018,
+            "/Ethernet/PHY_RD-"
+          ]
+        ],
+        "reachable_cells": 0,
+        "via_sites": 0,
+        "nearest_via": null
+      },
+      "0.125": {
+        "pin_center_is_clear": true,
+        "min_class_margin_mm": [
+          [
+            0.063973,
+            "/Ethernet/PHY_RD-"
+          ],
+          [
+            0.063973,
+            "/Ethernet/PHY_TD-"
+          ],
+          [
+            0.0645,
+            "/Ethernet/PHY_RD-"
+          ]
+        ],
+        "reachable_cells": 56,
+        "via_sites": 0,
+        "nearest_via": null
+      }
+    }
+  },
+  "selected//Ethernet/PHY_TD-": {
+    "pin": "20",
+    "position_mm": [
+      19.112,
+      31.65
+    ],
+    "width_probes": {
+      "0.29": {
+        "pin_center_is_clear": false,
+        "min_class_margin_mm": [
+          [
+            -0.018527,
+            "/Ethernet/PHY_TD+"
+          ],
+          [
+            -0.018527,
+            "Net-(U2-VDD1A)"
+          ],
+          [
+            -0.018,
+            "/Ethernet/PHY_TD+"
+          ]
+        ],
+        "reachable_cells": 0,
+        "via_sites": 0,
+        "nearest_via": null
+      },
+      "0.125": {
+        "pin_center_is_clear": true,
+        "min_class_margin_mm": [
+          [
+            0.063973,
+            "/Ethernet/PHY_TD+"
+          ],
+          [
+            0.063973,
+            "Net-(U2-VDD1A)"
+          ],
+          [
+            0.0645,
+            "/Ethernet/PHY_TD+"
+          ]
+        ],
+        "reachable_cells": 63,
+        "via_sites": 0,
+        "nearest_via": null
+      }
+    }
+  }
+}

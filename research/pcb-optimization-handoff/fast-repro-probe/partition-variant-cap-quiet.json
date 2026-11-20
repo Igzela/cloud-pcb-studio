@@ -1,0 +1,14 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/.run/fast-repro-probe/partition.dsn",
+  "time_s": {"load": 0.0009, "route": 0.2135, "total": 0.2148, "diagnose": null},
+  "stats": {"layers": 4, "components": 12, "nets": 6, "pins": 12, "connections": 6, "unrouted": 3, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 0, "vias_blind": 0, "vias_buried": 0, "traces": 6, "trace_length_mm": 92.5852, "bends_90": 0, "bends_45": 5, "bends_other": 0, "router_score": 333.3333, "optimizer_score": 989.5833},
+  "unrouted": [
+    {"net": "NET0", "length_mm": 29.8292, "from": {"kind": "pin", "component": "PB0", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 4.12], "to": {"kind": "pin", "component": "PA0", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 2.8]},
+    {"net": "NET1", "length_mm": 29.8292, "from": {"kind": "pin", "component": "PB1", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 2.8], "to": {"kind": "pin", "component": "PA1", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 4.12]},
+    {"net": "NET2", "length_mm": 29.8, "from": {"kind": "pin", "component": "PB2", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 5.44], "to": {"kind": "pin", "component": "PA2", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 5.44]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

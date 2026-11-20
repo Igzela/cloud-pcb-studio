@@ -1,0 +1,100 @@
+--- a/cloud_pcb/general_solver/assembly_viewer.mjs
++++ b/cloud_pcb/general_solver/assembly_viewer.mjs
+@@ -7,10 +7,10 @@
+ const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setSize(innerWidth,innerHeight); document.body.appendChild(renderer.domElement);
+ const controls=new OrbitControls(camera,renderer.domElement); controls.enableDamping=false;
++let activePreset;
+ scene.add(new THREE.HemisphereLight(0xe0f1ff,0x445044,2.8));
+ const sun=new THREE.DirectionalLight(0xffffff,3.5);sun.position.set(30,0,90);scene.add(sun);
+ const o=data.outline,W=o.width,H=o.height,T=data.thickness_mm||1.6;
+-controls.target.set(W/2,-H/2,0);
+ const groups={}; const pickable=[];
+ const mat=(color,metalness=0,roughness=.55)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
+ function group(name){if(!groups[name]){groups[name]=new THREE.Group();scene.add(groups[name]);}return groups[name];}
+@@ -38,13 +38,81 @@
+  const lead=mesh(new THREE.BoxGeometry(pin?.55:Math.max(.15,pw*.9),pin?.55:Math.max(.15,ph*.9),pin?8:.13),mat(pin?'#d4b162':'#aeb5b8',.8,.3),group('元器件'),{refdes:c.refdes,pad:p.num,net:p.net});lead.position.set(px,-py,c.side==='bottom'?-T-(pin?2:.13):(pin?2:.13));
+ }
+ }
+-for(const name of Object.keys(groups)){const l=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=!name.startsWith('In');groups[name].visible=input.checked;input.addEventListener('change',()=>{groups[name].visible=input.checked;render();});l.append(input,document.createTextNode(name));document.getElementById('layers').append(l);}
+-const scale=Math.max(W,H);function view(mode){if(mode==='top')camera.position.set(W/2,-H/2,scale*1.7);else if(mode==='side')camera.position.set(W/2,-H/2-scale*1.6,5);else camera.position.set(W/2+scale*.85,-H/2-scale,scale*.95);controls.update();}view('oblique');
++for(const name of Object.keys(groups)){const l=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=!name.startsWith('In');groups[name].visible=input.checked;input.addEventListener('change',()=>{groups[name].visible=input.checked;refitPreset();});l.append(input,document.createTextNode(name));document.getElementById('layers').append(l);}
++
++function framingArea() {
++  const panel = document.getElementById('panel').getBoundingClientRect();
++  const hover = document.getElementById('hover').getBoundingClientRect();
++  // Fit beside the overlays on wide screens or between them on tall screens.
++  const beside = {left: Math.max(panel.right, hover.right) + 12, top: 0};
++  beside.width = Math.max(0, innerWidth - beside.left);
++  beside.height = innerHeight;
++  const between = {left: 0, top: panel.bottom + 12, width: innerWidth};
++  between.height = Math.max(0, hover.top - 12 - between.top);
++  const fit = beside.width * beside.height >= between.width * between.height ? beside : between;
++  return fit.width > 32 && fit.height > 32 ? fit
++    : {left: 0, top: 0, width: innerWidth, height: innerHeight};
++}
++
++function view(mode) {
++  activePreset = mode;
++  scene.updateMatrixWorld(true);
++  const bounds = new THREE.Box3();
++  const meshBounds = new THREE.Box3();
++  for (const layer of Object.values(groups)) {
++    layer.traverseVisible(mesh => {
++      if (!mesh.isMesh) return;
++      if (!mesh.geometry.boundingBox) mesh.geometry.computeBoundingBox();
++      bounds.union(meshBounds.copy(mesh.geometry.boundingBox).applyMatrix4(mesh.matrixWorld));
++    });
++  }
++  if (bounds.isEmpty()) bounds.setFromObject(plate);
++  const center = bounds.getCenter(new THREE.Vector3());
++  const half = bounds.getSize(new THREE.Vector3()).multiplyScalar(.5);
++  // Give OrbitControls a stable horizontal axis at the nearly vertical preset.
++  const outward = (mode === 'top' ? new THREE.Vector3(0, -.0001, 1)
++    : mode === 'side' ? new THREE.Vector3(0, -1, .12)
++      : new THREE.Vector3(.85, -1, .95)).normalize();
++  const right = new THREE.Vector3().crossVectors(camera.up, outward).normalize();
++  const up = new THREE.Vector3().crossVectors(outward, right);
++  const frame = framingArea();
++  const verticalFov = Math.tan(THREE.MathUtils.degToRad(camera.getEffectiveFOV()) / 2);
++  const tanY = verticalFov * .84 * frame.height / innerHeight;
++  const tanX = verticalFov * .84 * frame.width / innerHeight;
++  const corner = new THREE.Vector3();
++  let distance = camera.near * 2;
++  // A corner nearer the camera has a smaller frustum cross-section.
++  for (const x of [-half.x, half.x]) {
++    for (const y of [-half.y, half.y]) {
++      for (const z of [-half.z, half.z]) {
++        corner.set(x, y, z);
++        const fit = Math.max(Math.abs(corner.dot(right)) / tanX,
++          Math.abs(corner.dot(up)) / tanY, camera.near * 2);
++        distance = Math.max(distance, corner.dot(outward) + fit);
++      }
++    }
++  }
++  camera.far = Math.max(5000, distance + 2 * half.length());
++  camera.setViewOffset(innerWidth, innerHeight,
++    (innerWidth - frame.width) / 2 - frame.left,
++    (innerHeight - frame.height) / 2 - frame.top, innerWidth, innerHeight);
++  controls.target.copy(center);
++  camera.position.copy(center).addScaledVector(outward, distance);
++  if (!controls.update()) render();
++}
++
++function refitPreset() {
++  if (activePreset) view(activePreset);
++  else render();
++}
+ document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>view(b.dataset.view));
+ const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();let lit=[];
+ renderer.domElement.addEventListener('pointermove',e=>{pointer.set(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1);ray.setFromCamera(pointer,camera);for(const m of lit)m.material.emissive.set(0);lit=[];const hit=ray.intersectObjects(pickable).find(x=>{for(let p=x.object;p;p=p.parent)if(!p.visible)return false;return true;});if(!hit){render();return;}const u=hit.object.userData;document.getElementById('hover').textContent=[u.refdes,u.value,u.pad&&'焊盘 '+u.pad,u.net&&'网络 '+u.net].filter(Boolean).join(' · ');lit=u.net?pickable.filter(m=>m.userData.net===u.net):[hit.object];for(const m of lit)m.material.emissive.set('#665100');render();});
+-addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);render();});
++addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);refitPreset();});
+ document.getElementById('status').textContent=`${data.components.length} 个立体器件 · ${data.mechanical.collision_count} 处包络碰撞 · ${data.mechanical.unverified_envelopes.length} 个高度/包络待核实`;
+ window.pcbViewer={ready:true,componentCount:data.components.length,trackCount:data.tracks.length,scene,view,renderer,groups,maskColor:'green'};
+ document.getElementById('mask-color').addEventListener('change',e=>{window.pcbViewer.maskColor=e.target.value;for(const material of maskMaterials)material.color.set(e.target.value==='black'?'#171e22':'#194c35');render();});
+-function render(){renderer.render(scene,camera);}controls.addEventListener('change',render);render();
++function render(){renderer.render(scene,camera);}
++controls.addEventListener('change',render);
++controls.addEventListener('start',()=>{activePreset=undefined;});
++view('oblique');
