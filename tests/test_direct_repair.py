@@ -188,3 +188,178 @@ def test_crossing_proposals_are_checked_together_in_deterministic_order(clear_pa
     report["unrouted"].reverse()
     assert propose(clear_pair, layers={"DEFAULT": ("F.Cu",)}) == agreed
     assert propose(clear_pair) == agreed + [DirectRepair("signal", "In2.Cu", .16, (4., 5.), (7., 5.))]
+
+
+def test_power_class_repair_requires_opt_in_and_uses_class_width_and_layers():
+    board = Board.create_new()
+    vbus = Net(1, "VBUS")
+    foreign = Net(2, "SIG_NEAR")
+    board.nets = [Net(0, ""), vbus, foreign]
+    fp = footprint(board, "J1", 4., 5.)
+    pad(fp, "A4", 0., 0., vbus, size=1.2)
+    pad(fp, "B9", 3., 0., vbus, size=1.2)
+    report = {"unrouted": [connection("VBUS", "J1", "A4", (4., 5.), "B9", (7., 5.))]}
+
+    power_rule = NetClassRule("POWER_002", .50, .20, .30, .55, 3.0)
+    netclasses = {"DEFAULT": RULE, "POWER_002": power_rule}
+    net_to_class = {"VBUS": "POWER_002"}
+    layers = {"DEFAULT": ("F.Cu", "In2.Cu", "B.Cu"), "POWER_002": ("F.Cu", "B.Cu")}
+
+    # Legacy default ignores POWER_002.
+    assert propose_direct_repairs(
+        board, box(0, 0, 12, 12), (), netclasses, net_to_class, layers, report,
+    ) == []
+
+    # Opt-in proposes full 0.50 mm repair on F.Cu.
+    assert propose_direct_repairs(
+        board, box(0, 0, 12, 12), (), netclasses, net_to_class, layers, report,
+        allow_power_classes=True,
+    ) == [DirectRepair("VBUS", "F.Cu", .50, (4., 5.), (7., 5.))]
+
+    # A trace 0.53 mm away from centerline is blocked at width=0.50 + clearance=0.20
+    # (0.25 + 0.20 + 0.10 = 0.55 mm required) on F.Cu, so POWER_002 falls back to B.Cu
+    # (skipping In2.Cu because POWER_002 only allows F.Cu/B.Cu).
+    board.traceItems.append(
+        Segment(start=Position(X=5.0, Y=5.53), end=Position(X=6.0, Y=5.53),
+                width=.20, layer="F.Cu", net=2)
+    )
+    assert propose_direct_repairs(
+        board, box(0, 0, 12, 12), (), netclasses, net_to_class, layers, report,
+        allow_power_classes=True,
+    ) == [DirectRepair("VBUS", "B.Cu", .50, (4., 5.), (7., 5.))]
+
+
+@pytest.mark.parametrize("cls_name,rule_override", [
+    ("POWER_IMP", dict(impedance_ohm=50.0)),
+    ("POWER_DIFF", dict(diff_pair_gap_mm=0.15)),
+    ("USB_DIFF", dict(diff_pair_gap_mm=0.15)),
+    ("OTHER", {}),
+])
+def test_impedance_diff_pair_and_non_power_classes_rejected_with_allow_power_classes(
+    clear_pair, cls_name, rule_override,
+):
+    board, _, report = clear_pair
+    netclasses = {
+        "DEFAULT": RULE,
+        cls_name: replace(RULE, name=cls_name, trace_width_mm=.50, **rule_override),
+    }
+    assert propose_direct_repairs(
+        board, box(0, 0, 12, 12), (), netclasses, {"signal": cls_name}, LAYERS, report,
+        allow_power_classes=True,
+    ) == []
+
+
+def test_multi_link_power_connector_proposes_both_links_and_respects_obstacles():
+    board = Board.create_new()
+    vbus = Net(1, "VBUS")
+    cc1 = Net(2, "CC1")
+    blocker = Net(3, "BLOCKER")
+    board.nets = [Net(0, ""), vbus, cc1, blocker]
+
+    fp = footprint(board, "J_USB", 2., 3.)
+    # 4-pin TH power connector: two independent VBUS pairs (A4-B9 and A9-B4)
+    # plus a crossing signal pair (A5-B5) on CC1.
+    pad(fp, "A4", 1., 0., vbus, size=1.1)
+    pad(fp, "B9", 1., 3., vbus, size=1.1)
+    pad(fp, "A9", 5., 0., vbus, size=1.1)
+    pad(fp, "B4", 5., 3., vbus, size=1.1)
+    pad(fp, "A5", 0., 1.5, cc1, size=1.0)
+    pad(fp, "B5", 3., 1.5, cc1, size=1.0)
+
+    report = {
+        "unrouted": [
+            connection("VBUS", "J_USB", "A4", (3., 3.), "B9", (3., 6.)),
+            connection("VBUS", "J_USB", "A9", (7., 3.), "B4", (7., 6.)),
+        ]
+    }
+    power_rule = NetClassRule("POWER_002", .50, .18, .30, .55, 3.0)
+    netclasses = {"DEFAULT": RULE, "POWER_002": power_rule}
+    net_to_class = {"VBUS": "POWER_002"}
+
+    # Both independent VBUS links are proposed in one pass on F.Cu.
+    both = propose_direct_repairs(
+        board, box(0, 0, 14, 10), (), netclasses, net_to_class, LAYERS, report,
+        allow_power_classes=True,
+    )
+    assert both == [
+        DirectRepair("VBUS", "F.Cu", .50, (3., 3.), (3., 6.)),
+        DirectRepair("VBUS", "F.Cu", .50, (7., 3.), (7., 6.)),
+    ]
+
+    # Adding a crossing CC1 repair verifies that VBUS link A4-B9 is recorded in
+    # obstacles[layer], forcing CC1 onto In2.Cu (or rejecting it if only F.Cu is allowed).
+    report_with_cross = {
+        "unrouted": [
+            connection("VBUS", "J_USB", "A4", (3., 3.), "B9", (3., 6.)),
+            connection("VBUS", "J_USB", "A9", (7., 3.), "B4", (7., 6.)),
+            connection("CC1", "J_USB", "A5", (2., 4.5), "B5", (5., 4.5)),
+        ]
+    }
+    fcu_only = propose_direct_repairs(
+        board, box(0, 0, 14, 10), (), netclasses, net_to_class,
+        {"DEFAULT": ("F.Cu",), "POWER_002": ("F.Cu",)}, report_with_cross,
+        allow_power_classes=True,
+    )
+    # CC1 sorts before VBUS alphabetically at equal length 3.0 mm, so CC1 takes F.Cu,
+    # blocking A4-B9 on F.Cu while A9-B4 still succeeds on F.Cu.
+    assert fcu_only == [
+        DirectRepair("CC1", "F.Cu", .16, (2., 4.5), (5., 4.5)),
+        DirectRepair("VBUS", "F.Cu", .50, (7., 3.), (7., 6.)),
+    ]
+    # With multi-layer fallback, all three repairs are proposed without conflict.
+    multi = propose_direct_repairs(
+        board, box(0, 0, 14, 10), (), netclasses, net_to_class, LAYERS, report_with_cross,
+        allow_power_classes=True,
+    )
+    assert multi == [
+        DirectRepair("CC1", "F.Cu", .16, (2., 4.5), (5., 4.5)),
+        DirectRepair("VBUS", "In2.Cu", .50, (3., 3.), (3., 6.)),
+        DirectRepair("VBUS", "F.Cu", .50, (7., 3.), (7., 6.)),
+    ]
+
+    # An existing foreign obstacle on F.Cu across A9-B4 moves A9-B4 to In2.Cu
+    # while A4-B9 stays on F.Cu.
+    board.traceItems.append(
+        Segment(start=Position(X=6.2, Y=4.5), end=Position(X=7.8, Y=4.5),
+                width=.20, layer="F.Cu", net=3)
+    )
+    dodged = propose_direct_repairs(
+        board, box(0, 0, 14, 10), (), netclasses, net_to_class, LAYERS, report,
+        allow_power_classes=True,
+    )
+    assert dodged == [
+        DirectRepair("VBUS", "F.Cu", .50, (3., 3.), (3., 6.)),
+        DirectRepair("VBUS", "In2.Cu", .50, (7., 3.), (7., 6.)),
+    ]
+
+
+def test_plane_ground_net_skips_only_plane_ground_and_repairs_isolated_agnd():
+    board = Board.create_new()
+    gnd = Net(1, "GND")
+    agnd = Net(2, "AGND")
+    board.nets = [Net(0, ""), gnd, agnd]
+    fp = footprint(board, "J_RET", 4., 4.)
+    pad(fp, "1", 0., 0., gnd)
+    pad(fp, "2", 3., 0., gnd)
+    pad(fp, "3", 0., 3., agnd)
+    pad(fp, "4", 3., 3., agnd)
+
+    report = {
+        "unrouted": [
+            connection("GND", "J_RET", "1", (4., 4.), "2", (7., 4.)),
+            connection("AGND", "J_RET", "3", (4., 7.), "4", (7., 7.)),
+        ]
+    }
+    netclasses = {"DEFAULT": RULE}
+
+    # Legacy behavior (plane_ground_net=None) skips all ground-named nets.
+    assert propose_direct_repairs(
+        board, box(0, 0, 12, 12), (), netclasses, {}, LAYERS, report,
+    ) == []
+
+    # Specifying plane_ground_net="GND" skips only "GND" and allows repairing "AGND".
+    assert propose_direct_repairs(
+        board, box(0, 0, 12, 12), (), netclasses, {}, LAYERS, report,
+        plane_ground_net="GND",
+    ) == [DirectRepair("AGND", "F.Cu", .16, (4., 7.), (7., 7.))]
+

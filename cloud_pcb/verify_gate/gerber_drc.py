@@ -105,6 +105,62 @@ class _TicketCollector:
         )
 
 
+_HOLLOW_FLASH_QUAD_SEGS = 16
+_HOLLOW_FLASH_INRADIUS = math.cos(math.pi / (4 * _HOLLOW_FLASH_QUAD_SEGS))
+
+
+def _hollow_flash_geometry(obj: GbFlash) -> Any:
+    """Material of a standard circle, rectangle or obround with a round hole.
+
+    Gerber 2026.05 section 4.4.6 makes the hole transparent. Only this local
+    material acts on the image, with the flash's own dark or clear polarity.
+    For this hollow flash, approximate dark material from inside and clear
+    material from outside, so composition cannot overstate surviving copper
+    because of the circular chord approximation in this object.
+    """
+    aperture = obj.aperture
+    x, y = float(obj.x), float(obj.y)
+    center = Point(x, y)
+
+    def to_obj_unit(value: Any) -> float:
+        if aperture.unit is not None and obj.unit is not None:
+            return float(aperture.unit.convert_to(obj.unit, value))
+        return float(value)
+
+    hole = to_obj_unit(aperture.hole_dia)
+    if isinstance(aperture, CircleAperture):
+        w = h = to_obj_unit(aperture.diameter)
+    else:
+        w = to_obj_unit(aperture.w)
+        h = to_obj_unit(aperture.h)
+    if not all(math.isfinite(v) for v in (x, y, w, h, hole)) or not 0 < hole < min(w, h):
+        raise ValueError("Standard Gerber aperture hole must strictly fit inside its aperture")
+
+    def rounded(centerline: Any, radius: float, *, outside: bool) -> Any:
+        if outside:
+            # A regular polygon of this vertex radius circumscribes the true
+            # circle. The same bound applies to an obround's two round caps.
+            radius = math.nextafter(radius / _HOLLOW_FLASH_INRADIUS, math.inf)
+        return centerline.buffer(radius, quad_segs=_HOLLOW_FLASH_QUAD_SEGS)
+
+    if isinstance(aperture, RectangleAperture):
+        outer = box(x - w / 2, y - h / 2, x + w / 2, y + h / 2)
+    else:
+        radius = min(w, h) / 2
+        if w == h:
+            spine = center
+        elif w > h:
+            offset = (w - h) / 2
+            spine = LineString([(x - offset, y), (x + offset, y)])
+        else:
+            offset = (h - w) / 2
+            spine = LineString([(x, y - offset), (x, y + offset)])
+        outer = rounded(spine, radius, outside=not obj.polarity_dark)
+
+    transparent = rounded(center, hole / 2, outside=obj.polarity_dark)
+    return outer.difference(transparent)
+
+
 def _gerbonara_obj_to_shapely(obj: Any) -> Any:
     """Convert a gerbonara graphic object into a Shapely geometry (in mm)."""
     if isinstance(obj, GbLine):
@@ -129,6 +185,8 @@ def _gerbonara_obj_to_shapely(obj: Any) -> Any:
     if isinstance(obj, GbFlash):
         ap = obj.aperture
         x, y = float(obj.x), float(obj.y)
+        if isinstance(ap, (CircleAperture, RectangleAperture, ObroundAperture)) and ap.hole_dia not in (None, 0):
+            return _hollow_flash_geometry(obj)
         if isinstance(ap, CircleAperture):
             return Point(x, y).buffer(max(float(ap.diameter) / 2.0, 1e-4))
         if isinstance(ap, RectangleAperture):

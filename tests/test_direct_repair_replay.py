@@ -15,8 +15,16 @@ def test_add_fixed_wire_with_dsn_coordinates_without_editing_rules():
     output = _fixed_wiring(source, [link])
     assert "(rule (width 200))" in output
     assert '(wire (path F.Cu 221 2600 -3100 4600 -3100) (net "local branch") (type fix))' in output
-    with pytest.raises(ValueError, match="single empty DSN"):
-        _fixed_wiring(output, [link])
+    second = SimpleNamespace(net="other", layer="B.Cu", width_mm=.20,
+                             start_xy=(1.0, 2.0), end_xy=(3.0, 2.0))
+    appended = _fixed_wiring(output, [second])
+    assert "(rule (width 200))" in appended
+    assert '(wire (path F.Cu 221 2600 -3100 4600 -3100) (net "local branch") (type fix))' in appended
+    assert "(wire (path B.Cu 200 1000 -2000 3000 -2000) (net other) (type fix))" in appended
+    with pytest.raises(ValueError, match="single DSN wiring"):
+        _fixed_wiring("(pcb board\n  (rule (width 200))\n)", [link])
+    with pytest.raises(ValueError, match="single DSN wiring"):
+        _fixed_wiring(source + "\n  (wiring\n  )\n", [link])
 
 
 def reports():

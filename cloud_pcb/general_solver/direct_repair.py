@@ -245,7 +245,16 @@ def _can_fit(centerline, layer, net, width, drill_owners, board_poly, obstacles,
 
 
 def propose_direct_repairs(
-    routed_board, board_poly, keepouts, netclasses, net_to_class, routing_layers, router_report,
+    routed_board,
+    board_poly,
+    keepouts,
+    netclasses,
+    net_to_class,
+    routing_layers,
+    router_report,
+    *,
+    allow_power_classes: bool = False,
+    plane_ground_net: str | None = None,
 ) -> list[DirectRepair]:
     """Return safe candidates for a later engine check and independent board audit.
 
@@ -259,16 +268,8 @@ def propose_direct_repairs(
     default = netclasses.get("DEFAULT")
     if not isinstance(unresolved, list) or not unresolved or default is None:
         return []
-    if default.impedance_ohm is not None or default.diff_pair_gap_mm is not None:
-        return []
     try:
         if not board_poly.is_valid or board_poly.is_empty or board_poly.area <= 0:
-            return []
-        width = math.ceil(_positive(default.trace_width_mm) * 1000 - 1e-9) / 1000
-        allowed = routing_layers.get("DEFAULT", ("F.Cu", "B.Cu"))
-        if not default.zero_via_allowed:
-            allowed = tuple(layer for layer in allowed if layer == "F.Cu")
-        if any(layer not in COPPER_LAYERS for layer in allowed):
             return []
         base_clearance = max(BOARD_COPPER_CLEARANCE_MM, _finite(default.clearance_mm))
         clearances = defaultdict(lambda: base_clearance)
@@ -284,14 +285,36 @@ def propose_direct_repairs(
         if not isinstance(connection, dict):
             continue
         net = connection.get("net")
-        if not isinstance(net, str) or not net or _is_gnd_net(net):
+        if not isinstance(net, str) or not net:
             continue
-        if net_to_class.get(net, "DEFAULT") != "DEFAULT":
+        if plane_ground_net is not None:
+            if net == plane_ground_net:
+                continue
+        elif _is_gnd_net(net):
+            continue
+        class_name = net_to_class.get(net, "DEFAULT")
+        if allow_power_classes:
+            if class_name != "DEFAULT" and not (
+                isinstance(class_name, str) and class_name.startswith("POWER")
+            ):
+                continue
+        elif class_name != "DEFAULT":
+            continue
+        rule = netclasses.get(class_name)
+        if rule is None or rule.impedance_ohm is not None or rule.diff_pair_gap_mm is not None:
             continue
         try:
+            width = math.ceil(_positive(rule.trace_width_mm) * 1000 - 1e-9) / 1000
+            allowed = routing_layers.get(
+                class_name, routing_layers.get("DEFAULT", ("F.Cu", "B.Cu"))
+            )
+            if not rule.zero_via_allowed:
+                allowed = tuple(layer for layer in allowed if layer == "F.Cu")
+            if not allowed or any(layer not in COPPER_LAYERS for layer in allowed):
+                continue
             start = _endpoint(connection, "from", pads, net, width)
             end = _endpoint(connection, "to", pads, net, width)
-        except (TypeError, ValueError):
+        except (AttributeError, TypeError, ValueError):
             continue
         if start is None or end is None or start[0] is not end[0] or start[1] is end[1]:
             continue
@@ -299,11 +322,11 @@ def propose_direct_repairs(
         dx, dy = q[0] - p[0], q[1] - p[1]
         if p == q or (dx and dy and abs(dx) != abs(dy)):
             continue
-        candidates.append((math.hypot(dx, dy), net, p, q, {id(start[1]), id(end[1])}))
+        candidates.append((math.hypot(dx, dy), net, p, q, {id(start[1]), id(end[1])}, width, allowed))
 
     proposals = []
     seen = set()
-    for _, net, start_um, end_um, drill_owners in sorted(candidates, key=lambda c: c[:4]):
+    for _, net, start_um, end_um, drill_owners, width, allowed in sorted(candidates, key=lambda c: c[:4]):
         key = (net, start_um, end_um)
         if key in seen:
             continue
