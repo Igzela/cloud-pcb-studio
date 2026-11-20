@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "cohort": "dense-and-rf-03",
+  "cases": [
+    {
+      "id": "case12",
+      "spec": "benchmark_case/blind_spec_case12.json",
+      "spec_sha256": "939d3e8d8cfb874f3a4156337cbe7c47a4270d5b811ec72428f19ed6a3d00d28",
+      "reference_sha256": "1a78c907d03bfc347e7679a8306875de4defb189f66bb8ef2e7a1c066793cc3d",
+      "theme": "dense-logic-instrumentation"
+    },
+    {
+      "id": "case13",
+      "spec": "benchmark_case/blind_spec_case13.json",
+      "spec_sha256": "294407fd4eecdf4188d0ed64832c8daed2653027f6743da86775ab7206bd291e",
+      "reference_sha256": "2b8e3418bc2fcb04196c29abd3f17ce4b31ade6bfb5205cf3e4c4b7f976d0941",
+      "theme": "rf-module-switching-supply"
+    }
+  ]
+}
