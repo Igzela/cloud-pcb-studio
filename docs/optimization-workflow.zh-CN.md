@@ -37,10 +37,11 @@ python -m scripts.optimize_pcb status
 source scripts/env.sh
 python -m scripts.optimize_pcb run \
   --label my-generic-change \
+  --variant placement-recovery \
   --hypothesis '说明改动依据、预期改善指标和适用条件'
 ```
 
-这条命令默认使用稳定求解行为。第一个新增实验变体为电源语义推导：
+当前回归产物使用 `placement-recovery`。命令省略 `--variant` 时使用原有的 `stable`。首个电源语义实验可单独复现：
 
 ```bash
 source scripts/env.sh
@@ -93,11 +94,11 @@ python -m scripts.optimize_pcb history
 
 ## 过程完整性
 
-- 注册表 `benchmark_case/optimization_suite.json` 固定数据集、输入哈希和历史基线哈希。当前 Case 1–5 全部是回归集；Case 4/5 已暴露，绝不再记为新盲测。
+- 注册表 `benchmark_case/optimization_suite.json` 固定数据集、输入哈希 和历史基线哈希。Case 1–5、10–11 共七块板用于回归。Case 10–11 完成整组冻结和人工参考对比后加入，沿用解封前产物作为基线。Case 6–9 保持密封。
 - `sealed_holdout` 必须带密封元数据。已解封案例不能被改标签冒充 holdout；未解封案例不能进入日常优化的训练/回归运行。流程只读取密封状态元数据，不打开参考 PCB，也不自动解封。新泛化实验仍须走独立密封、代码冻结、完整产物冻结和解封比较流程。
 - 每轮保存源码、测试、工具、依赖锁文件和注册表的哈希与 `source.tar.gz`；输入复制到该轮 `inputs/`，与原规范哈希一致。
 - 每个阶段前后检查源码及输入。途中改代码或输入会使轮次失效，禁止晋升；候选进程失败、超时或 3D 出错均记录为失败。
-- 测试失败就不启动昂贵的五板路由。子进程有超时及进程组清理；外层执行锁防止两个优化轮次同时修改基线状态。
+- 测试失败就不启动全量路由。子进程有超时及进程组清理。外层执行锁防止两个优化轮次同时修改基线状态。
 - 同一源码、同一输入、同一变体和预算的完整轮次不能再次执行。改变 label 或假设文字不构成新实验；这减少重复消耗与择优报喜。
 - 全部 Python/pytest/求解器子进程先通过 `source scripts/env.sh`；没有跳过 DRC 或放松门禁的快捷模式。
 
@@ -147,3 +148,17 @@ python -m scripts.optimize_pcb run \
 ```
 
 每板目录新增 `fastroute_primary.log`、适用时的 `fastroute_individual.log`、`freerouting.log`，以及 `router_processes.json`。日志保留原 stdout/stderr；超时也保留已输出内容，退出码记为 null，并明确标注超时。路由器本身的线程异常、进程超时与板级 DRC/LVS 失败应分别判断。不能把崩溃引擎的未完成输出当作一次有效路由结果；同时也不能以次要比较引擎崩溃否认主引擎已有的板级审计证据。
+
+## 双面布局恢复候选
+
+`two-sided-recovery` 在常规摆放和既有四种整板恢复均耗尽后，才尝试分别检查两个板面的外壳、焊盘和钻槽。允许自动换面的器件必须是未指定侧面、没有钻孔、只有两个独立顶层 SMD 焊盘的器件，并排除 RF 及已声明差分网端点。显式侧面与固定接口保持原约束。铜与板边维持 0.50 mm，外壳边界、通孔双面冲突与机械禁布区分别检查。实际侧面写入 `placement_side_decisions.json`，源规范保持原样。
+
+候选用统一变体运行全量七板回归。密封批次只有在此前产物确实因布局耗尽而不完整时才可用该变体整批重测，并须出示上一轮冻结哈希。重测继续单独记录，板和参考身份仍按整批冻结流程处理。[盲测流程](holdout-cohorts.zh-CN.md)
+
+首次候选将常规布局中的自动换面全部推迟到了恢复阶段。七板轮次用时 2351.059 秒，230 项 pytest 均通过，耗时 80.46 秒。Case 1–4 和 11 的比较指标与基线一致。Case 5 进入双面恢复后，未完成连接由 9 增至 29，独立 LVS 开路由 9 增至 25，电容距离代理由 6.884 增至 8.307 mm。Case 10 耗尽了全部布局尝试。该候选未晋升，密封批次重测未启动。轮次的源码归档和七个案例的 259 个产物文件已复核哈希。[失败轮次清单](../artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/manifest.json) · [比较结果](../artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/result.json)
+
+兼容候选先复核常规布局成功时的侧面、包络、钻孔、铜距和机械禁布。合格布局原样保留，未满足约束才进入整板重排。固定接口与边界的已知冲突单列，继续由最终门禁判断。普通成功、布局耗尽和几何验证拒绝的原因写入 `placement_legacy_validation.json`。七个已冻结基线的几何复算通过，其中 Case 5、10 的 4、16 个合法自动背面器件均可保留。
+
+机械审计及 WebGL 共用实际板厚、架高和器件高度的 Z 区间。人工对照从 KiCad 实际板面与姿态恢复包络，求解器底面包络按局部 X 镜像。旧版盲输入若无法确定外部底面不对称包络的镜像方向，仍记为未核实。失败轮次可独立校验日志和产物哈希，基线资格仍要求完整轮次。
+
+兼容轮按用户指示停止。已记录完整的 pytest 日志，247 项通过，耗时 81.65 秒。Case 1–5 的板级证据和 Chromium 结果已完成，其中 Case 5 回到未完成连接 9、独立开路 9、间距 0，固定接口铜距仍为 0.30 mm。Case 10 的求解在路由阶段停止，Case 11 与两个密封批次均未启动。原清单保留停止时的状态。独立收据记录了停止时间、已完成的五块板和所有已产生文件的哈希。当前基线仍由先前完整的七板轮次提供。[停止收据](../artifacts/optimization/runs/20261120T093429914289Z-legacy-first-two-sided.stopped.json) · [完整 pytest 日志](../artifacts/optimization/runs/20261120T093429914289Z-legacy-first-two-sided/pytest.log)

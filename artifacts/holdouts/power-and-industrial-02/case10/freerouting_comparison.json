@@ -1,0 +1,25 @@
+{
+  "runtime": {
+    "engine": "freerouting_jvm",
+    "version": "2.5.0",
+    "jar_url": "https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar",
+    "jar_sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+    "java_executable": "/workspace/cloud-pcb-studio/.run/tools/freerouting/jdk-25.0.5+8-jre/bin/java",
+    "java_version": [
+      "openjdk version \"25.0.5\" 2026-10-20 LTS",
+      "OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)",
+      "OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)"
+    ],
+    "java_files_sha256": {
+      "bin/java": "2c6758fcd55b51cd3b8012ebe712504f722a8a0bbb6209b0fccff25960cd41e9",
+      "release": "fcb8d304ab7efdb8d0d051f996884b58c4009677ef78278011774daf6b62b38d",
+      "lib/modules": "a1ab6761272ffbdce7d83e941a1721d082934a6f9230b1544b8893adb8e8d02d",
+      "lib/server/libjvm.so": "24946c6c30cc5490c441f9a78e0222925de297b50cba306607f1a6bead24fcb3",
+      "lib/libjava.so": "55a5f14cc3d85ba84de3cca3b3eba732fc8229c23d5cfcbe391361282da41119",
+      "lib/libjli.so": "cb175105fb31ca6f9a5e5f338ca297d36b63fd2982e504d67596f0156d877dca",
+      "conf/security/java.security": "d8583f3389218221f85f4ef2fd440ccb17aa44f0b3f189d08bbba8bf31983cfd"
+    }
+  },
+  "status": "failed",
+  "error": "Freerouting process did not finish successfully (rc=1)"
+}

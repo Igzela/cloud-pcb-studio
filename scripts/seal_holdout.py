@@ -18,7 +18,7 @@ from pathlib import Path
 
 from kiutils.utils.sexpr import parse_sexp
 from shapely.geometry import LineString
-from shapely.ops import polygonize, unary_union
+from shapely.ops import polygonize, polygonize_full, unary_union
 from shapely.geometry import box
 from shapely.affinity import rotate, translate
 
@@ -56,7 +56,7 @@ def arc_points(a, m, b):
     return [(u+r*math.cos(aa+span*i/32),v+r*math.sin(aa+span*i/32)) for i in range(33)]
 
 
-def extract(raw: bytes, case: int):
+def extract(raw: bytes, case: int, *, strict_intake: bool = False):
     ast = parse_sexp(raw.decode('utf-8'))
     nets_by_id = {int(n[1]): str(n[2]) for n in children(ast, 'net') if len(n)>2}
     layer_names = [str(x[1]) for x in child(ast, 'layers')[1:] if isinstance(x,list)]
@@ -80,10 +80,25 @@ def extract(raw: bytes, case: int):
         elif item[0]=='gr_poly':
             pts=[tuple(map(float,p[1:3])) for p in child(item,'pts')[1:]]
             edges.append(LineString(pts+[pts[0]]))
-    outlines=list(polygonize(unary_union(edges)))
+        elif strict_intake:
+            raise ValueError("Unsupported board-edge primitive in blind intake")
+    merged = unary_union(edges)
+    if strict_intake:
+        polygons, cuts, dangles, invalid = polygonize_full(merged)
+        if not all(g.is_empty for g in (cuts, dangles, invalid)):
+            raise ValueError("Blind intake rejects open, dangling or invalid board-edge lines")
+        outlines = list(polygons.geoms)
+    else:
+        outlines = list(polygonize(merged))
     if not outlines:
         raise ValueError('no closed outline')
     outline=max(outlines,key=lambda p:p.area)
+    if strict_intake and (
+        len(outlines) != 1 or outline.interiors or
+        any(child(g, 'layer', [None, None])[1] == 'Edge.Cuts'
+            for fp in children(ast, 'footprint') for g in fp if isinstance(g, list))
+    ):
+        raise ValueError("Blind intake requires one closed outer outline without unsupported cutouts")
     ox,oy,x1,y1=outline.bounds
     components=[]; holes=[]; interfaces=[]; nets=defaultdict(list)
     for fp in children(ast,'footprint'):
@@ -145,7 +160,12 @@ def extract(raw: bytes, case: int):
             comp['body_bbox_mm']=[min(p[0] for p in body),min(p[1] for p in body),max(p[0] for p in body),max(p[1] for p in body)]
         # Only board-edge mating connectors may retain mechanical interface pose.
         label=(str(fp[1])+' '+value).lower()
-        if any(t in label for t in ('usb','rj45','jack','barrel','terminalblock','connectors')):
+        library = str(fp[1]).split(':', 1)[0].lower()
+        likely_interface = (
+            library.startswith(('connector_', 'connectors_', 'terminalblock_')) or library in
+            ('connector', 'connectors', 'terminalblock')
+        ) if strict_intake else any(t in label for t in ('usb','rj45','jack','barrel','terminalblock','connectors'))
+        if likely_interface:
             at=child(fp,'at',[None,0,0,0]); angle=float(at[3]) if len(at)>3 else 0
             bb=comp.get('body_bbox_mm')
             if outpads:

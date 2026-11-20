@@ -1,0 +1,258 @@
+[
+  {
+    "pair": [
+      [
+        "U3",
+        "23"
+      ],
+      [
+        "U3",
+        "15"
+      ]
+    ],
+    "required_mm": 0.05,
+    "reported_mm": 0.0001,
+    "nominal_pad_shapes": [
+      [
+        "rect"
+      ],
+      [
+        "rect"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 0.0,
+    "new_min_polygon_gap_mm": 0.0,
+    "new_min_octagon_gap_mm": 0.0,
+    "true_min_copper_gap_mm": 0.0,
+    "checked_accurate_polygon_count": 0,
+    "each_accurate_polygon_covers_intended_copper": null
+  },
+  {
+    "pair": [
+      [
+        "U3",
+        "22"
+      ],
+      [
+        "U3",
+        "15"
+      ]
+    ],
+    "required_mm": 0.05,
+    "reported_mm": 0.0001,
+    "nominal_pad_shapes": [
+      [
+        "rect"
+      ],
+      [
+        "rect"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 0.0,
+    "new_min_polygon_gap_mm": 0.0,
+    "new_min_octagon_gap_mm": 0.0,
+    "true_min_copper_gap_mm": 0.0,
+    "checked_accurate_polygon_count": 0,
+    "each_accurate_polygon_covers_intended_copper": null
+  },
+  {
+    "pair": [
+      [
+        "U3",
+        "21"
+      ],
+      [
+        "U3",
+        "15"
+      ]
+    ],
+    "required_mm": 0.05,
+    "reported_mm": 0.0001,
+    "nominal_pad_shapes": [
+      [
+        "rect"
+      ],
+      [
+        "rect"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 0.0,
+    "new_min_polygon_gap_mm": 0.0,
+    "new_min_octagon_gap_mm": 0.0,
+    "true_min_copper_gap_mm": 0.0,
+    "checked_accurate_polygon_count": 0,
+    "each_accurate_polygon_covers_intended_copper": null
+  },
+  {
+    "pair": [
+      [
+        "U3",
+        "20"
+      ],
+      [
+        "U3",
+        "15"
+      ]
+    ],
+    "required_mm": 0.05,
+    "reported_mm": 0.0001,
+    "nominal_pad_shapes": [
+      [
+        "rect"
+      ],
+      [
+        "rect"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 0.0,
+    "new_min_polygon_gap_mm": 0.0,
+    "new_min_octagon_gap_mm": 0.0,
+    "true_min_copper_gap_mm": 0.0,
+    "checked_accurate_polygon_count": 0,
+    "each_accurate_polygon_covers_intended_copper": null
+  },
+  {
+    "pair": [
+      [
+        "U3",
+        "19"
+      ],
+      [
+        "U3",
+        "15"
+      ]
+    ],
+    "required_mm": 0.05,
+    "reported_mm": 0.0001,
+    "nominal_pad_shapes": [
+      [
+        "rect"
+      ],
+      [
+        "rect"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 8.881784197001252e-16,
+    "new_min_polygon_gap_mm": 8.881784197001252e-16,
+    "new_min_octagon_gap_mm": 8.881784197001252e-16,
+    "true_min_copper_gap_mm": 0.0,
+    "checked_accurate_polygon_count": 0,
+    "each_accurate_polygon_covers_intended_copper": null
+  },
+  {
+    "pair": [
+      [
+        "U3",
+        "18"
+      ],
+      [
+        "U3",
+        "15"
+      ]
+    ],
+    "required_mm": 0.05,
+    "reported_mm": 0.0001,
+    "nominal_pad_shapes": [
+      [
+        "rect"
+      ],
+      [
+        "rect"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 8.881784197001252e-16,
+    "new_min_polygon_gap_mm": 8.881784197001252e-16,
+    "new_min_octagon_gap_mm": 8.881784197001252e-16,
+    "true_min_copper_gap_mm": 0.0,
+    "checked_accurate_polygon_count": 0,
+    "each_accurate_polygon_covers_intended_copper": null
+  },
+  {
+    "pair": [
+      [
+        "U3",
+        "17"
+      ],
+      [
+        "U3",
+        "15"
+      ]
+    ],
+    "required_mm": 0.05,
+    "reported_mm": 0.0001,
+    "nominal_pad_shapes": [
+      [
+        "rect"
+      ],
+      [
+        "rect"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 8.881784197001252e-16,
+    "new_min_polygon_gap_mm": 8.881784197001252e-16,
+    "new_min_octagon_gap_mm": 8.881784197001252e-16,
+    "true_min_copper_gap_mm": 0.0,
+    "checked_accurate_polygon_count": 0,
+    "each_accurate_polygon_covers_intended_copper": null
+  },
+  {
+    "pair": [
+      [
+        "U3",
+        "16"
+      ],
+      [
+        "U3",
+        "15"
+      ]
+    ],
+    "required_mm": 0.05,
+    "reported_mm": 0.0001,
+    "nominal_pad_shapes": [
+      [
+        "rect"
+      ],
+      [
+        "rect"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 8.881784197001252e-16,
+    "new_min_polygon_gap_mm": 8.881784197001252e-16,
+    "new_min_octagon_gap_mm": 8.881784197001252e-16,
+    "true_min_copper_gap_mm": 0.0,
+    "checked_accurate_polygon_count": 0,
+    "each_accurate_polygon_covers_intended_copper": null
+  },
+  {
+    "pair": [
+      [
+        "J3",
+        "1"
+      ],
+      [
+        "J2",
+        "S1"
+      ]
+    ],
+    "required_mm": 0.13,
+    "reported_mm": 0.0691,
+    "nominal_pad_shapes": [
+      [
+        "roundrect",
+        "rect"
+      ],
+      [
+        "oval",
+        "oval",
+        "oval",
+        "oval"
+      ]
+    ],
+    "prior_min_rect_gap_mm": 0.07300000000000217,
+    "new_min_polygon_gap_mm": 0.1376601052176273,
+    "new_min_octagon_gap_mm": 0.06900000000000084,
+    "true_min_copper_gap_mm": 0.14764094854023785,
+    "checked_accurate_polygon_count": 5,
+    "each_accurate_polygon_covers_intended_copper": true
+  }
+]

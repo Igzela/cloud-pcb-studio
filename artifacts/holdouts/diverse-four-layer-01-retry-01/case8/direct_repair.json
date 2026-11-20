@@ -1,0 +1,74 @@
+{
+  "status": "accepted",
+  "proposals": [
+    {
+      "net": "/VREF",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_xy": [
+        26.04,
+        9.34
+      ],
+      "end_xy": [
+        28.58,
+        9.34
+      ]
+    },
+    {
+      "net": "/VREF",
+      "layer": "In2.Cu",
+      "width_mm": 0.2,
+      "start_xy": [
+        28.58,
+        9.34
+      ],
+      "end_xy": [
+        31.12,
+        9.34
+      ]
+    },
+    {
+      "net": "/VREF",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_xy": [
+        31.12,
+        9.34
+      ],
+      "end_xy": [
+        33.66,
+        9.34
+      ]
+    },
+    {
+      "net": "/VREF",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_xy": [
+        33.66,
+        9.34
+      ],
+      "end_xy": [
+        36.2,
+        9.34
+      ]
+    },
+    {
+      "net": "/VREF",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "start_xy": [
+        36.2,
+        9.34
+      ],
+      "end_xy": [
+        38.74,
+        9.34
+      ]
+    }
+  ],
+  "original_unrouted": 6,
+  "verified_unrouted": 1,
+  "original_lvs_opens": 2,
+  "verified_lvs_opens": 1
+}

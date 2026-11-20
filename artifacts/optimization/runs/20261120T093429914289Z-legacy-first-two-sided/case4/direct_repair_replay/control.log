@@ -1,0 +1,16 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.004 INFO  parsed 'board.dsn' in 3.9 ms: 4 layers, 117 components, 98 nets, 0 wires
+    0.023 INFO  net class 'DIFF_PAIR_000': no neck-down
+    0.033 INFO  initial session '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T093429914289Z-legacy-first-two-sided/case4/board_fastroute.ses': 757 wires and 125 vias imported (0 errors)
+    0.053 WARN  Board has 2 pre-existing clearance violation(s) in the loaded design (2 unfixable).
+    0.057 INFO  59 trace ends inside a pad but off its center joined to the center
+    0.057 INFO  built board in 52.4 ms: 1963 items (562 pins, 125 vias, 811 traces)
+    0.057 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.057 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.057 INFO  routing finished in 0.00 s
+    0.075 WARN  2 clearance violation(s) in the result:
+    0.075 WARN    F.Cu at (23.910, 7.345) mm: clearance 0.050 mm, actual 0.000 mm (pre-existing, unfixable): pin J1 [] / pin J1 []
+    0.075 WARN    F.Cu at (17.410, 7.345) mm: clearance 0.050 mm, actual 0.000 mm (pre-existing, unfixable): pin J1 [] / pin J1 []
+    0.078 INFO  saved '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T093429914289Z-legacy-first-two-sided/case4/direct_repair_replay/control.ses' (128501 bytes)
+    0.123 INFO  report written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T093429914289Z-legacy-first-two-sided/case4/direct_repair_replay/control.json'

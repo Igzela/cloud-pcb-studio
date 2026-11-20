@@ -1,0 +1,314 @@
+{
+  "C1": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C10": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C11": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C12": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C14": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C15": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C16": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C17": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C18": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C19": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C2": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C20": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C21": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C22": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C24": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C25": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C26": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C27": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "C3": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C4": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "C5": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "C6": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "C7": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "C8": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "C9": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "FB1": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "FID1": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "FID2": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "FID3": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "FID4": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "L1": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "LAN1": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": true
+  },
+  "R1": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R10": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R11": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R12": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R13": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R14": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R15": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R2": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "R3": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "R4": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "R5": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R6": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R7": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "R8": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "R9": {
+    "source_side": null,
+    "placed_side": "bottom",
+    "automatic_bottom": true,
+    "fixed": false
+  },
+  "U2": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "U3": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "U4": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  },
+  "USB1": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": true
+  },
+  "X1": {
+    "source_side": null,
+    "placed_side": "top",
+    "automatic_bottom": false,
+    "fixed": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "cohort": "power-and-industrial-02",
+  "cases": [
+    {
+      "id": "case10",
+      "spec": "benchmark_case/blind_spec_case10.json",
+      "spec_sha256": "1eb7577a45172208c0b2365ba109639d2da8e536fad991820d589b5eebe39ca6",
+      "reference_sha256": "5e9698313889bdae513fd8f63f0e6659e95ec8cfc7574f6daaf2968ee742ab2f",
+      "theme": "power-management-audio"
+    },
+    {
+      "id": "case11",
+      "spec": "benchmark_case/blind_spec_case11.json",
+      "spec_sha256": "41d05f6fa5be628a97ba70e1222d2da5dc42ce17cf384cf3db1f0450a64b29d3",
+      "reference_sha256": "8f66c29fcc4b13b653cfb443219f953cb8b6e31ccb0710ff663305695ca8314c",
+      "theme": "industrial-wired-ethernet-can-interface"
+    }
+  ]
+}

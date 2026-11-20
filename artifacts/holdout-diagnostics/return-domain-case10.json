@@ -1,0 +1,22 @@
+{
+  "scope": "pre-route fanout replay on the same solver-generated poses; no reference or router output",
+  "board_input": "artifacts/holdouts/power-and-industrial-02/case10/board_unrouted.kicad_pcb",
+  "board_sha256": "f365f7989daee1af6da61edc8cede2ea1a55a37727da94771b0263836b43b6f7",
+  "before_shorts": [
+    {
+      "layer": "F.Cu",
+      "net_a": "PGND",
+      "net_b": "GND",
+      "overlap_mm2": 4.513987
+    },
+    {
+      "layer": "B.Cu",
+      "net_a": "PGND",
+      "net_b": "GND",
+      "overlap_mm2": 0.971583
+    }
+  ],
+  "after_shorts": [],
+  "selected_ground_net": "PGND",
+  "fanout_vias_added": 37
+}

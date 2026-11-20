@@ -1,0 +1,30 @@
+2026-11-19 16:53:23.157 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)
+2026-11-19 16:53:23.478 INFO   Hardware: 2 CPU cores, 443 CPU score, 2048 MB RAM
+2026-11-19 16:53:23.481 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
+2026-11-19 16:53:23.486 INFO   Configured network proxy: proxy:8080
+2026-11-19 16:53:24.800 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 16:53:25.115 INFO   [30828D\8E983A] Loading board file 'board_freerouting.dsn'...
+2026-11-19 16:53:25.193 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 16:53:25.457 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 16:53:25.542 INFO   [30828D\8E983A] Job '30828D\8E983A' started at 2026-11-19T16:53:25.542529320Z.
+2026-11-19 16:53:25.662 WARN   Design Warning: Board has 2 pre-existing clearance violation(s) in the loaded design (before routing):
+  - 2 unfixable violation(s) (cannot be resolved by Freerouting):
+      * 2 pin-to-pin clearance violations:
+          - J9.B12 <-> J9.A1
+          - J9.B1 <-> J9.A12
+  - 0 potentially fixable violations
+Notice: Freerouting does not modify component placement, board outlines, or fixed items.
+Resolving these 2 unfixable violation(s) is the responsibility of the board author in their EDA tool (e.g. KiCad).
+2026-11-19 16:53:25.721 INFO   [30828D\8E983A] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=1.
+2026-11-19 16:53:25.830 INFO   [30828D\8E983A] Fanout stage started on board '7b48f14c0ed819b5abf9ab8d141a645b' with 131 of 226 SMD pins needing fanout (0 already connected, 95 netless).
+2026-11-19 16:53:28.030 INFO   [30828D\8E983A] Fanout pass #1 on board '6c04b7178a5f8d5f3d9d887e28711349' completed in 2.14 seconds with 39 SMD pins fanouted, 89 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-19 16:53:28.604 INFO   [30828D\8E983A] Fanout pass #2 on board '194d4db3bb16d43708c6178938c39056' completed in 0.55 seconds with 3 SMD pins fanouted, 45 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-19 16:53:28.782 INFO   [30828D\8E983A] Fanout pass #3 on board '194d4db3bb16d43708c6178938c39056' completed in 0.14 seconds with 0 SMD pins fanouted, 8 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-19 16:53:28.789 INFO   [30828D\8E983A] Fanout stage completed: started with 131 total SMD pins, completed in 2.94 seconds, escaped pins: 60/131 (45.8%), using 2.46 total CPU seconds, 0.89 GB total allocated, and 157.3 MB peak heap usage.
+2026-11-19 16:53:28.906 INFO   [30828D\8E983A] Auto-routing stage started on board '194d4db3bb16d43708c6178938c39056' with baseline score 270.55 for 60 unrouted items.
+2026-11-19 16:53:35.048 INFO   [30828D\8E983A] Auto-routing pass #1 on board '194d4db3bb16d43708c6178938c39056' was completed in 6.08 seconds with score 947.12 (4 unrouted and 2 violations), using 7.86 CPU seconds and the job allocated 4.56 GB of memory so far.
+2026-11-19 16:53:35.206 INFO   [30828D\8E983A] Auto-routing stage completed: started with 99 unrouted nets, completed in 9.44 seconds, final score: 947.12 (4 unrouted and 2 violations), using 7.86 total CPU seconds, 4.56 GB total allocated, and 279.4 MB peak heap usage.
+2026-11-19 16:53:35.227 INFO   [30828D\8E983A] Job '30828D\8E983A' finished with state: COMPLETED (elapsed: 9.68 seconds, finished at UTC: 2026-11-19T16:53:35.225851728Z).
+2026-11-19 16:53:35.271 INFO   Saving output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case2/board_freerouting.ses' (SES)...
+2026-11-19 16:53:35.275 INFO   Successfully saved output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case2/board_freerouting.ses' (54542 bytes).
+

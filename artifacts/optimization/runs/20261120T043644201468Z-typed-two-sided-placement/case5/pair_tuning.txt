@@ -1,0 +1,27 @@
+group pair_0 tolerance=0.2
+  /M0_P
+  /M0_N
+group pair_1 tolerance=0.2
+  /M1_P
+  /M1_N
+group pair_2 tolerance=0.2
+  /M2_P
+  /M2_N
+group pair_3 tolerance=0.2
+  /M3_P
+  /M3_N
+group pair_4 tolerance=0.2
+  /U2D_P
+  /U2D_N
+group pair_5 tolerance=0.2
+  /U2_P
+  /U2_N
+group pair_6 tolerance=0.2
+  /U3SRX_P
+  /U3SRX_N
+group pair_7 tolerance=0.2
+  /U3STX_P
+  /U3STX_N
+group pair_8 tolerance=0.2
+  /U3TX_P
+  /U3TX_N

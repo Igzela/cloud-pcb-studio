@@ -1,11 +1,9 @@
 {
   "schema_version": 1,
   "baseline": {
-    "format": "v3_freeze",
-    "manifest": "artifacts/blind_v3_freeze.json",
-    "sha256": "e2e141a907321b27ef511a8d4bc08dc9d7e70c17ccf4d2d0f887c037418d6a59",
-    "source_archive": "artifacts/v3_validation/frozen-source.tar.gz",
-    "source_archive_sha256": "12e1f4d30f521a432e68ea27fc95e3a46468b953bea282834181071461766be2"
+    "format": "optimization_round",
+    "manifest": "artifacts/optimization/baselines/exposed-seven-20261119.json",
+    "sha256": "2717c7238a82581165a6c2b9d06558454a1607af04e85983704e118f6b4c1108"
   },
   "cases": [
     {
@@ -44,6 +42,20 @@
       "spec_sha256": "109598de944bbc3e65940e82828f4684f977d2dff2fd0c68274899e2a91a6a41",
       "legacy_case": 5,
       "exposure_manifest": "benchmark_case/sealed_case5/manifest.json"
+    },
+    {
+      "id": "case10",
+      "split": "regression",
+      "spec": "benchmark_case/blind_spec_case10.json",
+      "spec_sha256": "1eb7577a45172208c0b2365ba109639d2da8e536fad991820d589b5eebe39ca6",
+      "exposure_manifest": "benchmark_case/holdouts/exposed-power-and-industrial-02.json"
+    },
+    {
+      "id": "case11",
+      "split": "regression",
+      "spec": "benchmark_case/blind_spec_case11.json",
+      "spec_sha256": "41d05f6fa5be628a97ba70e1222d2da5dc42ce17cf384cf3db1f0450a64b29d3",
+      "exposure_manifest": "benchmark_case/holdouts/exposed-power-and-industrial-02.json"
     }
   ]
 }

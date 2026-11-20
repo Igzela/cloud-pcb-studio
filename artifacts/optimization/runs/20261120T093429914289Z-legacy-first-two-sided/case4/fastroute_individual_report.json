@@ -1,0 +1,13 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T093429914289Z-legacy-first-two-sided/case4/board.dsn",
+  "time_s": {"load": 0.0764, "route": 64.6379, "total": 64.7375, "diagnose": null},
+  "stats": {"layers": 4, "components": 113, "nets": 98, "pins": 562, "connections": 309, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 2, "violations_unfixable": 2, "vias": 126, "vias_blind": 0, "vias_buried": 0, "traces": 748, "trace_length_mm": 3129.3523, "bends_90": 3, "bends_45": 577, "bends_other": 0, "router_score": 995.6376, "optimizer_score": 736.0617},
+  "unrouted": [
+    {"net": "Net-(D3-K)", "length_mm": 2.54, "from": {"kind": "pin", "component": "J15", "pin": "1", "layers": ["F.Cu", "B.Cu"]}, "from_xy": [17.5, 87.02], "to": {"kind": "pin", "component": "J15", "pin": "2", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [14.96, 87.02]}
+  ],
+  "clearance_violations": [
+    {"layer": "F.Cu", "xy": [23.91, 7.345], "clearance_mm": 0.05, "actual_mm": 0, "unfixable": true, "first": {"kind": "pin", "component": "J1", "pin": "B12", "layers": ["F.Cu", "F.Cu"]}, "second": {"kind": "pin", "component": "J1", "pin": "A1", "layers": ["F.Cu", "F.Cu"]}},
+    {"layer": "F.Cu", "xy": [17.41, 7.345], "clearance_mm": 0.05, "actual_mm": 0, "unfixable": true, "first": {"kind": "pin", "component": "J1", "pin": "B1", "layers": ["F.Cu", "F.Cu"]}, "second": {"kind": "pin", "component": "J1", "pin": "A12", "layers": ["F.Cu", "F.Cu"]}}
+  ]
+}
