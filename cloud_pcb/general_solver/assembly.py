@@ -1,7 +1,6 @@
 """Self-contained WebGL assembly export, sharing physical envelopes with MCAD checks."""
 from __future__ import annotations
 
-import html
 import json
 import subprocess
 from pathlib import Path
@@ -20,8 +19,14 @@ def assembly_scene(board,spec,placed):
     for fp in board.footprints:
         ref=fp.properties.get('Reference',''); comp=comps.get(ref)
         if comp:
-            env = component_envelope(comp)
-            side = comp.get('side', 'top')
+            fp_layer = getattr(fp, 'layer', None)
+            if fp_layer == 'B.Cu':
+                side = 'bottom'
+            elif fp_layer == 'F.Cu':
+                side = 'top'
+            else:
+                side = comp.get('side', 'top')
+            env = component_envelope({**comp, 'side': side})
             elevation = component_elevation(
                 side=side, board_thickness_mm=scene['thickness_mm'],
                 height_mm=env['height_mm'], standoff_mm=float(comp.get('standoff_mm', 0)),

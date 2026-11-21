@@ -41,11 +41,37 @@
         "manifest": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/manifest.json",
         "sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f"
       }
+    },
+    {
+      "at": "2026-11-20T18:25:38.011226+00:00",
+      "previous": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/manifest.json",
+        "sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f"
+      },
+      "new": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/manifest.json",
+        "sha256": "84ee4acbc6f10365b3c572cf9d1270d098481fe1dd86339ef3fc0ccababfce95"
+      }
+    },
+    {
+      "at": "2026-11-21T12:20:06.964000+00:00",
+      "previous": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/manifest.json",
+        "sha256": "84ee4acbc6f10365b3c572cf9d1270d098481fe1dd86339ef3fc0ccababfce95"
+      },
+      "new": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/manifest.json",
+        "sha256": "7113aac2ed77fa71917c78b50873ae64fdff0a4afcb0d50d8f60fc64920b360a"
+      }
     }
   ],
   "active_baseline": {
     "format": "optimization_round",
-    "manifest": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/manifest.json",
-    "sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f"
+    "manifest": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/manifest.json",
+    "sha256": "7113aac2ed77fa71917c78b50873ae64fdff0a4afcb0d50d8f60fc64920b360a"
   }
 }

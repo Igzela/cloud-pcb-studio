@@ -1,0 +1,55 @@
+{
+  "incumbent_key": [
+    12,
+    1,
+    1,
+    1
+  ],
+  "candidate_key": [
+    4,
+    2,
+    2,
+    2
+  ],
+  "incumbent_fill_ratio": 0.8691,
+  "candidate_fill_ratio": 0.8709,
+  "non_regressing": true,
+  "candidate_route_mode": "dense_escape_individual",
+  "candidate_direct_repair": {
+    "status": "accepted",
+    "proposals": [
+      {
+        "net": "VBUS",
+        "layer": "F.Cu",
+        "width_mm": 0.5,
+        "start_xy": [
+          4.707,
+          13.423
+        ],
+        "end_xy": [
+          6.057,
+          13.423
+        ]
+      },
+      {
+        "net": "VBUS",
+        "layer": "In2.Cu",
+        "width_mm": 0.5,
+        "start_xy": [
+          4.707,
+          17.673
+        ],
+        "end_xy": [
+          6.057,
+          17.673
+        ]
+      }
+    ],
+    "original_unrouted": 4,
+    "verified_unrouted": 2,
+    "original_lvs_opens": 2,
+    "verified_lvs_opens": 2
+  },
+  "physical_ground_plane_used": true,
+  "status": "accepted"
+}

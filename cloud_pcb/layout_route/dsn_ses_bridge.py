@@ -131,12 +131,18 @@ def board_to_dsn(
     *,
     protect_mechanical_holes: bool = False,
     safe_pin_references: bool = False,
+    honor_rule_via_geometry: bool = False,
+    align_structure_clearance: bool = False,
+    physical_ground_plane: dict[str, Any] | None = None,
 ) -> Path:
     """Export a kiutils Board to a Specctra .dsn file.
 
     The secondary router can opt into four-layer NPTH obstacles and explicit
     images for footprints without electrical pins, and independent quoting of
-    component and pad names in pin references.
+    component and pad names in pin references. Callers can also opt into
+    honoring the DEFAULT netclass via geometry, aligning the structure-level
+    clearance with the DEFAULT netclass clearance, and exporting a physical
+    In1.Cu ground plane with fixed copper and multi-layer thermal EPAD padstacks.
     """
     x0, y0, x1, y1 = board_bounds_mm
     # fastroute assigns explicit classes after reading per-net rules. Compile
@@ -154,9 +160,35 @@ def board_to_dsn(
     bx1 = round(x1 * 1000)
     by1 = round(-y0 * 1000)
 
+    default_rule = netclasses.get("DEFAULT")
+    if (
+        honor_rule_via_geometry
+        and default_rule is not None
+        and math.isfinite(default_rule.via_pad_mm)
+        and math.isfinite(default_rule.via_drill_mm)
+        and default_rule.via_pad_mm > 0
+        and default_rule.via_drill_mm > 0
+        and default_rule.via_pad_mm > default_rule.via_drill_mm
+    ):
+        via_pad_mm = default_rule.via_pad_mm
+        via_drill_mm = default_rule.via_drill_mm
+
     via_pad_um = round(via_pad_mm * 1000)
     via_drill_um = round(via_drill_mm * 1000)
     via_name = f"Via[0-3]_{via_pad_um}:{via_drill_um}_um"
+
+    struct_clr_um = 150
+    if align_structure_clearance and default_rule is not None:
+        struct_clr_um = max(125, round(default_rule.clearance_mm * 1000))
+
+    plane_net_name: str | None = None
+    thermal_epad_vias: dict[tuple[str, str], int] = {}
+    if physical_ground_plane is not None:
+        plane_net_name = str(physical_ground_plane["net_name"])
+        thermal_epad_vias = {
+            (str(k[0]), str(k[1])): int(v)
+            for k, v in (physical_ground_plane.get("thermal_epad_vias") or {}).items()
+        }
 
     padstacks: dict[str, list[str]] = {}
     images: list[str] = []
@@ -224,7 +256,34 @@ def board_to_dsn(
                 layer_tag = "B" if layer_list == ["B.Cu"] else "T"
 
             shape_kind = pad.shape
-            if shape_kind == "circle":
+            ep_um = thermal_epad_vias.get((ref, pad_num)) if pad.type != "thru_hole" else None
+            if ep_um is not None:
+                smd_layers = set(layer_list)
+                if shape_kind == "circle":
+                    ps_name = f"Circ_EPAD_{layer_tag}_{pw_um}_V{ep_um}_um"
+                    if ps_name not in padstacks:
+                        lines = [f"    (padstack {_quote(ps_name)}"]
+                        for lyr in COPPER_LAYERS:
+                            dia = pw_um if lyr in smd_layers else ep_um
+                            lines.append(f"      (shape (circle {lyr} {dia}))")
+                        lines.append("      (attach off)")
+                        lines.append("    )")
+                        padstacks[ps_name] = lines
+                else:
+                    ps_name = f"Rect_EPAD_{layer_tag}_{pw_um}x{ph_um}_V{ep_um}_um"
+                    if ps_name not in padstacks:
+                        hx = pw_um // 2
+                        hy = ph_um // 2
+                        lines = [f"    (padstack {_quote(ps_name)}"]
+                        for lyr in COPPER_LAYERS:
+                            if lyr in smd_layers:
+                                lines.append(f"      (shape (rect {lyr} {-hx} {-hy} {hx} {hy}))")
+                            else:
+                                lines.append(f"      (shape (circle {lyr} {ep_um}))")
+                        lines.append("      (attach off)")
+                        lines.append("    )")
+                        padstacks[ps_name] = lines
+            elif shape_kind == "circle":
                 ps_name = f"Circ_{layer_tag}_{pw_um}_um"
                 if ps_name not in padstacks:
                     lines = [f"    (padstack {_quote(ps_name)}"]
@@ -254,7 +313,7 @@ def board_to_dsn(
                 if override_net_pins:
                     override_references.setdefault(logical_reference, set()).add(pin_reference)
             if pad.net and pad.net.name:
-                if skip_nets and pad.net.name in skip_nets:
+                if skip_nets and pad.net.name in skip_nets and pad.net.name != plane_net_name:
                     continue
                 net_pins.setdefault(pad.net.name, []).append(pin_reference)
 
@@ -265,6 +324,8 @@ def board_to_dsn(
 
     if override_net_pins:
         for nname, plist in override_net_pins.items():
+            if plane_net_name is not None and nname == plane_net_name:
+                continue
             if len(plist) < 2:
                 net_pins.pop(nname, None)
             elif safe_pin_references:
@@ -293,10 +354,62 @@ def board_to_dsn(
                 keepout_lines.append(f'    ({kind} "" (polygon {lyr} 0 {coords}))')
             else: keepout_lines.append(f'    ({kind} "" (rect {lyr} {kx0} {ky0} {kx1} {ky1}))')
 
+    plane_lines: list[str] = []
+    wiring_lines: list[str] = []
+    if physical_ground_plane is not None:
+        assert plane_net_name is not None
+
+        def _ring_coords_um(ring: list[tuple[int, int]]) -> str:
+            pts = [(int(x), int(y)) for x, y in ring]
+            if len(pts) >= 3 and pts[0] != pts[-1]:
+                pts.append(pts[0])
+            return " ".join(f"{x} {y}" for x, y in pts)
+
+        ext_coords = _ring_coords_um(physical_ground_plane["plane_exterior_um"])
+        plane_lines.append(f"    (plane {_quote(plane_net_name)}")
+        plane_lines.append(f"      (polygon In1.Cu 0 {ext_coords})")
+        for win in physical_ground_plane.get("plane_windows_um") or []:
+            win_coords = _ring_coords_um(win)
+            plane_lines.append(f"      (window (polygon In1.Cu 0 {win_coords}))")
+        plane_lines.append("    )")
+
+        for fw in physical_ground_plane.get("fixed_wires") or []:
+            layer = str(fw["layer"])
+            width_um = int(fw["width_um"])
+            x1_um = int(fw["x1_um"])
+            y1_um = int(fw["y1_um"])
+            x2_um = int(fw["x2_um"])
+            y2_um = int(fw["y2_um"])
+            net = str(fw["net"])
+            wiring_lines.append(
+                f"    (wire (path {layer} {width_um} {x1_um} {y1_um} {x2_um} {y2_um}) (net {_quote(net)}) (type fix))"
+            )
+
+        for fv in physical_ground_plane.get("fixed_vias") or []:
+            fv_pad_um = int(fv["pad_um"])
+            fv_drill_um = int(fv["drill_um"])
+            fv_ps_name = f"Via[0-3]_{fv_pad_um}:{fv_drill_um}_um"
+            if fv_ps_name not in padstacks:
+                padstacks[fv_ps_name] = [
+                    f"    (padstack {_quote(fv_ps_name)}",
+                    f"      (shape (circle F.Cu {fv_pad_um}))",
+                    f"      (shape (circle In1.Cu {fv_pad_um}))",
+                    f"      (shape (circle In2.Cu {fv_pad_um}))",
+                    f"      (shape (circle B.Cu {fv_pad_um}))",
+                    "      (attach off)",
+                    "    )",
+                ]
+            x_um = int(fv["x_um"])
+            y_um = int(fv["y_um"])
+            net = str(fv["net"])
+            wiring_lines.append(
+                f"    (via {_quote(fv_ps_name)} {x_um} {y_um} (net {_quote(net)}) (type fix))"
+            )
+
     # Group nets by netclass
     class_to_nets: dict[str, list[str]] = {cname: [] for cname in netclasses}
     for net_name, pins in net_pins.items():
-        if len(pins) < 2:
+        if len(pins) < 2 and net_name != plane_net_name:
             continue
         cname = net_to_class.get(net_name, "DEFAULT")
         if cname not in class_to_nets:
@@ -305,7 +418,7 @@ def board_to_dsn(
 
     network_lines: list[str] = []
     for net_name, pins in sorted(net_pins.items()):
-        if len(pins) < 2:
+        if len(pins) < 2 and net_name != plane_net_name:
             continue
         pin_str = " ".join(pins if safe_pin_references else (_quote(p) for p in pins))
         network_lines.append(f"    (net {_quote(net_name)}")
@@ -363,10 +476,11 @@ def board_to_dsn(
         *keepout_lines,
         *mechanical_keepout_lines,
         f"    (via {_quote(via_name)})",
+        *plane_lines,
         "    (rule",
         "      (width 200)",
-        "      (clearance 150)",
-        "      (clearance 150 (type default_smd))",
+        f"      (clearance {struct_clr_um})",
+        f"      (clearance {struct_clr_um} (type default_smd))",
         "      (clearance 50 (type smd_smd))",
         "    )",
         "  )",
@@ -385,6 +499,7 @@ def board_to_dsn(
             *network_lines,
             "  )",
             "  (wiring",
+            *wiring_lines,
             "  )",
             ")",
         ]

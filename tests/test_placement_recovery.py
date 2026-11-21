@@ -168,3 +168,67 @@ def test_full_placer_recovers_the_compact_synthetic_layout_without_overlap():
         assert not footprints[0].intersects(footprints[1])
         edge = .5 if compact else 1.
         assert all(box(edge, edge, 18 - edge, 12 - edge).contains(outline) for outline in footprints)
+
+
+def test_dense_obstacles_near_target_do_not_starve_full_board_coverage():
+    """30+ obstacles clustered near target must not starve probe budget before reaching far side."""
+    from cloud_pcb.general_solver.placement_recovery import ANGLES, _angle_candidates
+    import heapq
+    from itertools import islice
+
+    board_w, board_h = 100.0, 60.0
+    board = box(0, 0, board_w, board_h)
+    # 36 distinct obstacles filling x in [0, 74] across the full height so no slot fits there.
+    obstacles = []
+    for row in range(6):
+        for col in range(6):
+            x0 = 1.0 + col * 12.13
+            y0 = 0.5 + row * 9.87
+            obstacles.append(box(x0, y0, x0 + 11.9, y0 + 9.7))
+    # Also wall off [0, 74] solid while keeping all 36 distinct obstacle boxes in support_bounds
+    # so the generator receives 72 X and 72 Y obstacle edges clustered near target (5, 30).
+    wall = box(0, 0, 74.0, board_h)
+    bboxes = {"part": (-2.0, -2.0, 2.0, 2.0)}
+    placed, solids, valid, commit, _ = _state(board, bboxes, fixed=(wall, *obstacles))
+
+    def support(_):
+        return [g.bounds for g in obstacles]
+
+    # Verify the candidate stream itself sweeps across >90% of board width & height within 40k probes.
+    occupied = tuple(g.bounds for g in obstacles)
+    ranked = heapq.merge(*(
+        _angle_candidates(bboxes["part"], (5.0, 30.0), (board_w, board_h), angle, occupied, CLEARANCE, 1.0)
+        for angle in ANGLES
+    ))
+    sampled = list(islice(ranked, 40000))
+    xs = [x / 1000.0 for _, x, _, _ in sampled]
+    ys = [y / 1000.0 for _, _, y, _ in sampled]
+    assert max(xs) > 90.0
+    assert min(ys) < 5.0 and max(ys) > 55.0
+
+    # Verify pack_movable actually finds the legal open region on the far right (x > 76).
+    pack_movable(
+        ["part"], bboxes, {"part": (5.0, 30.0)}, valid, commit,
+        (board_w, board_h), support_bounds=support, probe_budget=40000,
+    )
+    assert placed["part"][0] > 76.0
+    assert board.buffer(-1.0).contains(solids["part"])
+    assert not wall.intersects(solids["part"])
+
+
+def test_tiered_angle_candidates_are_monotonic_and_deduplicated():
+    from cloud_pcb.general_solver.placement_recovery import _angle_candidates
+
+    occupied = tuple(
+        (2.0 + i * 1.13, 2.0 + (i % 5) * 2.17, 3.0 + i * 1.13, 3.0 + (i % 5) * 2.17)
+        for i in range(12)
+    )
+    stream = list(_angle_candidates(
+        (-0.5, -0.5, 0.5, 0.5), (10.0, 10.0), (24.0, 16.0), 0, occupied, 0.28, 1.0,
+    ))
+    ranks = [entry[0] for entry in stream]
+    coords = [(entry[1], entry[2], entry[3]) for entry in stream]
+    assert ranks == sorted(ranks)
+    assert len(coords) == len(set(coords))
+    assert any(tier == 0 for tier, _ in ranks)
+
