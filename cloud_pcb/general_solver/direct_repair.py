@@ -334,9 +334,40 @@ def propose_direct_repairs(
         start = tuple(axis / 1000 for axis in start_um)
         end = tuple(axis / 1000 for axis in end_um)
         centerline = LineString([start, end])
+        placed_direct = False
         for layer in allowed:
             if _can_fit(centerline, layer, net, width, drill_owners, board_poly, obstacles, clearances):
                 proposals.append(DirectRepair(net, layer, width, start, end))
                 obstacles[layer].append(_Obstacle(centerline, net, width / 2))
+                placed_direct = True
                 break
+        if not placed_direct and allow_power_classes and (start_um[0] == end_um[0] or start_um[1] == end_um[1]):
+            for offset_um in (650, 750, 800, 900, 1000, 1150, 1300, 1500):
+                if placed_direct:
+                    break
+                for sign in (-1, 1):
+                    if start_um[0] == end_um[0]:
+                        mid_x = (start_um[0] + sign * offset_um) / 1000
+                        p1, p2 = (mid_x, start[1]), (mid_x, end[1])
+                    else:
+                        mid_y = (start_um[1] + sign * offset_um) / 1000
+                        p1, p2 = (start[0], mid_y), (end[0], mid_y)
+                    segs = (
+                        (start, p1, LineString([start, p1])),
+                        (p1, p2, LineString([p1, p2])),
+                        (p2, end, LineString([p2, end])),
+                    )
+                    for layer in allowed:
+                        if all(
+                            _can_fit(seg, layer, net, width, drill_owners, board_poly, obstacles, clearances)
+                            for _, _, seg in segs
+                        ):
+                            for s_pt, e_pt, seg in segs:
+                                proposals.append(DirectRepair(net, layer, width, s_pt, e_pt))
+                                obstacles[layer].append(_Obstacle(seg, net, width / 2))
+                            placed_direct = True
+                            break
+                    if placed_direct:
+                        break
     return proposals
+

@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case3/dense_escape_candidate/board.dsn",
+  "time_s": {"load": 0.5658, "route": 110.312, "total": 111.1493, "diagnose": null},
+  "stats": {"layers": 4, "components": 74, "nets": 57, "pins": 230, "connections": 171, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 121, "vias_blind": 0, "vias_buried": 0, "traces": 487, "trace_length_mm": 1123.4854, "bends_90": 4, "bends_45": 455, "bends_other": 0, "router_score": 1000, "optimizer_score": 433.3333},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

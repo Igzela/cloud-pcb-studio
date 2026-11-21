@@ -124,3 +124,60 @@ def test_direct_repair_lvs_improved_allows_partial_island_merge_and_blocks_migra
     assert _direct_repair_lvs_improved(before, partial, allow_partial_islands=True)
     assert not _direct_repair_lvs_improved(before, migrated, allow_partial_islands=True)
     assert not _direct_repair_lvs_improved(before, shorted, allow_partial_islands=True)
+
+
+def test_blocked_center_epad_reorders_same_footprint_touching_tabs_for_inward_bridge():
+    """When an opposite-side pad blocks the center thermal via of an interior EPAD,
+    same-footprint touching tie-bar tabs are processed before larger isolated perimeter
+    GND pins of that footprint so the isolated pin bridges inward to the EPAD."""
+    from kiutils.items.brditems import Segment
+
+    board = _touching_epad_board()
+    # Add an isolated perimeter GND pin (U1-2, larger area 0.60 x 0.28 = 0.168 > 0.150 of tabs 16/17)
+    # 0.30 mm east of the 1.50 x 2.60 mm EPAD (east edge x = 15.75, U1-2 west edge x = 16.05, center x = 16.35)
+    u1 = board.footprints[0]
+    for p in u1.pads:
+        if p.number == "5":
+            p.net = board.nets[1]
+            p.size = Position(X=0.60, Y=0.28)
+            p.position = Position(X=1.35, Y=0.0)
+            break
+    # Place an opposite-side B.Cu signal pad under the center of U1's EPAD so Step 1 center thermal via is blocked
+    c_bot = Footprint(
+        entryName="test:bot_cap",
+        position=Position(X=15.0, Y=15.0),
+        properties={"Reference": "C1"},
+        pads=[
+            Pad(
+                number="1", type="smd", shape="rect",
+                position=Position(X=0.0, Y=0.0), size=Position(X=1.0, Y=1.0),
+                net=board.nets[2], layers=["B.Cu", "B.Mask", "B.Paste"],
+            )
+        ],
+    )
+    board.footprints.append(c_bot)
+
+    skipped, overrides, stats = _add_gnd_fanout_vias(board, box(0, 0, 30, 30), [], dense_escape_repair=True)
+    assert skipped == {"GND"}
+    assert overrides == {}
+    assert stats["unvia_gnd_pins"] == []
+    # Confirm U1-5 bridged inward (width 0.18 mm) to the EPAD at x = 15.75 rather than fanning out east
+    inward_bridges = [
+        s for s in board.traceItems
+        if isinstance(s, Segment) and abs(float(s.width) - 0.18) < 1e-6 and abs(float(s.start.X) - 16.35) < 1e-3
+    ]
+    assert len(inward_bridges) == 1
+    assert abs(float(inward_bridges[0].end.X) - 15.75) < 1e-2
+
+
+def test_inner_antipad_clearance_aligns_in1_pour_cutout_area():
+    from cloud_pcb.general_solver.run_blind import _build_4layer_pours_and_stitching
+
+    board = Board.create_new()
+    board.nets = [Net(0, ""), Net(1, "GND"), Net(2, "SIG")]
+    board.traceItems.append(
+        Via(position=Position(X=10.0, Y=10.0), size=0.50, drill=0.25, layers=["F.Cu", "B.Cu"], net=2)
+    )
+    _, stats_25 = _build_4layer_pours_and_stitching(board, box(0, 0, 20, 20), inner_antipad_clearance=0.25)
+    _, stats_221 = _build_4layer_pours_and_stitching(board, box(0, 0, 20, 20), inner_antipad_clearance=0.221)
+    assert stats_221["pour_area_mm2"] > stats_25["pour_area_mm2"]

@@ -1,10 +1,10 @@
 {
   "status": "baseline_diagnosed",
-  "created_at": "2026-11-20T18:26:20.103395+00:00",
+  "created_at": "2026-11-21T12:20:50.999471+00:00",
   "baseline": {
     "format": "optimization_round",
-    "manifest": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/manifest.json",
-    "sha256": "84ee4acbc6f10365b3c572cf9d1270d098481fe1dd86339ef3fc0ccababfce95"
+    "manifest": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/manifest.json",
+    "sha256": "7113aac2ed77fa71917c78b50873ae64fdff0a4afcb0d50d8f60fc64920b360a"
   },
   "measurements": {
     "case1": {
@@ -58,8 +58,8 @@
     },
     "case3": {
       "values": {
-        "unrouted": 1,
-        "opens": 1,
+        "unrouted": 0,
+        "opens": 0,
         "shorts": 0,
         "spacing": 0,
         "via_in_pad": 0,
@@ -72,12 +72,10 @@
         "unverified_envelopes": 74,
         "cap_distance_mm": 3.949,
         "ground_fill_deficit": 0.0,
-        "wirelength_mm": 1144.005
+        "wirelength_mm": 1123.486
       },
       "failed_gates": [
-        "independent_lvs_opens_zero",
-        "mechanical_zero_with_verified_envelopes",
-        "unrouted_zero"
+        "mechanical_zero_with_verified_envelopes"
       ],
       "hard_pass": false,
       "evidence_errors": []
@@ -108,8 +106,8 @@
     },
     "case5": {
       "values": {
-        "unrouted": 9,
-        "opens": 9,
+        "unrouted": 5,
+        "opens": 5,
         "shorts": 0,
         "spacing": 0,
         "via_in_pad": 0,
@@ -121,8 +119,8 @@
         "mechanical_collisions": 0,
         "unverified_envelopes": 52,
         "cap_distance_mm": 6.884,
-        "ground_fill_deficit": 0.09489999999999998,
-        "wirelength_mm": 935.4
+        "ground_fill_deficit": 0.08689999999999998,
+        "wirelength_mm": 966.792
       },
       "failed_gates": [
         "copper_edge_ge_050",
@@ -135,8 +133,8 @@
     },
     "case10": {
       "values": {
-        "unrouted": 2,
-        "opens": 2,
+        "unrouted": 0,
+        "opens": 0,
         "shorts": 0,
         "spacing": 4,
         "via_in_pad": 0,
@@ -149,13 +147,11 @@
         "unverified_envelopes": 84,
         "cap_distance_mm": 12.392,
         "ground_fill_deficit": 0.0,
-        "wirelength_mm": 1591.621
+        "wirelength_mm": 1618.22
       },
       "failed_gates": [
-        "independent_lvs_opens_zero",
         "mechanical_zero_with_verified_envelopes",
-        "router_spacing_zero",
-        "unrouted_zero"
+        "router_spacing_zero"
       ],
       "hard_pass": false,
       "evidence_errors": []
@@ -188,31 +184,31 @@
   "case_details": {
     "case1": {
       "ground_fill_ratio": 0.8649,
-      "artifact_directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case1"
+      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case1"
     },
     "case2": {
       "ground_fill_ratio": 0.9154,
-      "artifact_directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case2"
+      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case2"
     },
     "case3": {
-      "ground_fill_ratio": 0.8933,
-      "artifact_directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case3"
+      "ground_fill_ratio": 0.8983,
+      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case3"
     },
     "case4": {
       "ground_fill_ratio": 0.9404,
-      "artifact_directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case4"
+      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case4"
     },
     "case5": {
-      "ground_fill_ratio": 0.7551,
-      "artifact_directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case5"
+      "ground_fill_ratio": 0.7631,
+      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case5"
     },
     "case10": {
-      "ground_fill_ratio": 0.8709,
-      "artifact_directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case10"
+      "ground_fill_ratio": 0.8762,
+      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case10"
     },
     "case11": {
-      "ground_fill_ratio": 0.9001,
-      "artifact_directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case11"
+      "ground_fill_ratio": 0.904,
+      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11"
     }
   },
   "tasks": [
@@ -382,48 +378,6 @@
         "proxy_average_mm": 7.706,
         "target_mm": 4.5,
         "limitation": "bulk caps may be included"
-      }
-    },
-    {
-      "id": "16d11a2f5145",
-      "case": "case3",
-      "category": "connectivity",
-      "priority": 1,
-      "kind": "solver",
-      "title": "按独立 LVS 断开组诊断布线拥塞",
-      "evidence": {
-        "unrouted": 1,
-        "opens": [
-          {
-            "net": "/M1_TACHO",
-            "components": 2,
-            "pad_count": 3,
-            "pad_groups": {
-              "0": [
-                "J1-9",
-                "J1-9",
-                "J1-9",
-                "J1-9",
-                "R33-2"
-              ],
-              "2": [
-                "U201-6"
-              ]
-            }
-          }
-        ],
-        "routing_candidates": [
-          {
-            "mode": "standard",
-            "unrouted": 1,
-            "real_violations": 0
-          },
-          {
-            "mode": "dense_escape_standard",
-            "unrouted": 1,
-            "real_violations": 0
-          }
-        ]
       }
     },
     {
@@ -700,7 +654,7 @@
       "kind": "solver",
       "title": "按独立 LVS 断开组诊断布线拥塞",
       "evidence": {
-        "unrouted": 9,
+        "unrouted": 5,
         "opens": [
           {
             "net": "/U3TX_P",
@@ -716,29 +670,32 @@
             }
           },
           {
-            "net": "/U3TX_N",
+            "net": "/V12",
             "components": 2,
-            "pad_count": 2,
+            "pad_count": 19,
             "pad_groups": {
               "0": [
-                "C2-1"
+                "C16-2",
+                "C17-1",
+                "C18-2",
+                "C19-2",
+                "C20-2",
+                "C21-2",
+                "C24-2",
+                "C25-2",
+                "C26-2",
+                "L1-2",
+                "R15-1",
+                "U3-4",
+                "U3-9",
+                "U3-13",
+                "U3-20",
+                "U3-24",
+                "U3-31",
+                "U3-46"
               ],
-              "1": [
-                "U3-19"
-              ]
-            }
-          },
-          {
-            "net": "Net-(U3-CKXTAL2)",
-            "components": 2,
-            "pad_count": 3,
-            "pad_groups": {
-              "2": [
-                "C8-1",
-                "X1-1"
-              ],
-              "0": [
-                "U3-45"
+              "4": [
+                "U3-42"
               ]
             }
           },
@@ -759,79 +716,34 @@
             }
           },
           {
-            "net": "/M1_P",
+            "net": "/M2_P",
             "components": 2,
             "pad_count": 2,
             "pad_groups": {
-              "0": [
-                "LAN1-3",
-                "LAN1-3",
-                "LAN1-3",
-                "LAN1-3"
-              ],
               "1": [
-                "U3-5"
+                "LAN1-7",
+                "LAN1-7",
+                "LAN1-7",
+                "LAN1-7"
+              ],
+              "0": [
+                "U3-7"
               ]
             }
           },
           {
-            "net": "/M1_N",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "0": [
-                "LAN1-4",
-                "LAN1-4",
-                "LAN1-4",
-                "LAN1-4"
-              ],
-              "1": [
-                "U3-6"
-              ]
-            }
-          },
-          {
-            "net": "/M2_N",
+            "net": "/M3_N",
             "components": 2,
             "pad_count": 2,
             "pad_groups": {
               "1": [
-                "LAN1-8",
-                "LAN1-8",
-                "LAN1-8",
-                "LAN1-8"
+                "LAN1-10",
+                "LAN1-10",
+                "LAN1-10",
+                "LAN1-10"
               ],
               "0": [
-                "U3-8"
-              ]
-            }
-          },
-          {
-            "net": "/M3_P",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "1": [
-                "LAN1-9",
-                "LAN1-9",
-                "LAN1-9",
-                "LAN1-9"
-              ],
-              "0": [
-                "U3-10"
-              ]
-            }
-          },
-          {
-            "net": "/U3SRX_P",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "0": [
-                "U3-14"
-              ],
-              "1": [
-                "USB1-9"
+                "U3-11"
               ]
             }
           }
@@ -849,8 +761,8 @@
           },
           {
             "mode": "dense_escape_coupled_pairs",
-            "unrouted": 19,
-            "real_violations": 1
+            "unrouted": 20,
+            "real_violations": 0
           },
           {
             "mode": "dense_escape_individual",
@@ -949,7 +861,7 @@
       "kind": "solver",
       "title": "改善地参考完整性",
       "evidence": {
-        "deficit": 0.09489999999999998,
+        "deficit": 0.08689999999999998,
         "target": 0.85
       }
     },
@@ -963,95 +875,6 @@
       "evidence": {
         "metric": "spacing",
         "value": 4
-      }
-    },
-    {
-      "id": "bc8019c41b61",
-      "case": "case10",
-      "category": "connectivity",
-      "priority": 1,
-      "kind": "solver",
-      "title": "按独立 LVS 断开组诊断布线拥塞",
-      "evidence": {
-        "unrouted": 2,
-        "opens": [
-          {
-            "net": "VBUS",
-            "components": 2,
-            "pad_count": 16,
-            "pad_groups": {
-              "5": [
-                "C25-2",
-                "CBUS3-2",
-                "CBUS3a1-2",
-                "CPSU2-2",
-                "IC1-1",
-                "IC1-24",
-                "J2-A9",
-                "J2-A9",
-                "J2-A9",
-                "J2-A9",
-                "J2-B4",
-                "J2-B4",
-                "J2-B4",
-                "J2-B4",
-                "Q1-1",
-                "Q1-2",
-                "Q1-3",
-                "R20-2",
-                "R28-2",
-                "R42-1"
-              ],
-              "1": [
-                "J2-A4",
-                "J2-A4",
-                "J2-A4",
-                "J2-A4",
-                "J2-B9",
-                "J2-B9",
-                "J2-B9",
-                "J2-B9"
-              ]
-            }
-          },
-          {
-            "net": "Net-(U3-FB)",
-            "components": 2,
-            "pad_count": 4,
-            "pad_groups": {
-              "0": [
-                "R12-1",
-                "R13-2",
-                "R22-2"
-              ],
-              "1": [
-                "U3-3"
-              ]
-            }
-          }
-        ],
-        "routing_candidates": [
-          {
-            "mode": "coupled_pairs",
-            "unrouted": 6,
-            "real_violations": 12
-          },
-          {
-            "mode": "individual_with_length_tuning",
-            "unrouted": 3,
-            "real_violations": 12
-          },
-          {
-            "mode": "dense_escape_coupled_pairs",
-            "unrouted": 4,
-            "real_violations": 4
-          },
-          {
-            "mode": "dense_escape_individual",
-            "unrouted": 4,
-            "real_violations": 4
-          }
-        ]
       }
     },
     {
@@ -1272,7 +1095,7 @@
     "reason": "diagnosis only"
   },
   "last_round": {
-    "directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair",
+    "directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge",
     "promoted": true,
     "recorded_status": "complete",
     "integrity": "verified"

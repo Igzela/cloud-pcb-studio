@@ -363,3 +363,44 @@ def test_plane_ground_net_skips_only_plane_ground_and_repairs_isolated_agnd():
         plane_ground_net="GND",
     ) == [DirectRepair("AGND", "F.Cu", .16, (4., 7.), (7., 7.))]
 
+
+def test_collinear_blocked_power_pins_use_three_segment_orthogonal_c_bypass():
+    board = Board.create_new()
+    vbus = Net(2, "VBUS")
+    sig = Net(3, "SIG")
+    board.nets = [Net(0, ""), Net(1, "GND"), vbus, sig]
+    fp = footprint(board, "J_COL", 4., 2.)
+    pad(fp, "B9", 0., 1., vbus, size=0.8)
+    pad(fp, "B7", 0., 2., sig, size=0.8)
+    pad(fp, "B5", 0., 3., sig, size=0.8)
+    pad(fp, "B4", 0., 4., vbus, size=0.8)
+
+    report = {
+        "unrouted": [
+            connection("VBUS", "J_COL", "B9", (4., 3.), "B4", (4., 6.)),
+        ]
+    }
+    power_rule = NetClassRule("POWER_002", .50, .15, .30, .55, 3.0)
+    netclasses = {"DEFAULT": RULE, "POWER_002": power_rule}
+    net_to_class = {"VBUS": "POWER_002"}
+
+    # Without allow_power_classes, nothing is proposed.
+    assert propose_direct_repairs(
+        board, box(0, 0, 12, 10), (), netclasses, net_to_class, LAYERS, report,
+        allow_power_classes=False,
+    ) == []
+
+    # With allow_power_classes, the straight vertical line (4,3)->(4,6) is blocked by B7 and B5,
+    # so the 3-segment orthogonal C-bypass at x = 3.25 (offset -0.75 mm) is proposed on F.Cu.
+    c_repairs = propose_direct_repairs(
+        board, box(0, 0, 12, 10), (), netclasses, net_to_class, LAYERS, report,
+        allow_power_classes=True,
+    )
+    assert len(c_repairs) == 3
+    assert all(r.net == "VBUS" and r.layer == "F.Cu" and r.width_mm == 0.50 for r in c_repairs)
+    assert c_repairs[0].start_xy == (4.0, 3.0)
+    assert c_repairs[0].end_xy == c_repairs[1].start_xy
+    assert c_repairs[1].end_xy == c_repairs[2].start_xy
+    assert c_repairs[2].end_xy == (4.0, 6.0)
+    assert c_repairs[0].end_xy[0] < 4.0
+

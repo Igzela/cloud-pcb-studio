@@ -1236,6 +1236,25 @@ def _add_gnd_fanout_vias(
     unvia_pins: list[str] = []
     unvia_records: list[dict[str, Any]] = []
 
+    def _mark_grounded(fp_i: int, geom: Any) -> None:
+        fp_grounded_geoms[fp_i].append(geom)
+        if dense_escape_repair and any(r["fp_idx"] == fp_i and r["is_interior_epad"] for r in unvia_records):
+            changed = True
+            while changed:
+                changed = False
+                still: list[dict[str, Any]] = []
+                for urec in unvia_records:
+                    if urec["fp_idx"] == fp_i and any(
+                        urec["pg"].intersects(gg) or urec["pg"].distance(gg) <= 1e-4
+                        for gg in fp_grounded_geoms[fp_i]
+                    ):
+                        fp_grounded_geoms[fp_i].append(urec["pg"])
+                        changed = True
+                    else:
+                        still.append(urec)
+                unvia_records[:] = still
+            unvia_pins[:] = [f"{r['ref']}-{r['pnum']}" for r in unvia_records]
+
     via_r = via_pad_d / 2.0
     min_via_spacing = max(0.65, via_pad_d + 0.17)
     guard_area_reclaimed = 0.0
@@ -1250,7 +1269,8 @@ def _add_gnd_fanout_vias(
             guard=dict(kind='fixed_ground_via',x_min=round(vx-radius,3),y_min=round(vy-radius,3),x_max=round(vx+radius,3),y_max=round(vy+radius,3),layers=layers)
         keepouts.append(guard)
 
-    for rec in gnd_smd_pads:
+    for rec_idx in range(len(gnd_smd_pads)):
+        rec = gnd_smd_pads[rec_idx]
         fp_idx = rec["fp_idx"]
         ref = rec["ref"]
         pnum = rec["pnum"]
@@ -1286,7 +1306,7 @@ def _add_gnd_fanout_vias(
             if chosen_ep is not None:
                 vx, vy = chosen_ep
                 placed_via_pts.append((vx, vy))
-                fp_grounded_geoms[fp_idx].append(pg)
+                _mark_grounded(fp_idx, pg)
                 board.traceItems.append(
                     Via(
                         position=Position(X=vx, Y=vy),
@@ -1316,7 +1336,7 @@ def _add_gnd_fanout_vias(
                         bridged_xy = (bx, by)
                         break
         if bridged_xy is not None:
-            fp_grounded_geoms[fp_idx].append(pg)
+            _mark_grounded(fp_idx, pg)
             board.traceItems.append(
                 Segment(
                     start=Position(X=px, Y=py),
@@ -1338,7 +1358,7 @@ def _add_gnd_fanout_vias(
                     shared_via = (oxv, oyv)
                     break
         if shared_via is not None:
-            fp_grounded_geoms[fp_idx].append(pg)
+            _mark_grounded(fp_idx, pg)
             board.traceItems.append(
                 Segment(
                     start=Position(X=px, Y=py),
@@ -1398,7 +1418,7 @@ def _add_gnd_fanout_vias(
         if chosen_xy is not None:
             vx, vy = chosen_xy
             placed_via_pts.append((vx, vy))
-            fp_grounded_geoms[fp_idx].append(pg)
+            _mark_grounded(fp_idx, pg)
             board.traceItems.append(
                 Segment(
                     start=Position(X=px, Y=py),
@@ -1424,6 +1444,12 @@ def _add_gnd_fanout_vias(
         else:
             unvia_pins.append(f"{ref}-{pnum}")
             unvia_records.append(rec)
+            if dense_escape_repair and rec["is_interior_epad"]:
+                fp_positions = [i for i in range(rec_idx + 1, len(gnd_smd_pads)) if gnd_smd_pads[i]["fp_idx"] == fp_idx]
+                fp_items = [gnd_smd_pads[i] for i in fp_positions]
+                fp_items.sort(key=lambda d: 0 if (d["pg"].intersects(pg) or d["pg"].distance(pg) <= 1e-4) else 1)
+                for pos, item in zip(fp_positions, fp_items):
+                    gnd_smd_pads[pos] = item
 
     if dense_escape_repair and unvia_records:
         # Propagate physical ground connectivity to any pad touching an already-grounded
@@ -1486,6 +1512,8 @@ def _build_physical_ground_plane_dsn_spec(
     board: Board,
     board_poly: ShpPolygon,
     keepouts: list[dict[str, Any]] | None = None,
+    *,
+    inner_antipad_clearance: float = 0.25,
 ) -> dict[str, Any] | None:
     """Build a fail-closed physical In1.Cu ground plane + fixed-copper DSN spec.
 
@@ -1543,7 +1571,7 @@ def _build_physical_ground_plane_dsn_spec(
                 gnd_copper_pad_count += 1
             if pad.type == "thru_hole":
                 if pnet != gnd_net_num:
-                    inner_cutouts.append(pg.buffer(0.25))
+                    inner_cutouts.append(pg.buffer(inner_antipad_clearance))
                 else:
                     ground_anchors.append((px, py))
                     ground_anchors.append((dsn_px_mm, dsn_py_mm))
@@ -1566,7 +1594,7 @@ def _build_physical_ground_plane_dsn_spec(
             if vsize <= 0 or vdrill <= 0 or vsize <= vdrill:
                 return None
             if int(item.net) != gnd_net_num:
-                inner_cutouts.append(ShpPoint(vx, vy).buffer(vsize / 2.0 + 0.25, resolution=24))
+                inner_cutouts.append(ShpPoint(vx, vy).buffer(vsize / 2.0 + inner_antipad_clearance, resolution=24))
                 continue
             via_disk = ShpPoint(vx, vy).buffer(vsize / 2.0)
             hitting = [rec for rec in smd_pads if rec[4].intersects(via_disk)]
@@ -1733,6 +1761,8 @@ def _build_4layer_pours_and_stitching(
     edge_margin: float = 0.50,
     keepouts: list[dict[str, Any]] | None = None,
     islands: list[dict[str, Any]] | None = None,
+    *,
+    inner_antipad_clearance: float = 0.25,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Build In1.Cu/In2.Cu solid GND planes + F.Cu/B.Cu GND pours + stitching via fence."""
     gnd_net_obj = _plane_ground_net(board)
@@ -1771,7 +1801,7 @@ def _build_4layer_pours_and_stitching(
             pnet = int(pad.net.number) if pad.net else 0
             if pad.type == "thru_hole":
                 if pnet != gnd_net_num:
-                    inner_cutouts.append(pg.buffer(0.25))
+                    inner_cutouts.append(pg.buffer(inner_antipad_clearance))
                     c_out = pg.buffer(0.24)
                     outer_cutouts["F.Cu"].append(c_out)
                     outer_cutouts["B.Cu"].append(c_out)
@@ -1790,11 +1820,12 @@ def _build_4layer_pours_and_stitching(
             vx, vy = float(item.position.X), float(item.position.Y)
             existing_vias.append((vx, vy))
             if int(item.net) != gnd_net_num:
-                r_in = float(item.size) / 2.0 + 0.25
+                r_in = float(item.size) / 2.0 + inner_antipad_clearance
                 c_in = ShpPoint(vx, vy).buffer(r_in, resolution=24)
+                c_out = ShpPoint(vx, vy).buffer(float(item.size) / 2.0 + 0.25, resolution=24)
                 inner_cutouts.append(c_in)
-                outer_cutouts["F.Cu"].append(c_in)
-                outer_cutouts["B.Cu"].append(c_in)
+                outer_cutouts["F.Cu"].append(c_out)
+                outer_cutouts["B.Cu"].append(c_out)
                 non_gnd_copper_all.append(ShpPoint(vx, vy).buffer(float(item.size) / 2.0))
             else:
                 gnd_bridges.append(ShpPoint(vx, vy).buffer(float(item.size) / 2.0))
@@ -2441,18 +2472,20 @@ def _run_dense_escape_candidate(
     used_cmd = cmd
     candidates_log = [dict(mode=mode, unrouted=stats.get("unrouted"), real_violations=spacing["real_count"])]
 
-    if pairs_lines and (not ok or stats.get("unrouted", 0) > 0):
-        tune = cand_dir / "pair_tuning.txt"
-        lines = []
-        for i, pair in enumerate(spec["design_requirements"]["differential_pairs"]):
-            lines.extend([f"group pair_{i} tolerance={float(pair.get('max_skew_mm', .2))}", "  " + pair["pos_net"], "  " + pair["neg_net"]])
-        tune.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    if not ok or stats.get("unrouted", 0) > 0:
         ind_ses = cand_dir / "board_fastroute_individual.ses"
         ind_rep = cand_dir / "fastroute_individual_report.json"
         ind_cmd = [v for v in cmd if not v.startswith("--pairs=") and not v.startswith("--report=")]
         ind_cmd[ind_cmd.index("-do") + 1] = str(ind_ses)
         ind_cmd = [v.replace("--router.neck_width_um=160", "--router.neck_width_um=125") for v in ind_cmd]
-        ind_cmd.extend([f"--report={ind_rep}", f"--tune={tune}"])
+        ind_cmd.append(f"--report={ind_rep}")
+        if pairs_lines:
+            tune = cand_dir / "pair_tuning.txt"
+            lines = []
+            for i, pair in enumerate(spec["design_requirements"]["differential_pairs"]):
+                lines.extend([f"group pair_{i} tolerance={float(pair.get('max_skew_mm', .2))}", "  " + pair["pos_net"], "  " + pair["neg_net"]])
+            tune.write_text("\n".join(lines) + "\n", encoding="utf-8")
+            ind_cmd.append(f"--tune={tune}")
         ta = time.perf_counter()
         ind_rc = -1
         ind_stdout = ind_stderr = None
@@ -2501,7 +2534,9 @@ def _run_dense_escape_candidate(
     if alt_repairs:
         cand_board_dr = deepcopy(alt_routed)
     alt_islands = power_islands(alt_routed, board_poly, spec, alt_keepouts)
-    alt_pours, alt_pour_stats = _build_4layer_pours_and_stitching(alt_routed, board_poly, keepouts=alt_keepouts, islands=alt_islands)
+    alt_pours, alt_pour_stats = _build_4layer_pours_and_stitching(
+        alt_routed, board_poly, keepouts=alt_keepouts, islands=alt_islands, inner_antipad_clearance=0.221
+    )
     extra_len = 0.0
     if alt_repairs:
         replay_start = time.perf_counter()
@@ -2523,7 +2558,7 @@ def _run_dense_escape_candidate(
                 ))
             dr_islands = power_islands(cand_board_dr, board_poly, spec, alt_keepouts)
             dr_pours, dr_pour_stats = _build_4layer_pours_and_stitching(
-                cand_board_dr, board_poly, keepouts=alt_keepouts, islands=dr_islands,
+                cand_board_dr, board_poly, keepouts=alt_keepouts, islands=dr_islands, inner_antipad_clearance=0.221
             )
             before_dr = audit_general_board(alt_routed, spec, placed, alt_keepouts)
             after_dr = audit_general_board(cand_board_dr, spec, placed, alt_keepouts)

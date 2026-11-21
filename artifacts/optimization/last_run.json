@@ -1,5 +1,5 @@
 {
-  "directory": "artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair",
-  "manifest_sha256": "84ee4acbc6f10365b3c572cf9d1270d098481fe1dd86339ef3fc0ccababfce95",
+  "directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge",
+  "manifest_sha256": "7113aac2ed77fa71917c78b50873ae64fdff0a4afcb0d50d8f60fc64920b360a",
   "promoted": true
 }
