@@ -1,0 +1,41 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 1.5 ms: 4 layers, 52 components, 43 nets, 34 wires
+    0.345 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.345 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.503 INFO  1 trace ends inside a pad but off its center joined to the center
+    0.503 INFO  built board in 501.3 ms: 256 items (186 pins, 33 vias, 35 traces)
+    0.503 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.503 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+   86.515 INFO  diff pair /M0_P//M0_N (pre-routed): coupled 0.38 -> 0.37 mm of 11.40 mm, skew -1.99 mm (no improvement)
+   86.515 INFO  diff pair /M1_P//M1_N (pre-routed): coupled 0.00 -> 0.29 mm of 12.63 mm, skew -3.72 mm
+   86.515 INFO  diff pair /M2_P//M2_N (pre-routed): coupled 0.47 -> 7.42 mm of 12.74 mm, skew -2.19 mm
+   86.515 INFO  diff pair /M3_P//M3_N (pre-routed): coupled 0.37 -> 4.83 mm of 15.82 mm, skew -2.87 mm
+   86.515 INFO  diff pair /U2D_P//U2D_N (pre-routed): coupled 0.00 -> 0.00 mm of 7.99 mm, skew -0.14 mm (no improvement)
+   86.515 INFO  diff pair /U2_P//U2_N (pre-routed): coupled 0.27 -> 7.74 mm of 16.74 mm, skew +1.48 mm
+   86.515 INFO  diff pair /U3SRX_P//U3SRX_N (pre-routed): coupled 0.69 -> 10.15 mm of 30.77 mm, skew -1.25 mm
+   86.515 INFO  diff pair /U3STX_P//U3STX_N (pre-routed): coupled 0.00 -> 0.00 mm of 13.85 mm, skew -1.91 mm
+   86.515 INFO  diff pair /U3TX_P//U3TX_N (pre-routed): coupled 0.00 -> 10.53 mm of 27.75 mm, skew +4.21 mm
+   86.515 INFO  diff pairs pre-routed in 86.01 s (91 items fixed during routing)
+   86.515 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+   87.226 INFO  Fanout pass #1 completed in 0.69 seconds with 32 SMD pins fanouted, 61 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+   87.722 INFO  Fanout pass #2 completed in 0.50 seconds with 7 SMD pins fanouted, 72 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+   88.183 INFO  Fanout pass #3 completed in 0.46 seconds with 2 SMD pins fanouted, 77 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+   88.183 INFO  Fanout stopped after 3 passes: the last pass only re-fanned 2 pins of the previous pass.
+   88.183 INFO  Fanout stage completed: 3 passes, completed in 1.64 seconds.
+   88.373 INFO  checkpoint: best board so far (50 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/board_fastroute.ses'
+   88.373 INFO  Auto-routing stage started with baseline score 509.80 for 50 unrouted items.
+   95.890 INFO  Auto-routing pass #1 was completed in 7.52 seconds with score 754.90 (25 unrouted and 0 violations) (routed 50, failed 16, ripped 33).
+   95.891 INFO  checkpoint: best board so far (25 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/board_fastroute.ses'
+  101.927 INFO  Auto-routing pass #2 was completed in 6.04 seconds with score 647.06 (36 unrouted and 0 violations) (routed 16, failed 15, ripped 16).
+  106.536 INFO  Auto-routing pass #3 was completed in 4.61 seconds with score 803.92 (20 unrouted and 0 violations) (routed 25, failed 11, ripped 10).
+  106.537 INFO  checkpoint: best board so far (20 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/board_fastroute.ses'
+  110.008 INFO  Auto-routing pass #4 was completed in 3.47 seconds with score 735.29 (27 unrouted and 0 violations) (routed 10, failed 9, ripped 8).
+  110.503 WARN  --max-time (110 s) reached: finishing with the best result so far
+  110.919 INFO  Auto-routing pass #5 was completed in 0.91 seconds with score 803.92 (20 unrouted and 0 violations) (routed 2, failed 0, ripped 0).
+  111.102 INFO  Auto-routing stage completed: started with 80 unrouted nets, completed in 22.73 seconds, final score: 803.92 (20 unrouted and 0 violations).
+  111.102 INFO  10 item(s) cannot be routed even on the board as loaded (blocked by pins, keepouts or fixed wiring); they were skipped after their second failure.
+  111.318 INFO  routing finished in 24.80 s
+  111.318 INFO  note: a board time limit fired (WallClock)
+  111.477 INFO  saved '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/board_fastroute.ses' (53342 bytes)
+  111.818 INFO  report written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/fastroute_report.json'

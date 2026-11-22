@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/micro_escape/board.dsn",
+  "time_s": {"load": 0.499, "route": 120.1407, "total": 120.8194, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 112, "vias_blind": 0, "vias_buried": 0, "traces": 372, "trace_length_mm": 986.1267, "bends_90": 4, "bends_45": 408, "bends_other": 0, "router_score": 990.1961, "optimizer_score": 292.8266},
+  "unrouted": [
+    {"net": "Net-(U3-DVDD10_UPS)", "length_mm": 3.6685, "from": {"kind": "pin", "component": "U3", "pin": "27", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [28.733, 9.95], "to": {"kind": "pin", "component": "C22", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [30.981, 12.849]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

@@ -1,0 +1,60 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.021 INFO  parsed 'board.dsn' in 20.5 ms: 4 layers, 71 components, 49 nets, 41 wires
+    0.819 INFO  11 trace ends inside a pad but off its center joined to the center
+    0.819 INFO  built board in 798.4 ms: 369 items (270 pins, 41 vias, 52 traces)
+    0.820 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.820 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+   14.051 INFO  diff pair /Ethernet/PHY_RD+//Ethernet/PHY_RD- (pre-routed): coupled 0.72 -> 25.45 mm of 38.17 mm, skew +0.38 mm
+   14.051 INFO  diff pair /Ethernet/PHY_TD+//Ethernet/PHY_TD- (pre-routed): coupled 0.73 -> 14.30 mm of 45.70 mm, skew +4.54 mm
+   14.051 INFO  diff pairs pre-routed in 13.23 s (35 items fixed during routing)
+   14.052 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+   14.787 INFO  Fanout pass #1 completed in 0.70 seconds with 48 SMD pins fanouted, 87 not routed, 0 insert errors, +7 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+   15.122 INFO  Fanout pass #2 completed in 0.33 seconds with 2 SMD pins fanouted, 115 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+   15.410 INFO  Fanout pass #3 completed in 0.29 seconds with 0 SMD pins fanouted, 116 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+   15.410 INFO  Fanout stage completed: 3 passes, completed in 1.33 seconds.
+   15.640 INFO  checkpoint: best board so far (70 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses'
+   15.640 INFO  Auto-routing stage started with baseline score 535.66 for 70 unrouted items.
+   20.058 INFO  Auto-routing pass #1 was completed in 4.42 seconds with score 940.30 (9 unrouted and 0 violations) (routed 77, failed 4, ripped 22).
+   20.059 INFO  checkpoint: best board so far (9 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses'
+   23.031 INFO  Auto-routing pass #2 was completed in 2.97 seconds with score 960.20 (6 unrouted and 0 violations) (routed 10, failed 0, ripped 8).
+   23.033 INFO  checkpoint: best board so far (6 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses'
+   23.454 INFO  Auto-routing pass #3 was completed in 0.42 seconds with score 973.47 (4 unrouted and 0 violations) (routed 6, failed 0, ripped 5).
+   23.455 INFO  checkpoint: best board so far (4 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses'
+   24.059 INFO  Auto-routing pass #4 was completed in 0.60 seconds with score 986.73 (2 unrouted and 0 violations) (routed 4, failed 1, ripped 3).
+   24.060 INFO  checkpoint: best board so far (2 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses'
+   24.355 INFO  Auto-routing pass #5 was completed in 0.30 seconds with score 986.73 (2 unrouted and 0 violations) (routed 2, failed 0, ripped 2).
+   24.779 INFO  Auto-routing pass #6 was completed in 0.42 seconds with score 993.37 (1 unrouted and 0 violations) (routed 2, failed 0, ripped 1).
+   24.781 INFO  checkpoint: best board so far (1 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses'
+   25.043 INFO  Auto-routing pass #7 was completed in 0.26 seconds with score 993.37 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 1).
+   25.342 INFO  Auto-routing pass #8 was completed in 0.30 seconds with score 993.37 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 1).
+   25.610 INFO  Auto-routing pass #9 was completed in 0.27 seconds with score 993.37 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 2).
+   26.510 INFO  Auto-routing pass #10 was completed in 0.90 seconds with score 993.37 (1 unrouted and 0 violations) (routed 1, failed 1, ripped 2).
+   27.685 INFO  Auto-routing pass #11 was completed in 1.17 seconds with score 986.73 (2 unrouted and 0 violations) (routed 1, failed 0, ripped 2).
+   28.461 INFO  Auto-routing pass #12 was completed in 0.54 seconds with score 993.37 (1 unrouted and 0 violations) (routed 2, failed 0, ripped 2).
+   29.642 INFO  Auto-routing pass #13 was completed in 1.18 seconds with score 986.73 (2 unrouted and 0 violations) (routed 1, failed 0, ripped 2).
+   30.902 INFO  Auto-routing pass #14 was completed in 1.26 seconds with score 986.73 (2 unrouted and 0 violations) (routed 2, failed 1, ripped 3).
+   31.264 INFO  Auto-routing pass #15 was completed in 0.36 seconds with score 993.37 (1 unrouted and 0 violations) (routed 2, failed 0, ripped 1).
+   31.543 INFO  Auto-routing pass #16 was completed in 0.28 seconds with score 993.37 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 2).
+   32.214 INFO  Auto-routing pass #17 was completed in 0.67 seconds with score 993.37 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 1).
+   32.483 INFO  Auto-routing pass #18 was completed in 0.27 seconds with score 1000.00 (0 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+   32.485 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses'
+   32.486 INFO  Auto-routing pass #19 was completed in 0.00 seconds with score 1000.00 (0 unrouted and 0 violations) (routed 0, failed 0, ripped 0).
+   32.487 INFO  Auto-routing stage completed: started with 113 unrouted nets, completed in 16.85 seconds, final score: 1000.00 (0 unrouted and 0 violations).
+   32.940 INFO  Optimization stage started. Baseline router score: 1000.00, optimizer score: 557.41, incomplete connections: 0, clearance violations: 0.
+   32.940 INFO  Optimizer time budget: 60 s (as long as routing took; set router.optimizer.timeout to change).
+   65.502 INFO  Optimizer greedy phase stopped after 31 of 77 candidates (6.6 s, no further improvements).
+   65.502 INFO  Optimizer pass #1: applied 8 more improving candidate(s).
+   65.738 INFO  Optimizer pass #1 was completed in 32.80 seconds (181 of 181 candidates) with the score of 570.99 (0 unrouted and 0 violations).
+   65.742 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses'
+   65.742 INFO  Optimizer pass #1: optimizer score 557.41 -> 570.99 (IMPROVED, 2.4363%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+   65.742 INFO  Stopping optimizer because the improvement in this pass (2.4363%) is below the threshold (2.50%).
+   65.742 INFO  Optimization stage completed: Baseline router score: 1000.00, baseline optimizer score: 557.41, final router score: 1000.00, final optimizer score: 570.99, completed in 32.80 seconds.
+   65.743 INFO  routing finished in 51.69 s
+   74.091 INFO  diff pair /Ethernet/PHY_RD+//Ethernet/PHY_RD- (after routing): coupled 25.45 -> 25.45 mm of 38.17 mm, skew +0.38 mm (no improvement)
+   74.091 INFO  diff pair /Ethernet/PHY_TD+//Ethernet/PHY_TD- (after routing): coupled 14.30 -> 14.30 mm of 45.70 mm, skew +4.54 mm (no improvement)
+   74.163 INFO  diff pair /Ethernet/PHY_RD+ / /Ethernet/PHY_RD-: length difference +0.379 -> +0.100 mm (tolerance 0.20)
+   74.163 INFO  diff pair /Ethernet/PHY_TD+ / /Ethernet/PHY_TD-: length difference +4.535 -> +0.100 mm (tolerance 0.20)
+   74.163 INFO  diff pairs finished in 8.42 s
+   74.371 INFO  saved '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/board_fastroute.ses' (68257 bytes)
+   74.825 INFO  report written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11/dense_escape_candidate/fastroute_report.json'

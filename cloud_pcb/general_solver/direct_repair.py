@@ -245,7 +245,16 @@ def _can_fit(centerline, layer, net, width, drill_owners, board_poly, obstacles,
 
 
 def propose_direct_repairs(
-    routed_board, board_poly, keepouts, netclasses, net_to_class, routing_layers, router_report,
+    routed_board,
+    board_poly,
+    keepouts,
+    netclasses,
+    net_to_class,
+    routing_layers,
+    router_report,
+    *,
+    allow_power_classes: bool = False,
+    plane_ground_net: str | None = None,
 ) -> list[DirectRepair]:
     """Return safe candidates for a later engine check and independent board audit.
 
@@ -259,16 +268,8 @@ def propose_direct_repairs(
     default = netclasses.get("DEFAULT")
     if not isinstance(unresolved, list) or not unresolved or default is None:
         return []
-    if default.impedance_ohm is not None or default.diff_pair_gap_mm is not None:
-        return []
     try:
         if not board_poly.is_valid or board_poly.is_empty or board_poly.area <= 0:
-            return []
-        width = math.ceil(_positive(default.trace_width_mm) * 1000 - 1e-9) / 1000
-        allowed = routing_layers.get("DEFAULT", ("F.Cu", "B.Cu"))
-        if not default.zero_via_allowed:
-            allowed = tuple(layer for layer in allowed if layer == "F.Cu")
-        if any(layer not in COPPER_LAYERS for layer in allowed):
             return []
         base_clearance = max(BOARD_COPPER_CLEARANCE_MM, _finite(default.clearance_mm))
         clearances = defaultdict(lambda: base_clearance)
@@ -284,14 +285,36 @@ def propose_direct_repairs(
         if not isinstance(connection, dict):
             continue
         net = connection.get("net")
-        if not isinstance(net, str) or not net or _is_gnd_net(net):
+        if not isinstance(net, str) or not net:
             continue
-        if net_to_class.get(net, "DEFAULT") != "DEFAULT":
+        if plane_ground_net is not None:
+            if net == plane_ground_net:
+                continue
+        elif _is_gnd_net(net):
+            continue
+        class_name = net_to_class.get(net, "DEFAULT")
+        if allow_power_classes:
+            if class_name != "DEFAULT" and not (
+                isinstance(class_name, str) and class_name.startswith("POWER")
+            ):
+                continue
+        elif class_name != "DEFAULT":
+            continue
+        rule = netclasses.get(class_name)
+        if rule is None or rule.impedance_ohm is not None or rule.diff_pair_gap_mm is not None:
             continue
         try:
+            width = math.ceil(_positive(rule.trace_width_mm) * 1000 - 1e-9) / 1000
+            allowed = routing_layers.get(
+                class_name, routing_layers.get("DEFAULT", ("F.Cu", "B.Cu"))
+            )
+            if not rule.zero_via_allowed:
+                allowed = tuple(layer for layer in allowed if layer == "F.Cu")
+            if not allowed or any(layer not in COPPER_LAYERS for layer in allowed):
+                continue
             start = _endpoint(connection, "from", pads, net, width)
             end = _endpoint(connection, "to", pads, net, width)
-        except (TypeError, ValueError):
+        except (AttributeError, TypeError, ValueError):
             continue
         if start is None or end is None or start[0] is not end[0] or start[1] is end[1]:
             continue
@@ -299,11 +322,11 @@ def propose_direct_repairs(
         dx, dy = q[0] - p[0], q[1] - p[1]
         if p == q or (dx and dy and abs(dx) != abs(dy)):
             continue
-        candidates.append((math.hypot(dx, dy), net, p, q, {id(start[1]), id(end[1])}))
+        candidates.append((math.hypot(dx, dy), net, p, q, {id(start[1]), id(end[1])}, width, allowed))
 
     proposals = []
     seen = set()
-    for _, net, start_um, end_um, drill_owners in sorted(candidates, key=lambda c: c[:4]):
+    for _, net, start_um, end_um, drill_owners, width, allowed in sorted(candidates, key=lambda c: c[:4]):
         key = (net, start_um, end_um)
         if key in seen:
             continue
@@ -311,9 +334,40 @@ def propose_direct_repairs(
         start = tuple(axis / 1000 for axis in start_um)
         end = tuple(axis / 1000 for axis in end_um)
         centerline = LineString([start, end])
+        placed_direct = False
         for layer in allowed:
             if _can_fit(centerline, layer, net, width, drill_owners, board_poly, obstacles, clearances):
                 proposals.append(DirectRepair(net, layer, width, start, end))
                 obstacles[layer].append(_Obstacle(centerline, net, width / 2))
+                placed_direct = True
                 break
+        if not placed_direct and allow_power_classes and (start_um[0] == end_um[0] or start_um[1] == end_um[1]):
+            for offset_um in (650, 750, 800, 900, 1000, 1150, 1300, 1500):
+                if placed_direct:
+                    break
+                for sign in (-1, 1):
+                    if start_um[0] == end_um[0]:
+                        mid_x = (start_um[0] + sign * offset_um) / 1000
+                        p1, p2 = (mid_x, start[1]), (mid_x, end[1])
+                    else:
+                        mid_y = (start_um[1] + sign * offset_um) / 1000
+                        p1, p2 = (start[0], mid_y), (end[0], mid_y)
+                    segs = (
+                        (start, p1, LineString([start, p1])),
+                        (p1, p2, LineString([p1, p2])),
+                        (p2, end, LineString([p2, end])),
+                    )
+                    for layer in allowed:
+                        if all(
+                            _can_fit(seg, layer, net, width, drill_owners, board_poly, obstacles, clearances)
+                            for _, _, seg in segs
+                        ):
+                            for s_pt, e_pt, seg in segs:
+                                proposals.append(DirectRepair(net, layer, width, s_pt, e_pt))
+                                obstacles[layer].append(_Obstacle(seg, net, width / 2))
+                            placed_direct = True
+                            break
+                    if placed_direct:
+                        break
     return proposals
+

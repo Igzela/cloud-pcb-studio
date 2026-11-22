@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case3/dense_escape_candidate/board.dsn",
+  "time_s": {"load": 0.6318, "route": 110.3198, "total": 111.2042, "diagnose": null},
+  "stats": {"layers": 4, "components": 74, "nets": 57, "pins": 230, "connections": 171, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 124, "vias_blind": 0, "vias_buried": 0, "traces": 488, "trace_length_mm": 1110.7924, "bends_90": 2, "bends_45": 479, "bends_other": 0, "router_score": 992.2028, "optimizer_score": 408.6956},
+  "unrouted": [
+    {"net": "/M1_TACHO", "length_mm": 7.8822, "from": {"kind": "pin", "component": "R33", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.785, 20.207], "to": {"kind": "pin", "component": "U201", "pin": "6", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [23.535, 23.3]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261120T174242641430Z-dense-escape-repair/case11/board.dsn",
+  "time_s": {"load": 6.6113, "route": 103.4653, "total": 110.0899, "diagnose": null},
+  "stats": {"layers": 4, "components": 71, "nets": 48, "pins": 270, "connections": 121, "unrouted": 2, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 72, "vias_blind": 0, "vias_buried": 0, "traces": 390, "trace_length_mm": 1583.792, "bends_90": 2, "bends_45": 343, "bends_other": 0, "router_score": 977.9614, "optimizer_score": 667.3063},
+  "unrouted": [
+    {"net": "/Ethernet/PHY_TD-", "length_mm": 16.7275, "from": {"kind": "pin", "component": "R23", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [21.165, 48.251], "to": {"kind": "pin", "component": "U2", "pin": "20", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [19.112, 31.65]},
+    {"net": "Net-(U2-RXER{slash}PHYAD0)", "length_mm": 22.5624, "from": {"kind": "pin", "component": "U2", "pin": "10", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.988, 32.15], "to": {"kind": "pin", "component": "R15", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [13.411, 52.579]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

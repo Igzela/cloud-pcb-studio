@@ -8,11 +8,11 @@
 | --- | --- | --- | --- | --- | --- |
 | case1 | 0 | 0/0 | 0 | 86.49% | 3.345 |
 | case2 | 0 | 0/0 | 0 | 91.54% | 7.706 |
-| case3 | 1 | 1/0 | 0 | 89.33% | 3.949 |
+| case3 | 0 | 0/0 | 0 | 89.83% | 3.949 |
 | case4 | 0 | 0/0 | 0 | 94.04% | 13.875 |
-| case5 | 9 | 9/0 | 0 | 75.51% | 6.884 |
-| case10 | 4 | 2/0 | 12 | 86.84% | 12.392 |
-| case11 | 1 | 1/0 | 0 | 90.03% | 14.28 |
+| case5 | 1 | 1/0 | 0 | 78.86% | 6.884 |
+| case10 | 0 | 0/0 | 0 | 87.62% | 12.392 |
+| case11 | 0 | 0/0 | 0 | 90.40% | 14.28 |
 
 ## 本轮比较
 
@@ -26,16 +26,12 @@
 
 ## 下一步任务
 
-- P0 `case10` [solver] 修复路由间距违例（证据 ID `451ebff6978b`）
 - P0 `case5` [input_blocker] 固定机械接口与制造规则冲突（证据 ID `d1dfd4f44472`）
 - P1 `case1` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `7447e78cdbab`）
-- P1 `case10` [solver] 按独立 LVS 断开组诊断布线拥塞（证据 ID `bc8019c41b61`）
 - P1 `case10` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `35cd5fb0478b`）
-- P1 `case11` [solver] 按独立 LVS 断开组诊断布线拥塞（证据 ID `0ac2efe62afe`）
 - P1 `case11` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `b822019a7d5b`）
 - P1 `case2` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `87888d43221c`）
 - P1 `case2` [input_and_solver] 补齐天线几何证据并保证四层净空（证据 ID `5ca6aa3f5fb2`）
-- P1 `case3` [solver] 按独立 LVS 断开组诊断布线拥塞（证据 ID `16d11a2f5145`）
 - P1 `case3` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `dba9bda77b30`）
 - P1 `case4` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `9a2d50027ff1`）
 - P1 `case5` [solver] 按独立 LVS 断开组诊断布线拥塞（证据 ID `c2e203b23f1d`）

@@ -1,10 +1,10 @@
 {
   "status": "baseline_diagnosed",
-  "created_at": "2026-11-20T09:37:57.772429+00:00",
+  "created_at": "2026-11-22T14:32:37.974996+00:00",
   "baseline": {
     "format": "optimization_round",
-    "manifest": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/manifest.json",
-    "sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f"
+    "manifest": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/manifest.json",
+    "sha256": "7309e96543ef15e2d5c2fa1afe3e53f37665e7d9bbe80f76fa3940542f46c418"
   },
   "measurements": {
     "case1": {
@@ -58,8 +58,8 @@
     },
     "case3": {
       "values": {
-        "unrouted": 1,
-        "opens": 1,
+        "unrouted": 0,
+        "opens": 0,
         "shorts": 0,
         "spacing": 0,
         "via_in_pad": 0,
@@ -72,12 +72,10 @@
         "unverified_envelopes": 74,
         "cap_distance_mm": 3.949,
         "ground_fill_deficit": 0.0,
-        "wirelength_mm": 1144.005
+        "wirelength_mm": 1123.486
       },
       "failed_gates": [
-        "independent_lvs_opens_zero",
-        "mechanical_zero_with_verified_envelopes",
-        "unrouted_zero"
+        "mechanical_zero_with_verified_envelopes"
       ],
       "hard_pass": false,
       "evidence_errors": []
@@ -108,8 +106,8 @@
     },
     "case5": {
       "values": {
-        "unrouted": 9,
-        "opens": 9,
+        "unrouted": 1,
+        "opens": 1,
         "shorts": 0,
         "spacing": 0,
         "via_in_pad": 0,
@@ -121,8 +119,8 @@
         "mechanical_collisions": 0,
         "unverified_envelopes": 52,
         "cap_distance_mm": 6.884,
-        "ground_fill_deficit": 0.09489999999999998,
-        "wirelength_mm": 935.4
+        "ground_fill_deficit": 0.06140000000000001,
+        "wirelength_mm": 986.125
       },
       "failed_gates": [
         "copper_edge_ge_050",
@@ -135,10 +133,10 @@
     },
     "case10": {
       "values": {
-        "unrouted": 4,
-        "opens": 2,
+        "unrouted": 0,
+        "opens": 0,
         "shorts": 0,
-        "spacing": 12,
+        "spacing": 0,
         "via_in_pad": 0,
         "gerber_failures": 0,
         "annular_failures": 0,
@@ -149,21 +147,18 @@
         "unverified_envelopes": 84,
         "cap_distance_mm": 12.392,
         "ground_fill_deficit": 0.0,
-        "wirelength_mm": 1732.568
+        "wirelength_mm": 1618.22
       },
       "failed_gates": [
-        "independent_lvs_opens_zero",
-        "mechanical_zero_with_verified_envelopes",
-        "router_spacing_zero",
-        "unrouted_zero"
+        "mechanical_zero_with_verified_envelopes"
       ],
       "hard_pass": false,
       "evidence_errors": []
     },
     "case11": {
       "values": {
-        "unrouted": 1,
-        "opens": 1,
+        "unrouted": 0,
+        "opens": 0,
         "shorts": 0,
         "spacing": 0,
         "via_in_pad": 0,
@@ -176,12 +171,10 @@
         "unverified_envelopes": 69,
         "cap_distance_mm": 14.28,
         "ground_fill_deficit": 0.0,
-        "wirelength_mm": 1620.917
+        "wirelength_mm": 1651.384
       },
       "failed_gates": [
-        "independent_lvs_opens_zero",
-        "mechanical_zero_with_verified_envelopes",
-        "unrouted_zero"
+        "mechanical_zero_with_verified_envelopes"
       ],
       "hard_pass": false,
       "evidence_errors": []
@@ -190,31 +183,31 @@
   "case_details": {
     "case1": {
       "ground_fill_ratio": 0.8649,
-      "artifact_directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case1"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case1"
     },
     "case2": {
       "ground_fill_ratio": 0.9154,
-      "artifact_directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case2"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case2"
     },
     "case3": {
-      "ground_fill_ratio": 0.8933,
-      "artifact_directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case3"
+      "ground_fill_ratio": 0.8983,
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3"
     },
     "case4": {
       "ground_fill_ratio": 0.9404,
-      "artifact_directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case4"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case4"
     },
     "case5": {
-      "ground_fill_ratio": 0.7551,
-      "artifact_directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case5"
+      "ground_fill_ratio": 0.7886,
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5"
     },
     "case10": {
-      "ground_fill_ratio": 0.8684,
-      "artifact_directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case10"
+      "ground_fill_ratio": 0.8762,
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case10"
     },
     "case11": {
-      "ground_fill_ratio": 0.9003,
-      "artifact_directory": "artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case11"
+      "ground_fill_ratio": 0.904,
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case11"
     }
   },
   "tasks": [
@@ -384,43 +377,6 @@
         "proxy_average_mm": 7.706,
         "target_mm": 4.5,
         "limitation": "bulk caps may be included"
-      }
-    },
-    {
-      "id": "16d11a2f5145",
-      "case": "case3",
-      "category": "connectivity",
-      "priority": 1,
-      "kind": "solver",
-      "title": "按独立 LVS 断开组诊断布线拥塞",
-      "evidence": {
-        "unrouted": 1,
-        "opens": [
-          {
-            "net": "/M1_TACHO",
-            "components": 2,
-            "pad_count": 3,
-            "pad_groups": {
-              "0": [
-                "J1-9",
-                "J1-9",
-                "J1-9",
-                "J1-9",
-                "R33-2"
-              ],
-              "2": [
-                "U201-6"
-              ]
-            }
-          }
-        ],
-        "routing_candidates": [
-          {
-            "mode": "standard",
-            "unrouted": 1,
-            "real_violations": 0
-          }
-        ]
       }
     },
     {
@@ -697,138 +653,18 @@
       "kind": "solver",
       "title": "按独立 LVS 断开组诊断布线拥塞",
       "evidence": {
-        "unrouted": 9,
+        "unrouted": 1,
         "opens": [
           {
-            "net": "/U3TX_P",
+            "net": "Net-(U3-DVDD10_UPS)",
             "components": 2,
             "pad_count": 2,
             "pad_groups": {
               "1": [
-                "C1-1"
+                "C22-1"
               ],
               "0": [
-                "U3-18"
-              ]
-            }
-          },
-          {
-            "net": "/U3TX_N",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "0": [
-                "C2-1"
-              ],
-              "1": [
-                "U3-19"
-              ]
-            }
-          },
-          {
-            "net": "Net-(U3-CKXTAL2)",
-            "components": 2,
-            "pad_count": 3,
-            "pad_groups": {
-              "2": [
-                "C8-1",
-                "X1-1"
-              ],
-              "0": [
-                "U3-45"
-              ]
-            }
-          },
-          {
-            "net": "/M0_P",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "0": [
-                "LAN1-1",
-                "LAN1-1",
-                "LAN1-1",
-                "LAN1-1"
-              ],
-              "1": [
-                "U3-2"
-              ]
-            }
-          },
-          {
-            "net": "/M1_P",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "0": [
-                "LAN1-3",
-                "LAN1-3",
-                "LAN1-3",
-                "LAN1-3"
-              ],
-              "1": [
-                "U3-5"
-              ]
-            }
-          },
-          {
-            "net": "/M1_N",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "0": [
-                "LAN1-4",
-                "LAN1-4",
-                "LAN1-4",
-                "LAN1-4"
-              ],
-              "1": [
-                "U3-6"
-              ]
-            }
-          },
-          {
-            "net": "/M2_N",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "1": [
-                "LAN1-8",
-                "LAN1-8",
-                "LAN1-8",
-                "LAN1-8"
-              ],
-              "0": [
-                "U3-8"
-              ]
-            }
-          },
-          {
-            "net": "/M3_P",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "1": [
-                "LAN1-9",
-                "LAN1-9",
-                "LAN1-9",
-                "LAN1-9"
-              ],
-              "0": [
-                "U3-10"
-              ]
-            }
-          },
-          {
-            "net": "/U3SRX_P",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "0": [
-                "U3-14"
-              ],
-              "1": [
-                "USB1-9"
+                "U3-27"
               ]
             }
           }
@@ -842,6 +678,21 @@
           {
             "mode": "individual_with_length_tuning",
             "unrouted": 9,
+            "real_violations": 0
+          },
+          {
+            "mode": "dense_escape_coupled_pairs",
+            "unrouted": 20,
+            "real_violations": 0
+          },
+          {
+            "mode": "dense_escape_individual",
+            "unrouted": 5,
+            "real_violations": 0
+          },
+          {
+            "mode": "micro_escape_individual",
+            "unrouted": 1,
             "real_violations": 0
           }
         ]
@@ -936,108 +787,8 @@
       "kind": "solver",
       "title": "改善地参考完整性",
       "evidence": {
-        "deficit": 0.09489999999999998,
+        "deficit": 0.06140000000000001,
         "target": 0.85
-      }
-    },
-    {
-      "id": "451ebff6978b",
-      "case": "case10",
-      "category": "spacing",
-      "priority": 0,
-      "kind": "solver",
-      "title": "修复路由间距违例",
-      "evidence": {
-        "metric": "spacing",
-        "value": 12
-      }
-    },
-    {
-      "id": "bc8019c41b61",
-      "case": "case10",
-      "category": "connectivity",
-      "priority": 1,
-      "kind": "solver",
-      "title": "按独立 LVS 断开组诊断布线拥塞",
-      "evidence": {
-        "unrouted": 4,
-        "opens": [
-          {
-            "net": "VBUS",
-            "components": 4,
-            "pad_count": 16,
-            "pad_groups": {
-              "3": [
-                "C25-2",
-                "J2-A9",
-                "J2-A9",
-                "J2-A9",
-                "J2-A9",
-                "R42-1"
-              ],
-              "5": [
-                "CBUS3-2",
-                "CBUS3a1-2",
-                "CPSU2-2",
-                "IC1-1",
-                "IC1-24",
-                "J2-A4",
-                "J2-A4",
-                "J2-A4",
-                "J2-A4",
-                "Q1-1",
-                "Q1-2",
-                "Q1-3",
-                "R20-2",
-                "R28-2"
-              ],
-              "4": [
-                "J2-B4",
-                "J2-B4",
-                "J2-B4",
-                "J2-B4"
-              ],
-              "1": [
-                "J2-B9",
-                "J2-B9",
-                "J2-B9",
-                "J2-B9"
-              ]
-            }
-          },
-          {
-            "net": "Net-(IC1-TS1)",
-            "components": 2,
-            "pad_count": 6,
-            "pad_groups": {
-              "1": [
-                "IC1-11",
-                "IC1-12",
-                "R10-1",
-                "R8-2",
-                "THERM1-2",
-                "THERM1-2",
-                "THERM1-2",
-                "THERM1-2"
-              ],
-              "3": [
-                "THERMISTOR(103-AT)1-2"
-              ]
-            }
-          }
-        ],
-        "routing_candidates": [
-          {
-            "mode": "coupled_pairs",
-            "unrouted": 7,
-            "real_violations": 12
-          },
-          {
-            "mode": "individual_with_length_tuning",
-            "unrouted": 4,
-            "real_violations": 12
-          }
-        ]
       }
     },
     {
@@ -1154,48 +905,6 @@
       }
     },
     {
-      "id": "0ac2efe62afe",
-      "case": "case11",
-      "category": "connectivity",
-      "priority": 1,
-      "kind": "solver",
-      "title": "按独立 LVS 断开组诊断布线拥塞",
-      "evidence": {
-        "unrouted": 1,
-        "opens": [
-          {
-            "net": "/Ethernet/PHY_TD+",
-            "components": 2,
-            "pad_count": 3,
-            "pad_groups": {
-              "1": [
-                "J5-1",
-                "J5-1",
-                "J5-1",
-                "J5-1",
-                "R22-2"
-              ],
-              "0": [
-                "U2-21"
-              ]
-            }
-          }
-        ],
-        "routing_candidates": [
-          {
-            "mode": "coupled_pairs",
-            "unrouted": 2,
-            "real_violations": 0
-          },
-          {
-            "mode": "individual_with_length_tuning",
-            "unrouted": 1,
-            "real_violations": 0
-          }
-        ]
-      }
-    },
-    {
       "id": "b822019a7d5b",
       "case": "case11",
       "category": "mechanical",
@@ -1300,9 +1009,9 @@
     "reason": "diagnosis only"
   },
   "last_round": {
-    "directory": "artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement",
-    "promoted": false,
-    "recorded_status": "incomplete",
+    "directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape",
+    "promoted": true,
+    "recorded_status": "complete",
     "integrity": "verified"
   }
 }

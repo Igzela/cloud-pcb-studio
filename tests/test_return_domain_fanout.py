@@ -133,3 +133,54 @@ def test_unused_ground_label_cannot_steal_fanout_or_copper_pours():
     }
     assert {(zone.net, zone.netName) for zone in board.zones} == {(20, "PGND")}
     assert {item.net for item in board.traceItems} == {20}
+
+
+def test_gerber_export_only_flashes_selected_ground_domain_on_inner_planes(tmp_path):
+    from cloud_pcb.general_solver.run_blind import _export_blind_gerbers
+    from cloud_pcb.verify_gate.gerber_drc import _gerber_layer_union
+
+    board = _board("PGND")
+    _footprint(board, "gnd_th", (5, 5), [(1, 0, 0, .8, True)])
+    _footprint(board, "pgnd_th", (15, 5), [(2, 0, 0, .8, True)])
+    board_poly = box(0, 0, 20, 10)
+    _export_blind_gerbers(board, board_poly, {}, 10.0, tmp_path)
+
+    in1_union, _, _ = _gerber_layer_union(tmp_path / "In1_Cu.gbr")
+    in2_union, _, _ = _gerber_layer_union(tmp_path / "In2_Cu.gbr")
+    # Selected plane ground net (GND at x=5, y_gerber=5) is flashed; secondary PGND at x=15 must NOT be flashed.
+    assert in1_union.intersects(Point(5, 5).buffer(0.1))
+    assert in2_union.intersects(Point(5, 5).buffer(0.1))
+    assert not in1_union.intersects(Point(15, 5).buffer(0.1))
+    assert not in2_union.intersects(Point(15, 5).buffer(0.1))
+
+
+def test_bottom_footprint_silkscreen_exports_to_bottom_layer_only(tmp_path):
+    from kiutils.items.common import Stroke
+    from kiutils.items.fpitems import FpRect
+    from cloud_pcb.general_solver.run_blind import _export_blind_gerbers
+    from cloud_pcb.verify_gate.gerber_drc import _gerber_layer_union
+
+    board = _board("SIG")
+    fp = Footprint(
+        entryName="test:bottom_part",
+        layer="B.Cu",
+        position=Position(X=10.0, Y=10.0),
+        properties={"Reference": "R1"},
+    )
+    fp.graphicItems = [
+        FpRect(start=Position(X=-2.0, Y=-1.5), end=Position(X=2.0, Y=1.5), layer="B.CrtYd", stroke=Stroke(width=0.12)),
+    ]
+    fp.pads = [
+        Pad(number="1", type="smd", shape="rect", position=Position(X=-0.8, Y=0.0), size=Position(X=0.5, Y=0.5), net=board.nets[1], layers=["B.Cu", "B.Mask", "B.Paste"]),
+        Pad(number="2", type="smd", shape="rect", position=Position(X=0.8, Y=0.0), size=Position(X=0.5, Y=0.5), net=board.nets[2], layers=["B.Cu", "B.Mask", "B.Paste"]),
+    ]
+    board.footprints.append(fp)
+    _export_blind_gerbers(board, box(0, 0, 20, 20), {}, 20.0, tmp_path)
+
+    f_silk, _, _ = _gerber_layer_union(tmp_path / "F_SilkS.gbr")
+    b_silk, _, _ = _gerber_layer_union(tmp_path / "B_SilkS.gbr")
+    b_mask, _, _ = _gerber_layer_union(tmp_path / "B_Mask.gbr")
+    assert f_silk.is_empty
+    assert not b_silk.is_empty
+    assert b_silk.intersection(b_mask).area == 0.0
+

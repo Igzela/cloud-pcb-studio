@@ -1,0 +1,112 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 2.1 ms: 4 layers, 74 components, 56 nets, 0 wires
+    0.019 INFO  built board in 16.9 ms: 485 items (230 pins, 0 vias, 0 traces)
+    0.019 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.019 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.020 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    0.440 INFO  Fanout pass #1 completed in 0.42 seconds with 70 SMD pins fanouted, 77 not routed, 0 insert errors, +4 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+    0.909 INFO  Fanout pass #2 completed in 0.47 seconds with 6 SMD pins fanouted, 113 not routed, 0 insert errors, +2 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+    1.393 INFO  Fanout pass #3 completed in 0.48 seconds with 8 SMD pins fanouted, 109 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=300).
+    1.854 INFO  Fanout pass #4 completed in 0.46 seconds with 4 SMD pins fanouted, 113 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+    2.327 INFO  Fanout pass #5 completed in 0.47 seconds with 4 SMD pins fanouted, 114 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=500).
+    2.802 INFO  Fanout pass #6 completed in 0.47 seconds with 4 SMD pins fanouted, 114 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=600).
+    2.802 INFO  Fanout stopped after 6 passes: the last pass only re-fanned 4 pins of the previous pass.
+    2.802 INFO  Fanout stage completed: 6 passes, completed in 2.78 seconds.
+    2.817 INFO  checkpoint: best board so far (64 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+    2.817 INFO  Auto-routing stage started with baseline score 319.78 for 64 unrouted items.
+    8.687 INFO  Auto-routing pass #1 was completed in 5.87 seconds with score 663.96 (31 unrouted and 0 violations) (routed 81, failed 4, ripped 53).
+    8.688 INFO  checkpoint: best board so far (31 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   11.417 INFO  Auto-routing pass #2 was completed in 2.73 seconds with score 848.24 (14 unrouted and 0 violations) (routed 31, failed 6, ripped 18).
+   11.419 INFO  checkpoint: best board so far (14 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   12.521 INFO  Auto-routing pass #3 was completed in 1.10 seconds with score 880.76 (11 unrouted and 0 violations) (routed 13, failed 3, ripped 11).
+   12.522 INFO  checkpoint: best board so far (11 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   13.481 INFO  Auto-routing pass #4 was completed in 0.96 seconds with score 913.28 (8 unrouted and 0 violations) (routed 10, failed 2, ripped 8).
+   13.483 INFO  checkpoint: best board so far (8 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   14.874 INFO  Auto-routing pass #5 was completed in 1.39 seconds with score 902.44 (9 unrouted and 0 violations) (routed 6, failed 5, ripped 8).
+   16.362 INFO  Auto-routing pass #6 was completed in 1.49 seconds with score 924.12 (7 unrouted and 0 violations) (routed 6, failed 6, ripped 5).
+   16.364 INFO  checkpoint: best board so far (7 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   17.788 INFO  Auto-routing pass #7 was completed in 1.42 seconds with score 934.96 (6 unrouted and 0 violations) (routed 6, failed 4, ripped 5).
+   17.790 INFO  checkpoint: best board so far (6 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   18.682 INFO  Auto-routing pass #8 was completed in 0.89 seconds with score 934.96 (6 unrouted and 0 violations) (routed 4, failed 5, ripped 5).
+   20.047 INFO  Auto-routing pass #9 was completed in 1.36 seconds with score 967.48 (3 unrouted and 0 violations) (routed 4, failed 4, ripped 2).
+   20.049 INFO  checkpoint: best board so far (3 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   20.855 INFO  Auto-routing pass #10 was completed in 0.81 seconds with score 967.48 (3 unrouted and 0 violations) (routed 1, failed 4, ripped 2).
+   21.662 INFO  Auto-routing pass #11 was completed in 0.81 seconds with score 967.48 (3 unrouted and 0 violations) (routed 1, failed 4, ripped 2).
+   22.504 INFO  Auto-routing pass #12 was completed in 0.84 seconds with score 978.32 (2 unrouted and 0 violations) (routed 1, failed 4, ripped 1).
+   22.506 INFO  checkpoint: best board so far (2 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   23.292 INFO  Auto-routing pass #13 was completed in 0.79 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   24.072 INFO  Auto-routing pass #14 was completed in 0.78 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   24.849 INFO  Auto-routing pass #15 was completed in 0.78 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   25.643 INFO  Auto-routing pass #16 was completed in 0.78 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   26.433 INFO  Auto-routing pass #17 was completed in 0.79 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   27.863 INFO  Auto-routing pass #18 was completed in 1.43 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   28.717 INFO  Auto-routing pass #19 was completed in 0.85 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   30.108 INFO  Auto-routing pass #20 was completed in 1.39 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   30.902 INFO  Auto-routing pass #21 was completed in 0.79 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   31.694 INFO  Auto-routing pass #22 was completed in 0.79 seconds with score 978.32 (2 unrouted and 0 violations) (routed 0, failed 4, ripped 1).
+   31.694 INFO  The router's best score (978.32) has not improved by more than 0.5 points since pass #12. Stopping the auto-router after 22 passes (2 items still unconnected).
+   31.695 INFO  Auto-routing stage completed: started with 123 unrouted nets, completed in 28.88 seconds, final score: 978.32 (2 unrouted and 0 violations).
+   31.712 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+   32.157 INFO  Fanout pass #1 completed in 0.44 seconds with 70 SMD pins fanouted, 77 not routed, 0 insert errors, +4 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+   32.623 INFO  Fanout pass #2 completed in 0.47 seconds with 6 SMD pins fanouted, 113 not routed, 0 insert errors, +2 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+   33.126 INFO  Fanout pass #3 completed in 0.50 seconds with 8 SMD pins fanouted, 109 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=300).
+   33.622 INFO  Fanout pass #4 completed in 0.50 seconds with 4 SMD pins fanouted, 113 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+   34.130 INFO  Fanout pass #5 completed in 0.51 seconds with 4 SMD pins fanouted, 114 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=500).
+   34.627 INFO  Fanout pass #6 completed in 0.50 seconds with 4 SMD pins fanouted, 114 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=600).
+   34.627 INFO  Fanout stopped after 6 passes: the last pass only re-fanned 4 pins of the previous pass.
+   34.627 INFO  Fanout stage completed: 6 passes, completed in 2.91 seconds.
+   34.639 INFO  Auto-routing stage started with baseline score 319.78 for 64 unrouted items.
+   39.121 INFO  Auto-routing pass #1 was completed in 4.48 seconds with score 783.20 (20 unrouted and 0 violations) (routed 79, failed 4, ripped 44).
+   41.302 INFO  Auto-routing pass #2 was completed in 2.18 seconds with score 848.24 (14 unrouted and 0 violations) (routed 21, failed 4, ripped 16).
+   42.565 INFO  Auto-routing pass #3 was completed in 1.26 seconds with score 826.56 (16 unrouted and 0 violations) (routed 13, failed 3, ripped 14).
+   43.962 INFO  Auto-routing pass #4 was completed in 1.40 seconds with score 869.92 (12 unrouted and 0 violations) (routed 17, failed 1, ripped 16).
+   44.306 INFO  Auto-routing pass #5 was completed in 0.34 seconds with score 924.12 (7 unrouted and 0 violations) (routed 12, failed 0, ripped 10).
+   44.578 INFO  Auto-routing pass #6 was completed in 0.27 seconds with score 956.64 (4 unrouted and 0 violations) (routed 7, failed 0, ripped 5).
+   44.712 INFO  Auto-routing pass #7 was completed in 0.13 seconds with score 956.64 (4 unrouted and 0 violations) (routed 4, failed 0, ripped 5).
+   44.899 INFO  Auto-routing pass #8 was completed in 0.19 seconds with score 956.64 (4 unrouted and 0 violations) (routed 4, failed 0, ripped 5).
+   45.816 INFO  Auto-routing pass #9 was completed in 0.92 seconds with score 956.64 (4 unrouted and 0 violations) (routed 4, failed 1, ripped 5).
+   47.486 INFO  Auto-routing pass #10 was completed in 1.67 seconds with score 956.64 (4 unrouted and 0 violations) (routed 6, failed 2, ripped 6).
+   48.617 INFO  Auto-routing pass #11 was completed in 1.13 seconds with score 956.64 (4 unrouted and 0 violations) (routed 3, failed 2, ripped 4).
+   50.059 INFO  Auto-routing pass #12 was completed in 1.42 seconds with score 945.80 (5 unrouted and 0 violations) (routed 3, failed 2, ripped 3).
+   51.557 INFO  Auto-routing pass #13 was completed in 1.50 seconds with score 967.48 (3 unrouted and 0 violations) (routed 5, failed 1, ripped 3).
+   51.650 INFO  Auto-routing pass #14 was completed in 0.09 seconds with score 967.48 (3 unrouted and 0 violations) (routed 3, failed 0, ripped 4).
+   51.800 INFO  Auto-routing pass #15 was completed in 0.15 seconds with score 967.48 (3 unrouted and 0 violations) (routed 3, failed 0, ripped 3).
+   51.988 INFO  Auto-routing pass #16 was completed in 0.19 seconds with score 967.48 (3 unrouted and 0 violations) (routed 3, failed 0, ripped 3).
+   52.853 INFO  Auto-routing pass #17 was completed in 0.87 seconds with score 978.32 (2 unrouted and 0 violations) (routed 3, failed 1, ripped 1).
+   52.975 INFO  Auto-routing pass #18 was completed in 0.12 seconds with score 978.32 (2 unrouted and 0 violations) (routed 2, failed 0, ripped 2).
+   53.070 INFO  Auto-routing pass #19 was completed in 0.09 seconds with score 978.32 (2 unrouted and 0 violations) (routed 2, failed 0, ripped 3).
+   53.788 INFO  Auto-routing pass #20 was completed in 0.72 seconds with score 978.32 (2 unrouted and 0 violations) (routed 2, failed 0, ripped 2).
+   53.939 INFO  Auto-routing pass #21 was completed in 0.15 seconds with score 978.32 (2 unrouted and 0 violations) (routed 2, failed 0, ripped 3).
+   54.012 INFO  Auto-routing pass #22 was completed in 0.07 seconds with score 989.16 (1 unrouted and 0 violations) (routed 2, failed 0, ripped 1).
+   54.013 INFO  checkpoint: best board so far (1 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   54.092 INFO  Auto-routing pass #23 was completed in 0.08 seconds with score 989.16 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 2).
+   54.165 INFO  Auto-routing pass #24 was completed in 0.07 seconds with score 989.16 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 1).
+   54.230 INFO  Auto-routing pass #25 was completed in 0.07 seconds with score 989.16 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 2).
+   54.308 INFO  Auto-routing pass #26 was completed in 0.08 seconds with score 989.16 (1 unrouted and 0 violations) (routed 1, failed 0, ripped 1).
+   55.072 INFO  Auto-routing pass #27 was completed in 0.76 seconds with score 978.32 (2 unrouted and 0 violations) (routed 1, failed 1, ripped 1).
+   56.138 INFO  Auto-routing pass #28 was completed in 1.07 seconds with score 989.16 (1 unrouted and 0 violations) (routed 1, failed 2, ripped 0).
+   56.935 INFO  Auto-routing pass #29 was completed in 0.80 seconds with score 989.16 (1 unrouted and 0 violations) (routed 0, failed 2, ripped 0).
+   57.731 INFO  Auto-routing pass #30 was completed in 0.80 seconds with score 989.16 (1 unrouted and 0 violations) (routed 0, failed 2, ripped 0).
+   58.528 INFO  Auto-routing pass #31 was completed in 0.80 seconds with score 989.16 (1 unrouted and 0 violations) (routed 0, failed 2, ripped 0).
+   59.327 INFO  Auto-routing pass #32 was completed in 0.80 seconds with score 989.16 (1 unrouted and 0 violations) (routed 0, failed 2, ripped 0).
+   59.327 INFO  The router's score (989.16) has not improved by more than 0.5 points in the last 10 passes (1 item still unconnected). Stopping the auto-router.
+   59.327 INFO  Auto-routing stage completed: started with 123 unrouted nets, completed in 24.69 seconds, final score: 989.16 (1 unrouted and 0 violations).
+   59.346 INFO  Multi-start variant 1: 1 unrouted, 0 violations, router score 989.16.
+   59.346 INFO  Multi-start: variant 1 is better (1 unrouted, 0 violations; first run 2 unrouted, 0 violations).
+   59.362 INFO  Optimization stage started. Baseline router score: 989.16, optimizer score: 350.00, incomplete connections: 1, clearance violations: 0.
+   59.362 INFO  Optimizer time budget: 60 s (as long as routing took; set router.optimizer.timeout to change).
+   91.604 INFO  Optimizer greedy phase stopped after 54 of 103 candidates (4.0 s, no further improvements).
+   91.604 INFO  Optimizer pass #1: applied 13 more improving candidate(s).
+   91.620 INFO  Optimizer pass #1 was completed in 32.26 seconds (210 of 210 candidates) with the score of 418.57 (1 unrouted and 0 violations).
+   91.625 INFO  checkpoint: best board so far (1 unrouted, 0 violations) written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses'
+   91.625 INFO  Optimizer pass #1: optimizer score 350.00 -> 418.57 (IMPROVED, 19.5942%), router score: 989.16, incomplete connections: 1, clearance violations: 0.
+  110.020 WARN  --max-time (110 s) reached: finishing with the best result so far
+  110.029 INFO  Optimizer pass #2: stopped early, applying the best candidate found so far.
+  110.047 INFO  Optimizer pass #2 was completed in 18.42 seconds (128 of 211 candidates) with the score of 396.86 (1 unrouted and 0 violations).
+  110.047 INFO  Optimizer pass #2 candidate rejected: OPTIMIZER_SCORE_NOT_IMPROVED. Restoring incumbent (optimizer score 418.57, incomplete connections: 1, clearance violations: 0).
+  110.053 INFO  Optimizer pass #2: optimizer score 418.57 -> 396.86 (REGRESSED, -5.1871%), router score: 989.16, incomplete connections: 1, clearance violations: 0.
+  110.072 INFO  Optimization stage interrupted: Baseline router score: 989.16, baseline optimizer score: 350.00, final router score: 989.16, final optimizer score: 418.57, completed in 50.71 seconds.
+  110.072 INFO  routing finished in 110.05 s
+  110.091 INFO  saved '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/board_fastroute.ses' (73071 bytes)
+  110.119 INFO  report written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3/fastroute_report.json'

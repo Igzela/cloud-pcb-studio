@@ -12,9 +12,23 @@ from cloud_pcb.layout_route.dsn_ses_bridge import _quote, parse_ses
 
 
 def _fixed_wiring(dsn_text, repairs):
-    empty_wiring = "  (wiring\n  )"
-    if dsn_text.count(empty_wiring) != 1:
-        raise ValueError("Expected a single empty DSN wiring section")
+    wiring_open = "  (wiring\n"
+    if dsn_text.count(wiring_open) != 1:
+        raise ValueError("Expected a single DSN wiring section")
+    start = dsn_text.index(wiring_open)
+    body_start = start + len(wiring_open)
+    wiring_close = "  )"
+    close_offset = None
+    offset = body_start
+    for line in dsn_text[body_start:].splitlines(keepends=True):
+        if line.rstrip("\r\n") == wiring_close:
+            close_offset = offset
+            break
+        offset += len(line)
+    if close_offset is None:
+        raise ValueError("Expected a single closed DSN wiring section")
+    if dsn_text[close_offset + len(wiring_close):].strip() != ")":
+        raise ValueError("Expected DSN wiring section at the end of the DSN")
     wires = []
     for repair in repairs:
         width = round(1000 * repair.width_mm)
@@ -22,7 +36,8 @@ def _fixed_wiring(dsn_text, repairs):
         x2, y2 = repair.end_xy
         points = f"{round(1000 * x1)} {round(-1000 * y1)} {round(1000 * x2)} {round(-1000 * y2)}"
         wires.append(f"    (wire (path {repair.layer} {width} {points}) (net {_quote(repair.net)}) (type fix))")
-    return dsn_text.replace(empty_wiring, "  (wiring\n" + "\n".join(wires) + "\n  )")
+    insertion = "".join(f"{wire}\n" for wire in wires)
+    return dsn_text[:close_offset] + insertion + dsn_text[close_offset:]
 
 
 def _copper_multisets(ses_path):

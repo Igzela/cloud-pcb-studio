@@ -1,0 +1,2 @@
+pair /Ethernet/PHY_RD+ /Ethernet/PHY_RD- gap=0.33 skew=0.2
+pair /Ethernet/PHY_TD+ /Ethernet/PHY_TD- gap=0.33 skew=0.2

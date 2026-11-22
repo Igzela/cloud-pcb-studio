@@ -1,0 +1,68 @@
+2026-11-21 11:58:43.180 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)
+2026-11-21 11:58:43.472 INFO   Hardware: 2 CPU cores, 358 CPU score, 1988 MB RAM
+2026-11-21 11:58:43.475 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
+2026-11-21 11:58:43.479 INFO   Configured network proxy: 127.0.0.1:35669
+2026-11-21 11:58:44.680 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-21 11:58:45.068 INFO   [ACFFBF\E6C263] Loading board file 'board_freerouting.dsn'...
+2026-11-21 11:58:45.090 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-21 11:58:45.209 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-21 11:58:45.235 INFO   [ACFFBF\E6C263] Job 'ACFFBF\E6C263' started at 2026-11-21T11:58:45.235283792Z.
+2026-11-21 11:58:45.415 INFO   [ACFFBF\E6C263] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=1.
+2026-11-21 11:58:45.508 INFO   [ACFFBF\E6C263] Fanout stage started on board '883e9fbbd865cc8b7fd92ab860466a6c' with 120 of 163 SMD pins needing fanout (0 already connected, 43 netless).
+2026-11-21 11:58:48.083 INFO   [ACFFBF\E6C263] Fanout pass #1 on board '92913c3007f79fa4e3344fcb0a4b8172' completed in 2.53 seconds with 45 SMD pins fanouted, 72 not routed, 0 insert errors, +6 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-21 11:58:49.144 INFO   [ACFFBF\E6C263] Fanout pass #2 on board '080c0418acbd1fd98c37e2c15717d289' completed in 1.04 seconds with 3 SMD pins fanouted, 62 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-21 11:58:49.319 INFO   [ACFFBF\E6C263] Fanout pass #3 on board '080c0418acbd1fd98c37e2c15717d289' completed in 0.15 seconds with 0 SMD pins fanouted, 7 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-21 11:58:49.326 INFO   [ACFFBF\E6C263] Fanout stage completed: started with 120 total SMD pins, completed in 3.80 seconds, escaped pins: 56/120 (46.7%), using 3.22 total CPU seconds, 1.74 GB total allocated, and 218.6 MB peak heap usage.
+2026-11-21 11:58:49.406 INFO   [ACFFBF\E6C263] Auto-routing stage started on board '080c0418acbd1fd98c37e2c15717d289' with baseline score 266.67 for 60 unrouted items.
+2026-11-21 11:59:04.981 INFO   [ACFFBF\E6C263] Auto-routing pass #1 on board '080c0418acbd1fd98c37e2c15717d289' was completed in 15.51 seconds with score 613.33 (29 unrouted and 0 violations), using 17.49 CPU seconds and the job allocated 13.17 GB of memory so far.
+2026-11-21 11:59:05.104 INFO   [ACFFBF\E6C263] Auto-routing stage completed: started with 99 unrouted nets, completed in 19.65 seconds, final score: 613.33 (29 unrouted and 0 violations), using 17.49 total CPU seconds, 13.17 GB total allocated, and 299.0 MB peak heap usage.
+2026-11-21 11:59:05.145 INFO   [ACFFBF\E6C263] Job 'ACFFBF\E6C263' finished with state: COMPLETED (elapsed: 19.91 seconds, finished at UTC: 2026-11-21T11:59:05.143141218Z).
+2026-11-21 11:59:05.173 INFO   Saving output file '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case5/board_freerouting.ses' (SES)...
+2026-11-21 11:59:05.177 INFO   Successfully saved output file '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case5/board_freerouting.ses' (45417 bytes).
+
+2026-11-21T11:58:43.114504651Z main ERROR Could not determine local host name
+java.net.UnknownHostException: jdk.internal.util.Exceptions$NonSocketInfo@62379589sandbox: Name or service not known
+	at java.base/java.net.InetAddress.getLocalHost(Unknown Source)
+	at org.apache.logging.log4j.core.util.NetUtils.getHostname(NetUtils.java:71)
+	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:56)
+	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$2(LoggerContext.java:691)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(Unknown Source)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:691)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:786)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:808)
+	at org.apache.logging.log4j.core.LoggerContext.start(LoggerContext.java:311)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:264)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:48)
+	at org.apache.logging.log4j.LogManager.getContext(LogManager.java:119)
+	at app.freerouting.startup.LoggingBootstrap.initialize(LoggingBootstrap.java:132)
+	at app.freerouting.Freerouting.main(Freerouting.java:536)
+Caused by: java.net.UnknownHostException: sandbox: Name or service not known
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Unknown Source)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(Unknown Source)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(Unknown Source)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(Unknown Source)
+	at java.base/java.net.InetAddress.getAllByName0(Unknown Source)
+	... 14 more
+
+2026-11-21T11:58:43.130341816Z main ERROR Could not determine local host name
+java.net.UnknownHostException: jdk.internal.util.Exceptions$NonSocketInfo@1fa121e2sandbox: Name or service not known
+	at java.base/java.net.InetAddress.getLocalHost(Unknown Source)
+	at org.apache.logging.log4j.core.util.NetUtils.getHostname(NetUtils.java:71)
+	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:56)
+	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$2(LoggerContext.java:691)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(Unknown Source)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:691)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:786)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:808)
+	at app.freerouting.startup.LoggingBootstrap.initialize(LoggingBootstrap.java:132)
+	at app.freerouting.Freerouting.main(Freerouting.java:536)
+Caused by: java.net.UnknownHostException: sandbox: Name or service not known
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Unknown Source)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(Unknown Source)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(Unknown Source)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(Unknown Source)
+	at java.base/java.net.InetAddress.getAllByName0(Unknown Source)
+	... 10 more
+

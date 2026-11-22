@@ -1,5 +1,5 @@
 {
-  "directory": "artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement",
-  "manifest_sha256": "482766e3d0e3f12989341e3fa06a49781722191f8aa199b9055b88a75a424ef1",
-  "promoted": false
+  "directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape",
+  "manifest_sha256": "7309e96543ef15e2d5c2fa1afe3e53f37665e7d9bbe80f76fa3940542f46c418",
+  "promoted": true
 }
