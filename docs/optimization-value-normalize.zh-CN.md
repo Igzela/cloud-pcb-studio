@@ -80,18 +80,20 @@
 
 ## 4. 测试与耗时
 
-- 完整 pytest：**127 passed**（123 基线 + 4 新增），5156 warnings，**88.86 秒**；轮内日志：[pytest.log](file:///workspace/artifacts/optimization/runs/20261117T133839160986Z-value-normalize/pytest.log)。
+- 冻结清单记录完整 pytest **127 passed**（123 基线 + 4 新增），5156 warnings，**88.86 秒**。[manifest.json](../artifacts/optimization/runs/20261117T133839160986Z-value-normalize/manifest.json)
 - 全轮耗时：**1321.479 秒**（case1 117.9 / case2 164.9 / case3 240.2 / case4 370.3 / case5 336.6）。
-- 逐板完整日志：各 case 目录下 `solver.log`、`fastroute_primary.log`、`freerouting.log`、`browser.log`；轮级汇总 [review.md](file:///workspace/artifacts/optimization/runs/20261117T133839160986Z-value-normalize/review.md) 与 [result.json](file:///workspace/artifacts/optimization/runs/20261117T133839160986Z-value-normalize/result.json)。
+- 轮级汇总见 [review.md](../artifacts/optimization/runs/20261117T133839160986Z-value-normalize/review.md) 和 [result.json](../artifacts/optimization/runs/20261117T133839160986Z-value-normalize/result.json)。
+
+这轮的 `pytest.log` 和 22 份逐板日志未随原始提交进入 Git，合计缺少冻结清单引用的 23 个文件。原先的 `*.log` 忽略规则覆盖了这些路径。其余 172 项已发布产物、输入和轮级证据均与清单哈希一致，源码归档内 66 项也都匹配。严格的整轮完整性校验仍因日志缺失而失败。只有找回与原哈希一致的日志才能补齐这一轮。后续优化轮的日志路径已加入 `.gitignore` 例外。
 
 ## 5. 3D 预览与机械未知项
 
 - 3D 预览（浏览器已验证通过，五板 `browser_passed=true`）：
-  [case1 assembly.html](file:///workspace/artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case1/assembly.html) ·
-  [case2](file:///workspace/artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case2/assembly.html) ·
-  [case3](file:///workspace/artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case3/assembly.html) ·
-  [case4](file:///workspace/artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case4/assembly.html) ·
-  [case5](file:///workspace/artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case5/assembly.html)
+  [case1 assembly.html](../artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case1/assembly.html) ·
+  [case2](../artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case2/assembly.html) ·
+  [case3](../artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case3/assembly.html) ·
+  [case4](../artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case4/assembly.html) ·
+  [case5](../artifacts/optimization/runs/20261117T133839160986Z-value-normalize/case5/assembly.html)
 - 截图：各 case 目录 `assembly_top.png` / `assembly_oblique.png` / `assembly_side.png` / `assembly_black.png`。
 - 机械未核实封装（外壳/高度）：case1=46、case2=59、case3=74、case4=108、case5=52。碰撞检测 0 仅指参数包络；真实装配认证仍需外壳尺寸证据。Agent D 诊断：其中约 303 项可由封装标准（EIA/JEDEC/MPN）有依据推导，属后续可落地项，但本轮未实施。
 - case5 存在 P0 输入阻塞：固定接口焊盘板边铜距 0.30mm（要求 0.50mm），属输入约束冲突，须工程评审修订输入，算法不得绕过。

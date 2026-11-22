@@ -26,6 +26,7 @@ import time
 import uuid
 import warnings
 from collections import defaultdict
+from dataclasses import asdict, replace
 from pathlib import Path
 from typing import Any
 
@@ -1826,9 +1827,13 @@ def _audit_blind_output(
     }
 
 
-def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False) -> dict[str, Any]:
+def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False, freerouting_jvm: bool = False, direct_repair: bool = False) -> dict[str, Any]:
     """Execute end-to-end blind PCB build on any blind_spec.json."""
     from cloud_pcb.general_solver.electrical import derive_electrical_requirements
+    secondary_runtime = None
+    if freerouting_jvm:
+        from cloud_pcb.layout_route.freerouting_runtime import resolve_freerouting_jvm
+        secondary_runtime = resolve_freerouting_jvm(PROJECT_ROOT)
     raw_spec = json.loads(spec_path.read_text(encoding="utf-8"))
     spec, electrical_derivations = derive_electrical_requirements(raw_spec, scoped=scoped_power) if derive_power or scoped_power else (raw_spec, [])
     outdir.mkdir(parents=True, exist_ok=True)
@@ -2006,6 +2011,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         skip_nets=skip_nets,
         override_net_pins=override_net_pins,
         routing_layers_by_class=routing_layers,
+        protect_mechanical_holes=freerouting_jvm,
     )
     free_ses = outdir / "board_freerouting.ses"
     t1 = time.perf_counter()
@@ -2013,7 +2019,8 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
     free_out = ""
     free_stdout=free_stderr=None
     free_timed_out=False
-    free_cmd=["freerouting-cli", "-de", str(free_dsn), "-do", str(free_ses),
+    free_executable = secondary_runtime.command if secondary_runtime else ("freerouting-cli",)
+    free_cmd=[*free_executable, "-de", str(free_dsn), "-do", str(free_ses),
               "--gui.enabled=false", "--router.copperToEdgeClearanceUm=500",
               "--router.autorouter.max_passes=1", "--router.optimizer.enabled=false"]
     try:
@@ -2031,40 +2038,155 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
     free_ms = round((time.perf_counter() - t1) * 1000.0, 2)
     router_processes.append(save_router_log(outdir/'freerouting.log',free_cmd,free_rc,free_stdout,free_stderr,timed_out=free_timed_out))
     save_json(outdir/'router_processes.json',router_processes)
-    free_ok = free_rc == 0 and free_ses.exists()
-    free_ses_info = parse_ses(free_ses) if free_ok else {"routed_nets": 0, "via_count": 0, "total_wirelength_mm": 0.0, "layers_used": []}
-    free_unr = max(0, fr_bench.total_nets - free_ses_info["routed_nets"])
-    for ln in free_out.splitlines():
-        if "final score:" in ln and "unrouted" in ln:
-            m = re.search(r"\((\d+)\s+unrouted", ln)
-            if m:
-                free_unr = max(free_unr, int(m.group(1)))
+    free_ses_info = {"routed_nets": 0, "via_count": 0, "total_wirelength_mm": 0.0, "layers_used": []}
+    free_unr = fr_bench.total_nets
+    free_success = False
+    free_notes = "timeout_60s" if free_timed_out else f"rc={free_rc}, max_passes=1"
+    secondary_comparison = None
+    if secondary_runtime:
+        from cloud_pcb.general_solver.freerouting_comparison import completed_session
+        from cloud_pcb.verify_gate.gerber_drc import audit_general_board
+        secondary_comparison = {"runtime": secondary_runtime.provenance, "status": "failed"}
+        try:
+            free_ses_info, router_counts = completed_session(
+                free_ses, free_rc, free_out, {n.name for n in board.nets if n.name}
+            )
+        except (ValueError, OSError, IndexError) as exc:
+            free_notes = str(exc)
+            secondary_comparison["error"] = free_notes
+        else:
+            comparison_board = Board.from_file(str(unrouted_path))
+            comparison_board, _ = merge_ses_into_board(comparison_board, free_ses)
+            comparison_islands = power_islands(comparison_board, board_poly, spec, keepouts)
+            _build_4layer_pours_and_stitching(
+                comparison_board, board_poly, keepouts=keepouts, islands=comparison_islands
+            )
+            secondary_audit = audit_general_board(comparison_board, spec, placed, keepouts)
+            disallowed_tracks = [
+                {"net": segment["net"], "layer": segment["layer"]}
+                for segment in free_ses_info["segments"]
+                if segment["layer"] not in routing_layers.get(
+                    net_to_class.get(segment["net"], "DEFAULT"), ("F.Cu", "In2.Cu", "B.Cu")
+                )
+            ]
+            free_unr = len(secondary_audit["lvs_opens"])
+            free_success = (
+                not any(router_counts.values()) and secondary_audit["passed"] and not disallowed_tracks
+            )
+            free_notes = "LVS open-network count after pours; router counts and layer checks reported separately"
+            secondary_comparison.update(
+                status="completed", **router_counts, independent_4layer=secondary_audit,
+                disallowed_track_count=len(disallowed_tracks),
+                disallowed_net_layers=sorted({(t["net"], t["layer"]) for t in disallowed_tracks}),
+            )
+        save_json(outdir / "freerouting_comparison.json", secondary_comparison)
+    else:
+        free_ok = free_rc == 0 and free_ses.exists()
+        if free_ok:
+            free_ses_info = parse_ses(free_ses)
+        free_unr = max(0, fr_bench.total_nets - free_ses_info["routed_nets"])
+        for line in free_out.splitlines():
+            if "final score:" in line and "unrouted" in line:
+                match = re.search(r"\((\d+)\s+unrouted", line)
+                if match:
+                    free_unr = max(free_unr, int(match.group(1)))
+        free_success = free_ok and free_unr == 0
     free_bench = RoutingBenchmark(
-        engine="freerouting_cli_v2.5.0",
+        engine="freerouting_jvm_v2.5.0" if secondary_runtime else "freerouting_cli_v2.5.0",
         board_name=spec["project_name"],
-        success=free_ok and free_unr == 0,
+        success=free_success,
         runtime_ms=free_ms,
         total_nets=fr_bench.total_nets,
         routed_nets=free_ses_info["routed_nets"],
         unrouted_nets=free_unr,
         via_count=free_ses_info["via_count"],
         total_wirelength_mm=free_ses_info["total_wirelength_mm"],
-        notes=f"rc={free_rc}, max_passes=1" if free_rc >= 0 else "timeout_60s",
+        notes=free_notes,
     )
 
-    chosen_ses = fr_ses if fr_ok else free_ses
+    chosen_ses = fr_ses if fr_ok else (free_ses if secondary_runtime is None else None)
     routed_board = Board.from_file(str(unrouted_path))
-    if chosen_ses.exists():
+    if chosen_ses is not None and chosen_ses.exists():
         routed_board, _ = merge_ses_into_board(routed_board, chosen_ses)
 
+    from cloud_pcb.verify_gate.gerber_drc import audit_general_board
+    direct_evidence = None
+    repairs = []
+    if direct_repair:
+        from cloud_pcb.general_solver.direct_repair import propose_direct_repairs
+        from cloud_pcb.general_solver.direct_repair_replay import replay_fixed_wires
+        direct_evidence = {"status": "no_eligible_link"}
+        if fr_ok and fr_stats.get("unrouted", 0):
+            repairs = propose_direct_repairs(
+                routed_board, board_poly, keepouts, netclasses, net_to_class, routing_layers, fr_report
+            )
+    if repairs:
+        from copy import deepcopy
+        candidate_board = deepcopy(routed_board)
     islands=power_islands(routed_board,board_poly,spec,keepouts)
     pours, pour_stats = _build_4layer_pours_and_stitching(routed_board, board_poly,keepouts=keepouts,islands=islands)
+    if repairs:
+        replay_start = time.perf_counter()
+        direct_evidence["proposals"] = [asdict(repair) for repair in repairs]
+        try:
+            validated_report = replay_fixed_wires(
+                dsn_path, fr_ses, fr_report, repairs, alt_cmd if route_mode == 'individual_with_length_tuning' else fr_cmd,
+                PROJECT_ROOT, outdir, router_processes
+            )
+            validated_spacing = classify_router_violations(validated_report, spec)
+            if validated_spacing['real_count'] > spacing['real_count']:
+                raise ValueError("Replay increased the real spacing violation count")
+            numbers = {net.name: net.number for net in board.nets}
+            for repair in repairs:
+                candidate_board.traceItems.append(Segment(
+                    start=Position(X=repair.start_xy[0], Y=repair.start_xy[1]),
+                    end=Position(X=repair.end_xy[0], Y=repair.end_xy[1]),
+                    width=repair.width_mm, layer=repair.layer, net=numbers[repair.net],
+                    tstamp=str(uuid.uuid4()),
+                ))
+            candidate_islands = power_islands(candidate_board, board_poly, spec, keepouts)
+            candidate_pours, candidate_stats = _build_4layer_pours_and_stitching(
+                candidate_board, board_poly, keepouts=keepouts, islands=candidate_islands,
+            )
+            before = audit_general_board(routed_board, spec, placed, keepouts)
+            after = audit_general_board(candidate_board, spec, placed, keepouts)
+            # Require an actual LVS gain after repour, with every remaining
+            # defect already present in the control.
+            if len(after['lvs_opens']) >= len(before['lvs_opens']) or any(
+                finding not in before[key]
+                for key in ('lvs_opens', 'lvs_shorts', 'via_in_pad_violations')
+                for finding in after[key]
+            ) or any(a['passed'] and not b['passed'] for a, b in zip(before['rf_keepout'], after['rf_keepout'])):
+                raise ValueError("Independent four-layer audit did not confirm a safe LVS gain")
+        except (OSError, ValueError, KeyError, IndexError) as exc:
+            direct_evidence.update(status="rejected", error=str(exc))
+        else:
+            routed_board, pours, pour_stats = candidate_board, candidate_pours, candidate_stats
+            shutil.copyfile(fr_rep_path, outdir / "fastroute_before_direct_repair_report.json")
+            shutil.copyfile(outdir / "direct_repair_replay/fixed.json", fr_rep_path)
+            direct_evidence.update(
+                status="accepted", original_unrouted=fr_stats['unrouted'],
+                verified_unrouted=validated_report['stats']['unrouted'],
+                original_lvs_opens=len(before['lvs_opens']), verified_lvs_opens=len(after['lvs_opens']),
+            )
+            fr_report, fr_stats, spacing = validated_report, validated_report['stats'], validated_spacing
+            fr_bench = replace(
+                fr_bench, success=fr_stats['unrouted'] == 0 and spacing['real_count'] == 0,
+                total_wirelength_mm=round(
+                    fr_bench.total_wirelength_mm + sum(math.dist(r.start_xy, r.end_xy) for r in repairs), 4
+                ),
+                routed_nets=fr_bench.total_nets - fr_stats['unrouted'], unrouted_nets=fr_stats['unrouted'],
+                notes=fr_bench.notes + "; fixed trace verified by matched fastroute replay and layered LVS",
+            )
+        fr_bench = replace(fr_bench, runtime_ms=round(fr_bench.runtime_ms + 1000 * (time.perf_counter() - replay_start), 2))
+        save_json(outdir/'router_processes.json', router_processes)
+    if direct_evidence is not None:
+        save_json(outdir / "direct_repair.json", direct_evidence)
     routed_pcb = outdir / "routed.kicad_pcb"
     routed_board.to_file(str(routed_pcb))
 
     gerbers = _export_blind_gerbers(routed_board, board_poly, pours, H, gerber_dir)
     audit = _audit_blind_output(routed_board, board_poly, pours, gerber_dir, H)
-    from cloud_pcb.verify_gate.gerber_drc import audit_general_board
     from cloud_pcb.general_solver.assembly import export_assembly
     independent=audit_general_board(routed_board,spec,placed,keepouts)
     audit['legacy_projected_lvs_opens']=audit['lvs_opens']
@@ -2110,6 +2232,8 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         "router_spacing": spacing,
         "routing_mode": route_mode,
         "router_processes": router_processes,
+        "freerouting_comparison": secondary_comparison,
+        "direct_repair": direct_evidence,
         "routing_candidates": route_candidates,
         "full_width_at_pin_diff_classes": no_neckdown,
         "keepouts": keepouts,
@@ -2129,8 +2253,10 @@ if __name__ == "__main__":
     parser.add_argument("--scoped-power", action="store_true", help="Experimental single-IC supply scope; implies supply inference")
     parser.add_argument("--octagonal-fanout", action="store_true", help="Use circumscribed via guards with unchanged circular protection radius")
     parser.add_argument("--value-normalize", action="store_true", help="Topology-only case-insensitive equivalence for value spellings that this spec itself uses inconsistently; raw values stay untouched")
+    parser.add_argument("--freerouting-jvm", action="store_true", help="Compare the pinned Freerouting JVM release with independent copper validation")
+    parser.add_argument("--direct-repair", action="store_true", help="Experimentally complete verified direct links between same-footprint through-hole pins")
     args = parser.parse_args()
-    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize)
+    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize, freerouting_jvm=args.freerouting_jvm, direct_repair=args.direct_repair)
     print(json.dumps({
         "project": res["project_name"],
         "total_placed": res["placement_meta"]["total_placed"],

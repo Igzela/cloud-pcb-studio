@@ -1,12 +1,10 @@
 {
   "status": "baseline_diagnosed",
-  "created_at": "2026-11-17T13:37:50.857038+00:00",
+  "created_at": "2026-11-18T01:27:00.989397+00:00",
   "baseline": {
-    "format": "v3_freeze",
-    "manifest": "artifacts/blind_v3_freeze.json",
-    "sha256": "e2e141a907321b27ef511a8d4bc08dc9d7e70c17ccf4d2d0f887c037418d6a59",
-    "source_archive": "artifacts/v3_validation/frozen-source.tar.gz",
-    "source_archive_sha256": "12e1f4d30f521a432e68ea27fc95e3a46468b953bea282834181071461766be2"
+    "format": "optimization_round",
+    "manifest": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/manifest.json",
+    "sha256": "023dff403ab73c77ecd4653ffae4e4db87516c7ff1b21ea341a516134c403cd8"
   },
   "measurements": {
     "case1": {
@@ -86,8 +84,8 @@
     },
     "case4": {
       "values": {
-        "unrouted": 1,
-        "opens": 1,
+        "unrouted": 0,
+        "opens": 0,
         "shorts": 0,
         "spacing": 0,
         "via_in_pad": 0,
@@ -100,12 +98,10 @@
         "unverified_envelopes": 108,
         "cap_distance_mm": 13.875,
         "ground_fill_deficit": 0.0,
-        "wirelength_mm": 3224.045
+        "wirelength_mm": 3226.585
       },
       "failed_gates": [
-        "independent_lvs_opens_zero",
-        "mechanical_zero_with_verified_envelopes",
-        "unrouted_zero"
+        "mechanical_zero_with_verified_envelopes"
       ],
       "hard_pass": false,
       "evidence_errors": []
@@ -141,23 +137,23 @@
   "case_details": {
     "case1": {
       "ground_fill_ratio": 0.8649,
-      "artifact_directory": "artifacts/blind_v3_case1"
+      "artifact_directory": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case1"
     },
     "case2": {
       "ground_fill_ratio": 0.9154,
-      "artifact_directory": "artifacts/blind_v3_case2"
+      "artifact_directory": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case2"
     },
     "case3": {
       "ground_fill_ratio": 0.8933,
-      "artifact_directory": "artifacts/blind_v3_case3"
+      "artifact_directory": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case3"
     },
     "case4": {
       "ground_fill_ratio": 0.9404,
-      "artifact_directory": "artifacts/blind_v3_case4"
+      "artifact_directory": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case4"
     },
     "case5": {
       "ground_fill_ratio": 0.7551,
-      "artifact_directory": "artifacts/blind_v3_case5"
+      "artifact_directory": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair/case5"
     }
   },
   "tasks": [
@@ -454,51 +450,6 @@
         ],
         "all_envelopes_verified": false,
         "passed": false
-      }
-    },
-    {
-      "id": "9f3db692aaa7",
-      "case": "case4",
-      "category": "connectivity",
-      "priority": 1,
-      "kind": "solver",
-      "title": "按独立 LVS 断开组诊断布线拥塞",
-      "evidence": {
-        "unrouted": 1,
-        "opens": [
-          {
-            "net": "Net-(D3-K)",
-            "components": 2,
-            "pad_count": 3,
-            "pad_groups": {
-              "0": [
-                "D3-1",
-                "J15-2",
-                "J15-2",
-                "J15-2",
-                "J15-2"
-              ],
-              "1": [
-                "J15-1",
-                "J15-1",
-                "J15-1",
-                "J15-1"
-              ]
-            }
-          }
-        ],
-        "routing_candidates": [
-          {
-            "mode": "coupled_pairs",
-            "unrouted": 1,
-            "real_violations": 0
-          },
-          {
-            "mode": "individual_with_length_tuning",
-            "unrouted": 1,
-            "real_violations": 0
-          }
-        ]
       }
     },
     {
@@ -933,5 +884,11 @@
     "eligible_for_baseline": false,
     "engineering_pass": null,
     "reason": "diagnosis only"
+  },
+  "last_round": {
+    "directory": "artifacts/optimization/runs/20261118T010740458884Z-direct-repair",
+    "promoted": true,
+    "recorded_status": "complete",
+    "integrity": "verified"
   }
 }

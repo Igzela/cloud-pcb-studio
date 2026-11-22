@@ -9,7 +9,7 @@
 | case1 | 0 | 0/0 | 0 | 86.49% | 3.345 |
 | case2 | 0 | 0/0 | 0 | 91.54% | 7.706 |
 | case3 | 1 | 1/0 | 0 | 89.33% | 3.949 |
-| case4 | 1 | 1/0 | 0 | 94.04% | 13.875 |
+| case4 | 0 | 0/0 | 0 | 94.04% | 13.875 |
 | case5 | 9 | 9/0 | 0 | 75.51% | 6.884 |
 
 ## 本轮比较
@@ -30,7 +30,6 @@
 - P1 `case2` [input_and_solver] 补齐天线几何证据并保证四层净空（证据 ID `5ca6aa3f5fb2`）
 - P1 `case3` [solver] 按独立 LVS 断开组诊断布线拥塞（证据 ID `16d11a2f5145`）
 - P1 `case3` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `dba9bda77b30`）
-- P1 `case4` [solver] 按独立 LVS 断开组诊断布线拥塞（证据 ID `9f3db692aaa7`）
 - P1 `case4` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `9a2d50027ff1`）
 - P1 `case5` [solver] 按独立 LVS 断开组诊断布线拥塞（证据 ID `c2e203b23f1d`）
 - P1 `case5` [input_and_solver] 处理装配碰撞并补齐有依据的外壳尺寸（证据 ID `383c46192fe7`）
