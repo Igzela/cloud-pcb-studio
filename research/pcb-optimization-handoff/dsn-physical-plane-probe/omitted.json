@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": ".run/dsn-physical-plane-probe/omitted.dsn",
+  "time_s": {"load": 0.0008, "route": 0, "total": 0.001, "diagnose": null},
+  "stats": {"layers": 4, "components": 5, "nets": 1, "pins": 5, "connections": 1, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 1, "violations_unfixable": 1, "vias": 0, "vias_blind": 0, "vias_buried": 0, "traces": 0, "trace_length_mm": 0, "bends_90": 0, "bends_45": 0, "bends_other": 0, "router_score": 0, "optimizer_score": 1000},
+  "unrouted": [
+    {"net": "SIG", "length_mm": 15, "from": {"kind": "pin", "component": "E", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [20, 15], "to": {"kind": "pin", "component": "D", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [5, 15]}
+  ],
+  "clearance_violations": [
+    {"layer": "F.Cu", "xy": [5.2, 5], "clearance_mm": 0.05, "actual_mm": 0, "unfixable": true, "first": {"kind": "pin", "component": "B", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "second": {"kind": "pin", "component": "A", "pin": "1", "layers": ["F.Cu", "F.Cu"]}}
+  ]
+}

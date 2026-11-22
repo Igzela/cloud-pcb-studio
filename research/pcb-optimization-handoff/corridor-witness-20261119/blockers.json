@@ -1,0 +1,96 @@
+[
+  {
+    "net": "/Ethernet/PHY_TD+",
+    "blockers": [
+      {
+        "net": "/Ethernet/PHY_RD-",
+        "layer": "F.Cu",
+        "part": "neck",
+        "count": 2,
+        "min_gap_mm": 0.182
+      },
+      {
+        "net": "/Ethernet/PHY_RD-",
+        "layer": "F.Cu",
+        "part": "via",
+        "count": 2,
+        "min_gap_mm": 0.0
+      },
+      {
+        "net": "/Ethernet/PHY_TD-",
+        "layer": "B.Cu",
+        "part": "via",
+        "count": 2,
+        "min_gap_mm": 0.0
+      },
+      {
+        "net": "/Ethernet/PHY_TD-",
+        "layer": "F.Cu",
+        "part": "via",
+        "count": 1,
+        "min_gap_mm": 0.16117
+      },
+      {
+        "net": "/Ethernet/PHY_TD-",
+        "layer": "through",
+        "part": "neck",
+        "count": 1,
+        "min_gap_mm": 0.1518
+      },
+      {
+        "net": "/Ethernet/PHY_TD-",
+        "layer": "through",
+        "part": "via",
+        "count": 1,
+        "min_gap_mm": 0.0
+      },
+      {
+        "net": "Net-(U2-CRS_DV{slash}MODE2)",
+        "layer": "In2.Cu",
+        "part": "via",
+        "count": 2,
+        "min_gap_mm": 0.0
+      },
+      {
+        "net": "Net-(U2-RXD1{slash}MODE1)",
+        "layer": "In2.Cu",
+        "part": "via",
+        "count": 1,
+        "min_gap_mm": 0.0474
+      }
+    ]
+  },
+  {
+    "net": "/Ethernet/PHY_TD-",
+    "blockers": [
+      {
+        "net": "ETH_MDIO",
+        "layer": "In2.Cu",
+        "part": "via",
+        "count": 1,
+        "min_gap_mm": 0.0
+      },
+      {
+        "net": "Net-(U2-VDD1A)",
+        "layer": "F.Cu",
+        "part": "neck",
+        "count": 2,
+        "min_gap_mm": 0.18357
+      },
+      {
+        "net": "Net-(U2-VDD1A)",
+        "layer": "F.Cu",
+        "part": "via",
+        "count": 2,
+        "min_gap_mm": 0.21009
+      },
+      {
+        "net": "Net-(U2-XTAL1{slash}CLKIN)",
+        "layer": "B.Cu",
+        "part": "via",
+        "count": 2,
+        "min_gap_mm": 0.0
+      }
+    ]
+  }
+]

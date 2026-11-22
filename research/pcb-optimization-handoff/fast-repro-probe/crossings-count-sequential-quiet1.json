@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/.run/fast-repro-probe/crossings.dsn",
+  "time_s": {"load": 0.0008, "route": 0.2354, "total": 0.2371, "diagnose": null},
+  "stats": {"layers": 4, "components": 28, "nets": 14, "pins": 28, "connections": 14, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 26, "vias_blind": 0, "vias_buried": 0, "traces": 76, "trace_length_mm": 457.8289, "bends_90": 0, "bends_45": 52, "bends_other": 0, "router_score": 1000, "optimizer_score": 349.0645},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

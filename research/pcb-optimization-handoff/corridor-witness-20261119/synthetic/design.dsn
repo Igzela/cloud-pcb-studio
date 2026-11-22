@@ -1,0 +1,85 @@
+(pcb design.dsn
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "KiCad's Pcbnew")
+    (host_version "8.0.0")
+  )
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu
+      (type signal)
+      (property (index 0))
+    )
+    (layer In1.Cu
+      (type power)
+      (property (index 1))
+    )
+    (layer In2.Cu
+      (type signal)
+      (property (index 2))
+    )
+    (layer B.Cu
+      (type signal)
+      (property (index 3))
+    )
+    (boundary
+      (path pcb 0 0 0 30000 0 30000 -12000 0 -12000 0 0)
+    )
+    (via Via[0-3]_550:300_um)
+    (rule
+      (width 200)
+      (clearance 150)
+      (clearance 150 (type default_smd))
+      (clearance 50 (type smd_smd))
+    )
+  )
+  (placement
+    (component IMG_Device0
+      (place Device0 5000 -6000 front 0)
+    )
+    (component IMG_Device1
+      (place Device1 25000 -6000 front 0)
+    )
+  )
+  (library
+    (image IMG_Device0
+      (pin Rect_T_875x250_um 1 0 750)
+      (pin Rect_T_875x250_um 2 0 250)
+      (pin Rect_T_875x250_um 3 0 -250)
+      (pin Rect_T_875x250_um 4 0 -750)
+    )
+    (image IMG_Device1
+      (pin Rect_T_875x250_um 1 0 750)
+      (pin Rect_T_875x250_um 2 0 250)
+      (pin Rect_T_875x250_um 3 0 -250)
+      (pin Rect_T_875x250_um 4 0 -750)
+    )
+    (padstack Via[0-3]_550:300_um
+      (shape (circle F.Cu 550))
+      (shape (circle In1.Cu 550))
+      (shape (circle In2.Cu 550))
+      (shape (circle B.Cu 550))
+      (attach off)
+    )
+    (padstack Rect_T_875x250_um
+      (shape (rect F.Cu -437 -125 437 125))
+      (attach off)
+    )
+  )
+  (network
+    (net lane_n
+      (pins Device0-3 Device1-3)
+    )
+    (net lane_p
+      (pins Device0-2 Device1-2)
+    )
+    (class DPAIR lane_n lane_p
+      (circuit (use_via Via[0-3]_550:300_um) (use_layer F.Cu B.Cu))
+      (rule (width 290) (clearance 248))
+    )
+  )
+  (wiring
+  )
+)

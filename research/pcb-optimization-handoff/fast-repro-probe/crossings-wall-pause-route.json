@@ -1,0 +1,25 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/.run/fast-repro-probe/crossings.dsn",
+  "time_s": {"load": 0.0009, "route": 1.393, "total": 1.3944, "diagnose": null},
+  "stats": {"layers": 4, "components": 28, "nets": 14, "pins": 28, "connections": 14, "unrouted": 14, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 0, "vias_blind": 0, "vias_buried": 0, "traces": 0, "trace_length_mm": 0, "bends_90": 0, "bends_45": 0, "bends_other": 0, "router_score": 0, "optimizer_score": 1000},
+  "unrouted": [
+    {"net": "NET0", "length_mm": 29.8, "from": {"kind": "pin", "component": "PB0", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 2.8], "to": {"kind": "pin", "component": "PA0", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 2.8]},
+    {"net": "NET1", "length_mm": 30.2641, "from": {"kind": "pin", "component": "PB1", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 9.4], "to": {"kind": "pin", "component": "PA1", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 4.12]},
+    {"net": "NET2", "length_mm": 29.8292, "from": {"kind": "pin", "component": "PB2", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 6.76], "to": {"kind": "pin", "component": "PA2", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 5.44]},
+    {"net": "NET3", "length_mm": 29.9167, "from": {"kind": "pin", "component": "PB3", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 4.12], "to": {"kind": "pin", "component": "PA3", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 6.76]},
+    {"net": "NET4", "length_mm": 29.9167, "from": {"kind": "pin", "component": "PB4", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 10.72], "to": {"kind": "pin", "component": "PA4", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 8.08]},
+    {"net": "NET5", "length_mm": 29.8292, "from": {"kind": "pin", "component": "PB5", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 8.08], "to": {"kind": "pin", "component": "PA5", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 9.4]},
+    {"net": "NET6", "length_mm": 30.2641, "from": {"kind": "pin", "component": "PB6", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [30.9, 5.44], "to": {"kind": "pin", "component": "PA6", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [1.1, 10.72]},
+    {"net": "NET7", "length_mm": 29.8, "from": {"kind": "pin", "component": "PB7", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [2.8, 30.9], "to": {"kind": "pin", "component": "PA7", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [2.8, 1.1]},
+    {"net": "NET8", "length_mm": 30.2641, "from": {"kind": "pin", "component": "PB8", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [9.4, 30.9], "to": {"kind": "pin", "component": "PA8", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [4.12, 1.1]},
+    {"net": "NET9", "length_mm": 29.8292, "from": {"kind": "pin", "component": "PB9", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [6.76, 30.9], "to": {"kind": "pin", "component": "PA9", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [5.44, 1.1]},
+    {"net": "NET10", "length_mm": 29.9167, "from": {"kind": "pin", "component": "PB10", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [4.12, 30.9], "to": {"kind": "pin", "component": "PA10", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [6.76, 1.1]},
+    {"net": "NET11", "length_mm": 29.9167, "from": {"kind": "pin", "component": "PB11", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [10.72, 30.9], "to": {"kind": "pin", "component": "PA11", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [8.08, 1.1]},
+    {"net": "NET12", "length_mm": 29.8292, "from": {"kind": "pin", "component": "PB12", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [8.08, 30.9], "to": {"kind": "pin", "component": "PA12", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [9.4, 1.1]},
+    {"net": "NET13", "length_mm": 30.2641, "from": {"kind": "pin", "component": "PB13", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [5.44, 30.9], "to": {"kind": "pin", "component": "PA13", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [10.72, 1.1]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "fast": {
+    "unrouted": 0,
+    "raw_violations": 0,
+    "pin_pairs": [],
+    "routed_net_names": [
+      "SLOTTED_NET"
+    ],
+    "segments": 1,
+    "vias": 0,
+    "checked_backside_plated_contact": true,
+    "physical_drill_unchanged": true,
+    "annular_mm": 0.4
+  },
+  "jvm": {
+    "unrouted": 0,
+    "raw_violations": 0,
+    "routed_net_names": [
+      "SLOTTED_NET"
+    ],
+    "segments": 1,
+    "vias": 0,
+    "checked_backside_plated_contact": true,
+    "physical_drill_unchanged": true,
+    "annular_mm": 0.4
+  }
+}

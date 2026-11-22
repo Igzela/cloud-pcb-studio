@@ -1,0 +1,80 @@
+{
+  "design": {
+    "lvs_open": 0,
+    "lvs_short": 0,
+    "min_track_pair_gap_mm": 0.2502,
+    "end_to_end_centerline_skew_mm": 0.0,
+    "track_length_by_net_and_width_mm": {
+      "lane_n": {
+        "0.250": 20.0
+      },
+      "lane_p": {
+        "0.250": 20.0
+      }
+    },
+    "retained_fixed_segments": 0,
+    "released_ses_segments": [
+      {
+        "net": "lane_n",
+        "layer": "F.Cu",
+        "width_mm": 0.2498,
+        "x1": 25.0,
+        "y1": 6.25,
+        "x2": 5.0,
+        "y2": 6.25
+      },
+      {
+        "net": "lane_p",
+        "layer": "F.Cu",
+        "width_mm": 0.2498,
+        "x1": 25.0,
+        "y1": 5.75,
+        "x2": 5.0,
+        "y2": 5.75
+      }
+    ],
+    "layers_used": [
+      "F.Cu"
+    ]
+  },
+  "seeded": {
+    "lvs_open": 0,
+    "lvs_short": 0,
+    "min_track_pair_gap_mm": 0.334,
+    "end_to_end_centerline_skew_mm": 0.0,
+    "track_length_by_net_and_width_mm": {
+      "lane_p": {
+        "0.125": 1.9753624817342637,
+        "0.290": 18.076
+      },
+      "lane_n": {
+        "0.125": 1.9753624817342637,
+        "0.290": 18.076
+      }
+    },
+    "retained_fixed_segments": 12,
+    "released_ses_segments": [
+      {
+        "net": "lane_n",
+        "layer": "F.Cu",
+        "width_mm": 0.29,
+        "x1": 6.662,
+        "y1": 6.312,
+        "x2": 23.338,
+        "y2": 6.312
+      },
+      {
+        "net": "lane_p",
+        "layer": "F.Cu",
+        "width_mm": 0.29,
+        "x1": 6.662,
+        "y1": 5.688,
+        "x2": 23.338,
+        "y2": 5.688
+      }
+    ],
+    "layers_used": [
+      "F.Cu"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/.run/corridor-witness-20261119/integration/artifacts/test_real_primary_keeps_nomina0/seeded.dsn",
+  "time_s": {"load": 0.0902, "route": 0.0004, "total": 0.1373, "diagnose": null},
+  "stats": {"layers": 4, "components": 2, "nets": 2, "pins": 8, "connections": 2, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 0, "vias_blind": 0, "vias_buried": 0, "traces": 10, "trace_length_mm": 40.1027, "bends_90": 0, "bends_45": 4, "bends_other": 0, "router_score": 1000, "optimizer_score": 914.0985},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}
