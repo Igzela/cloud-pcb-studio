@@ -1,0 +1,31 @@
+{
+  "values": {
+    "unrouted": 55,
+    "opens": 5,
+    "shorts": 2,
+    "spacing": 4,
+    "via_in_pad": 0,
+    "gerber_failures": 0,
+    "annular_failures": 14,
+    "silk_overlap_mm2": 0.0,
+    "edge_deficit_mm": 0.0,
+    "rf_failures": 0,
+    "mechanical_collisions": 0,
+    "unverified_envelopes": 84,
+    "cap_distance_mm": 12.392,
+    "ground_fill_deficit": 0.04189999999999994,
+    "wirelength_mm": 1816.344
+  },
+  "failed_gates": [
+    "annular_ring_ge_010",
+    "independent_lvs_opens_zero",
+    "independent_lvs_shorts_zero",
+    "mechanical_zero_with_verified_envelopes",
+    "router_spacing_zero",
+    "unrouted_zero"
+  ],
+  "hard_pass": false,
+  "evidence_errors": [
+    "Secondary engine evidence incomplete or different runtime"
+  ]
+}

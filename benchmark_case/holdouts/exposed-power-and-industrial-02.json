@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "status": "unsealed",
+  "cohort": "power-and-industrial-02",
+  "cases": [
+    "case10",
+    "case11"
+  ],
+  "reference_comparison": "artifacts/holdout-comparisons/power-and-industrial-02-retry-01/comparison.json",
+  "reference_comparison_sha256": "bfba979418067136462281c01f70863940b1953285cbc3228e50a0212d09a55f",
+  "freeze_manifest": "artifacts/holdouts/power-and-industrial-02-retry-01/freeze.json",
+  "freeze_manifest_sha256": "660923f6e434af7923f5b7268da0ce9e10366a6f843096bdaf0a963b2248b064"
+}

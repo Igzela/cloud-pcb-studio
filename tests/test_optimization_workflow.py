@@ -12,7 +12,8 @@ from cloud_pcb.general_solver.optimization import GERBER_LAYERS,REQUIRED_GATES,c
 from scripts import optimize_pcb as workflow
 
 
-def test_latest_round_reports_missing_evidence_without_changing_baseline(tmp_path, monkeypatch):
+@pytest.mark.parametrize("recorded_status", ["complete", "incomplete", "invalidated"])
+def test_latest_round_reports_missing_evidence_without_changing_baseline(tmp_path, monkeypatch, recorded_status):
     monkeypatch.setattr(workflow, "ROOT", tmp_path)
     root = tmp_path / "artifacts/optimization"
     run = root / "round"
@@ -21,17 +22,18 @@ def test_latest_round_reports_missing_evidence_without_changing_baseline(tmp_pat
     pytest_log.write_text("example recorded evidence")
     manifest = run / "manifest.json"
     manifest.write_text(json.dumps({
-        "status": "complete", "cases": [],
+        "status": recorded_status, "cases": [],
         "evidence": {str(pytest_log.relative_to(tmp_path)): digest(pytest_log)},
     }))
-    (root / "last_run.json").write_text(json.dumps({
-        "directory": str(run.relative_to(tmp_path)),
-        "manifest_sha256": digest(manifest), "promoted": False,
-    }))
+    pointer = {"directory": str(run.relative_to(tmp_path)), "manifest_sha256": digest(manifest), "promoted": False}
+    (root / "last_run.json").write_text(json.dumps(pointer))
     assert workflow.latest_round_status()["integrity"] == "verified"
+    if recorded_status != "complete":
+        with pytest.raises(ValueError, match="finalized eligible record"):
+            workflow.verify_manifest({"manifest": str(manifest.relative_to(tmp_path)), "sha256": pointer["manifest_sha256"]})
     pytest_log.unlink()
     status = workflow.latest_round_status()
-    assert status["recorded_status"] == "complete"
+    assert status["recorded_status"] == recorded_status
     assert status["integrity"] == "unverified"
     assert "pytest.log" in status["error"]
 

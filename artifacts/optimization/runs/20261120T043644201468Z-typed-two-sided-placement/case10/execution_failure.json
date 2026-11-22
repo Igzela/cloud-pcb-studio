@@ -1,0 +1,5 @@
+{
+  "case": "case10",
+  "error": "solver process exit 1",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/cloud-pcb-studio/scripts/optimize_pcb.py\", line 219, in run_round\n    if rc!=0:raise RuntimeError('solver process exit '+str(rc))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: solver process exit 1\n"
+}

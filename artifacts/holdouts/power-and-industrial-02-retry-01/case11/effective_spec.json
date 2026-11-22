@@ -1,0 +1,7381 @@
+{
+  "project_name": "holdout_case11",
+  "board_outline_mm": {
+    "width": 42.099999999999994,
+    "height": 72.0,
+    "origin_x": 0,
+    "origin_y": 0,
+    "corner_radius_mm": 0,
+    "vertices_mm": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        72.0
+      ],
+      [
+        42.1,
+        72.0
+      ],
+      [
+        42.1,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ]
+  },
+  "layer_count": 4,
+  "mounting_holes": [],
+  "edge_connectors": [
+    {
+      "refdes": "J5",
+      "x_mm": 19.12,
+      "y_mm": 59.21,
+      "angle_deg": 0,
+      "constraint_source": "board-edge mating interface only",
+      "allow_body_overhang": true
+    }
+  ],
+  "components": [
+    {
+      "refdes": "C1",
+      "value": "1u",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/CPU/EN",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C10",
+      "value": "100n",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(U2-VDD1A)",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C11",
+      "value": "100n",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(U2-VDD1A)",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C12",
+      "value": "22nF",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(J5-RCT)",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C13",
+      "value": "10uF",
+      "footprint_name": "Capacitor_SMD:CP_Elec_6.3x4.9",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D7-K)",
+          "x_rel_mm": -2.8,
+          "y_rel_mm": 0.0,
+          "w_mm": 3.5,
+          "h_mm": 1.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.15625
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 2.8,
+          "y_rel_mm": 0.0,
+          "w_mm": 3.5,
+          "h_mm": 1.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.15625
+        }
+      ],
+      "body_bbox_mm": [
+        -3.3,
+        -3.3,
+        3.3,
+        3.3
+      ]
+    },
+    {
+      "refdes": "C14",
+      "value": "1uF",
+      "footprint_name": "Capacitor_SMD:CP_Elec_6.3x4.9",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -2.8,
+          "y_rel_mm": 0.0,
+          "w_mm": 3.5,
+          "h_mm": 1.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.15625
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 2.8,
+          "y_rel_mm": 0.0,
+          "w_mm": 3.5,
+          "h_mm": 1.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.15625
+        }
+      ],
+      "body_bbox_mm": [
+        -3.3,
+        -3.3,
+        3.3,
+        3.3
+      ]
+    },
+    {
+      "refdes": "C15",
+      "value": "100nF",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -0.95,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.95,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C2",
+      "value": "10u",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C3",
+      "value": "100u",
+      "footprint_name": "Capacitor_Tantalum_SMD:CP_EIA-3528-21_Kemet-B",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -1.54,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.34,
+          "h_mm": 2.39,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.186567
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.54,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.34,
+          "h_mm": 2.39,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.186567
+        }
+      ],
+      "body_bbox_mm": [
+        -1.75,
+        -1.4,
+        1.75,
+        1.4
+      ]
+    },
+    {
+      "refdes": "C4",
+      "value": "1u",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C5",
+      "value": "100n",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "PHY_RST",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C6",
+      "value": "1uF",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C7",
+      "value": "100n",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C8",
+      "value": "1uF",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "C9",
+      "value": "470pF",
+      "footprint_name": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.0375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.175,
+          "h_mm": 1.45,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.212766
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "D1",
+      "value": "ESD9B3",
+      "footprint_name": "Diode_SMD:D_SOD-923",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -0.42,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.36,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "/CPU/EN",
+          "x_rel_mm": 0.42,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.36,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.4,
+        -0.3,
+        0.4,
+        0.3
+      ]
+    },
+    {
+      "refdes": "D10",
+      "value": "PESD3V3L1BA",
+      "footprint_name": "Diode_SMD:D_SOD-323_HandSoldering",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "CTRL1",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.9,
+        -0.7,
+        0.9,
+        0.7
+      ]
+    },
+    {
+      "refdes": "D11",
+      "value": "PESD3V3L1BA",
+      "footprint_name": "Diode_SMD:D_SOD-323_HandSoldering",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "CTRL2",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.9,
+        -0.7,
+        0.9,
+        0.7
+      ]
+    },
+    {
+      "refdes": "D12",
+      "value": "PESD3V3L1BA",
+      "footprint_name": "Diode_SMD:D_SOD-323_HandSoldering",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "/CPU/EN",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.9,
+        -0.7,
+        0.9,
+        0.7
+      ]
+    },
+    {
+      "refdes": "D13",
+      "value": "PESD3V3L1BA",
+      "footprint_name": "Diode_SMD:D_SOD-323_HandSoldering",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.9,
+        -0.7,
+        0.9,
+        0.7
+      ]
+    },
+    {
+      "refdes": "D2",
+      "value": "ESD9B3",
+      "footprint_name": "Diode_SMD:D_SOD-923",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -0.42,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.36,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": 0.42,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.36,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.4,
+        -0.3,
+        0.4,
+        0.3
+      ]
+    },
+    {
+      "refdes": "D3",
+      "value": "LED_Dual_KAK",
+      "footprint_name": "LED_THT:LED_D5.0mm-3",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D3-K1)",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.8,
+          "h_mm": 1.8,
+          "shape": "rect",
+          "type": "thru_hole",
+          "drill_mm": 0.9,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input",
+          "pin_function": "K1_1"
+        },
+        {
+          "num": "2",
+          "net": "Net-(D3-A)",
+          "x_rel_mm": 2.54,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.8,
+          "h_mm": 1.8,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.9,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input",
+          "pin_function": "A_2"
+        },
+        {
+          "num": "3",
+          "net": "Net-(D3-K2)",
+          "x_rel_mm": 5.08,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.8,
+          "h_mm": 1.8,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.9,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input",
+          "pin_function": "K2_3"
+        }
+      ],
+      "body_bbox_mm": [
+        0.04,
+        -1.469694,
+        0.04,
+        1.469694
+      ]
+    },
+    {
+      "refdes": "D4",
+      "value": "ESD9B3",
+      "footprint_name": "Diode_SMD:D_SOD-923",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -0.42,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.36,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "CTRL1",
+          "x_rel_mm": 0.42,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.36,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.4,
+        -0.3,
+        0.4,
+        0.3
+      ]
+    },
+    {
+      "refdes": "D5",
+      "value": "ESD9B3",
+      "footprint_name": "Diode_SMD:D_SOD-923",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -0.42,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.36,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "CTRL2",
+          "x_rel_mm": 0.42,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.36,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.4,
+        -0.3,
+        0.4,
+        0.3
+      ]
+    },
+    {
+      "refdes": "D6",
+      "value": "LED",
+      "footprint_name": "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.025,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.15,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "K_1",
+          "roundrect_ratio": 0.217391
+        },
+        {
+          "num": "2",
+          "net": "Net-(D6-A)",
+          "x_rel_mm": 1.025,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.15,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "A_2",
+          "roundrect_ratio": 0.217391
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.6,
+        1.0,
+        0.6
+      ]
+    },
+    {
+      "refdes": "D7",
+      "value": "1N5819",
+      "footprint_name": "Diode_SMD:D_SMA",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D7-K)",
+          "x_rel_mm": -2.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 2.5,
+          "h_mm": 1.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "K_1",
+          "roundrect_ratio": 0.1388888889
+        },
+        {
+          "num": "2",
+          "net": "+24V",
+          "x_rel_mm": 2.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 2.5,
+          "h_mm": 1.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "A_2",
+          "roundrect_ratio": 0.1388888889
+        }
+      ],
+      "body_bbox_mm": [
+        -2.3,
+        -1.5,
+        2.3,
+        1.5
+      ]
+    },
+    {
+      "refdes": "D8",
+      "value": "NUP2105L",
+      "footprint_name": "Package_TO_SOT_SMD:SOT-23",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/CAN/CANL",
+          "x_rel_mm": -0.9375,
+          "y_rel_mm": -0.95,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "K_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "/CAN/CANH",
+          "x_rel_mm": -0.9375,
+          "y_rel_mm": 0.95,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "K_2",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "3",
+          "net": "GND",
+          "x_rel_mm": 0.9375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "A_3",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.65,
+        -1.45,
+        0.65,
+        1.45
+      ]
+    },
+    {
+      "refdes": "D9",
+      "value": "PESD3V3L1BA",
+      "footprint_name": "Diode_SMD:D_SOD-323_HandSoldering",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "A1_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.0,
+          "h_mm": 1.0,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "A2_2",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -0.9,
+        -0.7,
+        0.9,
+        0.7
+      ]
+    },
+    {
+      "refdes": "J1",
+      "value": "PROG",
+      "footprint_name": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "rect",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "Pin_1_1"
+        },
+        {
+          "num": "2",
+          "net": "/CPU/RX",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 2.54,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "Pin_2_2"
+        },
+        {
+          "num": "3",
+          "net": "/CPU/TX",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 5.08,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "Pin_3_3"
+        },
+        {
+          "num": "4",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 7.62,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "Pin_4_4"
+        },
+        {
+          "num": "5",
+          "net": "/CPU/EN",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 10.16,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "Pin_5_5"
+        },
+        {
+          "num": "6",
+          "net": "+3.3V",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 12.7,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "Pin_6_6"
+        }
+      ],
+      "body_bbox_mm": [
+        -1.27,
+        -1.27,
+        1.27,
+        13.97
+      ]
+    },
+    {
+      "refdes": "J3",
+      "value": "Conn_Left_I2C",
+      "footprint_name": "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+24V",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "rect",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "Pin_1_1"
+        },
+        {
+          "num": "2",
+          "net": "/CAN/CANH",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 2.54,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "Pin_2_2"
+        },
+        {
+          "num": "3",
+          "net": "/CAN/CANL",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 5.08,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "Pin_3_3"
+        },
+        {
+          "num": "4",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 7.62,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "Pin_4_4"
+        }
+      ],
+      "body_bbox_mm": [
+        -1.27,
+        -1.27,
+        1.27,
+        8.89
+      ]
+    },
+    {
+      "refdes": "J4",
+      "value": "Conn_01x02",
+      "footprint_name": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(J4-Pin_1)",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "rect",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "Pin_1_1"
+        },
+        {
+          "num": "2",
+          "net": "/CAN/CANH",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 2.54,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "Pin_2_2"
+        }
+      ],
+      "body_bbox_mm": [
+        -1.27,
+        -1.27,
+        1.27,
+        3.81
+      ]
+    },
+    {
+      "refdes": "J5",
+      "value": "RJ45_Hanrun_HR911105A_Horizontal",
+      "footprint_name": "Connector_RJ:RJ45_Hanrun_HR911105A_Horizontal",
+      "pads": [
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": -1.275,
+          "y_rel_mm": 6.36,
+          "w_mm": 3.25,
+          "h_mm": 3.25,
+          "shape": "circle",
+          "type": "np_thru_hole",
+          "drill_mm": 3.25,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0
+        },
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": 10.155,
+          "y_rel_mm": 6.36,
+          "w_mm": 3.25,
+          "h_mm": 3.25,
+          "shape": "circle",
+          "type": "np_thru_hole",
+          "drill_mm": 3.25,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0
+        },
+        {
+          "num": "1",
+          "net": "/Ethernet/PHY_TD+",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "roundrect",
+          "type": "thru_hole",
+          "drill_mm": 0.89,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "TD+_1",
+          "roundrect_ratio": 0.167
+        },
+        {
+          "num": "2",
+          "net": "/Ethernet/PHY_TD-",
+          "x_rel_mm": 1.26,
+          "y_rel_mm": -2.54,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.89,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "TD-_2"
+        },
+        {
+          "num": "3",
+          "net": "/Ethernet/PHY_RD+",
+          "x_rel_mm": 2.54,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.89,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "RD+_3"
+        },
+        {
+          "num": "4",
+          "net": "Net-(J5-RCT)",
+          "x_rel_mm": 3.8,
+          "y_rel_mm": -2.54,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.89,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "TCT_4"
+        },
+        {
+          "num": "5",
+          "net": "Net-(J5-RCT)",
+          "x_rel_mm": 5.08,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.89,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "RCT_5"
+        },
+        {
+          "num": "6",
+          "net": "/Ethernet/PHY_RD-",
+          "x_rel_mm": 6.34,
+          "y_rel_mm": -2.54,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.89,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "RD-_6"
+        },
+        {
+          "num": "7",
+          "net": "unconnected-(J5-NC-Pad7)",
+          "x_rel_mm": 7.62,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.89,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "no_connect",
+          "pin_function": "NC_7"
+        },
+        {
+          "num": "8",
+          "net": "GND",
+          "x_rel_mm": 8.88,
+          "y_rel_mm": -2.54,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.89,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "power_in"
+        },
+        {
+          "num": "9",
+          "net": "+3.3V",
+          "x_rel_mm": -2.185,
+          "y_rel_mm": 11.26,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.02,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive"
+        },
+        {
+          "num": "10",
+          "net": "Net-(J5-Pad10)",
+          "x_rel_mm": 0.355,
+          "y_rel_mm": 11.26,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.02,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive"
+        },
+        {
+          "num": "11",
+          "net": "Net-(J5-Pad11)",
+          "x_rel_mm": 8.525,
+          "y_rel_mm": 11.26,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.02,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive"
+        },
+        {
+          "num": "12",
+          "net": "+3.3V",
+          "x_rel_mm": 11.065,
+          "y_rel_mm": 11.26,
+          "w_mm": 1.5,
+          "h_mm": 1.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.02,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive"
+        },
+        {
+          "num": "SH",
+          "net": "GND",
+          "x_rel_mm": -3.305,
+          "y_rel_mm": 3.31,
+          "w_mm": 2.5,
+          "h_mm": 2.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.63,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive"
+        },
+        {
+          "num": "SH",
+          "net": "GND",
+          "x_rel_mm": 12.185,
+          "y_rel_mm": 3.31,
+          "w_mm": 2.5,
+          "h_mm": 2.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 1.63,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive"
+        }
+      ],
+      "body_bbox_mm": [
+        -3.58,
+        -4.04,
+        12.46,
+        17.26
+      ]
+    },
+    {
+      "refdes": "L1",
+      "value": "BLM21SP181SN1D",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(U2-VDD1A)",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "1_1",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "2_2",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "L2",
+      "value": "BLM21SP181SN1D",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(J5-RCT)",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "1_1",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "2_2",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R1",
+      "value": "10k",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/CPU/EN",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R10",
+      "value": "470R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D6-A)",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R11",
+      "value": "33R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "PHY_RST",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R12",
+      "value": "1K5",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "ETH_MDIO",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R13",
+      "value": "4K7",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_EN_CLK",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R14",
+      "value": "10R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_CRS_DV",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(U2-CRS_DV{slash}MODE2)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R15",
+      "value": "10R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(U2-RXER{slash}PHYAD0)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R16",
+      "value": "33R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(Y1-OUT)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R17",
+      "value": "10R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_RXD1",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(U2-RXD1{slash}MODE1)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R18",
+      "value": "33R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(U2-~{INT}{slash}REFCLKO)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R19",
+      "value": "10R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_RXD0",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(U2-RXD0{slash}MODE0)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R2",
+      "value": "10k",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R20",
+      "value": "33R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(U2-XTAL1{slash}CLKIN)",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(Y1-OUT)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R21",
+      "value": "12K1",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(U2-RBIAS)",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R22",
+      "value": "49R9",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(J5-RCT)",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "/Ethernet/PHY_TD+",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R23",
+      "value": "49R9",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(J5-RCT)",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "/Ethernet/PHY_TD-",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R24",
+      "value": "49R9",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(J5-RCT)",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "/Ethernet/PHY_RD+",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R25",
+      "value": "270R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Ethernet/PHY_L1",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(J5-Pad11)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R26",
+      "value": "270R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Ethernet/PHY_L2",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "Net-(J5-Pad10)",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R27",
+      "value": "49R9",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(J5-RCT)",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "/Ethernet/PHY_RD-",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R28",
+      "value": "120R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(J4-Pin_1)",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "/CAN/CANL",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R3",
+      "value": "270R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D3-K2)",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "/CPU/LEDB",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R4",
+      "value": "270R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D3-K1)",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "/CPU/LEDA",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R5",
+      "value": "10k",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/CPU/EN",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R6",
+      "value": "10k",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R7",
+      "value": "0R",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D3-A)",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.2,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.208333
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R8",
+      "value": "10K",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "CTRL1",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "R9",
+      "value": "10K",
+      "footprint_name": "Resistor_SMD:R_0805_2012Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3.3V",
+          "x_rel_mm": -0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        },
+        {
+          "num": "2",
+          "net": "CTRL2",
+          "x_rel_mm": 0.9125,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.025,
+          "h_mm": 1.4,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "roundrect_ratio": 0.243902
+        }
+      ],
+      "body_bbox_mm": [
+        -1.0,
+        -0.625,
+        1.0,
+        0.625
+      ]
+    },
+    {
+      "refdes": "SW1",
+      "value": "RESET",
+      "footprint_name": "Button_Switch_SMD:SW_SPST_Omron_B3FS-100xP",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -4.0,
+          "y_rel_mm": -2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "1_1"
+        },
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": 4.0,
+          "y_rel_mm": -2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "1_1"
+        },
+        {
+          "num": "2",
+          "net": "/CPU/EN",
+          "x_rel_mm": -4.0,
+          "y_rel_mm": 2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "2_2"
+        },
+        {
+          "num": "2",
+          "net": "/CPU/EN",
+          "x_rel_mm": 4.0,
+          "y_rel_mm": 2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "2_2"
+        }
+      ],
+      "body_bbox_mm": [
+        -3.0,
+        -3.15,
+        3.0,
+        3.15
+      ]
+    },
+    {
+      "refdes": "SW2",
+      "value": "BOOT",
+      "footprint_name": "Button_Switch_SMD:SW_SPST_Omron_B3FS-100xP",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -4.0,
+          "y_rel_mm": -2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "1_1"
+        },
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": 4.0,
+          "y_rel_mm": -2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "1_1"
+        },
+        {
+          "num": "2",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": -4.0,
+          "y_rel_mm": 2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "2_2"
+        },
+        {
+          "num": "2",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": 4.0,
+          "y_rel_mm": 2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "2_2"
+        }
+      ],
+      "body_bbox_mm": [
+        -3.0,
+        -3.15,
+        3.0,
+        3.15
+      ]
+    },
+    {
+      "refdes": "SW3",
+      "value": "Control 1",
+      "footprint_name": "Button_Switch_SMD:SW_SPST_Omron_B3FS-100xP",
+      "pads": [
+        {
+          "num": "1",
+          "net": "CTRL1",
+          "x_rel_mm": -4.0,
+          "y_rel_mm": -2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "1_1"
+        },
+        {
+          "num": "1",
+          "net": "CTRL1",
+          "x_rel_mm": 4.0,
+          "y_rel_mm": -2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "1_1"
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": -4.0,
+          "y_rel_mm": 2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "2_2"
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 4.0,
+          "y_rel_mm": 2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "2_2"
+        }
+      ],
+      "body_bbox_mm": [
+        -3.0,
+        -3.15,
+        3.0,
+        3.15
+      ]
+    },
+    {
+      "refdes": "SW4",
+      "value": "Control 2",
+      "footprint_name": "Button_Switch_SMD:SW_SPST_Omron_B3FS-100xP",
+      "pads": [
+        {
+          "num": "1",
+          "net": "CTRL2",
+          "x_rel_mm": -4.0,
+          "y_rel_mm": -2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "1_1"
+        },
+        {
+          "num": "1",
+          "net": "CTRL2",
+          "x_rel_mm": 4.0,
+          "y_rel_mm": -2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "1_1"
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": -4.0,
+          "y_rel_mm": 2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "2_2"
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 4.0,
+          "y_rel_mm": 2.25,
+          "w_mm": 1.6,
+          "h_mm": 1.4,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 180.0,
+          "pin_type": "passive",
+          "pin_function": "2_2"
+        }
+      ],
+      "body_bbox_mm": [
+        -3.0,
+        -3.15,
+        3.0,
+        3.15
+      ]
+    },
+    {
+      "refdes": "U1",
+      "value": "ESP32-WROOM-32",
+      "footprint_name": "RF_Module:ESP32-WROOM-32",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": -8.25,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "power_in",
+          "pin_function": "GND_1"
+        },
+        {
+          "num": "2",
+          "net": "+3.3V",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": -6.98,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "power_in",
+          "pin_function": "VDD_2"
+        },
+        {
+          "num": "3",
+          "net": "/CPU/EN",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": -5.71,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input",
+          "pin_function": "EN_3"
+        },
+        {
+          "num": "4",
+          "net": "unconnected-(U1-SENSOR_VP-Pad4)",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": -4.44,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input+no_connect",
+          "pin_function": "SENSOR_VP_4"
+        },
+        {
+          "num": "5",
+          "net": "unconnected-(U1-SENSOR_VN-Pad5)",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": -3.17,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input+no_connect",
+          "pin_function": "SENSOR_VN_5"
+        },
+        {
+          "num": "6",
+          "net": "/CPU/LEDA",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": -1.9,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input",
+          "pin_function": "IO34_6"
+        },
+        {
+          "num": "7",
+          "net": "/CPU/LEDB",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": -0.63,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input",
+          "pin_function": "IO35_7"
+        },
+        {
+          "num": "8",
+          "net": "unconnected-(U1-IO32-Pad8)",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": 0.64,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO32_8"
+        },
+        {
+          "num": "9",
+          "net": "unconnected-(U1-IO33-Pad9)",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": 1.91,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO33_9"
+        },
+        {
+          "num": "10",
+          "net": "ETH_RXD0",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": 3.18,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO25_10"
+        },
+        {
+          "num": "11",
+          "net": "ETH_RXD1",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": 4.45,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO26_11"
+        },
+        {
+          "num": "12",
+          "net": "ETH_CRS_DV",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": 5.72,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO27_12"
+        },
+        {
+          "num": "13",
+          "net": "unconnected-(U1-IO14-Pad13)",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": 6.99,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO14_13"
+        },
+        {
+          "num": "14",
+          "net": "unconnected-(U1-IO12-Pad14)",
+          "x_rel_mm": -8.75,
+          "y_rel_mm": 8.26,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO12_14"
+        },
+        {
+          "num": "15",
+          "net": "GND",
+          "x_rel_mm": -5.71,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "passive",
+          "pin_function": "GND_15"
+        },
+        {
+          "num": "16",
+          "net": "unconnected-(U1-IO13-Pad16)",
+          "x_rel_mm": -4.44,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO13_16"
+        },
+        {
+          "num": "17",
+          "net": "TXCAN",
+          "x_rel_mm": -3.17,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional",
+          "pin_function": "SHD/SD2_17"
+        },
+        {
+          "num": "18",
+          "net": "RXCAN",
+          "x_rel_mm": -1.9,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional",
+          "pin_function": "SWP/SD3_18"
+        },
+        {
+          "num": "19",
+          "net": "unconnected-(U1-SCS{slash}CMD-Pad19)",
+          "x_rel_mm": -0.63,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "SCS/CMD_19"
+        },
+        {
+          "num": "20",
+          "net": "unconnected-(U1-SCK{slash}CLK-Pad20)",
+          "x_rel_mm": 0.64,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "SCK/CLK_20"
+        },
+        {
+          "num": "21",
+          "net": "unconnected-(U1-SDO{slash}SD0-Pad21)",
+          "x_rel_mm": 1.91,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "SDO/SD0_21"
+        },
+        {
+          "num": "22",
+          "net": "unconnected-(U1-SDI{slash}SD1-Pad22)",
+          "x_rel_mm": 3.18,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "SDI/SD1_22"
+        },
+        {
+          "num": "23",
+          "net": "unconnected-(U1-IO15-Pad23)",
+          "x_rel_mm": 4.45,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO15_23"
+        },
+        {
+          "num": "24",
+          "net": "unconnected-(U1-IO2-Pad24)",
+          "x_rel_mm": 5.72,
+          "y_rel_mm": 9.51,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 90.0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO2_24"
+        },
+        {
+          "num": "25",
+          "net": "ETH_RXCLK",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": 8.26,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO0_25"
+        },
+        {
+          "num": "26",
+          "net": "unconnected-(U1-IO4-Pad26)",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": 6.99,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO4_26"
+        },
+        {
+          "num": "27",
+          "net": "unconnected-(U1-IO16-Pad27)",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": 5.72,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO16_27"
+        },
+        {
+          "num": "28",
+          "net": "ETH_EN_CLK",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": 4.45,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO17_28"
+        },
+        {
+          "num": "29",
+          "net": "unconnected-(U1-IO5-Pad29)",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": 3.18,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional+no_connect",
+          "pin_function": "IO5_29"
+        },
+        {
+          "num": "30",
+          "net": "ETH_MDIO",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": 1.91,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO18_30"
+        },
+        {
+          "num": "31",
+          "net": "ETH_TXD0",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": 0.64,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO19_31"
+        },
+        {
+          "num": "32",
+          "net": "unconnected-(U1-NC-Pad32)",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": -0.63,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "no_connect",
+          "pin_function": "NC_32"
+        },
+        {
+          "num": "33",
+          "net": "ETH_TXEN",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": -1.9,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO21_33"
+        },
+        {
+          "num": "34",
+          "net": "/CPU/RX",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": -3.17,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "RXD0/IO3_34"
+        },
+        {
+          "num": "35",
+          "net": "/CPU/TX",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": -4.44,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "TXD0/IO1_35"
+        },
+        {
+          "num": "36",
+          "net": "ETH_TXD1",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": -5.71,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO22_36"
+        },
+        {
+          "num": "37",
+          "net": "ETH_MDC",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": -6.98,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "IO23_37"
+        },
+        {
+          "num": "38",
+          "net": "GND",
+          "x_rel_mm": 8.75,
+          "y_rel_mm": -8.25,
+          "w_mm": 1.5,
+          "h_mm": 0.9,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_38"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -2.205,
+          "y_rel_mm": -2.435,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -2.205,
+          "y_rel_mm": -1.6725,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -2.205,
+          "y_rel_mm": -0.91,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -2.205,
+          "y_rel_mm": -0.1475,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -2.205,
+          "y_rel_mm": 0.615,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -1.4425,
+          "y_rel_mm": -2.435,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -1.4425,
+          "y_rel_mm": -0.91,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -1.4425,
+          "y_rel_mm": 0.615,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -0.68,
+          "y_rel_mm": -2.435,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -0.68,
+          "y_rel_mm": -1.6725,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -0.68,
+          "y_rel_mm": -0.91,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -0.68,
+          "y_rel_mm": -0.91,
+          "w_mm": 4.2,
+          "h_mm": 4.2,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -0.68,
+          "y_rel_mm": -0.1475,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": -0.68,
+          "y_rel_mm": 0.615,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": 0.0825,
+          "y_rel_mm": -2.435,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": 0.0825,
+          "y_rel_mm": -0.91,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": 0.0825,
+          "y_rel_mm": 0.615,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": 0.845,
+          "y_rel_mm": -2.435,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": 0.845,
+          "y_rel_mm": -1.6725,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": 0.845,
+          "y_rel_mm": -0.91,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": 0.845,
+          "y_rel_mm": -0.1475,
+          "w_mm": 0.6,
+          "h_mm": 0.6,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        },
+        {
+          "num": "39",
+          "net": "GND",
+          "x_rel_mm": 0.845,
+          "y_rel_mm": 0.615,
+          "w_mm": 1.05,
+          "h_mm": 1.05,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "passive",
+          "pin_function": "GND_39"
+        }
+      ],
+      "body_bbox_mm": [
+        -9.0,
+        -15.74,
+        9.0,
+        9.76
+      ]
+    },
+    {
+      "refdes": "U2",
+      "value": "LAN8720A",
+      "footprint_name": "Package_DFN_QFN:VQFN-24-1EP_4x4mm_P0.5mm_EP2.5x2.5mm_ThermalVias",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(U2-VDD1A)",
+          "x_rel_mm": -1.9375,
+          "y_rel_mm": -1.25,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VDD2A_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "/Ethernet/PHY_L2",
+          "x_rel_mm": -1.9375,
+          "y_rel_mm": -0.75,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "LED2/~{INTSEL}_2",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "3",
+          "net": "/Ethernet/PHY_L1",
+          "x_rel_mm": -1.9375,
+          "y_rel_mm": -0.25,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "LED1/REGOFF_3",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "4",
+          "net": "unconnected-(U2-XTAL2-Pad4)",
+          "x_rel_mm": -1.9375,
+          "y_rel_mm": 0.25,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "output+no_connect",
+          "pin_function": "XTAL2_4",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "5",
+          "net": "Net-(U2-XTAL1{slash}CLKIN)",
+          "x_rel_mm": -1.9375,
+          "y_rel_mm": 0.75,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "input",
+          "pin_function": "XTAL1/CLKIN_5",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "6",
+          "net": "+3.3V",
+          "x_rel_mm": -1.9375,
+          "y_rel_mm": 1.25,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VDDCR_6",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "7",
+          "net": "Net-(U2-RXD1{slash}MODE1)",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": 1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "RXD1/MODE1_7",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "8",
+          "net": "Net-(U2-RXD0{slash}MODE0)",
+          "x_rel_mm": -0.75,
+          "y_rel_mm": 1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "RXD0/MODE0_8",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "9",
+          "net": "+3.3V",
+          "x_rel_mm": -0.25,
+          "y_rel_mm": 1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VDDIO_9",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "10",
+          "net": "Net-(U2-RXER{slash}PHYAD0)",
+          "x_rel_mm": 0.25,
+          "y_rel_mm": 1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "output",
+          "pin_function": "RXER/PHYAD0_10",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "11",
+          "net": "Net-(U2-CRS_DV{slash}MODE2)",
+          "x_rel_mm": 0.75,
+          "y_rel_mm": 1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "CRS_DV/MODE2_11",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "12",
+          "net": "ETH_MDIO",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": 1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "MDIO_12",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "13",
+          "net": "ETH_MDC",
+          "x_rel_mm": 1.9375,
+          "y_rel_mm": 1.25,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "input",
+          "pin_function": "MDC_13",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "14",
+          "net": "Net-(U2-~{INT}{slash}REFCLKO)",
+          "x_rel_mm": 1.9375,
+          "y_rel_mm": 0.75,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "output",
+          "pin_function": "~{INT}/REFCLKO_14",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "15",
+          "net": "PHY_RST",
+          "x_rel_mm": 1.9375,
+          "y_rel_mm": 0.25,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "input",
+          "pin_function": "~{RST}_15",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "16",
+          "net": "ETH_TXEN",
+          "x_rel_mm": 1.9375,
+          "y_rel_mm": -0.25,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "input",
+          "pin_function": "TXEN_16",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "17",
+          "net": "ETH_TXD0",
+          "x_rel_mm": 1.9375,
+          "y_rel_mm": -0.75,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "input",
+          "pin_function": "TXD0_17",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "18",
+          "net": "ETH_TXD1",
+          "x_rel_mm": 1.9375,
+          "y_rel_mm": -1.25,
+          "w_mm": 0.875,
+          "h_mm": 0.25,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "input",
+          "pin_function": "TXD1_18",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "19",
+          "net": "Net-(U2-VDD1A)",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": -1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VDD1A_19",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "20",
+          "net": "/Ethernet/PHY_TD-",
+          "x_rel_mm": 0.75,
+          "y_rel_mm": -1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "TXN_20",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "21",
+          "net": "/Ethernet/PHY_TD+",
+          "x_rel_mm": 0.25,
+          "y_rel_mm": -1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "TXP_21",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "22",
+          "net": "/Ethernet/PHY_RD-",
+          "x_rel_mm": -0.25,
+          "y_rel_mm": -1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "RXN_22",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "23",
+          "net": "/Ethernet/PHY_RD+",
+          "x_rel_mm": -0.75,
+          "y_rel_mm": -1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "bidirectional",
+          "pin_function": "RXP_23",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "24",
+          "net": "Net-(U2-RBIAS)",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": -1.9375,
+          "w_mm": 0.25,
+          "h_mm": 0.875,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "passive",
+          "pin_function": "RBIAS_24",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": -1.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": -1.0,
+          "y_rel_mm": 1.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -1.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 2.5,
+          "h_mm": 2.5,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 2.5,
+          "h_mm": 2.5,
+          "shape": "rect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 1.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": -1.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 1.0,
+          "y_rel_mm": 1.0,
+          "w_mm": 0.5,
+          "h_mm": 0.5,
+          "shape": "circle",
+          "type": "thru_hole",
+          "drill_mm": 0.2,
+          "layers": [
+            "*.Cu"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "VSS_25"
+        }
+      ],
+      "body_bbox_mm": [
+        -2.0,
+        -2.0,
+        2.0,
+        2.0
+      ]
+    },
+    {
+      "refdes": "U4",
+      "value": "SN65HVD232",
+      "footprint_name": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "pads": [
+        {
+          "num": "1",
+          "net": "TXCAN",
+          "x_rel_mm": -2.475,
+          "y_rel_mm": -1.905,
+          "w_mm": 1.95,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "input",
+          "pin_function": "D_1",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": -2.475,
+          "y_rel_mm": -0.635,
+          "w_mm": 1.95,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "power_in",
+          "pin_function": "GND_2",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "3",
+          "net": "+3.3V",
+          "x_rel_mm": -2.475,
+          "y_rel_mm": 0.635,
+          "w_mm": 1.95,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "power_in",
+          "pin_function": "VCC_3",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "4",
+          "net": "RXCAN",
+          "x_rel_mm": -2.475,
+          "y_rel_mm": 1.905,
+          "w_mm": 1.95,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "output",
+          "pin_function": "R_4",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "5",
+          "net": "unconnected-(U4-NC-Pad5)",
+          "x_rel_mm": 2.475,
+          "y_rel_mm": 1.905,
+          "w_mm": 1.95,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "no_connect",
+          "pin_function": "NC_5",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "6",
+          "net": "/CAN/CANL",
+          "x_rel_mm": 2.475,
+          "y_rel_mm": 0.635,
+          "w_mm": 1.95,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "CANL_6",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "7",
+          "net": "/CAN/CANH",
+          "x_rel_mm": 2.475,
+          "y_rel_mm": -0.635,
+          "w_mm": 1.95,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "bidirectional",
+          "pin_function": "CANH_7",
+          "roundrect_ratio": 0.25
+        },
+        {
+          "num": "8",
+          "net": "unconnected-(U4-NC-Pad8)",
+          "x_rel_mm": 2.475,
+          "y_rel_mm": -1.905,
+          "w_mm": 1.95,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "no_connect",
+          "pin_function": "NC_8",
+          "roundrect_ratio": 0.25
+        }
+      ],
+      "body_bbox_mm": [
+        -1.95,
+        -2.45,
+        1.95,
+        2.45
+      ]
+    },
+    {
+      "refdes": "U5",
+      "value": "R-78B3.3-2.0",
+      "footprint_name": "Converter_DCDC:Converter_DCDC_RECOM_R-78B-2.0_THT",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D7-K)",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 2.5,
+          "shape": "rect",
+          "type": "thru_hole",
+          "drill_mm": 1.2,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "power_in",
+          "pin_function": "IN_1"
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 2.54,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 2.5,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.2,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "power_in",
+          "pin_function": "GND_2"
+        },
+        {
+          "num": "3",
+          "net": "+3.3V",
+          "x_rel_mm": 5.08,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 2.5,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.2,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ],
+          "angle_rel_deg": 0,
+          "pin_type": "power_out",
+          "pin_function": "OUT_3"
+        }
+      ],
+      "body_bbox_mm": [
+        -3.21,
+        -2.0,
+        8.29,
+        6.5
+      ]
+    },
+    {
+      "refdes": "Y1",
+      "value": "50MHz",
+      "footprint_name": "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm",
+      "pads": [
+        {
+          "num": "1",
+          "net": "ETH_EN_CLK",
+          "x_rel_mm": -1.05,
+          "y_rel_mm": 0.825,
+          "w_mm": 1.3,
+          "h_mm": 1.1,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "input",
+          "pin_function": "EN_1",
+          "roundrect_ratio": 0.227273
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 1.05,
+          "y_rel_mm": 0.825,
+          "w_mm": 1.3,
+          "h_mm": 1.1,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "GND_2",
+          "roundrect_ratio": 0.227273
+        },
+        {
+          "num": "3",
+          "net": "Net-(Y1-OUT)",
+          "x_rel_mm": 1.05,
+          "y_rel_mm": -0.825,
+          "w_mm": 1.3,
+          "h_mm": 1.1,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "output",
+          "pin_function": "OUT_3",
+          "roundrect_ratio": 0.227273
+        },
+        {
+          "num": "4",
+          "net": "+3.3V",
+          "x_rel_mm": -1.05,
+          "y_rel_mm": -0.825,
+          "w_mm": 1.3,
+          "h_mm": 1.1,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask",
+            "F.Paste"
+          ],
+          "angle_rel_deg": 0.0,
+          "pin_type": "power_in",
+          "pin_function": "Vdd_4",
+          "roundrect_ratio": 0.227273
+        }
+      ],
+      "body_bbox_mm": [
+        -1.6,
+        -1.25,
+        1.6,
+        1.25
+      ]
+    }
+  ],
+  "nets": {
+    "+24V": [
+      [
+        "J3",
+        "1"
+      ],
+      [
+        "D7",
+        "2"
+      ]
+    ],
+    "+3.3V": [
+      [
+        "C14",
+        "1"
+      ],
+      [
+        "R12",
+        "1"
+      ],
+      [
+        "C7",
+        "2"
+      ],
+      [
+        "R9",
+        "1"
+      ],
+      [
+        "U5",
+        "3"
+      ],
+      [
+        "J5",
+        "9"
+      ],
+      [
+        "J5",
+        "12"
+      ],
+      [
+        "C8",
+        "1"
+      ],
+      [
+        "U1",
+        "2"
+      ],
+      [
+        "R5",
+        "2"
+      ],
+      [
+        "R6",
+        "2"
+      ],
+      [
+        "R10",
+        "2"
+      ],
+      [
+        "C3",
+        "1"
+      ],
+      [
+        "U2",
+        "6"
+      ],
+      [
+        "U2",
+        "9"
+      ],
+      [
+        "L1",
+        "2"
+      ],
+      [
+        "R7",
+        "2"
+      ],
+      [
+        "R2",
+        "2"
+      ],
+      [
+        "L2",
+        "2"
+      ],
+      [
+        "R8",
+        "1"
+      ],
+      [
+        "R15",
+        "1"
+      ],
+      [
+        "U4",
+        "3"
+      ],
+      [
+        "J1",
+        "6"
+      ],
+      [
+        "R1",
+        "2"
+      ],
+      [
+        "C2",
+        "1"
+      ],
+      [
+        "C15",
+        "1"
+      ],
+      [
+        "C9",
+        "1"
+      ],
+      [
+        "Y1",
+        "4"
+      ],
+      [
+        "C6",
+        "2"
+      ],
+      [
+        "R11",
+        "1"
+      ],
+      [
+        "D13",
+        "2"
+      ]
+    ],
+    "/CAN/CANH": [
+      [
+        "J3",
+        "2"
+      ],
+      [
+        "J4",
+        "2"
+      ],
+      [
+        "D8",
+        "2"
+      ],
+      [
+        "U4",
+        "7"
+      ]
+    ],
+    "/CAN/CANL": [
+      [
+        "J3",
+        "3"
+      ],
+      [
+        "R28",
+        "2"
+      ],
+      [
+        "D8",
+        "1"
+      ],
+      [
+        "U4",
+        "6"
+      ]
+    ],
+    "/CPU/EN": [
+      [
+        "C1",
+        "1"
+      ],
+      [
+        "U1",
+        "3"
+      ],
+      [
+        "SW1",
+        "2"
+      ],
+      [
+        "SW1",
+        "2"
+      ],
+      [
+        "R5",
+        "1"
+      ],
+      [
+        "D1",
+        "2"
+      ],
+      [
+        "J1",
+        "5"
+      ],
+      [
+        "R1",
+        "1"
+      ],
+      [
+        "D12",
+        "2"
+      ]
+    ],
+    "/CPU/LEDA": [
+      [
+        "U1",
+        "6"
+      ],
+      [
+        "R4",
+        "2"
+      ]
+    ],
+    "/CPU/LEDB": [
+      [
+        "U1",
+        "7"
+      ],
+      [
+        "R3",
+        "2"
+      ]
+    ],
+    "/CPU/RX": [
+      [
+        "U1",
+        "34"
+      ],
+      [
+        "J1",
+        "2"
+      ]
+    ],
+    "/CPU/TX": [
+      [
+        "U1",
+        "35"
+      ],
+      [
+        "J1",
+        "3"
+      ]
+    ],
+    "/Ethernet/PHY_L1": [
+      [
+        "R25",
+        "1"
+      ],
+      [
+        "U2",
+        "3"
+      ]
+    ],
+    "/Ethernet/PHY_L2": [
+      [
+        "U2",
+        "2"
+      ],
+      [
+        "R26",
+        "1"
+      ]
+    ],
+    "/Ethernet/PHY_RD+": [
+      [
+        "J5",
+        "3"
+      ],
+      [
+        "R24",
+        "2"
+      ],
+      [
+        "U2",
+        "23"
+      ]
+    ],
+    "/Ethernet/PHY_RD-": [
+      [
+        "J5",
+        "6"
+      ],
+      [
+        "U2",
+        "22"
+      ],
+      [
+        "R27",
+        "2"
+      ]
+    ],
+    "/Ethernet/PHY_TD+": [
+      [
+        "R22",
+        "2"
+      ],
+      [
+        "J5",
+        "1"
+      ],
+      [
+        "U2",
+        "21"
+      ]
+    ],
+    "/Ethernet/PHY_TD-": [
+      [
+        "J5",
+        "2"
+      ],
+      [
+        "U2",
+        "20"
+      ],
+      [
+        "R23",
+        "2"
+      ]
+    ],
+    "CTRL1": [
+      [
+        "D4",
+        "2"
+      ],
+      [
+        "R8",
+        "2"
+      ],
+      [
+        "D10",
+        "2"
+      ],
+      [
+        "SW3",
+        "1"
+      ],
+      [
+        "SW3",
+        "1"
+      ]
+    ],
+    "CTRL2": [
+      [
+        "D11",
+        "2"
+      ],
+      [
+        "R9",
+        "2"
+      ],
+      [
+        "SW4",
+        "1"
+      ],
+      [
+        "SW4",
+        "1"
+      ],
+      [
+        "D5",
+        "2"
+      ]
+    ],
+    "ETH_CRS_DV": [
+      [
+        "U1",
+        "12"
+      ],
+      [
+        "R14",
+        "1"
+      ]
+    ],
+    "ETH_EN_CLK": [
+      [
+        "R13",
+        "1"
+      ],
+      [
+        "U1",
+        "28"
+      ],
+      [
+        "Y1",
+        "1"
+      ]
+    ],
+    "ETH_MDC": [
+      [
+        "U1",
+        "37"
+      ],
+      [
+        "U2",
+        "13"
+      ]
+    ],
+    "ETH_MDIO": [
+      [
+        "R12",
+        "2"
+      ],
+      [
+        "U1",
+        "30"
+      ],
+      [
+        "U2",
+        "12"
+      ]
+    ],
+    "ETH_RXCLK": [
+      [
+        "U1",
+        "25"
+      ],
+      [
+        "R6",
+        "1"
+      ],
+      [
+        "R16",
+        "1"
+      ],
+      [
+        "D2",
+        "2"
+      ],
+      [
+        "D9",
+        "2"
+      ],
+      [
+        "R2",
+        "1"
+      ],
+      [
+        "R18",
+        "1"
+      ],
+      [
+        "C4",
+        "1"
+      ],
+      [
+        "J1",
+        "4"
+      ],
+      [
+        "SW2",
+        "2"
+      ],
+      [
+        "SW2",
+        "2"
+      ]
+    ],
+    "ETH_RXD0": [
+      [
+        "U1",
+        "10"
+      ],
+      [
+        "R19",
+        "1"
+      ]
+    ],
+    "ETH_RXD1": [
+      [
+        "U1",
+        "11"
+      ],
+      [
+        "R17",
+        "1"
+      ]
+    ],
+    "ETH_TXD0": [
+      [
+        "U1",
+        "31"
+      ],
+      [
+        "U2",
+        "17"
+      ]
+    ],
+    "ETH_TXD1": [
+      [
+        "U1",
+        "36"
+      ],
+      [
+        "U2",
+        "18"
+      ]
+    ],
+    "ETH_TXEN": [
+      [
+        "U1",
+        "33"
+      ],
+      [
+        "U2",
+        "16"
+      ]
+    ],
+    "GND": [
+      [
+        "C14",
+        "2"
+      ],
+      [
+        "D11",
+        "1"
+      ],
+      [
+        "C7",
+        "1"
+      ],
+      [
+        "J3",
+        "4"
+      ],
+      [
+        "U5",
+        "2"
+      ],
+      [
+        "R13",
+        "2"
+      ],
+      [
+        "J5",
+        "8"
+      ],
+      [
+        "J5",
+        "SH"
+      ],
+      [
+        "J5",
+        "SH"
+      ],
+      [
+        "C8",
+        "2"
+      ],
+      [
+        "C1",
+        "2"
+      ],
+      [
+        "U1",
+        "1"
+      ],
+      [
+        "U1",
+        "15"
+      ],
+      [
+        "U1",
+        "38"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "U1",
+        "39"
+      ],
+      [
+        "SW1",
+        "1"
+      ],
+      [
+        "SW1",
+        "1"
+      ],
+      [
+        "R21",
+        "2"
+      ],
+      [
+        "C13",
+        "2"
+      ],
+      [
+        "SW4",
+        "2"
+      ],
+      [
+        "SW4",
+        "2"
+      ],
+      [
+        "D5",
+        "1"
+      ],
+      [
+        "D4",
+        "1"
+      ],
+      [
+        "C11",
+        "2"
+      ],
+      [
+        "C3",
+        "2"
+      ],
+      [
+        "C12",
+        "2"
+      ],
+      [
+        "C10",
+        "2"
+      ],
+      [
+        "D1",
+        "1"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "U2",
+        "25"
+      ],
+      [
+        "C5",
+        "1"
+      ],
+      [
+        "D2",
+        "1"
+      ],
+      [
+        "D9",
+        "1"
+      ],
+      [
+        "D8",
+        "3"
+      ],
+      [
+        "U4",
+        "2"
+      ],
+      [
+        "C4",
+        "2"
+      ],
+      [
+        "D6",
+        "1"
+      ],
+      [
+        "J1",
+        "1"
+      ],
+      [
+        "D12",
+        "1"
+      ],
+      [
+        "SW2",
+        "1"
+      ],
+      [
+        "SW2",
+        "1"
+      ],
+      [
+        "C2",
+        "2"
+      ],
+      [
+        "D10",
+        "1"
+      ],
+      [
+        "C15",
+        "2"
+      ],
+      [
+        "C9",
+        "2"
+      ],
+      [
+        "Y1",
+        "2"
+      ],
+      [
+        "SW3",
+        "2"
+      ],
+      [
+        "SW3",
+        "2"
+      ],
+      [
+        "C6",
+        "1"
+      ],
+      [
+        "D13",
+        "1"
+      ]
+    ],
+    "Net-(D3-A)": [
+      [
+        "R7",
+        "1"
+      ],
+      [
+        "D3",
+        "2"
+      ]
+    ],
+    "Net-(D3-K1)": [
+      [
+        "R4",
+        "1"
+      ],
+      [
+        "D3",
+        "1"
+      ]
+    ],
+    "Net-(D3-K2)": [
+      [
+        "R3",
+        "1"
+      ],
+      [
+        "D3",
+        "3"
+      ]
+    ],
+    "Net-(D6-A)": [
+      [
+        "R10",
+        "1"
+      ],
+      [
+        "D6",
+        "2"
+      ]
+    ],
+    "Net-(D7-K)": [
+      [
+        "U5",
+        "1"
+      ],
+      [
+        "C13",
+        "1"
+      ],
+      [
+        "D7",
+        "1"
+      ]
+    ],
+    "Net-(J4-Pin_1)": [
+      [
+        "R28",
+        "1"
+      ],
+      [
+        "J4",
+        "1"
+      ]
+    ],
+    "Net-(J5-Pad10)": [
+      [
+        "J5",
+        "10"
+      ],
+      [
+        "R26",
+        "2"
+      ]
+    ],
+    "Net-(J5-Pad11)": [
+      [
+        "J5",
+        "11"
+      ],
+      [
+        "R25",
+        "2"
+      ]
+    ],
+    "Net-(J5-RCT)": [
+      [
+        "R22",
+        "1"
+      ],
+      [
+        "J5",
+        "4"
+      ],
+      [
+        "J5",
+        "5"
+      ],
+      [
+        "R24",
+        "1"
+      ],
+      [
+        "C12",
+        "1"
+      ],
+      [
+        "R27",
+        "1"
+      ],
+      [
+        "L2",
+        "1"
+      ],
+      [
+        "R23",
+        "1"
+      ]
+    ],
+    "Net-(U2-CRS_DV{slash}MODE2)": [
+      [
+        "U2",
+        "11"
+      ],
+      [
+        "R14",
+        "2"
+      ]
+    ],
+    "Net-(U2-RBIAS)": [
+      [
+        "R21",
+        "1"
+      ],
+      [
+        "U2",
+        "24"
+      ]
+    ],
+    "Net-(U2-RXD0{slash}MODE0)": [
+      [
+        "U2",
+        "8"
+      ],
+      [
+        "R19",
+        "2"
+      ]
+    ],
+    "Net-(U2-RXD1{slash}MODE1)": [
+      [
+        "U2",
+        "7"
+      ],
+      [
+        "R17",
+        "2"
+      ]
+    ],
+    "Net-(U2-RXER{slash}PHYAD0)": [
+      [
+        "U2",
+        "10"
+      ],
+      [
+        "R15",
+        "2"
+      ]
+    ],
+    "Net-(U2-VDD1A)": [
+      [
+        "C11",
+        "1"
+      ],
+      [
+        "C10",
+        "1"
+      ],
+      [
+        "U2",
+        "1"
+      ],
+      [
+        "U2",
+        "19"
+      ],
+      [
+        "L1",
+        "1"
+      ]
+    ],
+    "Net-(U2-XTAL1{slash}CLKIN)": [
+      [
+        "U2",
+        "5"
+      ],
+      [
+        "R20",
+        "1"
+      ]
+    ],
+    "Net-(U2-~{INT}{slash}REFCLKO)": [
+      [
+        "U2",
+        "14"
+      ],
+      [
+        "R18",
+        "2"
+      ]
+    ],
+    "Net-(Y1-OUT)": [
+      [
+        "R16",
+        "2"
+      ],
+      [
+        "Y1",
+        "3"
+      ],
+      [
+        "R20",
+        "2"
+      ]
+    ],
+    "PHY_RST": [
+      [
+        "U2",
+        "15"
+      ],
+      [
+        "C5",
+        "2"
+      ],
+      [
+        "R11",
+        "2"
+      ]
+    ],
+    "RXCAN": [
+      [
+        "U1",
+        "18"
+      ],
+      [
+        "U4",
+        "4"
+      ]
+    ],
+    "TXCAN": [
+      [
+        "U1",
+        "17"
+      ],
+      [
+        "U4",
+        "1"
+      ]
+    ],
+    "unconnected-(J5-NC-Pad7)": [
+      [
+        "J5",
+        "7"
+      ]
+    ],
+    "unconnected-(U1-IO12-Pad14)": [
+      [
+        "U1",
+        "14"
+      ]
+    ],
+    "unconnected-(U1-IO13-Pad16)": [
+      [
+        "U1",
+        "16"
+      ]
+    ],
+    "unconnected-(U1-IO14-Pad13)": [
+      [
+        "U1",
+        "13"
+      ]
+    ],
+    "unconnected-(U1-IO15-Pad23)": [
+      [
+        "U1",
+        "23"
+      ]
+    ],
+    "unconnected-(U1-IO16-Pad27)": [
+      [
+        "U1",
+        "27"
+      ]
+    ],
+    "unconnected-(U1-IO2-Pad24)": [
+      [
+        "U1",
+        "24"
+      ]
+    ],
+    "unconnected-(U1-IO32-Pad8)": [
+      [
+        "U1",
+        "8"
+      ]
+    ],
+    "unconnected-(U1-IO33-Pad9)": [
+      [
+        "U1",
+        "9"
+      ]
+    ],
+    "unconnected-(U1-IO4-Pad26)": [
+      [
+        "U1",
+        "26"
+      ]
+    ],
+    "unconnected-(U1-IO5-Pad29)": [
+      [
+        "U1",
+        "29"
+      ]
+    ],
+    "unconnected-(U1-NC-Pad32)": [
+      [
+        "U1",
+        "32"
+      ]
+    ],
+    "unconnected-(U1-SCK{slash}CLK-Pad20)": [
+      [
+        "U1",
+        "20"
+      ]
+    ],
+    "unconnected-(U1-SCS{slash}CMD-Pad19)": [
+      [
+        "U1",
+        "19"
+      ]
+    ],
+    "unconnected-(U1-SDI{slash}SD1-Pad22)": [
+      [
+        "U1",
+        "22"
+      ]
+    ],
+    "unconnected-(U1-SDO{slash}SD0-Pad21)": [
+      [
+        "U1",
+        "21"
+      ]
+    ],
+    "unconnected-(U1-SENSOR_VN-Pad5)": [
+      [
+        "U1",
+        "5"
+      ]
+    ],
+    "unconnected-(U1-SENSOR_VP-Pad4)": [
+      [
+        "U1",
+        "4"
+      ]
+    ],
+    "unconnected-(U2-XTAL2-Pad4)": [
+      [
+        "U2",
+        "4"
+      ]
+    ],
+    "unconnected-(U4-NC-Pad5)": [
+      [
+        "U4",
+        "5"
+      ]
+    ],
+    "unconnected-(U4-NC-Pad8)": [
+      [
+        "U4",
+        "8"
+      ]
+    ]
+  },
+  "design_requirements": {
+    "power_rails": [
+      {
+        "net": "+24V",
+        "nominal_v": null,
+        "requirements_source": "net naming convention; current unspecified"
+      },
+      {
+        "net": "+3.3V",
+        "nominal_v": null,
+        "requirements_source": "net naming convention; current unspecified"
+      },
+      {
+        "net": "GND",
+        "nominal_v": 0,
+        "requirements_source": "net naming convention; current unspecified"
+      }
+    ],
+    "differential_pairs": [
+      {
+        "name": "pair_1",
+        "pos_net": "/Ethernet/PHY_RD+",
+        "neg_net": "/Ethernet/PHY_RD-",
+        "target_diff_impedance_ohm": 100,
+        "max_skew_mm": 0.2,
+        "inference": "generic net suffix; impedance requires electrical review"
+      },
+      {
+        "name": "pair_2",
+        "pos_net": "/Ethernet/PHY_TD+",
+        "neg_net": "/Ethernet/PHY_TD-",
+        "target_diff_impedance_ohm": 100,
+        "max_skew_mm": 0.2,
+        "inference": "generic net suffix; impedance requires electrical review"
+      }
+    ],
+    "high_speed_or_clock_nets": []
+  },
+  "input_limitations": [
+    "No datasheet current limits or verified body heights supplied",
+    "Only authorized board-edge mating interface poses retained; no other instance placement, traces, planes, reference annotations, or schematic coordinates retained"
+  ],
+  "repo_url": "",
+  "commit_sha": ""
+}

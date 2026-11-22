@@ -1,0 +1,34 @@
+2026-11-20 05:01:18.679 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)
+2026-11-20 05:01:18.989 INFO   Hardware: 2 CPU cores, 436 CPU score, 2048 MB RAM
+2026-11-20 05:01:18.992 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
+2026-11-20 05:01:18.997 INFO   Configured network proxy: proxy:8080
+2026-11-20 05:01:20.291 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 05:01:20.594 INFO   [82AF41\6DE15A] Loading board file 'board_freerouting.dsn'...
+2026-11-20 05:01:20.694 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 05:01:20.756 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 05:01:20.781 INFO   [82AF41\6DE15A] Job '82AF41\6DE15A' started at 2026-11-20T05:01:20.781596833Z.
+2026-11-20 05:01:20.981 INFO   [82AF41\6DE15A] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=1.
+2026-11-20 05:01:21.064 INFO   [82AF41\6DE15A] Fanout stage started on board '07ac651255ce256dea408d6cf00b37d8' with 138 of 163 SMD pins needing fanout (0 already connected, 25 netless).
+2026-11-20 05:01:23.672 INFO   [82AF41\6DE15A] Fanout pass #1 on board '0336218df860b8a13704f41f014f0c1d' completed in 2.58 seconds with 55 SMD pins fanouted, 82 not routed, 0 insert errors, +11 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-20 05:01:25.429 INFO   [82AF41\6DE15A] Fanout pass #2 on board '74d10710f5dc9e31bcacb2950128504a' completed in 1.71 seconds with 31 SMD pins fanouted, 54 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-20 05:01:26.416 INFO   [82AF41\6DE15A] Fanout pass #3 on board 'bf8408d387117c47587ab74778846f42' completed in 0.97 seconds with 22 SMD pins fanouted, 44 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-20 05:01:27.296 INFO   [82AF41\6DE15A] Fanout pass #4 on board '6cc9a0fd8d2172bd9b0a5451f865f56a' completed in 0.86 seconds with 20 SMD pins fanouted, 43 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=400).
+2026-11-20 05:01:28.140 INFO   [82AF41\6DE15A] Fanout pass #5 on board 'c755bf7cfedad73af9114362c8a38d64' completed in 0.83 seconds with 19 SMD pins fanouted, 42 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=500).
+2026-11-20 05:01:29.025 INFO   [82AF41\6DE15A] Fanout pass #6 on board '860092864fef4f8552f7f665e99f6740' completed in 0.87 seconds with 17 SMD pins fanouted, 43 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=600).
+2026-11-20 05:01:29.687 INFO   [82AF41\6DE15A] Fanout pass #7 on board '142ff1e6a16ac042ff6ca09a5c2ec20f' completed in 0.65 seconds with 14 SMD pins fanouted, 40 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=700).
+2026-11-20 05:01:30.208 INFO   [82AF41\6DE15A] Fanout pass #8 on board 'd9be36ed0c3a63335a42d3c1b59123f6' completed in 0.51 seconds with 10 SMD pins fanouted, 38 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=800).
+2026-11-20 05:01:30.592 INFO   [82AF41\6DE15A] Fanout pass #9 on board '2b98983a14481ff4d93e1691cd915be3' completed in 0.38 seconds with 8 SMD pins fanouted, 35 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=900).
+2026-11-20 05:01:30.932 INFO   [82AF41\6DE15A] Fanout pass #10 on board 'd78d5bd2ee919f113eb07fa8dbe2ee58' completed in 0.33 seconds with 10 SMD pins fanouted, 33 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1000).
+2026-11-20 05:01:31.335 INFO   [82AF41\6DE15A] Fanout pass #11 on board '1b3a16c51260b6a48f21c3a0d9d82472' completed in 0.39 seconds with 12 SMD pins fanouted, 34 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1100).
+2026-11-20 05:01:31.757 INFO   [82AF41\6DE15A] Fanout pass #12 on board '41a4ca120d2fcea6f220f087e45d263a' completed in 0.41 seconds with 12 SMD pins fanouted, 35 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1200).
+2026-11-20 05:01:32.208 INFO   [82AF41\6DE15A] Fanout pass #13 on board '4481e82ed3289902316f6f30e8c6ec09' completed in 0.44 seconds with 12 SMD pins fanouted, 35 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1300).
+2026-11-20 05:01:32.606 INFO   [82AF41\6DE15A] Fanout pass #14 on board 'c6ff8291942a5c50773ec5d7e79fc517' completed in 0.39 seconds with 12 SMD pins fanouted, 35 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1400).
+2026-11-20 05:01:32.606 INFO   Fanout stopped after 14 passes: no progress for 3 consecutive passes.
+2026-11-20 05:01:32.610 INFO   [82AF41\6DE15A] Fanout stage completed: started with 138 total SMD pins, completed in 11.53 seconds, escaped pins: 60/138 (43.5%), using 10.59 total CPU seconds, 7.52 GB total allocated, and 213.1 MB peak heap usage.
+2026-11-20 05:01:32.671 INFO   [82AF41\6DE15A] Auto-routing stage started on board 'c6ff8291942a5c50773ec5d7e79fc517' with baseline score 203.39 for 82 unrouted items.
+2026-11-20 05:01:51.918 INFO   [82AF41\6DE15A] Auto-routing pass #1 on board 'c6ff8291942a5c50773ec5d7e79fc517' was completed in 19.19 seconds with score 344.63 (58 unrouted and 0 violations), using 29.25 CPU seconds and the job allocated 26.16 GB of memory so far.
+2026-11-20 05:01:51.997 INFO   [82AF41\6DE15A] Auto-routing stage completed: started with 117 unrouted nets, completed in 30.99 seconds, final score: 344.63 (58 unrouted and 0 violations), using 29.25 total CPU seconds, 26.16 GB total allocated, and 287.4 MB peak heap usage.
+2026-11-20 05:01:52.012 INFO   [82AF41\6DE15A] Job '82AF41\6DE15A' finished with state: COMPLETED (elapsed: 31.23 seconds, finished at UTC: 2026-11-20T05:01:52.010876426Z).
+2026-11-20 05:01:52.029 INFO   Saving output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/case5/board_freerouting.ses' (SES)...
+2026-11-20 05:01:52.032 INFO   Successfully saved output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/case5/board_freerouting.ses' (37804 bytes).
+

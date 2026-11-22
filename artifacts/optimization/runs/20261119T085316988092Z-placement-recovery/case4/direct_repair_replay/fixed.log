@@ -1,0 +1,16 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 1.8 ms: 4 layers, 117 components, 98 nets, 1 wires
+    0.018 INFO  net class 'DIFF_PAIR_000': no neck-down
+    0.027 INFO  initial session '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T085316988092Z-placement-recovery/case4/board_fastroute.ses': 763 wires and 120 vias imported (0 errors)
+    0.046 WARN  Board has 2 pre-existing clearance violation(s) in the loaded design (2 unfixable).
+    0.048 INFO  60 trace ends inside a pad but off its center joined to the center
+    0.048 INFO  built board in 46.1 ms: 1966 items (562 pins, 120 vias, 819 traces)
+    0.048 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.048 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.048 INFO  routing finished in 0.00 s
+    0.066 WARN  2 clearance violation(s) in the result:
+    0.066 WARN    F.Cu at (23.910, 7.345) mm: clearance 0.050 mm, actual 0.000 mm (pre-existing, unfixable): pin J1 [] / pin J1 []
+    0.066 WARN    F.Cu at (17.410, 7.345) mm: clearance 0.050 mm, actual 0.000 mm (pre-existing, unfixable): pin J1 [] / pin J1 []
+    0.068 INFO  saved '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T085316988092Z-placement-recovery/case4/direct_repair_replay/fixed.ses' (129092 bytes)
+    0.113 INFO  report written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T085316988092Z-placement-recovery/case4/direct_repair_replay/fixed.json'

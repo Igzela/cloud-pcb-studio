@@ -1,0 +1,3 @@
+group pair_0 tolerance=0.2
+  /D+
+  /D-

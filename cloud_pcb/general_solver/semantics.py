@@ -80,6 +80,33 @@ def world_box(local, position):
     return translate(rotate(box(*local),-a,origin=(0,0)),xoff=x,yoff=y)
 
 
+def component_elevation(
+    *, side: str, board_thickness_mm: float, height_mm: float, standoff_mm: float = 0,
+) -> dict:
+    """Give a parametric body envelope's base and Z range in the board frame.
+
+    The top board surface is Z=0 and the bottom is Z=-board_thickness_mm.
+    A nonnegative standoff moves the body away from its mounting surface.
+    Heights describe the estimated or supplied body envelope, not pin lengths.
+    """
+    if side not in ("top", "bottom"):
+        raise ValueError("component side must be 'top' or 'bottom'")
+    if not math.isfinite(board_thickness_mm) or board_thickness_mm <= 0:
+        raise ValueError("board thickness must be finite and positive")
+    if not math.isfinite(height_mm) or height_mm <= 0:
+        raise ValueError("component height must be finite and positive")
+    if not math.isfinite(standoff_mm) or standoff_mm < 0:
+        raise ValueError("component standoff must be finite and nonnegative")
+
+    if side == "top":
+        base_z = standoff_mm
+        z_range = (base_z, base_z + height_mm)
+    else:
+        base_z = -board_thickness_mm - standoff_mm
+        z_range = (base_z - height_mm, base_z)
+    return dict(base_z_mm=base_z, standoff_mm=standoff_mm, z_range_mm=z_range)
+
+
 def rf_keepouts(spec, placed):
     result=[]; unresolved=[]
     for c in spec['components']:
@@ -93,16 +120,21 @@ def rf_keepouts(spec, placed):
     return result,unresolved
 
 
-def mechanical_check(spec, placed):
+def mechanical_check(spec, placed, *, board_thickness_mm=1.6):
     bodies=[]; hits=[]; unverified=[]
+    if not math.isfinite(board_thickness_mm) or board_thickness_mm <= 0:
+        raise ValueError("board thickness must be finite and positive")
     for c in spec['components']:
         ref=c['refdes']; env=component_envelope(c)
         if ref not in placed:
             unverified.append(ref); continue
         if not env['verified']: unverified.append(ref)
-        geom=world_box(env['bbox_mm'],placed[ref]); z0=float(c.get('standoff_mm',0))
-        side=c.get('side','top'); z=(z0,z0+env['height_mm']) if side=='top' else (-1.6-z0-env['height_mm'],-1.6-z0)
-        bodies.append((ref,geom,z))
+        geom = world_box(env['bbox_mm'], placed[ref])
+        elevation = component_elevation(
+            side=c.get('side', 'top'), board_thickness_mm=board_thickness_mm,
+            height_mm=env['height_mm'], standoff_mm=float(c.get('standoff_mm', 0)),
+        )
+        bodies.append((ref, geom, elevation['z_range_mm']))
     for i,(ref,geom,z) in enumerate(bodies):
         for other,og,oz in bodies[i+1:]:
             if min(z[1],oz[1])-max(z[0],oz[0])>1e-6 and geom.intersection(og).area>1e-6:

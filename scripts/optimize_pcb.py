@@ -55,14 +55,18 @@ def read_suite(path):
     return suite
 
 
-def verify_manifest(pointer):
+def verify_manifest(pointer, *, require_complete=True):
     path=local_path(pointer['manifest'])
     if digest(path)!=pointer['sha256']:raise ValueError('baseline manifest hash changed')
     manifest=json.loads(path.read_text())
-    if manifest.get('status') not in ('frozen','complete'):raise ValueError('baseline is not a completed immutable run')
+    accepted_statuses={'frozen','complete'}
+    if not require_complete:
+        accepted_statuses.update(('incomplete', 'invalidated'))
+    if manifest.get('status') not in accepted_statuses:raise ValueError('manifest is not a finalized eligible record')
     if pointer.get('source_archive') and digest(local_path(pointer['source_archive']))!=pointer['source_archive_sha256']:raise ValueError('baseline source archive changed')
     for entry in manifest['cases']:
-        if entry['status']!='complete':raise ValueError('baseline has incomplete case')
+        if entry['status']!='complete' and (require_complete or entry['status']!='failed'):
+            raise ValueError('manifest has an ineligible case status')
         for name,sha in entry['artifacts'].items():
             if digest(local_path(name))!=sha:raise ValueError('baseline artifact changed: '+name)
         directory=local_path(entry['outdir'])
@@ -89,7 +93,7 @@ def latest_round_status():
         pointer = {'manifest': str(path.relative_to(ROOT)), 'sha256': latest['manifest_sha256']}
         details = {'directory': latest['directory'], 'promoted': latest['promoted']}
         details['recorded_status'] = json.loads(path.read_text()).get('status')
-        verify_manifest(pointer)
+        verify_manifest(pointer, require_complete=False)
         return dict(details, integrity='verified')
     except (OSError, ValueError, KeyError, TypeError) as exc:
         return dict(details, integrity='unverified', error=str(exc))
@@ -168,7 +172,7 @@ def run_round(args):
     snapshot=source_snapshot(args.suite)
     experiment = dict(code=snapshot, variant=args.variant, inputs={c['id']:c['spec_sha256'] for c in suite['cases'] if c['id'] in selected}, case_timeout_s=args.case_timeout)
     jvm_runtime = None
-    if args.variant in ('freerouting-jvm', 'direct-repair'):
+    if args.variant in ('freerouting-jvm', 'direct-repair', 'placement-recovery', 'two-sided-recovery'):
         from cloud_pcb.layout_route.freerouting_runtime import resolve_freerouting_jvm
         jvm_runtime = resolve_freerouting_jvm(ROOT).provenance
         experiment['freerouting_runtime'] = jvm_runtime
@@ -209,8 +213,12 @@ def run_round(args):
                 if args.variant=='value-normalize':command.append('--value-normalize')
                 if jvm_runtime is not None:
                     command.append('--freerouting-jvm')
-                if args.variant == 'direct-repair':
+                if args.variant in ('direct-repair', 'placement-recovery', 'two-sided-recovery'):
                     command.append('--direct-repair')
+                if args.variant == 'placement-recovery':
+                    command.append('--placement-recovery')
+                if args.variant == 'two-sided-recovery':
+                    command.append('--two-sided-recovery')
                 rc=sourced_process(command,out/'solver.log',args.case_timeout)
                 if rc!=0:raise RuntimeError('solver process exit '+str(rc))
                 report=json.loads((out/'blind_run_report.json').read_text());spec=json.loads(copied.read_text());browser=inspect_browser(out)
@@ -269,7 +277,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--suite',type=Path,default=DEFAULT_SUITE)
     sub=parser.add_subparsers(dest='command',required=True)
     sub.add_parser('status');sub.add_parser('history')
-    run=sub.add_parser('run');run.add_argument('--label',required=True);run.add_argument('--hypothesis',required=True);run.add_argument('--cases',default='all');run.add_argument('--case-timeout',type=int,default=900);run.add_argument('--variant',choices=('stable','supply-semantics','scoped-supply','octagonal-fanout','value-normalize','freerouting-jvm','direct-repair'),default='stable')
+    run=sub.add_parser('run');run.add_argument('--label',required=True);run.add_argument('--hypothesis',required=True);run.add_argument('--cases',default='all');run.add_argument('--case-timeout',type=int,default=900);run.add_argument('--variant',choices=('stable','supply-semantics','scoped-supply','octagonal-fanout','value-normalize','freerouting-jvm','direct-repair','placement-recovery','two-sided-recovery'),default='stable')
     args=parser.parse_args()
     if os.environ.get('PCB_STUDIO_ROOT')!=str(ROOT):parser.error('run source scripts/env.sh before invoking Python')
     if args.command=='history':

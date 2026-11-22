@@ -8,7 +8,7 @@ from pathlib import Path
 
 from kiutils.items.brditems import Segment, Via
 
-from cloud_pcb.general_solver.semantics import component_envelope, mechanical_check
+from cloud_pcb.general_solver.semantics import component_elevation, component_envelope, mechanical_check
 
 ROOT=Path(__file__).resolve().parents[2]
 
@@ -20,8 +20,14 @@ def assembly_scene(board,spec,placed):
     for fp in board.footprints:
         ref=fp.properties.get('Reference',''); comp=comps.get(ref)
         if comp:
-            env=component_envelope(comp)
-            scene['components'].append(dict(refdes=ref,value=comp.get('value',''),position=placed[ref],side=comp.get('side','top'),**env))
+            env = component_envelope(comp)
+            side = comp.get('side', 'top')
+            elevation = component_elevation(
+                side=side, board_thickness_mm=scene['thickness_mm'],
+                height_mm=env['height_mm'], standoff_mm=float(comp.get('standoff_mm', 0)),
+            )
+            scene['components'].append(dict(refdes=ref, value=comp.get('value', ''),
+                                            position=placed[ref], side=side, **env, **elevation))
         for p in fp.pads:
             if p.type=='np_thru_hole':
                 from cloud_pcb.general_solver.geometry import drill_geometry
@@ -42,7 +48,7 @@ def assembly_scene(board,spec,placed):
         if z.keepoutSettings: continue
         for polygon in z.filledPolygons:
             scene['zones'].append(dict(net=nets.get(z.net,z.netName),layer=polygon.layer,polygon=[[p.X,p.Y] for p in polygon.coordinates]))
-    scene['mechanical']=mechanical_check(spec,placed)
+    scene['mechanical'] = mechanical_check(spec, placed, board_thickness_mm=scene['thickness_mm'])
     return scene
 
 

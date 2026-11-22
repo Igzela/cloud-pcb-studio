@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case11/board.dsn",
+  "time_s": {"load": 0.0155, "route": 48.0195, "total": 48.0886, "diagnose": null},
+  "stats": {"layers": 4, "components": 71, "nets": 48, "pins": 270, "connections": 121, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 70, "vias_blind": 0, "vias_buried": 0, "traces": 361, "trace_length_mm": 1570.7463, "bends_90": 33, "bends_45": 356, "bends_other": 0, "router_score": 988.9807, "optimizer_score": 653.4225},
+  "unrouted": [
+    {"net": "/Ethernet/PHY_TD+", "length_mm": 19.8662, "from": {"kind": "pin", "component": "U2", "pin": "21", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [19.112, 32.15], "to": {"kind": "pin", "component": "R22", "pin": "2", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [25.754, 50.873]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

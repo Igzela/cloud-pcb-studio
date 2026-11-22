@@ -1,0 +1,30 @@
+2026-11-19 09:35:11.633 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)
+2026-11-19 09:35:11.934 INFO   Hardware: 2 CPU cores, 436 CPU score, 2048 MB RAM
+2026-11-19 09:35:11.936 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
+2026-11-19 09:35:11.940 INFO   Configured network proxy: proxy:8080
+2026-11-19 09:35:13.179 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 09:35:13.519 INFO   [05BCAE\44367B] Loading board file 'board_freerouting.dsn'...
+2026-11-19 09:35:13.622 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 09:35:13.751 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 09:35:13.822 INFO   [05BCAE\44367B] Job '05BCAE\44367B' started at 2026-11-19T09:35:13.822671302Z.
+2026-11-19 09:35:14.180 WARN   Design Warning: Board has 2 pre-existing clearance violation(s) in the loaded design (before routing):
+  - 2 unfixable violation(s) (cannot be resolved by Freerouting):
+      * 2 pin-to-pin clearance violations:
+          - J1.B12 <-> J1.A1
+          - J1.B1 <-> J1.A12
+  - 0 potentially fixable violations
+Notice: Freerouting does not modify component placement, board outlines, or fixed items.
+Resolving these 2 unfixable violation(s) is the responsibility of the board author in their EDA tool (e.g. KiCad).
+2026-11-19 09:35:14.248 INFO   [05BCAE\44367B] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=1.
+2026-11-19 09:35:14.451 INFO   [05BCAE\44367B] Fanout stage started on board 'f4d1a0fb00f094686cc41511d7f2ec9c' with 310 of 440 SMD pins needing fanout (0 already connected, 130 netless).
+2026-11-19 09:35:17.634 INFO   [05BCAE\44367B] Fanout pass #1 on board '86c00f1f93dd8110f35de65b6c07c7ea' completed in 3.06 seconds with 143 SMD pins fanouted, 157 not routed, 0 insert errors, +11 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-19 09:35:18.805 INFO   [05BCAE\44367B] Fanout pass #2 on board '0c9ef0a85af7a1613abad451a26e52b3' completed in 1.14 seconds with 7 SMD pins fanouted, 111 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-19 09:35:19.112 INFO   [05BCAE\44367B] Fanout pass #3 on board '0c9ef0a85af7a1613abad451a26e52b3' completed in 0.28 seconds with 0 SMD pins fanouted, 26 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-19 09:35:19.125 INFO   [05BCAE\44367B] Fanout stage completed: started with 310 total SMD pins, completed in 4.59 seconds, escaped pins: 166/310 (53.5%), using 4.09 total CPU seconds, 2.40 GB total allocated, and 256.6 MB peak heap usage.
+2026-11-19 09:35:19.309 INFO   [05BCAE\44367B] Auto-routing stage started on board '0c9ef0a85af7a1613abad451a26e52b3' with baseline score 280.44 for 179 unrouted items.
+2026-11-19 09:35:40.461 INFO   [05BCAE\44367B] Auto-routing pass #1 on board '0c9ef0a85af7a1613abad451a26e52b3' was completed in 20.99 seconds with score 909.35 (21 unrouted and 2 violations), using 24.21 CPU seconds and the job allocated 19.76 GB of memory so far.
+2026-11-19 09:35:40.781 INFO   [05BCAE\44367B] Auto-routing stage completed: started with 307 unrouted nets, completed in 26.44 seconds, final score: 909.35 (21 unrouted and 2 violations), using 24.21 total CPU seconds, 19.76 GB total allocated, and 315.6 MB peak heap usage.
+2026-11-19 09:35:40.867 INFO   [05BCAE\44367B] Job '05BCAE\44367B' finished with state: COMPLETED (elapsed: 27.04 seconds, finished at UTC: 2026-11-19T09:35:40.865997509Z).
+2026-11-19 09:35:40.914 INFO   Saving output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T092502081033Z-return-domain-isolation/case4/board_freerouting.ses' (SES)...
+2026-11-19 09:35:40.920 INFO   Successfully saved output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T092502081033Z-return-domain-isolation/case4/board_freerouting.ses' (125710 bytes).
+

@@ -1,4 +1,4 @@
-"""Mechanical obstacles in the opt-in Freerouting DSN export."""
+"""Mechanical obstacles and pin reference syntax for the secondary DSN."""
 
 import math
 
@@ -116,3 +116,78 @@ def test_npth_round_hole_and_rotated_offset_slot_have_conservative_four_layer_gu
 def test_mechanical_export_refuses_missing_drill_geometry(tmp_path):
     with pytest.raises(ValueError, match="NPTH pad has no drill"):
         _export(tmp_path, enabled=True, missing_drill=True)
+
+
+def _punctuated_board():
+    board = Board.create_new()
+    signal = Net(1, "Signal (mixed)-a")
+    board.nets.append(signal)
+    for x, ref, number in [
+        (6, "U(A)-1", "Pad-1"),
+        (14, "J-back", "Pin (b)"),
+        (22, "X spaced", "A9"),
+    ]:
+        board.footprints.append(
+            Footprint(
+                position=Position(X=x, Y=5), properties={"Reference": ref},
+                pads=[Pad(
+                    number=number, shape="rect", net=signal, layers=["F.Cu"],
+                    size=Position(X=1, Y=1),
+                )],
+            )
+        )
+    return board
+
+
+def _export_pin_board(board, path, **options):
+    return board_to_dsn(
+        board, path, {"DEFAULT": NetClassRule("DEFAULT", .2, .15, .3, .55, .5)},
+        {}, **options,
+    ).read_text()
+
+
+def test_secondary_pin_quoting_only_changes_network_endpoint_delimiters(tmp_path):
+    board = _punctuated_board()
+    path = tmp_path / "punctuated.dsn"
+    expected_legacy = '(pins "U(A)-1-Pad-1" "J-back-Pin (b)" "X spaced-A9")'
+    expected_secondary = '(pins "U(A)-1"-"Pad-1" "J-back"-"Pin (b)" "X spaced"-"A9")'
+    legacy = _export_pin_board(board, path)
+    assert expected_legacy in legacy
+    secondary = _export_pin_board(board, path, safe_pin_references=True)
+    assert expected_secondary in secondary
+    # Placements, pad names/shapes, layers, all routing rules, and the exact
+    # net name remain byte-for-byte identical across export modes.
+    assert secondary.replace(expected_secondary, expected_legacy) == legacy
+
+
+def test_secondary_resolves_override_pins_without_splitting_names(tmp_path):
+    board = _punctuated_board()
+    path = tmp_path / "override.dsn"
+    signal = board.nets[-1].name
+    text = _export_pin_board(
+        board, path, safe_pin_references=True, skip_nets={signal},
+        override_net_pins={signal: ["X spaced-A9", "U(A)-1-Pad-1"]},
+    )
+    assert '(net "Signal (mixed)-a"' in text
+    assert '(pins "X spaced"-"A9" "U(A)-1"-"Pad-1")' in text
+    assert '(pins "J-back"' not in text
+
+
+@pytest.mark.parametrize("ambiguous", [False, True])
+def test_secondary_rejects_unresolvable_override(tmp_path, ambiguous):
+    board = _punctuated_board()
+    if ambiguous:
+        # These are distinct endpoints with the same flattened override key:
+        # U(A)-1 / Pad-1 vs U(A) / 1-Pad-1.
+        board.footprints.append(
+            Footprint(
+                position=Position(X=30, Y=5), properties={"Reference": "U(A)"},
+                pads=[Pad(number="1-Pad-1", layers=["F.Cu"], size=Position(X=1, Y=1))],
+            )
+        )
+    first = "U(A)-1-Pad-1" if ambiguous else "missing-Pin"
+    with pytest.raises(ValueError, match="Unresolved or ambiguous pin override"):
+        _export_pin_board(
+            board, tmp_path / "invalid.dsn", safe_pin_references=True,
+            override_net_pins={board.nets[-1].name: [first, "X spaced-A9"]},
+        )

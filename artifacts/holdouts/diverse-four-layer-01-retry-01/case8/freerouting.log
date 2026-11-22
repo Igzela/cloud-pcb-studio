@@ -1,0 +1,23 @@
+2026-11-19 08:41:20.405 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)
+2026-11-19 08:41:20.723 INFO   Hardware: 2 CPU cores, 407 CPU score, 2048 MB RAM
+2026-11-19 08:41:20.726 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
+2026-11-19 08:41:20.731 INFO   Configured network proxy: proxy:8080
+2026-11-19 08:41:21.961 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 08:41:22.306 INFO   [473FC7\8BACF3] Loading board file 'board_freerouting.dsn'...
+2026-11-19 08:41:22.368 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 08:41:22.512 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-19 08:41:22.540 INFO   [473FC7\8BACF3] Job '473FC7\8BACF3' started at 2026-11-19T08:41:22.540301403Z.
+2026-11-19 08:41:22.802 INFO   [473FC7\8BACF3] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=1.
+2026-11-19 08:41:22.947 INFO   [473FC7\8BACF3] Fanout stage started on board '8589c4edbeb782bf33afbc02427baf68' with 109 of 136 SMD pins needing fanout (0 already connected, 27 netless).
+2026-11-19 08:41:24.944 INFO   [473FC7\8BACF3] Fanout pass #1 on board '07a07900f49b9d2dce0d6592ead2dd31' completed in 1.95 seconds with 64 SMD pins fanouted, 44 not routed, 0 insert errors, +14 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-19 08:41:25.526 INFO   [473FC7\8BACF3] Fanout pass #2 on board '94c8d4977276a2de65a0f406ff4930c5' completed in 0.57 seconds with 7 SMD pins fanouted, 28 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-19 08:41:25.747 INFO   [473FC7\8BACF3] Fanout pass #3 on board '0d8f3903965512661e7638aa9a4b63c0' completed in 0.20 seconds with 2 SMD pins fanouted, 9 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-19 08:41:25.862 INFO   [473FC7\8BACF3] Fanout pass #4 on board '0d8f3903965512661e7638aa9a4b63c0' completed in 0.10 seconds with 0 SMD pins fanouted, 2 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+2026-11-19 08:41:25.870 INFO   [473FC7\8BACF3] Fanout stage completed: started with 109 total SMD pins, completed in 2.91 seconds, escaped pins: 83/109 (76.1%), using 2.43 total CPU seconds, 1.18 GB total allocated, and 187.8 MB peak heap usage.
+2026-11-19 08:41:26.100 INFO   [473FC7\8BACF3] Auto-routing stage started on board '0d8f3903965512661e7638aa9a4b63c0' with baseline score 316.09 for 61 unrouted items.
+2026-11-19 08:41:29.641 INFO   [473FC7\8BACF3] Auto-routing pass #1 on board '0d8f3903965512661e7638aa9a4b63c0' was completed in 3.47 seconds with score 942.53 (5 unrouted and 0 violations), using 6.02 CPU seconds and the job allocated 3.52 GB of memory so far.
+2026-11-19 08:41:29.922 INFO   [473FC7\8BACF3] Auto-routing stage completed: started with 116 unrouted nets, completed in 7.01 seconds, final score: 942.53 (5 unrouted and 0 violations), using 6.02 total CPU seconds, 3.52 GB total allocated, and 206.4 MB peak heap usage.
+2026-11-19 08:41:29.939 INFO   [473FC7\8BACF3] Job '473FC7\8BACF3' finished with state: COMPLETED (elapsed: 7.40 seconds, finished at UTC: 2026-11-19T08:41:29.937917285Z).
+2026-11-19 08:41:29.981 INFO   Saving output file '/workspace/cloud-pcb-studio/artifacts/holdouts/diverse-four-layer-01-retry-01/case8/board_freerouting.ses' (SES)...
+2026-11-19 08:41:29.984 INFO   Successfully saved output file '/workspace/cloud-pcb-studio/artifacts/holdouts/diverse-four-layer-01-retry-01/case8/board_freerouting.ses' (52987 bytes).
+

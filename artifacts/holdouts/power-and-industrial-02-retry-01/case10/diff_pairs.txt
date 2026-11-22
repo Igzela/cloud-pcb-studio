@@ -1,0 +1,1 @@
+pair /D+ /D- gap=0.18 skew=0.2

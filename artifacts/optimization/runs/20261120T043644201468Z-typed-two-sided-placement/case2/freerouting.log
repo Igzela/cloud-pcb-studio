@@ -1,0 +1,30 @@
+2026-11-20 04:39:59.051 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)
+2026-11-20 04:39:59.332 INFO   Hardware: 2 CPU cores, 425 CPU score, 2048 MB RAM
+2026-11-20 04:39:59.334 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
+2026-11-20 04:39:59.338 INFO   Configured network proxy: proxy:8080
+2026-11-20 04:40:00.564 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 04:40:00.919 INFO   [26B237\3BE551] Loading board file 'board_freerouting.dsn'...
+2026-11-20 04:40:00.999 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 04:40:01.257 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-20 04:40:01.279 INFO   [26B237\3BE551] Job '26B237\3BE551' started at 2026-11-20T04:40:01.279363768Z.
+2026-11-20 04:40:01.377 WARN   Design Warning: Board has 2 pre-existing clearance violation(s) in the loaded design (before routing):
+  - 2 unfixable violation(s) (cannot be resolved by Freerouting):
+      * 2 pin-to-pin clearance violations:
+          - J9.B12 <-> J9.A1
+          - J9.B1 <-> J9.A12
+  - 0 potentially fixable violations
+Notice: Freerouting does not modify component placement, board outlines, or fixed items.
+Resolving these 2 unfixable violation(s) is the responsibility of the board author in their EDA tool (e.g. KiCad).
+2026-11-20 04:40:01.434 INFO   [26B237\3BE551] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=1.
+2026-11-20 04:40:01.531 INFO   [26B237\3BE551] Fanout stage started on board '7b48f14c0ed819b5abf9ab8d141a645b' with 131 of 226 SMD pins needing fanout (0 already connected, 95 netless).
+2026-11-20 04:40:03.358 INFO   [26B237\3BE551] Fanout pass #1 on board '6c04b7178a5f8d5f3d9d887e28711349' completed in 1.78 seconds with 39 SMD pins fanouted, 89 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-20 04:40:03.935 INFO   [26B237\3BE551] Fanout pass #2 on board '194d4db3bb16d43708c6178938c39056' completed in 0.52 seconds with 3 SMD pins fanouted, 45 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-20 04:40:04.049 INFO   [26B237\3BE551] Fanout pass #3 on board '194d4db3bb16d43708c6178938c39056' completed in 0.10 seconds with 0 SMD pins fanouted, 8 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-20 04:40:04.054 INFO   [26B237\3BE551] Fanout stage completed: started with 131 total SMD pins, completed in 2.51 seconds, escaped pins: 60/131 (45.8%), using 2.10 total CPU seconds, 0.88 GB total allocated, and 168.0 MB peak heap usage.
+2026-11-20 04:40:04.138 INFO   [26B237\3BE551] Auto-routing stage started on board '194d4db3bb16d43708c6178938c39056' with baseline score 270.55 for 60 unrouted items.
+2026-11-20 04:40:09.998 INFO   [26B237\3BE551] Auto-routing pass #1 on board '194d4db3bb16d43708c6178938c39056' was completed in 5.82 seconds with score 947.12 (4 unrouted and 2 violations), using 6.80 CPU seconds and the job allocated 4.31 GB of memory so far.
+2026-11-20 04:40:10.135 INFO   [26B237\3BE551] Auto-routing stage completed: started with 99 unrouted nets, completed in 8.66 seconds, final score: 947.12 (4 unrouted and 2 violations), using 6.80 total CPU seconds, 4.31 GB total allocated, and 232.3 MB peak heap usage.
+2026-11-20 04:40:10.153 INFO   [26B237\3BE551] Job '26B237\3BE551' finished with state: COMPLETED (elapsed: 8.87 seconds, finished at UTC: 2026-11-20T04:40:10.152304660Z).
+2026-11-20 04:40:10.197 INFO   Saving output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/case2/board_freerouting.ses' (SES)...
+2026-11-20 04:40:10.200 INFO   Successfully saved output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261120T043644201468Z-typed-two-sided-placement/case2/board_freerouting.ses' (54542 bytes).
+

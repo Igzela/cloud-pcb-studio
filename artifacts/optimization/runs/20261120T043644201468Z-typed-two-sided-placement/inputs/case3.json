@@ -1,0 +1,5367 @@
+{
+  "project_name": "sima_bldc_motor_driver",
+  "repo_url": "https://github.com/lio-tam/Autonomous-SIMA-Robot",
+  "commit_sha": "3f632f46d372bb4ef77ce30a939ead0f717f038c",
+  "description": "4-layer dual 3-phase BLDC motor driver board for an autonomous Eurobot SIMA robot. Integrates two TI MCT8314ZH sensored BLDC motor drivers (U201, U301) powered from a +6V battery rail with 3-phase JST-XH motor outputs (J202, J302), JST-GH Hall-sensor connectors (J201, J301), BSS138 low-side auxiliary actuator MOSFETs (Q1, Q2), diagnostic status LEDs, and a 2x10 board-to-board control header (J1).",
+  "board_outline_mm": {
+    "width": 50.0,
+    "height": 50.0,
+    "origin_x": 135.0,
+    "origin_y": 56.0,
+    "corner_radius_mm": 0.0
+  },
+  "layer_count": 4,
+  "mounting_holes": [],
+  "edge_connectors": [],
+  "components": [
+    {
+      "refdes": "C1",
+      "value": "0u22",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/CP",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "+6V",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C11",
+      "value": "10u",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "+6V",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C12",
+      "value": "10u",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "+6V",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C13",
+      "value": "0u1",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "+6V",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C14",
+      "value": "0u1",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "+6V",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C2",
+      "value": "0u22",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/CP",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "+6V",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C3",
+      "value": "2u2",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C4",
+      "value": "2u2",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C5",
+      "value": "1n",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/HNA",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "C6",
+      "value": "1n",
+      "footprint_name": "Capacitor_SMD:C_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/HNA",
+          "x_rel_mm": -0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.775,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.9,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D1",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D1-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/CP",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D10",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D10-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "+6V",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D11",
+      "value": "~",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+6V",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "Net-(D11-A)",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D12",
+      "value": "~",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+6V",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "Net-(D12-A)",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D2",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D2-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/CP",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D3",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D3-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M1_BRAKE",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D4",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D4-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M2_BRAKE",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D5",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D5-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M1_DIR",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D6",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D6-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M2_DIR",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D7",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D7-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M1_PWM",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D8",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D8-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M2_PWM",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "D9",
+      "value": "LED",
+      "footprint_name": "Diode_SMD:D_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D9-K)",
+          "x_rel_mm": -0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "+6V",
+          "x_rel_mm": 0.7875,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.875,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "J1",
+      "value": "Conn_02x10_Odd_Even",
+      "footprint_name": "Connector_PinSocket_2.54mm:PinSocket_2x10_P2.54mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/M1_BRAKE",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "rect",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M2_BRAKE",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "/M1_DIR",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -2.54,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "4",
+          "net": "/M2_DIR",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -2.54,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "5",
+          "net": "/M1_PWM",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -5.08,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "6",
+          "net": "/M2_PWM",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -5.08,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "7",
+          "net": "/M1_FAULT",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -7.62,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "8",
+          "net": "/M2_FAULT",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -7.62,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "9",
+          "net": "/M1_TACHO",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -10.16,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "10",
+          "net": "/M2_TACHO",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -10.16,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "11",
+          "net": "/~{M1_SLEEP}",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -12.7,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "12",
+          "net": "/~{M2_SLEEP}",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -12.7,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "13",
+          "net": "/WAVEARM_PWM_1",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -15.24,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "14",
+          "net": "",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -15.24,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "15",
+          "net": "/WAVEARM_PWM_2",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -17.78,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "16",
+          "net": "",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -17.78,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "17",
+          "net": "+6V",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -20.32,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "18",
+          "net": "",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -20.32,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "19",
+          "net": "+3V3",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": -22.86,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "20",
+          "net": "GND",
+          "x_rel_mm": -2.54,
+          "y_rel_mm": -22.86,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "J102",
+      "value": "Conn_01x02",
+      "footprint_name": "custom_footprints:2-Pin_PSK",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+6V",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "rect",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 2.54,
+          "w_mm": 1.7,
+          "h_mm": 1.7,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 1.0,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "J2",
+      "value": "Conn_01x02",
+      "footprint_name": "Connector_JST:JST_GH_BM02B-GHS-TBT_1x02-1MP_P1.25mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+6V",
+          "x_rel_mm": -0.625,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "Net-(D11-A)",
+          "x_rel_mm": 0.625,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "MP",
+          "net": "GND",
+          "x_rel_mm": -2.475,
+          "y_rel_mm": -1.4,
+          "w_mm": 1.0,
+          "h_mm": 2.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "MP",
+          "net": "GND",
+          "x_rel_mm": 2.475,
+          "y_rel_mm": -1.4,
+          "w_mm": 1.0,
+          "h_mm": 2.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "J201",
+      "value": "Hall",
+      "footprint_name": "Connector_JST:JST_GH_BM05B-GHS-TBT_1x05-1MP_P1.25mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -2.5,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/HALL_U",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "/Left Driver/HALL_V",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "4",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "5",
+          "net": "/Left Driver/HALL_W",
+          "x_rel_mm": 2.5,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "MP",
+          "net": "GND",
+          "x_rel_mm": -4.35,
+          "y_rel_mm": -1.4,
+          "w_mm": 1.0,
+          "h_mm": 2.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "MP",
+          "net": "GND",
+          "x_rel_mm": 4.35,
+          "y_rel_mm": -1.4,
+          "w_mm": 1.0,
+          "h_mm": 2.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "J202",
+      "value": "Motor",
+      "footprint_name": "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/U",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.95,
+          "shape": "roundrect",
+          "type": "thru_hole",
+          "drill_mm": 0.95,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/V",
+          "x_rel_mm": 2.5,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.95,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 0.95,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "/Left Driver/W",
+          "x_rel_mm": 5.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.95,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 0.95,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "J3",
+      "value": "Conn_01x02",
+      "footprint_name": "Connector_JST:JST_GH_BM02B-GHS-TBT_1x02-1MP_P1.25mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+6V",
+          "x_rel_mm": -0.625,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "Net-(D12-A)",
+          "x_rel_mm": 0.625,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "MP",
+          "net": "GND",
+          "x_rel_mm": -2.475,
+          "y_rel_mm": -1.4,
+          "w_mm": 1.0,
+          "h_mm": 2.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "MP",
+          "net": "GND",
+          "x_rel_mm": 2.475,
+          "y_rel_mm": -1.4,
+          "w_mm": 1.0,
+          "h_mm": 2.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "J301",
+      "value": "Hall",
+      "footprint_name": "Connector_JST:JST_GH_BM05B-GHS-TBT_1x05-1MP_P1.25mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "GND",
+          "x_rel_mm": -2.5,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/HALL_U",
+          "x_rel_mm": -1.25,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "/Right Driver/HALL_V",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "4",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": 1.25,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "5",
+          "net": "/Right Driver/HALL_W",
+          "x_rel_mm": 2.5,
+          "y_rel_mm": 1.95,
+          "w_mm": 0.6,
+          "h_mm": 1.7,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "MP",
+          "net": "GND",
+          "x_rel_mm": -4.35,
+          "y_rel_mm": -1.4,
+          "w_mm": 1.0,
+          "h_mm": 2.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "MP",
+          "net": "GND",
+          "x_rel_mm": 4.35,
+          "y_rel_mm": -1.4,
+          "w_mm": 1.0,
+          "h_mm": 2.8,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "J302",
+      "value": "Motor",
+      "footprint_name": "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/U",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.95,
+          "shape": "roundrect",
+          "type": "thru_hole",
+          "drill_mm": 0.95,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/V",
+          "x_rel_mm": 2.5,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.95,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 0.95,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "/Right Driver/W",
+          "x_rel_mm": 5.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.7,
+          "h_mm": 1.95,
+          "shape": "oval",
+          "type": "thru_hole",
+          "drill_mm": 0.95,
+          "layers": [
+            "*.Cu",
+            "*.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "Q1",
+      "value": "BSS138",
+      "footprint_name": "Package_TO_SOT_SMD:SOT-23",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(Q1-G)",
+          "x_rel_mm": -0.9375,
+          "y_rel_mm": -0.95,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": -0.9375,
+          "y_rel_mm": 0.95,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "Net-(D11-A)",
+          "x_rel_mm": 0.9375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "Q2",
+      "value": "BSS138",
+      "footprint_name": "Package_TO_SOT_SMD:SOT-23",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(Q2-G)",
+          "x_rel_mm": -0.9375,
+          "y_rel_mm": -0.95,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": -0.9375,
+          "y_rel_mm": 0.95,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "Net-(D12-A)",
+          "x_rel_mm": 0.9375,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.475,
+          "h_mm": 0.6,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R1",
+      "value": "10k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/ILIM",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R10",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/FGSEL",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R11",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/MODE",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R12",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/MODE",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R13",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/MODE",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R14",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/MODE",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R15",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/HALL_U",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R16",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/HALL_V",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R17",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/HALL_U",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R18",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/HALL_V",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R19",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/HALL_W",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R2",
+      "value": "10k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/ILIM",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R20",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/HALL_W",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R21",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/HNA",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R22",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/HNA",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R23",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/HNA",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R24",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/HNA",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R25",
+      "value": "10",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(Q1-G)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/WAVEARM_PWM_1",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R26",
+      "value": "10",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(Q2-G)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/WAVEARM_PWM_2",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R3",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/ADVANCE",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R33",
+      "value": "5.1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3V3",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M1_TACHO",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R34",
+      "value": "5.1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3V3",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M2_TACHO",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R35",
+      "value": "5.1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3V3",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M1_FAULT",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R36",
+      "value": "5.1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "+3V3",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M2_FAULT",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R37",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D1-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R38",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D2-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R39",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D3-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R4",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/ADVANCE",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R40",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D4-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R41",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D5-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R42",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D6-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R43",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D7-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R44",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D8-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R45",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D9-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R46",
+      "value": "1k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "Net-(D10-K)",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R5",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/ADVANCE",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R6",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/ADVANCE",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R7",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Left Driver/FGSEL",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R8",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Left Driver/FGSEL",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "GND",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "R9",
+      "value": "100k",
+      "footprint_name": "Resistor_SMD:R_0603_1608Metric",
+      "pads": [
+        {
+          "num": "1",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": -0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/Right Driver/FGSEL",
+          "x_rel_mm": 0.825,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.8,
+          "h_mm": 0.95,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "U201",
+      "value": "MCT8314ZH",
+      "footprint_name": "custom_footprints:WQFN24_RRW_TEX_new",
+      "pads": [
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": -0.47,
+          "y_rel_mm": -0.47,
+          "w_mm": 0.75,
+          "h_mm": 0.75,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Paste"
+          ]
+        },
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": -0.47,
+          "y_rel_mm": 0.47,
+          "w_mm": 0.75,
+          "h_mm": 0.75,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Paste"
+          ]
+        },
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": 0.47,
+          "y_rel_mm": -0.47,
+          "w_mm": 0.75,
+          "h_mm": 0.75,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Paste"
+          ]
+        },
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": 0.47,
+          "y_rel_mm": 0.47,
+          "w_mm": 0.75,
+          "h_mm": 0.75,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Paste"
+          ]
+        },
+        {
+          "num": "1",
+          "net": "/Left Driver/ADVANCE",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": -1.2,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M1_DIR",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": -0.8,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "/Left Driver/ILIM",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": -0.4,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "4",
+          "net": "/M1_BRAKE",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "5",
+          "net": "/M1_PWM",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": 0.4,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "6",
+          "net": "/M1_TACHO",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": 0.8,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "7",
+          "net": "/Left Driver/CP",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": 1.2,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "8",
+          "net": "+6V",
+          "x_rel_mm": -0.67,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "9",
+          "net": "GND",
+          "x_rel_mm": -0.27,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "10",
+          "net": "/Left Driver/U",
+          "x_rel_mm": 0.13,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "11",
+          "net": "/Left Driver/V",
+          "x_rel_mm": 0.53,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "12",
+          "net": "/Left Driver/W",
+          "x_rel_mm": 0.93,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "13",
+          "net": "/M1_FAULT",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": 1.2,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "14",
+          "net": "/~{M1_SLEEP}",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": 0.8,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "15",
+          "net": "/Left Driver/+5V",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": 0.4,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "16",
+          "net": "GND",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "17",
+          "net": "/Left Driver/HALL_U",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": -0.4,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "18",
+          "net": "/Left Driver/HNA",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": -0.8,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "19",
+          "net": "/Left Driver/HALL_V",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": -1.2,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "20",
+          "net": "/Left Driver/HNA",
+          "x_rel_mm": 0.93,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "21",
+          "net": "/Left Driver/HALL_W",
+          "x_rel_mm": 0.53,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "22",
+          "net": "/Left Driver/HNA",
+          "x_rel_mm": 0.13,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "23",
+          "net": "/Left Driver/MODE",
+          "x_rel_mm": -0.27,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "24",
+          "net": "/Left Driver/FGSEL",
+          "x_rel_mm": -0.67,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.9,
+          "h_mm": 1.9,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask"
+          ]
+        }
+      ]
+    },
+    {
+      "refdes": "U301",
+      "value": "MCT8314ZH",
+      "footprint_name": "custom_footprints:WQFN24_RRW_TEX_new",
+      "pads": [
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": -0.47,
+          "y_rel_mm": -0.47,
+          "w_mm": 0.75,
+          "h_mm": 0.75,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Paste"
+          ]
+        },
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": -0.47,
+          "y_rel_mm": 0.47,
+          "w_mm": 0.75,
+          "h_mm": 0.75,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Paste"
+          ]
+        },
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": 0.47,
+          "y_rel_mm": -0.47,
+          "w_mm": 0.75,
+          "h_mm": 0.75,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Paste"
+          ]
+        },
+        {
+          "num": "",
+          "net": "",
+          "x_rel_mm": 0.47,
+          "y_rel_mm": 0.47,
+          "w_mm": 0.75,
+          "h_mm": 0.75,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Paste"
+          ]
+        },
+        {
+          "num": "1",
+          "net": "/Right Driver/ADVANCE",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": -1.2,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "2",
+          "net": "/M2_DIR",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": -0.8,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "3",
+          "net": "/Right Driver/ILIM",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": -0.4,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "4",
+          "net": "/M2_BRAKE",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "5",
+          "net": "/M2_PWM",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": 0.4,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "6",
+          "net": "/M2_TACHO",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": 0.8,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "7",
+          "net": "/Right Driver/CP",
+          "x_rel_mm": -1.465,
+          "y_rel_mm": 1.2,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "8",
+          "net": "+6V",
+          "x_rel_mm": -0.67,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "9",
+          "net": "GND",
+          "x_rel_mm": -0.27,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "10",
+          "net": "/Right Driver/U",
+          "x_rel_mm": 0.13,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "11",
+          "net": "/Right Driver/V",
+          "x_rel_mm": 0.53,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "12",
+          "net": "/Right Driver/W",
+          "x_rel_mm": 0.93,
+          "y_rel_mm": 1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "13",
+          "net": "/M2_FAULT",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": 1.2,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "14",
+          "net": "/~{M2_SLEEP}",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": 0.8,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "15",
+          "net": "/Right Driver/+5V",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": 0.4,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "16",
+          "net": "GND",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": 0.0,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "17",
+          "net": "/Right Driver/HALL_U",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": -0.4,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "18",
+          "net": "/Right Driver/HNA",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": -0.8,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "19",
+          "net": "/Right Driver/HALL_V",
+          "x_rel_mm": 1.465,
+          "y_rel_mm": -1.2,
+          "w_mm": 0.47,
+          "h_mm": 0.2,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "20",
+          "net": "/Right Driver/HNA",
+          "x_rel_mm": 0.93,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "21",
+          "net": "/Right Driver/HALL_W",
+          "x_rel_mm": 0.53,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "22",
+          "net": "/Right Driver/HNA",
+          "x_rel_mm": 0.13,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "23",
+          "net": "/Right Driver/MODE",
+          "x_rel_mm": -0.27,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "24",
+          "net": "/Right Driver/FGSEL",
+          "x_rel_mm": -0.67,
+          "y_rel_mm": -1.465,
+          "w_mm": 0.2,
+          "h_mm": 0.47,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ]
+        },
+        {
+          "num": "25",
+          "net": "GND",
+          "x_rel_mm": 0.0,
+          "y_rel_mm": 0.0,
+          "w_mm": 1.9,
+          "h_mm": 1.9,
+          "shape": "roundrect",
+          "type": "smd",
+          "drill_mm": null,
+          "layers": [
+            "F.Cu",
+            "F.Mask"
+          ]
+        }
+      ]
+    }
+  ],
+  "nets": {
+    "+3V3": [
+      [
+        "J1",
+        "19"
+      ],
+      [
+        "R33",
+        "1"
+      ],
+      [
+        "R34",
+        "1"
+      ],
+      [
+        "R35",
+        "1"
+      ],
+      [
+        "R36",
+        "1"
+      ]
+    ],
+    "+6V": [
+      [
+        "C1",
+        "2"
+      ],
+      [
+        "C11",
+        "2"
+      ],
+      [
+        "C12",
+        "2"
+      ],
+      [
+        "C13",
+        "2"
+      ],
+      [
+        "C14",
+        "2"
+      ],
+      [
+        "C2",
+        "2"
+      ],
+      [
+        "D10",
+        "2"
+      ],
+      [
+        "D11",
+        "1"
+      ],
+      [
+        "D12",
+        "1"
+      ],
+      [
+        "D9",
+        "2"
+      ],
+      [
+        "J1",
+        "17"
+      ],
+      [
+        "J102",
+        "1"
+      ],
+      [
+        "J2",
+        "1"
+      ],
+      [
+        "J3",
+        "1"
+      ],
+      [
+        "U201",
+        "8"
+      ],
+      [
+        "U301",
+        "8"
+      ]
+    ],
+    "/Left Driver/+5V": [
+      [
+        "C3",
+        "1"
+      ],
+      [
+        "J201",
+        "4"
+      ],
+      [
+        "R11",
+        "1"
+      ],
+      [
+        "R15",
+        "1"
+      ],
+      [
+        "R16",
+        "1"
+      ],
+      [
+        "R19",
+        "1"
+      ],
+      [
+        "R21",
+        "1"
+      ],
+      [
+        "R5",
+        "1"
+      ],
+      [
+        "R7",
+        "1"
+      ],
+      [
+        "U201",
+        "15"
+      ]
+    ],
+    "/Left Driver/ADVANCE": [
+      [
+        "R3",
+        "1"
+      ],
+      [
+        "R5",
+        "2"
+      ],
+      [
+        "U201",
+        "1"
+      ]
+    ],
+    "/Left Driver/CP": [
+      [
+        "C1",
+        "1"
+      ],
+      [
+        "D1",
+        "2"
+      ],
+      [
+        "U201",
+        "7"
+      ]
+    ],
+    "/Left Driver/FGSEL": [
+      [
+        "R7",
+        "2"
+      ],
+      [
+        "R8",
+        "1"
+      ],
+      [
+        "U201",
+        "24"
+      ]
+    ],
+    "/Left Driver/HALL_U": [
+      [
+        "J201",
+        "2"
+      ],
+      [
+        "R15",
+        "2"
+      ],
+      [
+        "U201",
+        "17"
+      ]
+    ],
+    "/Left Driver/HALL_V": [
+      [
+        "J201",
+        "3"
+      ],
+      [
+        "R16",
+        "2"
+      ],
+      [
+        "U201",
+        "19"
+      ]
+    ],
+    "/Left Driver/HALL_W": [
+      [
+        "J201",
+        "5"
+      ],
+      [
+        "R19",
+        "2"
+      ],
+      [
+        "U201",
+        "21"
+      ]
+    ],
+    "/Left Driver/HNA": [
+      [
+        "C5",
+        "1"
+      ],
+      [
+        "R21",
+        "2"
+      ],
+      [
+        "R22",
+        "1"
+      ],
+      [
+        "U201",
+        "18"
+      ],
+      [
+        "U201",
+        "20"
+      ],
+      [
+        "U201",
+        "22"
+      ]
+    ],
+    "/Left Driver/ILIM": [
+      [
+        "R1",
+        "1"
+      ],
+      [
+        "U201",
+        "3"
+      ]
+    ],
+    "/Left Driver/MODE": [
+      [
+        "R11",
+        "2"
+      ],
+      [
+        "R12",
+        "1"
+      ],
+      [
+        "U201",
+        "23"
+      ]
+    ],
+    "/Left Driver/U": [
+      [
+        "J202",
+        "1"
+      ],
+      [
+        "U201",
+        "10"
+      ]
+    ],
+    "/Left Driver/V": [
+      [
+        "J202",
+        "2"
+      ],
+      [
+        "U201",
+        "11"
+      ]
+    ],
+    "/Left Driver/W": [
+      [
+        "J202",
+        "3"
+      ],
+      [
+        "U201",
+        "12"
+      ]
+    ],
+    "/M1_BRAKE": [
+      [
+        "D3",
+        "2"
+      ],
+      [
+        "J1",
+        "1"
+      ],
+      [
+        "U201",
+        "4"
+      ]
+    ],
+    "/M1_DIR": [
+      [
+        "D5",
+        "2"
+      ],
+      [
+        "J1",
+        "3"
+      ],
+      [
+        "U201",
+        "2"
+      ]
+    ],
+    "/M1_FAULT": [
+      [
+        "J1",
+        "7"
+      ],
+      [
+        "R35",
+        "2"
+      ],
+      [
+        "U201",
+        "13"
+      ]
+    ],
+    "/M1_PWM": [
+      [
+        "D7",
+        "2"
+      ],
+      [
+        "J1",
+        "5"
+      ],
+      [
+        "U201",
+        "5"
+      ]
+    ],
+    "/M1_TACHO": [
+      [
+        "J1",
+        "9"
+      ],
+      [
+        "R33",
+        "2"
+      ],
+      [
+        "U201",
+        "6"
+      ]
+    ],
+    "/M2_BRAKE": [
+      [
+        "D4",
+        "2"
+      ],
+      [
+        "J1",
+        "2"
+      ],
+      [
+        "U301",
+        "4"
+      ]
+    ],
+    "/M2_DIR": [
+      [
+        "D6",
+        "2"
+      ],
+      [
+        "J1",
+        "4"
+      ],
+      [
+        "U301",
+        "2"
+      ]
+    ],
+    "/M2_FAULT": [
+      [
+        "J1",
+        "8"
+      ],
+      [
+        "R36",
+        "2"
+      ],
+      [
+        "U301",
+        "13"
+      ]
+    ],
+    "/M2_PWM": [
+      [
+        "D8",
+        "2"
+      ],
+      [
+        "J1",
+        "6"
+      ],
+      [
+        "U301",
+        "5"
+      ]
+    ],
+    "/M2_TACHO": [
+      [
+        "J1",
+        "10"
+      ],
+      [
+        "R34",
+        "2"
+      ],
+      [
+        "U301",
+        "6"
+      ]
+    ],
+    "/Right Driver/+5V": [
+      [
+        "C4",
+        "1"
+      ],
+      [
+        "J301",
+        "4"
+      ],
+      [
+        "R13",
+        "1"
+      ],
+      [
+        "R17",
+        "1"
+      ],
+      [
+        "R18",
+        "1"
+      ],
+      [
+        "R20",
+        "1"
+      ],
+      [
+        "R23",
+        "1"
+      ],
+      [
+        "R6",
+        "1"
+      ],
+      [
+        "R9",
+        "1"
+      ],
+      [
+        "U301",
+        "15"
+      ]
+    ],
+    "/Right Driver/ADVANCE": [
+      [
+        "R4",
+        "1"
+      ],
+      [
+        "R6",
+        "2"
+      ],
+      [
+        "U301",
+        "1"
+      ]
+    ],
+    "/Right Driver/CP": [
+      [
+        "C2",
+        "1"
+      ],
+      [
+        "D2",
+        "2"
+      ],
+      [
+        "U301",
+        "7"
+      ]
+    ],
+    "/Right Driver/FGSEL": [
+      [
+        "R10",
+        "1"
+      ],
+      [
+        "R9",
+        "2"
+      ],
+      [
+        "U301",
+        "24"
+      ]
+    ],
+    "/Right Driver/HALL_U": [
+      [
+        "J301",
+        "2"
+      ],
+      [
+        "R17",
+        "2"
+      ],
+      [
+        "U301",
+        "17"
+      ]
+    ],
+    "/Right Driver/HALL_V": [
+      [
+        "J301",
+        "3"
+      ],
+      [
+        "R18",
+        "2"
+      ],
+      [
+        "U301",
+        "19"
+      ]
+    ],
+    "/Right Driver/HALL_W": [
+      [
+        "J301",
+        "5"
+      ],
+      [
+        "R20",
+        "2"
+      ],
+      [
+        "U301",
+        "21"
+      ]
+    ],
+    "/Right Driver/HNA": [
+      [
+        "C6",
+        "1"
+      ],
+      [
+        "R23",
+        "2"
+      ],
+      [
+        "R24",
+        "1"
+      ],
+      [
+        "U301",
+        "18"
+      ],
+      [
+        "U301",
+        "20"
+      ],
+      [
+        "U301",
+        "22"
+      ]
+    ],
+    "/Right Driver/ILIM": [
+      [
+        "R2",
+        "1"
+      ],
+      [
+        "U301",
+        "3"
+      ]
+    ],
+    "/Right Driver/MODE": [
+      [
+        "R13",
+        "2"
+      ],
+      [
+        "R14",
+        "1"
+      ],
+      [
+        "U301",
+        "23"
+      ]
+    ],
+    "/Right Driver/U": [
+      [
+        "J302",
+        "1"
+      ],
+      [
+        "U301",
+        "10"
+      ]
+    ],
+    "/Right Driver/V": [
+      [
+        "J302",
+        "2"
+      ],
+      [
+        "U301",
+        "11"
+      ]
+    ],
+    "/Right Driver/W": [
+      [
+        "J302",
+        "3"
+      ],
+      [
+        "U301",
+        "12"
+      ]
+    ],
+    "/WAVEARM_PWM_1": [
+      [
+        "J1",
+        "13"
+      ],
+      [
+        "R25",
+        "2"
+      ]
+    ],
+    "/WAVEARM_PWM_2": [
+      [
+        "J1",
+        "15"
+      ],
+      [
+        "R26",
+        "2"
+      ]
+    ],
+    "/~{M1_SLEEP}": [
+      [
+        "J1",
+        "11"
+      ],
+      [
+        "U201",
+        "14"
+      ]
+    ],
+    "/~{M2_SLEEP}": [
+      [
+        "J1",
+        "12"
+      ],
+      [
+        "U301",
+        "14"
+      ]
+    ],
+    "GND": [
+      [
+        "C11",
+        "1"
+      ],
+      [
+        "C12",
+        "1"
+      ],
+      [
+        "C13",
+        "1"
+      ],
+      [
+        "C14",
+        "1"
+      ],
+      [
+        "C3",
+        "2"
+      ],
+      [
+        "C4",
+        "2"
+      ],
+      [
+        "C5",
+        "2"
+      ],
+      [
+        "C6",
+        "2"
+      ],
+      [
+        "J1",
+        "20"
+      ],
+      [
+        "J102",
+        "2"
+      ],
+      [
+        "J2",
+        "MP"
+      ],
+      [
+        "J2",
+        "MP"
+      ],
+      [
+        "J201",
+        "1"
+      ],
+      [
+        "J201",
+        "MP"
+      ],
+      [
+        "J201",
+        "MP"
+      ],
+      [
+        "J3",
+        "MP"
+      ],
+      [
+        "J3",
+        "MP"
+      ],
+      [
+        "J301",
+        "1"
+      ],
+      [
+        "J301",
+        "MP"
+      ],
+      [
+        "J301",
+        "MP"
+      ],
+      [
+        "Q1",
+        "2"
+      ],
+      [
+        "Q2",
+        "2"
+      ],
+      [
+        "R1",
+        "2"
+      ],
+      [
+        "R10",
+        "2"
+      ],
+      [
+        "R12",
+        "2"
+      ],
+      [
+        "R14",
+        "2"
+      ],
+      [
+        "R2",
+        "2"
+      ],
+      [
+        "R22",
+        "2"
+      ],
+      [
+        "R24",
+        "2"
+      ],
+      [
+        "R3",
+        "2"
+      ],
+      [
+        "R37",
+        "2"
+      ],
+      [
+        "R38",
+        "2"
+      ],
+      [
+        "R39",
+        "2"
+      ],
+      [
+        "R4",
+        "2"
+      ],
+      [
+        "R40",
+        "2"
+      ],
+      [
+        "R41",
+        "2"
+      ],
+      [
+        "R42",
+        "2"
+      ],
+      [
+        "R43",
+        "2"
+      ],
+      [
+        "R44",
+        "2"
+      ],
+      [
+        "R45",
+        "2"
+      ],
+      [
+        "R46",
+        "2"
+      ],
+      [
+        "R8",
+        "2"
+      ],
+      [
+        "U201",
+        "16"
+      ],
+      [
+        "U201",
+        "25"
+      ],
+      [
+        "U201",
+        "9"
+      ],
+      [
+        "U301",
+        "16"
+      ],
+      [
+        "U301",
+        "25"
+      ],
+      [
+        "U301",
+        "9"
+      ]
+    ],
+    "Net-(D1-K)": [
+      [
+        "D1",
+        "1"
+      ],
+      [
+        "R37",
+        "1"
+      ]
+    ],
+    "Net-(D10-K)": [
+      [
+        "D10",
+        "1"
+      ],
+      [
+        "R46",
+        "1"
+      ]
+    ],
+    "Net-(D11-A)": [
+      [
+        "D11",
+        "2"
+      ],
+      [
+        "J2",
+        "2"
+      ],
+      [
+        "Q1",
+        "3"
+      ]
+    ],
+    "Net-(D12-A)": [
+      [
+        "D12",
+        "2"
+      ],
+      [
+        "J3",
+        "2"
+      ],
+      [
+        "Q2",
+        "3"
+      ]
+    ],
+    "Net-(D2-K)": [
+      [
+        "D2",
+        "1"
+      ],
+      [
+        "R38",
+        "1"
+      ]
+    ],
+    "Net-(D3-K)": [
+      [
+        "D3",
+        "1"
+      ],
+      [
+        "R39",
+        "1"
+      ]
+    ],
+    "Net-(D4-K)": [
+      [
+        "D4",
+        "1"
+      ],
+      [
+        "R40",
+        "1"
+      ]
+    ],
+    "Net-(D5-K)": [
+      [
+        "D5",
+        "1"
+      ],
+      [
+        "R41",
+        "1"
+      ]
+    ],
+    "Net-(D6-K)": [
+      [
+        "D6",
+        "1"
+      ],
+      [
+        "R42",
+        "1"
+      ]
+    ],
+    "Net-(D7-K)": [
+      [
+        "D7",
+        "1"
+      ],
+      [
+        "R43",
+        "1"
+      ]
+    ],
+    "Net-(D8-K)": [
+      [
+        "D8",
+        "1"
+      ],
+      [
+        "R44",
+        "1"
+      ]
+    ],
+    "Net-(D9-K)": [
+      [
+        "D9",
+        "1"
+      ],
+      [
+        "R45",
+        "1"
+      ]
+    ],
+    "Net-(Q1-G)": [
+      [
+        "Q1",
+        "1"
+      ],
+      [
+        "R25",
+        "1"
+      ]
+    ],
+    "Net-(Q2-G)": [
+      [
+        "Q2",
+        "1"
+      ],
+      [
+        "R26",
+        "1"
+      ]
+    ]
+  },
+  "design_requirements": {
+    "power_rails": [
+      {
+        "net": "+6V",
+        "nominal_v": 6.0,
+        "notes": "Main motor supply rail feeding both TI MCT8314ZH BLDC motor drivers (U201, U301) and auxiliary MOSFETs"
+      },
+      {
+        "net": "+3V3",
+        "nominal_v": 3.3,
+        "notes": "3.3V logic and Hall-sensor/pull-up supply rail from 2x10 board-to-board connector (J1)"
+      },
+      {
+        "net": "/Left Driver/+5V",
+        "nominal_v": 5.0,
+        "notes": "Internal 5V regulator/Hall supply output of left MCT8314ZH driver (U201)"
+      },
+      {
+        "net": "/Right Driver/+5V",
+        "nominal_v": 5.0,
+        "notes": "Internal 5V regulator/Hall supply output of right MCT8314ZH driver (U301)"
+      },
+      {
+        "net": "GND",
+        "nominal_v": 0.0,
+        "notes": "Common ground reference plane"
+      }
+    ],
+    "differential_pairs": [],
+    "high_speed_or_clock_nets": [
+      "/M1_PWM",
+      "/M2_PWM",
+      "/M1_TACHO",
+      "/M2_TACHO",
+      "/WAVEARM_PWM_1",
+      "/WAVEARM_PWM_2",
+      "/Left Driver/HALL_U",
+      "/Left Driver/HALL_V",
+      "/Left Driver/HALL_W",
+      "/Right Driver/HALL_U",
+      "/Right Driver/HALL_V",
+      "/Right Driver/HALL_W"
+    ],
+    "decoupling_guidance": "Place charge-pump (0.22uF), VREG/LDO (2.2uF), and VM bulk/bypass (10uF, 100nF) capacitors tightly adjacent to U201 and U301 (MCT8314ZH), and keep three-phase output traces (U/V/W) short and wide to J202/J302."
+  }
+}

@@ -8,4 +8,6 @@ node_modules/
 bin/micromamba
 *.log
 !artifacts/optimization/runs/**/*.log
+!artifacts/holdouts/**/*.log
+artifacts/holdouts/.run.lock
 .DS_Store

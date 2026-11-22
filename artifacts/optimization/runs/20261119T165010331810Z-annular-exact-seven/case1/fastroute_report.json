@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261119T165010331810Z-annular-exact-seven/case1/board.dsn",
+  "time_s": {"load": 2.2729, "route": 3.4955, "total": 6.7595, "diagnose": null},
+  "stats": {"layers": 4, "components": 46, "nets": 36, "pins": 164, "connections": 82, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 35, "vias_blind": 0, "vias_buried": 0, "traces": 253, "trace_length_mm": 922.6215, "bends_90": 19, "bends_45": 215, "bends_other": 0, "router_score": 1000, "optimizer_score": 636.6018},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

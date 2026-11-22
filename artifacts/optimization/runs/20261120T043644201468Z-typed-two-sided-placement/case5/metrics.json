@@ -1,0 +1,27 @@
+{
+  "values": {
+    "unrouted": 29,
+    "opens": 25,
+    "shorts": 0,
+    "spacing": 0,
+    "via_in_pad": 0,
+    "gerber_failures": 0,
+    "annular_failures": 0,
+    "silk_overlap_mm2": 0.0,
+    "edge_deficit_mm": 0.2,
+    "rf_failures": 0,
+    "mechanical_collisions": 0,
+    "unverified_envelopes": 52,
+    "cap_distance_mm": 8.307,
+    "ground_fill_deficit": 0.07399999999999995,
+    "wirelength_mm": 771.375
+  },
+  "failed_gates": [
+    "copper_edge_ge_050",
+    "independent_lvs_opens_zero",
+    "mechanical_zero_with_verified_envelopes",
+    "unrouted_zero"
+  ],
+  "hard_pass": false,
+  "evidence_errors": []
+}

@@ -1,0 +1,140 @@
+{
+  "scope": "single exposed Case10 diagnostic only",
+  "source_commit": "59fd274",
+  "trial_nice": 15,
+  "baseline_manifest_sha256": "beacfb3d2941f025dd21269099f47a797e7fa03983cd2760c71cf7bb163a669f",
+  "baseline_spec_sha256": "1eb7577a45172208c0b2365ba109639d2da8e536fad991820d589b5eebe39ca6",
+  "pre_route_positions_identical": true,
+  "component_sides_identical": true,
+  "gnd_fanout_identical": true,
+  "dsn_non_library_scopes_identical": {
+    "board.dsn": {
+      "structure": true,
+      "network": true,
+      "placement": true,
+      "wiring": true
+    },
+    "board_freerouting.dsn": {
+      "structure": true,
+      "network": true,
+      "placement": true,
+      "wiring": true
+    }
+  },
+  "before": {
+    "routing_mode": "individual_with_length_tuning",
+    "router_unrouted_items": 4,
+    "legacy_path_length_mm": 1679.9014,
+    "router_vias": 82,
+    "raw_router_spacing_violations": 12,
+    "real_router_spacing_violations": 12,
+    "independent_open_networks": 2,
+    "independent_short_count": 0,
+    "independent_vip_count": 0,
+    "physical_annular_mm": 0.1,
+    "physical_annular_violation_count": 0,
+    "physical_copper_edge_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "physical_min_inter_net_clearance_mm": 0.1317,
+    "physical_silk_overlap_mm2": 0.0,
+    "gerber_layers_passed": 11,
+    "gerber_layer_count": 11,
+    "gnd_pour": {
+      "board_area_mm2": 2180.641,
+      "pour_area_mm2": 1893.761,
+      "fill_ratio": 0.8684,
+      "f_cu_pour_mm2": 1326.928,
+      "b_cu_pour_mm2": 1623.858,
+      "stitching_vias_added": 4,
+      "antipad_cutouts": 107,
+      "is_empty": false,
+      "power_islands": []
+    },
+    "rf_findings": [],
+    "mechanical": {
+      "collision_count": 0
+    },
+    "secondary_status": "completed",
+    "secondary_engine_unrouted_connections": 31,
+    "secondary_engine_spacing_violations": 12,
+    "secondary_disallowed_track_count": 0,
+    "secondary_open_networks": 21,
+    "hard_gates": {
+      "unrouted_zero": false,
+      "router_spacing_zero": false,
+      "independent_lvs_opens_zero": false,
+      "independent_lvs_shorts_zero": true,
+      "nonthermal_via_in_pad_zero": true,
+      "gerber_all_parsed": true,
+      "annular_ring_ge_010": true,
+      "silk_overlap_zero": true,
+      "copper_edge_ge_050": true,
+      "rf_all_four_layers_clear": true,
+      "mechanical_zero_with_verified_envelopes": false
+    }
+  },
+  "after": {
+    "routing_mode": "individual_with_length_tuning",
+    "router_unrouted_items": 4,
+    "legacy_path_length_mm": 1592.3864,
+    "router_vias": 82,
+    "raw_router_spacing_violations": 12,
+    "real_router_spacing_violations": 12,
+    "independent_open_networks": 2,
+    "independent_short_count": 0,
+    "independent_vip_count": 0,
+    "physical_annular_mm": 0.1,
+    "physical_annular_violation_count": 0,
+    "physical_copper_edge_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "physical_min_inter_net_clearance_mm": 0.1317,
+    "physical_silk_overlap_mm2": 0.0,
+    "gerber_layers_passed": 11,
+    "gerber_layer_count": 11,
+    "gnd_pour": {
+      "board_area_mm2": 2180.641,
+      "pour_area_mm2": 1893.698,
+      "fill_ratio": 0.8684,
+      "f_cu_pour_mm2": 1311.703,
+      "b_cu_pour_mm2": 1657.231,
+      "stitching_vias_added": 4,
+      "antipad_cutouts": 107,
+      "is_empty": false,
+      "power_islands": []
+    },
+    "rf_findings": [],
+    "mechanical": {
+      "collision_count": 0
+    },
+    "secondary_status": "completed",
+    "secondary_engine_unrouted_connections": 26,
+    "secondary_engine_spacing_violations": 12,
+    "secondary_disallowed_track_count": 0,
+    "secondary_open_networks": 20,
+    "hard_gates": {
+      "unrouted_zero": false,
+      "router_spacing_zero": false,
+      "independent_lvs_opens_zero": false,
+      "independent_lvs_shorts_zero": true,
+      "nonthermal_via_in_pad_zero": true,
+      "gerber_all_parsed": true,
+      "annular_ring_ge_010": true,
+      "silk_overlap_zero": true,
+      "copper_edge_ge_050": true,
+      "rf_all_four_layers_clear": true,
+      "mechanical_zero_with_verified_envelopes": false
+    }
+  },
+  "worse_metrics": [],
+  "decision": "screen_only_not_eligible_for_full_adoption",
+  "concurrent_production_benchmark": true,
+  "note": "Counts are unfiltered; route runtime shares cgroup CPU at nice +15, so the screen is directional rather than a clean time comparison."
+}
