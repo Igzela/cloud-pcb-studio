@@ -1,0 +1,16 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.003 INFO  parsed 'board.dsn' in 2.8 ms: 4 layers, 117 components, 98 nets, 1 wires
+    0.022 INFO  net class 'DIFF_PAIR_000': no neck-down
+    0.033 INFO  initial session '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case4/board_fastroute.ses': 763 wires and 120 vias imported (0 errors)
+    0.056 WARN  Board has 2 pre-existing clearance violation(s) in the loaded design (2 unfixable).
+    0.059 INFO  60 trace ends inside a pad but off its center joined to the center
+    0.059 INFO  built board in 55.9 ms: 1966 items (562 pins, 120 vias, 819 traces)
+    0.059 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.059 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.059 INFO  routing finished in 0.00 s
+    0.081 WARN  2 clearance violation(s) in the result:
+    0.081 WARN    F.Cu at (23.910, 7.345) mm: clearance 0.050 mm, actual 0.000 mm (pre-existing, unfixable): pin J1 [] / pin J1 []
+    0.081 WARN    F.Cu at (17.410, 7.345) mm: clearance 0.050 mm, actual 0.000 mm (pre-existing, unfixable): pin J1 [] / pin J1 []
+    0.084 INFO  saved '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case4/direct_repair_replay/fixed.ses' (129092 bytes)
+    0.140 INFO  report written to '/home/antigravity/Igzela/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case4/direct_repair_replay/fixed.json'

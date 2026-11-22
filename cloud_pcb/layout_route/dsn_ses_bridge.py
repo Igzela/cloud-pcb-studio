@@ -114,6 +114,75 @@ def _npth_keepout_lines(fp: Any, pad: Any) -> list[str]:
     return [f'    (keepout "" (polygon {layer} 0 {coordinates}))' for layer in COPPER_LAYERS]
 
 
+def _circumscribed_pad_polygon_um(
+    shape_kind: str,
+    sx_mm: float,
+    sy_mm: float,
+    pad_angle_deg: float,
+    roundrect_ratio: float = 0.25,
+    n_quarter: int = 8,
+) -> list[tuple[int, int]]:
+    """Return a CCW integer-micron convex polygon strictly containing a pad in Specctra (Y-up) frame.
+
+    The +1.0 um outward inflation guarantees 0.000000 mm^2 uncovered copper after
+    integer-micron rounding (max 0.707 um quantization error at any rotation angle).
+    """
+    hx = max(float(sx_mm) * 500.0, 50.0)
+    hy = max(float(sy_mm) * 500.0, 50.0)
+    if shape_kind == "oval":
+        r = min(hx, hy)
+    elif shape_kind == "roundrect":
+        ratio = max(0.0, min(0.5, float(roundrect_ratio)))
+        r = 2.0 * min(hx, hy) * ratio
+    else:
+        r = 0.0
+
+    eps = 1.0
+    local_pts: list[tuple[float, float]] = []
+    if r <= 1e-6:
+        local_pts = [
+            (hx + eps, -(hy + eps)),
+            (hx + eps, hy + eps),
+            (-(hx + eps), hy + eps),
+            (-(hx + eps), -(hy + eps)),
+        ]
+    else:
+        ax = max(0.0, hx - r)
+        ay = max(0.0, hy - r)
+        r_eff = r + eps
+        d = (math.pi / 2.0) / n_quarter
+        r_vert = r_eff / math.cos(d / 2.0)
+        quarters = (
+            (ax, ay, 0.0),
+            (-ax, ay, math.pi / 2.0),
+            (-ax, -ay, math.pi),
+            (ax, -ay, 1.5 * math.pi),
+        )
+        for cx, cy, base_ang in quarters:
+            for k in range(n_quarter):
+                ang = base_ang + (k + 0.5) * d
+                local_pts.append((cx + r_vert * math.cos(ang), cy + r_vert * math.sin(ang)))
+
+    rad = math.radians(float(pad_angle_deg))
+    c = math.cos(rad)
+    s = math.sin(rad)
+    out: list[tuple[int, int]] = []
+    for lx, ly in local_pts:
+        wx = round(lx * c - ly * s)
+        wy = round(lx * s + ly * c)
+        if not out or out[-1] != (wx, wy):
+            out.append((wx, wy))
+    if len(out) > 1 and out[0] == out[-1]:
+        out.pop()
+    area2 = sum(
+        x1 * y2 - x2 * y1
+        for (x1, y1), (x2, y2) in zip(out, out[1:] + out[:1])
+    )
+    if area2 < 0:
+        out.reverse()
+    return out
+
+
 def board_to_dsn(
     board: Board,
     dsn_path: Path,
@@ -134,6 +203,8 @@ def board_to_dsn(
     honor_rule_via_geometry: bool = False,
     align_structure_clearance: bool = False,
     physical_ground_plane: dict[str, Any] | None = None,
+    exact_pad_shapes: bool = False,
+    snap_angle: str | None = None,
 ) -> Path:
     """Export a kiutils Board to a Specctra .dsn file.
 
@@ -141,8 +212,10 @@ def board_to_dsn(
     images for footprints without electrical pins, and independent quoting of
     component and pad names in pin references. Callers can also opt into
     honoring the DEFAULT netclass via geometry, aligning the structure-level
-    clearance with the DEFAULT netclass clearance, and exporting a physical
-    In1.Cu ground plane with fixed copper and multi-layer thermal EPAD padstacks.
+    clearance with the DEFAULT netclass clearance, exporting a physical
+    In1.Cu ground plane with fixed copper and multi-layer thermal EPAD padstacks,
+    and emitting strictly-circumscribed polygon padstacks for curved/rotated pads
+    with an explicit Specctra snap_angle.
     """
     x0, y0, x1, y1 = board_bounds_mm
     # fastroute assigns explicit classes after reading per-net rules. Compile
@@ -257,6 +330,11 @@ def board_to_dsn(
 
             shape_kind = pad.shape
             ep_um = thermal_epad_vias.get((ref, pad_num)) if pad.type != "thru_hole" else None
+            use_exact_poly = exact_pad_shapes and (
+                shape_kind in ("oval", "roundrect")
+                or (shape_kind != "circle" and abs(pad_angle % 90.0) > 1e-6)
+            )
+            rr_ratio = float(getattr(pad, "roundrectRatio", None) or 0.25)
             if ep_um is not None:
                 smd_layers = set(layer_list)
                 if shape_kind == "circle":
@@ -266,6 +344,26 @@ def board_to_dsn(
                         for lyr in COPPER_LAYERS:
                             dia = pw_um if lyr in smd_layers else ep_um
                             lines.append(f"      (shape (circle {lyr} {dia}))")
+                        lines.append("      (attach off)")
+                        lines.append("    )")
+                        padstacks[ps_name] = lines
+                elif use_exact_poly:
+                    sx_um = round(float(pad.size.X) * 1000)
+                    sy_um = round(float(pad.size.Y) * 1000)
+                    ang_key = round(pad_angle * 10)
+                    rr_key = round(rr_ratio * 1000) if shape_kind == "roundrect" else 0
+                    ps_name = f"Poly_EPAD_{layer_tag}_{shape_kind}_{sx_um}x{sy_um}_a{ang_key}_r{rr_key}_V{ep_um}_um"
+                    if ps_name not in padstacks:
+                        poly_pts = _circumscribed_pad_polygon_um(
+                            shape_kind, float(pad.size.X), float(pad.size.Y), pad_angle, roundrect_ratio=rr_ratio
+                        )
+                        coords = " ".join(f"{x} {y}" for x, y in poly_pts)
+                        lines = [f"    (padstack {_quote(ps_name)}"]
+                        for lyr in COPPER_LAYERS:
+                            if lyr in smd_layers:
+                                lines.append(f"      (shape (polygon {lyr} 0 {coords}))")
+                            else:
+                                lines.append(f"      (shape (circle {lyr} {ep_um}))")
                         lines.append("      (attach off)")
                         lines.append("    )")
                         padstacks[ps_name] = lines
@@ -289,6 +387,23 @@ def board_to_dsn(
                     lines = [f"    (padstack {_quote(ps_name)}"]
                     for lyr in layer_list:
                         lines.append(f"      (shape (circle {lyr} {pw_um}))")
+                    lines.append("      (attach off)")
+                    lines.append("    )")
+                    padstacks[ps_name] = lines
+            elif use_exact_poly:
+                sx_um = round(float(pad.size.X) * 1000)
+                sy_um = round(float(pad.size.Y) * 1000)
+                ang_key = round(pad_angle * 10)
+                rr_key = round(rr_ratio * 1000) if shape_kind == "roundrect" else 0
+                ps_name = f"Poly_{layer_tag}_{shape_kind}_{sx_um}x{sy_um}_a{ang_key}_r{rr_key}_um"
+                if ps_name not in padstacks:
+                    poly_pts = _circumscribed_pad_polygon_um(
+                        shape_kind, float(pad.size.X), float(pad.size.Y), pad_angle, roundrect_ratio=rr_ratio
+                    )
+                    coords = " ".join(f"{x} {y}" for x, y in poly_pts)
+                    lines = [f"    (padstack {_quote(ps_name)}"]
+                    for lyr in layer_list:
+                        lines.append(f"      (shape (polygon {lyr} 0 {coords}))")
                     lines.append("      (attach off)")
                     lines.append("    )")
                     padstacks[ps_name] = lines
@@ -443,6 +558,12 @@ def board_to_dsn(
         network_lines.append(f"      (rule (width {w_um}) (clearance {clr_um}))")
         network_lines.append("    )")
 
+    snap_angle_lines: list[str] = []
+    if snap_angle is not None:
+        if snap_angle not in ("fortyfive_degree", "ninety_degree", "none"):
+            raise ValueError(f"Unsupported Specctra snap_angle: {snap_angle!r}")
+        snap_angle_lines.append(f"    (snap_angle {snap_angle})")
+
     dsn_lines: list[str] = [
         f'(pcb {_quote(dsn_path.name)}',
         "  (parser",
@@ -476,6 +597,7 @@ def board_to_dsn(
         *keepout_lines,
         *mechanical_keepout_lines,
         f"    (via {_quote(via_name)})",
+        *snap_angle_lines,
         *plane_lines,
         "    (rule",
         "      (width 200)",

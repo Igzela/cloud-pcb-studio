@@ -1118,6 +1118,10 @@ def _add_gnd_fanout_vias(
     dense_escape_repair: bool = False,
     smd_via_clearance: float = 0.08,
     use_smd_bbox_guard: bool = False,
+    register_intersecting_grounded: bool = False,
+    best_bridge_target: bool = False,
+    ic_escape_rings: dict[int, Any] | None = None,
+    ic_escape_penalty: float = 0.0,
 ) -> tuple[set[str], dict[str, list[str]], dict[str, Any]]:
     """Place verified outward SMD GND fanout vias (and interior thermal EPAD vias) to In1.Cu/In2.Cu."""
     gnd_net_obj = _plane_ground_net(board)
@@ -1281,6 +1285,8 @@ def _add_gnd_fanout_vias(
 
         # 0. Already connected via overlapping GND through-hole vias or overlapping GND SMD pad on same footprint
         if any(pg.intersects(gg) for gg in fp_grounded_geoms[fp_idx]):
+            if register_intersecting_grounded:
+                _mark_grounded(fp_idx, pg)
             continue
 
         # 1. Center thermal EPAD on multi-pin IC: place thermal via directly inside EPAD
@@ -1323,6 +1329,7 @@ def _add_gnd_fanout_vias(
 
         # 2. Check if an already-grounded pad/EPAD on the SAME footprint (e.g. QFN center EPAD) is within short bridge reach
         bridged_xy: tuple[float, float] | None = None
+        best_bridge_key: tuple[float, float] | None = None
         for gg in fp_grounded_geoms[fp_idx]:
             d_gg = pg.distance(gg)
             if d_gg <= 0.85:
@@ -1330,11 +1337,18 @@ def _add_gnd_fanout_vias(
                 from shapely.ops import nearest_points
                 _, np_gg = nearest_points(ShpPoint(px, py), gg)
                 bx, by = round(float(np_gg.x), 3), round(float(np_gg.y), 3)
-                if math.hypot(px - bx, py - by) <= 1.25:
+                stub_len = math.hypot(px - bx, py - by)
+                if stub_len <= 1.25:
                     stub = ShpLineString([(px, py), (bx, by)]).buffer(0.095)
-                    if non_gnd_union is None or stub.distance(non_gnd_union) >= 0.150:
-                        bridged_xy = (bx, by)
-                        break
+                    ng_clr = float("inf") if non_gnd_union is None else float(stub.distance(non_gnd_union))
+                    if ng_clr >= 0.150:
+                        if not best_bridge_target:
+                            bridged_xy = (bx, by)
+                            break
+                        bkey = (round(stub_len, 4), -round(ng_clr, 4))
+                        if best_bridge_key is None or bkey < best_bridge_key:
+                            best_bridge_key = bkey
+                            bridged_xy = (bx, by)
         if bridged_xy is not None:
             _mark_grounded(fp_idx, pg)
             board.traceItems.append(
@@ -1411,6 +1425,10 @@ def _add_gnd_fanout_vias(
                 if any(math.hypot(vx - oxv, vy - oyv) < min_via_spacing for oxv, oyv in placed_via_pts):
                     continue
                 channel_cost=dist+(corridor_penalty*full_geom.intersection(channel_corridors).area if channel_corridors is not None else 0)
+                if ic_escape_rings and ic_escape_penalty > 0.0:
+                    for ring_fp_idx, ring_geom in ic_escape_rings.items():
+                        if ring_fp_idx != fp_idx:
+                            channel_cost += ic_escape_penalty * full_geom.intersection(ring_geom).area
                 if channel_cost<best_channel_cost:
                     best_channel_cost=channel_cost
                     chosen_xy = (vx, vy)
@@ -1923,7 +1941,7 @@ def _build_4layer_pours_and_stitching(
         z.netName = gnd_net_name
         z.layers = [lyr]
         z.name = f"GND_{lyr.replace('.', '_')}"
-        z.clearance = 0.22
+        z.clearance = round(min(0.22, inner_antipad_clearance), 3) if lyr in ("In1.Cu", "In2.Cu") else 0.22
         z.minThickness = 0.20
         z.connectPads = "yes"
         z.fillSettings = FillSettings(yes=True, mode="solid", thermalGap=0.30, thermalBridgeWidth=0.35)
@@ -2347,26 +2365,63 @@ def _direct_repair_lvs_improved(
     )
 
 
-def _run_dense_escape_candidate(
+def _build_fine_ic_escape_rings(board: Board, ring_width_mm: float = 2.0) -> dict[int, Any]:
+    """Build outward pin-escape ring geometries around multi-pin fine-pitch ICs."""
+    gnd_net_obj = _plane_ground_net(board)
+    gnd_net_num = int(gnd_net_obj.number) if gnd_net_obj else -1
+    rings: dict[int, Any] = {}
+    for idx, fp in enumerate(board.footprints):
+        smd_pads = [p for p in fp.pads if p.type == "smd" and _is_copper_pad(p)]
+        if len(smd_pads) < 12:
+            continue
+        pts = [(float(p.position.X), float(p.position.Y)) for p in smd_pads]
+        min_pitch = min(
+            (math.hypot(pts[i][0] - pts[j][0], pts[i][1] - pts[j][1])
+             for i in range(len(pts)) for j in range(i + 1, len(pts))),
+            default=99.0,
+        )
+        if min_pitch > 0.55:
+            continue
+        non_gnd_geoms = [
+            _pad_world_polygon_kicad(fp, p)
+            for p in smd_pads
+            if p.net is None or int(p.net.number) != gnd_net_num
+        ]
+        if not non_gnd_geoms:
+            continue
+        all_geoms = [_pad_world_polygon_kicad(fp, p) for p in smd_pads]
+        fp_u = unary_union(all_geoms)
+        fx0, fy0, fx1, fy1 = fp_u.bounds
+        interior = shp_box(fx0, fy0, fx1, fy1)
+        ring = unary_union(non_gnd_geoms).buffer(ring_width_mm).difference(interior)
+        if not ring.is_empty:
+            rings[idx] = ring
+    return rings
+
+
+def _run_dense_escape_pass(
     spec: dict[str, Any],
     placed: dict[str, tuple[float, float, float]],
     board_poly: ShpPolygon,
     corridors: Any,
     pairs_lines: list[str],
     pairs_path: Path,
-    outdir: Path,
+    cand_dir: Path,
+    root_outdir: Path,
     router_processes: list[dict[str, Any]],
+    *,
+    micro_escape: bool = False,
+    skip_coupled_pairs: bool = False,
 ) -> dict[str, Any]:
-    """Run a uniform dense-escape routing candidate using rule-sized vias, octagonal guards,
-    aligned structure clearance, and decoupled differential-pair foreign clearance."""
+    """Execute one dense-escape routing pass (standard or fine-pitch micro-escape)."""
     from copy import deepcopy
     from dataclasses import replace as _replace
     from cloud_pcb.general_solver.direct_repair import propose_direct_repairs
     from cloud_pcb.general_solver.direct_repair_replay import replay_fixed_wires
+    from cloud_pcb.general_solver.exact_geometry_replay import has_non_rectangular_pads, replay_exact_pad_geometry
     from cloud_pcb.general_solver.router_logs import save_router_log
     from cloud_pcb.verify_gate.gerber_drc import audit_general_board, classify_router_violations
 
-    cand_dir = outdir / "dense_escape_candidate"
     if cand_dir.exists():
         shutil.rmtree(cand_dir)
     cand_dir.mkdir(parents=True, exist_ok=True)
@@ -2375,10 +2430,38 @@ def _run_dense_escape_candidate(
     H = float(spec["board_outline_mm"]["height"])
     alt_board, alt_netclasses, alt_net_to_class, alt_keepouts, _ = _build_blind_kicad_board(spec, placed)
     default_rule = alt_netclasses["DEFAULT"]
+    if micro_escape:
+        # 0.42/0.20 mm via preserves 0.110 mm annular ring (>= 0.10 mm DFM gate) while
+        # making 2x0.40 mm skip-1 escape feasible with 100 um neck-down (3.94 mil > 3.5 mil).
+        rails_by_net = {
+            r["net"]: r for r in spec.get("design_requirements", {}).get("power_rails", [])
+        }
+        unrated_power_classes: set[str] = set()
+        for nname, cname in alt_net_to_class.items():
+            if not cname.startswith("POWER"):
+                continue
+            req = rails_by_net.get(nname, {})
+            if (
+                req.get("current_a") is None
+                and req.get("max_current_a") is None
+                and req.get("min_trace_width_mm") is None
+            ):
+                unrated_power_classes.add(cname)
+        for cname, rule in list(alt_netclasses.items()):
+            upd_w = min(rule.trace_width_mm, 0.30) if cname in unrated_power_classes else rule.trace_width_mm
+            alt_netclasses[cname] = _replace(
+                rule,
+                via_pad_mm=min(rule.via_pad_mm, 0.42),
+                via_drill_mm=min(rule.via_drill_mm, 0.20),
+                trace_width_mm=round(upd_w, 3),
+            )
+        default_rule = alt_netclasses["DEFAULT"]
+
     for cname, rule in list(alt_netclasses.items()):
         if cname.startswith("DIFF_PAIR"):
             alt_netclasses[cname] = _replace(rule, clearance_mm=min(rule.clearance_mm, default_rule.clearance_mm))
 
+    ic_rings = _build_fine_ic_escape_rings(alt_board) if micro_escape else None
     alt_skip, alt_override, alt_fanout_stats = _add_gnd_fanout_vias(
         alt_board,
         board_poly,
@@ -2391,6 +2474,10 @@ def _run_dense_escape_candidate(
         dense_escape_repair=True,
         smd_via_clearance=max(0.165, default_rule.clearance_mm + 0.02),
         use_smd_bbox_guard=True,
+        register_intersecting_grounded=micro_escape,
+        best_bridge_target=micro_escape,
+        ic_escape_rings=ic_rings,
+        ic_escape_penalty=4000.0 if micro_escape else 0.0,
     )
     alt_unrouted_path = cand_dir / "board_unrouted.kicad_pcb"
     alt_board.to_file(str(alt_unrouted_path))
@@ -2400,15 +2487,17 @@ def _run_dense_escape_candidate(
         c: ("F.Cu", "B.Cu") if c.startswith("DIFF_PAIR") else ("F.Cu", "In2.Cu", "B.Cu")
         for c in alt_netclasses
     }
-    phys_plane = _build_physical_ground_plane_dsn_spec(alt_board, board_poly, alt_keepouts)
+    dsn_antipad_clr = 0.160 if micro_escape else 0.25
+    pour_antipad_clr = 0.160 if micro_escape else 0.221
+    phys_plane = _build_physical_ground_plane_dsn_spec(
+        alt_board, board_poly, alt_keepouts, inner_antipad_clearance=dsn_antipad_clr
+    )
     dsn_keepouts = (
         [k for k in alt_keepouts if k.get("kind") not in ("fixed_ground_via", "fixed_ground_stub")]
         if phys_plane is not None
         else alt_keepouts
     )
-    board_to_dsn(
-        alt_board,
-        alt_dsn,
+    dsn_export_kwargs: dict[str, Any] = dict(
         netclasses=alt_netclasses,
         net_to_class=alt_net_to_class,
         board_bounds_mm=(0.0, 0.0, W, H),
@@ -2422,6 +2511,7 @@ def _run_dense_escape_candidate(
         align_structure_clearance=True,
         physical_ground_plane=phys_plane,
     )
+    board_to_dsn(alt_board, alt_dsn, **dsn_export_kwargs)
 
     no_neckdown = []
     for cname, rule in alt_netclasses.items():
@@ -2433,51 +2523,66 @@ def _run_dense_escape_candidate(
 
     alt_ses = cand_dir / "board_fastroute.ses"
     alt_rep = cand_dir / "fastroute_report.json"
+    min_trace_um = 100 if micro_escape else 125
+    primary_neck_um = 100 if micro_escape else 160
+    retry_neck_um = 100 if micro_escape else 125
     cmd = [
         "fastroute", "-de", str(alt_dsn), "-do", str(alt_ses),
         f"--report={alt_rep}",
-        "--max-time=110",
-        "--multi-start=2",
+        "--max-time=120" if micro_escape else "--max-time=110",
+        "--multi-start=3" if (micro_escape and skip_coupled_pairs) else "--multi-start=2",
         "--router.autorouter.max_threads=2",
-        "--router.neck_width_um=160",
-        "--router.min_trace_width_um=125",
+        f"--router.neck_width_um={primary_neck_um}",
+        f"--router.min_trace_width_um={min_trace_um}",
         "--layer-heights=0.035,0.245,1.328,1.591",
         "--router.copper_to_edge_clearance_um=500",
     ]
     if no_neckdown:
         cmd.append("--no-neckdown-classes=" + ",".join(no_neckdown))
-    if pairs_lines:
+    if pairs_lines and not skip_coupled_pairs:
         cmd.append(f"--pairs={pairs_path}")
+    elif pairs_lines and skip_coupled_pairs:
+        tune = cand_dir / "pair_tuning.txt"
+        lines = []
+        for i, pair in enumerate(spec["design_requirements"]["differential_pairs"]):
+            lines.extend([f"group pair_{i} tolerance={float(pair.get('max_skew_mm', .2))}", "  " + pair["pos_net"], "  " + pair["neg_net"]])
+        tune.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        cmd.append(f"--tune={tune}")
 
     t0 = time.perf_counter()
     rc = -1
     stdout = stderr = None
     timed_out = False
     try:
-        proc = subprocess.run(cmd, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=150, check=False)
+        proc = subprocess.run(cmd, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=160, check=False)
         rc, stdout, stderr = proc.returncode, proc.stdout, proc.stderr
     except subprocess.TimeoutExpired as exc:
         timed_out = True
         stdout, stderr = exc.stdout, exc.stderr
     runtime_ms = round((time.perf_counter() - t0) * 1000.0, 2)
     rec_primary = save_router_log(cand_dir / "fastroute_primary.log", cmd, rc, stdout, stderr, timed_out=timed_out)
-    rec_primary["log"] = str((cand_dir / "fastroute_primary.log").relative_to(outdir))
+    rec_primary["log"] = str((cand_dir / "fastroute_primary.log").relative_to(root_outdir))
     router_processes.append(rec_primary)
 
     ok = rc == 0 and alt_ses.exists() and alt_rep.exists()
     rep = json.loads(alt_rep.read_text(encoding="utf-8")) if alt_rep.exists() else {}
     stats = rep.get("stats", {})
     spacing = classify_router_violations(rep, spec)
-    mode = "dense_escape_coupled_pairs" if pairs_lines else "dense_escape_standard"
+    prefix = "micro_escape" if micro_escape else "dense_escape"
+    mode = (
+        f"{prefix}_individual"
+        if (pairs_lines and skip_coupled_pairs)
+        else (f"{prefix}_coupled_pairs" if pairs_lines else f"{prefix}_standard")
+    )
     used_cmd = cmd
     candidates_log = [dict(mode=mode, unrouted=stats.get("unrouted"), real_violations=spacing["real_count"])]
 
-    if not ok or stats.get("unrouted", 0) > 0:
+    if (not ok or stats.get("unrouted", 0) > 0) and not (micro_escape and skip_coupled_pairs):
         ind_ses = cand_dir / "board_fastroute_individual.ses"
         ind_rep = cand_dir / "fastroute_individual_report.json"
         ind_cmd = [v for v in cmd if not v.startswith("--pairs=") and not v.startswith("--report=")]
         ind_cmd[ind_cmd.index("-do") + 1] = str(ind_ses)
-        ind_cmd = [v.replace("--router.neck_width_um=160", "--router.neck_width_um=125") for v in ind_cmd]
+        ind_cmd = [v.replace(f"--router.neck_width_um={primary_neck_um}", f"--router.neck_width_um={retry_neck_um}") for v in ind_cmd]
         ind_cmd.append(f"--report={ind_rep}")
         if pairs_lines:
             tune = cand_dir / "pair_tuning.txt"
@@ -2491,20 +2596,20 @@ def _run_dense_escape_candidate(
         ind_stdout = ind_stderr = None
         ind_timed_out = False
         try:
-            ind_proc = subprocess.run(ind_cmd, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=150, check=False)
+            ind_proc = subprocess.run(ind_cmd, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=160, check=False)
             ind_rc, ind_stdout, ind_stderr = ind_proc.returncode, ind_proc.stdout, ind_proc.stderr
         except subprocess.TimeoutExpired as exc:
             ind_timed_out = True
             ind_stdout, ind_stderr = exc.stdout, exc.stderr
         runtime_ms += round((time.perf_counter() - ta) * 1000.0, 2)
         rec_ind = save_router_log(cand_dir / "fastroute_individual.log", ind_cmd, ind_rc, ind_stdout, ind_stderr, timed_out=ind_timed_out)
-        rec_ind["log"] = str((cand_dir / "fastroute_individual.log").relative_to(outdir))
+        rec_ind["log"] = str((cand_dir / "fastroute_individual.log").relative_to(root_outdir))
         router_processes.append(rec_ind)
         if ind_rc == 0 and ind_ses.exists() and ind_rep.exists():
             ind_report = json.loads(ind_rep.read_text(encoding="utf-8"))
             ind_spacing = classify_router_violations(ind_report, spec)
             ind_stats = ind_report.get("stats", {})
-            candidates_log.append(dict(mode="dense_escape_individual", unrouted=ind_stats.get("unrouted"), real_violations=ind_spacing["real_count"]))
+            candidates_log.append(dict(mode=f"{prefix}_individual", unrouted=ind_stats.get("unrouted"), real_violations=ind_spacing["real_count"]))
             def _obj(st, sp):
                 return (sp["real_count"], st.get("unrouted", 999), st.get("trace_length_mm", float("inf")))
             if not ok or _obj(ind_stats, ind_spacing) < _obj(stats, spacing):
@@ -2515,16 +2620,17 @@ def _run_dense_escape_candidate(
                 shutil.copyfile(ind_ses, alt_ses)
                 shutil.copyfile(ind_rep, alt_rep)
                 rep, stats, spacing, rc, ok = ind_report, ind_stats, ind_spacing, ind_rc, True
-                mode = "dense_escape_individual"
+                mode = f"{prefix}_individual"
                 used_cmd = ind_cmd
 
     if not ok:
-        return {"ok": False, "runtime_ms": runtime_ms, "candidates_log": candidates_log, "error": f"dense_escape fastroute rc={rc}"}
+        return {"ok": False, "runtime_ms": runtime_ms, "candidates_log": candidates_log, "error": f"{prefix} fastroute rc={rc}"}
 
     alt_routed = Board.from_file(str(alt_unrouted_path))
     alt_routed, _ = merge_ses_into_board(alt_routed, alt_ses)
     alt_direct_evidence: dict[str, Any] = {"status": "no_eligible_link"}
     alt_repairs = []
+    accepted_repairs: list[Any] | None = None
     if stats.get("unrouted", 0) > 0:
         alt_repairs = propose_direct_repairs(
             alt_routed, board_poly, alt_keepouts, alt_netclasses, alt_net_to_class,
@@ -2535,7 +2641,7 @@ def _run_dense_escape_candidate(
         cand_board_dr = deepcopy(alt_routed)
     alt_islands = power_islands(alt_routed, board_poly, spec, alt_keepouts)
     alt_pours, alt_pour_stats = _build_4layer_pours_and_stitching(
-        alt_routed, board_poly, keepouts=alt_keepouts, islands=alt_islands, inner_antipad_clearance=0.221
+        alt_routed, board_poly, keepouts=alt_keepouts, islands=alt_islands, inner_antipad_clearance=pour_antipad_clr
     )
     extra_len = 0.0
     if alt_repairs:
@@ -2558,7 +2664,7 @@ def _run_dense_escape_candidate(
                 ))
             dr_islands = power_islands(cand_board_dr, board_poly, spec, alt_keepouts)
             dr_pours, dr_pour_stats = _build_4layer_pours_and_stitching(
-                cand_board_dr, board_poly, keepouts=alt_keepouts, islands=dr_islands, inner_antipad_clearance=0.221
+                cand_board_dr, board_poly, keepouts=alt_keepouts, islands=dr_islands, inner_antipad_clearance=pour_antipad_clr
             )
             before_dr = audit_general_board(alt_routed, spec, placed, alt_keepouts)
             after_dr = audit_general_board(cand_board_dr, spec, placed, alt_keepouts)
@@ -2579,7 +2685,55 @@ def _run_dense_escape_candidate(
             )
             rep, stats, spacing = validated_rep, validated_rep["stats"], validated_sp
             extra_len = sum(math.dist(r.start_xy, r.end_xy) for r in alt_repairs)
+            accepted_repairs = alt_repairs
         runtime_ms += round((time.perf_counter() - replay_start) * 1000.0, 2)
+
+    exact_geometry_evidence: dict[str, Any] | None = None
+    if (
+        spacing["real_count"] > 0
+        and any(v.get("unfixable") for v in rep.get("clearance_violations", []))
+        and has_non_rectangular_pads(alt_board)
+    ):
+        eg_start = time.perf_counter()
+        control_dsn = (
+            cand_dir / "direct_repair_replay/fixed.dsn"
+            if accepted_repairs
+            else alt_dsn
+        )
+        try:
+            exact_rep = replay_exact_pad_geometry(
+                alt_board,
+                control_dsn,
+                alt_ses,
+                rep,
+                used_cmd,
+                PROJECT_ROOT,
+                cand_dir,
+                router_processes,
+                dsn_export_kwargs=dsn_export_kwargs,
+                repairs=accepted_repairs,
+            )
+            exact_sp = classify_router_violations(exact_rep, spec)
+            if exact_sp["real_count"] < spacing["real_count"]:
+                shutil.copyfile(alt_rep, cand_dir / "fastroute_45deg_report.json")
+                shutil.copyfile(cand_dir / "exact_geometry_replay/exact.json", alt_rep)
+                exact_geometry_evidence = {
+                    "status": "accepted",
+                    "original_real_spacing": spacing["real_count"],
+                    "verified_real_spacing": exact_sp["real_count"],
+                    "original_raw_violations": stats.get("violations"),
+                    "verified_raw_violations": exact_rep["stats"].get("violations"),
+                }
+                rep, stats, spacing = exact_rep, exact_rep["stats"], exact_sp
+            else:
+                exact_geometry_evidence = {
+                    "status": "unchanged",
+                    "original_real_spacing": spacing["real_count"],
+                    "verified_real_spacing": exact_sp["real_count"],
+                }
+        except (OSError, ValueError, KeyError, IndexError) as exc:
+            exact_geometry_evidence = {"status": "rejected", "error": str(exc)}
+        runtime_ms += round((time.perf_counter() - eg_start) * 1000.0, 2)
 
     cand_gerber_dir = cand_dir / "gerbers"
     _export_blind_gerbers(alt_routed, board_poly, alt_pours, H, cand_gerber_dir)
@@ -2606,6 +2760,7 @@ def _run_dense_escape_candidate(
         "spacing": spacing,
         "route_mode": mode,
         "direct_evidence": alt_direct_evidence,
+        "exact_geometry_evidence": exact_geometry_evidence,
         "extra_len": extra_len,
         "runtime_ms": runtime_ms,
         "candidates_log": candidates_log,
@@ -2613,6 +2768,80 @@ def _run_dense_escape_candidate(
         "independent": cand_independent,
         "physical_ground_plane_used": phys_plane is not None,
     }
+
+
+def _run_dense_escape_candidate(
+    spec: dict[str, Any],
+    placed: dict[str, tuple[float, float, float]],
+    board_poly: ShpPolygon,
+    corridors: Any,
+    pairs_lines: list[str],
+    pairs_path: Path,
+    outdir: Path,
+    router_processes: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Run a uniform dense-escape routing candidate using rule-sized vias, octagonal guards,
+    aligned structure clearance, decoupled differential-pair foreign clearance, conservative
+    exact-pad-geometry verification, and fine-pitch micro-escape escalation when opens remain."""
+    cand_dir = outdir / "dense_escape_candidate"
+    pass1 = _run_dense_escape_pass(
+        spec, placed, board_poly, corridors, pairs_lines, pairs_path,
+        cand_dir, outdir, router_processes, micro_escape=False,
+    )
+    if not pass1.get("ok"):
+        return pass1
+
+    min_gaps = _compute_min_pad_gap_by_class(spec, pass1["net_to_class"])
+    is_ultra_fine = min(min_gaps.values(), default=0.25) <= 0.22
+    if pass1["fr_stats"].get("unrouted", 0) > 0 and is_ultra_fine:
+        micro_dir = cand_dir / "micro_escape"
+        pass2 = _run_dense_escape_pass(
+            spec, placed, board_poly, corridors, pairs_lines, pairs_path,
+            micro_dir, outdir, router_processes,
+            micro_escape=True,
+            skip_coupled_pairs=(pass1["route_mode"] == "dense_escape_individual"),
+        )
+        pass1["candidates_log"].extend(pass2.get("candidates_log", []))
+        if pass2.get("ok"):
+            def _edge_deficit(margins: dict[str, float]) -> float:
+                if len(margins) < 4:
+                    return 0.50
+                return max((max(0.0, 0.50 - float(v)) for v in margins.values()), default=0.0)
+
+            def _rf_fail_count(ind_audit: dict[str, Any]) -> int:
+                return sum(1 for item in ind_audit.get("rf_keepout", []) if not item.get("passed"))
+
+            def _rank(res: dict[str, Any]) -> tuple[int, int, int, int]:
+                ind = res["independent"]
+                return (
+                    int(res["spacing"]["real_count"]),
+                    len(ind["lvs_opens"]),
+                    _open_island_excess(ind["lvs_opens"]),
+                    int(res["fr_stats"].get("unrouted", 999)),
+                )
+
+            p1_ind, p2_ind = pass1["independent"], pass2["independent"]
+            p1_aud, p2_aud = pass1["audit"], pass2["audit"]
+            p1_fill_def = max(0.0, 0.85 - float(pass1["pour_stats"]["fill_ratio"]))
+            p2_fill_def = max(0.0, 0.85 - float(pass2["pour_stats"]["fill_ratio"]))
+            p2_non_regressing = (
+                len(p2_ind["lvs_shorts"]) <= len(p1_ind["lvs_shorts"])
+                and len(p2_ind["via_in_pad_violations"]) <= len(p1_ind["via_in_pad_violations"])
+                and int(pass2["spacing"]["real_count"]) <= int(pass1["spacing"]["real_count"])
+                and _rf_fail_count(p2_ind) <= _rf_fail_count(p1_ind)
+                and int(p2_aud["annular_ring_violations"]) <= int(p1_aud["annular_ring_violations"])
+                and (not p1_aud["pygerber_all_ok"] or bool(p2_aud["pygerber_all_ok"]))
+                and float(p2_aud["silk_to_mask_overlap_mm2"]) <= float(p1_aud["silk_to_mask_overlap_mm2"]) + 1e-8
+                and _edge_deficit(p2_aud["copper_edge_margins_mm"]) <= _edge_deficit(p1_aud["copper_edge_margins_mm"]) + 1e-8
+                and p2_fill_def <= p1_fill_def + 1e-8
+            )
+            p2_improves = _rank(pass2) < _rank(pass1) or p2_fill_def < p1_fill_def - 1e-8
+            if p2_non_regressing and p2_improves:
+                pass2["runtime_ms"] = round(pass1["runtime_ms"] + pass2["runtime_ms"], 2)
+                pass2["candidates_log"] = pass1["candidates_log"]
+                return pass2
+        pass1["runtime_ms"] = round(pass1["runtime_ms"] + pass2.get("runtime_ms", 0.0), 2)
+    return pass1
 
 
 def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False, freerouting_jvm: bool = False, direct_repair: bool = False, placement_recovery: bool = False, two_sided_recovery: bool = False, dense_escape_repair: bool = False) -> dict[str, Any]:
@@ -3109,6 +3338,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
                 "non_regressing": non_regressing,
                 "candidate_route_mode": cand["route_mode"],
                 "candidate_direct_repair": cand["direct_evidence"],
+                "candidate_exact_geometry": cand.get("exact_geometry_evidence"),
                 "physical_ground_plane_used": bool(cand.get("physical_ground_plane_used")),
             }
             if non_regressing and cand_key < inc_key:
@@ -3131,6 +3361,9 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
                 shutil.copyfile(cand["dsn_path"], dsn_path)
                 shutil.copyfile(cand["ses_path"], fr_ses)
                 shutil.copyfile(cand["rep_path"], fr_rep_path)
+                deg45_rep = cand["cand_dir"] / "fastroute_45deg_report.json"
+                if deg45_rep.exists():
+                    shutil.copyfile(deg45_rep, outdir / "fastroute_45deg_report.json")
                 cand_ses_info = parse_ses(fr_ses)
                 fr_bench = RoutingBenchmark(
                     engine="fastroute_v0.1.14",

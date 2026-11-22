@@ -1,10 +1,10 @@
 {
   "status": "baseline_diagnosed",
-  "created_at": "2026-11-21T12:20:50.999471+00:00",
+  "created_at": "2026-11-22T14:32:37.974996+00:00",
   "baseline": {
     "format": "optimization_round",
-    "manifest": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/manifest.json",
-    "sha256": "7113aac2ed77fa71917c78b50873ae64fdff0a4afcb0d50d8f60fc64920b360a"
+    "manifest": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/manifest.json",
+    "sha256": "7309e96543ef15e2d5c2fa1afe3e53f37665e7d9bbe80f76fa3940542f46c418"
   },
   "measurements": {
     "case1": {
@@ -106,8 +106,8 @@
     },
     "case5": {
       "values": {
-        "unrouted": 5,
-        "opens": 5,
+        "unrouted": 1,
+        "opens": 1,
         "shorts": 0,
         "spacing": 0,
         "via_in_pad": 0,
@@ -119,8 +119,8 @@
         "mechanical_collisions": 0,
         "unverified_envelopes": 52,
         "cap_distance_mm": 6.884,
-        "ground_fill_deficit": 0.08689999999999998,
-        "wirelength_mm": 966.792
+        "ground_fill_deficit": 0.06140000000000001,
+        "wirelength_mm": 986.125
       },
       "failed_gates": [
         "copper_edge_ge_050",
@@ -136,7 +136,7 @@
         "unrouted": 0,
         "opens": 0,
         "shorts": 0,
-        "spacing": 4,
+        "spacing": 0,
         "via_in_pad": 0,
         "gerber_failures": 0,
         "annular_failures": 0,
@@ -150,8 +150,7 @@
         "wirelength_mm": 1618.22
       },
       "failed_gates": [
-        "mechanical_zero_with_verified_envelopes",
-        "router_spacing_zero"
+        "mechanical_zero_with_verified_envelopes"
       ],
       "hard_pass": false,
       "evidence_errors": []
@@ -184,31 +183,31 @@
   "case_details": {
     "case1": {
       "ground_fill_ratio": 0.8649,
-      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case1"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case1"
     },
     "case2": {
       "ground_fill_ratio": 0.9154,
-      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case2"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case2"
     },
     "case3": {
       "ground_fill_ratio": 0.8983,
-      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case3"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case3"
     },
     "case4": {
       "ground_fill_ratio": 0.9404,
-      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case4"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case4"
     },
     "case5": {
-      "ground_fill_ratio": 0.7631,
-      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case5"
+      "ground_fill_ratio": 0.7886,
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5"
     },
     "case10": {
       "ground_fill_ratio": 0.8762,
-      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case10"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case10"
     },
     "case11": {
       "ground_fill_ratio": 0.904,
-      "artifact_directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/case11"
+      "artifact_directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case11"
     }
   },
   "tasks": [
@@ -654,96 +653,18 @@
       "kind": "solver",
       "title": "按独立 LVS 断开组诊断布线拥塞",
       "evidence": {
-        "unrouted": 5,
+        "unrouted": 1,
         "opens": [
           {
-            "net": "/U3TX_P",
+            "net": "Net-(U3-DVDD10_UPS)",
             "components": 2,
             "pad_count": 2,
             "pad_groups": {
               "1": [
-                "C1-1"
+                "C22-1"
               ],
               "0": [
-                "U3-18"
-              ]
-            }
-          },
-          {
-            "net": "/V12",
-            "components": 2,
-            "pad_count": 19,
-            "pad_groups": {
-              "0": [
-                "C16-2",
-                "C17-1",
-                "C18-2",
-                "C19-2",
-                "C20-2",
-                "C21-2",
-                "C24-2",
-                "C25-2",
-                "C26-2",
-                "L1-2",
-                "R15-1",
-                "U3-4",
-                "U3-9",
-                "U3-13",
-                "U3-20",
-                "U3-24",
-                "U3-31",
-                "U3-46"
-              ],
-              "4": [
-                "U3-42"
-              ]
-            }
-          },
-          {
-            "net": "/M0_P",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "0": [
-                "LAN1-1",
-                "LAN1-1",
-                "LAN1-1",
-                "LAN1-1"
-              ],
-              "1": [
-                "U3-2"
-              ]
-            }
-          },
-          {
-            "net": "/M2_P",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "1": [
-                "LAN1-7",
-                "LAN1-7",
-                "LAN1-7",
-                "LAN1-7"
-              ],
-              "0": [
-                "U3-7"
-              ]
-            }
-          },
-          {
-            "net": "/M3_N",
-            "components": 2,
-            "pad_count": 2,
-            "pad_groups": {
-              "1": [
-                "LAN1-10",
-                "LAN1-10",
-                "LAN1-10",
-                "LAN1-10"
-              ],
-              "0": [
-                "U3-11"
+                "U3-27"
               ]
             }
           }
@@ -767,6 +688,11 @@
           {
             "mode": "dense_escape_individual",
             "unrouted": 5,
+            "real_violations": 0
+          },
+          {
+            "mode": "micro_escape_individual",
+            "unrouted": 1,
             "real_violations": 0
           }
         ]
@@ -861,20 +787,8 @@
       "kind": "solver",
       "title": "改善地参考完整性",
       "evidence": {
-        "deficit": 0.08689999999999998,
+        "deficit": 0.06140000000000001,
         "target": 0.85
-      }
-    },
-    {
-      "id": "451ebff6978b",
-      "case": "case10",
-      "category": "spacing",
-      "priority": 0,
-      "kind": "solver",
-      "title": "修复路由间距违例",
-      "evidence": {
-        "metric": "spacing",
-        "value": 4
       }
     },
     {
@@ -1095,7 +1009,7 @@
     "reason": "diagnosis only"
   },
   "last_round": {
-    "directory": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge",
+    "directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape",
     "promoted": true,
     "recorded_status": "complete",
     "integrity": "verified"

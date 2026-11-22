@@ -1,0 +1,469 @@
+{
+  "runtime": {
+    "engine": "freerouting_jvm",
+    "version": "2.5.0",
+    "jar_url": "https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar",
+    "jar_sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+    "java_executable": "/home/antigravity/Igzela/cloud-pcb-studio/.run/tools/freerouting/jdk-25.0.5+8-jre/bin/java",
+    "java_version": [
+      "openjdk version \"25.0.5\" 2026-10-20 LTS",
+      "OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)",
+      "OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)"
+    ],
+    "java_files_sha256": {
+      "bin/java": "2c6758fcd55b51cd3b8012ebe712504f722a8a0bbb6209b0fccff25960cd41e9",
+      "release": "fcb8d304ab7efdb8d0d051f996884b58c4009677ef78278011774daf6b62b38d",
+      "lib/modules": "a1ab6761272ffbdce7d83e941a1721d082934a6f9230b1544b8893adb8e8d02d",
+      "lib/server/libjvm.so": "24946c6c30cc5490c441f9a78e0222925de297b50cba306607f1a6bead24fcb3",
+      "lib/libjava.so": "55a5f14cc3d85ba84de3cca3b3eba732fc8229c23d5cfcbe391361282da41119",
+      "lib/libjli.so": "cb175105fb31ca6f9a5e5f338ca297d36b63fd2982e504d67596f0156d877dca",
+      "conf/security/java.security": "d8583f3389218221f85f4ef2fd440ccb17aa44f0b3f189d08bbba8bf31983cfd"
+    }
+  },
+  "status": "completed",
+  "engine_unrouted_connections": 24,
+  "engine_clearance_violations": 0,
+  "independent_4layer": {
+    "lvs_opens": [
+      {
+        "net": "/Left Driver/CP",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "2": [
+            "C1-1",
+            "D1-2"
+          ],
+          "1": [
+            "U201-7"
+          ]
+        }
+      },
+      {
+        "net": "/Left Driver/+5V",
+        "components": 2,
+        "pad_count": 10,
+        "pad_groups": {
+          "0": [
+            "C3-1",
+            "J201-4",
+            "R11-1",
+            "R15-1",
+            "R16-1",
+            "R19-1",
+            "R21-1",
+            "R5-1",
+            "R7-1"
+          ],
+          "1": [
+            "U201-15"
+          ]
+        }
+      },
+      {
+        "net": "/Right Driver/+5V",
+        "components": 3,
+        "pad_count": 10,
+        "pad_groups": {
+          "0": [
+            "C4-1",
+            "R23-1",
+            "R6-1"
+          ],
+          "1": [
+            "J301-4",
+            "R13-1",
+            "R17-1",
+            "R18-1",
+            "R20-1",
+            "R9-1"
+          ],
+          "3": [
+            "U301-15"
+          ]
+        }
+      },
+      {
+        "net": "/Left Driver/HNA",
+        "components": 3,
+        "pad_count": 6,
+        "pad_groups": {
+          "1": [
+            "C5-1",
+            "R21-2",
+            "R22-1",
+            "U201-20"
+          ],
+          "3": [
+            "U201-18"
+          ],
+          "2": [
+            "U201-22"
+          ]
+        }
+      },
+      {
+        "net": "/Right Driver/HNA",
+        "components": 3,
+        "pad_count": 6,
+        "pad_groups": {
+          "1": [
+            "C6-1",
+            "R23-2",
+            "R24-1",
+            "U301-22"
+          ],
+          "0": [
+            "U301-18"
+          ],
+          "2": [
+            "U301-20"
+          ]
+        }
+      },
+      {
+        "net": "/M1_DIR",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "D5-2",
+            "J1-3",
+            "J1-3",
+            "J1-3",
+            "J1-3"
+          ],
+          "0": [
+            "U201-2"
+          ]
+        }
+      },
+      {
+        "net": "/M2_DIR",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "D6-2",
+            "J1-4",
+            "J1-4",
+            "J1-4",
+            "J1-4"
+          ],
+          "0": [
+            "U301-2"
+          ]
+        }
+      },
+      {
+        "net": "/M1_PWM",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "D7-2",
+            "U201-5"
+          ],
+          "2": [
+            "J1-5",
+            "J1-5",
+            "J1-5",
+            "J1-5"
+          ]
+        }
+      },
+      {
+        "net": "/M2_PWM",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "D8-2",
+            "J1-6",
+            "J1-6",
+            "J1-6",
+            "J1-6"
+          ],
+          "1": [
+            "U301-5"
+          ]
+        }
+      },
+      {
+        "net": "/M1_FAULT",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "J1-7",
+            "J1-7",
+            "J1-7",
+            "J1-7",
+            "R35-2"
+          ],
+          "1": [
+            "U201-13"
+          ]
+        }
+      },
+      {
+        "net": "/M2_FAULT",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "J1-8",
+            "J1-8",
+            "J1-8",
+            "J1-8",
+            "R36-2"
+          ],
+          "1": [
+            "U301-13"
+          ]
+        }
+      },
+      {
+        "net": "/M1_TACHO",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "J1-9",
+            "J1-9",
+            "J1-9",
+            "J1-9",
+            "R33-2"
+          ],
+          "2": [
+            "U201-6"
+          ]
+        }
+      },
+      {
+        "net": "/~{M2_SLEEP}",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "0": [
+            "J1-12",
+            "J1-12",
+            "J1-12",
+            "J1-12"
+          ],
+          "1": [
+            "U301-14"
+          ]
+        }
+      },
+      {
+        "net": "/Left Driver/W",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "0": [
+            "J202-3",
+            "J202-3",
+            "J202-3",
+            "J202-3"
+          ],
+          "1": [
+            "U201-12"
+          ]
+        }
+      },
+      {
+        "net": "/Right Driver/U",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "J302-1",
+            "J302-1",
+            "J302-1",
+            "J302-1"
+          ],
+          "0": [
+            "U301-10"
+          ]
+        }
+      },
+      {
+        "net": "/Right Driver/V",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "J302-2",
+            "J302-2",
+            "J302-2",
+            "J302-2"
+          ],
+          "0": [
+            "U301-11"
+          ]
+        }
+      },
+      {
+        "net": "/Right Driver/W",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "J302-3",
+            "J302-3",
+            "J302-3",
+            "J302-3"
+          ],
+          "0": [
+            "U301-12"
+          ]
+        }
+      },
+      {
+        "net": "/Right Driver/FGSEL",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "R10-1",
+            "R9-2"
+          ],
+          "1": [
+            "U301-24"
+          ]
+        }
+      },
+      {
+        "net": "/Right Driver/MODE",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "R13-2",
+            "R14-1"
+          ],
+          "0": [
+            "U301-23"
+          ]
+        }
+      },
+      {
+        "net": "/Left Driver/ADVANCE",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "R3-1",
+            "R5-2"
+          ],
+          "0": [
+            "U201-1"
+          ]
+        }
+      },
+      {
+        "net": "/Right Driver/ADVANCE",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "R4-1",
+            "R6-2"
+          ],
+          "1": [
+            "U301-1"
+          ]
+        }
+      }
+    ],
+    "lvs_shorts": [],
+    "rf_keepout": [],
+    "via_in_pad_violations": [],
+    "mechanical": {
+      "collision_count": 0,
+      "collisions": [],
+      "unverified_envelopes": [
+        "C1",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "D1",
+        "D10",
+        "D11",
+        "D12",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "J1",
+        "J102",
+        "J2",
+        "J201",
+        "J202",
+        "J3",
+        "J301",
+        "J302",
+        "Q1",
+        "Q2",
+        "R1",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R18",
+        "R19",
+        "R2",
+        "R20",
+        "R21",
+        "R22",
+        "R23",
+        "R24",
+        "R25",
+        "R26",
+        "R3",
+        "R33",
+        "R34",
+        "R35",
+        "R36",
+        "R37",
+        "R38",
+        "R39",
+        "R4",
+        "R40",
+        "R41",
+        "R42",
+        "R43",
+        "R44",
+        "R45",
+        "R46",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "U201",
+        "U301"
+      ],
+      "all_envelopes_verified": false,
+      "passed": false
+    },
+    "passed": false
+  },
+  "disallowed_track_count": 0,
+  "disallowed_net_layers": []
+}

@@ -181,3 +181,152 @@ def test_inner_antipad_clearance_aligns_in1_pour_cutout_area():
     _, stats_25 = _build_4layer_pours_and_stitching(board, box(0, 0, 20, 20), inner_antipad_clearance=0.25)
     _, stats_221 = _build_4layer_pours_and_stitching(board, box(0, 0, 20, 20), inner_antipad_clearance=0.221)
     assert stats_221["pour_area_mm2"] > stats_25["pour_area_mm2"]
+
+
+def test_intersecting_smd_epad_registers_and_bridges_peripheral_gnd_inward():
+    from kiutils.items.brditems import Segment, Via
+    from kiutils.items.fpitems import FpText
+    from shapely.geometry import box
+
+    from cloud_pcb.general_solver.run_blind import _add_gnd_fanout_vias
+
+    board = Board.create_new()
+    board.nets = [Net(0, ""), Net(1, "GND"), Net(2, "SIG")]
+    fp = Footprint()
+    fp.entryName = "QFN_EPAD"
+    fp.layer = "F.Cu"
+    fp.position = Position(X=15.0, Y=15.0, angle=0.0)
+    fp.properties = {"Reference": "U1"}
+    fp.graphicItems.append(FpText(type="reference", text="U1", position=Position(X=0, Y=0)))
+    # TH thermal via inside center EPAD (offset slightly from center), plus large 4.5x4.5 SMD EPAD
+    th = Pad()
+    th.number = "49"
+    th.type = "thru_hole"
+    th.shape = "circle"
+    th.position = Position(X=-1.4, Y=-1.4, angle=0.0)
+    th.size = Position(X=0.6, Y=0.6)
+    th.layers = ["*.Cu"]
+    th.net = Net(1, "GND")
+    epad = Pad()
+    epad.number = "49"
+    epad.type = "smd"
+    epad.shape = "rect"
+    epad.position = Position(X=0.0, Y=0.0, angle=0.0)
+    epad.size = Position(X=4.5, Y=4.5)
+    epad.layers = ["F.Cu"]
+    epad.net = Net(1, "GND")
+    # Peripheral GND pin at bottom edge (x=0, y=2.95) flanked by signal pins at x=-0.4 and x=+0.4
+    p_gnd = Pad()
+    p_gnd.number = "16"
+    p_gnd.type = "smd"
+    p_gnd.shape = "rect"
+    p_gnd.position = Position(X=0.0, Y=2.95, angle=0.0)
+    p_gnd.size = Position(X=0.20, Y=0.90)
+    p_gnd.layers = ["F.Cu"]
+    p_gnd.net = Net(1, "GND")
+    pads = [th, epad, p_gnd]
+    for idx, xoff in enumerate((-0.8, -0.4, 0.4, 0.8), start=1):
+        sp = Pad()
+        sp.number = str(idx)
+        sp.type = "smd"
+        sp.shape = "rect"
+        sp.position = Position(X=xoff, Y=2.95, angle=0.0)
+        sp.size = Position(X=0.20, Y=0.90)
+        sp.layers = ["F.Cu"]
+        sp.net = Net(2, "SIG")
+        pads.append(sp)
+    fp.pads = pads
+    board.footprints.append(fp)
+
+    keepouts: list[dict] = []
+    _add_gnd_fanout_vias(
+        board,
+        box(0, 0, 30, 30),
+        keepouts,
+        dense_escape_repair=True,
+        register_intersecting_grounded=True,
+        best_bridge_target=True,
+        via_pad_d=0.42,
+        via_drill_d=0.20,
+    )
+    # Peripheral GND pin must bridge straight inward (y < 17.95) with ZERO outward fanout vias added
+    vias = [t for t in board.traceItems if isinstance(t, Via)]
+    segs = [t for t in board.traceItems if isinstance(t, Segment)]
+    assert len(vias) == 0
+    assert len(segs) == 1
+    assert segs[0].end.Y < segs[0].start.Y
+
+
+def test_passive_gnd_fanout_avoids_adjacent_fine_ic_escape_ring():
+    from kiutils.items.brditems import Via
+    from kiutils.items.fpitems import FpText
+    from shapely.geometry import box
+
+    from cloud_pcb.general_solver.run_blind import _add_gnd_fanout_vias, _build_fine_ic_escape_rings
+
+    board = Board.create_new()
+    board.nets = [Net(0, ""), Net(1, "GND"), Net(2, "SIG")]
+
+    # Fine-pitch IC centered at (20, 10) with 12 pins on its left edge (x=17.5)
+    ic = Footprint()
+    ic.entryName = "QFN_FINE"
+    ic.layer = "F.Cu"
+    ic.position = Position(X=20.0, Y=10.0, angle=0.0)
+    ic.properties = {"Reference": "U1"}
+    ic.graphicItems.append(FpText(type="reference", text="U1", position=Position(X=0, Y=0)))
+    for i in range(12):
+        p = Pad()
+        p.number = str(i + 1)
+        p.type = "smd"
+        p.shape = "rect"
+        p.position = Position(X=-2.5, Y=-2.2 + 0.4 * i, angle=0.0)
+        p.size = Position(X=0.8, Y=0.2)
+        p.layers = ["F.Cu"]
+        p.net = Net(2, "SIG")
+        ic.pads.append(p)
+    board.footprints.append(ic)
+
+    # Passive capacitor placed just left of IC at (15.5, 10.0) with GND pad at top
+    cap = Footprint()
+    cap.entryName = "C_0402"
+    cap.layer = "F.Cu"
+    cap.position = Position(X=15.5, Y=10.0, angle=0.0)
+    cap.properties = {"Reference": "C1"}
+    cap.graphicItems.append(FpText(type="reference", text="C1", position=Position(X=0, Y=0)))
+    p1 = Pad()
+    p1.number = "1"
+    p1.type = "smd"
+    p1.shape = "rect"
+    p1.position = Position(X=0.0, Y=-0.5, angle=0.0)
+    p1.size = Position(X=0.6, Y=0.6)
+    p1.layers = ["F.Cu"]
+    p1.net = Net(1, "GND")
+    p2 = Pad()
+    p2.number = "2"
+    p2.type = "smd"
+    p2.shape = "rect"
+    p2.position = Position(X=0.0, Y=0.5, angle=0.0)
+    p2.size = Position(X=0.6, Y=0.6)
+    p2.layers = ["F.Cu"]
+    p2.net = Net(2, "SIG")
+    cap.pads = [p1, p2]
+    board.footprints.append(cap)
+
+    rings = _build_fine_ic_escape_rings(board)
+    assert 0 in rings
+    keepouts: list[dict] = []
+    _add_gnd_fanout_vias(
+        board,
+        box(0, 0, 30, 20),
+        keepouts,
+        dense_escape_repair=True,
+        via_pad_d=0.42,
+        via_drill_d=0.20,
+        ic_escape_rings=rings,
+        ic_escape_penalty=4000.0,
+    )
+    vias = [t for t in board.traceItems if isinstance(t, Via)]
+    assert len(vias) == 1
+    # Via must move away from the IC (x <= 15.5), never toward the IC escape strip (x > 15.5)
+    assert vias[0].position.X <= 15.5 + 1e-3
+

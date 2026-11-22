@@ -1,0 +1,362 @@
+{
+  "project": "holdout_case10",
+  "total_placed": 84,
+  "gnd_fanout_stats": {
+    "fanout_vias_added": 35,
+    "gnd_smd_pads_total": 55,
+    "unvia_gnd_pins": [
+      "C5-2",
+      "CPMID1-1",
+      "CBUS7-1",
+      "R41-2",
+      "U1-15",
+      "U1-2",
+      "U4-5"
+    ],
+    "selected_ground_net": "PGND",
+    "via_guard_geometry": "circumscribed_octagon",
+    "via_guard_area_reclaimed_sum_mm2": 3.73527,
+    "via_guard_area_statistic": "sum over vias, not union area; original protection radii unchanged"
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "success": true,
+      "routed_nets": 50,
+      "total_nets": 50,
+      "unrouted_nets": 0,
+      "via_count": 115,
+      "total_wirelength_mm": 1644.4102,
+      "runtime_ms": 419511.79,
+      "notes": "rc=0, raw_violations=0, real_violations=0, layers=['B.Cu', 'F.Cu', 'In2.Cu']; dense_escape_repair candidate accepted"
+    },
+    {
+      "engine": "freerouting_jvm_v2.5.0",
+      "success": false,
+      "routed_nets": 49,
+      "total_nets": 50,
+      "unrouted_nets": 18,
+      "via_count": 81,
+      "total_wirelength_mm": 1129.037,
+      "runtime_ms": 17671.32,
+      "notes": "LVS open-network count after pours; router counts and layer checks reported separately"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 2180.641,
+    "pour_area_mm2": 1910.699,
+    "fill_ratio": 0.8762,
+    "f_cu_pour_mm2": 1296.907,
+    "b_cu_pour_mm2": 1724.37,
+    "stitching_vias_added": 5,
+    "antipad_cutouts": 108,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "B_Mask.gbr": true,
+      "F_Paste.gbr": true,
+      "B_Paste.gbr": true,
+      "F_SilkS.gbr": true,
+      "B_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 175,
+    "npth_hole_count": 0,
+    "min_annular_ring_mm": 0.1,
+    "annular_ring_violations": 0,
+    "annular_circle_witnesses": [
+      {
+        "layer": "F.Cu",
+        "drill_center_mm": [
+          41.226,
+          13.909
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "41.226",
+          "13.909"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 110,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129255,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "B.Cu",
+        "drill_center_mm": [
+          41.226,
+          13.909
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "41.226",
+          "13.909"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 87,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129255,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "B.Cu",
+        "drill_center_mm": [
+          42.326,
+          13.909
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "42.326",
+          "13.909"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 88,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129244,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "F.Cu",
+        "drill_center_mm": [
+          43.426,
+          13.909
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "43.426",
+          "13.909"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 112,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129197,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "B.Cu",
+        "drill_center_mm": [
+          41.226,
+          15.009
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "41.226",
+          "15.009"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 90,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129255,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "B.Cu",
+        "drill_center_mm": [
+          42.326,
+          15.009
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "42.326",
+          "15.009"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 91,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129244,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "F.Cu",
+        "drill_center_mm": [
+          41.226,
+          16.109
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "41.226",
+          "16.109"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 118,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129064,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "B.Cu",
+        "drill_center_mm": [
+          41.226,
+          16.109
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "41.226",
+          "16.109"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 93,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129244,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "B.Cu",
+        "drill_center_mm": [
+          42.326,
+          16.109
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "42.326",
+          "16.109"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 94,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129227,
+        "proven_lower_bound_mm": 0.1
+      },
+      {
+        "layer": "F.Cu",
+        "drill_center_mm": [
+          43.426,
+          16.109
+        ],
+        "drill_diameter_mm": 0.3,
+        "land_center_mm": [
+          "43.426",
+          "16.109"
+        ],
+        "land_diameter_mm": "0.5",
+        "land_gerber_object_index": 120,
+        "center_offset_squared_mm2": "0",
+        "polygon_lower_bound_mm": 0.09969886405129308,
+        "proven_lower_bound_mm": 0.1
+      }
+    ],
+    "silk_to_mask_overlap_mm2": 0.0,
+    "silk_to_mask_overlap_by_side_mm2": {
+      "F": 0.0,
+      "B": 0.0
+    },
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "lvs_opens": [],
+    "lvs_shorts": [],
+    "min_inter_net_clearance_mm": 0.1307,
+    "legacy_projected_lvs_opens": [],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [],
+      "rf_keepout": [],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "BATT1",
+          "C1",
+          "C12",
+          "C14",
+          "C24",
+          "C25",
+          "C3",
+          "C5",
+          "C7",
+          "C9",
+          "CBAT1",
+          "CBTST1",
+          "CBUS1",
+          "CBUS2",
+          "CBUS3",
+          "CBUS3a1",
+          "CBUS3a2",
+          "CBUS4",
+          "CBUS5",
+          "CBUS7",
+          "CBUS8",
+          "CPMID1",
+          "CPMID1a1",
+          "CPSU2",
+          "CREGN1",
+          "CSYS1",
+          "CSYS3",
+          "D1",
+          "D2",
+          "D4",
+          "D7",
+          "H3",
+          "H4",
+          "IC1",
+          "J1",
+          "J2",
+          "J3",
+          "J4",
+          "J7",
+          "J8",
+          "J9",
+          "L1",
+          "L2",
+          "L4",
+          "Q1",
+          "Q2",
+          "Q3",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R2",
+          "R20",
+          "R21",
+          "R22",
+          "R23",
+          "R25",
+          "R27",
+          "R28",
+          "R3",
+          "R38",
+          "R39",
+          "R4",
+          "R40",
+          "R41",
+          "R42",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "RBTST1",
+          "RF1",
+          "RF2",
+          "THERM1",
+          "THERMISTOR(103-AT)1",
+          "U1",
+          "U3",
+          "U4"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": true
+    }
+  }
+}

@@ -67,11 +67,24 @@
         "manifest": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/manifest.json",
         "sha256": "7113aac2ed77fa71917c78b50873ae64fdff0a4afcb0d50d8f60fc64920b360a"
       }
+    },
+    {
+      "at": "2026-11-22T14:31:55.173152+00:00",
+      "previous": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/manifest.json",
+        "sha256": "7113aac2ed77fa71917c78b50873ae64fdff0a4afcb0d50d8f60fc64920b360a"
+      },
+      "new": {
+        "format": "optimization_round",
+        "manifest": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/manifest.json",
+        "sha256": "7309e96543ef15e2d5c2fa1afe3e53f37665e7d9bbe80f76fa3940542f46c418"
+      }
     }
   ],
   "active_baseline": {
     "format": "optimization_round",
-    "manifest": "artifacts/optimization/runs/20261121T113551029733Z-c-bypass-and-epad-bridge/manifest.json",
-    "sha256": "7113aac2ed77fa71917c78b50873ae64fdff0a4afcb0d50d8f60fc64920b360a"
+    "manifest": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/manifest.json",
+    "sha256": "7309e96543ef15e2d5c2fa1afe3e53f37665e7d9bbe80f76fa3940542f46c418"
   }
 }
