@@ -1,0 +1,22 @@
+{
+  "status": "accepted",
+  "proposals": [
+    {
+      "net": "Net-(D3-K)",
+      "layer": "F.Cu",
+      "width_mm": 0.16,
+      "start_xy": [
+        14.96,
+        87.02
+      ],
+      "end_xy": [
+        17.5,
+        87.02
+      ]
+    }
+  ],
+  "original_unrouted": 1,
+  "verified_unrouted": 0,
+  "original_lvs_opens": 1,
+  "verified_lvs_opens": 0
+}

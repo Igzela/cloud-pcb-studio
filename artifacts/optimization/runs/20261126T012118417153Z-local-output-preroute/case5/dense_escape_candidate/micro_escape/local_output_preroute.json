@@ -1,0 +1,51 @@
+{
+  "targets": {
+    "C22": {
+      "net": "Net-(U3-DVDD10_UPS)",
+      "owner_ref": "U3",
+      "owner_pin": "27",
+      "cap_pin": "1"
+    }
+  },
+  "segments": [
+    {
+      "net": "Net-(U3-DVDD10_UPS)",
+      "layer": "F.Cu",
+      "width_mm": 0.16,
+      "start_xy": [
+        28.733,
+        9.95
+      ],
+      "end_xy": [
+        29.278,
+        9.95
+      ]
+    },
+    {
+      "net": "Net-(U3-DVDD10_UPS)",
+      "layer": "F.Cu",
+      "width_mm": 0.16,
+      "start_xy": [
+        29.278,
+        9.95
+      ],
+      "end_xy": [
+        30.981,
+        11.653
+      ]
+    },
+    {
+      "net": "Net-(U3-DVDD10_UPS)",
+      "layer": "F.Cu",
+      "width_mm": 0.16,
+      "start_xy": [
+        30.981,
+        11.653
+      ],
+      "end_xy": [
+        30.981,
+        12.849
+      ]
+    }
+  ]
+}

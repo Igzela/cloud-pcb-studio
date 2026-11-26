@@ -1,0 +1,16 @@
+{
+  "componentCount": 52,
+  "trackCount": 813,
+  "componentMeshes": 241,
+  "nonFlatMeshes": 241,
+  "webgl": true,
+  "canvasWidth": 1440,
+  "layerToggleWorked": true,
+  "maskSwitchWorked": true,
+  "console_errors": [],
+  "external_requests": [],
+  "passed": true,
+  "oblique_pixel_std": 24.95050384454082,
+  "top_pixel_std": 43.88606180975504,
+  "side_pixel_std": 19.857350435590703
+}

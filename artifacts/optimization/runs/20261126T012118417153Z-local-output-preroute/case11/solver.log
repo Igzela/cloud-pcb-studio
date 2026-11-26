@@ -1,0 +1,204 @@
+{
+  "project": "holdout_case11",
+  "total_placed": 71,
+  "gnd_fanout_stats": {
+    "fanout_vias_added": 41,
+    "gnd_smd_pads_total": 53,
+    "unvia_gnd_pins": [],
+    "selected_ground_net": "GND",
+    "via_guard_geometry": "circumscribed_octagon",
+    "via_guard_area_reclaimed_sum_mm2": 4.375602,
+    "via_guard_area_statistic": "sum over vias, not union area; original protection radii unchanged"
+  },
+  "bakeoff": [
+    {
+      "engine": "fastroute_v0.1.14",
+      "success": true,
+      "routed_nets": 49,
+      "total_nets": 49,
+      "unrouted_nets": 0,
+      "via_count": 119,
+      "total_wirelength_mm": 1651.3969,
+      "runtime_ms": 250255.81,
+      "notes": "rc=0, raw_violations=0, real_violations=0, layers=['B.Cu', 'F.Cu', 'In2.Cu']; dense_escape_repair candidate accepted"
+    },
+    {
+      "engine": "freerouting_jvm_v2.5.0",
+      "success": false,
+      "routed_nets": 48,
+      "total_nets": 48,
+      "unrouted_nets": 9,
+      "via_count": 81,
+      "total_wirelength_mm": 1420.849,
+      "runtime_ms": 28368.36,
+      "notes": "LVS open-network count after pours; router counts and layer checks reported separately"
+    }
+  ],
+  "gnd_pour_stats": {
+    "board_area_mm2": 3031.2,
+    "pour_area_mm2": 2740.333,
+    "fill_ratio": 0.904,
+    "f_cu_pour_mm2": 1911.721,
+    "b_cu_pour_mm2": 2551.108,
+    "stitching_vias_added": 13,
+    "antipad_cutouts": 106,
+    "is_empty": false,
+    "power_islands": [
+      {
+        "net": "+3.3V",
+        "layer": "In2.Cu",
+        "plated_anchor_count": 5,
+        "area_mm2": 285.30287383875407
+      }
+    ]
+  },
+  "audit": {
+    "pygerber_all_ok": true,
+    "pygerber_by_layer": {
+      "F_Cu.gbr": true,
+      "In1_Cu.gbr": true,
+      "In2_Cu.gbr": true,
+      "B_Cu.gbr": true,
+      "F_Mask.gbr": true,
+      "B_Mask.gbr": true,
+      "F_Paste.gbr": true,
+      "B_Paste.gbr": true,
+      "F_SilkS.gbr": true,
+      "B_SilkS.gbr": true,
+      "Edge_Cuts.gbr": true
+    },
+    "pth_hole_count": 185,
+    "npth_hole_count": 2,
+    "min_annular_ring_mm": 0.1247,
+    "annular_ring_violations": 0,
+    "annular_circle_witnesses": [],
+    "silk_to_mask_overlap_mm2": 0.0,
+    "silk_to_mask_overlap_by_side_mm2": {
+      "F": 0.0,
+      "B": 0.0
+    },
+    "copper_edge_margins_mm": {
+      "F_Cu.gbr": 0.5,
+      "In1_Cu.gbr": 0.5,
+      "In2_Cu.gbr": 0.5,
+      "B_Cu.gbr": 0.5
+    },
+    "lvs_opens": [],
+    "lvs_shorts": [],
+    "min_inter_net_clearance_mm": 0.1267,
+    "legacy_projected_lvs_opens": [],
+    "independent_4layer": {
+      "lvs_opens": [],
+      "lvs_shorts": [],
+      "rf_keepout": [
+        {
+          "refdes": "U1",
+          "layer": "F.Cu",
+          "copper_mm2": 0.0,
+          "coverage_fraction": 1.0787264039375977e-17,
+          "passed": true
+        },
+        {
+          "refdes": "U1",
+          "layer": "In1.Cu",
+          "copper_mm2": 0.0,
+          "coverage_fraction": 2.803593496528113e-19,
+          "passed": true
+        },
+        {
+          "refdes": "U1",
+          "layer": "In2.Cu",
+          "copper_mm2": 0.0,
+          "coverage_fraction": 2.803593496528113e-19,
+          "passed": true
+        },
+        {
+          "refdes": "U1",
+          "layer": "B.Cu",
+          "copper_mm2": 0.0,
+          "coverage_fraction": 2.803593496528113e-19,
+          "passed": true
+        }
+      ],
+      "via_in_pad_violations": [],
+      "mechanical": {
+        "collision_count": 0,
+        "collisions": [],
+        "unverified_envelopes": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C15",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "D1",
+          "D10",
+          "D11",
+          "D12",
+          "D13",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "J1",
+          "J3",
+          "J4",
+          "J5",
+          "L1",
+          "L2",
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R2",
+          "R20",
+          "R21",
+          "R22",
+          "R23",
+          "R24",
+          "R25",
+          "R26",
+          "R27",
+          "R28",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8",
+          "R9",
+          "SW1",
+          "SW2",
+          "SW3",
+          "SW4",
+          "U1",
+          "U2",
+          "U4",
+          "U5",
+          "Y1"
+        ],
+        "all_envelopes_verified": false,
+        "passed": false
+      },
+      "passed": true
+    }
+  }
+}

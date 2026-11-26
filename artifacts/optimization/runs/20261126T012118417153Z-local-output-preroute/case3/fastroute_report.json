@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case3/dense_escape_candidate/board.dsn",
+  "time_s": {"load": 0.7328, "route": 110.3893, "total": 111.4549, "diagnose": null},
+  "stats": {"layers": 4, "components": 74, "nets": 57, "pins": 230, "connections": 171, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 122, "vias_blind": 0, "vias_buried": 0, "traces": 486, "trace_length_mm": 1115.6113, "bends_90": 4, "bends_45": 448, "bends_other": 0, "router_score": 1000, "optimizer_score": 435.5072},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

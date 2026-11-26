@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case10/dense_escape_candidate/exact_geometry_replay/exact.dsn",
+  "time_s": {"load": 0.9065, "route": 0, "total": 1.2909, "diagnose": null},
+  "stats": {"layers": 4, "components": 84, "nets": 50, "pins": 274, "connections": 223, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 119, "vias_blind": 0, "vias_buried": 0, "traces": 566, "trace_length_mm": 1607.5552, "bends_90": 9, "bends_45": 363, "bends_other": 0, "router_score": 1000, "optimizer_score": 618.0049},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

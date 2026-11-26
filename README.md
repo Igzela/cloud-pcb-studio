@@ -1,4 +1,4 @@
-> **Current handoff — 2026-11-18:** The latest five-board run recorded **171 passing tests in 74.37 s**. The candidate closed the remaining Case 4 connection and became the new regression baseline. Case 3 and 5 still have open networks, and the RF, mechanical and board-edge findings remain in the reports. [Handoff guide](docs/repository-handoff.zh-CN.md) · [Measured round](docs/optimization-direct-repair.zh-CN.md)
+> **Project priority and baseline.** The November 22 seven-board regression recorded **300 passing tests in 92.12 s**. Six boards had zero independent LVS opens, and Case 5 had one. The project roadmap prioritizes closing that gap and collecting the remaining evidence for engineering acceptance. [Roadmap](docs/project-roadmap.zh-CN.md) · [Handoff](docs/repository-handoff.zh-CN.md) · [Baseline report](docs/optimization-dense-escape-repair.zh-CN.md)
 
 <div align="center">
 
@@ -36,7 +36,7 @@ artifacts and records each experiment in its own directory:
 source scripts/env.sh
 python -m scripts.optimize_pcb status
 source scripts/env.sh
-python -m scripts.optimize_pcb run --label my-change --hypothesis "Describe the generic change and expected improvement"
+python -m scripts.optimize_pcb run --label my-change --variant dense-escape-repair --hypothesis "Describe the generic change and expected improvement"
 source scripts/env.sh
 python -m scripts.optimize_pcb history
 ```
@@ -51,8 +51,8 @@ The workflow runs pytest, all regression boards, strict audits and offline
 browser checks before comparing each board against the baseline. A regression
 on one board cannot be hidden by gains on another. An eligible experiment only
 updates an artifact baseline pointer; it does not certify engineering quality.
-Unsealed cases 4 and 5 are regression data. Sealed holdouts are excluded from
-optimization. See [the Chinese optimization guide](docs/optimization-workflow.zh-CN.md).
+Cases 1–5 and 10–11 are exposed regression data. Cases 6–9 and 12–13 remain
+sealed for separate blind evaluations. [Optimization guide](docs/optimization-workflow.zh-CN.md)
 The [first measured round](docs/optimization-first-round.zh-CN.md) records both
 the connectivity improvement and the regression that prevented promotion.
 

@@ -1,0 +1,24 @@
+{
+  "incumbent_key": [
+    0,
+    9,
+    9,
+    9
+  ],
+  "candidate_key": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "incumbent_fill_ratio": 0.7551,
+  "candidate_fill_ratio": 0.7867,
+  "non_regressing": true,
+  "candidate_route_mode": "micro_escape_individual",
+  "candidate_direct_repair": {
+    "status": "no_eligible_link"
+  },
+  "candidate_exact_geometry": null,
+  "physical_ground_plane_used": true,
+  "status": "accepted"
+}

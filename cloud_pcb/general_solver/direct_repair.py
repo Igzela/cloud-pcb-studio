@@ -244,6 +244,80 @@ def _can_fit(centerline, layer, net, width, drill_owners, board_poly, obstacles,
     return True
 
 
+def propose_local_output_links(board, board_poly, keepouts, netclasses, net_to_class, routing_layers, targets):
+    """Connect proven local decouplers before neighboring nets claim the pad exit."""
+    from cloud_pcb.general_solver.run_blind import _pad_world_polygon_kicad
+
+    if not targets:
+        return []
+    try:
+        rule = netclasses['DEFAULT']
+        if rule.impedance_ohm is not None or rule.diff_pair_gap_mm is not None:
+            return []
+        width = math.ceil(_positive(rule.trace_width_mm) * 1000 - 1e-9) / 1000
+        base_clearance = max(BOARD_COPPER_CLEARANCE_MM, _finite(rule.clearance_mm))
+        clearances = defaultdict(lambda: base_clearance)
+        for net, name in net_to_class.items():
+            clearances[net] = max(base_clearance, _finite(netclasses[name].clearance_mm))
+        pads, obstacles = _board_obstacles(board, keepouts)
+    except (AttributeError, GEOSException, KeyError, TypeError, ValueError):
+        return []
+
+    proposals = []
+    allowed = routing_layers.get('DEFAULT', ('F.Cu', 'B.Cu'))
+    for cap_ref, target in sorted(targets.items()):
+        net = target['net']
+        if net_to_class.get(net, 'DEFAULT') != 'DEFAULT':
+            continue
+        owner_pads = pads.get((target['owner_ref'], target['owner_pin']), ())
+        cap_pads = pads.get((cap_ref, target['cap_pin']), ())
+        if len(owner_pads) != 1 or len(cap_pads) != 1:
+            continue
+        owner, source, source_net, layers = owner_pads[0]
+        cap, sink, sink_net, sink_layers = cap_pads[0]
+        if source_net != net or sink_net != net or layers != sink_layers or len(layers) != 1:
+            continue
+        layer, = layers
+        if layer not in allowed or (not rule.zero_via_allowed and layer != 'F.Cu'):
+            continue
+        if any(pad.type != 'smd' or pad.drill or min(pad.size.X, pad.size.Y) < width for pad in (source, sink)):
+            continue
+
+        start = _pad_dsn_center(owner, source)
+        end = _pad_dsn_center(cap, sink)
+        bounds = _pad_world_polygon_kicad(owner, source).bounds
+        spans = (bounds[2] - bounds[0], bounds[3] - bounds[1])
+        along_axis = 0 if spans[0] >= spans[1] else 1
+        across_axis = 1 - along_axis
+        if spans[along_axis] < 1.25 * spans[across_axis] or math.dist(start, end) > 8000:
+            continue
+        center = _point(owner.position)[along_axis]
+        outward = 1 if start[along_axis] > 1000 * center else -1
+        along = outward * (end[along_axis] - start[along_axis])
+        across = end[across_axis] - start[across_axis]
+        lead = math.ceil(1000 * (spans[along_axis] / 2 + width / 2 + GRID_MARGIN_MM))
+        if along < lead:
+            continue
+
+        max_diagonal = min(along - lead, abs(across))
+        for diagonal in range(max_diagonal, -50, -50):
+            # Sample monotone axis/diagonal/axis paths starting beyond the IC pad.
+            diagonal = max(diagonal, 0)
+            corner = list(start)
+            corner[along_axis] = end[along_axis] - outward * diagonal
+            landing = list(end)
+            landing[across_axis] = start[across_axis] + (diagonal if across >= 0 else -diagonal)
+            points = [tuple(axis / 1000 for axis in point) for point in (start, corner, landing, end)]
+            segments = [(a, b, LineString([a, b])) for a, b in zip(points, points[1:]) if a != b]
+            if all(_can_fit(line, layer, net, width, (), board_poly, obstacles, clearances)
+                   for _, _, line in segments):
+                for a, b, line in segments:
+                    proposals.append(DirectRepair(net, layer, width, a, b))
+                    obstacles[layer].append(_Obstacle(line, net, width / 2))
+                break
+    return proposals
+
+
 def propose_direct_repairs(
     routed_board,
     board_poly,

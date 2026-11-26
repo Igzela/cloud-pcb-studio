@@ -1,0 +1,17 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 1.7 ms: 4 layers, 84 components, 50 nets, 43 wires
+    0.458 INFO  initial session '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case10/dense_escape_candidate/board_fastroute.ses': 456 wires and 84 vias imported (0 errors)
+    0.703 WARN  Board has 4 pre-existing clearance violation(s) in the loaded design (4 unfixable).
+    0.706 INFO  67 trace ends inside a pad but off its center joined to the center
+    0.706 INFO  built board in 704.4 ms: 961 items (274 pins, 119 vias, 566 traces)
+    0.707 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.707 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.707 INFO  routing finished in 0.00 s
+    0.951 WARN  4 clearance violation(s) in the result:
+    0.951 WARN    F.Cu at (5.843, 10.736) mm: clearance 0.130 mm, actual 0.073 mm (pre-existing, unfixable): pin J3 [VPSU] / pin J2 [PGND]
+    0.951 WARN    In1.Cu at (5.843, 10.736) mm: clearance 0.130 mm, actual 0.073 mm (pre-existing, unfixable): pin J3 [VPSU] / pin J2 [PGND]
+    0.951 WARN    In2.Cu at (5.843, 10.736) mm: clearance 0.130 mm, actual 0.073 mm (pre-existing, unfixable): pin J3 [VPSU] / pin J2 [PGND]
+    0.951 WARN    B.Cu at (5.843, 10.736) mm: clearance 0.130 mm, actual 0.073 mm (pre-existing, unfixable): pin J3 [VPSU] / pin J2 [PGND]
+    0.955 INFO  saved '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case10/dense_escape_candidate/exact_geometry_replay/control.ses' (82581 bytes)
+    1.701 INFO  report written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case10/dense_escape_candidate/exact_geometry_replay/control.json'

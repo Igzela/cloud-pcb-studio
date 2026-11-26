@@ -1,0 +1,450 @@
+{
+  "runtime": {
+    "engine": "freerouting_jvm",
+    "version": "2.5.0",
+    "jar_url": "https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar",
+    "jar_sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+    "java_executable": "/workspace/cloud-pcb-studio/.run/tools/freerouting/jdk-25.0.5+8-jre/bin/java",
+    "java_version": [
+      "openjdk version \"25.0.5\" 2026-10-20 LTS",
+      "OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)",
+      "OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)"
+    ],
+    "java_files_sha256": {
+      "bin/java": "2c6758fcd55b51cd3b8012ebe712504f722a8a0bbb6209b0fccff25960cd41e9",
+      "release": "fcb8d304ab7efdb8d0d051f996884b58c4009677ef78278011774daf6b62b38d",
+      "lib/modules": "a1ab6761272ffbdce7d83e941a1721d082934a6f9230b1544b8893adb8e8d02d",
+      "lib/server/libjvm.so": "24946c6c30cc5490c441f9a78e0222925de297b50cba306607f1a6bead24fcb3",
+      "lib/libjava.so": "55a5f14cc3d85ba84de3cca3b3eba732fc8229c23d5cfcbe391361282da41119",
+      "lib/libjli.so": "cb175105fb31ca6f9a5e5f338ca297d36b63fd2982e504d67596f0156d877dca",
+      "conf/security/java.security": "d8583f3389218221f85f4ef2fd440ccb17aa44f0b3f189d08bbba8bf31983cfd"
+    }
+  },
+  "status": "completed",
+  "engine_unrouted_connections": 26,
+  "engine_clearance_violations": 12,
+  "independent_4layer": {
+    "lvs_opens": [
+      {
+        "net": "VSYS",
+        "components": 6,
+        "pad_count": 25,
+        "pad_groups": {
+          "1": [
+            "C24-2",
+            "CBUS1-2",
+            "D2-1",
+            "D4-1",
+            "L1-2",
+            "R1-2"
+          ],
+          "0": [
+            "CBUS2-1",
+            "CBUS4-2",
+            "CSYS1-1",
+            "CSYS3-1",
+            "D1-1",
+            "L4-1",
+            "R17-2",
+            "R18-1",
+            "R2-2"
+          ],
+          "2": [
+            "IC1-15",
+            "IC1-16",
+            "R25-2"
+          ],
+          "5": [
+            "R3-2",
+            "U1-6"
+          ],
+          "4": [
+            "U1-4",
+            "U1-12",
+            "U1-13"
+          ],
+          "3": [
+            "U3-10",
+            "U3-11"
+          ]
+        }
+      },
+      {
+        "net": "Net-(U1-IN_R)",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "CBUS5-2"
+          ],
+          "0": [
+            "U1-10"
+          ]
+        }
+      },
+      {
+        "net": "POWERBANKOUT",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "CPMID1-2",
+            "CPMID1a1-2"
+          ],
+          "0": [
+            "IC1-23"
+          ]
+        }
+      },
+      {
+        "net": "Net-(IC1-REGN)",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "CREGN1-2",
+            "R8-1"
+          ],
+          "0": [
+            "IC1-22"
+          ]
+        }
+      },
+      {
+        "net": "Net-(D2-C)",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "D2-2"
+          ],
+          "0": [
+            "R5-2"
+          ]
+        }
+      },
+      {
+        "net": "/D+",
+        "components": 2,
+        "pad_count": 4,
+        "pad_groups": {
+          "2": [
+            "IC1-2"
+          ],
+          "1": [
+            "J2-A6",
+            "J2-A6",
+            "J2-A6",
+            "J2-A6",
+            "J2-B6",
+            "J2-B6",
+            "J2-B6",
+            "J2-B6",
+            "R16-2"
+          ]
+        }
+      },
+      {
+        "net": "/D-",
+        "components": 2,
+        "pad_count": 4,
+        "pad_groups": {
+          "3": [
+            "IC1-3"
+          ],
+          "2": [
+            "J2-A7",
+            "J2-A7",
+            "J2-A7",
+            "J2-A7",
+            "J2-B7",
+            "J2-B7",
+            "J2-B7",
+            "J2-B7",
+            "R4-1"
+          ]
+        }
+      },
+      {
+        "net": "/SCL",
+        "components": 3,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "IC1-5"
+          ],
+          "2": [
+            "J7-2",
+            "J7-2",
+            "J7-2",
+            "J7-2"
+          ],
+          "0": [
+            "R3-1"
+          ]
+        }
+      },
+      {
+        "net": "/SDA",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "IC1-6",
+            "J7-3",
+            "J7-3",
+            "J7-3",
+            "J7-3"
+          ],
+          "0": [
+            "R2-1"
+          ]
+        }
+      },
+      {
+        "net": "/INT",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "IC1-7"
+          ],
+          "1": [
+            "J7-4",
+            "J7-4",
+            "J7-4",
+            "J7-4",
+            "R1-1"
+          ]
+        }
+      },
+      {
+        "net": "/OTG",
+        "components": 3,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "IC1-8"
+          ],
+          "2": [
+            "Q2-3"
+          ],
+          "0": [
+            "R17-1"
+          ]
+        }
+      },
+      {
+        "net": "Net-(IC1-TS1)",
+        "components": 2,
+        "pad_count": 6,
+        "pad_groups": {
+          "1": [
+            "IC1-11",
+            "IC1-12",
+            "THERM1-2",
+            "THERM1-2",
+            "THERM1-2",
+            "THERM1-2"
+          ],
+          "2": [
+            "R10-1",
+            "R8-2",
+            "THERMISTOR(103-AT)1-2"
+          ]
+        }
+      },
+      {
+        "net": "Net-(J1-Pin_1)",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "0": [
+            "J1-1",
+            "J1-1",
+            "J1-1",
+            "J1-1"
+          ],
+          "1": [
+            "R9-2"
+          ]
+        }
+      },
+      {
+        "net": "Net-(J2-CC2)",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "J2-B5",
+            "J2-B5",
+            "J2-B5",
+            "J2-B5"
+          ],
+          "3": [
+            "R19-2",
+            "R28-1"
+          ]
+        }
+      },
+      {
+        "net": "Net-(J4-Pin_2)",
+        "components": 2,
+        "pad_count": 2,
+        "pad_groups": {
+          "1": [
+            "J4-2",
+            "J4-2",
+            "J4-2",
+            "J4-2"
+          ],
+          "0": [
+            "U1-1"
+          ]
+        }
+      },
+      {
+        "net": "Net-(Q2-G)",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "3": [
+            "Q2-1"
+          ],
+          "2": [
+            "R38-2",
+            "R39-1"
+          ]
+        }
+      },
+      {
+        "net": "Net-(Q3-G)",
+        "components": 2,
+        "pad_count": 3,
+        "pad_groups": {
+          "0": [
+            "Q3-1",
+            "R40-2"
+          ],
+          "1": [
+            "R41-1"
+          ]
+        }
+      },
+      {
+        "net": "Net-(U3-PG)",
+        "components": 3,
+        "pad_count": 3,
+        "pad_groups": {
+          "1": [
+            "R21-2"
+          ],
+          "2": [
+            "R23-1"
+          ],
+          "0": [
+            "U3-14"
+          ]
+        }
+      }
+    ],
+    "lvs_shorts": [],
+    "rf_keepout": [],
+    "via_in_pad_violations": [],
+    "mechanical": {
+      "collision_count": 0,
+      "collisions": [],
+      "unverified_envelopes": [
+        "BATT1",
+        "C1",
+        "C12",
+        "C14",
+        "C24",
+        "C25",
+        "C3",
+        "C5",
+        "C7",
+        "C9",
+        "CBAT1",
+        "CBTST1",
+        "CBUS1",
+        "CBUS2",
+        "CBUS3",
+        "CBUS3a1",
+        "CBUS3a2",
+        "CBUS4",
+        "CBUS5",
+        "CBUS7",
+        "CBUS8",
+        "CPMID1",
+        "CPMID1a1",
+        "CPSU2",
+        "CREGN1",
+        "CSYS1",
+        "CSYS3",
+        "D1",
+        "D2",
+        "D4",
+        "D7",
+        "H3",
+        "H4",
+        "IC1",
+        "J1",
+        "J2",
+        "J3",
+        "J4",
+        "J7",
+        "J8",
+        "J9",
+        "L1",
+        "L2",
+        "L4",
+        "Q1",
+        "Q2",
+        "Q3",
+        "R1",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R16",
+        "R17",
+        "R18",
+        "R19",
+        "R2",
+        "R20",
+        "R21",
+        "R22",
+        "R23",
+        "R25",
+        "R27",
+        "R28",
+        "R3",
+        "R38",
+        "R39",
+        "R4",
+        "R40",
+        "R41",
+        "R42",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "RBTST1",
+        "RF1",
+        "RF2",
+        "THERM1",
+        "THERMISTOR(103-AT)1",
+        "U1",
+        "U3",
+        "U4"
+      ],
+      "all_envelopes_verified": false,
+      "passed": false
+    },
+    "passed": false
+  },
+  "disallowed_track_count": 0,
+  "disallowed_net_layers": []
+}
