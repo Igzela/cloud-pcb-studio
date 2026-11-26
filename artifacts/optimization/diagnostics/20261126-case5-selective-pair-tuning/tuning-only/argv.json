@@ -1,0 +1,23 @@
+[
+  "timeout",
+  "--signal=KILL",
+  "90s",
+  "fastroute",
+  "-de",
+  ".run/via-pad-warm-optimizer.HtOYVF/protected.dsn",
+  "-do",
+  ".run/tuning-only-case5.wN2PYF/board.ses",
+  "--report=.run/tuning-only-case5.wN2PYF/report.json",
+  "--initial-session=artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_fastroute.ses",
+  "--max-time=90",
+  "--multi-start=1",
+  "--router.autorouter.enabled=false",
+  "--router.fanout.enabled=false",
+  "--router.optimizer.enabled=false",
+  "--router.neck_width_um=100",
+  "--router.min_trace_width_um=100",
+  "--layer-heights=0.035,0.245,1.328,1.591",
+  "--router.copper_to_edge_clearance_um=500",
+  "--no-neckdown-classes=DIFF_PAIR_004,DIFF_PAIR_007",
+  "--tune=artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/pair_tuning.txt"
+]

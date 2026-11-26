@@ -1,0 +1,660 @@
+{
+  "footprint_geometry_equal": true,
+  "trace_and_via_geometry_equal": false,
+  "trace_and_via_geometry_delta": {
+    "removed": 0,
+    "added": 52,
+    "changed_nets": [
+      "+3V3",
+      "/LED1",
+      "/LED2",
+      "/M0_P",
+      "/M1_P",
+      "/U2D_P",
+      "/U3SRX_P",
+      "/U3TX_P",
+      "/V12",
+      "Net-(U2-CS)",
+      "Net-(U3-CKXTAL1)",
+      "Net-(U3-CKXTAL2)",
+      "Net-(U3-XTALDET)",
+      "Net-(U4-LX)"
+    ]
+  },
+  "zones": {
+    "GND/F.Cu": {
+      "exact": false,
+      "physical_delta_mm2": 3.500000000059174e-07
+    },
+    "GND/In1.Cu": {
+      "exact": true,
+      "physical_delta_mm2": 0.0
+    },
+    "GND/B.Cu": {
+      "exact": true,
+      "physical_delta_mm2": 0.0
+    },
+    "GND/In2.Cu": {
+      "exact": true,
+      "physical_delta_mm2": 0.0
+    }
+  },
+  "protected_geometry": {
+    "passed": false,
+    "protected_nets": {
+      "/M0_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M0_P": {
+        "passed": false,
+        "changed_trace_groups": [
+          {
+            "layer": "F.Cu",
+            "width_mm": 0.174,
+            "removed_length_mm": 0.0,
+            "added_length_mm": 0.10182966169049246
+          },
+          {
+            "layer": "F.Cu",
+            "width_mm": 0.2162,
+            "removed_length_mm": 0.0,
+            "added_length_mm": 0.10182966169049246
+          }
+        ],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_P": {
+        "passed": false,
+        "changed_trace_groups": [
+          {
+            "layer": "F.Cu",
+            "width_mm": 0.1638,
+            "removed_length_mm": 0.0,
+            "added_length_mm": 0.12897523018006546
+          }
+        ],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_P": {
+        "passed": false,
+        "changed_trace_groups": [
+          {
+            "layer": "F.Cu",
+            "width_mm": 0.2618,
+            "removed_length_mm": 0.0,
+            "added_length_mm": 0.08406360687003658
+          }
+        ],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_P": {
+        "passed": false,
+        "changed_trace_groups": [
+          {
+            "layer": "F.Cu",
+            "width_mm": 0.2716,
+            "removed_length_mm": 0.0,
+            "added_length_mm": 0.07424210395725354
+          }
+        ],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_P": {
+        "passed": false,
+        "changed_trace_groups": [
+          {
+            "layer": "F.Cu",
+            "width_mm": 0.064,
+            "removed_length_mm": 0.0,
+            "added_length_mm": 0.18123688918098274
+          }
+        ],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      }
+    }
+  },
+  "pours": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 773.267,
+    "fill_ratio": 0.7903,
+    "f_cu_pour_mm2": 460.071,
+    "b_cu_pour_mm2": 577.702,
+    "stitching_vias_added": 2,
+    "antipad_cutouts": 98,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "router": {
+    "layers": 4,
+    "components": 52,
+    "nets": 43,
+    "pins": 186,
+    "connections": 136,
+    "unrouted": 0,
+    "unrouted_ignored_classes": 0,
+    "violations": 0,
+    "violations_unfixable": 0,
+    "vias": 108,
+    "vias_blind": 0,
+    "vias_buried": 0,
+    "traces": 450,
+    "trace_length_mm": 978.895,
+    "bends_90": 19,
+    "bends_45": 390,
+    "bends_other": 0,
+    "router_score": 1000,
+    "optimizer_score": 317.5479
+  },
+  "true_router_spacing": 0,
+  "lvs_opens": [],
+  "lvs_shorts": [],
+  "nonthermal_via_in_pad": [],
+  "differential_paths": {
+    "passed": false,
+    "pairs": [
+      {
+        "pos_net": "/M0_P",
+        "neg_net": "/M0_N",
+        "paths": {
+          "/M0_P": {
+            "length_mm": null,
+            "reason": "the connected route contains multiple centerline paths"
+          },
+          "/M0_N": {
+            "length_mm": 8.520344751203355,
+            "pad_alignment_bound_mm": 0.0009999999999941167,
+            "terminals": [
+              {
+                "pad": "U3-3",
+                "route_vertex": [
+                  "F.Cu",
+                  22.767,
+                  7.15
+                ]
+              },
+              {
+                "pad": "LAN1-2",
+                "route_vertex": [
+                  "F.Cu",
+                  15.232,
+                  5.055
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "UNKNOWN"
+      },
+      {
+        "pos_net": "/M1_P",
+        "neg_net": "/M1_N",
+        "paths": {
+          "/M1_P": {
+            "length_mm": null,
+            "reason": "the connected route contains multiple centerline paths"
+          },
+          "/M1_N": {
+            "length_mm": 9.458450070512054,
+            "pad_alignment_bound_mm": 0.0009999999999976694,
+            "terminals": [
+              {
+                "pad": "U3-6",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  8.35
+                ]
+              },
+              {
+                "pad": "LAN1-4",
+                "route_vertex": [
+                  "B.Cu",
+                  15.232,
+                  7.595
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "UNKNOWN"
+      },
+      {
+        "pos_net": "/M2_P",
+        "neg_net": "/M2_N",
+        "paths": {
+          "/M2_P": {
+            "length_mm": 12.963327325241012,
+            "pad_alignment_bound_mm": 0.0009999999999994458,
+            "terminals": [
+              {
+                "pad": "U3-7",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  8.75
+                ]
+              },
+              {
+                "pad": "LAN1-7",
+                "route_vertex": [
+                  "B.Cu",
+                  12.692,
+                  11.405
+                ]
+              }
+            ]
+          },
+          "/M2_N": {
+            "length_mm": 12.863288010793505,
+            "pad_alignment_bound_mm": 0.0009999999999976694,
+            "terminals": [
+              {
+                "pad": "U3-8",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  9.15
+                ]
+              },
+              {
+                "pad": "LAN1-8",
+                "route_vertex": [
+                  "B.Cu",
+                  15.232,
+                  12.675
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "PASS",
+        "skew_mm": 0.10003931444750691,
+        "skew_interval_mm": [
+          0.0980393144475098,
+          0.10203931444750403
+        ]
+      },
+      {
+        "pos_net": "/M3_P",
+        "neg_net": "/M3_N",
+        "paths": {
+          "/M3_P": {
+            "length_mm": 13.410527265770298,
+            "pad_alignment_bound_mm": 0.0009999999999994458,
+            "terminals": [
+              {
+                "pad": "U3-10",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  9.95
+                ]
+              },
+              {
+                "pad": "LAN1-9",
+                "route_vertex": [
+                  "B.Cu",
+                  12.692,
+                  13.945
+                ]
+              }
+            ]
+          },
+          "/M3_N": {
+            "length_mm": 13.310612834294538,
+            "pad_alignment_bound_mm": 0.0009999999999976694,
+            "terminals": [
+              {
+                "pad": "U3-11",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  10.35
+                ]
+              },
+              {
+                "pad": "LAN1-10",
+                "route_vertex": [
+                  "B.Cu",
+                  15.232,
+                  15.215
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "PASS",
+        "skew_mm": 0.09991443147576007,
+        "skew_interval_mm": [
+          0.09791443147576295,
+          0.10191443147575718
+        ]
+      },
+      {
+        "pos_net": "/U2D_P",
+        "neg_net": "/U2D_N",
+        "paths": {
+          "/U2D_P": {
+            "length_mm": null,
+            "reason": "the connected route contains multiple centerline paths"
+          },
+          "/U2D_N": {
+            "length_mm": 10.954992696331498,
+            "pad_alignment_bound_mm": 7.105427357601002e-15,
+            "terminals": [
+              {
+                "pad": "R3-2",
+                "route_vertex": [
+                  "F.Cu",
+                  39.325,
+                  10.509
+                ]
+              },
+              {
+                "pad": "USB1-2",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  10.5
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "UNKNOWN"
+      },
+      {
+        "pos_net": "/U2_P",
+        "neg_net": "/U2_N",
+        "paths": {
+          "/U2_P": {
+            "length_mm": 16.325434913508623,
+            "pad_alignment_bound_mm": 0.0005000000000006111,
+            "terminals": [
+              {
+                "pad": "R2-1",
+                "route_vertex": [
+                  "F.Cu",
+                  37.739,
+                  8.609
+                ]
+              },
+              {
+                "pad": "U3-23",
+                "route_vertex": [
+                  "F.Cu",
+                  27.55,
+                  11.534
+                ]
+              }
+            ]
+          },
+          "/U2_N": {
+            "length_mm": 39.756665170157994,
+            "pad_alignment_bound_mm": 0.0005000000000023874,
+            "terminals": [
+              {
+                "pad": "R3-1",
+                "route_vertex": [
+                  "F.Cu",
+                  39.325,
+                  11.525
+                ]
+              },
+              {
+                "pad": "U3-22",
+                "route_vertex": [
+                  "F.Cu",
+                  27.15,
+                  11.534
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 23.43123025664937,
+        "skew_interval_mm": [
+          23.430230256649367,
+          23.432230256649376
+        ]
+      },
+      {
+        "pos_net": "/U3SRX_P",
+        "neg_net": "/U3SRX_N",
+        "paths": {
+          "/U3SRX_P": {
+            "length_mm": null,
+            "reason": "the connected route contains multiple centerline paths"
+          },
+          "/U3SRX_N": {
+            "length_mm": 32.7506275590787,
+            "pad_alignment_bound_mm": 0.0005000000000077165,
+            "terminals": [
+              {
+                "pad": "U3-15",
+                "route_vertex": [
+                  "F.Cu",
+                  24.35,
+                  11.533
+                ]
+              },
+              {
+                "pad": "USB1-8",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  11.5
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "UNKNOWN"
+      },
+      {
+        "pos_net": "/U3STX_P",
+        "neg_net": "/U3STX_N",
+        "paths": {
+          "/U3STX_P": {
+            "length_mm": 11.09388510296211,
+            "pad_alignment_bound_mm": 1.4210854715202004e-14,
+            "terminals": [
+              {
+                "pad": "C1-2",
+                "route_vertex": [
+                  "F.Cu",
+                  42.157,
+                  11.859
+                ]
+              },
+              {
+                "pad": "USB1-6",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  7.5
+                ]
+              }
+            ]
+          },
+          "/U3STX_N": {
+            "length_mm": 10.994275631857546,
+            "pad_alignment_bound_mm": 7.105427357601002e-15,
+            "terminals": [
+              {
+                "pad": "C2-2",
+                "route_vertex": [
+                  "F.Cu",
+                  41.564,
+                  7.706
+                ]
+              },
+              {
+                "pad": "USB1-5",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  5.5
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "PASS",
+        "skew_mm": 0.0996094711045643,
+        "skew_interval_mm": [
+          0.09960947110454299,
+          0.09960947110458562
+        ]
+      },
+      {
+        "pos_net": "/U3TX_P",
+        "neg_net": "/U3TX_N",
+        "paths": {
+          "/U3TX_P": {
+            "length_mm": null,
+            "reason": "the connected route contains multiple centerline paths"
+          },
+          "/U3TX_N": {
+            "length_mm": 21.035568355373506,
+            "pad_alignment_bound_mm": 0.0005000000000077165,
+            "terminals": [
+              {
+                "pad": "C2-1",
+                "route_vertex": [
+                  "F.Cu",
+                  40.548,
+                  7.706
+                ]
+              },
+              {
+                "pad": "U3-19",
+                "route_vertex": [
+                  "F.Cu",
+                  25.95,
+                  11.534
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "UNKNOWN"
+      }
+    ]
+  },
+  "changed_protected_nets": [
+    "/M0_P",
+    "/M1_P",
+    "/U2D_P",
+    "/U3SRX_P",
+    "/U3TX_P"
+  ]
+}

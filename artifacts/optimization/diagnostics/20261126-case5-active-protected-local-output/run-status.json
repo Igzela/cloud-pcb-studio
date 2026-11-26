@@ -1,0 +1,12 @@
+{
+  "started_utc": "2026-11-26T13:55:17Z",
+  "finished_utc": "2026-11-26T13:55:19Z",
+  "returncode": 0,
+  "hard_timeout_seconds": 90,
+  "internal_budget_seconds": 84,
+  "outer_command": [
+    "timeout",
+    "--signal=KILL",
+    "90s"
+  ]
+}

@@ -1,0 +1,12 @@
+    0.000 INFO  fastroute 0.1.14
+    0.028 INFO  parsed 'board.dsn' in 27.6 ms: 4 layers, 52 components, 43 nets, 39 wires
+    0.382 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.382 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.389 INFO  initial session '.run/tuned-composite-replay.19ubN7/combined.ses': 359 wires and 77 vias imported (0 errors)
+    0.559 INFO  52 trace ends inside a pad but off its center joined to the center
+    0.559 INFO  built board in 531.4 ms: 906 items (186 pins, 108 vias, 450 traces)
+    0.559 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.559 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.559 INFO  routing finished in 0.00 s
+    0.736 INFO  saved '.run/tuned-composite-replay.19ubN7/replayed.ses' (68196 bytes)
+    1.132 INFO  report written to '.run/tuned-composite-replay.19ubN7/router-report.json'

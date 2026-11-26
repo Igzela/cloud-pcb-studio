@@ -1,0 +1,5 @@
+{
+  "guard_count": 160,
+  "min_via_to_guard_gap_mm": 0.1267,
+  "via_keepout_intersections": []
+}

@@ -1,0 +1,108 @@
+{
+  "source_hashes": {
+    "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/micro_escape/board.dsn": "2e481ff64d748c83d8db5396b1b00b1f2e2f186dee8123161d92b225e30e40ce",
+    "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/micro_escape/board_fastroute.ses": "e49830b1c1ec4b553726ef839008ee21756338ae1ad772b9b77fa1fe95e28793",
+    "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/dense_escape_candidate/micro_escape/board_unrouted.kicad_pcb": "2050938ae173716bc67bb740fed9027a6f3de431e2526729766b060a5805ce25",
+    "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/routed.kicad_pcb": "f4d871d0b12fc0bb23af9362f783f9c6ea98c7da3bf203af881646822edf1cfb",
+    "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case5/effective_spec.json": "a063037c183e30022de603dbf52ee054ea3c72ced1ae79e95b19666c79a2c078",
+    "bin/fastroute": "a4efebd6bfbb6614c9bac0535441dd65983d1a8e2cb3e00ebcf3ce90f2757d9f"
+  },
+  "resolution": "um 10",
+  "protected_nets": {
+    "/M0_N": {
+      "paths": 4,
+      "segments": 8,
+      "vias": 1
+    },
+    "/M0_P": {
+      "paths": 3,
+      "segments": 7,
+      "vias": 1
+    },
+    "/M1_N": {
+      "paths": 1,
+      "segments": 6
+    },
+    "/M1_P": {
+      "paths": 5,
+      "segments": 11,
+      "vias": 1
+    },
+    "/M2_N": {
+      "paths": 3,
+      "segments": 7,
+      "vias": 1
+    },
+    "/M2_P": {
+      "paths": 5,
+      "segments": 10,
+      "vias": 1
+    },
+    "/M3_N": {
+      "paths": 3,
+      "segments": 5,
+      "vias": 1
+    },
+    "/M3_P": {
+      "paths": 2,
+      "segments": 4,
+      "vias": 1
+    },
+    "/U2D_N": {
+      "paths": 4,
+      "segments": 7,
+      "vias": 2
+    },
+    "/U2D_P": {
+      "paths": 5,
+      "segments": 8,
+      "vias": 2
+    },
+    "/U2_N": {
+      "paths": 5,
+      "segments": 11,
+      "vias": 2
+    },
+    "/U2_P": {
+      "paths": 4,
+      "segments": 8,
+      "vias": 2
+    },
+    "/U3SRX_N": {
+      "paths": 4,
+      "segments": 17,
+      "vias": 2
+    },
+    "/U3SRX_P": {
+      "paths": 6,
+      "segments": 13,
+      "vias": 2
+    },
+    "/U3STX_N": {
+      "paths": 2,
+      "segments": 5
+    },
+    "/U3STX_P": {
+      "paths": 5,
+      "segments": 10,
+      "vias": 2
+    },
+    "/U3TX_N": {
+      "paths": 7,
+      "segments": 23,
+      "vias": 2
+    },
+    "/U3TX_P": {
+      "paths": 4,
+      "segments": 16,
+      "vias": 2
+    }
+  },
+  "fixed_dsn_objects": 97,
+  "protected_segments": 176,
+  "protected_vias": 25,
+  "unprotected_segments": 571,
+  "unprotected_vias": 56,
+  "locked_dsn_sha256": "3ebb94627f691a37b6c65bb4e297a975c94e07c4c742cd9e7aba2f69c06f3504",
+  "filtered_seed_sha256": "e76cb1c0b3fdfb86ac51591d1c16ef0e7774157f1f4dfb43c21b5654ab1fb7cb"
+}

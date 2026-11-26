@@ -28,7 +28,7 @@
 
 首轮在细间距微逃逸中为 IC 局部供电输出去耦预布同层短线。候选完成七板回归，Case 5 的未布通与独立 LVS 开路从 1 降至 0。In1 地填充从 78.86% 降至 78.67%，候选未晋升。下一轮连通性任务是在保持 Case 5 完整布通和零开短路的同时，将 In1 地填充恢复到至少 78.86%。[首轮实验](optimization-local-output-preroute.zh-CN.md)
 
-固定受保护铜的诊断达到 79.03% In1 地填充和完整布通，18 个受保护网络的铜几何逐一比对一致。差分端到端测量表明活动基线和候选的九个差分对都超过 0.20 mm 长度差门槛，其中一组从基线的 1.020 mm 增至候选的 23.431 mm。下一轮先检验调长或重布能否收敛超限，再启动七板候选轮次。[固定铜诊断](optimization-local-output-preroute.zh-CN.md#固定受保护铜的-case-5-诊断)
+固定受保护铜的诊断达到 79.03% In1 地填充和完整布通。逐对采用独立复核通过的三组调长后，三组端到端长度差在 0.20 mm 以内，其余六组仍超限，其中最严重的一组从活动基线的 1.020 mm 增至候选的 23.431 mm。另一条路线保留活动基线全部差分铜，已实现目标网络单独布通。下一轮优先验证该路径与其余网络一起完整布通时的地填充、差分和 DRC。[固定铜及调长诊断](optimization-local-output-preroute.zh-CN.md#单独调长与逐对采用) · [目标网络试验](optimization-local-output-preroute.zh-CN.md#保留活动基线差分铜的目标网络试验)
 
 Case 1–5、10–11 用于回归。Case 6–9、12–13 和新留出样本保持密封，由独立保管者依照盲测协议冻结、验证和解封。已公布的历史对照只供结果审阅。新泛化结果来自独立密封实验。[回归工作约定](../AGENTS.md) · [独立盲测流程](holdout-cohorts.zh-CN.md)
 
@@ -45,3 +45,4 @@ Case 1–5、10–11 用于回归。Case 6–9、12–13 和新留出样本保�
 每轮在报告或 PR 描述中保留简短的工作状态，记录当前假设、活动基线和最新候选、关键差异、在做与待做事项。每项已验证的改进形成可单独回退的提交。PR 按主题拆分，说明范围、验证命令、逐板差异和遗留项，并链接数据及清单。PR 合并需明确授权。完整轮次的测试日志、独立审计、板级产物和哈希按既有流程留档。[持续优化流程](optimization-workflow.zh-CN.md)
 
 持续推进到用户明确要求停止，或实际资源不足、所有高价值任务缺少必要授权、证据显示剩余方向的风险和维护成本超过收益。停下时留存最近证据、分支和提交、已完成的阶段、阻塞原因及下一步入口，未完成轮次按实际状态保留。恢复时先运行 `python -m scripts.optimize_pcb status` 并核对活动基线、最近候选与留档哈希，再从待办中选择下一项并沿用原冻结规则。执行命令前加载 `scripts/env.sh`。[停止轮次示例](optimization-workflow.zh-CN.md#双面布局恢复候选)
+当前草稿分别保留 Case 5 诊断证据、制造与基线验收、GitHub 托管回归、受保护铜比较和差分端到端测量。托管回归首次运行通过 300 项测试。差分候选比较已在两轮七板冻结产物上重放，定位出 Case 5 的四项长度差退步。[布线诊断 #7](https://github.com/Igzela/cloud-pcb-studio/pull/7) · [制造与基线验收 #8](https://github.com/Igzela/cloud-pcb-studio/pull/8) · [托管回归 #9](https://github.com/Igzela/cloud-pcb-studio/pull/9) · [受保护铜比较 #10](https://github.com/Igzela/cloud-pcb-studio/pull/10) · [差分端到端验收 #11](https://github.com/Igzela/cloud-pcb-studio/pull/11)

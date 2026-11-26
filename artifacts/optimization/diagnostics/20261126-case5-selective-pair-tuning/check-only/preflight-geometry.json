@@ -1,0 +1,170 @@
+{
+  "footprint_geometry_equal": true,
+  "trace_and_via_geometry_equal": true,
+  "trace_and_via_geometry_delta": {
+    "removed": 0,
+    "added": 0,
+    "changed_nets": []
+  },
+  "zones": {
+    "GND/B.Cu": {
+      "exact": true,
+      "physical_delta_mm2": 0.0
+    },
+    "GND/In1.Cu": {
+      "exact": true,
+      "physical_delta_mm2": 0.0
+    },
+    "GND/F.Cu": {
+      "exact": true,
+      "physical_delta_mm2": 0.0
+    },
+    "GND/In2.Cu": {
+      "exact": true,
+      "physical_delta_mm2": 0.0
+    }
+  },
+  "protected_geometry": {
+    "passed": true,
+    "protected_nets": {
+      "/M0_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M0_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      }
+    }
+  },
+  "pours": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 773.267,
+    "fill_ratio": 0.7903,
+    "f_cu_pour_mm2": 460.071,
+    "b_cu_pour_mm2": 577.702,
+    "stitching_vias_added": 2,
+    "antipad_cutouts": 98,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "passed": true
+}

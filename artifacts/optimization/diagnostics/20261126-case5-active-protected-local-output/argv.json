@@ -1,0 +1,19 @@
+[
+  "fastroute",
+  "-de",
+  "/workspace/cloud-pcb-studio/.run/active-protected-local-output.KY5Yfy/diagnostic.dsn",
+  "-do",
+  "/workspace/cloud-pcb-studio/.run/active-protected-local-output.KY5Yfy/board.ses",
+  "--report=/workspace/cloud-pcb-studio/.run/active-protected-local-output.KY5Yfy/report.json",
+  "--max-time=84",
+  "--multi-start=1",
+  "--router.autorouter.max_threads=2",
+  "--router.fanout.enabled=false",
+  "--router.optimizer.enabled=false",
+  "--router.neck_width_um=100",
+  "--router.min_trace_width_um=100",
+  "--layer-heights=0.035,0.245,1.328,1.591",
+  "--router.copper_to_edge_clearance_um=500",
+  "--no-neckdown-classes=DIFF_PAIR_004,DIFF_PAIR_007",
+  "--router.autorouter.ignore_net_classes=default,POWER_000,DIFF_PAIR_000,DIFF_PAIR_001,DIFF_PAIR_002,DIFF_PAIR_003,DIFF_PAIR_004,DIFF_PAIR_005,DIFF_PAIR_006,DIFF_PAIR_007,DIFF_PAIR_008"
+]

@@ -1,0 +1,70 @@
+{
+  "selected_pairs": [
+    [
+      "/M2_P",
+      "/M2_N"
+    ],
+    [
+      "/M3_P",
+      "/M3_N"
+    ],
+    [
+      "/U3STX_P",
+      "/U3STX_N"
+    ]
+  ],
+  "source_nets": {
+    "locked_unprotected": [
+      "+3V3",
+      "/LED0",
+      "/LED1",
+      "/LED2",
+      "/V12",
+      "/VBUS",
+      "GND",
+      "Net-(C5-Pad1)",
+      "Net-(C9-Pad1)",
+      "Net-(LAN1-P5)",
+      "Net-(LAN1-P6)",
+      "Net-(LAN1-Pad12)",
+      "Net-(LAN1-Pad14)",
+      "Net-(U2-CLK)",
+      "Net-(U2-CS)",
+      "Net-(U2-DI)",
+      "Net-(U3-CKXTAL1)",
+      "Net-(U3-CKXTAL2)",
+      "Net-(U3-GPIO)",
+      "Net-(U3-RSET)",
+      "Net-(U3-VDD5)",
+      "Net-(U3-XTALDET)",
+      "Net-(U4-FB)",
+      "Net-(U4-LX)"
+    ],
+    "protected_source": [
+      "/M0_N",
+      "/M0_P",
+      "/M1_N",
+      "/M1_P",
+      "/U2D_N",
+      "/U2D_P",
+      "/U2_N",
+      "/U2_P",
+      "/U3SRX_N",
+      "/U3SRX_P",
+      "/U3TX_N",
+      "/U3TX_P"
+    ],
+    "tuned_source": [
+      "/M2_N",
+      "/M2_P",
+      "/M3_N",
+      "/M3_P",
+      "/U3STX_N",
+      "/U3STX_P"
+    ]
+  },
+  "segment_count": 768,
+  "via_count": 77,
+  "resolution": "um 10",
+  "raw_blocks_preserved": true
+}

@@ -1,0 +1,19 @@
+    0.000 INFO  fastroute 0.1.14
+    0.003 INFO  parsed 'board.dsn' in 2.6 ms: 4 layers, 52 components, 43 nets, 108 wires
+    0.776 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.777 INFO  net class 'DIFF_PAIR_007': no neck-down
+    1.241 INFO  8 trace ends inside a pad but off its center joined to the center
+    1.241 INFO  built board in 1238.3 ms: 520 items (186 pins, 56 vias, 116 traces)
+    1.242 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    1.242 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    1.242 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    1.539 INFO  checkpoint: best board so far (80 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-local-output.KY5Yfy/board.ses'
+    1.550 INFO  Auto-routing stage started with baseline score 274.51 for 80 unrouted items (79 of them in ignored net classes, not routed).
+    1.797 INFO  Auto-routing pass #1 was completed in 0.25 seconds with score 279.41 (79 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+    1.797 INFO  checkpoint: best board so far (79 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-local-output.KY5Yfy/board.ses'
+    1.798 INFO  Auto-routing pass #2 was completed in 0.00 seconds with score 279.41 (79 unrouted and 0 violations) (routed 0, failed 0, ripped 0).
+    1.798 INFO  Auto-routing stage completed: started with 80 unrouted nets, completed in 0.25 seconds, final score: 279.41 (79 unrouted and 0 violations).
+    1.798 INFO  79 of the 79 unrouted connections are in ignored net classes (not routed); 0 routable connection(s) left unrouted.
+    1.798 INFO  routing finished in 0.56 s
+    1.968 INFO  saved '/workspace/cloud-pcb-studio/.run/active-protected-local-output.KY5Yfy/board.ses' (4979 bytes)
+    2.319 INFO  report written to '/workspace/cloud-pcb-studio/.run/active-protected-local-output.KY5Yfy/report.json'
