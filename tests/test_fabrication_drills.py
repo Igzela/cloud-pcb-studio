@@ -10,8 +10,7 @@ from kiutils.items.brditems import Via
 from kiutils.items.common import Position
 import pytest
 
-from cloud_pcb.verify_gate.fabrication_drills import audit_fabrication_drills
-from cloud_pcb.verify_gate.gerber_drc import _open_excellon
+from cloud_pcb.verify_gate.fabrication_drills import audit_fabrication_drills, read_fabrication_drill_file
 
 
 @pytest.fixture
@@ -31,13 +30,23 @@ def exported_drills(tmp_path):
     npth_path = tmp_path / 'NPTH.drl'
     ExcellonFile(objects=[Flash(3, 16, ExcellonTool(.3, plated=True, unit=MM), unit=MM)]).save(pth_path)
     ExcellonFile(objects=[Line(11.6, 16.2, 10.6, 16.2, ExcellonTool(.4, plated=False, unit=MM), unit=MM)]).save(npth_path)
-    return board, _open_excellon(pth_path), _open_excellon(npth_path)
+    return board, read_fabrication_drill_file(pth_path), read_fabrication_drill_file(npth_path)
 
 
 def test_round_via_and_rotated_offset_slot_match_physical_exports(exported_drills):
     report = audit_fabrication_drills(*exported_drills, y_flip_mm=20)
     assert report['passed'] and not report['issues']
     assert {name: group['observed_count'] for name, group in report['groups'].items()} == {'PTH': 1, 'NPTH': 1}
+
+
+@pytest.mark.parametrize('invalid', ['', 'M48\nMETRIC\n%\n', 'M48\nMETRIC\n%\nINVALID\nM30\n'])
+def test_empty_or_incomplete_file_does_not_substitute_for_valid_zero_hole_export(tmp_path, invalid):
+    path = tmp_path / 'NPTH.drl'
+    ExcellonFile(objects=[]).save(path)
+    assert not read_fabrication_drill_file(path).objects
+    path.write_text(invalid)
+    with pytest.raises(ValueError, match='NPTH.drl'):
+        read_fabrication_drill_file(path)
 
 
 @pytest.mark.parametrize('change', ['omitted', 'diameter', 'position', 'wrong-group', 'duplicate'])

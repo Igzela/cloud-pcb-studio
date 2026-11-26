@@ -6,8 +6,7 @@ from pathlib import Path
 
 from kiutils.board import Board
 
-from cloud_pcb.verify_gate.fabrication_drills import audit_fabrication_drills
-from cloud_pcb.verify_gate.gerber_drc import _open_excellon
+from cloud_pcb.verify_gate.fabrication_drills import audit_fabrication_drills, read_fabrication_drill_file
 
 
 def main():
@@ -19,7 +18,7 @@ def main():
     args = parser.parse_args()
     try:
         report = audit_fabrication_drills(
-            Board.from_file(str(args.board)), _open_excellon(args.pth), _open_excellon(args.npth),
+            Board.from_file(str(args.board)), read_fabrication_drill_file(args.pth), read_fabrication_drill_file(args.npth),
             y_flip_mm=args.y_flip_mm,
         )
     except (OSError, TypeError, ValueError) as exc:

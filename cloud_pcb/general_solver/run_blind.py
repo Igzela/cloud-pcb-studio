@@ -24,7 +24,6 @@ import shutil
 import subprocess
 import time
 import uuid
-import warnings
 from collections import defaultdict
 from dataclasses import asdict, replace
 from pathlib import Path
@@ -2202,13 +2201,10 @@ def _audit_blind_output(
         cu_unions[gname] = u
         flashes[gname] = fl
 
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", SyntaxWarning)
-        pth = ExcellonFile.open(gerber_dir / "PTH.drl")
-        npth = ExcellonFile.open(gerber_dir / "NPTH.drl")
-
     from cloud_pcb.verify_gate.gerber_drc import audit_annular_geometry
-    from cloud_pcb.verify_gate.fabrication_drills import audit_fabrication_drills
+    from cloud_pcb.verify_gate.fabrication_drills import audit_fabrication_drills, read_fabrication_drill_file
+    pth = read_fabrication_drill_file(gerber_dir / "PTH.drl")
+    npth = read_fabrication_drill_file(gerber_dir / "NPTH.drl")
     fabrication_drills = audit_fabrication_drills(board, pth, npth, y_flip_mm=H)
     annular_witnesses = []
     min_ar, ar_viols = audit_annular_geometry(

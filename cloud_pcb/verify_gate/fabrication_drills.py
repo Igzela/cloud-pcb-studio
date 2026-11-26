@@ -1,13 +1,31 @@
 """Cross-check native solver Excellon holes and slots against the KiCad board."""
 
 import math
+import warnings
 from collections import Counter, defaultdict
 
+from gerbonara.excellon import ExcellonFile
 from gerbonara.graphic_objects import Flash, Line
 from gerbonara.utils import MM
 from kiutils.items.brditems import Via
 
 from cloud_pcb.general_solver.geometry import drill_centerline
+
+
+def read_fabrication_drill_file(path):
+    """Require complete native XNC framing, including on a zero-hole layer."""
+    data = path.read_text()
+    commands = [line.partition(';')[0].strip() for line in data.splitlines()]
+    commands = [command for command in commands if command]
+    if (len(commands) < 4 or commands[0] != 'M48' or '%' not in commands
+            or commands[-1] != 'M30' or not commands[1].startswith(('METRIC', 'INCH'))):
+        raise ValueError(f'{path.name}: missing native XNC header or end-of-program command')
+    with warnings.catch_warnings():
+        warnings.simplefilter('error', SyntaxWarning)
+        try:
+            return ExcellonFile.from_string(data, filename=path)
+        except (SyntaxError, SyntaxWarning) as exc:
+            raise ValueError(f'{path.name}: {exc}') from exc
 
 
 def _drill_key(diameter, start, end):
@@ -31,6 +49,8 @@ def _describe(key):
 
 def audit_fabrication_drills(board, plated, unplated, *, y_flip_mm):
     """Measure both drill files separately and reconcile their exact geometry."""
+    if not math.isfinite(y_flip_mm):
+        raise ValueError('non-finite board coordinate transform')
     expected = {True: defaultdict(list), False: defaultdict(list)}
     issues = []
 
