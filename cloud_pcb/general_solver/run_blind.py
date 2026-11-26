@@ -1963,15 +1963,16 @@ def _build_4layer_pours_and_stitching(
         board.zones.append(z)
 
     board_area = float(board_poly.area)
+    in1_area = float(pours["In1.Cu"].area)
     stats = {
         "board_area_mm2": round(board_area, 3),
-        "pour_area_mm2": round(float(inner_pour.area), 3),
-        "fill_ratio": round(float(inner_pour.area) / max(board_area, 1.0), 4),
+        "pour_area_mm2": round(in1_area, 3),
+        "fill_ratio": round(in1_area / max(board_area, 1.0), 4),
         "f_cu_pour_mm2": round(float(f_pour.area), 3),
         "b_cu_pour_mm2": round(float(b_pour.area), 3),
         "stitching_vias_added": stitch_added,
         "antipad_cutouts": len(inner_cutouts),
-        "is_empty": inner_pour.is_empty,
+        "is_empty": pours["In1.Cu"].is_empty,
         "power_islands": [{k:v for k,v in i.items() if k!='geometry'}|{'area_mm2':i['geometry'].area} for i in islands or []],
     }
     # Export aggregate copper while KiCad zones retain individual net identity.
