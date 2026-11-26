@@ -162,3 +162,14 @@ python -m scripts.optimize_pcb run \
 机械审计及 WebGL 共用实际板厚、架高和器件高度的 Z 区间。人工对照从 KiCad 实际板面与姿态恢复包络，求解器底面包络按局部 X 镜像。旧版盲输入若无法确定外部底面不对称包络的镜像方向，仍记为未核实。失败轮次可独立校验日志和产物哈希，基线资格仍要求完整轮次。
 
 兼容轮按用户指示停止。已记录完整的 pytest 日志，247 项通过，耗时 81.65 秒。Case 1–5 的板级证据和 Chromium 结果已完成，其中 Case 5 回到未完成连接 9、独立开路 9、间距 0，固定接口铜距仍为 0.30 mm。Case 10 的求解在路由阶段停止，Case 11 与两个密封批次均未启动。原清单保留停止时的状态。独立收据记录了停止时间、已完成的五块板和所有已产生文件的哈希。当前基线仍由先前完整的七板轮次提供。[停止收据](../artifacts/optimization/runs/20261120T093429914289Z-legacy-first-two-sided.stopped.json) · [完整 pytest 日志](../artifacts/optimization/runs/20261120T093429914289Z-legacy-first-two-sided/pytest.log)
+
+## 独立核对制造钻孔
+
+`fabrication_drills_match` 逐项核对 KiCad 板与原生 Excellon 输出中的 PTH、NPTH、过孔和直槽，比较刀具直径、坐标和出现次数。报告保留缺孔、额外孔、镀层分组冲突和未支持的孔型。`--y-flip-mm` 采用原生导出坐标变换 `(x, H - y)` 中的板高 `H`。比较精度为导出的五位毫米小数。可从原始板文件及两份钻孔文件独立复算：
+
+```bash
+source scripts/env.sh
+python -m scripts.verify_fabrication_drills routed.kicad_pcb PTH.drl NPTH.drl --y-flip-mm 19
+```
+
+退出码 `0` 表示钻孔匹配，`1` 表示发现差异，`2` 表示无法完成读取或测量。零孔层仍需完整的 XNC 头、单位和程序结束标记。活动基线和局部输出预布线候选的 14 组冻结板文件均匹配。从 Case 5 候选的 NPTH 副本删除一个孔后，工具定位到缺失的 3.30 mm 安装孔，坐标为 `(6.34150, 15.21500)` mm，并返回 `1`。

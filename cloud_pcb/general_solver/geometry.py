@@ -45,8 +45,8 @@ def via_barrel_length_mm(board,via):
     return abs(centers.get(via.layers[-1],float(board.general.thickness))-centers.get(via.layers[0],0))
 
 
-def drill_geometry(fp,pad):
-    from shapely.geometry import Point,LineString
+def drill_centerline(fp, pad):
+    """Return drill tool diameter and slot ends in KiCad board coordinates."""
     def rot(x,y,angle):
         t=math.radians(angle);return x*math.cos(t)+y*math.sin(t),-x*math.sin(t)+y*math.cos(t)
     dx,dy=rot(float(pad.position.X),float(pad.position.Y),float(fp.position.angle or 0))
@@ -55,6 +55,14 @@ def drill_geometry(fp,pad):
     if d.offset:
         dx,dy=rot(float(d.offset.X),float(d.offset.Y),angle);x+=dx;y+=dy
     w=float(d.diameter);h=float(d.width or w) if d.oval else w
-    if abs(w-h)<1e-10: return Point(x,y).buffer(w/2,quad_segs=32)
+    if abs(w-h)<1e-10: return w, (x, y), (x, y)
     dx,dy=rot((w-h)/2 if w>h else 0,(h-w)/2 if h>w else 0,angle)
-    return LineString([(x-dx,y-dy),(x+dx,y+dy)]).buffer(min(w,h)/2,quad_segs=32)
+    return min(w, h), (x-dx, y-dy), (x+dx, y+dy)
+
+
+def drill_geometry(fp, pad):
+    from shapely.geometry import Point, LineString
+
+    diameter, start, end = drill_centerline(fp, pad)
+    centerline = Point(start) if start == end else LineString([start, end])
+    return centerline.buffer(diameter / 2, quad_segs=32)

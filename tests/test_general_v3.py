@@ -6,6 +6,7 @@ from kiutils.board import Board
 from kiutils.footprint import Footprint,Pad
 from kiutils.items.brditems import Segment,Via
 from kiutils.items.common import Position,Net
+import pytest
 from shapely.geometry import box
 
 from cloud_pcb.general_solver.topology import analyze_topology
@@ -217,16 +218,22 @@ def test_power_island_is_not_pierced_by_added_ground_stitching():
     assert all(not island['geometry'].intersects(Point(v.position.X,v.position.Y).buffer(v.size/2)) for v in b.traceItems if isinstance(v,Via))
 
 
-def test_inner_signal_is_cut_out_of_inner_ground_fill():
+@pytest.mark.parametrize('layer', ('In1.Cu', 'In2.Cu'))
+def test_inner_signal_is_cut_out_of_inner_ground_fill(layer):
     from cloud_pcb.general_solver.run_blind import _build_4layer_pours_and_stitching
     from shapely.geometry import Polygon
     from shapely.ops import unary_union
     b=Board.create_new();b.nets=[Net(0,''),Net(1,'GND'),Net(2,'signal')]
-    t=Segment(start=Position(X=5,Y=5),end=Position(X=20,Y=5),width=.3,layer='In2.Cu',net=2);b.traceItems=[t]
-    _build_4layer_pours_and_stitching(b,box(0,0,30,30))
-    ground=unary_union([Polygon([(p.X,p.Y) for p in f.coordinates]) for z in b.zones if z.net==1 for f in z.filledPolygons if f.layer=='In2.Cu'])
+    t=Segment(start=Position(X=5,Y=5),end=Position(X=20,Y=5),width=.3,layer=layer,net=2);b.traceItems=[t]
+    outline = box(0,0,30,30)
+    pours, stats = _build_4layer_pours_and_stitching(b, outline)
+    ground=unary_union([Polygon([(p.X,p.Y) for p in f.coordinates]) for z in b.zones if z.net==1 for f in z.filledPolygons if f.layer==layer])
     from shapely.geometry import LineString
     assert ground.distance(LineString([(5,5),(20,5)]))>=.3/2+.22-1e-6
+    assert stats['pour_area_mm2'] == round(pours['In1.Cu'].area, 3)
+    assert stats['fill_ratio'] == round(pours['In1.Cu'].area / outline.area, 4)
+    if layer == 'In2.Cu':
+        assert stats['pour_area_mm2'] == outline.buffer(-.5).area
 
 
 def test_annular_geometry_rejects_missing_copper_and_checks_slots():

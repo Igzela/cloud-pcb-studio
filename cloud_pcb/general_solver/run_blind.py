@@ -24,7 +24,6 @@ import shutil
 import subprocess
 import time
 import uuid
-import warnings
 from collections import defaultdict
 from dataclasses import asdict, replace
 from pathlib import Path
@@ -1964,15 +1963,16 @@ def _build_4layer_pours_and_stitching(
         board.zones.append(z)
 
     board_area = float(board_poly.area)
+    in1_area = float(pours["In1.Cu"].area)
     stats = {
         "board_area_mm2": round(board_area, 3),
-        "pour_area_mm2": round(float(inner_pour.area), 3),
-        "fill_ratio": round(float(inner_pour.area) / max(board_area, 1.0), 4),
+        "pour_area_mm2": round(in1_area, 3),
+        "fill_ratio": round(in1_area / max(board_area, 1.0), 4),
         "f_cu_pour_mm2": round(float(f_pour.area), 3),
         "b_cu_pour_mm2": round(float(b_pour.area), 3),
         "stitching_vias_added": stitch_added,
         "antipad_cutouts": len(inner_cutouts),
-        "is_empty": inner_pour.is_empty,
+        "is_empty": pours["In1.Cu"].is_empty,
         "power_islands": [{k:v for k,v in i.items() if k!='geometry'}|{'area_mm2':i['geometry'].area} for i in islands or []],
     }
     # Export aggregate copper while KiCad zones retain individual net identity.
@@ -2202,12 +2202,11 @@ def _audit_blind_output(
         cu_unions[gname] = u
         flashes[gname] = fl
 
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", SyntaxWarning)
-        pth = ExcellonFile.open(gerber_dir / "PTH.drl")
-        npth = ExcellonFile.open(gerber_dir / "NPTH.drl")
-
     from cloud_pcb.verify_gate.gerber_drc import audit_annular_geometry
+    from cloud_pcb.verify_gate.fabrication_drills import audit_fabrication_drills, read_fabrication_drill_file
+    pth = read_fabrication_drill_file(gerber_dir / "PTH.drl")
+    npth = read_fabrication_drill_file(gerber_dir / "NPTH.drl")
+    fabrication_drills = audit_fabrication_drills(board, pth, npth, y_flip_mm=H)
     annular_witnesses = []
     min_ar, ar_viols = audit_annular_geometry(
         pth, cu_unions["F_Cu.gbr"], cu_unions["B_Cu.gbr"],
@@ -2317,6 +2316,7 @@ def _audit_blind_output(
         "pygerber_by_layer": pygerber_ok,
         "pth_hole_count": len(pth.objects),
         "npth_hole_count": len(npth.objects),
+        "fabrication_drills": fabrication_drills,
         "min_annular_ring_mm": round(min_ar, 4) if min_ar is not None else None,
         "annular_ring_violations": len(ar_viols),
         "annular_circle_witnesses": annular_witnesses,
@@ -2831,6 +2831,7 @@ def _run_dense_escape_candidate(
                 and _rf_fail_count(p2_ind) <= _rf_fail_count(p1_ind)
                 and int(p2_aud["annular_ring_violations"]) <= int(p1_aud["annular_ring_violations"])
                 and (not p1_aud["pygerber_all_ok"] or bool(p2_aud["pygerber_all_ok"]))
+                and (not p1_aud["fabrication_drills"]["passed"] or p2_aud["fabrication_drills"]["passed"])
                 and float(p2_aud["silk_to_mask_overlap_mm2"]) <= float(p1_aud["silk_to_mask_overlap_mm2"]) + 1e-8
                 and _edge_deficit(p2_aud["copper_edge_margins_mm"]) <= _edge_deficit(p1_aud["copper_edge_margins_mm"]) + 1e-8
                 and p2_fill_def <= p1_fill_def + 1e-8
@@ -3326,6 +3327,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
                 and _rf_fail_count(cand_ind) <= _rf_fail_count(independent)
                 and int(cand_aud["annular_ring_violations"]) <= int(audit["annular_ring_violations"])
                 and (not audit["pygerber_all_ok"] or bool(cand_aud["pygerber_all_ok"]))
+                and (not audit["fabrication_drills"]["passed"] or cand_aud["fabrication_drills"]["passed"])
                 and float(cand_aud["silk_to_mask_overlap_mm2"]) <= float(audit["silk_to_mask_overlap_mm2"]) + 1e-8
                 and _edge_deficit(cand_aud["copper_edge_margins_mm"]) <= _edge_deficit(audit["copper_edge_margins_mm"]) + 1e-8
                 and cand_fill_def <= inc_fill_def + 1e-8
@@ -3404,6 +3406,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         'independent_lvs_shorts_zero':not independent['lvs_shorts'],
         'nonthermal_via_in_pad_zero':not independent['via_in_pad_violations'],
         'gerber_all_parsed':audit['pygerber_all_ok'],
+        'fabrication_drills_match':audit['fabrication_drills']['passed'],
         'annular_ring_ge_010':audit['min_annular_ring_mm'] is not None and audit['min_annular_ring_mm']>=.10 and audit['annular_ring_violations']==0,
         'silk_overlap_zero':audit['silk_to_mask_overlap_mm2']==0,
         'copper_edge_ge_050':all(d>=.50-1e-4 for d in audit['copper_edge_margins_mm'].values()) and len(audit['copper_edge_margins_mm'])==4,

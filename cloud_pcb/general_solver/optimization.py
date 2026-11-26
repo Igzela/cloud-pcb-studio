@@ -76,6 +76,15 @@ def report_metrics(report, pcb=None, spec=None):
         checks=dict(unrouted_zero=values['unrouted']==0,router_spacing_zero=values['spacing']==0,independent_lvs_opens_zero=values['opens']==0,independent_lvs_shorts_zero=values['shorts']==0,nonthermal_via_in_pad_zero=values['via_in_pad']==0,gerber_all_parsed=values['gerber_failures']==0,annular_ring_ge_010=values['annular_failures']==0,silk_overlap_zero=values['silk_overlap_mm2']==0,copper_edge_ge_050=values['edge_deficit_mm']<=1e-4,rf_all_four_layers_clear=values['rf_failures']==0,mechanical_zero_with_verified_envelopes=values['mechanical_collisions']==0 and values['unverified_envelopes']==0)
         for name, passed in checks.items():
             if gates.get(name) is True and not passed:errors.append('claimed gate contradicts audit: '+name)
+        if 'fabrication_drills' in audit or 'fabrication_drills_match' in gates:
+            drills = audit['fabrication_drills']
+            groups = drills['groups']
+            valid_drills = set(groups) == {'PTH', 'NPTH'} and not drills['issues'] and all(
+                not group['missing'] and not group['unexpected'] and group['expected_count'] == group['observed_count']
+                for group in groups.values()
+            )
+            if drills['passed'] is not valid_drills or gates.get('fabrication_drills_match') is not valid_drills:
+                errors.append('fabrication drill gate contradicts measured drill evidence')
         if report['hard_gates_passed'] != (bool(gates) and all(gates.values())):errors.append('overall gate result inconsistent')
         for key,value in values.items():
             if value is not None and (not isinstance(value,(float,int)) or isinstance(value,bool) or not math.isfinite(value) or value<0):errors.append('invalid metric: '+key)
