@@ -1,0 +1,50 @@
+name: PCB regression
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pcb-regression-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install native dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ngspice libcairo2
+
+      - name: Install locked Python and Node dependencies
+        run: |
+          source scripts/env.sh
+          python -m venv .venv
+          source scripts/env.sh
+          python -m pip install -r requirements.txt
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Run the PCB test suite
+        run: |
+          source scripts/env.sh
+          python -m pytest -q
