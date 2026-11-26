@@ -1,0 +1,108 @@
+{
+  "source_hashes": {
+    ".run/via-pad-warm-optimizer.HtOYVF/protected.dsn": "1a2577042934fec1e04623328857da4bcdd675292a68a548a7777918a6dacc5c",
+    "artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_fastroute.ses": "50c22cbe5e1d9d5e58d6e8fc37c2e8a404ad3b2f48f0f8355f93b42144c74e8a",
+    "artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_unrouted.kicad_pcb": "8645b78ff645e331f014762a9ccd62fc5601d5991384252fc8c493f8877df2fc",
+    "artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/routed.kicad_pcb": "620d7789401d87cce35bbbde565cb542887643cddc535cc2d1dd53083a378e89",
+    "artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/effective_spec.json": "a063037c183e30022de603dbf52ee054ea3c72ced1ae79e95b19666c79a2c078",
+    "bin/fastroute": "a4efebd6bfbb6614c9bac0535441dd65983d1a8e2cb3e00ebcf3ce90f2757d9f"
+  },
+  "resolution": "um 10",
+  "protected_nets": {
+    "/M0_N": {
+      "paths": 1,
+      "segments": 8
+    },
+    "/M0_P": {
+      "paths": 5,
+      "segments": 8,
+      "vias": 1
+    },
+    "/M1_N": {
+      "paths": 3,
+      "segments": 5,
+      "vias": 1
+    },
+    "/M1_P": {
+      "paths": 3,
+      "segments": 8,
+      "vias": 1
+    },
+    "/M2_N": {
+      "paths": 4,
+      "segments": 11,
+      "vias": 1
+    },
+    "/M2_P": {
+      "paths": 3,
+      "segments": 9,
+      "vias": 1
+    },
+    "/M3_N": {
+      "paths": 3,
+      "segments": 5,
+      "vias": 1
+    },
+    "/M3_P": {
+      "paths": 4,
+      "segments": 7,
+      "vias": 1
+    },
+    "/U2D_N": {
+      "paths": 5,
+      "segments": 10,
+      "vias": 2
+    },
+    "/U2D_P": {
+      "paths": 4,
+      "segments": 9,
+      "vias": 2
+    },
+    "/U2_N": {
+      "paths": 10,
+      "segments": 19,
+      "vias": 4
+    },
+    "/U2_P": {
+      "paths": 7,
+      "segments": 13,
+      "vias": 2
+    },
+    "/U3SRX_N": {
+      "paths": 4,
+      "segments": 11,
+      "vias": 2
+    },
+    "/U3SRX_P": {
+      "paths": 4,
+      "segments": 12,
+      "vias": 2
+    },
+    "/U3STX_N": {
+      "paths": 3,
+      "segments": 5
+    },
+    "/U3STX_P": {
+      "paths": 5,
+      "segments": 10,
+      "vias": 2
+    },
+    "/U3TX_N": {
+      "paths": 3,
+      "segments": 11,
+      "vias": 2
+    },
+    "/U3TX_P": {
+      "paths": 5,
+      "segments": 18,
+      "vias": 2
+    }
+  },
+  "fixed_dsn_objects": 103,
+  "protected_segments": 179,
+  "protected_vias": 27,
+  "unprotected_segments": 595,
+  "unprotected_vias": 58,
+  "locked_dsn_sha256": "82c3db2662b58dd7f3b8a60b18683f0acdbdededda26f478c4397c044e15a3af",
+  "filtered_seed_sha256": "f2721895b01a37e4c282610422633f9e01c4bec27de0584007fa2f5506a4e90c"
+}

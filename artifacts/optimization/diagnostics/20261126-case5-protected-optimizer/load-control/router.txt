@@ -1,0 +1,12 @@
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 2.0 ms: 4 layers, 52 components, 43 nets, 115 wires
+    0.366 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.366 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.370 INFO  initial session '.run/protected-copper-probe.efvKI6/unfixed-seed.ses': 291 wires and 58 vias imported (0 errors)
+    0.544 INFO  56 trace ends inside a pad but off its center joined to the center
+    0.544 INFO  built board in 541.5 ms: 926 items (186 pins, 116 vias, 462 traces)
+    0.544 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.544 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.544 INFO  routing finished in 0.00 s
+    0.714 INFO  saved '.run/protected-copper-probe.efvKI6/load-control/board.ses' (55277 bytes)
+    1.106 INFO  report written to '.run/protected-copper-probe.efvKI6/load-control/report.json'
