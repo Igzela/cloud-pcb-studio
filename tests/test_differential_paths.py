@@ -6,7 +6,7 @@ from kiutils.items.brditems import Segment, Stackup, StackupLayer, Via
 from kiutils.items.common import Net, Position
 import pytest
 
-from scripts.verify_differential_paths import measure_differential_paths
+from cloud_pcb.verify_gate.differential_paths import measure_differential_paths
 
 
 def point(xy):

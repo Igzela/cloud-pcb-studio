@@ -116,6 +116,43 @@ def test_regressing_qor_or_omitting_a_case_blocks_promotion():
     assert compare_candidate({'x':a,'y':a},{'x':a},full_suite=False,tests_passed=True)['invalid']
 
 
+def differential_measurement(status, interval=None, **kwargs):
+    result = measurement(**kwargs)
+    pair = dict(pos_net='test+', neg_net='test-', max_skew_mm=.2, status=status)
+    if interval is not None:
+        pair['skew_interval_mm'] = interval
+    result['differential_paths'] = {'pairs': [pair]}
+    return result
+
+
+def test_measured_skew_regression_blocks_promotion_even_after_an_open_closes():
+    before = differential_measurement('FAIL', [1.01, 1.03], opens=1, unrouted=1)
+    after = differential_measurement('FAIL', [23.42, 23.44])
+    decision = compare_candidate({'board': before}, {'board': after}, full_suite=True, tests_passed=True)
+    assert not decision['eligible_for_baseline'] and decision['improvements']
+    assert decision['regressions'][0]['metric'] == 'differential_skew_excess_mm'
+    assert decision['regressions'][0]['pair'] == ['test+', 'test-']
+
+
+def test_losing_previously_measured_path_evidence_invalidates_the_comparison():
+    before = differential_measurement('PASS', [.12, .13])
+    after = differential_measurement('UNKNOWN')
+    decision = compare_candidate({'board': before}, {'board': after}, full_suite=True, tests_passed=True)
+    assert not decision['eligible_for_baseline'] and not decision['regressions']
+    assert decision['invalid'][0]['pair'] == ['test+', 'test-']
+
+
+def test_compare_skew_accounts_for_alignment_interval_and_respects_limit():
+    before = differential_measurement('FAIL', [.605, .607])
+    after = differential_measurement('FAIL', [.606, .608])
+    overlap = compare_candidate({'board': before}, {'board': after}, full_suite=True, tests_passed=True)
+    assert not overlap['regressions'] and not overlap['improvements']
+    passing = differential_measurement('PASS', [.1, .102])
+    improved = compare_candidate({'board': before}, {'board': passing}, full_suite=True, tests_passed=True)
+    assert improved['eligible_for_baseline']
+    assert improved['improvements'][0]['metric'] == 'differential_skew_excess_mm'
+
+
 def test_missing_evidence_and_fabricated_passes_fail_closed():
     missing=report_metrics({'hard_gates':{},'hard_gates_passed':True})
     assert missing['evidence_errors'] and not missing['hard_pass']
