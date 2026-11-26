@@ -1,0 +1,22 @@
+[
+  "fastroute",
+  "-de",
+  ".run/via-pad-warm-optimizer.HtOYVF/protected.dsn",
+  "-do",
+  ".run/via-pad-optimizer-240.ogzwDw/board.ses",
+  "--report=.run/via-pad-optimizer-240.ogzwDw/report.json",
+  "--initial-session=artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_fastroute.ses",
+  "--max-time=240",
+  "--multi-start=1",
+  "--router.autorouter.enabled=false",
+  "--router.fanout.enabled=false",
+  "--router.optimizer.enabled=true",
+  "--router.optimizer.timeout=00:04:00",
+  "--router.optimizer.optimization_improvement_threshold=0.5",
+  "--router.neck_width_um=100",
+  "--router.min_trace_width_um=100",
+  "--layer-heights=0.035,0.245,1.328,1.591",
+  "--router.copper_to_edge_clearance_um=500",
+  "--no-neckdown-classes=DIFF_PAIR_004,DIFF_PAIR_007",
+  "--router.scoring.via_costs=100"
+]

@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": ".run/via-pad-warm-optimizer.HtOYVF/protected.dsn",
+  "time_s": {"load": 0.5076, "route": 240.3646, "total": 241.0781, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 109, "vias_blind": 0, "vias_buried": 0, "traces": 399, "trace_length_mm": 955.0727, "bends_90": 1, "bends_45": 380, "bends_other": 1, "router_score": 1000, "optimizer_score": 363.5097},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

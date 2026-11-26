@@ -1,0 +1,41 @@
+    0.000 INFO  fastroute 0.1.14
+    0.010 INFO  parsed 'board.dsn' in 9.7 ms: 4 layers, 52 components, 43 nets, 39 wires
+    0.325 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.325 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.331 INFO  initial session 'artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_fastroute.ses': 367 wires and 85 vias imported (0 errors)
+    0.507 INFO  56 trace ends inside a pad but off its center joined to the center
+    0.507 INFO  built board in 497.4 ms: 926 items (186 pins, 116 vias, 462 traces)
+    0.508 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.508 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.711 INFO  Optimization stage started. Baseline router score: 1000.00, optimizer score: 283.58, incomplete connections: 0, clearance violations: 0.
+   31.239 INFO  Optimizer pass #1: 113 of 281 candidates after 31 s (65 improving so far).
+   61.337 INFO  Optimizer pass #1: 238 of 281 candidates after 61 s (155 improving so far).
+   79.134 INFO  Optimizer greedy phase stopped after 40 of 181 candidates (8.5 s, no further improvements).
+   79.134 INFO  Optimizer pass #1: applied 7 more improving candidate(s).
+   79.351 INFO  Optimizer pass #1 was completed in 78.64 seconds (281 of 281 candidates) with the score of 317.43 (0 unrouted and 0 violations).
+   79.356 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '.run/via-pad-optimizer-240pct.XzkCB0/board.ses'
+   79.356 INFO  Optimizer pass #1: optimizer score 283.58 -> 317.43 (IMPROVED, 11.9355%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  109.378 INFO  Optimizer pass #2: 101 of 216 candidates after 30 s (46 improving so far).
+  138.812 INFO  Optimizer greedy phase stopped after 24 of 100 candidates (2.8 s, no further improvements).
+  138.812 INFO  Optimizer pass #2: applied 4 more improving candidate(s).
+  138.812 INFO  Optimizer pass #2 was completed in 59.46 seconds (216 of 216 candidates) with the score of 363.51 (0 unrouted and 0 violations).
+  138.818 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '.run/via-pad-optimizer-240pct.XzkCB0/board.ses'
+  138.818 INFO  Optimizer pass #2: optimizer score 317.43 -> 363.51 (IMPROVED, 14.5175%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  168.852 INFO  Optimizer pass #3: 85 of 203 candidates after 30 s (34 improving so far).
+  198.912 INFO  Optimizer pass #3: 194 of 203 candidates after 60 s (90 improving so far).
+  202.648 INFO  Optimizer greedy phase stopped after 12 of 92 candidates (2.7 s, no further improvements).
+  202.648 INFO  Optimizer pass #3: applied 1 more improving candidate(s).
+  202.864 INFO  Optimizer pass #3 was completed in 64.05 seconds (203 of 203 candidates) with the score of 360.88 (0 unrouted and 0 violations).
+  202.865 INFO  Optimizer pass #3 candidate rejected: OPTIMIZER_SCORE_NOT_IMPROVED. Restoring incumbent (optimizer score 363.51, incomplete connections: 0, clearance violations: 0).
+  202.880 INFO  Optimizer pass #3: optimizer score 363.51 -> 360.88 (REGRESSED, -0.7245%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  233.139 INFO  Optimizer pass #4: 158 of 203 candidates after 30 s (29 improving so far).
+  240.508 WARN  --max-time (240 s) reached: finishing with the best result so far
+  240.649 INFO  Optimizer pass #4: applied 1 more improving candidate(s).
+  240.649 INFO  Optimizer pass #4 was completed in 37.55 seconds (203 of 203 candidates) with the score of 362.14 (0 unrouted and 0 violations).
+  240.649 INFO  Optimizer pass #4 candidate rejected: OPTIMIZER_SCORE_NOT_IMPROVED. Restoring incumbent (optimizer score 363.51, incomplete connections: 0, clearance violations: 0).
+  240.664 INFO  Optimizer pass #4: optimizer score 363.51 -> 362.14 (REGRESSED, -0.3763%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  240.664 INFO  Stopping optimizer because the improvement in this pass (-0.3763%) is below the threshold (0.50%).
+  240.872 INFO  Optimization stage interrupted: Baseline router score: 1000.00, baseline optimizer score: 283.58, final router score: 1000.00, final optimizer score: 363.51, completed in 240.16 seconds.
+  240.872 INFO  routing finished in 240.36 s
+  241.078 INFO  saved '.run/via-pad-optimizer-240pct.XzkCB0/board.ses' (61668 bytes)
+  241.471 INFO  report written to '.run/via-pad-optimizer-240pct.XzkCB0/report.json'

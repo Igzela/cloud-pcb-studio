@@ -1,0 +1,28 @@
+{
+  "original_dsn_sha256": "575b95bf76abde045483f0b4287dc30cf292e5f624bfaf755c72eb2af8112660",
+  "protected_dsn_sha256": "1a2577042934fec1e04623328857da4bcdd675292a68a548a7777918a6dacc5c",
+  "guard_count": 160,
+  "thermal_pads": [
+    [
+      "U3",
+      "49"
+    ]
+  ],
+  "initial_guard_intersections": [],
+  "preceding_probe_guard_intersections": [
+    {
+      "ref": "C3",
+      "pad": "1",
+      "net": "Net-(LAN1-P5)",
+      "x": 17.783,
+      "y": 4.7387
+    },
+    {
+      "ref": "U3",
+      "pad": "40",
+      "net": "Net-(U2-CS)",
+      "x": 26.7808,
+      "y": 4.8963
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+    0.000 INFO  fastroute 0.1.14
+    0.003 INFO  parsed 'board.dsn' in 2.5 ms: 4 layers, 52 components, 43 nets, 39 wires
+    0.316 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.316 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.323 INFO  initial session 'artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_fastroute.ses': 367 wires and 85 vias imported (0 errors)
+    0.503 INFO  56 trace ends inside a pad but off its center joined to the center
+    0.503 INFO  built board in 500.3 ms: 926 items (186 pins, 116 vias, 462 traces)
+    0.503 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.503 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.708 INFO  Optimization stage started. Baseline router score: 1000.00, optimizer score: 283.58, incomplete connections: 0, clearance violations: 0.
+   31.363 INFO  Optimizer pass #1: 87 of 281 candidates after 31 s (54 improving so far).
+   60.753 INFO  Optimizer pass #1: 194 of 281 candidates after 60 s (121 improving so far).
+   90.506 WARN  --max-time (90 s) reached: finishing with the best result so far
+   90.710 INFO  Optimizer pass #1: 268 of 281 candidates after 90 s (171 improving so far).
+   90.710 INFO  Optimizer stage timed out.
+   90.711 INFO  Optimizer pass #1: stopped early, applying the best candidate found so far.
+   91.302 INFO  Optimizer pass #1 was completed in 90.59 seconds (272 of 281 candidates) with the score of 288.63 (0 unrouted and 0 violations).
+   91.308 INFO  Optimization stage completed with timeout: Baseline router score: 1000.00, baseline optimizer score: 283.58, final router score: 1000.00, final optimizer score: 288.63, completed in 90.60 seconds.
+   91.309 INFO  routing finished in 90.81 s
+   91.808 INFO  saved '.run/via-pad-warm-optimizer.HtOYVF/board.ses' (64432 bytes)
+   92.900 INFO  report written to '.run/via-pad-warm-optimizer.HtOYVF/report.json'

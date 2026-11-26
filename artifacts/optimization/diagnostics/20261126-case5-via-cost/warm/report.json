@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board.dsn",
+  "time_s": {"load": 0.6061, "route": 90.2858, "total": 91.0803, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 114, "vias_blind": 0, "vias_buried": 0, "traces": 431, "trace_length_mm": 979.5263, "bends_90": 3, "bends_45": 394, "bends_other": 0, "router_score": 1000, "optimizer_score": 306.1234},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

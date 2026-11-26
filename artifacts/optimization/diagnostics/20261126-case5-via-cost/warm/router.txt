@@ -1,0 +1,27 @@
+    0.000 INFO  fastroute 0.1.14
+    0.014 INFO  parsed 'board.dsn' in 13.8 ms: 4 layers, 52 components, 43 nets, 39 wires
+    0.393 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.393 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.402 INFO  initial session 'artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_fastroute.ses': 367 wires and 85 vias imported (0 errors)
+    0.606 INFO  56 trace ends inside a pad but off its center joined to the center
+    0.606 INFO  built board in 591.4 ms: 766 items (186 pins, 116 vias, 462 traces)
+    0.606 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.606 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.834 INFO  Optimization stage started. Baseline router score: 1000.00, optimizer score: 283.58, incomplete connections: 0, clearance violations: 0.
+   31.075 INFO  Optimizer pass #1: 90 of 281 candidates after 30 s (28 improving so far).
+   47.767 INFO  Stopping optimization pass #1 early after 12 consecutive items could not be improved.
+   55.979 INFO  Optimizer pass #1: applied 6 more improving candidate(s).
+   55.979 INFO  Optimizer pass #1 was completed in 55.14 seconds (139 of 281 candidates) with the score of 302.59 (0 unrouted and 0 violations).
+   55.982 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '.run/via-warm-optimizer.PmDNWh/board.ses'
+   55.982 INFO  Optimizer pass #1: optimizer score 283.58 -> 302.59 (IMPROVED, 6.7039%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+   86.406 INFO  Optimizer pass #2: 81 of 267 candidates after 30 s (28 improving so far).
+   90.610 WARN  --max-time (90 s) reached: finishing with the best result so far
+   90.671 INFO  Optimizer pass #2: stopped early, applying the best candidate found so far.
+   90.887 INFO  Optimizer pass #2 was completed in 34.90 seconds (104 of 267 candidates) with the score of 306.12 (0 unrouted and 0 violations).
+   90.892 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '.run/via-warm-optimizer.PmDNWh/board.ses'
+   90.892 INFO  Optimizer pass #2: optimizer score 302.59 -> 306.12 (IMPROVED, 1.1673%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+   90.892 INFO  Stopping optimizer because the improvement in this pass (1.1673%) is below the threshold (2.50%).
+   90.892 INFO  Optimization stage interrupted: Baseline router score: 1000.00, baseline optimizer score: 283.58, final router score: 1000.00, final optimizer score: 306.12, completed in 90.06 seconds.
+   90.892 INFO  routing finished in 90.29 s
+   91.081 INFO  saved '.run/via-warm-optimizer.PmDNWh/board.ses' (66069 bytes)
+   91.493 INFO  report written to '.run/via-warm-optimizer.PmDNWh/report.json'

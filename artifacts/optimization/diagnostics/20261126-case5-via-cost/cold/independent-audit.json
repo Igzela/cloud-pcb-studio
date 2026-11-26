@@ -1,0 +1,103 @@
+{
+  "vias": {
+    "ground": 1,
+    "foreign": 69
+  },
+  "router": {
+    "layers": 4,
+    "components": 52,
+    "nets": 43,
+    "pins": 186,
+    "connections": 136,
+    "unrouted": 3,
+    "unrouted_ignored_classes": 0,
+    "violations": 0,
+    "violations_unfixable": 0,
+    "vias": 101,
+    "vias_blind": 0,
+    "vias_buried": 0,
+    "traces": 343,
+    "trace_length_mm": 968.082,
+    "bends_90": 0,
+    "bends_45": 387,
+    "bends_other": 0,
+    "router_score": 970.5883,
+    "optimizer_score": 373.8584
+  },
+  "real_spacing": 0,
+  "pour_stats": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 776.244,
+    "fill_ratio": 0.7933,
+    "f_cu_pour_mm2": 472.273,
+    "b_cu_pour_mm2": 576.152,
+    "stitching_vias_added": 2,
+    "antipad_cutouts": 91,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "lvs_opens": [
+    {
+      "net": "/V12",
+      "components": 2,
+      "pad_count": 19,
+      "pad_groups": {
+        "1": [
+          "C16-2",
+          "C17-1",
+          "C18-2",
+          "C19-2",
+          "C20-2",
+          "C21-2",
+          "C24-2",
+          "C25-2",
+          "C26-2",
+          "L1-2",
+          "R15-1",
+          "U3-4",
+          "U3-9",
+          "U3-13",
+          "U3-20",
+          "U3-31",
+          "U3-42",
+          "U3-46"
+        ],
+        "3": [
+          "U3-24"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U3-CKXTAL2)",
+      "components": 2,
+      "pad_count": 3,
+      "pad_groups": {
+        "2": [
+          "C8-1",
+          "X1-1"
+        ],
+        "0": [
+          "U3-45"
+        ]
+      }
+    },
+    {
+      "net": "/M2_P",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "1": [
+          "LAN1-7",
+          "LAN1-7",
+          "LAN1-7",
+          "LAN1-7"
+        ],
+        "0": [
+          "U3-7"
+        ]
+      }
+    }
+  ],
+  "lvs_shorts": [],
+  "nonthermal_via_in_pad": []
+}
