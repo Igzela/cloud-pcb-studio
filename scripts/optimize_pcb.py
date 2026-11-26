@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import fcntl
+import hashlib
 import json
 import os
 import platform
@@ -125,6 +126,14 @@ def assert_unchanged(snapshot,suite):
     read_suite(suite)
 
 
+def read_copied_input(name, expected_sha):
+    path = local_path(name)
+    content = path.read_bytes()
+    if hashlib.sha256(content).hexdigest() != expected_sha:
+        raise ValueError('copied blind input hash changed: ' + str(path.relative_to(ROOT)))
+    return content
+
+
 def sourced_process(argv,log,timeout):
     """A sourced shell precedes every new Python/router toolchain process."""
     with Path(log).open('w') as stream:
@@ -161,6 +170,20 @@ def diagnose(suite,pointer):
         conflicts=input_conflicts(json.loads(local_path(case['spec']).read_text()))
         tasks.extend(triage(case['id'],reports[case['id']],measurements[case['id']],conflicts))
     return dict(status='baseline_diagnosed',created_at=now(),baseline=pointer,measurements=measurements,case_details=details,tasks=tasks,decision=dict(eligible_for_baseline=False,engineering_pass=None,reason='diagnosis only'))
+
+
+def write_round_record(directory, manifest, result, source_archive):
+    atomic_json(directory / 'result.json', result)
+    write_review(directory, result)
+    manifest['evidence'] = {
+        str(path.relative_to(ROOT)): digest(path)
+        for path in (directory / 'result.json', directory / 'review.md', directory / 'review.html')
+    }
+    manifest['evidence'][str((directory / 'pytest.log').relative_to(ROOT))] = manifest['tests']['sha256']
+    manifest['evidence'][str(source_archive.relative_to(ROOT))] = manifest['source_archive_sha256']
+    path = directory / 'manifest.json'
+    atomic_json(path, manifest)
+    return dict(format='optimization_round', manifest=str(path.relative_to(ROOT)), sha256=digest(path))
 
 
 def run_round(args):
@@ -202,7 +225,11 @@ def run_round(args):
         if tests_rc!=0:raise RuntimeError('pytest failed; no expensive board runs started')
         for case in suite['cases']:
             if case['id'] not in selected:continue
-            assert_unchanged(snapshot,args.suite);case_id=case['id'];out=directory/case_id;out.mkdir();copied=directory/'inputs'/(case_id+'.json');copied.write_bytes(local_path(case['spec']).read_bytes())
+            assert_unchanged(snapshot,args.suite);case_id=case['id'];out=directory/case_id;out.mkdir()
+            copied = directory / 'inputs' / (case_id + '.json')
+            expected_sha = case['spec_sha256']
+            manifest.setdefault('inputs', {})[str(copied.relative_to(ROOT))] = expected_sha
+            copied.write_bytes(local_path(case['spec']).read_bytes())
             t0=time.monotonic();entry=dict(id=case_id,outdir=str(out.relative_to(ROOT)),spec_sha256=case['spec_sha256'],status='running')
             print(json.dumps(dict(event='case_start',case=case_id)),flush=True)
             try:
@@ -221,9 +248,11 @@ def run_round(args):
                     command.append('--two-sided-recovery')
                 if args.variant == 'dense-escape-repair':
                     command.append('--dense-escape-repair')
+                read_copied_input(copied, expected_sha)
                 rc=sourced_process(command,out/'solver.log',args.case_timeout)
+                spec_bytes = read_copied_input(copied, expected_sha)
                 if rc!=0:raise RuntimeError('solver process exit '+str(rc))
-                report=json.loads((out/'blind_run_report.json').read_text());spec=json.loads(copied.read_text());browser=inspect_browser(out)
+                report=json.loads((out/'blind_run_report.json').read_text());spec=json.loads(spec_bytes);browser=inspect_browser(out)
                 metrics=report_metrics(report,out/'routed.kicad_pcb',spec)
                 if not browser['passed']:metrics['evidence_errors'].append('browser assembly verification failed')
                 if jvm_runtime is not None:
@@ -246,32 +275,36 @@ def run_round(args):
     except Exception as exc:
         manifest['status']='invalidated';result['failures'].append(dict(error=str(exc),traceback=traceback.format_exc()));result['decision']=dict(eligible_for_baseline=False,engineering_pass=None,reason=str(exc))
     result['status']=manifest['status'];result['runtime_s']=round(time.monotonic()-start,3);manifest['finished_at']=now();manifest['runtime_s']=result['runtime_s'];manifest['decision']=result['decision']
-    for case in suite['cases']:
-        copied=directory/'inputs'/(case['id']+'.json')
-        if copied.exists():manifest.setdefault('inputs',{})[str(copied.relative_to(ROOT))]=case['spec_sha256']
     try:
         verify_manifest(pointer)
         assert_unchanged(snapshot,args.suite)
+        for name, expected_sha in manifest.get('inputs', {}).items():
+            read_copied_input(name, expected_sha)
     except Exception as exc:
         manifest['status']=result['status']='invalidated'
         result['decision']=manifest['decision']=dict(eligible_for_baseline=False,engineering_pass=None,reason=str(exc))
         result['failures'].append(dict(error=str(exc)))
-    atomic_json(directory/'result.json',result);write_review(directory,result)
-    manifest['evidence']={str(p.relative_to(ROOT)):digest(p) for p in (directory/'result.json',directory/'review.md',directory/'review.html',directory/'pytest.log',source_archive)}
-    atomic_json(directory/'manifest.json',manifest)
+    new_pointer = write_round_record(directory, manifest, result, source_archive)
     promoted=False
     if result['decision'].get('eligible_for_baseline'):
-        state=json.loads(STATE.read_text()) if STATE.exists() else dict(history=[],active_baseline=pointer)
-        if state['active_baseline']!=pointer:raise RuntimeError('baseline changed concurrently')
-        new_pointer=dict(format='optimization_round',manifest=str((directory/'manifest.json').relative_to(ROOT)),sha256=digest(directory/'manifest.json'))
-        state['history'].append(dict(at=now(),previous=pointer,new=new_pointer));state['active_baseline']=new_pointer;atomic_json(STATE,state);promoted=True
-    atomic_json(ROOT/'artifacts/optimization/last_run.json',dict(directory=str(directory.relative_to(ROOT)),manifest_sha256=digest(directory/'manifest.json'),promoted=promoted))
+        try:
+            verify_manifest(new_pointer)
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            reason = 'candidate integrity check failed: ' + str(exc)
+            manifest['status'] = result['status'] = 'invalidated'
+            result['decision'] = manifest['decision'] = dict(eligible_for_baseline=False, engineering_pass=None, reason=reason)
+            result['failures'].append(dict(error=reason))
+            new_pointer = write_round_record(directory, manifest, result, source_archive)
+        else:
+            state=json.loads(STATE.read_text()) if STATE.exists() else dict(history=[],active_baseline=pointer)
+            if state['active_baseline']!=pointer:raise RuntimeError('baseline changed concurrently')
+            state['history'].append(dict(at=now(),previous=pointer,new=new_pointer));state['active_baseline']=new_pointer;atomic_json(STATE,state);promoted=True
+    atomic_json(ROOT/'artifacts/optimization/last_run.json',dict(directory=str(directory.relative_to(ROOT)),manifest_sha256=new_pointer['sha256'],promoted=promoted))
     print(json.dumps(dict(event='round_finish',status=manifest['status'],promoted=promoted,regressions=len(result['decision'].get('regressions',[])),improvements=len(result['decision'].get('improvements',[])),directory=str(directory.relative_to(ROOT)))),flush=True)
     return 0 if manifest['status']=='complete' else 1
 
 
 def digest_bytes(value):
-    import hashlib
     return hashlib.sha256(json.dumps(value,sort_keys=True).encode()).hexdigest()
 
 

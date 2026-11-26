@@ -191,3 +191,100 @@ def test_failing_tests_prevent_solver_start_and_baseline_promotion(tmp_path,monk
     assert not workflow.STATE.exists()
     manifests=list((tmp_path/'artifacts/optimization/runs').glob('*/manifest.json'));assert len(manifests)==1
     manifest=json.loads(manifests[0].read_text());assert manifest['status']=='invalidated' and not manifest['decision']['eligible_for_baseline']
+
+
+@pytest.mark.parametrize(('mutation', 'error'), [
+    ('before_solver', 'copied blind input hash changed'),
+    ('after_solver', 'copied blind input hash changed'),
+    ('remove_input', 'candidate integrity check failed'),
+    ('change_board', 'candidate integrity check failed'),
+    ('change_archive', 'candidate integrity check failed'),
+    (None, None),
+])
+def test_round_checks_copied_input_and_final_evidence_before_promotion(tmp_path, monkeypatch, mutation, error):
+    monkeypatch.setattr(workflow, 'ROOT', tmp_path)
+    monkeypatch.setattr(workflow, 'STATE', tmp_path / 'state.json')
+    source = tmp_path / 'source.py'
+    source.write_text('test fixture')
+    spec = tmp_path / 'spec.json'
+    spec.write_text(json.dumps(supply_spec()))
+    old_manifest = tmp_path / 'old_manifest.json'
+    old_manifest.write_text(json.dumps(dict(status='frozen', cases=[])))
+    old_pointer = dict(format='optimization_round', manifest=old_manifest.name, sha256=digest(old_manifest))
+    old_state = dict(active_baseline=old_pointer, history=[])
+    workflow.STATE.write_text(json.dumps(old_state))
+    suite = tmp_path / 'suite.json'
+    suite.write_text(json.dumps(dict(schema_version=1, baseline=old_pointer, cases=[
+        dict(id='board', split='regression', spec=spec.name, spec_sha256=digest(spec)),
+    ])))
+    monkeypatch.setattr(workflow, 'source_snapshot', lambda _: {source.name: digest(source)})
+    monkeypatch.setattr(workflow, 'baseline_measurements', lambda *_: ({'board': measurement(opens=1, unrouted=1)}, {}, {}))
+    monkeypatch.setattr(workflow, 'report_metrics', lambda *_: measurement())
+    audited = []
+
+    def inspect_browser(directory):
+        audited.append(directory.name)
+        return {'passed': True}
+
+    monkeypatch.setattr(workflow, 'inspect_browser', inspect_browser)
+
+    commands = []
+
+    def run_child(argv, log, _timeout):
+        commands.append(argv[2])
+        log.write_text('1 passed in 0.01s')
+        if argv[2] != 'pytest':
+            copied = Path(argv[argv.index('--spec') + 1])
+            assert copied.read_bytes() == spec.read_bytes()
+            if mutation == 'after_solver':
+                copied.write_text('{}')
+            (log.parent / 'blind_run_report.json').write_text(json.dumps(report()))
+            (log.parent / 'routed.kicad_pcb').write_text('candidate copper')
+        return 0
+
+    monkeypatch.setattr(workflow, 'sourced_process', run_child)
+    if mutation == 'before_solver':
+        write_bytes = Path.write_bytes
+
+        def corrupt_copy(path, content):
+            return write_bytes(path, b'{}' if path.parent.name == 'inputs' else content)
+
+        monkeypatch.setattr(Path, 'write_bytes', corrupt_copy)
+
+    write_review = workflow.write_review
+
+    def change_final_evidence(directory, result):
+        write_review(directory, result)
+        if result['status'] == 'complete':
+            if mutation == 'remove_input':
+                (directory / 'inputs/board.json').unlink()
+            elif mutation == 'change_board':
+                (directory / 'board/routed.kicad_pcb').write_text('changed after case hashing')
+            elif mutation == 'change_archive':
+                (directory / 'source.tar.gz').write_text('changed after source freeze')
+
+    monkeypatch.setattr(workflow, 'write_review', change_final_evidence)
+    args = SimpleNamespace(suite=suite, cases='all', label='integrity-test', hypothesis='check candidate evidence', case_timeout=1, variant='stable')
+    assert workflow.run_round(args) == int(error is not None)
+    expected_commands = ['pytest'] if mutation == 'before_solver' else ['pytest', 'cloud_pcb.general_solver.run_blind']
+    assert commands == expected_commands
+    assert audited == ([] if mutation in ('before_solver', 'after_solver') else ['board'])
+
+    last_run = json.loads((tmp_path / 'artifacts/optimization/last_run.json').read_text())
+    directory = tmp_path / last_run['directory']
+    path = directory / 'manifest.json'
+    manifest = json.loads(path.read_text())
+    state = json.loads(workflow.STATE.read_text())
+    assert last_run['manifest_sha256'] == digest(path)
+    assert manifest['inputs'][f"{last_run['directory']}/inputs/board.json"] == digest(spec)
+    assert last_run['promoted'] is (error is None)
+    if error:
+        assert state == old_state
+        assert manifest['status'] == 'invalidated'
+        assert not manifest['decision']['eligible_for_baseline']
+        assert error in manifest['decision']['reason']
+        assert workflow.latest_round_status()['integrity'] == 'unverified'
+    else:
+        assert state['active_baseline']['sha256'] == digest(path)
+        assert state['history'][0]['previous'] == old_pointer
+        assert workflow.verify_manifest(state['active_baseline']) == manifest
