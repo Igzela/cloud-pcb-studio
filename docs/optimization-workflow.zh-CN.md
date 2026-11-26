@@ -135,6 +135,19 @@ artifacts/optimization/runs/<UTC时间>-<label>/
 
 状态 `complete` 和进程退出码 0 表示本轮完整执行，不表示候选达标或应晋升。自动化消费者必须读取 `decision.eligible_for_baseline`、`decision.regressions`、`decision.invalid` 和 `last_run.json` 的 `promoted`；不能仅凭退出码或绿色测试把 PCB 判为合格。
 
+## 差分端到端几何长度
+
+从 KiCad 板和盲规范独立复核已声明差分对。工具按网表定位端点，以各铜层的走线中心线和叠层中的过孔段建立几何路径。报告每路长度、端点对齐引入的误差上界，以及与 `max_skew_mm` 比较的范围。额外支线不计入端到端长度。
+
+```bash
+source scripts/env.sh
+python -m scripts.verify_differential_paths routed.kicad_pcb --spec blind_spec.json
+```
+
+退出码 `0` 表示所有已声明长度差条件通过，`1` 表示至少一个差分对超限，`2` 表示证据不足或无法读取。端点歧义、缺失叠层、多个中心线路径、覆铜承担的连接或未支持的走线类型均保留 `UNKNOWN`。结果覆盖几何长度。实际时延、阻抗和串扰另行验证。
+
+候选比较阶段从活动基线和候选的原始 KiCad 板重新测量。已测到的差分路径缺失会阻止晋升，超过长度差要求的部分若在测量误差范围以外明确增大，也计为退步。基线为 `UNKNOWN` 的差分对保留测量缺口，复查任务列出可定位的原始原因。
+
 ## 过孔保护几何实验与路由器日志
 
 `octagonal-fanout` 变体把预布 GND 过孔的方形 DSN 保护区替换为保守外切八边形。它保留原保护圆、原层覆盖和全部实际铜几何，仅释放方形四角；不是缩减制造间距。实现、连续几何验证及实测结果见 [实验记录](optimization-octagonal-fanout.zh-CN.md)。本变体尚未获晋升资格，默认稳定行为仍使用旧方案。

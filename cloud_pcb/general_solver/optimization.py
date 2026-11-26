@@ -80,11 +80,37 @@ def report_metrics(report, pcb=None, spec=None):
         for key,value in values.items():
             if value is not None and (not isinstance(value,(float,int)) or isinstance(value,bool) or not math.isfinite(value) or value<0):errors.append('invalid metric: '+key)
     except (KeyError,TypeError,ValueError,IndexError) as exc:errors.append('incomplete audit: '+str(exc))
+    differential = {}
     if pcb is not None and spec is not None:
+        from kiutils.board import Board
         from cloud_pcb.general_solver.compare_reference import _extract_metrics
+        from cloud_pcb.verify_gate.differential_paths import measure_differential_paths
         measured=_extract_metrics(Path(pcb),'optimization candidate',spec=spec,independent_audit=False)
         values['cap_distance_mm']=measured['avg_decoupling_dist_mm']; values['wirelength_mm']=measured['total_wirelength_mm']
-    return dict(values=values,failed_gates=sorted(k for k,v in report.get('hard_gates',{}).items() if v is not True),hard_pass=not errors and bool(report.get('hard_gates')) and all(report['hard_gates'].values()),evidence_errors=errors)
+        if spec.get('design_requirements', {}).get('differential_pairs'):
+            differential['differential_paths'] = measure_differential_paths(Board.from_file(str(pcb)), spec)
+    return dict(values=values,failed_gates=sorted(k for k,v in report.get('hard_gates',{}).items() if v is not True),hard_pass=not errors and bool(report.get('hard_gates')) and all(report['hard_gates'].values()),evidence_errors=errors, **differential)
+
+
+def _compare_differential_paths(case, before, after, regressions, improvements, invalid):
+    """Require retained evidence and compare excess skew only beyond measurement bounds."""
+    candidates = {(pair['pos_net'], pair['neg_net']): pair for pair in after.get('differential_paths', {}).get('pairs', [])}
+    for pair in before.get('differential_paths', {}).get('pairs', []):
+        if pair['status'] == 'UNKNOWN':
+            continue
+        key = pair['pos_net'], pair['neg_net']
+        current = candidates.get(key)
+        if current is None or current['status'] == 'UNKNOWN' or current['max_skew_mm'] != pair['max_skew_mm']:
+            invalid.append(dict(case=case, pair=list(key), reason='known differential path evidence unavailable or changed'))
+            continue
+        limit = pair['max_skew_mm']
+        old = [max(0., bound - limit) for bound in pair['skew_interval_mm']]
+        new = [max(0., bound - limit) for bound in current['skew_interval_mm']]
+        change = dict(case=case, pair=list(key), metric='differential_skew_excess_mm', before=old, after=new)
+        if (pair['status'] == 'PASS' and current['status'] == 'FAIL') or new[0] > old[1] + 1e-8:
+            regressions.append(change)
+        elif (pair['status'] == 'FAIL' and current['status'] == 'PASS') or old[0] > new[1] + 1e-8:
+            improvements.append(change)
 
 
 def compare_candidate(baseline, candidate, *, full_suite, tests_passed):
@@ -102,6 +128,7 @@ def compare_candidate(baseline, candidate, *, full_suite, tests_passed):
         # A shorter incomplete board is not an optimization win. Wire length is
         # comparable only when both runs have complete independent connectivity.
         if all(v['values']['unrouted']==0 and v['values']['opens']==0 and v['values']['shorts']==0 for v in (before,after)):names.append('wirelength_mm')
+        _compare_differential_paths(case, before, after, regressions, improvements, invalid)
         for name in names:
             old,new=before['values'][name],after['values'][name]
             if old is None and new is None and name=='cap_distance_mm':continue
@@ -125,6 +152,13 @@ def triage(case, report, metrics, conflicts):
     for key,label in (('shorts','修复真实铜短路'),('spacing','修复路由间距违例'),('via_in_pad','移除非热焊盘内过孔'),('gerber_failures','修复实际 Gerber 导出'),('annular_failures','修复孔环'),('silk_overlap_mm2','修复双面丝印压焊盘')):
         if values[key]:add(key,0,'solver',label,dict(metric=key,value=values[key]))
     if values['opens'] or values['unrouted']:add('connectivity',1,'solver','按独立 LVS 断开组诊断布线拥塞',dict(unrouted=values['unrouted'],opens=independent.get('lvs_opens',[]),routing_candidates=report.get('routing_candidates',[])))
+    differential_pairs = metrics.get('differential_paths', {}).get('pairs', [])
+    skew_failures = [pair for pair in differential_pairs if pair['status'] == 'FAIL']
+    unknown_skew = [pair for pair in differential_pairs if pair['status'] == 'UNKNOWN']
+    if skew_failures:
+        add('differential_skew', 1, 'solver', '修复可测量的差分端到端几何长度差', skew_failures)
+    if unknown_skew:
+        add('differential_evidence', 2, 'verification', '定位差分端点及路径证据缺口', unknown_skew)
     if values['rf_failures']:add('rf',1,'input_and_solver','补齐天线几何证据并保证四层净空',dict(unresolved=report.get('rf_unresolved',[]),layers=independent.get('rf_keepout',[])))
     if values['mechanical_collisions'] or values['unverified_envelopes']:add('mechanical',1,'input_and_solver','处理装配碰撞并补齐有依据的外壳尺寸',independent.get('mechanical',{}))
     if values['cap_distance_mm'] is not None and values['cap_distance_mm']>4.5:add('decoupling',2,'solver','改进去耦优先级与供电脚局部摆位',dict(proxy_average_mm=values['cap_distance_mm'],target_mm=4.5,limitation='bulk caps may be included'))
