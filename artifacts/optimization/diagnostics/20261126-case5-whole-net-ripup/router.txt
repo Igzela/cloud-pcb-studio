@@ -1,0 +1,50 @@
+    0.000 INFO  fastroute 0.1.14
+    0.003 INFO  parsed 'board.dsn' in 2.7 ms: 4 layers, 52 components, 43 nets, 112 wires
+    0.395 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.395 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.397 INFO  initial session '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/warm-seed.ses': 144 wires and 42 vias imported (0 errors)
+    0.570 INFO  28 trace ends inside a pad but off its center joined to the center
+    0.570 INFO  built board in 567.2 ms: 732 items (186 pins, 100 vias, 284 traces)
+    0.570 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.570 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.571 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    0.803 INFO  checkpoint: best board so far (40 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses'
+    0.803 INFO  Auto-routing stage started with baseline score 607.84 for 40 unrouted items.
+    4.201 INFO  Auto-routing pass #1 was completed in 3.40 seconds with score 872.55 (13 unrouted and 0 violations) (routed 40, failed 2, ripped 15).
+    4.202 INFO  checkpoint: best board so far (13 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses'
+    8.103 INFO  Auto-routing pass #2 was completed in 3.90 seconds with score 803.92 (20 unrouted and 0 violations) (routed 11, failed 4, ripped 6).
+   12.892 INFO  Auto-routing pass #3 was completed in 4.79 seconds with score 794.12 (21 unrouted and 0 violations) (routed 19, failed 3, ripped 6).
+   15.472 INFO  Auto-routing pass #4 was completed in 2.58 seconds with score 921.57 (8 unrouted and 0 violations) (routed 19, failed 2, ripped 5).
+   15.473 INFO  checkpoint: best board so far (8 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses'
+   17.656 INFO  Auto-routing pass #5 was completed in 2.18 seconds with score 941.18 (6 unrouted and 0 violations) (routed 6, failed 3, ripped 5).
+   17.657 INFO  checkpoint: best board so far (6 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses'
+   20.276 INFO  Auto-routing pass #6 was completed in 2.62 seconds with score 656.86 (35 unrouted and 0 violations) (routed 5, failed 2, ripped 3).
+   20.488 INFO  Auto-routing pass #6 left 35 items unrouted (best so far 6): continuing from the best board (6 unrouted); failing connections no longer rip their whole net.
+   23.879 INFO  Auto-routing pass #7 was completed in 3.39 seconds with score 950.98 (5 unrouted and 0 violations) (routed 5, failed 1, ripped 4).
+   23.880 INFO  checkpoint: best board so far (5 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses'
+   25.358 INFO  Auto-routing pass #8 was completed in 1.48 seconds with score 970.59 (3 unrouted and 0 violations) (routed 3, failed 3, ripped 4).
+   25.359 INFO  checkpoint: best board so far (3 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses'
+   26.953 INFO  Auto-routing pass #9 was completed in 1.59 seconds with score 970.59 (3 unrouted and 0 violations) (routed 2, failed 1, ripped 2).
+   27.312 INFO  Auto-routing pass #10 was completed in 0.36 seconds with score 980.39 (2 unrouted and 0 violations) (routed 2, failed 1, ripped 1).
+   27.314 INFO  checkpoint: best board so far (2 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses'
+   28.600 INFO  Auto-routing pass #11 was completed in 1.29 seconds with score 980.39 (2 unrouted and 0 violations) (routed 0, failed 3, ripped 0).
+   30.085 INFO  Auto-routing pass #12 was completed in 1.48 seconds with score 980.39 (2 unrouted and 0 violations) (routed 1, failed 1, ripped 2).
+   31.234 INFO  Auto-routing pass #13 was completed in 1.15 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 1, ripped 6).
+   31.693 INFO  Auto-routing pass #14 was completed in 0.46 seconds with score 990.20 (1 unrouted and 0 violations) (routed 3, failed 1, ripped 0).
+   31.694 INFO  checkpoint: best board so far (1 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses'
+   31.709 INFO  Auto-routing pass #15 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.724 INFO  Auto-routing pass #16 was completed in 0.02 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.737 INFO  Auto-routing pass #17 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.749 INFO  Auto-routing pass #18 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.760 INFO  Auto-routing pass #19 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.773 INFO  Auto-routing pass #20 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.785 INFO  Auto-routing pass #21 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.796 INFO  Auto-routing pass #22 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.810 INFO  Auto-routing pass #23 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.822 INFO  Auto-routing pass #24 was completed in 0.01 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 1, ripped 0).
+   31.822 INFO  The router's score (990.20) has not improved by more than 0.5 points in the last 10 passes (1 item still unconnected). Stopping the auto-router.
+   31.823 INFO  Auto-routing stage completed: started with 40 unrouted nets, completed in 31.02 seconds, final score: 990.20 (1 unrouted and 0 violations).
+   31.823 INFO  2 item(s) cannot be routed even on the board as loaded (blocked by pins, keepouts or fixed wiring); they were skipped after their second failure.
+   31.825 INFO  routing finished in 31.25 s
+   32.100 INFO  saved '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/board.ses' (48398 bytes)
+   32.534 INFO  report written to '/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/report.json'

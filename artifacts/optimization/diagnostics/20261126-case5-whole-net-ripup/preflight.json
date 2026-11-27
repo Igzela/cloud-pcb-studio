@@ -1,0 +1,253 @@
+{
+  "target": {
+    "net": "Net-(U3-DVDD10_UPS)",
+    "owner_ref": "U3",
+    "owner_pin": "27",
+    "cap_pin": "1",
+    "cap_ref": "C22"
+  },
+  "active_protected_nets": [
+    "/M0_N",
+    "/M0_P",
+    "/M1_N",
+    "/M1_P",
+    "/M2_N",
+    "/M2_P",
+    "/M3_N",
+    "/M3_P",
+    "/U2D_N",
+    "/U2D_P",
+    "/U2_N",
+    "/U2_P",
+    "/U3SRX_N",
+    "/U3SRX_P",
+    "/U3STX_N",
+    "/U3STX_P",
+    "/U3TX_N",
+    "/U3TX_P"
+  ],
+  "guard_count": 160,
+  "target_fixed_dsn_items": 6,
+  "required_copper_clearance_mm": 0.125,
+  "preflight_margin_mm": 0.0001,
+  "retained_minimum_copper_clearance_mm": 0.18209999999999993,
+  "mode": "warm existing nonconflicting nets",
+  "dropped_nets": {
+    "Net-(U3-VDD5)": {
+      "conflicts": [
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "segment",
+          "item_index": 484,
+          "shared_layers": [
+            "F.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 0,
+          "copper_gap_mm": 0.09159999999999975
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "segment",
+          "item_index": 485,
+          "shared_layers": [
+            "F.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 0,
+          "copper_gap_mm": -0.04943309717641464
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "via",
+          "item_index": 45,
+          "shared_layers": [
+            "F.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 0,
+          "copper_gap_mm": -0.17943309717641465
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "segment",
+          "item_index": 476,
+          "shared_layers": [
+            "In2.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 4,
+          "copper_gap_mm": -0.04979999999999929
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "via",
+          "item_index": 45,
+          "shared_layers": [
+            "In2.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 4,
+          "copper_gap_mm": -0.1797999999999993
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "segment",
+          "item_index": 476,
+          "shared_layers": [
+            "In2.Cu"
+          ],
+          "target_kind": "via",
+          "target_item_index": 1,
+          "copper_gap_mm": -0.17943309717641465
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "segment",
+          "item_index": 484,
+          "shared_layers": [
+            "F.Cu"
+          ],
+          "target_kind": "via",
+          "target_item_index": 1,
+          "copper_gap_mm": -0.00568974693127923
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "segment",
+          "item_index": 485,
+          "shared_layers": [
+            "F.Cu"
+          ],
+          "target_kind": "via",
+          "target_item_index": 1,
+          "copper_gap_mm": -0.17943309717641465
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "kind": "via",
+          "item_index": 45,
+          "shared_layers": [
+            "B.Cu",
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu"
+          ],
+          "target_kind": "via",
+          "target_item_index": 1,
+          "copper_gap_mm": -0.30943309717641465
+        }
+      ],
+      "minimum_gap_mm": -0.30943309717641465,
+      "discarded_segments": 31,
+      "discarded_vias": 2
+    },
+    "/V12": {
+      "conflicts": [
+        {
+          "net": "/V12",
+          "kind": "segment",
+          "item_index": 236,
+          "shared_layers": [
+            "In2.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 2,
+          "copper_gap_mm": -0.16
+        }
+      ],
+      "minimum_gap_mm": -0.16,
+      "discarded_segments": 117,
+      "discarded_vias": 7
+    },
+    "+3V3": {
+      "conflicts": [
+        {
+          "net": "+3V3",
+          "kind": "segment",
+          "item_index": 29,
+          "shared_layers": [
+            "In2.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 3,
+          "copper_gap_mm": -0.22999999999999998
+        },
+        {
+          "net": "+3V3",
+          "kind": "segment",
+          "item_index": 29,
+          "shared_layers": [
+            "In2.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 4,
+          "copper_gap_mm": 0.050200000000000605
+        },
+        {
+          "net": "+3V3",
+          "kind": "segment",
+          "item_index": 34,
+          "shared_layers": [
+            "In2.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 4,
+          "copper_gap_mm": -0.22999999999999998
+        },
+        {
+          "net": "+3V3",
+          "kind": "segment",
+          "item_index": 36,
+          "shared_layers": [
+            "In2.Cu"
+          ],
+          "target_kind": "segment",
+          "target_item_index": 4,
+          "copper_gap_mm": 0.050200000000000605
+        },
+        {
+          "net": "+3V3",
+          "kind": "segment",
+          "item_index": 81,
+          "shared_layers": [
+            "F.Cu"
+          ],
+          "target_kind": "via",
+          "target_item_index": 1,
+          "copper_gap_mm": 0.09404836534010315
+        }
+      ],
+      "minimum_gap_mm": -0.22999999999999998,
+      "discarded_segments": 99,
+      "discarded_vias": 5
+    }
+  },
+  "retained_segments": 324,
+  "retained_vias": 42,
+  "retained_nets": [
+    "/LED0",
+    "/LED1",
+    "/LED2",
+    "/VBUS",
+    "GND",
+    "Net-(C5-Pad1)",
+    "Net-(C9-Pad1)",
+    "Net-(LAN1-P5)",
+    "Net-(LAN1-P6)",
+    "Net-(LAN1-Pad12)",
+    "Net-(LAN1-Pad14)",
+    "Net-(U2-CLK)",
+    "Net-(U2-CS)",
+    "Net-(U2-DI)",
+    "Net-(U3-CKXTAL1)",
+    "Net-(U3-CKXTAL2)",
+    "Net-(U3-GPIO)",
+    "Net-(U3-RSET)",
+    "Net-(U3-XTALDET)",
+    "Net-(U4-FB)",
+    "Net-(U4-LX)"
+  ],
+  "dsn_sha256": "749a37be35a14073deca0cf8840fcfacd49db765c969f7faf2b247f45232f2b3",
+  "warm_ses_sha256": "4567530526d364cf275b50c46606c17124e13563c3c393bada602d6d78b30a4d"
+}
