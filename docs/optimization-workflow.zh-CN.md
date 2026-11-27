@@ -137,6 +137,15 @@ artifacts/optimization/runs/<UTC时间>-<label>/
 
 ## 过孔保护几何实验与路由器日志
 
+对支持原生 0.1 µm 表示的 FastRoute DSN/SES，可以先构造固定铜热启动输入。工具从盲规范读取已声明的高速、时钟和差分网络，将其走线与通孔过孔转入 DSN 固定段。输出保留原始受保护 SES 铜及供路由器重新导入的其余铜。用新的输出目录执行：
+
+```bash
+source scripts/env.sh
+python -m scripts.prepare_protected_seed board.dsn board.ses --spec blind_spec.json --outdir protected-replay
+```
+
+载入结果的独立复查包括布通、物理间距、过孔以及受保护铜几何。固定铜通常省略于 FastRoute 的 SES 回写，应从 `system-fixed-source.ses` 恢复再检查候选板。
+
 `octagonal-fanout` 变体把预布 GND 过孔的方形 DSN 保护区替换为保守外切八边形。它保留原保护圆、原层覆盖和全部实际铜几何，仅释放方形四角；不是缩减制造间距。实现、连续几何验证及实测结果见 [实验记录](optimization-octagonal-fanout.zh-CN.md)。本变体尚未获晋升资格，默认稳定行为仍使用旧方案。
 
 ```bash
