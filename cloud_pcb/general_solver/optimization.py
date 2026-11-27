@@ -14,6 +14,9 @@ GERBER_LAYERS = frozenset(f'{side}_{kind}.gbr' for side in ('F','B') for kind in
 HARD_METRICS = ('unrouted', 'opens', 'shorts', 'spacing', 'via_in_pad', 'gerber_failures', 'annular_failures', 'silk_overlap_mm2', 'edge_deficit_mm', 'rf_failures', 'mechanical_collisions', 'unverified_envelopes')
 QUALITY_METRICS = ('cap_distance_mm', 'ground_fill_deficit')
 REQUIRED_GATES = frozenset(('unrouted_zero','router_spacing_zero','independent_lvs_opens_zero','independent_lvs_shorts_zero','nonthermal_via_in_pad_zero','gerber_all_parsed','annular_ring_ge_010','silk_overlap_zero','copper_edge_ge_050','rf_all_four_layers_clear','mechanical_zero_with_verified_envelopes'))
+# The micro-escape router uses the smallest supported trace width.
+MINIMUM_TRACK_WIDTH_MM = .100
+TRACK_WIDTH_GATE = 'minimum_track_width_ge_010'
 
 
 def digest(path):
@@ -80,11 +83,23 @@ def report_metrics(report, pcb=None, spec=None):
         for key,value in values.items():
             if value is not None and (not isinstance(value,(float,int)) or isinstance(value,bool) or not math.isfinite(value) or value<0):errors.append('invalid metric: '+key)
     except (KeyError,TypeError,ValueError,IndexError) as exc:errors.append('incomplete audit: '+str(exc))
+    derived = {}
+    gates = report.get('hard_gates', {})
+    failed = {key for key, passed in gates.items() if passed is not True}
+    if pcb is not None:
+        from cloud_pcb.verify_gate.trace_widths import audit_trace_width_file
+        track_widths = audit_trace_width_file(Path(pcb), MINIMUM_TRACK_WIDTH_MM)
+        derived['track_widths'] = track_widths
+        if track_widths['status'] != 'PASS':
+            failed.add(TRACK_WIDTH_GATE)
+        if track_widths['status'] == 'UNKNOWN':
+            errors.append('minimum routed track width could not be verified')
     if pcb is not None and spec is not None:
         from cloud_pcb.general_solver.compare_reference import _extract_metrics
         measured=_extract_metrics(Path(pcb),'optimization candidate',spec=spec,independent_audit=False)
         values['cap_distance_mm']=measured['avg_decoupling_dist_mm']; values['wirelength_mm']=measured['total_wirelength_mm']
-    return dict(values=values,failed_gates=sorted(k for k,v in report.get('hard_gates',{}).items() if v is not True),hard_pass=not errors and bool(report.get('hard_gates')) and all(report['hard_gates'].values()),evidence_errors=errors)
+    return dict(values=values, failed_gates=sorted(failed), hard_pass=not errors and bool(gates) and not failed,
+                evidence_errors=errors, **derived)
 
 
 def compare_candidate(baseline, candidate, *, full_suite, tests_passed):
@@ -95,6 +110,8 @@ def compare_candidate(baseline, candidate, *, full_suite, tests_passed):
         after=candidate[case]
         for stage,measurement in (('baseline',before),('candidate',after)):
             if measurement['evidence_errors']:invalid.append(dict(case=case,reason=stage+' evidence errors',details=measurement['evidence_errors']))
+        if 'track_widths' in before and 'track_widths' not in after:
+            invalid.append(dict(case=case, reason='minimum routed track width evidence missing from candidate'))
         for gate in set(before['failed_gates']) ^ set(after['failed_gates']):
             change=dict(case=case,metric=gate,before=gate not in before['failed_gates'],after=gate not in after['failed_gates'])
             (regressions if gate in after['failed_gates'] else improvements).append(change)
@@ -124,6 +141,9 @@ def triage(case, report, metrics, conflicts):
     values=metrics['values']; independent=report.get('audit',{}).get('independent_4layer',{})
     for key,label in (('shorts','修复真实铜短路'),('spacing','修复路由间距违例'),('via_in_pad','移除非热焊盘内过孔'),('gerber_failures','修复实际 Gerber 导出'),('annular_failures','修复孔环'),('silk_overlap_mm2','修复双面丝印压焊盘')):
         if values[key]:add(key,0,'solver',label,dict(metric=key,value=values[key]))
+    track_widths = metrics.get('track_widths', {})
+    if track_widths.get('status') == 'FAIL':
+        add('track_width', 0, 'solver', '修复导出铜层中低于下限的走线', track_widths)
     if values['opens'] or values['unrouted']:add('connectivity',1,'solver','按独立 LVS 断开组诊断布线拥塞',dict(unrouted=values['unrouted'],opens=independent.get('lvs_opens',[]),routing_candidates=report.get('routing_candidates',[])))
     if values['rf_failures']:add('rf',1,'input_and_solver','补齐天线几何证据并保证四层净空',dict(unresolved=report.get('rf_unresolved',[]),layers=independent.get('rf_keepout',[])))
     if values['mechanical_collisions'] or values['unverified_envelopes']:add('mechanical',1,'input_and_solver','处理装配碰撞并补齐有依据的外壳尺寸',independent.get('mechanical',{}))

@@ -8,7 +8,7 @@ from types import SimpleNamespace
 import pytest
 
 from cloud_pcb.general_solver.electrical import derive_electrical_requirements,voltage_label
-from cloud_pcb.general_solver.optimization import GERBER_LAYERS,REQUIRED_GATES,compare_candidate,input_conflicts,report_metrics,digest
+from cloud_pcb.general_solver.optimization import GERBER_LAYERS,REQUIRED_GATES,TRACK_WIDTH_GATE,compare_candidate,input_conflicts,report_metrics,digest
 from scripts import optimize_pcb as workflow
 
 
@@ -114,6 +114,36 @@ def test_regressing_qor_or_omitting_a_case_blocks_promotion():
     a=measurement();b=copy.deepcopy(a);b['values']['cap_distance_mm']=9.
     assert not compare_candidate({'x':a},{'x':b},full_suite=True,tests_passed=True)['eligible_for_baseline']
     assert compare_candidate({'x':a,'y':a},{'x':a},full_suite=False,tests_passed=True)['invalid']
+
+
+def test_serialized_trace_width_blocks_false_promotion(tmp_path):
+    from kiutils.board import Board
+    from kiutils.items.brditems import Segment
+    from kiutils.items.common import Net, Position
+
+    pcb = tmp_path / 'measure.kicad_pcb'
+    board = Board(version='20240108', generator='pcbnew')
+    board.nets.append(Net(number=1, name='rail'))
+    track = Segment(start=Position(X=2, Y=2), end=Position(X=3, Y=2), width=.100, layer='F.Cu', net=1,
+                    tstamp='12345678-1234-4321-1234-123456789abc')
+    board.traceItems.append(track)
+    board.to_file(str(pcb))
+    before = report_metrics(report(unrouted=1, opens=1), pcb)
+    assert before['track_widths']['status'] == 'PASS'
+
+    track.width = .0136
+    board.to_file(str(pcb))
+    after = report_metrics(report(), pcb)
+    assert after['track_widths']['observed_min_width_mm'] == .0136
+    assert not after['hard_pass']
+    decision = compare_candidate({'x': before}, {'x': after}, full_suite=True, tests_passed=True)
+    assert decision['improvements'] and not decision['eligible_for_baseline']
+    assert TRACK_WIDTH_GATE in {item['metric'] for item in decision['regressions']}
+
+    missing = report_metrics(report(), tmp_path / 'missing.kicad_pcb')
+    assert missing['track_widths']['status'] == 'UNKNOWN' and missing['evidence_errors']
+    omitted = compare_candidate({'x': before}, {'x': report_metrics(report())}, full_suite=True, tests_passed=True)
+    assert any('track width evidence missing' in item['reason'] for item in omitted['invalid'])
 
 
 def test_missing_evidence_and_fabricated_passes_fail_closed():
