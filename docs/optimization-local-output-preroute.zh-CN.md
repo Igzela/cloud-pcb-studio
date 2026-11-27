@@ -68,3 +68,20 @@ FastRoute 将 `0.5` 读作 50% 的比例。用 `0.005` 完成预定的 0.5% 试�
 该试验的其余网络保持待布状态。FastRoute 记录 79 个被忽略的未完成连接，独立 LVS 仍有 23 个开路网络。接续试验应锁住所得目标路径，再恢复其余网络并验证整板覆铜和差分指标。[输入哈希](../artifacts/optimization/diagnostics/20261126-case5-active-protected-local-output/SHA256SUMS) · [更新比较逻辑后的七板重放](../artifacts/optimization/diagnostics/20261126-case5-selective-pair-tuning/seven-board-replay-with-skew.json)
 
 首次整板热启动锁住目标和 18 个差分网络，删除与目标铜冲突的三个网络的全部旧走线，并保留其余 21 个网络的旧走线和过孔。FastRoute 将初始 40 个未完成连接降至 1。目标保持闭合，但 `/V12` 的 `U3-20` 仍与其余焊盘断开，In1 填充降至 78.68%。短路、真实间距违例和非热焊盘内过孔均为 0，差分几何与活动基线一致。后续试验只移除与固定目标铜实际冲突的走线和过孔，以保留原有供电分支。[删除范围与留存验证](../artifacts/optimization/diagnostics/20261126-case5-whole-net-ripup/preflight.json) · [整板独立审计](../artifacts/optimization/diagnostics/20261126-case5-whole-net-ripup/independent-audit.json)
+
+## 固定无冲突网络并修复整板
+
+将冲突删除范围缩至 8 段走线和 1 枚过孔后，目标闭合，但剩余开路移至原本无冲突的 `Net-(U3-GPIO)`。接着固定 21 个无冲突网络、18 个基线差分网络和目标路径，只补接被切断的三个网。FastRoute 用时 4.5 秒，全部 136 个连接布通。独立 LVS 开短路、真实间距违例、非热焊盘内过孔和焊盘过孔禁布区侵入均为 0。重新覆铜后，39 个冻结网络铜几何及差分端到端测量与活动基线一致，目标路径实测最小异网间距为 0.1272 mm。[最小删除审计](../artifacts/optimization/diagnostics/20261127-case5-primitive-ripup/independent-audit.json) · [整板独立审计](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/fixed-neighbors/independent-audit.json) · [覆铜后冻结铜复核](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/fixed-neighbors/post-pour-fixed-copper-comparison.json) · [重建 KiCad 板](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/fixed-neighbors/reconstructed-whole-case5.kicad_pcb)
+
+| 诊断 | 独立 LVS 开路 | In1 地铜填充 | In1 地铜面积 |
+| --- | --- | ---: | ---: |
+| 活动基线 | 1，目标网 | 78.86% | 771.658 mm² |
+| 固定目标和无冲突网络 | 0 | 78.69% | 769.988 mm² |
+| 从完整布通结果优化，过孔代价 100 | 0 | 78.69% | 769.988 mm² |
+| 目标网和三个受影响网联合重布 | 1，目标网 | 78.82% | 771.236 mm² |
+| 固定无过孔顶层目标路径，仅补接受影响网 | 1，`+3V3` 的 `U3-28` | 78.76% | 770.644 mm² |
+| 保留顶层目标路径及其他修复，只处理 `+3V3` | 1，同一引脚 | 78.76% | 770.644 mm² |
+
+只启用目标网并限制其使用 F.Cu 时，FastRoute 找到 9.553 mm 的顶层路径，省去两枚通孔过孔。线宽为多数区段 0.160 mm、两段 0.120 mm，独立测量最小异网间距为 0.1394 mm。整板复用该路径时仅删除 5 段相交走线和 1 枚过孔。完整补接后只剩 `U3-28` 的电源开路，固定另外两个已修复的网后单独布 `+3V3` 仍无法闭合。继续冻结全部差分铜时，宽泛的热启动过孔优化也未收回 1.670 mm² 的 In1 地铜损失。[顶层目标独立审计](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/front-only/independent-audit.json) · [顶层路径整板重放](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/front-replay/independent-audit.json) · [单电源网重放](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/front-isolated-power/independent-audit.json) · [过孔优化结果](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/fill-recovery/independent-audit.json)
+
+整板闭合样板保留为诊断。后续从这块板的实际异网过孔和 In1 反焊盘差异入手，在冻结已有差分铜条件下筛选可合并的换层绕行。任何候选先复查逐网连通、间距与地填充，再决定是否值得将算法纳入正式七板轮次。重放时按各目录的 `argv.json` 指定同目录的 DSN 及初始 SES，路由输出与报告写入新目录。全量证据支持哈希复核。[固定邻网命令](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/fixed-neighbors/argv.json) · [证据哈希](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/SHA256SUMS)

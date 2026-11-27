@@ -1,0 +1,193 @@
+{
+  "target": {
+    "net": "Net-(U3-DVDD10_UPS)",
+    "owner_ref": "U3",
+    "owner_pin": "27",
+    "cap_pin": "1",
+    "cap_ref": "C22"
+  },
+  "active_protected_nets": [
+    "/LED0",
+    "/LED1",
+    "/LED2",
+    "/VBUS",
+    "GND",
+    "Net-(C5-Pad1)",
+    "Net-(C9-Pad1)",
+    "Net-(LAN1-P5)",
+    "Net-(LAN1-P6)",
+    "Net-(LAN1-Pad12)",
+    "Net-(LAN1-Pad14)",
+    "Net-(U2-CLK)",
+    "Net-(U2-CS)",
+    "Net-(U2-DI)",
+    "Net-(U3-CKXTAL1)",
+    "Net-(U3-CKXTAL2)",
+    "Net-(U3-GPIO)",
+    "Net-(U3-RSET)",
+    "Net-(U3-XTALDET)",
+    "Net-(U4-FB)",
+    "Net-(U4-LX)"
+  ],
+  "reprotect_from_active": [
+    "/LED0",
+    "/LED1",
+    "/LED2",
+    "/VBUS",
+    "GND",
+    "Net-(C5-Pad1)",
+    "Net-(C9-Pad1)",
+    "Net-(LAN1-P5)",
+    "Net-(LAN1-P6)",
+    "Net-(LAN1-Pad12)",
+    "Net-(LAN1-Pad14)",
+    "Net-(U2-CLK)",
+    "Net-(U2-CS)",
+    "Net-(U2-DI)",
+    "Net-(U3-CKXTAL1)",
+    "Net-(U3-CKXTAL2)",
+    "Net-(U3-GPIO)",
+    "Net-(U3-RSET)",
+    "Net-(U3-XTALDET)",
+    "Net-(U4-FB)",
+    "Net-(U4-LX)"
+  ],
+  "affected_nets": [
+    "+3V3",
+    "/V12",
+    "Net-(U3-VDD5)"
+  ],
+  "mode": "fix_nonconflicting_nets_and_route_only_remaining_clearance_cuts",
+  "source_preflight": {
+    "target": {
+      "net": "Net-(U3-DVDD10_UPS)",
+      "owner_ref": "U3",
+      "owner_pin": "27",
+      "cap_pin": "1",
+      "cap_ref": "C22"
+    },
+    "protected_unchanged": true,
+    "target_geometry_unchanged": true,
+    "raw_retained_records_equal": true,
+    "guard_count": 160,
+    "required_clearance_mm": 0.125,
+    "retained_gap_mm": 0.13723391719291164,
+    "unchanged_native_paths": 261,
+    "cuts_by_net": {
+      "+3V3": {
+        "removed_segments": 2,
+        "intersecting_native_paths": 1,
+        "retained_path_fragments": 2
+      },
+      "/V12": {
+        "removed_segments": 1,
+        "intersecting_native_paths": 1,
+        "retained_path_fragments": 2
+      },
+      "Net-(U3-VDD5)": {
+        "removed_vias": 1,
+        "removed_segments": 2,
+        "intersecting_native_paths": 1
+      }
+    },
+    "retained_segments": 566,
+    "retained_vias": 55,
+    "removed_segments": [
+      81,
+      82,
+      204,
+      484,
+      485
+    ],
+    "removed_vias": [
+      45
+    ],
+    "seeded_independent_audit": {
+      "lvs_opens": [
+        {
+          "net": "+3V3",
+          "components": 2,
+          "pad_count": 19,
+          "pad_groups": {
+            "5": [
+              "C10-2",
+              "C11-2",
+              "C14-2",
+              "C15-2",
+              "C27-1",
+              "C6-2",
+              "LAN1-13",
+              "LAN1-13",
+              "LAN1-13",
+              "LAN1-13",
+              "R11-2",
+              "R13-1",
+              "R9-1",
+              "U2-8",
+              "U3-1",
+              "U3-12",
+              "U3-25",
+              "U3-34",
+              "U3-35",
+              "U3-43",
+              "U3-48"
+            ],
+            "4": [
+              "U3-28"
+            ]
+          }
+        },
+        {
+          "net": "Net-(U3-VDD5)",
+          "components": 2,
+          "pad_count": 5,
+          "pad_groups": {
+            "1": [
+              "C12-1",
+              "FB1-2",
+              "U4-1",
+              "U4-4"
+            ],
+            "0": [
+              "U3-26"
+            ]
+          }
+        },
+        {
+          "net": "/V12",
+          "components": 2,
+          "pad_count": 19,
+          "pad_groups": {
+            "6": [
+              "C16-2",
+              "C17-1",
+              "C18-2",
+              "C19-2",
+              "C20-2",
+              "C21-2",
+              "C24-2",
+              "C25-2",
+              "C26-2",
+              "L1-2",
+              "R15-1",
+              "U3-4",
+              "U3-9",
+              "U3-13",
+              "U3-20",
+              "U3-24",
+              "U3-42",
+              "U3-46"
+            ],
+            "4": [
+              "U3-31"
+            ]
+          }
+        }
+      ],
+      "lvs_shorts": [],
+      "vip": []
+    },
+    "seeded_raw_fill_ratio": 0.789,
+    "router_launched": false
+  }
+}

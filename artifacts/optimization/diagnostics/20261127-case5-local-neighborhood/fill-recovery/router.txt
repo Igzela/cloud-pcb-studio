@@ -1,0 +1,33 @@
+    0.000 INFO  fastroute 0.1.14
+    0.032 INFO  parsed 'board.dsn' in 32.0 ms: 4 layers, 52 components, 43 nets, 112 wires
+    0.347 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.347 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.352 INFO  initial session '/workspace/cloud-pcb-studio/.run/active-protected-fill-recovery.iOGjv9/complete-seed.ses': 273 wires and 58 vias imported (0 errors)
+    0.530 INFO  54 trace ends inside a pad but off its center joined to the center
+    0.530 INFO  built board in 497.4 ms: 903 items (186 pins, 116 vias, 439 traces)
+    0.530 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.530 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.720 INFO  Optimization stage started. Baseline router score: 1000.00, optimizer score: 254.43, incomplete connections: 0, clearance violations: 0.
+   32.790 INFO  Optimizer pass #1: 29 of 214 candidates after 32 s (21 improving so far).
+   61.195 INFO  Optimizer pass #1: 50 of 214 candidates after 60 s (37 improving so far).
+   91.103 INFO  Optimizer pass #1: 80 of 214 candidates after 90 s (58 improving so far).
+  122.148 INFO  Optimizer pass #1: 97 of 214 candidates after 121 s (69 improving so far).
+  152.251 INFO  Optimizer pass #1: 144 of 214 candidates after 152 s (100 improving so far).
+  181.255 INFO  Optimizer pass #1: 182 of 214 candidates after 181 s (130 improving so far).
+  204.420 INFO  Optimizer greedy phase stopped after 14 of 149 candidates (1.3 s, no further improvements).
+  204.420 INFO  Optimizer pass #1: applied 1 more improving candidate(s).
+  204.609 INFO  Optimizer pass #1 was completed in 203.89 seconds (214 of 214 candidates) with the score of 244.78 (0 unrouted and 0 violations).
+  204.610 INFO  Optimizer pass #1 candidate rejected: OPTIMIZER_SCORE_NOT_IMPROVED. Restoring incumbent (optimizer score 254.43, incomplete connections: 0, clearance violations: 0).
+  204.701 INFO  Optimizer pass #1: optimizer score 254.43 -> 244.78 (REGRESSED, -3.7913%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  240.530 WARN  --max-time (240 s) reached: finishing with the best result so far
+  240.566 INFO  Optimizer pass #2: 34 of 214 candidates after 36 s (19 improving so far).
+  240.580 INFO  Optimizer pass #2: stopped early, applying the best candidate found so far.
+  240.788 INFO  Optimizer pass #2 was completed in 35.89 seconds (40 of 214 candidates) with the score of 253.87 (0 unrouted and 0 violations).
+  240.789 INFO  Optimizer pass #2 candidate rejected: OPTIMIZER_SCORE_NOT_IMPROVED. Restoring incumbent (optimizer score 254.43, incomplete connections: 0, clearance violations: 0).
+  240.807 INFO  Optimizer pass #2: optimizer score 254.43 -> 253.87 (REGRESSED, -0.2217%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  240.807 INFO  Stopping optimizer because the improvement in this pass (-0.2217%) is below the threshold (0.50%).
+  241.015 INFO  Optimization stage interrupted: Baseline router score: 1000.00, baseline optimizer score: 254.43, final router score: 1000.00, final optimizer score: 254.43, completed in 240.30 seconds.
+  241.016 INFO  routing finished in 240.49 s
+  241.016 INFO  note: a board time limit fired (WallClock)
+  241.188 INFO  saved '/workspace/cloud-pcb-studio/.run/active-protected-fill-recovery.iOGjv9/board.ses' (53671 bytes)
+  241.551 INFO  report written to '/workspace/cloud-pcb-studio/.run/active-protected-fill-recovery.iOGjv9/report.json'

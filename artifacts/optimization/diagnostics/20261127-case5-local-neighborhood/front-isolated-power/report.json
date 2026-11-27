@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/.run/active-front-isolated-power.hINyIS/board.dsn",
+  "time_s": {"load": 0.52, "route": 10.6272, "total": 11.3177, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 114, "vias_blind": 0, "vias_buried": 0, "traces": 433, "trace_length_mm": 1021.1245, "bends_90": 6, "bends_45": 414, "bends_other": 0, "router_score": 990.1961, "optimizer_score": 241.2439},
+  "unrouted": [
+    {"net": "+3V3", "length_mm": 1.2, "from": {"kind": "pin", "component": "U3", "pin": "28", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [28.734, 9.55], "to": {"kind": "pin", "component": "U3", "pin": "25", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [28.733, 10.75]}
+  ],
+  "clearance_violations": [
+
+  ]
+}
