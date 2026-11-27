@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "passed": false,
+  "required_min_width_mm": 0.1,
+  "observed_min_width_mm": 0.0136,
+  "measured_tracks": 820,
+  "violations": [
+    {
+      "track_index": 885,
+      "item_type": "segment",
+      "net": "+3V3",
+      "net_number": 2,
+      "layer": "F.Cu",
+      "coordinates_mm": [
+        [
+          33.8537,
+          8.9603
+        ],
+        [
+          33.6505,
+          8.8816
+        ]
+      ],
+      "width_mm": 0.0136
+    }
+  ],
+  "issues": []
+}

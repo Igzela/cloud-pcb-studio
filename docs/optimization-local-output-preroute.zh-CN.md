@@ -85,3 +85,18 @@ FastRoute 将 `0.5` 读作 50% 的比例。用 `0.005` 完成预定的 0.5% 试�
 只启用目标网并限制其使用 F.Cu 时，FastRoute 找到 9.553 mm 的顶层路径，省去两枚通孔过孔。线宽为多数区段 0.160 mm、两段 0.120 mm，独立测量最小异网间距为 0.1394 mm。整板复用该路径时仅删除 5 段相交走线和 1 枚过孔。完整补接后只剩 `U3-28` 的电源开路，固定另外两个已修复的网后单独布 `+3V3` 仍无法闭合。继续冻结全部差分铜时，宽泛的热启动过孔优化也未收回 1.670 mm² 的 In1 地铜损失。[顶层目标独立审计](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/front-only/independent-audit.json) · [顶层路径整板重放](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/front-replay/independent-audit.json) · [单电源网重放](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/front-isolated-power/independent-audit.json) · [过孔优化结果](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/fill-recovery/independent-audit.json)
 
 整板闭合样板保留为诊断。后续从这块板的实际异网过孔和 In1 反焊盘差异入手，在冻结已有差分铜条件下筛选可合并的换层绕行。任何候选先复查逐网连通、间距与地填充，再决定是否值得将算法纳入正式七板轮次。重放时按各目录的 `argv.json` 指定同目录的 DSN 及初始 SES，路由输出与报告写入新目录。全量证据支持哈希复核。[固定邻网命令](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/fixed-neighbors/argv.json) · [证据哈希](../artifacts/optimization/diagnostics/20261127-case5-local-neighborhood/SHA256SUMS)
+
+## 电源窄线与参考铜权衡
+
+独立几何筛选发现 `/LED0` 的一段顶层走线和一枚过孔阻住 `U3-28` 的电源出线。仅解锁 `+3V3` 和 `/LED0`，保留顶层目标路径和其他铜，重放得到全部 136 个连接完成。独立 LVS 开短路、真实间距违例和非热焊盘内过孔均为 0，18 个差分网络几何和端到端测量保持一致。尝试先冻结原始 `+3V3` 再布顶层目标时，目标仍开路。[两网重放](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/power-led/independent-audit.json) · [冻结原始电源对照](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/fixed-original-power/independent-audit.json)
+
+实际铜含一段 0.0136 mm 的 `+3V3` 顶层线段，尽管路由器输入设有 0.100 mm 下限。预先检查实际铜距后，将该段局部扩为 0.100 mm，复查所得最小间距为 0.3184 mm，修正板保持完整布通。新增独立线宽检查把这一错误纳入基线比较，两轮共 14 块冻结板在 0.100 mm 下限均通过。供电电流仍缺依据，`U3-28` 附近约 5.34 mm 的窄段仍需按供电约束复核。[窄线失败](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/power-led/trace-widths.json) · [修正后审计](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/width-corrected/independent-audit.json) · [两轮冻结重放](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/seven-board-track-width-replay.json) · [线宽验收 PR #12](https://github.com/Igzela/cloud-pcb-studio/pull/12)
+
+| 整板诊断 | In1 地铜填充 | In1 地铜面积 | F.Cu 地铜面积 |
+| --- | ---: | ---: | ---: |
+| 活动基线，目标开路 | 78.86% | 771.658 mm² | 512.320 mm² |
+| 两网重放并修正最小线宽 | 78.75% | 770.590 mm² | 511.064 mm² |
+| 电源换层段改走 0.30 mm 顶层 | 78.84% | 771.450 mm² | 461.238 mm² |
+| 增加一枚地过孔连接顶层浮岛 | 78.84% | 771.450 mm² | 481.488 mm² |
+
+0.30 mm 顶层绕路移除两枚异网过孔，路径从 23.222 mm 增至 33.176 mm，实测最小异网间距为 0.1290 mm。独立 LVS、线宽、Gerber 解析、钻孔和孔环复核均通过。固定接口仍有 0.30 mm 板边铜距。补入地过孔恢复 20.250 mm² 顶层地铜，但该走线下未清理的全部顶层可用面积也只有 495.688 mm²。完整布通样板中的 59 枚可编辑异网过孔逐个删去后均有独立 LVS 开路。继续从线宽已修正、顶层地铜仍为 511.064 mm² 的版本研究相邻网络、过孔位置和内层绕行，所有手工几何保留为单板诊断。[顶层绕路及覆铜](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/octilinear/independent-audit.json) · [制造导出核对](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/octilinear/fabrication-audit.json) · [顶层面积上界](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/octilinear-stitched/top-raw-area-bound.json) · [逐孔删除筛查](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/single-via-screen.json) · [证据哈希](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/SHA256SUMS)
