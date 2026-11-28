@@ -1,0 +1,35 @@
+{
+  "status": "incomplete",
+  "experiment_key": "7024821164614a6b5a1c57aea207ae50bd1e1fb219db565839d9b4ddaf53ac42",
+  "tests": {
+    "returncode": 0,
+    "passed": true,
+    "summary": "================ 363 passed, 5165 warnings in 93.74s (0:01:33) =================",
+    "sha256": "5d607ff17866ca3fe553a67d4bc80afc27bae0d629eadf32c6690259665669ae"
+  },
+  "source_archive_sha256": "d94d3f44650ca82b617ad2cabb7c74c5467e894f10fe701ee27a5991682c52df",
+  "interrupted_observed_at": "2026-11-28T16:21:03.114814+00:00",
+  "cases": [
+    {
+      "id": "case1",
+      "status": "complete",
+      "error": null,
+      "spec_sha256": "e88bf39640276f4e78bec2519af73ed4f3ea5368afd581b467e6b7a20cfe8e67",
+      "artifact_count": 39
+    },
+    {
+      "id": "case2",
+      "status": "complete",
+      "error": null,
+      "spec_sha256": "9789bbf385bed355f8f362b074ea566b9265d4ea93f28afa0e04d85e281ce3e9",
+      "artifact_count": 39
+    },
+    {
+      "id": "case3",
+      "status": "failed",
+      "error": "Original process was absent after workspace restart. Case 3 produced a PCB before its case completion and browser evidence were finalized.",
+      "spec_sha256": "91047a8de2b1dbe8da879d1c75142d3cf729a0e581273b8d0305826ce5d30a04",
+      "artifact_count": 55
+    }
+  ]
+}
