@@ -187,6 +187,45 @@ def test_zone_partition_preserves_connected_copper_without_micron_slots():
     assert rebuilt.symmetric_difference(original).area<1e-8
 
 
+@pytest.mark.parametrize(('half_gap', 'succeeds'), [(0.00002, True), (0.0000002, False)])
+def test_saved_zone_precision_preserves_valid_rings_and_shared_cuts(half_gap, succeeds):
+    from shapely.geometry import Polygon
+    from shapely.ops import unary_union
+
+    from cloud_pcb.general_solver.run_blind import _saved_ground_fill_rings, _slit_polygon_no_holes
+
+    outline = [(0, 0), (2, 0), (2, 2), (1 + half_gap, 2), (1 + half_gap, 1),
+               (1 - half_gap, 1), (1 - half_gap, 2), (0, 2)]
+    hole = [(0.2, 0.2), (0.3, 0.2), (0.3, 0.3), (0.2, 0.3)]
+    original = Polygon(outline, [hole])
+    assert original.is_valid
+    coarse = [Polygon([(round(x, 4), round(y, 4)) for x, y in piece.exterior.coords])
+              for piece in _slit_polygon_no_holes(original)]
+    assert not all(piece.is_valid for piece in coarse)
+    if not succeeds:
+        with pytest.raises(ValueError, match='invalid at KiCad coordinate precision'):
+            _saved_ground_fill_rings(original)
+        return
+    pieces = [Polygon(ring) for ring in _saved_ground_fill_rings(original)]
+    assert len(pieces) > 1 and all(piece.is_valid for piece in pieces)
+    assert unary_union(pieces).equals(original)
+
+
+@pytest.mark.parametrize(('gap', 'succeeds'), [(0.00001, True), (0.0000001, False)])
+def test_saved_zone_precision_cannot_join_distinct_copper_islands(gap, succeeds):
+    from shapely.geometry import MultiPolygon, Polygon
+
+    from cloud_pcb.general_solver.run_blind import _saved_ground_fill_rings
+
+    original = MultiPolygon([box(0, 0, 1.00003, 1), box(1.00003 + gap, 0, 2, 1)])
+    if not succeeds:
+        with pytest.raises(ValueError, match='invalid at KiCad coordinate precision'):
+            _saved_ground_fill_rings(original)
+        return
+    first, second = (Polygon(ring) for ring in _saved_ground_fill_rings(original))
+    assert first.distance(second) == pytest.approx(gap)
+
+
 def test_import_omitted_angle_is_absolute_zero_not_footprint_angle():
     from scripts.seal_holdout import extract
     raw=b'''(kicad_pcb (layers (0 "F.Cu" signal)(1 "In1.Cu" power)(2 "In2.Cu" power)(31 "B.Cu" signal))

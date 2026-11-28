@@ -47,6 +47,7 @@ from shapely.affinity import rotate as shp_rotate
 from shapely.affinity import scale as shp_scale
 from shapely.affinity import translate as shp_translate
 from shapely.geometry import LineString as ShpLineString
+from shapely.geometry import MultiPolygon as ShpMultiPolygon
 from shapely.geometry import Point as ShpPoint
 from shapely.geometry import Polygon as ShpPolygon
 from shapely.geometry import box as shp_box
@@ -1773,6 +1774,27 @@ def _slit_polygon_no_holes(poly: ShpPolygon, depth: int = 0) -> list[ShpPolygon]
     return out
 
 
+def _saved_ground_fill_rings(geometry):
+    """Keep the same coordinate precision across all shared cuts in a zone."""
+    if not geometry.is_valid:
+        raise ValueError('Cannot serialize invalid ground zone geometry')
+    pieces = list(geometry.geoms) if geometry.geom_type == "MultiPolygon" else [geometry]
+    rings = [[list(part.exterior.coords) for part in _slit_polygon_no_holes(piece)] for piece in pieces]
+    for digits in (4, 6):
+        coordinates = [[[(round(x, digits), round(y, digits)) for x, y in ring] for ring in group]
+                       for group in rings]
+        rounded = [[ShpPolygon(ring) for ring in group] for group in coordinates]
+        if not all(polygon.is_valid for group in rounded for polygon in group):
+            continue
+        components = [group[0] if len(group) == 1 else unary_union(group) for group in rounded]
+        if any(current.geom_type != 'Polygon' or len(current.interiors) != len(original.interiors)
+               for current, original in zip(components, pieces, strict=True)):
+            continue
+        if len(components) == 1 or ShpMultiPolygon(components).is_valid:
+            return [ring for group in coordinates for ring in group]
+    raise ValueError('Ground zone topology is invalid at KiCad coordinate precision')
+
+
 def _build_4layer_pours_and_stitching(
     board: Board,
     board_poly: ShpPolygon,
@@ -1946,12 +1968,9 @@ def _build_4layer_pours_and_stitching(
         z.connectPads = "yes"
         z.fillSettings = FillSettings(yes=True, mode="solid", thermalGap=0.30, thermalBridgeWidth=0.35)
         z.polygons = [ZonePolygon(coordinates=ext_pts)]
-        pieces = list(geom.geoms) if geom.geom_type == "MultiPolygon" else [geom]
-        for piece in pieces:
-            for slit_poly in _slit_polygon_no_holes(piece):
-                coords = [Position(X=round(px, 4), Y=round(py, 4)) for px, py in slit_poly.exterior.coords]
-                if len(coords) >= 3:
-                    z.filledPolygons.append(FilledPolygon(layer=lyr, coordinates=coords))
+        for ring in _saved_ground_fill_rings(geom):
+            coords = [Position(X=x, Y=y) for x, y in ring]
+            z.filledPolygons.append(FilledPolygon(layer=lyr, coordinates=coords))
         board.zones.append(z)
 
     for island in islands or []:
