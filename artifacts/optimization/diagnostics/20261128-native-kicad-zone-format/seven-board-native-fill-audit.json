@@ -1,0 +1,300 @@
+{
+  "case1": {
+    "track_count": 597,
+    "footprints": 50,
+    "measured": [
+      {
+        "net": "+5V",
+        "layer": "In2.Cu",
+        "old_area_mm2": 347.5825755348028,
+        "native_area_mm2": 347.58258518891785,
+        "xor_mm2": 2.8879685300703936e-05,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "B.Cu",
+        "old_area_mm2": 2081.212858144999,
+        "native_area_mm2": 2081.212858144999,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "F.Cu",
+        "old_area_mm2": 1702.7183324450004,
+        "native_area_mm2": 1702.7183324450004,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In1.Cu",
+        "old_area_mm2": 2113.338389785,
+        "native_area_mm2": 2113.338389785,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In2.Cu",
+        "old_area_mm2": 1555.6385382899996,
+        "native_area_mm2": 1555.6385382899996,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      }
+    ]
+  },
+  "case10": {
+    "track_count": 1023,
+    "footprints": 84,
+    "measured": [
+      {
+        "net": "PGND",
+        "layer": "B.Cu",
+        "old_area_mm2": 1724.3707726850012,
+        "native_area_mm2": 1724.3707726850012,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "PGND",
+        "layer": "F.Cu",
+        "old_area_mm2": 1296.9083649999968,
+        "native_area_mm2": 1296.9083649999968,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "PGND",
+        "layer": "In1.Cu",
+        "old_area_mm2": 1910.7001003900014,
+        "native_area_mm2": 1910.7001003900014,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "PGND",
+        "layer": "In2.Cu",
+        "old_area_mm2": 1521.2891496599977,
+        "native_area_mm2": 1521.2891496599977,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      }
+    ]
+  },
+  "case11": {
+    "track_count": 959,
+    "footprints": 71,
+    "measured": [
+      {
+        "net": "+3.3V",
+        "layer": "In2.Cu",
+        "old_area_mm2": 285.30287383875395,
+        "native_area_mm2": 285.3028807136433,
+        "xor_mm2": 3.183477664223118e-05,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "B.Cu",
+        "old_area_mm2": 2551.107170369995,
+        "native_area_mm2": 2551.107170369995,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "F.Cu",
+        "old_area_mm2": 1911.722569365,
+        "native_area_mm2": 1911.722569365,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In1.Cu",
+        "old_area_mm2": 2740.333458665001,
+        "native_area_mm2": 2740.333458665001,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In2.Cu",
+        "old_area_mm2": 2175.3181944349994,
+        "native_area_mm2": 2175.3181944349994,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      }
+    ]
+  },
+  "case2": {
+    "track_count": 758,
+    "footprints": 64,
+    "measured": [
+      {
+        "net": "+3.3V",
+        "layer": "In2.Cu",
+        "old_area_mm2": 36.655412626157755,
+        "native_area_mm2": 36.655415901360996,
+        "xor_mm2": 8.087972190703764e-06,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "+5V",
+        "layer": "In2.Cu",
+        "old_area_mm2": 164.8529645182419,
+        "native_area_mm2": 164.8529640649614,
+        "xor_mm2": 2.443359896895303e-05,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "B.Cu",
+        "old_area_mm2": 3237.929004079998,
+        "native_area_mm2": 3237.929004079998,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "F.Cu",
+        "old_area_mm2": 2606.062490715,
+        "native_area_mm2": 2606.062490715,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In1.Cu",
+        "old_area_mm2": 3308.4119335599994,
+        "native_area_mm2": 3308.4119335599994,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In2.Cu",
+        "old_area_mm2": 2859.2159906299985,
+        "native_area_mm2": 2859.2159906299985,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      }
+    ]
+  },
+  "case3": {
+    "track_count": 1100,
+    "footprints": 74,
+    "measured": [
+      {
+        "net": "GND",
+        "layer": "B.Cu",
+        "old_area_mm2": 2117.951958579998,
+        "native_area_mm2": 2117.951958579998,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "F.Cu",
+        "old_area_mm2": 1787.063907535,
+        "native_area_mm2": 1787.063907535,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In1.Cu",
+        "old_area_mm2": 2245.6306496250018,
+        "native_area_mm2": 2245.6306496250018,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In2.Cu",
+        "old_area_mm2": 2084.694351245002,
+        "native_area_mm2": 2084.694351245002,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      }
+    ]
+  },
+  "case4": {
+    "track_count": 1721,
+    "footprints": 117,
+    "measured": [
+      {
+        "net": "GND",
+        "layer": "B.Cu",
+        "old_area_mm2": 9175.32864256498,
+        "native_area_mm2": 9175.32864256498,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "F.Cu",
+        "old_area_mm2": 7717.926931705017,
+        "native_area_mm2": 7717.926931705017,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In1.Cu",
+        "old_area_mm2": 9446.369608699964,
+        "native_area_mm2": 9446.369608699964,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In2.Cu",
+        "old_area_mm2": 8919.367348714986,
+        "native_area_mm2": 8919.367348714986,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      }
+    ]
+  },
+  "case5": {
+    "track_count": 897,
+    "footprints": 52,
+    "measured": [
+      {
+        "net": "GND",
+        "layer": "B.Cu",
+        "old_area_mm2": 576.0334450549998,
+        "native_area_mm2": 576.0334450549998,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "F.Cu",
+        "old_area_mm2": 512.3201646749998,
+        "native_area_mm2": 512.3201646749998,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In1.Cu",
+        "old_area_mm2": 771.6607686499984,
+        "native_area_mm2": 771.6607686499984,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      },
+      {
+        "net": "GND",
+        "layer": "In2.Cu",
+        "old_area_mm2": 597.9868257800003,
+        "native_area_mm2": 597.9868257800003,
+        "xor_mm2": 0.0,
+        "xor_after_native_1nm_quantization_mm2": 0.0
+      }
+    ]
+  }
+}

@@ -1944,7 +1944,8 @@ def _build_4layer_pours_and_stitching(
         z.clearance = round(min(0.22, inner_antipad_clearance), 3) if lyr in ("In1.Cu", "In2.Cu") else 0.22
         z.minThickness = 0.20
         z.connectPads = "yes"
-        z.fillSettings = FillSettings(yes=True, mode="solid", thermalGap=0.30, thermalBridgeWidth=0.35)
+        z.filledAreasThickness = "no"
+        z.fillSettings = FillSettings(yes=True, thermalGap=0.30, thermalBridgeWidth=0.35)
         z.polygons = [ZonePolygon(coordinates=ext_pts)]
         pieces = list(geom.geoms) if geom.geom_type == "MultiPolygon" else [geom]
         for piece in pieces:
@@ -1956,7 +1957,8 @@ def _build_4layer_pours_and_stitching(
 
     for island in islands or []:
         z=Zone(); z.net=next(n.number for n in board.nets if n.name==island['net']); z.netName=island['net']; z.layers=['In2.Cu']; z.name='POWER_island'; z.connectPads='yes'; z.minThickness=0.20; z.clearance=0.25
-        z.fillSettings=FillSettings(yes=True,mode='solid',thermalGap=0.30,thermalBridgeWidth=0.35)
+        z.filledAreasThickness = "no"
+        z.fillSettings=FillSettings(yes=True,thermalGap=0.30,thermalBridgeWidth=0.35)
         geom=island['geometry']; pieces=list(geom.geoms) if geom.geom_type=='MultiPolygon' else [geom]
         for piece in pieces:
             z.polygons.append(ZonePolygon(coordinates=[Coordinate(X=x,Y=y) for x,y in piece.exterior.coords]))

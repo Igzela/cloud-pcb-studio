@@ -1,0 +1,444 @@
+{
+  "build": "9.0.2+dfsg-1",
+  "loaded": {
+    "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case1/routed.kicad_pcb": {
+      "loaded": false
+    },
+    "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-omit-mode.kicad_pcb": {
+      "loaded": true,
+      "tracks": 597,
+      "footprints": 50,
+      "zones": [
+        {
+          "name": "GND_F_Cu",
+          "is_filled": true,
+          "layers": {
+            "F.Cu": {
+              "outlines": 6,
+              "filled_area_iu2": 1819227458414790.0
+            }
+          }
+        },
+        {
+          "name": "GND_In1_Cu",
+          "is_filled": true,
+          "layers": {
+            "In1.Cu": {
+              "outlines": 1,
+              "filled_area_iu2": 2168772229245551.5
+            }
+          }
+        },
+        {
+          "name": "GND_In2_Cu",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 17,
+              "filled_area_iu2": 1651136162705681.0
+            }
+          }
+        },
+        {
+          "name": "GND_B_Cu",
+          "is_filled": true,
+          "layers": {
+            "B.Cu": {
+              "outlines": 1,
+              "filled_area_iu2": 2145527871686744.0
+            }
+          }
+        },
+        {
+          "name": "POWER_island",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 1,
+              "filled_area_iu2": 372189202841428.0
+            }
+          }
+        }
+      ]
+    },
+    "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-omit-mode-modern-fill.kicad_pcb": {
+      "loaded": true,
+      "tracks": 597,
+      "footprints": 50,
+      "zones": [
+        {
+          "name": "GND_F_Cu",
+          "is_filled": true,
+          "layers": {
+            "F.Cu": {
+              "outlines": 58,
+              "filled_area_iu2": 1702718332445000.0
+            }
+          }
+        },
+        {
+          "name": "GND_In1_Cu",
+          "is_filled": true,
+          "layers": {
+            "In1.Cu": {
+              "outlines": 44,
+              "filled_area_iu2": 2113338389785000.0
+            }
+          }
+        },
+        {
+          "name": "GND_In2_Cu",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 33,
+              "filled_area_iu2": 1555638538290000.0
+            }
+          }
+        },
+        {
+          "name": "GND_B_Cu",
+          "is_filled": true,
+          "layers": {
+            "B.Cu": {
+              "outlines": 55,
+              "filled_area_iu2": 2081212858145000.0
+            }
+          }
+        },
+        {
+          "name": "POWER_island",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 9,
+              "filled_area_iu2": 347582585188918.5
+            }
+          }
+        }
+      ]
+    },
+    "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case11/routed.kicad_pcb": {
+      "loaded": false
+    },
+    "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-omit-mode.kicad_pcb": {
+      "loaded": true,
+      "tracks": 959,
+      "footprints": 71,
+      "zones": [
+        {
+          "name": "RF_antenna",
+          "is_filled": false,
+          "layers": {
+            "F.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "In1.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "In2.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "B.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            }
+          }
+        },
+        {
+          "name": "GND_F_Cu",
+          "is_filled": true,
+          "layers": {
+            "F.Cu": {
+              "outlines": 8,
+              "filled_area_iu2": 2084355565866576.5
+            }
+          }
+        },
+        {
+          "name": "GND_In1_Cu",
+          "is_filled": true,
+          "layers": {
+            "In1.Cu": {
+              "outlines": 1,
+              "filled_area_iu2": 2802455399885112.5
+            }
+          }
+        },
+        {
+          "name": "GND_In2_Cu",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 23,
+              "filled_area_iu2": 2298237310711735.0
+            }
+          }
+        },
+        {
+          "name": "GND_B_Cu",
+          "is_filled": true,
+          "layers": {
+            "B.Cu": {
+              "outlines": 3,
+              "filled_area_iu2": 2646964570780419.5
+            }
+          }
+        },
+        {
+          "name": "POWER_island",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 2,
+              "filled_area_iu2": 306526930575380.0
+            }
+          }
+        }
+      ]
+    },
+    "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-omit-mode-modern-fill.kicad_pcb": {
+      "loaded": true,
+      "tracks": 959,
+      "footprints": 71,
+      "zones": [
+        {
+          "name": "RF_antenna",
+          "is_filled": false,
+          "layers": {
+            "F.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "In1.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "In2.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "B.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            }
+          }
+        },
+        {
+          "name": "GND_F_Cu",
+          "is_filled": true,
+          "layers": {
+            "F.Cu": {
+              "outlines": 76,
+              "filled_area_iu2": 1911722569365000.0
+            }
+          }
+        },
+        {
+          "name": "GND_In1_Cu",
+          "is_filled": true,
+          "layers": {
+            "In1.Cu": {
+              "outlines": 56,
+              "filled_area_iu2": 2740333458665000.0
+            }
+          }
+        },
+        {
+          "name": "GND_In2_Cu",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 57,
+              "filled_area_iu2": 2175318194435000.0
+            }
+          }
+        },
+        {
+          "name": "GND_B_Cu",
+          "is_filled": true,
+          "layers": {
+            "B.Cu": {
+              "outlines": 69,
+              "filled_area_iu2": 2551107170370000.0
+            }
+          }
+        },
+        {
+          "name": "POWER_island",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 13,
+              "filled_area_iu2": 285302880713643.5
+            }
+          }
+        }
+      ]
+    },
+    "/workspace/cloud-pcb-studio/.run/case11-fill-precision.hVM0KD/case11-topology-verified.kicad_pcb": {
+      "loaded": false
+    },
+    "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-omit-mode.kicad_pcb": {
+      "loaded": true,
+      "tracks": 959,
+      "footprints": 71,
+      "zones": [
+        {
+          "name": "RF_antenna",
+          "is_filled": false,
+          "layers": {
+            "F.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "In1.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "In2.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "B.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            }
+          }
+        },
+        {
+          "name": "GND_F_Cu",
+          "is_filled": true,
+          "layers": {
+            "F.Cu": {
+              "outlines": 8,
+              "filled_area_iu2": 2084353832670202.0
+            }
+          }
+        },
+        {
+          "name": "GND_In1_Cu",
+          "is_filled": true,
+          "layers": {
+            "In1.Cu": {
+              "outlines": 1,
+              "filled_area_iu2": 2792291515151341.5
+            }
+          }
+        },
+        {
+          "name": "GND_In2_Cu",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 23,
+              "filled_area_iu2": 2291245524416336.0
+            }
+          }
+        },
+        {
+          "name": "GND_B_Cu",
+          "is_filled": true,
+          "layers": {
+            "B.Cu": {
+              "outlines": 3,
+              "filled_area_iu2": 2646964570780419.5
+            }
+          }
+        },
+        {
+          "name": "POWER_island",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 2,
+              "filled_area_iu2": 306526930575380.0
+            }
+          }
+        }
+      ]
+    },
+    "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-omit-mode-modern-fill.kicad_pcb": {
+      "loaded": true,
+      "tracks": 959,
+      "footprints": 71,
+      "zones": [
+        {
+          "name": "RF_antenna",
+          "is_filled": false,
+          "layers": {
+            "F.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "In1.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "In2.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            },
+            "B.Cu": {
+              "outlines": 0,
+              "filled_area_iu2": 0.0
+            }
+          }
+        },
+        {
+          "name": "GND_F_Cu",
+          "is_filled": true,
+          "layers": {
+            "F.Cu": {
+              "outlines": 76,
+              "filled_area_iu2": 1911720583595757.0
+            }
+          }
+        },
+        {
+          "name": "GND_In1_Cu",
+          "is_filled": true,
+          "layers": {
+            "In1.Cu": {
+              "outlines": 56,
+              "filled_area_iu2": 2728455235065000.0
+            }
+          }
+        },
+        {
+          "name": "GND_In2_Cu",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 57,
+              "filled_area_iu2": 2168018971495000.0
+            }
+          }
+        },
+        {
+          "name": "GND_B_Cu",
+          "is_filled": true,
+          "layers": {
+            "B.Cu": {
+              "outlines": 69,
+              "filled_area_iu2": 2551107170370000.0
+            }
+          }
+        },
+        {
+          "name": "POWER_island",
+          "is_filled": true,
+          "layers": {
+            "In2.Cu": {
+              "outlines": 13,
+              "filled_area_iu2": 285302880713643.5
+            }
+          }
+        }
+      ]
+    }
+  }
+}
