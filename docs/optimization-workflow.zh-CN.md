@@ -118,6 +118,7 @@ artifacts/optimization/runs/<UTC时间>-<label>/
     assembly.html        自包含交互预览
     assembly_*.png
     assembly_browser_report.json
+    reference_pour_comparison.json  从基线和候选的保存板重测逐层参考铜
     metrics.json
   result.json            逐板指标、退步、改善、下一步任务
   review.md
@@ -126,6 +127,21 @@ artifacts/optimization/runs/<UTC时间>-<label>/
 ```
 
 只筛选某些回归板时可用 `--cases case3,case4`，但这种轮次不能晋升基线。`--case-timeout` 是每板求解进程的外层超时，默认 900 秒，不改变引擎内部的规则或逐案例路由预算。失败输入/失败板也必须保留，不通过换板绕过。
+
+## 复核导出板的参考铜
+
+用同一坐标系中的两块 KiCad 板比较指定网络已保存的覆铜，例如检查 In1 填充改善时顶层参考铜的变化。
+
+```bash
+source scripts/env.sh
+python -m scripts.compare_reference_pours baseline.kicad_pcb candidate.kicad_pcb --net GND --layer In1.Cu --layer F.Cu
+```
+
+省略 `--layer` 时核对两块板中该网络声明的铜层。工具逐层合并同网覆铜，给出实际面积、增减总量和最大三个变化区域的坐标。缺失、未填充或无效的多边形会产生 `UNKNOWN`，退出码为 `2`。该比较仅覆盖文件中保存的填充多边形。回流连通、阻抗和制造验收仍以各自的工况及证据核对。
+
+完整轮次和选板轮次都会随候选保存同样的对照，选择活动基线板的参考地网。轮次结果记录状态、文件路径及归档哈希，便于审阅未被 In1 单值反映的其他层变化。晋升继续使用现有门禁与质量指标。
+
+重放两轮七板产物，六板各层均可测量。Case 11 的顶层地铜在两轮均有一个自相交多边形，顶层标为 `UNKNOWN`，其余三层保持测量。由冻结板的实际走线重建覆铜后，导出前多边形有效。统一采用六位小数后，几何差异面积为 0.000136 mm²，所测顶层多边形均合法。[七板重放](../artifacts/optimization/diagnostics/20261128-reference-pour-replay/comparison.json) · [导出精度对照](../artifacts/optimization/diagnostics/20261128-reference-pour-replay/case11-precision-replay.json)
 
 ## 后续优化顺序
 

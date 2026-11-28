@@ -1,0 +1,38 @@
+{
+  "scope": "Reconstruct F.Cu ground from frozen Case 11 physical traces and test uniform serialization precision.",
+  "source_sha256": "3060bcabf6bd3cc770f3611bec2ef7c973ab5b766fd7e812927ffe056ae47861",
+  "source_area_reported_mm2": 1911.721,
+  "reconstructed_unrounded_area_mm2": 1911.7205654202812,
+  "added_stitches": 0,
+  "before_serialization_all_pieces_valid": true,
+  "precision": {
+    "4": {
+      "invalid_piece_count": 1,
+      "invalid_pieces": [
+        {
+          "piece": 20,
+          "vertex_count": 18,
+          "area_mm2": 0.017891659999999757,
+          "reason": "Self-intersection[7.38370000000001 54.4087]"
+        }
+      ],
+      "measured_area_mm2": null,
+      "area_change_mm2": null,
+      "symmetric_difference_mm2": null
+    },
+    "5": {
+      "invalid_piece_count": 0,
+      "invalid_pieces": [],
+      "measured_area_mm2": 1911.7208545928029,
+      "area_change_mm2": 0.00028917252166138496,
+      "symmetric_difference_mm2": 0.0012710110964220046
+    },
+    "6": {
+      "invalid_piece_count": 0,
+      "invalid_pieces": [],
+      "measured_area_mm2": 1911.720583595754,
+      "area_change_mm2": 1.8175472860093578e-05,
+      "symmetric_difference_mm2": 0.00013567098825416972
+    }
+  }
+}
