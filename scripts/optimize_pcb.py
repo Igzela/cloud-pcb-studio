@@ -99,6 +99,42 @@ def latest_round_status():
         return dict(details, integrity='unverified', error=str(exc))
 
 
+def _read_unfinalized_attempts(directory, activity):
+    attempts = []
+    for path in sorted((directory / 'runs').glob('*/manifest.json'), reverse=True):
+        relative = str(path.parent.relative_to(ROOT))
+        try:
+            manifest = json.loads(path.read_text())
+            if manifest['status'] != 'running':
+                continue
+            cases = manifest['cases']
+            if not isinstance(cases, list):
+                raise ValueError('manifest cases must be a list')
+            attempts.append(dict(
+                directory=relative, recorded_status='running', activity=activity,
+                started_at=manifest.get('started_at'), variant=manifest.get('variant'),
+                complete_cases=[case['id'] for case in cases if case['status'] == 'complete'],
+                failed_cases=[case['id'] for case in cases if case['status'] == 'failed'],
+            ))
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            attempts.append(dict(directory=relative, recorded_status=None, activity='unknown', error=str(exc)))
+    return attempts
+
+
+def unfinalized_attempts():
+    """Read committed case entries and observe the existing writer lock."""
+    directory = ROOT / 'artifacts/optimization'
+    try:
+        with (directory / '.run.lock').open('rb') as handle:
+            try:
+                fcntl.flock(handle, fcntl.LOCK_SH | fcntl.LOCK_NB)
+            except BlockingIOError:
+                return _read_unfinalized_attempts(directory, 'possibly_active')
+            return _read_unfinalized_attempts(directory, 'abandoned')
+    except OSError:
+        return _read_unfinalized_attempts(directory, 'unknown')
+
+
 def baseline_measurements(suite,pointer):
     manifest=verify_manifest(pointer)
     entries={str(c.get('id',c.get('case'))):c for c in manifest['cases']};result={};reports={};details={}
@@ -290,8 +326,12 @@ def main():
     if args.command=='status':
         result=diagnose(suite,active_pointer(suite));target=ROOT/'artifacts/optimization/status';target.mkdir(parents=True,exist_ok=True)
         result['last_round'] = latest_round_status()
+        result['unfinalized_attempts'] = unfinalized_attempts()
         atomic_json(target/'result.json',result);write_review(target,result)
-        print(json.dumps(dict(cases=len(result['measurements']),tasks=len(result['tasks']),report=str((target/'review.md').relative_to(ROOT)), last_round=result['last_round']),ensure_ascii=False));return 0
+        print(json.dumps(dict(cases=len(result['measurements']), tasks=len(result['tasks']),
+                              report=str((target/'review.md').relative_to(ROOT)), last_round=result['last_round'],
+                              unfinalized_attempts=result['unfinalized_attempts']), ensure_ascii=False))
+        return 0
     lock=ROOT/'artifacts/optimization/.run.lock';lock.parent.mkdir(parents=True,exist_ok=True)
     with lock.open('w') as handle:
         try:fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)

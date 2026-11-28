@@ -76,6 +76,8 @@ python -m scripts.optimize_pcb history
 
 历史命令输出每轮路径、假设、状态和比较结果。最新轮次的固定入口是 `artifacts/optimization/last_run.json`，其中有目录和 manifest 哈希；该目录下的 `review.html` 可直接离线打开，并按案例筛选下一步任务。查看当前基线用 `status`，查看最近一次被拒绝的候选则用 `last_run.json`；两者有意保留为不同记录。
 
+`status` 的终端 JSON 和 `status/result.json` 用 `last_round` 显示最近结案记录，用 `unfinalized_attempts` 显示仍记为 `running` 的轮次和清单已登记的完成板、失败板。全局运行锁空闲时记为 `abandoned`，锁被持有时记为 `possibly_active`，因为该锁无法区分同一工作区里的多个未结轮次。锁文件缺失、探测失败或清单无法读取时记为 `unknown`。登记状态和现存的部分产物可供诊断，逐板产物哈希仍由完整性复核确认。
+
 ## 什么条件才更新基线
 
 基线指针只指向完整保存的产物，不改源码默认值、不提交代码、不部署项目。指针记录在 `artifacts/optimization/state.json`，每次更新保留之前和之后的指针，原基线文件从不覆盖。
