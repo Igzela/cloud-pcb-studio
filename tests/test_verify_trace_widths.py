@@ -57,7 +57,7 @@ def test_track_arc_width_and_midpoint_are_reported(board):
     assert report['observed_min_width_mm'] == .09
     assert detail['item_type'] == 'arc'
     assert detail['layer'] == 'B.Cu'
-    assert detail['coordinates_mm'] == [(2, 1), (3, 0), (4, 1)]
+    assert detail['coordinates_mm'] == [[2, 1], [3, 0], [4, 1]]
 
 
 def test_empty_or_invalid_track_data_remains_unknown(board):

@@ -140,8 +140,29 @@ def test_serialized_trace_width_blocks_false_promotion(tmp_path):
     assert decision['improvements'] and not decision['eligible_for_baseline']
     assert TRACK_WIDTH_GATE in {item['metric'] for item in decision['regressions']}
 
+    published = report()
+    published['hard_gates'][TRACK_WIDTH_GATE] = False
+    published['hard_gates_passed'] = False
+    published['audit']['track_widths'] = json.loads(json.dumps(after['track_widths']))
+    assert not report_metrics(published, pcb)['evidence_errors']
+
+    fabricated = report()
+    fabricated['hard_gates'][TRACK_WIDTH_GATE] = True
+    fabricated['audit']['track_widths'] = dict(before['track_widths'], required_min_width_mm=.01)
+    checked = report_metrics(fabricated, pcb)
+    assert not checked['hard_pass'] and TRACK_WIDTH_GATE in checked['failed_gates']
+    assert checked['track_widths']['required_min_width_mm'] == .100
+    assert any('contradicts' in issue for issue in checked['evidence_errors'])
+
+    absent_board = report_metrics(fabricated)
+    assert not absent_board['hard_pass']
+    assert TRACK_WIDTH_GATE in absent_board['failed_gates']
+    assert any('serialized PCB required' in issue for issue in absent_board['evidence_errors'])
+
     missing = report_metrics(report(), tmp_path / 'missing.kicad_pcb')
     assert missing['track_widths']['status'] == 'UNKNOWN' and missing['evidence_errors']
+    unverified = report_metrics(fabricated, tmp_path / 'missing.kicad_pcb')
+    assert unverified['track_widths']['status'] == 'UNKNOWN' and not unverified['hard_pass']
     omitted = compare_candidate({'x': before}, {'x': report_metrics(report())}, full_suite=True, tests_passed=True)
     assert any('track width evidence missing' in item['reason'] for item in omitted['invalid'])
 

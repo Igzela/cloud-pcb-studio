@@ -65,6 +65,7 @@ from cloud_pcb.verify_gate.gerber_drc import (
     _compute_min_annular_ring,
     _gerber_layer_union,
 )
+from cloud_pcb.verify_gate.trace_widths import MINIMUM_TRACK_WIDTH_MM, TRACK_WIDTH_GATE, audit_trace_width_file
 from contracts.schemas import NetClassRule, RoutingBenchmark, save_json
 from cloud_pcb.general_solver.topology import analyze_topology, macro_targets
 from cloud_pcb.general_solver.semantics import component_envelope, infer_rf, rf_keepouts, world_box, pad_bounds
@@ -3390,6 +3391,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         save_json(outdir / "direct_repair.json", direct_evidence)
     routed_pcb = outdir / "routed.kicad_pcb"
     routed_board.to_file(str(routed_pcb))
+    audit['track_widths'] = audit_trace_width_file(routed_pcb, MINIMUM_TRACK_WIDTH_MM)
 
     from cloud_pcb.general_solver.assembly import export_assembly
     audit['legacy_projected_lvs_opens']=audit['lvs_opens']
@@ -3403,6 +3405,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
         'independent_lvs_opens_zero':not independent['lvs_opens'],
         'independent_lvs_shorts_zero':not independent['lvs_shorts'],
         'nonthermal_via_in_pad_zero':not independent['via_in_pad_violations'],
+        TRACK_WIDTH_GATE:audit['track_widths']['passed'],
         'gerber_all_parsed':audit['pygerber_all_ok'],
         'annular_ring_ge_010':audit['min_annular_ring_mm'] is not None and audit['min_annular_ring_mm']>=.10 and audit['annular_ring_violations']==0,
         'silk_overlap_zero':audit['silk_to_mask_overlap_mm2']==0,

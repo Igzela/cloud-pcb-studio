@@ -10,13 +10,12 @@ import json
 import math
 from pathlib import Path
 
+from cloud_pcb.verify_gate.trace_widths import MINIMUM_TRACK_WIDTH_MM, TRACK_WIDTH_GATE, audit_trace_width_file
+
 GERBER_LAYERS = frozenset(f'{side}_{kind}.gbr' for side in ('F','B') for kind in ('Cu','Mask','Paste','SilkS')) | {'In1_Cu.gbr','In2_Cu.gbr','Edge_Cuts.gbr'}
 HARD_METRICS = ('unrouted', 'opens', 'shorts', 'spacing', 'via_in_pad', 'gerber_failures', 'annular_failures', 'silk_overlap_mm2', 'edge_deficit_mm', 'rf_failures', 'mechanical_collisions', 'unverified_envelopes')
 QUALITY_METRICS = ('cap_distance_mm', 'ground_fill_deficit')
 REQUIRED_GATES = frozenset(('unrouted_zero','router_spacing_zero','independent_lvs_opens_zero','independent_lvs_shorts_zero','nonthermal_via_in_pad_zero','gerber_all_parsed','annular_ring_ge_010','silk_overlap_zero','copper_edge_ge_050','rf_all_four_layers_clear','mechanical_zero_with_verified_envelopes'))
-# The micro-escape router uses the smallest supported trace width.
-MINIMUM_TRACK_WIDTH_MM = .100
-TRACK_WIDTH_GATE = 'minimum_track_width_ge_010'
 
 
 def digest(path):
@@ -56,9 +55,14 @@ def input_conflicts(spec, clearance_mm=.5):
 def report_metrics(report, pcb=None, spec=None):
     """Recompute safety facts from raw audit fields; missing evidence is an error."""
     errors=[]; values={k:None for k in HARD_METRICS + QUALITY_METRICS + ('wirelength_mm',)}
+    published_audit = report.get('audit', {})
+    if not isinstance(published_audit, dict):
+        published_audit = {}
+    gates = report.get('hard_gates', {})
+    if not isinstance(gates, dict):
+        gates = {}
     try:
         audit=report['audit']; independent=audit['independent_4layer']; mech=independent['mechanical']
-        gates=report['hard_gates']
         if not REQUIRED_GATES.issubset(gates) or any(type(v) is not bool for v in gates.values()): errors.append('missing or non-boolean hard gates')
         flags=audit['pygerber_by_layer']
         if any(type(v) is not bool for v in flags.values()): errors.append('non-boolean Gerber parse result')
@@ -84,16 +88,21 @@ def report_metrics(report, pcb=None, spec=None):
             if value is not None and (not isinstance(value,(float,int)) or isinstance(value,bool) or not math.isfinite(value) or value<0):errors.append('invalid metric: '+key)
     except (KeyError,TypeError,ValueError,IndexError) as exc:errors.append('incomplete audit: '+str(exc))
     derived = {}
-    gates = report.get('hard_gates', {})
     failed = {key for key, passed in gates.items() if passed is not True}
+    width_claimed = TRACK_WIDTH_GATE in gates or 'track_widths' in published_audit
     if pcb is not None:
-        from cloud_pcb.verify_gate.trace_widths import audit_trace_width_file
         track_widths = audit_trace_width_file(Path(pcb), MINIMUM_TRACK_WIDTH_MM)
         derived['track_widths'] = track_widths
         if track_widths['status'] != 'PASS':
             failed.add(TRACK_WIDTH_GATE)
         if track_widths['status'] == 'UNKNOWN':
             errors.append('minimum routed track width could not be verified')
+        if width_claimed and (gates.get(TRACK_WIDTH_GATE) is not track_widths['passed']
+                              or published_audit.get('track_widths') != track_widths):
+            errors.append('reported track width gate or audit contradicts the serialized PCB')
+    elif width_claimed:
+        failed.add(TRACK_WIDTH_GATE)
+        errors.append('serialized PCB required to verify reported track width evidence')
     if pcb is not None and spec is not None:
         from cloud_pcb.general_solver.compare_reference import _extract_metrics
         measured=_extract_metrics(Path(pcb),'optimization candidate',spec=spec,independent_audit=False)

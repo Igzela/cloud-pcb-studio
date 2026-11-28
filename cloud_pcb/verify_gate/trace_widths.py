@@ -7,6 +7,10 @@ from kiutils.board import Board
 from kiutils.items.brditems import Arc, Segment, Via
 from kiutils.utils.sexpr import parse_sexp
 
+# Shared physical floor across solver variants, including micro-escape.
+MINIMUM_TRACK_WIDTH_MM = .100
+TRACK_WIDTH_GATE = 'minimum_track_width_ge_010'
+
 
 def _is_finite_number(value):
     return type(value) in (float, int) and math.isfinite(value)
@@ -50,7 +54,7 @@ def audit_trace_widths(board, min_width_mm):
             net_name = track.net if isinstance(track.net, str) else net_names.get(net_number)
             report['violations'].append(dict(track_index=index, item_type='arc' if arc else 'segment',
                                              net=net_name, net_number=net_number, layer=track.layer,
-                                             coordinates_mm=coordinates, width_mm=track.width))
+                                             coordinates_mm=[list(pair) for pair in coordinates], width_mm=track.width))
 
     if not widths:
         report['issues'].append('No measurable routed segments or arcs')
