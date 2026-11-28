@@ -1,0 +1,263 @@
+{
+  "scope": "Move only the antenna module; keep every other frozen component fixed. Footprint and provisional body preflight only.",
+  "candidates": [
+    {
+      "pose_xytheta": [
+        33.7625,
+        9.209999999999999,
+        0.0
+      ],
+      "closest_foreign_pad_gap_mm": 0.0,
+      "nearest_footprint": "C10",
+      "measured_u1_body_conflicts": [
+        {
+          "kind": "body_body",
+          "refdes": "C10",
+          "other": "U1",
+          "overlap_mm2": 1.2430750000000013
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C13",
+          "other": "U1",
+          "overlap_mm2": 2.327500000000001
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C5",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000063
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C7",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000063
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C9",
+          "other": "U1",
+          "overlap_mm2": 1.2079250000000021
+        },
+        {
+          "kind": "body_body",
+          "refdes": "D4",
+          "other": "U1",
+          "overlap_mm2": 9.845149999999988
+        },
+        {
+          "kind": "body_body",
+          "refdes": "J4",
+          "other": "U1",
+          "overlap_mm2": 32.300000000000004
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R10",
+          "other": "U1",
+          "overlap_mm2": 0.6664250000000023
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R14",
+          "other": "U1",
+          "overlap_mm2": 2.327500000000008
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R4",
+          "other": "U1",
+          "overlap_mm2": 2.327500000000001
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R6",
+          "other": "U1",
+          "overlap_mm2": 0.6094250000000069
+        },
+        {
+          "kind": "body_body",
+          "refdes": "SW1",
+          "other": "U1",
+          "overlap_mm2": 30.66074999999999
+        },
+        {
+          "kind": "body_body",
+          "refdes": "U1",
+          "other": "U4",
+          "overlap_mm2": 16.0
+        }
+      ],
+      "preserves_other_placements_eligible": false
+    },
+    {
+      "pose_xytheta": [
+        33.7625,
+        44.315,
+        180.0
+      ],
+      "closest_foreign_pad_gap_mm": 0.0,
+      "nearest_footprint": "J3",
+      "measured_u1_body_conflicts": [
+        {
+          "kind": "body_body",
+          "refdes": "J3",
+          "other": "U1",
+          "overlap_mm2": 10.527250000000022
+        },
+        {
+          "kind": "body_body",
+          "refdes": "J5",
+          "other": "U1",
+          "overlap_mm2": 7.798750000000011
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R12",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000095
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R13",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000063
+        }
+      ],
+      "preserves_other_placements_eligible": false
+    },
+    {
+      "pose_xytheta": [
+        58.315000000000005,
+        26.7625,
+        270.0
+      ],
+      "closest_foreign_pad_gap_mm": 0.0,
+      "nearest_footprint": "D2",
+      "measured_u1_body_conflicts": [
+        {
+          "kind": "body_body",
+          "refdes": "C8",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000095
+        },
+        {
+          "kind": "body_body",
+          "refdes": "J6",
+          "other": "U1",
+          "overlap_mm2": 15.844000000000028
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R7",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000095
+        },
+        {
+          "kind": "body_body",
+          "refdes": "SW2",
+          "other": "U1",
+          "overlap_mm2": 10.880165999999972
+        },
+        {
+          "kind": "body_body",
+          "refdes": "U1",
+          "other": "U3",
+          "overlap_mm2": 21.94249999999994
+        }
+      ],
+      "preserves_other_placements_eligible": false
+    },
+    {
+      "pose_xytheta": [
+        9.209999999999999,
+        26.7625,
+        90.0
+      ],
+      "closest_foreign_pad_gap_mm": 0.0,
+      "nearest_footprint": "C3",
+      "measured_u1_body_conflicts": [
+        {
+          "kind": "body_body",
+          "refdes": "C1",
+          "other": "U1",
+          "overlap_mm2": 35.18800000000002
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C14",
+          "other": "U1",
+          "overlap_mm2": 4.205000000000006
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C21",
+          "other": "U1",
+          "overlap_mm2": 4.205000000000006
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C3",
+          "other": "U1",
+          "overlap_mm2": 23.133599999999984
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C4",
+          "other": "U1",
+          "overlap_mm2": 4.205000000000007
+        },
+        {
+          "kind": "body_body",
+          "refdes": "C6",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000095
+        },
+        {
+          "kind": "body_body",
+          "refdes": "D1",
+          "other": "U1",
+          "overlap_mm2": 11.699999999999982
+        },
+        {
+          "kind": "body_body",
+          "refdes": "D5",
+          "other": "U1",
+          "overlap_mm2": 9.591300000000004
+        },
+        {
+          "kind": "body_body",
+          "refdes": "F1",
+          "other": "U1",
+          "overlap_mm2": 0.5678750000000008
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R1",
+          "other": "U1",
+          "overlap_mm2": 0.5855500000000026
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R15",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000063
+        },
+        {
+          "kind": "body_body",
+          "refdes": "R16",
+          "other": "U1",
+          "overlap_mm2": 2.3275000000000032
+        },
+        {
+          "kind": "body_body",
+          "refdes": "U1",
+          "other": "U2",
+          "overlap_mm2": 15.354383000000015
+        }
+      ],
+      "preserves_other_placements_eligible": false
+    }
+  ]
+}

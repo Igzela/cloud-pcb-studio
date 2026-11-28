@@ -1,0 +1,14 @@
+[
+  "timeout",
+  "--signal=TERM",
+  "--kill-after=10s",
+  "900s",
+  "python",
+  "-m",
+  "cloud_pcb.general_solver.run_blind",
+  "--spec",
+  "/workspace/cloud-pcb-studio/.run/case2-vendor-antenna.xJlHg2/competing-edge-spec.json",
+  "--outdir",
+  "/workspace/cloud-pcb-studio/.run/case2-vendor-antenna.xJlHg2/alternate-edge-routed",
+  "--dense-escape-repair"
+]

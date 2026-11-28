@@ -32,3 +32,9 @@ Espressif FAQ 要求天线区域及向外 15 mm 保持无铜、走线与元件�
 单板诊断在冻结输入的副本中只增加 `U1.antenna_keepout_mm`。现有摆位算法把模块移到 `(33.7625, 9.2100, 0°)`，天线投影从与板框重叠 111.42 mm² 变为完全伸出板框，最近处与板边相距 0.34 mm。重建板的 50 个网络全部布通，独立 LVS 开短路、真实间距违例和非热焊盘内过孔均为 0。重新读取保存的 KiCad 文件后，标称天线投影在四层均测得零铜。最小实际线宽 0.125 mm，Gerber、钻孔和离线 Chromium 预览通过。[初始诊断与摆位](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/preflight.json) · [实板复核](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/independent-audit.json) · [浏览器审计](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/assembly_browser_report.json)
 
 输出板实测线长从 1248.608 mm 增至 1439.605 mm。参考铜的 F.Cu、B.Cu 和 In1.Cu 分别减少 36.119、88.380 和 6.031 mm²。装配检查中 59 项外形仍待确认，馈点和周边净空及 RF 性能尚待独立核对。该单板诊断用作后续比较，活动基线继续使用原冻结产物。[逐层参考铜差异](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/reference-pour-comparison.json) · [保存的 KiCad 板](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/routed.kicad_pcb)
+
+### 替代板边与局部摆位
+
+另外三条板边均能将标称天线区置于板外。按布线前的非地网最小生成树总长筛选，选出 `(33.7625, 44.3150, 180°)` 做一次完整单板布线。该板再次实现 50 网全部布通、四层天线投影零铜、零独立 LVS 开短路、零真实间距违例和离线 3D 通过。[三条板边筛选](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/alternate-edge-placement-screen.json) · [替代板边独立审计](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/alternate-edge/independent-audit.json)
+
+实际线长为 1323.326 mm，比第一版短 116.279 mm，仍比活动基线长 74.718 mm。去耦距离代理从基线的 7.706 mm 增至 9.230 mm。F.Cu 和 B.Cu 参考铜仍分别少 65.614 和 74.670 mm²。冻结其余 60 个器件时，四种板边姿态均发生焊盘接触。因此下一步在第二个板边仅腾挪冲突邻件，保留其余摆位，以检验能否减小全板重排造成的代价。[替代板边逐层铜差异](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/alternate-edge/reference-pour-comparison.json) · [仅移动 U1 的负向对照](../artifacts/optimization/diagnostics/20261128-case2-antenna-geometry/fixed-neighbors-placement-screen.json)

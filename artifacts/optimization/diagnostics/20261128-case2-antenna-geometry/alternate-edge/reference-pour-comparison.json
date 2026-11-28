@@ -1,0 +1,271 @@
+{
+  "status": "MEASURED",
+  "net": "GND",
+  "layers": {
+    "B.Cu": {
+      "status": "MEASURED",
+      "baseline_area_mm2": 3237.929004,
+      "candidate_area_mm2": 3163.259285,
+      "change_mm2": -74.669719,
+      "added_area_mm2": 183.847442,
+      "removed_area_mm2": 258.517161,
+      "largest_added_regions": [
+        {
+          "area_mm2": 40.570553,
+          "bounds_xyxy_mm": [
+            39.430600000000005,
+            23.9691,
+            61.1147,
+            29.2097
+          ]
+        },
+        {
+          "area_mm2": 28.389133,
+          "bounds_xyxy_mm": [
+            20.4703,
+            5.546,
+            51.4827,
+            13.0709
+          ]
+        },
+        {
+          "area_mm2": 16.880705,
+          "bounds_xyxy_mm": [
+            45.36,
+            47.785,
+            49.64,
+            52.065
+          ]
+        }
+      ],
+      "largest_removed_regions": [
+        {
+          "area_mm2": 59.917151,
+          "bounds_xyxy_mm": [
+            27.8035,
+            34.2903,
+            64.8147,
+            42.8472
+          ]
+        },
+        {
+          "area_mm2": 33.383132,
+          "bounds_xyxy_mm": [
+            18.3703,
+            45.6353,
+            46.8726914893617,
+            52.203
+          ]
+        },
+        {
+          "area_mm2": 29.521471,
+          "bounds_xyxy_mm": [
+            43.3994,
+            41.0981,
+            61.115,
+            47.09
+          ]
+        }
+      ]
+    },
+    "F.Cu": {
+      "status": "MEASURED",
+      "baseline_area_mm2": 2606.062491,
+      "candidate_area_mm2": 2540.448056,
+      "change_mm2": -65.614435,
+      "added_area_mm2": 619.069155,
+      "removed_area_mm2": 684.68359,
+      "largest_added_regions": [
+        {
+          "area_mm2": 171.807084,
+          "bounds_xyxy_mm": [
+            1.415,
+            0.9602,
+            24.483,
+            28.574
+          ]
+        },
+        {
+          "area_mm2": 67.398559,
+          "bounds_xyxy_mm": [
+            15.854,
+            6.306,
+            32.8697,
+            22.257
+          ]
+        },
+        {
+          "area_mm2": 47.671658,
+          "bounds_xyxy_mm": [
+            43.67728265341485,
+            10.037148051948051,
+            61.115,
+            24.723092725505722
+          ]
+        }
+      ],
+      "largest_removed_regions": [
+        {
+          "area_mm2": 182.335354,
+          "bounds_xyxy_mm": [
+            37.8157,
+            31.741,
+            64.815,
+            50.311
+          ]
+        },
+        {
+          "area_mm2": 99.984507,
+          "bounds_xyxy_mm": [
+            10.02758854394403,
+            37.582,
+            39.50220528846154,
+            52.015
+          ]
+        },
+        {
+          "area_mm2": 42.686993,
+          "bounds_xyxy_mm": [
+            46.098,
+            28.078,
+            61.1147,
+            35.7254
+          ]
+        }
+      ]
+    },
+    "In1.Cu": {
+      "status": "MEASURED",
+      "baseline_area_mm2": 3308.411934,
+      "candidate_area_mm2": 3300.767053,
+      "change_mm2": -7.644881,
+      "added_area_mm2": 122.038224,
+      "removed_area_mm2": 129.683105,
+      "largest_added_regions": [
+        {
+          "area_mm2": 17.630861,
+          "bounds_xyxy_mm": [
+            45.35,
+            47.775,
+            49.65,
+            52.075
+          ]
+        },
+        {
+          "area_mm2": 6.196055,
+          "bounds_xyxy_mm": [
+            53.75,
+            2.35,
+            56.25,
+            4.85
+          ]
+        },
+        {
+          "area_mm2": 4.902755,
+          "bounds_xyxy_mm": [
+            61.3503,
+            2.3503,
+            63.8497,
+            4.8497
+          ]
+        }
+      ],
+      "largest_removed_regions": [
+        {
+          "area_mm2": 10.867034,
+          "bounds_xyxy_mm": [
+            31.85,
+            1.45,
+            36.15,
+            5.75
+          ]
+        },
+        {
+          "area_mm2": 6.196055,
+          "bounds_xyxy_mm": [
+            44.75,
+            2.35,
+            47.25,
+            4.85
+          ]
+        },
+        {
+          "area_mm2": 4.786055,
+          "bounds_xyxy_mm": [
+            58.925,
+            44.9,
+            61.125,
+            47.1
+          ]
+        }
+      ]
+    },
+    "In2.Cu": {
+      "status": "MEASURED",
+      "baseline_area_mm2": 2859.215991,
+      "candidate_area_mm2": 3067.198475,
+      "change_mm2": 207.982484,
+      "added_area_mm2": 504.815187,
+      "removed_area_mm2": 296.832703,
+      "largest_added_regions": [
+        {
+          "area_mm2": 286.584657,
+          "bounds_xyxy_mm": [
+            11.0895,
+            0.8043,
+            33.529,
+            28.0038
+          ]
+        },
+        {
+          "area_mm2": 19.220575,
+          "bounds_xyxy_mm": [
+            26.8743,
+            17.640245482866042,
+            37.0344,
+            27.1522
+          ]
+        },
+        {
+          "area_mm2": 17.568918,
+          "bounds_xyxy_mm": [
+            34.471,
+            3.7684890582959674,
+            42.1492,
+            14.750900000000001
+          ]
+        }
+      ],
+      "largest_removed_regions": [
+        {
+          "area_mm2": 40.088882,
+          "bounds_xyxy_mm": [
+            12.1223,
+            38.8602,
+            21.138,
+            47.825
+          ]
+        },
+        {
+          "area_mm2": 33.398241,
+          "bounds_xyxy_mm": [
+            36.8553,
+            21.676800000000004,
+            42.699,
+            49.4567
+          ]
+        },
+        {
+          "area_mm2": 22.492023,
+          "bounds_xyxy_mm": [
+            45.48882972972973,
+            28.0797,
+            48.5574,
+            47.80137027027027
+          ]
+        }
+      ]
+    }
+  },
+  "issues": []
+}
