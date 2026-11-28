@@ -100,3 +100,11 @@ FastRoute 将 `0.5` 读作 50% 的比例。用 `0.005` 完成预定的 0.5% 试�
 | 增加一枚地过孔连接顶层浮岛 | 78.84% | 771.450 mm² | 481.488 mm² |
 
 0.30 mm 顶层绕路移除两枚异网过孔，路径从 23.222 mm 增至 33.176 mm，实测最小异网间距为 0.1290 mm。独立 LVS、线宽、Gerber 解析、钻孔和孔环复核均通过。固定接口仍有 0.30 mm 板边铜距。补入地过孔恢复 20.250 mm² 顶层地铜，但该走线下未清理的全部顶层可用面积也只有 495.688 mm²。完整布通样板中的 59 枚可编辑异网过孔逐个删去后均有独立 LVS 开路。继续从线宽已修正、顶层地铜仍为 511.064 mm² 的版本研究相邻网络、过孔位置和内层绕行，所有手工几何保留为单板诊断。[顶层绕路及覆铜](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/octilinear/independent-audit.json) · [制造导出核对](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/octilinear/fabrication-audit.json) · [顶层面积上界](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/octilinear-stitched/top-raw-area-bound.json) · [逐孔删除筛查](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/single-via-screen.json) · [证据哈希](../artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/SHA256SUMS)
+
+## 利用既有插件焊盘换层
+
+以线宽已修正的完整布通板为起点，用 `LAN1-11` 的镀通孔直接引出一条 0.160 mm 底层走线，替换 `/LED0` 的 In2/B 换层分支及一枚通孔过孔。仅移除原分支的负向对照恰好留下 `/LED0` 开路。补入底层铜后，重新读取保存的板文件，独立 LVS 开短路和非热焊盘内过孔均为 0，其他 42 个已布网络的铜几何和差分端到端测量一致。新支路长 31.625 mm，增加 0.486 mm，最小实测异网间距 0.12705 mm，实测最小线宽符合 0.100 mm 下限。[负向对照](../artifacts/optimization/diagnostics/20261128-case5-led-bottom-bypass/cut-control-audit.json) · [实际变更](../artifacts/optimization/diagnostics/20261128-case5-led-bottom-bypass/route-replacement.json) · [整板审计](../artifacts/optimization/diagnostics/20261128-case5-led-bottom-bypass/independent-audit.json)
+
+从保存的 KiCad 覆铜多边形逐层重测，In1 地铜增加 0.430 mm²，达到 771.020 mm² 和 78.80%，仍比活动基线少 0.638 mm²。F.Cu 增加 0.367 mm²，In2.Cu 增加 6.304 mm²，B.Cu 净减少 4.121 mm²。B.Cu 实际移除了 14.830 mm²，同时新增 10.709 mm²。按现有 2 mm² 最小铜岛规则，即使所有合格浮岛均接地，B.Cu 仍至少少 1.369 mm²。这条分支保留为诊断，下一步筛选影响更小的内层路径和反焊盘位置。[逐层覆铜差异](../artifacts/optimization/diagnostics/20261128-case5-led-bottom-bypass/reference-pour-comparison.json) · [底层地铜面积上界](../artifacts/optimization/diagnostics/20261128-case5-led-bottom-bypass/bottom-ground-area-bound.json) · [覆铜比较 PR #13](https://github.com/Igzela/cloud-pcb-studio/pull/13)
+
+重放时先在仓库根目录核对 `inputs.sha256`。将留档的 `screen.py` 和 `replay.py` 复制到新建的临时目录，加载 `scripts/env.sh`，从仓库根目录以 `PYTHONPATH=.` 运行临时目录中的 `replay.py`。生成器会在脚本所在目录写入正负对照板及审计结果。[证据哈希](../artifacts/optimization/diagnostics/20261128-case5-led-bottom-bypass/SHA256SUMS)

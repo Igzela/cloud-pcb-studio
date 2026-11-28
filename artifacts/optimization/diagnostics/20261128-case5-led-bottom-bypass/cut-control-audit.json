@@ -1,0 +1,337 @@
+{
+  "scope": "Removal-only control; intentional /LED0 open.",
+  "source": "artifacts/optimization/diagnostics/20261127-case5-track-width-and-fill/width-corrected/reconstructed-whole-case5.kicad_pcb",
+  "source_sha256": "af5ba6f5c6c5246667015c0650d6a981978805497155b7d2ecfd3f08ede29718",
+  "board_sha256": "1c0d56a464174e239a11670c9ddc1af6f9a981d532d163f6e8a83111eba107a0",
+  "candidate_raw_pours": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 771.02,
+    "fill_ratio": 0.788,
+    "f_cu_pour_mm2": 511.43,
+    "b_cu_pour_mm2": 585.073,
+    "stitching_vias_added": 0,
+    "antipad_cutouts": 103,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "independent_lvs_opens": [
+    {
+      "net": "/LED0",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "0": [
+          "LAN1-11",
+          "LAN1-11",
+          "LAN1-11",
+          "LAN1-11"
+        ],
+        "1": [
+          "U3-30"
+        ]
+      }
+    }
+  ],
+  "independent_lvs_shorts": [],
+  "nonthermal_via_in_pad": [],
+  "all_non_target_copper": {
+    "passed": true,
+    "protected_nets": {
+      "+3V3": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/LED1": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/LED2": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M0_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M0_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/V12": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/VBUS": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "GND": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(C5-Pad1)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(C9-Pad1)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(LAN1-P5)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(LAN1-P6)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(LAN1-Pad12)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(LAN1-Pad14)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U2-CLK)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U2-CS)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U2-DI)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U3-CKXTAL1)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U3-CKXTAL2)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U3-DVDD10_UPS)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U3-GPIO)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U3-RSET)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U3-VDD5)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U3-XTALDET)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U4-FB)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "Net-(U4-LX)": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      }
+    }
+  },
+  "differential_paths_unchanged": true
+}
