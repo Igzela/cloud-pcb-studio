@@ -1,0 +1,16 @@
+[
+  "timeout",
+  "--signal=TERM",
+  "--kill-after=10s",
+  "900s",
+  "env",
+  "PYTHONPATH=.",
+  "python",
+  ".run/case2-vendor-antenna.xJlHg2/route-local.py",
+  "--spec",
+  ".run/case2-vendor-antenna.xJlHg2/derived-antenna-spec.json",
+  "--placements",
+  ".run/case2-vendor-antenna.xJlHg2/local-antenna-placement.json",
+  "--outdir",
+  ".run/case2-vendor-antenna.xJlHg2/local-antenna-routed"
+]
