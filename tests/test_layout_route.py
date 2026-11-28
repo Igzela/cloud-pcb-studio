@@ -10,13 +10,17 @@ import pytest
 from gerbonara.excellon import ExcellonFile
 from gerbonara.rs274x import GerberFile
 from kiutils.board import Board
-from kiutils.items.brditems import Segment, Via
+from kiutils.items.brditems import LayerToken, Segment, Via
+from kiutils.items.common import Net
+from shapely.geometry import MultiPolygon, Polygon, box
+from shapely.ops import unary_union
 
 from cloud_pcb.layout_route.board1_kicad_fastroute import (
     BOARD_H,
     BOARD_W,
     BOARD1_STACKUP,
     DEFAULT_OUTDIR as PIPELINE_B_DIR,
+    _inject_gnd_zones,
 )
 from cloud_pcb.layout_route.board1_tscircuit import (
     DEFAULT_OUTDIR as PIPELINE_A_DIR,
@@ -78,6 +82,31 @@ def test_parse_ses_coordinate_and_resolution_scaling(tmp_path: Path) -> None:
     via = parsed["vias"][0]
     assert via["x"] == 15.0 and via["y"] == 20.0
     assert via["pad_mm"] == 0.55 and via["drill_mm"] == 0.30
+
+
+def test_board1_saved_inner_ground_fills_preserve_antipads_and_island_cutoff(tmp_path: Path) -> None:
+    board = Board.create_new()
+    board.layers[1:1] = [LayerToken(ordinal=1, name="In1.Cu", type="power"),
+                         LayerToken(ordinal=2, name="In2.Cu", type="power")]
+    board.nets = [Net(0, ""), Net(1, "GND")]
+    plane = box(1, 1, 8, 7).difference(unary_union([box(2, 2, 3, 3), box(5, 4, 6, 5)]))
+    retained = box(9, 1, 10, 1.25)
+    discarded = box(11, 1, 11.25, 1.25)
+    _inject_gnd_zones(board, MultiPolygon([plane, retained, discarded]))
+
+    path = tmp_path / "inner-ground.kicad_pcb"
+    board.to_file(str(path))
+    saved = Board.from_file(str(path))
+    assert [zone.layers for zone in saved.zones] == [["In1.Cu"], ["In2.Cu"]]
+    for zone in saved.zones:
+        assert zone.netName == "GND"
+        assert len(zone.polygons) == 1
+        assert zone.filledAreasThickness == "no"
+        assert zone.fillSettings.yes and zone.fillSettings.mode is None
+        assert {piece.layer for piece in zone.filledPolygons} == set(zone.layers)
+        copper = unary_union([Polygon([(point.X, point.Y) for point in piece.coordinates])
+                             for piece in zone.filledPolygons])
+        assert copper.equals(MultiPolygon([plane, retained]))
 
 
 def test_pipeline_a_tscircuit_artifacts_and_physics() -> None:

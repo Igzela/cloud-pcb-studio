@@ -135,6 +135,8 @@ artifacts/optimization/runs/<UTC时间>-<label>/
 
 七板冻结走线重建后，独立解析均获得四层地铜证据，Case 11 顶层与未舍入铜的异或面积约 0.000136 mm²。KiCad 9.0.2 的原生导出试验无法加载重建板及两个旧板对照，原生兼容性仍需独立检查。[七板重建](../artifacts/optimization/diagnostics/20261128-case11-zone-serialization/seven-board-topology-serialization-replay.json) · [原生导出对照](../artifacts/optimization/diagnostics/20261128-case11-zone-serialization/native-gerber-export.txt)
 
+旧版 Board 1 路径将内层地铜写为带铜层标签的实际填充，并沿用 0.1 mm² 最小孤岛规则。冻结走线重建后，KiCad 9.0.2 成功导出两个内层。每层地铜为 2206.6204 mm²，KiCad 读回与独立计算的已保存铜面完全一致，25 个反焊盘孔均保留。实板制造及完整 DRC 仍按各自证据复核。[重建、反焊盘与原生读回](../artifacts/optimization/diagnostics/20261128-legacy-board1-native-fill/reconstruction-audit.json)
+
 每轮任务来自真实报告；按任务类别选通用改动，补独立测试，完整运行上述流程，再依据证据决定是否保留。这就是持续优化的工作单元。
 
 状态 `complete` 和进程退出码 0 表示本轮完整执行，不表示候选达标或应晋升。自动化消费者必须读取 `decision.eligible_for_baseline`、`decision.regressions`、`decision.invalid` 和 `last_run.json` 的 `promoted`；不能仅凭退出码或绿色测试把 PCB 判为合格。

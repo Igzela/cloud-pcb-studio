@@ -29,7 +29,8 @@ from kiutils.items.brditems import LayerToken, Stackup, StackupLayer, Via
 from kiutils.items.common import Coordinate, Effects, Font, Net, Position, Stroke
 from kiutils.items.fpitems import FpRect, FpText
 from kiutils.items.gritems import GrRect
-from kiutils.items.zones import FillSettings, KeepoutSettings, Zone, ZonePolygon
+from kiutils.items.zones import FilledPolygon, FillSettings, KeepoutSettings, Zone, ZonePolygon
+from shapely.geometry import MultiPolygon as ShpMultiPolygon
 from shapely.geometry import Point as ShpPoint
 from shapely.geometry import Polygon as ShpPolygon
 from shapely.ops import unary_union
@@ -618,10 +619,14 @@ def _build_shapely_gnd_pours(board: Board) -> tuple[ShpPolygon | Any, dict[str, 
 
 def _inject_gnd_zones(board: Board, poured_geom: Any) -> None:
     """Insert filled L2 (In1.Cu) and L3 (In2.Cu) GND zones into kiutils Board."""
+    from cloud_pcb.general_solver.run_blind import _saved_ground_fill_rings
+
     gnd_net = next((n.number for n in board.nets if n.name == "GND"), 1)
     edge = BOARD1_STACKUP.copper_to_edge_mm
 
-    polys = list(poured_geom.geoms) if poured_geom.geom_type == "MultiPolygon" else [poured_geom]
+    parts = poured_geom.geoms if poured_geom.geom_type == "MultiPolygon" else (poured_geom,)
+    retained = [part for part in parts if part.area >= 0.1]
+    fill_rings = _saved_ground_fill_rings(ShpMultiPolygon(retained)) if retained else []
 
     for layer in ("In1.Cu", "In2.Cu"):
         z = Zone()
@@ -632,7 +637,8 @@ def _inject_gnd_zones(board: Board, poured_geom: Any) -> None:
         z.clearance = 0.25
         z.minThickness = 0.20
         z.connectPads = "yes"
-        z.fillSettings = FillSettings(yes=True, mode="solid", thermalGap=0.30, thermalBridgeWidth=0.35)
+        z.filledAreasThickness = "no"
+        z.fillSettings = FillSettings(yes=True, thermalGap=0.30, thermalBridgeWidth=0.35)
         z.polygons = [
             ZonePolygon(
                 coordinates=[
@@ -643,11 +649,10 @@ def _inject_gnd_zones(board: Board, poured_geom: Any) -> None:
                 ]
             )
         ]
-        for poly in polys:
-            if poly.area < 0.1:
-                continue
-            ext_coords = [Coordinate(X=round(x, 4), Y=round(y, 4)) for x, y in poly.exterior.coords]
-            z.filledPolygons.append(ZonePolygon(coordinates=ext_coords))
+        z.filledPolygons = [
+            FilledPolygon(layer=layer, coordinates=[Position(X=x, Y=y) for x, y in ring])
+            for ring in fill_rings
+        ]
         board.zones.append(z)
 
 

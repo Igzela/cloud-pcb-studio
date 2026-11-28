@@ -1,0 +1,12 @@
+{
+  "input": "/workspace/cloud-pcb-studio/artifacts/board1_kicad_fastroute/routed.kicad_pcb",
+  "input_sha256": "1013aee35edc4a0b6b6393ff5ad932575208e261d299879108e0f28e0e25dc6f",
+  "original_gnd_pour_stats": {
+    "pour_area_mm2": 2206.621,
+    "board_area_mm2": 2400.0,
+    "fill_ratio": 0.9194,
+    "antipad_cutouts": 25,
+    "is_empty": false
+  },
+  "retained_area_mm2": 2206.620689228626
+}
