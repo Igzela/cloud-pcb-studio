@@ -1,5 +1,6 @@
 """Independent optimization guardrails, not snapshots of solver implementation."""
 import copy
+import fcntl
 import json
 import time
 from pathlib import Path
@@ -36,6 +37,82 @@ def test_latest_round_reports_missing_evidence_without_changing_baseline(tmp_pat
     assert status["recorded_status"] == recorded_status
     assert status["integrity"] == "unverified"
     assert "pytest.log" in status["error"]
+
+
+@pytest.mark.parametrize(('lock_state', 'activity'), [
+    ('idle', 'abandoned'), ('held', 'possibly_active'), ('missing', 'unknown'),
+])
+def test_unfinalized_attempts_observe_writer_lock_and_recorded_cases(tmp_path, monkeypatch, lock_state, activity):
+    monkeypatch.setattr(workflow, 'ROOT', tmp_path)
+    root = tmp_path / 'artifacts/optimization'
+    run = root / 'runs/interrupted'
+    partial = run / 'case3'
+    partial.mkdir(parents=True)
+    (partial / 'routed.kicad_pcb').write_text('partial board')
+    manifest = run / 'manifest.json'
+    manifest.write_text(json.dumps({
+        'status': 'running', 'started_at': '2026-11-28T04:35:53+00:00',
+        'variant': 'dense-escape-repair', 'cases': [
+            {'id': 'case1', 'status': 'complete'}, {'id': 'case2', 'status': 'failed'},
+        ],
+    }))
+    finalized = root / 'runs/finalized'
+    finalized.mkdir()
+    (finalized / 'manifest.json').write_text(json.dumps({'status': 'incomplete', 'cases': []}))
+
+    lock = root / '.run.lock'
+    if lock_state == 'missing':
+        attempts = workflow.unfinalized_attempts()
+        assert not lock.exists()
+    else:
+        lock.write_text('lock file contents')
+        with lock.open('rb') as handle:
+            if lock_state == 'held':
+                fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            attempts = workflow.unfinalized_attempts()
+        assert lock.read_text() == 'lock file contents'
+
+    assert attempts == [{
+        'directory': str(run.relative_to(tmp_path)), 'recorded_status': 'running',
+        'activity': activity, 'started_at': '2026-11-28T04:35:53+00:00',
+        'variant': 'dense-escape-repair', 'complete_cases': ['case1'], 'failed_cases': ['case2'],
+    }]
+    assert json.loads(manifest.read_text())['status'] == 'running'
+    assert (partial / 'routed.kicad_pcb').read_text() == 'partial board'
+
+
+def test_status_reports_unfinalized_attempts_separately_from_last_round(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(workflow, 'ROOT', tmp_path)
+    monkeypatch.setattr(workflow, 'STATE', tmp_path / 'state.json')
+    monkeypatch.setenv('PCB_STUDIO_ROOT', str(tmp_path))
+    monkeypatch.setattr(workflow.sys, 'argv', ['optimize_pcb', 'status'])
+    monkeypatch.setattr(workflow, 'read_suite', lambda _: {'baseline': {}})
+    monkeypatch.setattr(workflow, 'diagnose', lambda *_: {
+        'status': 'baseline_diagnosed', 'measurements': {}, 'tasks': [],
+    })
+    root = tmp_path / 'artifacts/optimization'
+    finalized = root / 'runs/finalized'
+    finalized.mkdir(parents=True)
+    manifest = finalized / 'manifest.json'
+    manifest.write_text(json.dumps({'status': 'incomplete', 'cases': []}))
+    pointer = root / 'last_run.json'
+    previous = {'directory': str(finalized.relative_to(tmp_path)),
+                'manifest_sha256': digest(manifest), 'promoted': False}
+    pointer.write_text(json.dumps(previous))
+    unreadable = root / 'runs/unreadable'
+    unreadable.mkdir()
+    (unreadable / 'manifest.json').write_text('{')
+
+    assert workflow.main() == 0
+    result = json.loads((root / 'status/result.json').read_text())
+    summary = json.loads(capsys.readouterr().out)
+    assert result['last_round'] == summary['last_round']
+    assert result['last_round']['recorded_status'] == 'incomplete'
+    assert result['unfinalized_attempts'] == summary['unfinalized_attempts']
+    attempt, = result['unfinalized_attempts']
+    assert attempt['directory'] == str(unreadable.relative_to(tmp_path))
+    assert attempt['activity'] == 'unknown' and attempt['error']
+    assert json.loads(pointer.read_text()) == previous
 
 
 def supply_spec():
