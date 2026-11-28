@@ -6,6 +6,7 @@ import math
 from shapely.errors import GEOSException
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
+from shapely.validation import explain_validity
 
 
 def _collect_fills(board, net_name):
@@ -25,7 +26,7 @@ def _collect_fills(board, net_name):
         if zone.net != number or zone.netName != net_name:
             return {}, {}, [f'Inconsistent net assignment for zone {name!r}']
         reported = set()
-        for fill in zone.filledPolygons:
+        for index, fill in enumerate(zone.filledPolygons):
             if (not isinstance(fill.layer, str) or not fill.layer.endswith('.Cu')
                     or (fill.layer not in declared and '*.Cu' not in declared)):
                 return {}, {}, [f'Unexpected filled layer {fill.layer!r} for zone {name!r}']
@@ -38,7 +39,8 @@ def _collect_fills(board, net_name):
                 continue
             polygon = Polygon(coordinates)
             if not polygon.is_valid or polygon.is_empty or polygon.area <= 0:
-                issues[fill.layer].append(f'Invalid filled polygon for zone {name!r}')
+                issues[fill.layer].append(
+                    f'Invalid filled polygon {index} for zone {name!r}: {explain_validity(polygon)}')
                 continue
             pieces[fill.layer].append(polygon)
         for layer in declared - {'*.Cu'} - reported:

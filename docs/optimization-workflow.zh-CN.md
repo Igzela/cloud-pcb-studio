@@ -141,6 +141,8 @@ python -m scripts.compare_reference_pours baseline.kicad_pcb candidate.kicad_pcb
 
 完整轮次和选板轮次都会随候选保存同样的对照，选择活动基线板的参考地网。轮次结果记录状态、文件路径及归档哈希，便于审阅未被 In1 单值反映的其他层变化。晋升继续使用现有门禁与质量指标。
 
+重放两轮七板产物，六板各层均可测量。Case 11 的顶层地铜在两轮均有一个自相交多边形，顶层标为 `UNKNOWN`，其余三层保持测量。由冻结板的实际走线重建覆铜后，导出前多边形有效。统一采用六位小数后，几何差异面积为 0.000136 mm²，所测顶层多边形均合法。[七板重放](../artifacts/optimization/diagnostics/20261128-reference-pour-replay/comparison.json) · [导出精度对照](../artifacts/optimization/diagnostics/20261128-reference-pour-replay/case11-precision-replay.json)
+
 ## 后续优化顺序
 
 先解决真实短路、间距与开路，再推进去耦和拥塞协同布局、完整多通道模板、差分端到端路径测量与耦合验证，随后补齐电流/热约束和有依据的厂家外壳尺寸。固定接口与制造门槛的冲突应作为输入工程变更处理，不能伪装成算法已修复。

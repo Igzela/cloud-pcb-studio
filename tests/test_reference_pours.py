@@ -53,7 +53,8 @@ def test_unfilled_or_invalid_geometry_is_unknown():
     report = compare_reference_pours(before, after, 'GND')
     assert report['status'] == 'UNKNOWN'
     assert all(content['status'] == 'UNKNOWN' for content in report['layers'].values())
-    assert 'Invalid filled polygon' in report['layers']['F.Cu']['issues'][0]
+    assert 'Invalid filled polygon 0' in report['layers']['F.Cu']['issues'][0]
+    assert 'Self-intersection[2 2]' in report['layers']['F.Cu']['issues'][0]
 
 
 def test_selecting_a_layer_preserves_measurements_of_otherwise_partial_boards():
