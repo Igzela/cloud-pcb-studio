@@ -1,0 +1,14 @@
+[
+  "timeout",
+  "--signal=TERM",
+  "--kill-after=10s",
+  "900s",
+  "python",
+  "-m",
+  "cloud_pcb.general_solver.run_blind",
+  "--spec",
+  ".run/case2-vendor-antenna.xJlHg2/derived-antenna-spec.json",
+  "--outdir",
+  ".run/case2-vendor-antenna.xJlHg2/routed",
+  "--dense-escape-repair"
+]

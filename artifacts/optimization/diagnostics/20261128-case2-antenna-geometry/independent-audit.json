@@ -1,0 +1,405 @@
+{
+  "scope": "Case 2 diagnostic. Nominal antenna lobe geometry with no enclosure or RF performance measurements.",
+  "board_sha256": "2fda0bd61279c1929d2a1160cd877693441e892233309a7910205392baf9310d",
+  "independent_serialized_board": {
+    "lvs_opens": [],
+    "lvs_shorts": [],
+    "rf_keepout": [
+      {
+        "refdes": "U1",
+        "layer": "F.Cu",
+        "copper_mm2": 0.0,
+        "coverage_fraction": 0.0,
+        "passed": true
+      },
+      {
+        "refdes": "U1",
+        "layer": "In1.Cu",
+        "copper_mm2": 0.0,
+        "coverage_fraction": 0.0,
+        "passed": true
+      },
+      {
+        "refdes": "U1",
+        "layer": "In2.Cu",
+        "copper_mm2": 0.0,
+        "coverage_fraction": 0.0,
+        "passed": true
+      },
+      {
+        "refdes": "U1",
+        "layer": "B.Cu",
+        "copper_mm2": 0.0,
+        "coverage_fraction": 0.0,
+        "passed": true
+      }
+    ],
+    "via_in_pad_violations": [],
+    "mechanical": {
+      "collision_count": 0,
+      "collisions": [],
+      "unverified_envelopes": [
+        "BZ1",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C2",
+        "C20",
+        "C21",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "F1",
+        "J1",
+        "J3",
+        "J4",
+        "J5",
+        "J6",
+        "J9",
+        "L1",
+        "Q1",
+        "R1",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "SW1",
+        "SW2",
+        "U1",
+        "U2",
+        "U3",
+        "U4",
+        "U5",
+        "U6"
+      ],
+      "all_envelopes_verified": false,
+      "passed": false
+    },
+    "passed": true
+  },
+  "baseline_metrics": {
+    "values": {
+      "unrouted": 0,
+      "opens": 0,
+      "shorts": 0,
+      "spacing": 0,
+      "via_in_pad": 0,
+      "gerber_failures": 0,
+      "annular_failures": 0,
+      "silk_overlap_mm2": 0.0,
+      "edge_deficit_mm": 0.0,
+      "rf_failures": 1,
+      "mechanical_collisions": 0,
+      "unverified_envelopes": 59,
+      "cap_distance_mm": 7.706,
+      "ground_fill_deficit": 0.0,
+      "wirelength_mm": 1248.608
+    },
+    "failed_gates": [
+      "mechanical_zero_with_verified_envelopes",
+      "rf_all_four_layers_clear"
+    ],
+    "hard_pass": false,
+    "evidence_errors": [],
+    "track_widths": {
+      "status": "PASS",
+      "passed": true,
+      "required_min_width_mm": 0.1,
+      "observed_min_width_mm": 0.125,
+      "measured_tracks": 628,
+      "violations": [],
+      "issues": []
+    },
+    "differential_paths": {
+      "passed": false,
+      "pairs": [
+        {
+          "pos_net": "/usb+",
+          "neg_net": "/usb-",
+          "paths": {
+            "/usb+": {
+              "length_mm": null,
+              "reason": "exactly two distinct declared terminals are required"
+            },
+            "/usb-": {
+              "length_mm": null,
+              "reason": "exactly two distinct declared terminals are required"
+            }
+          },
+          "max_skew_mm": null,
+          "status": "UNKNOWN",
+          "reason": "distinct pair nets and a finite non-negative skew limit are required"
+        },
+        {
+          "pos_net": "/usb_mcu+",
+          "neg_net": "/usb_mcu-",
+          "paths": {
+            "/usb_mcu+": {
+              "length_mm": 31.014213368655618,
+              "pad_alignment_bound_mm": 7.105427357601002e-15,
+              "terminals": [
+                {
+                  "pad": "R12-1",
+                  "route_vertex": [
+                    "F.Cu",
+                    28.124,
+                    36.869
+                  ]
+                },
+                {
+                  "pad": "U3-5",
+                  "route_vertex": [
+                    "F.Cu",
+                    46.31,
+                    21.135
+                  ]
+                }
+              ]
+            },
+            "/usb_mcu-": {
+              "length_mm": 25.05273595293309,
+              "pad_alignment_bound_mm": 7.105427357601002e-15,
+              "terminals": [
+                {
+                  "pad": "R13-1",
+                  "route_vertex": [
+                    "F.Cu",
+                    31.866,
+                    36.597
+                  ]
+                },
+                {
+                  "pad": "U3-6",
+                  "route_vertex": [
+                    "F.Cu",
+                    46.31,
+                    22.405
+                  ]
+                }
+              ]
+            }
+          },
+          "max_skew_mm": null,
+          "status": "UNKNOWN",
+          "reason": "distinct pair nets and a finite non-negative skew limit are required"
+        }
+      ]
+    }
+  },
+  "diagnostic_metrics": {
+    "values": {
+      "unrouted": 0,
+      "opens": 0,
+      "shorts": 0,
+      "spacing": 0,
+      "via_in_pad": 0,
+      "gerber_failures": 0,
+      "annular_failures": 0,
+      "silk_overlap_mm2": 0.0,
+      "edge_deficit_mm": 0.0,
+      "rf_failures": 0,
+      "mechanical_collisions": 0,
+      "unverified_envelopes": 59,
+      "cap_distance_mm": 7.434,
+      "ground_fill_deficit": 0.0,
+      "wirelength_mm": 1439.605
+    },
+    "failed_gates": [
+      "mechanical_zero_with_verified_envelopes"
+    ],
+    "hard_pass": false,
+    "evidence_errors": [],
+    "track_widths": {
+      "status": "PASS",
+      "passed": true,
+      "required_min_width_mm": 0.1,
+      "observed_min_width_mm": 0.125,
+      "measured_tracks": 669,
+      "violations": [],
+      "issues": []
+    },
+    "differential_paths": {
+      "passed": false,
+      "pairs": [
+        {
+          "pos_net": "/usb+",
+          "neg_net": "/usb-",
+          "paths": {
+            "/usb+": {
+              "length_mm": null,
+              "reason": "exactly two distinct declared terminals are required"
+            },
+            "/usb-": {
+              "length_mm": null,
+              "reason": "exactly two distinct declared terminals are required"
+            }
+          },
+          "max_skew_mm": null,
+          "status": "UNKNOWN",
+          "reason": "distinct pair nets and a finite non-negative skew limit are required"
+        },
+        {
+          "pos_net": "/usb_mcu+",
+          "neg_net": "/usb_mcu-",
+          "paths": {
+            "/usb_mcu+": {
+              "length_mm": 29.241334359797044,
+              "pad_alignment_bound_mm": 0.0,
+              "terminals": [
+                {
+                  "pad": "R12-1",
+                  "route_vertex": [
+                    "F.Cu",
+                    28.675,
+                    37.968
+                  ]
+                },
+                {
+                  "pad": "U3-5",
+                  "route_vertex": [
+                    "F.Cu",
+                    46.591,
+                    26.898
+                  ]
+                }
+              ]
+            },
+            "/usb_mcu-": {
+              "length_mm": 25.07717464742095,
+              "pad_alignment_bound_mm": 7.105427357601002e-15,
+              "terminals": [
+                {
+                  "pad": "R13-1",
+                  "route_vertex": [
+                    "F.Cu",
+                    32.432,
+                    37.662
+                  ]
+                },
+                {
+                  "pad": "U3-6",
+                  "route_vertex": [
+                    "F.Cu",
+                    47.861,
+                    26.898
+                  ]
+                }
+              ]
+            }
+          },
+          "max_skew_mm": null,
+          "status": "UNKNOWN",
+          "reason": "distinct pair nets and a finite non-negative skew limit are required"
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "eligible_for_baseline": false,
+    "hard_gates_passed": false,
+    "engineering_pass": null,
+    "engineering_acceptance": "not_certified: endpoint SI, verified current/thermal limits and human wirelength comparison require separate evidence",
+    "regressions": [
+      {
+        "case": "case2",
+        "metric": "wirelength_mm",
+        "before": 1248.608,
+        "after": 1439.605
+      }
+    ],
+    "improvements": [
+      {
+        "case": "case2",
+        "metric": "rf_all_four_layers_clear",
+        "before": false,
+        "after": true
+      },
+      {
+        "case": "case2",
+        "metric": "rf_failures",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "case": "case2",
+        "metric": "cap_distance_mm",
+        "before": 7.706,
+        "after": 7.434
+      }
+    ],
+    "invalid": [],
+    "full_suite": false,
+    "tests_passed": true,
+    "policy": "per-case Pareto: every safety/QoR metric non-worse; incomplete wire length never rewarded; improvement is not engineering acceptance"
+  },
+  "selected_route": "coupled_pairs",
+  "baseline_pours": {
+    "board_area_mm2": 3614.276,
+    "pour_area_mm2": 3308.413,
+    "fill_ratio": 0.9154,
+    "f_cu_pour_mm2": 2606.061,
+    "b_cu_pour_mm2": 3237.929,
+    "stitching_vias_added": 32,
+    "antipad_cutouts": 77,
+    "is_empty": false,
+    "power_islands": [
+      {
+        "net": "+5V",
+        "layer": "In2.Cu",
+        "plated_anchor_count": 5,
+        "area_mm2": 164.85296451824172
+      },
+      {
+        "net": "+3.3V",
+        "layer": "In2.Cu",
+        "plated_anchor_count": 3,
+        "area_mm2": 36.655412626157755
+      }
+    ]
+  },
+  "diagnostic_pours": {
+    "board_area_mm2": 3614.276,
+    "pour_area_mm2": 3302.382,
+    "fill_ratio": 0.9137,
+    "f_cu_pour_mm2": 2569.942,
+    "b_cu_pour_mm2": 3149.549,
+    "stitching_vias_added": 26,
+    "antipad_cutouts": 84,
+    "is_empty": false,
+    "power_islands": [
+      {
+        "net": "/VIN",
+        "layer": "In2.Cu",
+        "plated_anchor_count": 3,
+        "area_mm2": 26.762517109742546
+      }
+    ]
+  }
+}
