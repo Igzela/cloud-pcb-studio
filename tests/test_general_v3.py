@@ -6,6 +6,7 @@ from kiutils.board import Board
 from kiutils.footprint import Footprint,Pad
 from kiutils.items.brditems import Segment,Via
 from kiutils.items.common import Position,Net
+import pytest
 from shapely.geometry import box
 
 from cloud_pcb.general_solver.topology import analyze_topology
