@@ -131,6 +131,10 @@ artifacts/optimization/runs/<UTC时间>-<label>/
 
 先解决真实短路、间距与开路，再推进去耦和拥塞协同布局、完整多通道模板、差分端到端路径测量与耦合验证，随后补齐电流/热约束和有依据的厂家外壳尺寸。固定接口与制造门槛的冲突应作为输入工程变更处理，不能伪装成算法已修复。
 
+保存地铜时，每层的共享切线使用相同精度。四位小数能保持有效铜环、孔洞及独立铜岛时沿用四位，否则重试 KiCad 支持的六位小数。两种精度都无法保持拓扑时，轮次记录求解失败。该步骤处理 KiCad 文件中的覆铜坐标，保留原始铜模型、布线和制造规则。[KiCad 坐标规范](https://dev-docs.kicad.org/en/file-formats/sexpr-intro/index.html#_board_coordinates)
+
+七板冻结走线重建后，独立解析均获得四层地铜证据，Case 11 顶层与未舍入铜的异或面积约 0.000136 mm²。KiCad 9.0.2 的原生导出试验无法加载重建板及两个旧板对照，原生兼容性仍需独立检查。[七板重建](../artifacts/optimization/diagnostics/20261128-case11-zone-serialization/seven-board-topology-serialization-replay.json) · [原生导出对照](../artifacts/optimization/diagnostics/20261128-case11-zone-serialization/native-gerber-export.txt)
+
 每轮任务来自真实报告；按任务类别选通用改动，补独立测试，完整运行上述流程，再依据证据决定是否保留。这就是持续优化的工作单元。
 
 状态 `complete` 和进程退出码 0 表示本轮完整执行，不表示候选达标或应晋升。自动化消费者必须读取 `decision.eligible_for_baseline`、`decision.regressions`、`decision.invalid` 和 `last_run.json` 的 `promoted`；不能仅凭退出码或绿色测试把 PCB 判为合格。

@@ -1,0 +1,185 @@
+{
+  "case3": {
+    "scope": "Geometry-only replay using the recorded dense-escape pour rule.",
+    "mode": "dense_escape_individual",
+    "antipad_clearance_mm": 0.221,
+    "ground_area_before_serialization_mm2": 2245.63,
+    "frozen_ground_area_reported_mm2": 2245.63,
+    "input_board_sha256": "5ff7006b90cf2c48bc42fc60308e1eb1566672e0757b4603d994455f02f19382",
+    "output_board_sha256": "2e3b60d547e26cb15b0c86211dcaee4add744c59583ceee7917124860566c716",
+    "saved_measurements": {
+      "status": "MEASURED",
+      "net": "GND",
+      "layers": {
+        "B.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 2117.951959,
+          "candidate_area_mm2": 2117.951959,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "F.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 1787.063908,
+          "candidate_area_mm2": 1787.063908,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "In1.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 2245.63065,
+          "candidate_area_mm2": 2245.63065,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "In2.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 2084.694351,
+          "candidate_area_mm2": 2084.694351,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        }
+      },
+      "issues": []
+    },
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    }
+  },
+  "case10": {
+    "scope": "Geometry-only replay using the recorded dense-escape pour rule.",
+    "mode": "dense_escape_individual",
+    "antipad_clearance_mm": 0.221,
+    "ground_area_before_serialization_mm2": 1910.699,
+    "frozen_ground_area_reported_mm2": 1910.699,
+    "input_board_sha256": "687acf8fbb8d0dd313c1e500b675e00f7dbacfc6df0ffc50a563c1c53c2250c8",
+    "output_board_sha256": "6b8617a263fc33f22888393e4d8bb57bce68177da863f79eb079633001dc4433",
+    "saved_measurements": {
+      "status": "MEASURED",
+      "net": "PGND",
+      "layers": {
+        "B.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 1724.370773,
+          "candidate_area_mm2": 1724.370773,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "F.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 1296.908365,
+          "candidate_area_mm2": 1296.908365,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "In1.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 1910.7001,
+          "candidate_area_mm2": 1910.7001,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "In2.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 1521.28915,
+          "candidate_area_mm2": 1521.28915,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        }
+      },
+      "issues": []
+    },
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    }
+  },
+  "case11": {
+    "scope": "Geometry-only replay using the recorded dense-escape pour rule.",
+    "mode": "dense_escape_coupled_pairs",
+    "antipad_clearance_mm": 0.221,
+    "ground_area_before_serialization_mm2": 2740.333,
+    "frozen_ground_area_reported_mm2": 2740.333,
+    "input_board_sha256": "3060bcabf6bd3cc770f3611bec2ef7c973ab5b766fd7e812927ffe056ae47861",
+    "output_board_sha256": "25ed37808a94ef85b784c7d35bd1febc5c57162af4671b2f74db3f447888db8d",
+    "saved_measurements": {
+      "status": "MEASURED",
+      "net": "GND",
+      "layers": {
+        "B.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 2551.10717,
+          "candidate_area_mm2": 2551.10717,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "F.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 1911.720584,
+          "candidate_area_mm2": 1911.720584,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "In1.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 2740.333459,
+          "candidate_area_mm2": 2740.333459,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        },
+        "In2.Cu": {
+          "status": "MEASURED",
+          "baseline_area_mm2": 2175.318194,
+          "candidate_area_mm2": 2175.318194,
+          "change_mm2": 0.0,
+          "added_area_mm2": 0.0,
+          "removed_area_mm2": 0.0,
+          "largest_added_regions": [],
+          "largest_removed_regions": []
+        }
+      },
+      "issues": []
+    },
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    }
+  }
+}

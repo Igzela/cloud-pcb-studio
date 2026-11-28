@@ -1,0 +1,121 @@
+{
+  "case1": {
+    "frozen_board_sha256": "35b0a778be5799106f383b49df64685c3b7a4ad8e1584d565dd7b2cdcd74bbd2",
+    "reconstructed_board_sha256": "4a40e6b50ed743e5685d3f1de290999280dd398fedf1dc68facdec22a855928c",
+    "added_ground_stitches": 0,
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    },
+    "ground_area_by_layer_mm2": {
+      "B.Cu": 2081.212858,
+      "F.Cu": 1702.718332,
+      "In1.Cu": 2113.33839,
+      "In2.Cu": 1555.638538
+    },
+    "top_serialized_vs_unrounded_symmetric_difference_mm2": 0.011382757071919422
+  },
+  "case2": {
+    "frozen_board_sha256": "212b07c54088375faa9927d3f6f4d284ee06f65021ac523fd8e77cff7f4d1ee6",
+    "reconstructed_board_sha256": "37e4ef66a367761bf4f2defe630c48270c187ca032465285c7b6d33ec3af2246",
+    "added_ground_stitches": 0,
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    },
+    "ground_area_by_layer_mm2": {
+      "B.Cu": 3237.929004,
+      "F.Cu": 2606.062491,
+      "In1.Cu": 3308.411934,
+      "In2.Cu": 2859.215991
+    },
+    "top_serialized_vs_unrounded_symmetric_difference_mm2": 0.01608650832240621
+  },
+  "case3": {
+    "frozen_board_sha256": "5ff7006b90cf2c48bc42fc60308e1eb1566672e0757b4603d994455f02f19382",
+    "reconstructed_board_sha256": "030b9e5da3b1fc09473c144d86cdfaebd41b6556527a97cfd5a0962c9aad3bbb",
+    "added_ground_stitches": 0,
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    },
+    "ground_area_by_layer_mm2": {
+      "B.Cu": 2117.951959,
+      "F.Cu": 1787.063908,
+      "In1.Cu": 2233.596217,
+      "In2.Cu": 2076.36899
+    },
+    "top_serialized_vs_unrounded_symmetric_difference_mm2": 0.010613499191255697
+  },
+  "case4": {
+    "frozen_board_sha256": "44b5ecd296be056606c4ba7fefe4be4dffa2e84cae3bde4f9d928af2ccc301e8",
+    "reconstructed_board_sha256": "f1cbb76a60ad3852e61caf173101d0a47705f3731062504aa2edb3cc31b63ab2",
+    "added_ground_stitches": 0,
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    },
+    "ground_area_by_layer_mm2": {
+      "B.Cu": 9175.328643,
+      "F.Cu": 7717.926932,
+      "In1.Cu": 9446.369609,
+      "In2.Cu": 8919.367349
+    },
+    "top_serialized_vs_unrounded_symmetric_difference_mm2": 0.02927853772221713
+  },
+  "case5": {
+    "frozen_board_sha256": "f4d871d0b12fc0bb23af9362f783f9c6ea98c7da3bf203af881646822edf1cfb",
+    "reconstructed_board_sha256": "511304b2b3dae048ef150399eb4a0dac90b8f24dc079ea06fa7899edb701ca93",
+    "added_ground_stitches": 0,
+    "independent_counts": {
+      "lvs_opens": 1,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    },
+    "ground_area_by_layer_mm2": {
+      "B.Cu": 576.033445,
+      "F.Cu": 512.320165,
+      "In1.Cu": 771.660769,
+      "In2.Cu": 597.986826
+    },
+    "top_serialized_vs_unrounded_symmetric_difference_mm2": 0.008464121667119599
+  },
+  "case10": {
+    "frozen_board_sha256": "687acf8fbb8d0dd313c1e500b675e00f7dbacfc6df0ffc50a563c1c53c2250c8",
+    "reconstructed_board_sha256": "ed8b646645a6ebbee03da3e3211a2d7a023eff732f2532facdbc6c4a7237e27e",
+    "added_ground_stitches": 0,
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    },
+    "ground_area_by_layer_mm2": {
+      "B.Cu": 1724.370773,
+      "F.Cu": 1296.908365,
+      "In1.Cu": 1899.071122,
+      "In2.Cu": 1513.598023
+    },
+    "top_serialized_vs_unrounded_symmetric_difference_mm2": 0.013586406281207015
+  },
+  "case11": {
+    "frozen_board_sha256": "3060bcabf6bd3cc770f3611bec2ef7c973ab5b766fd7e812927ffe056ae47861",
+    "reconstructed_board_sha256": "2c5aa0ba17c9a0540a5fa5dbb04c75639a472010a3138b1b0e745d42b51e41e5",
+    "added_ground_stitches": 0,
+    "independent_counts": {
+      "lvs_opens": 0,
+      "lvs_shorts": 0,
+      "via_in_pad_violations": 0
+    },
+    "ground_area_by_layer_mm2": {
+      "B.Cu": 2551.10717,
+      "F.Cu": 1911.720584,
+      "In1.Cu": 2728.455235,
+      "In2.Cu": 2168.018971
+    },
+    "top_serialized_vs_unrounded_symmetric_difference_mm2": 0.00013567098825416972
+  }
+}
