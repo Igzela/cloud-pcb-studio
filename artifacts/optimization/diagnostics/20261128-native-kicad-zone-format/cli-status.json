@@ -1,0 +1,230 @@
+{
+  "version": "9.0.2",
+  "results": {
+    "case1": {
+      "frozen_reference": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case1/routed.kicad_pcb",
+      "original_sha256": "35b0a778be5799106f383b49df64685c3b7a4ad8e1584d565dd7b2cdcd74bbd2",
+      "mode_count": 5,
+      "modern_flag_count": 5,
+      "variants": {
+        "original": {
+          "board": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case1/routed.kicad_pcb",
+          "sha256": "35b0a778be5799106f383b49df64685c3b7a4ad8e1584d565dd7b2cdcd74bbd2",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-original-capture/",
+            "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case1/routed.kicad_pcb"
+          ],
+          "returncode": 3,
+          "stdout": "",
+          "stderr": "[parse] ./common/dsnlexer.cpp:340 Expecting input line 1759 offset 21\nExpecting 'segment, hatch or polygon'\n[parse] input:     (fill yes (mode solid) (thermal_gap 0.3) (thermal_bridge_width 0.35))\n\n",
+          "gerber_outputs": []
+        },
+        "default_mode": {
+          "board": "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-omit-mode.kicad_pcb",
+          "sha256": "51010a9f1f2640207a17eb798ca0ff5fe1e0363846108b9793acffed73b3b667",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-default_mode-capture/",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-omit-mode.kicad_pcb"
+          ],
+          "returncode": 0,
+          "stdout": "Plotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-default_mode-capture/case1-omit-mode-F_Cu.gtl'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-default_mode-capture/case1-omit-mode-In1_Cu.g1'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-default_mode-capture/case1-omit-mode-In2_Cu.g2'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-default_mode-capture/case1-omit-mode-B_Cu.gbl'.\n",
+          "stderr": "16:25:03: Warning: Legacy zone fill strategy is not supported anymore.\nZone fills will be converted on best-effort basis.\n",
+          "gerber_outputs": [
+            "case1-omit-mode-B_Cu.gbl",
+            "case1-omit-mode-F_Cu.gtl",
+            "case1-omit-mode-In1_Cu.g1",
+            "case1-omit-mode-In2_Cu.g2"
+          ]
+        },
+        "modern_fill": {
+          "board": "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-omit-mode-modern-fill.kicad_pcb",
+          "sha256": "e5d835eee227f41ebebfa971556ee3a56d84beb061bbeec4078e60863c2f0829",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-modern_fill-capture/",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-omit-mode-modern-fill.kicad_pcb"
+          ],
+          "returncode": 0,
+          "stdout": "Plotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-modern_fill-capture/case1-omit-mode-modern-fill-F_Cu.gtl'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-modern_fill-capture/case1-omit-mode-modern-fill-In1_Cu.g1'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-modern_fill-capture/case1-omit-mode-modern-fill-In2_Cu.g2'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case1-modern_fill-capture/case1-omit-mode-modern-fill-B_Cu.gbl'.\n",
+          "stderr": "",
+          "gerber_outputs": [
+            "case1-omit-mode-modern-fill-B_Cu.gbl",
+            "case1-omit-mode-modern-fill-F_Cu.gtl",
+            "case1-omit-mode-modern-fill-In1_Cu.g1",
+            "case1-omit-mode-modern-fill-In2_Cu.g2"
+          ]
+        }
+      }
+    },
+    "case11": {
+      "frozen_reference": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case11/routed.kicad_pcb",
+      "original_sha256": "3060bcabf6bd3cc770f3611bec2ef7c973ab5b766fd7e812927ffe056ae47861",
+      "mode_count": 5,
+      "modern_flag_count": 5,
+      "variants": {
+        "original": {
+          "board": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case11/routed.kicad_pcb",
+          "sha256": "3060bcabf6bd3cc770f3611bec2ef7c973ab5b766fd7e812927ffe056ae47861",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-original-capture/",
+            "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape/case11/routed.kicad_pcb"
+          ],
+          "returncode": 3,
+          "stdout": "",
+          "stderr": "[parse] ./common/dsnlexer.cpp:340 Expecting input line 2700 offset 21\nExpecting 'segment, hatch or polygon'\n[parse] input:     (fill yes (mode solid) (thermal_gap 0.3) (thermal_bridge_width 0.35))\n\n",
+          "gerber_outputs": []
+        },
+        "default_mode": {
+          "board": "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-omit-mode.kicad_pcb",
+          "sha256": "d276f0ec264cf99ccfc7b6b8509ff4934ceb7c751778fb79eb582fc6f8bda337",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-default_mode-capture/",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-omit-mode.kicad_pcb"
+          ],
+          "returncode": 0,
+          "stdout": "Plotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-default_mode-capture/case11-omit-mode-F_Cu.gtl'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-default_mode-capture/case11-omit-mode-In1_Cu.g1'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-default_mode-capture/case11-omit-mode-In2_Cu.g2'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-default_mode-capture/case11-omit-mode-B_Cu.gbl'.\n",
+          "stderr": "16:25:10: Warning: Legacy zone fill strategy is not supported anymore.\nZone fills will be converted on best-effort basis.\n",
+          "gerber_outputs": [
+            "case11-omit-mode-B_Cu.gbl",
+            "case11-omit-mode-F_Cu.gtl",
+            "case11-omit-mode-In1_Cu.g1",
+            "case11-omit-mode-In2_Cu.g2"
+          ]
+        },
+        "modern_fill": {
+          "board": "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-omit-mode-modern-fill.kicad_pcb",
+          "sha256": "e62c6017a5fb1529367b476d717c028cded90d96f1133eed5f7e3034775c0f99",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-modern_fill-capture/",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-omit-mode-modern-fill.kicad_pcb"
+          ],
+          "returncode": 0,
+          "stdout": "Plotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-modern_fill-capture/case11-omit-mode-modern-fill-F_Cu.gtl'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-modern_fill-capture/case11-omit-mode-modern-fill-In1_Cu.g1'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-modern_fill-capture/case11-omit-mode-modern-fill-In2_Cu.g2'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11-modern_fill-capture/case11-omit-mode-modern-fill-B_Cu.gbl'.\n",
+          "stderr": "",
+          "gerber_outputs": [
+            "case11-omit-mode-modern-fill-B_Cu.gbl",
+            "case11-omit-mode-modern-fill-F_Cu.gtl",
+            "case11-omit-mode-modern-fill-In1_Cu.g1",
+            "case11-omit-mode-modern-fill-In2_Cu.g2"
+          ]
+        }
+      }
+    },
+    "case11_reconstructed": {
+      "frozen_reference": ".run/case11-fill-precision.hVM0KD/case11-topology-verified.kicad_pcb",
+      "original_sha256": "2c5aa0ba17c9a0540a5fa5dbb04c75639a472010a3138b1b0e745d42b51e41e5",
+      "mode_count": 5,
+      "modern_flag_count": 5,
+      "variants": {
+        "original": {
+          "board": ".run/case11-fill-precision.hVM0KD/case11-topology-verified.kicad_pcb",
+          "sha256": "2c5aa0ba17c9a0540a5fa5dbb04c75639a472010a3138b1b0e745d42b51e41e5",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-original-capture/",
+            ".run/case11-fill-precision.hVM0KD/case11-topology-verified.kicad_pcb"
+          ],
+          "returncode": 3,
+          "stdout": "",
+          "stderr": "[parse] ./common/dsnlexer.cpp:340 Expecting input line 2700 offset 21\nExpecting 'segment, hatch or polygon'\n[parse] input:     (fill yes (mode solid) (thermal_gap 0.3) (thermal_bridge_width 0.35))\n\n",
+          "gerber_outputs": []
+        },
+        "default_mode": {
+          "board": "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-omit-mode.kicad_pcb",
+          "sha256": "6953e3190ccd8229a7fe31b5a0290b96a7b70450419c8c32f78c9bef14dd9dd4",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-default_mode-capture/",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-omit-mode.kicad_pcb"
+          ],
+          "returncode": 0,
+          "stdout": "Plotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-default_mode-capture/case11_reconstructed-omit-mode-F_Cu.gtl'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-default_mode-capture/case11_reconstructed-omit-mode-In1_Cu.g1'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-default_mode-capture/case11_reconstructed-omit-mode-In2_Cu.g2'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-default_mode-capture/case11_reconstructed-omit-mode-B_Cu.gbl'.\n",
+          "stderr": "16:25:18: Warning: Legacy zone fill strategy is not supported anymore.\nZone fills will be converted on best-effort basis.\n",
+          "gerber_outputs": [
+            "case11_reconstructed-omit-mode-B_Cu.gbl",
+            "case11_reconstructed-omit-mode-F_Cu.gtl",
+            "case11_reconstructed-omit-mode-In1_Cu.g1",
+            "case11_reconstructed-omit-mode-In2_Cu.g2"
+          ]
+        },
+        "modern_fill": {
+          "board": "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-omit-mode-modern-fill.kicad_pcb",
+          "sha256": "b316278262dd4d47b8b01ff6a5c9737f9ca291ab3888a0bdbe46c22648523968",
+          "argc": [
+            "kicad-cli",
+            "pcb",
+            "export",
+            "gerbers",
+            "-l",
+            "F.Cu,In1.Cu,In2.Cu,B.Cu",
+            "-o",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-modern_fill-capture/",
+            "/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-omit-mode-modern-fill.kicad_pcb"
+          ],
+          "returncode": 0,
+          "stdout": "Plotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-modern_fill-capture/case11_reconstructed-omit-mode-modern-fill-F_Cu.gtl'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-modern_fill-capture/case11_reconstructed-omit-mode-modern-fill-In1_Cu.g1'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-modern_fill-capture/case11_reconstructed-omit-mode-modern-fill-In2_Cu.g2'.\nPlotted to '/workspace/cloud-pcb-studio/.run/native-kicad-parse.COjLML/case11_reconstructed-modern_fill-capture/case11_reconstructed-omit-mode-modern-fill-B_Cu.gbl'.\n",
+          "stderr": "",
+          "gerber_outputs": [
+            "case11_reconstructed-omit-mode-modern-fill-B_Cu.gbl",
+            "case11_reconstructed-omit-mode-modern-fill-F_Cu.gtl",
+            "case11_reconstructed-omit-mode-modern-fill-In1_Cu.g1",
+            "case11_reconstructed-omit-mode-modern-fill-In2_Cu.g2"
+          ]
+        }
+      }
+    }
+  }
+}

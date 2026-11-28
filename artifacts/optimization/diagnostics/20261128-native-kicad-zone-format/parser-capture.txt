@@ -1,0 +1,9 @@
+case1/original: CLI 3, native LoadBoard False
+case1/default_mode: CLI 0, native LoadBoard True
+case1/modern_fill: CLI 0, native LoadBoard True
+case11/original: CLI 3, native LoadBoard False
+case11/default_mode: CLI 0, native LoadBoard True
+case11/modern_fill: CLI 0, native LoadBoard True
+case11_reconstructed/original: CLI 3, native LoadBoard False
+case11_reconstructed/default_mode: CLI 0, native LoadBoard True
+case11_reconstructed/modern_fill: CLI 0, native LoadBoard True
