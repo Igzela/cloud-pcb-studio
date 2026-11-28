@@ -1,0 +1,1557 @@
+{
+  "scope": "Case 2 actual route after relocating U1 and four interfering neighbors.",
+  "board_sha256": "8b5c552df47e0a7ed6d146daec4b9523cfea05c5f4d4fc0ba7403e6d2dc9476b",
+  "independent_serialized_board": {
+    "lvs_opens": [],
+    "lvs_shorts": [],
+    "rf_keepout": [
+      {
+        "refdes": "U1",
+        "layer": "F.Cu",
+        "copper_mm2": 0.0,
+        "coverage_fraction": 0.0,
+        "passed": true
+      },
+      {
+        "refdes": "U1",
+        "layer": "In1.Cu",
+        "copper_mm2": 0.0,
+        "coverage_fraction": 0.0,
+        "passed": true
+      },
+      {
+        "refdes": "U1",
+        "layer": "In2.Cu",
+        "copper_mm2": 0.0,
+        "coverage_fraction": 0.0,
+        "passed": true
+      },
+      {
+        "refdes": "U1",
+        "layer": "B.Cu",
+        "copper_mm2": 0.0,
+        "coverage_fraction": 0.0,
+        "passed": true
+      }
+    ],
+    "via_in_pad_violations": [],
+    "mechanical": {
+      "collision_count": 0,
+      "collisions": [],
+      "unverified_envelopes": [
+        "BZ1",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C2",
+        "C20",
+        "C21",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "F1",
+        "J1",
+        "J3",
+        "J4",
+        "J5",
+        "J6",
+        "J9",
+        "L1",
+        "Q1",
+        "R1",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "SW1",
+        "SW2",
+        "U1",
+        "U2",
+        "U3",
+        "U4",
+        "U5",
+        "U6"
+      ],
+      "all_envelopes_verified": false,
+      "passed": false
+    },
+    "passed": true
+  },
+  "metrics": {
+    "active_baseline": {
+      "values": {
+        "unrouted": 0,
+        "opens": 0,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.0,
+        "rf_failures": 1,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 59,
+        "cap_distance_mm": 7.706,
+        "ground_fill_deficit": 0.0,
+        "wirelength_mm": 1248.608
+      },
+      "failed_gates": [
+        "mechanical_zero_with_verified_envelopes",
+        "rf_all_four_layers_clear"
+      ],
+      "hard_pass": false,
+      "evidence_errors": [],
+      "track_widths": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 628,
+        "violations": [],
+        "issues": []
+      },
+      "differential_paths": {
+        "passed": false,
+        "pairs": [
+          {
+            "pos_net": "/usb+",
+            "neg_net": "/usb-",
+            "paths": {
+              "/usb+": {
+                "length_mm": null,
+                "reason": "exactly two distinct declared terminals are required"
+              },
+              "/usb-": {
+                "length_mm": null,
+                "reason": "exactly two distinct declared terminals are required"
+              }
+            },
+            "max_skew_mm": null,
+            "status": "UNKNOWN",
+            "reason": "distinct pair nets and a finite non-negative skew limit are required"
+          },
+          {
+            "pos_net": "/usb_mcu+",
+            "neg_net": "/usb_mcu-",
+            "paths": {
+              "/usb_mcu+": {
+                "length_mm": 31.014213368655618,
+                "pad_alignment_bound_mm": 7.105427357601002e-15,
+                "terminals": [
+                  {
+                    "pad": "R12-1",
+                    "route_vertex": [
+                      "F.Cu",
+                      28.124,
+                      36.869
+                    ]
+                  },
+                  {
+                    "pad": "U3-5",
+                    "route_vertex": [
+                      "F.Cu",
+                      46.31,
+                      21.135
+                    ]
+                  }
+                ]
+              },
+              "/usb_mcu-": {
+                "length_mm": 25.05273595293309,
+                "pad_alignment_bound_mm": 7.105427357601002e-15,
+                "terminals": [
+                  {
+                    "pad": "R13-1",
+                    "route_vertex": [
+                      "F.Cu",
+                      31.866,
+                      36.597
+                    ]
+                  },
+                  {
+                    "pad": "U3-6",
+                    "route_vertex": [
+                      "F.Cu",
+                      46.31,
+                      22.405
+                    ]
+                  }
+                ]
+              }
+            },
+            "max_skew_mm": null,
+            "status": "UNKNOWN",
+            "reason": "distinct pair nets and a finite non-negative skew limit are required"
+          }
+        ]
+      }
+    },
+    "first_edge": {
+      "values": {
+        "unrouted": 0,
+        "opens": 0,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.0,
+        "rf_failures": 0,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 59,
+        "cap_distance_mm": 7.434,
+        "ground_fill_deficit": 0.0,
+        "wirelength_mm": 1439.605
+      },
+      "failed_gates": [
+        "mechanical_zero_with_verified_envelopes"
+      ],
+      "hard_pass": false,
+      "evidence_errors": [],
+      "track_widths": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 669,
+        "violations": [],
+        "issues": []
+      },
+      "differential_paths": {
+        "passed": false,
+        "pairs": [
+          {
+            "pos_net": "/usb+",
+            "neg_net": "/usb-",
+            "paths": {
+              "/usb+": {
+                "length_mm": null,
+                "reason": "exactly two distinct declared terminals are required"
+              },
+              "/usb-": {
+                "length_mm": null,
+                "reason": "exactly two distinct declared terminals are required"
+              }
+            },
+            "max_skew_mm": null,
+            "status": "UNKNOWN",
+            "reason": "distinct pair nets and a finite non-negative skew limit are required"
+          },
+          {
+            "pos_net": "/usb_mcu+",
+            "neg_net": "/usb_mcu-",
+            "paths": {
+              "/usb_mcu+": {
+                "length_mm": 29.241334359797044,
+                "pad_alignment_bound_mm": 0.0,
+                "terminals": [
+                  {
+                    "pad": "R12-1",
+                    "route_vertex": [
+                      "F.Cu",
+                      28.675,
+                      37.968
+                    ]
+                  },
+                  {
+                    "pad": "U3-5",
+                    "route_vertex": [
+                      "F.Cu",
+                      46.591,
+                      26.898
+                    ]
+                  }
+                ]
+              },
+              "/usb_mcu-": {
+                "length_mm": 25.07717464742095,
+                "pad_alignment_bound_mm": 7.105427357601002e-15,
+                "terminals": [
+                  {
+                    "pad": "R13-1",
+                    "route_vertex": [
+                      "F.Cu",
+                      32.432,
+                      37.662
+                    ]
+                  },
+                  {
+                    "pad": "U3-6",
+                    "route_vertex": [
+                      "F.Cu",
+                      47.861,
+                      26.898
+                    ]
+                  }
+                ]
+              }
+            },
+            "max_skew_mm": null,
+            "status": "UNKNOWN",
+            "reason": "distinct pair nets and a finite non-negative skew limit are required"
+          }
+        ]
+      }
+    },
+    "alternate_edge": {
+      "values": {
+        "unrouted": 0,
+        "opens": 0,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.0,
+        "rf_failures": 0,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 59,
+        "cap_distance_mm": 9.23,
+        "ground_fill_deficit": 0.0,
+        "wirelength_mm": 1323.326
+      },
+      "failed_gates": [
+        "mechanical_zero_with_verified_envelopes"
+      ],
+      "hard_pass": false,
+      "evidence_errors": [],
+      "track_widths": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 655,
+        "violations": [],
+        "issues": []
+      },
+      "differential_paths": {
+        "passed": false,
+        "pairs": [
+          {
+            "pos_net": "/usb+",
+            "neg_net": "/usb-",
+            "paths": {
+              "/usb+": {
+                "length_mm": null,
+                "reason": "exactly two distinct declared terminals are required"
+              },
+              "/usb-": {
+                "length_mm": null,
+                "reason": "exactly two distinct declared terminals are required"
+              }
+            },
+            "max_skew_mm": null,
+            "status": "UNKNOWN",
+            "reason": "distinct pair nets and a finite non-negative skew limit are required"
+          },
+          {
+            "pos_net": "/usb_mcu+",
+            "neg_net": "/usb_mcu-",
+            "paths": {
+              "/usb_mcu+": {
+                "length_mm": 12.408724497922508,
+                "pad_alignment_bound_mm": 3.552713678800501e-15,
+                "terminals": [
+                  {
+                    "pad": "R12-1",
+                    "route_vertex": [
+                      "F.Cu",
+                      8.398,
+                      37.047
+                    ]
+                  },
+                  {
+                    "pad": "U3-5",
+                    "route_vertex": [
+                      "F.Cu",
+                      16.943,
+                      31.385
+                    ]
+                  }
+                ]
+              },
+              "/usb_mcu-": {
+                "length_mm": 7.067188300494395,
+                "pad_alignment_bound_mm": 3.552713678800501e-15,
+                "terminals": [
+                  {
+                    "pad": "R13-1",
+                    "route_vertex": [
+                      "F.Cu",
+                      10.328,
+                      32.659
+                    ]
+                  },
+                  {
+                    "pad": "U3-6",
+                    "route_vertex": [
+                      "F.Cu",
+                      15.673,
+                      31.385
+                    ]
+                  }
+                ]
+              }
+            },
+            "max_skew_mm": null,
+            "status": "UNKNOWN",
+            "reason": "distinct pair nets and a finite non-negative skew limit are required"
+          }
+        ]
+      }
+    },
+    "local_neighbor_relief": {
+      "values": {
+        "unrouted": 0,
+        "opens": 0,
+        "shorts": 0,
+        "spacing": 0,
+        "via_in_pad": 0,
+        "gerber_failures": 0,
+        "annular_failures": 0,
+        "silk_overlap_mm2": 0.0,
+        "edge_deficit_mm": 0.0,
+        "rf_failures": 0,
+        "mechanical_collisions": 0,
+        "unverified_envelopes": 59,
+        "cap_distance_mm": 8.365,
+        "ground_fill_deficit": 0.0,
+        "wirelength_mm": 1789.555
+      },
+      "failed_gates": [
+        "mechanical_zero_with_verified_envelopes"
+      ],
+      "hard_pass": false,
+      "evidence_errors": [],
+      "track_widths": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 764,
+        "violations": [],
+        "issues": []
+      },
+      "differential_paths": {
+        "passed": false,
+        "pairs": [
+          {
+            "pos_net": "/usb+",
+            "neg_net": "/usb-",
+            "paths": {
+              "/usb+": {
+                "length_mm": null,
+                "reason": "exactly two distinct declared terminals are required"
+              },
+              "/usb-": {
+                "length_mm": null,
+                "reason": "exactly two distinct declared terminals are required"
+              }
+            },
+            "max_skew_mm": null,
+            "status": "UNKNOWN",
+            "reason": "distinct pair nets and a finite non-negative skew limit are required"
+          },
+          {
+            "pos_net": "/usb_mcu+",
+            "neg_net": "/usb_mcu-",
+            "paths": {
+              "/usb_mcu+": {
+                "length_mm": 25.680562037817147,
+                "pad_alignment_bound_mm": 7.105427357601002e-15,
+                "terminals": [
+                  {
+                    "pad": "R12-1",
+                    "route_vertex": [
+                      "F.Cu",
+                      28.124,
+                      33.369
+                    ]
+                  },
+                  {
+                    "pad": "U3-5",
+                    "route_vertex": [
+                      "F.Cu",
+                      46.31,
+                      21.135
+                    ]
+                  }
+                ]
+              },
+              "/usb_mcu-": {
+                "length_mm": 18.97632479948641,
+                "pad_alignment_bound_mm": 7.105427357601002e-15,
+                "terminals": [
+                  {
+                    "pad": "R13-1",
+                    "route_vertex": [
+                      "F.Cu",
+                      31.866,
+                      33.347
+                    ]
+                  },
+                  {
+                    "pad": "U3-6",
+                    "route_vertex": [
+                      "F.Cu",
+                      46.31,
+                      22.405
+                    ]
+                  }
+                ]
+              }
+            },
+            "max_skew_mm": null,
+            "status": "UNKNOWN",
+            "reason": "distinct pair nets and a finite non-negative skew limit are required"
+          }
+        ]
+      }
+    }
+  },
+  "comparisons": {
+    "active_baseline": {
+      "eligible_for_baseline": false,
+      "hard_gates_passed": false,
+      "engineering_pass": null,
+      "engineering_acceptance": "not_certified: endpoint SI, verified current/thermal limits and human wirelength comparison require separate evidence",
+      "regressions": [
+        {
+          "case": "case2",
+          "metric": "cap_distance_mm",
+          "before": 7.706,
+          "after": 8.365
+        },
+        {
+          "case": "case2",
+          "metric": "wirelength_mm",
+          "before": 1248.608,
+          "after": 1789.555
+        }
+      ],
+      "improvements": [
+        {
+          "case": "case2",
+          "metric": "rf_all_four_layers_clear",
+          "before": false,
+          "after": true
+        },
+        {
+          "case": "case2",
+          "metric": "rf_failures",
+          "before": 1,
+          "after": 0
+        }
+      ],
+      "invalid": [],
+      "full_suite": false,
+      "tests_passed": true,
+      "policy": "per-case Pareto: every safety/QoR metric non-worse; incomplete wire length never rewarded; improvement is not engineering acceptance"
+    },
+    "first_edge": {
+      "eligible_for_baseline": false,
+      "hard_gates_passed": false,
+      "engineering_pass": null,
+      "engineering_acceptance": "not_certified: endpoint SI, verified current/thermal limits and human wirelength comparison require separate evidence",
+      "regressions": [
+        {
+          "case": "case2",
+          "metric": "cap_distance_mm",
+          "before": 7.434,
+          "after": 8.365
+        },
+        {
+          "case": "case2",
+          "metric": "wirelength_mm",
+          "before": 1439.605,
+          "after": 1789.555
+        }
+      ],
+      "improvements": [],
+      "invalid": [],
+      "full_suite": false,
+      "tests_passed": true,
+      "policy": "per-case Pareto: every safety/QoR metric non-worse; incomplete wire length never rewarded; improvement is not engineering acceptance"
+    },
+    "alternate_edge": {
+      "eligible_for_baseline": false,
+      "hard_gates_passed": false,
+      "engineering_pass": null,
+      "engineering_acceptance": "not_certified: endpoint SI, verified current/thermal limits and human wirelength comparison require separate evidence",
+      "regressions": [
+        {
+          "case": "case2",
+          "metric": "wirelength_mm",
+          "before": 1323.326,
+          "after": 1789.555
+        }
+      ],
+      "improvements": [
+        {
+          "case": "case2",
+          "metric": "cap_distance_mm",
+          "before": 9.23,
+          "after": 8.365
+        }
+      ],
+      "invalid": [],
+      "full_suite": false,
+      "tests_passed": true,
+      "policy": "per-case Pareto: every safety/QoR metric non-worse; incomplete wire length never rewarded; improvement is not engineering acceptance"
+    }
+  },
+  "per_net_trace_deltas": {
+    "first_edge": [
+      {
+        "net": "TX",
+        "active_baseline_mm": 4.47409251686275,
+        "diagnostic_mm": 24.81043796491502,
+        "delta_mm": 20.33634544805227
+      },
+      {
+        "net": "+3.3V",
+        "active_baseline_mm": 119.51389702839634,
+        "diagnostic_mm": 139.58871565776533,
+        "delta_mm": 20.07481862936899
+      },
+      {
+        "net": "ESC1",
+        "active_baseline_mm": 21.25667779568609,
+        "diagnostic_mm": 37.064104430236576,
+        "delta_mm": 15.807426634550485
+      },
+      {
+        "net": "CH3",
+        "active_baseline_mm": 23.893453564960232,
+        "diagnostic_mm": 39.56934918610404,
+        "delta_mm": 15.675895621143809
+      },
+      {
+        "net": "CH6",
+        "active_baseline_mm": 22.400280665072863,
+        "diagnostic_mm": 37.875375645849886,
+        "delta_mm": 15.475094980777023
+      },
+      {
+        "net": "ESC2",
+        "active_baseline_mm": 19.646455590315572,
+        "diagnostic_mm": 34.975908171276885,
+        "delta_mm": 15.329452580961313
+      },
+      {
+        "net": "ESC3",
+        "active_baseline_mm": 18.463235265231116,
+        "diagnostic_mm": 33.33829384387488,
+        "delta_mm": 14.875058578643763
+      },
+      {
+        "net": "CH2",
+        "active_baseline_mm": 25.558407463167786,
+        "diagnostic_mm": 40.28925235750848,
+        "delta_mm": 14.730844894340695
+      },
+      {
+        "net": "RX",
+        "active_baseline_mm": 9.26929776183306,
+        "diagnostic_mm": 23.933804922983178,
+        "delta_mm": 14.664507161150118
+      },
+      {
+        "net": "ESC4",
+        "active_baseline_mm": 18.537996617897182,
+        "diagnostic_mm": 33.123032331271865,
+        "delta_mm": 14.585035713374683
+      },
+      {
+        "net": "Net-(U6-BST)",
+        "active_baseline_mm": 9.291981880796236,
+        "diagnostic_mm": 23.79267343319185,
+        "delta_mm": 14.500691552395615
+      },
+      {
+        "net": "CH1",
+        "active_baseline_mm": 23.797023980526216,
+        "diagnostic_mm": 37.24768216900284,
+        "delta_mm": 13.450658188476627
+      },
+      {
+        "net": "Net-(U1-EN)",
+        "active_baseline_mm": 25.45099431410113,
+        "diagnostic_mm": 38.12316582389816,
+        "delta_mm": 12.672171509797032
+      },
+      {
+        "net": "INT",
+        "active_baseline_mm": 15.774039071462877,
+        "diagnostic_mm": 27.15092014412143,
+        "delta_mm": 11.376881072658552
+      },
+      {
+        "net": "/usb_mcu-",
+        "active_baseline_mm": 21.94113595293309,
+        "diagnostic_mm": 29.141745007123717,
+        "delta_mm": 7.200609054190625
+      },
+      {
+        "net": "Net-(U6-EN)",
+        "active_baseline_mm": 12.273872013366152,
+        "diagnostic_mm": 18.88143291428114,
+        "delta_mm": 6.60756090091499
+      },
+      {
+        "net": "GPS TX",
+        "active_baseline_mm": 18.379694570459165,
+        "diagnostic_mm": 23.87244341653855,
+        "delta_mm": 5.492748846079387
+      },
+      {
+        "net": "LED_STAT",
+        "active_baseline_mm": 13.049795303201835,
+        "diagnostic_mm": 17.897941503966248,
+        "delta_mm": 4.848146200764413
+      },
+      {
+        "net": "+3V3",
+        "active_baseline_mm": 10.870702054653027,
+        "diagnostic_mm": 15.64056363288515,
+        "delta_mm": 4.769861578232124
+      },
+      {
+        "net": "SENOR_VP",
+        "active_baseline_mm": 20.008727280637984,
+        "diagnostic_mm": 24.52242860254833,
+        "delta_mm": 4.513701321910347
+      },
+      {
+        "net": "Net-(D2-DIN)",
+        "active_baseline_mm": 13.737947624197615,
+        "diagnostic_mm": 17.690784892263725,
+        "delta_mm": 3.9528372680661104
+      },
+      {
+        "net": "Net-(BZ1-+)",
+        "active_baseline_mm": 6.732695667241112,
+        "diagnostic_mm": 9.660089746447952,
+        "delta_mm": 2.92739407920684
+      },
+      {
+        "net": "Net-(U1-IO0)",
+        "active_baseline_mm": 16.856892661494367,
+        "diagnostic_mm": 18.829709466002775,
+        "delta_mm": 1.9728168045084082
+      },
+      {
+        "net": "Net-(U4-CPOUT)",
+        "active_baseline_mm": 8.073835104237554,
+        "diagnostic_mm": 9.351995012444334,
+        "delta_mm": 1.2781599082067796
+      },
+      {
+        "net": "Net-(R12-Pad2)",
+        "active_baseline_mm": 17.580009765469566,
+        "diagnostic_mm": 18.74687506838005,
+        "delta_mm": 1.1668653029104838
+      },
+      {
+        "net": "Net-(U6-COMP)",
+        "active_baseline_mm": 15.098297413718068,
+        "diagnostic_mm": 16.102510602285985,
+        "delta_mm": 1.0042131885679169
+      },
+      {
+        "net": "/VIN",
+        "active_baseline_mm": 44.33121020490385,
+        "diagnostic_mm": 45.309087412478874,
+        "delta_mm": 0.9778772075750268
+      },
+      {
+        "net": "GPS RX",
+        "active_baseline_mm": 21.176724611746035,
+        "diagnostic_mm": 22.13255410846827,
+        "delta_mm": 0.9558294967222345
+      },
+      {
+        "net": "Net-(U5-VBUS)",
+        "active_baseline_mm": 17.61568499272996,
+        "diagnostic_mm": 18.530783390884615,
+        "delta_mm": 0.9150983981546545
+      },
+      {
+        "net": "Net-(J9-CC1)",
+        "active_baseline_mm": 7.2288097162024165,
+        "diagnostic_mm": 7.742227564180472,
+        "delta_mm": 0.5134178479780553
+      },
+      {
+        "net": "Net-(J9-CC2)",
+        "active_baseline_mm": 5.638521780803918,
+        "diagnostic_mm": 6.096737913096982,
+        "delta_mm": 0.4582161322930638
+      },
+      {
+        "net": "Net-(U4-REGOUT)",
+        "active_baseline_mm": 8.96560531165603,
+        "diagnostic_mm": 9.28111997081108,
+        "delta_mm": 0.31551465915504906
+      },
+      {
+        "net": "GND",
+        "active_baseline_mm": 98.62966579438547,
+        "diagnostic_mm": 98.89773637989396,
+        "delta_mm": 0.2680705855084824
+      },
+      {
+        "net": "Net-(U3-V3)",
+        "active_baseline_mm": 8.210741311124096,
+        "diagnostic_mm": 8.378675936426093,
+        "delta_mm": 0.16793462530199754
+      },
+      {
+        "net": "iBUS{slash}SBUS RX",
+        "active_baseline_mm": 22.997130761712764,
+        "diagnostic_mm": 23.150687979563877,
+        "delta_mm": 0.15355721785111243
+      },
+      {
+        "net": "/usb-",
+        "active_baseline_mm": 8.24252825997278,
+        "diagnostic_mm": 8.24252825997278,
+        "delta_mm": 0.0
+      },
+      {
+        "net": "/usb+",
+        "active_baseline_mm": 8.14260556238143,
+        "diagnostic_mm": 8.142495502640038,
+        "delta_mm": -0.00011005974139166597
+      },
+      {
+        "net": "/usb_esd-",
+        "active_baseline_mm": 20.005968045703156,
+        "diagnostic_mm": 19.243411782115615,
+        "delta_mm": -0.7625562635875411
+      },
+      {
+        "net": "Net-(Q1-C)",
+        "active_baseline_mm": 10.879583755980512,
+        "diagnostic_mm": 10.103768439477793,
+        "delta_mm": -0.7758153165027188
+      },
+      {
+        "net": "+BATT",
+        "active_baseline_mm": 50.23197590836631,
+        "diagnostic_mm": 48.57549273944024,
+        "delta_mm": -1.6564831689260657
+      },
+      {
+        "net": "/usb_mcu+",
+        "active_baseline_mm": 27.90261336865562,
+        "diagnostic_mm": 26.129734359797045,
+        "delta_mm": -1.772879008858574
+      },
+      {
+        "net": "BUZZER",
+        "active_baseline_mm": 26.298330884880638,
+        "diagnostic_mm": 24.16410459123014,
+        "delta_mm": -2.1342262936504994
+      },
+      {
+        "net": "CH5",
+        "active_baseline_mm": 26.357246818173167,
+        "diagnostic_mm": 23.97437169094135,
+        "delta_mm": -2.3828751272318165
+      },
+      {
+        "net": "SDA",
+        "active_baseline_mm": 21.76220154598214,
+        "diagnostic_mm": 18.923797938750912,
+        "delta_mm": -2.8384036072312284
+      },
+      {
+        "net": "Net-(U6-FREQ)",
+        "active_baseline_mm": 22.36589353930631,
+        "diagnostic_mm": 15.722825090681585,
+        "delta_mm": -6.6430684486247245
+      },
+      {
+        "net": "Net-(D5-A)",
+        "active_baseline_mm": 28.44886017283644,
+        "diagnostic_mm": 21.01136185517856,
+        "delta_mm": -7.43749831765788
+      },
+      {
+        "net": "Net-(U6-FB)",
+        "active_baseline_mm": 31.775030379817252,
+        "diagnostic_mm": 22.914325140386403,
+        "delta_mm": -8.86070523943085
+      },
+      {
+        "net": "CH4",
+        "active_baseline_mm": 32.61829443049166,
+        "diagnostic_mm": 22.184690535672782,
+        "delta_mm": -10.433603894818877
+      },
+      {
+        "net": "SCL",
+        "active_baseline_mm": 27.926176610754688,
+        "diagnostic_mm": 17.23082233152694,
+        "delta_mm": -10.695354279227747
+      },
+      {
+        "net": "+5V",
+        "active_baseline_mm": 138.92511273911137,
+        "diagnostic_mm": 122.30037481202203,
+        "delta_mm": -16.624737927089342
+      }
+    ],
+    "alternate_edge": [
+      {
+        "net": "Net-(U5-VBUS)",
+        "active_baseline_mm": 17.61568499272996,
+        "diagnostic_mm": 60.67139826390789,
+        "delta_mm": 43.05571327117793
+      },
+      {
+        "net": "CH6",
+        "active_baseline_mm": 22.400280665072863,
+        "diagnostic_mm": 47.3236510043685,
+        "delta_mm": 24.923370339295637
+      },
+      {
+        "net": "SENOR_VP",
+        "active_baseline_mm": 20.008727280637984,
+        "diagnostic_mm": 40.166077152768445,
+        "delta_mm": 20.15734987213046
+      },
+      {
+        "net": "TX",
+        "active_baseline_mm": 4.47409251686275,
+        "diagnostic_mm": 21.854928039508497,
+        "delta_mm": 17.380835522645746
+      },
+      {
+        "net": "Net-(U1-EN)",
+        "active_baseline_mm": 25.45099431410113,
+        "diagnostic_mm": 41.610077888062,
+        "delta_mm": 16.15908357396087
+      },
+      {
+        "net": "CH5",
+        "active_baseline_mm": 26.357246818173167,
+        "diagnostic_mm": 38.70431831310252,
+        "delta_mm": 12.347071494929352
+      },
+      {
+        "net": "INT",
+        "active_baseline_mm": 15.774039071462877,
+        "diagnostic_mm": 27.71245769317914,
+        "delta_mm": 11.938418621716263
+      },
+      {
+        "net": "Net-(D2-DIN)",
+        "active_baseline_mm": 13.737947624197615,
+        "diagnostic_mm": 24.49738464716586,
+        "delta_mm": 10.759437022968244
+      },
+      {
+        "net": "Net-(U4-CPOUT)",
+        "active_baseline_mm": 8.073835104237554,
+        "diagnostic_mm": 18.73378430203943,
+        "delta_mm": 10.659949197801877
+      },
+      {
+        "net": "RX",
+        "active_baseline_mm": 9.26929776183306,
+        "diagnostic_mm": 19.73801368342774,
+        "delta_mm": 10.468715921594681
+      },
+      {
+        "net": "+3.3V",
+        "active_baseline_mm": 119.51389702839634,
+        "diagnostic_mm": 129.1099475763496,
+        "delta_mm": 9.596050547953269
+      },
+      {
+        "net": "SCL",
+        "active_baseline_mm": 27.926176610754688,
+        "diagnostic_mm": 36.26726683613816,
+        "delta_mm": 8.341090225383475
+      },
+      {
+        "net": "Net-(U4-REGOUT)",
+        "active_baseline_mm": 8.96560531165603,
+        "diagnostic_mm": 15.767321492159642,
+        "delta_mm": 6.801716180503611
+      },
+      {
+        "net": "LED_STAT",
+        "active_baseline_mm": 13.049795303201835,
+        "diagnostic_mm": 18.96935427306935,
+        "delta_mm": 5.919558969867515
+      },
+      {
+        "net": "Net-(U1-IO0)",
+        "active_baseline_mm": 16.856892661494367,
+        "diagnostic_mm": 22.38915482528666,
+        "delta_mm": 5.532262163792293
+      },
+      {
+        "net": "Net-(Q1-C)",
+        "active_baseline_mm": 10.879583755980512,
+        "diagnostic_mm": 15.028926563819589,
+        "delta_mm": 4.149342807839076
+      },
+      {
+        "net": "CH4",
+        "active_baseline_mm": 32.61829443049166,
+        "diagnostic_mm": 36.6792095885517,
+        "delta_mm": 4.060915158060041
+      },
+      {
+        "net": "ESC4",
+        "active_baseline_mm": 18.537996617897182,
+        "diagnostic_mm": 22.390496734287716,
+        "delta_mm": 3.8525001163905337
+      },
+      {
+        "net": "+3V3",
+        "active_baseline_mm": 10.870702054653027,
+        "diagnostic_mm": 14.48238033692733,
+        "delta_mm": 3.611678282274303
+      },
+      {
+        "net": "ESC3",
+        "active_baseline_mm": 18.463235265231116,
+        "diagnostic_mm": 22.014000299466783,
+        "delta_mm": 3.550765034235667
+      },
+      {
+        "net": "Net-(D5-A)",
+        "active_baseline_mm": 28.44886017283644,
+        "diagnostic_mm": 30.611109484477968,
+        "delta_mm": 2.162249311641528
+      },
+      {
+        "net": "ESC2",
+        "active_baseline_mm": 19.646455590315572,
+        "diagnostic_mm": 21.484386838616555,
+        "delta_mm": 1.8379312483009826
+      },
+      {
+        "net": "Net-(U6-BST)",
+        "active_baseline_mm": 9.291981880796236,
+        "diagnostic_mm": 10.914188769664033,
+        "delta_mm": 1.6222068888677974
+      },
+      {
+        "net": "/usb+",
+        "active_baseline_mm": 8.14260556238143,
+        "diagnostic_mm": 9.715652847411567,
+        "delta_mm": 1.5730472850301371
+      },
+      {
+        "net": "ESC1",
+        "active_baseline_mm": 21.25667779568609,
+        "diagnostic_mm": 22.56349601131093,
+        "delta_mm": 1.3068182156248405
+      },
+      {
+        "net": "Net-(U6-EN)",
+        "active_baseline_mm": 12.273872013366152,
+        "diagnostic_mm": 13.050571063766695,
+        "delta_mm": 0.7766990504005431
+      },
+      {
+        "net": "Net-(J9-CC1)",
+        "active_baseline_mm": 7.2288097162024165,
+        "diagnostic_mm": 7.86233008588991,
+        "delta_mm": 0.6335203696874938
+      },
+      {
+        "net": "/usb-",
+        "active_baseline_mm": 8.24252825997278,
+        "diagnostic_mm": 8.225706814529413,
+        "delta_mm": -0.016821445443365945
+      },
+      {
+        "net": "Net-(BZ1-+)",
+        "active_baseline_mm": 6.732695667241112,
+        "diagnostic_mm": 6.253961686969983,
+        "delta_mm": -0.47873398027112923
+      },
+      {
+        "net": "Net-(J9-CC2)",
+        "active_baseline_mm": 5.638521780803918,
+        "diagnostic_mm": 4.348781217290171,
+        "delta_mm": -1.2897405635137469
+      },
+      {
+        "net": "SDA",
+        "active_baseline_mm": 21.76220154598214,
+        "diagnostic_mm": 20.030317995160566,
+        "delta_mm": -1.7318835508215749
+      },
+      {
+        "net": "GND",
+        "active_baseline_mm": 98.62966579438547,
+        "diagnostic_mm": 95.79679447549935,
+        "delta_mm": -2.83287131888612
+      },
+      {
+        "net": "CH1",
+        "active_baseline_mm": 23.797023980526216,
+        "diagnostic_mm": 19.907238188986806,
+        "delta_mm": -3.88978579153941
+      },
+      {
+        "net": "CH3",
+        "active_baseline_mm": 23.893453564960232,
+        "diagnostic_mm": 19.742625598295845,
+        "delta_mm": -4.150827966664387
+      },
+      {
+        "net": "+BATT",
+        "active_baseline_mm": 50.23197590836631,
+        "diagnostic_mm": 46.02920227467965,
+        "delta_mm": -4.202773633686661
+      },
+      {
+        "net": "/usb_esd-",
+        "active_baseline_mm": 20.005968045703156,
+        "diagnostic_mm": 14.825765974688169,
+        "delta_mm": -5.180202071014987
+      },
+      {
+        "net": "Net-(U3-V3)",
+        "active_baseline_mm": 8.210741311124096,
+        "diagnostic_mm": 2.9222691193458137,
+        "delta_mm": -5.288472191778283
+      },
+      {
+        "net": "BUZZER",
+        "active_baseline_mm": 26.298330884880638,
+        "diagnostic_mm": 20.181488725060994,
+        "delta_mm": -6.116842159819644
+      },
+      {
+        "net": "Net-(U6-FB)",
+        "active_baseline_mm": 31.775030379817252,
+        "diagnostic_mm": 25.545359989322513,
+        "delta_mm": -6.229670390494739
+      },
+      {
+        "net": "Net-(U6-COMP)",
+        "active_baseline_mm": 15.098297413718068,
+        "diagnostic_mm": 8.833465817739775,
+        "delta_mm": -6.264831595978293
+      },
+      {
+        "net": "CH2",
+        "active_baseline_mm": 25.558407463167786,
+        "diagnostic_mm": 18.59674247714266,
+        "delta_mm": -6.961664986025127
+      },
+      {
+        "net": "iBUS{slash}SBUS RX",
+        "active_baseline_mm": 22.997130761712764,
+        "diagnostic_mm": 14.832838349980376,
+        "delta_mm": -8.164292411732388
+      },
+      {
+        "net": "/VIN",
+        "active_baseline_mm": 44.33121020490385,
+        "diagnostic_mm": 35.20363291533775,
+        "delta_mm": -9.127577289566098
+      },
+      {
+        "net": "Net-(R12-Pad2)",
+        "active_baseline_mm": 17.580009765469566,
+        "diagnostic_mm": 8.221164640461037,
+        "delta_mm": -9.358845125008528
+      },
+      {
+        "net": "/usb_mcu-",
+        "active_baseline_mm": 21.94113595293309,
+        "diagnostic_mm": 12.389239387474358,
+        "delta_mm": -9.551896565458733
+      },
+      {
+        "net": "GPS TX",
+        "active_baseline_mm": 18.379694570459165,
+        "diagnostic_mm": 8.390592906592222,
+        "delta_mm": -9.989101663866943
+      },
+      {
+        "net": "GPS RX",
+        "active_baseline_mm": 21.176724611746035,
+        "diagnostic_mm": 8.618741720823024,
+        "delta_mm": -12.557982890923011
+      },
+      {
+        "net": "Net-(U6-FREQ)",
+        "active_baseline_mm": 22.36589353930631,
+        "diagnostic_mm": 8.573157945929665,
+        "delta_mm": -13.792735593376644
+      },
+      {
+        "net": "/usb_mcu+",
+        "active_baseline_mm": 27.90261336865562,
+        "diagnostic_mm": 12.408724497922508,
+        "delta_mm": -15.49388887073311
+      },
+      {
+        "net": "+5V",
+        "active_baseline_mm": 138.92511273911137,
+        "diagnostic_mm": 113.13602828267443,
+        "delta_mm": -25.78908445643694
+      }
+    ],
+    "local_neighbor_relief": [
+      {
+        "net": "Net-(U1-EN)",
+        "active_baseline_mm": 25.45099431410113,
+        "diagnostic_mm": 86.21773479008436,
+        "delta_mm": 60.766740475983234
+      },
+      {
+        "net": "CH1",
+        "active_baseline_mm": 23.797023980526216,
+        "diagnostic_mm": 63.35670573323406,
+        "delta_mm": 39.559681752707846
+      },
+      {
+        "net": "+3.3V",
+        "active_baseline_mm": 119.51389702839634,
+        "diagnostic_mm": 158.50787681161214,
+        "delta_mm": 38.99397978321579
+      },
+      {
+        "net": "TX",
+        "active_baseline_mm": 4.47409251686275,
+        "diagnostic_mm": 41.33390741408193,
+        "delta_mm": 36.85981489721918
+      },
+      {
+        "net": "RX",
+        "active_baseline_mm": 9.26929776183306,
+        "diagnostic_mm": 42.36184545482962,
+        "delta_mm": 33.09254769299656
+      },
+      {
+        "net": "CH2",
+        "active_baseline_mm": 25.558407463167786,
+        "diagnostic_mm": 58.41749979141485,
+        "delta_mm": 32.85909232824706
+      },
+      {
+        "net": "CH6",
+        "active_baseline_mm": 22.400280665072863,
+        "diagnostic_mm": 55.100236470313256,
+        "delta_mm": 32.69995580524039
+      },
+      {
+        "net": "SCL",
+        "active_baseline_mm": 27.926176610754688,
+        "diagnostic_mm": 60.3466763601174,
+        "delta_mm": 32.42049974936271
+      },
+      {
+        "net": "CH3",
+        "active_baseline_mm": 23.893453564960232,
+        "diagnostic_mm": 53.52848194343679,
+        "delta_mm": 29.635028378476555
+      },
+      {
+        "net": "INT",
+        "active_baseline_mm": 15.774039071462877,
+        "diagnostic_mm": 44.09765026185994,
+        "delta_mm": 28.323611190397063
+      },
+      {
+        "net": "SDA",
+        "active_baseline_mm": 21.76220154598214,
+        "diagnostic_mm": 49.78782628494122,
+        "delta_mm": 28.025624738959078
+      },
+      {
+        "net": "GPS TX",
+        "active_baseline_mm": 18.379694570459165,
+        "diagnostic_mm": 42.02166460518623,
+        "delta_mm": 23.641970034727066
+      },
+      {
+        "net": "CH5",
+        "active_baseline_mm": 26.357246818173167,
+        "diagnostic_mm": 46.49082784112691,
+        "delta_mm": 20.13358102295374
+      },
+      {
+        "net": "GPS RX",
+        "active_baseline_mm": 21.176724611746035,
+        "diagnostic_mm": 39.95530749607299,
+        "delta_mm": 18.778582884326955
+      },
+      {
+        "net": "LED_STAT",
+        "active_baseline_mm": 13.049795303201835,
+        "diagnostic_mm": 31.24222217264661,
+        "delta_mm": 18.192426869444773
+      },
+      {
+        "net": "SENOR_VP",
+        "active_baseline_mm": 20.008727280637984,
+        "diagnostic_mm": 37.23817179395846,
+        "delta_mm": 17.229444513320473
+      },
+      {
+        "net": "Net-(U1-IO0)",
+        "active_baseline_mm": 16.856892661494367,
+        "diagnostic_mm": 31.757685187066393,
+        "delta_mm": 14.900792525572026
+      },
+      {
+        "net": "CH4",
+        "active_baseline_mm": 32.61829443049166,
+        "diagnostic_mm": 44.53435460587899,
+        "delta_mm": 11.91606017538733
+      },
+      {
+        "net": "+BATT",
+        "active_baseline_mm": 50.23197590836631,
+        "diagnostic_mm": 59.549365468130524,
+        "delta_mm": 9.317389559764216
+      },
+      {
+        "net": "ESC3",
+        "active_baseline_mm": 18.463235265231116,
+        "diagnostic_mm": 25.8497548807122,
+        "delta_mm": 7.386519615481085
+      },
+      {
+        "net": "ESC4",
+        "active_baseline_mm": 18.537996617897182,
+        "diagnostic_mm": 24.758965635282465,
+        "delta_mm": 6.220969017385283
+      },
+      {
+        "net": "GND",
+        "active_baseline_mm": 98.62966579438547,
+        "diagnostic_mm": 102.31897636294927,
+        "delta_mm": 3.6893105685637977
+      },
+      {
+        "net": "/usb_esd-",
+        "active_baseline_mm": 20.005968045703156,
+        "diagnostic_mm": 23.065466238261216,
+        "delta_mm": 3.0594981925580598
+      },
+      {
+        "net": "Net-(R12-Pad2)",
+        "active_baseline_mm": 17.580009765469566,
+        "diagnostic_mm": 20.050019730377343,
+        "delta_mm": 2.470009964907778
+      },
+      {
+        "net": "ESC2",
+        "active_baseline_mm": 19.646455590315572,
+        "diagnostic_mm": 21.88505447356416,
+        "delta_mm": 2.2385988832485886
+      },
+      {
+        "net": "Net-(U4-CPOUT)",
+        "active_baseline_mm": 8.073835104237554,
+        "diagnostic_mm": 10.051444724018898,
+        "delta_mm": 1.9776096197813438
+      },
+      {
+        "net": "Net-(J9-CC1)",
+        "active_baseline_mm": 7.2288097162024165,
+        "diagnostic_mm": 8.893440725563924,
+        "delta_mm": 1.664631009361507
+      },
+      {
+        "net": "Net-(D2-DIN)",
+        "active_baseline_mm": 13.737947624197615,
+        "diagnostic_mm": 14.725925529059241,
+        "delta_mm": 0.9879779048616264
+      },
+      {
+        "net": "Net-(BZ1-+)",
+        "active_baseline_mm": 6.732695667241112,
+        "diagnostic_mm": 7.618811273444724,
+        "delta_mm": 0.886115606203612
+      },
+      {
+        "net": "/usb_mcu-",
+        "active_baseline_mm": 21.94113595293309,
+        "diagnostic_mm": 22.668670844359028,
+        "delta_mm": 0.7275348914259361
+      },
+      {
+        "net": "Net-(U6-FREQ)",
+        "active_baseline_mm": 22.36589353930631,
+        "diagnostic_mm": 22.907493966423804,
+        "delta_mm": 0.5416004271174941
+      },
+      {
+        "net": "Net-(Q1-C)",
+        "active_baseline_mm": 10.879583755980512,
+        "diagnostic_mm": 11.3261287573835,
+        "delta_mm": 0.44654500140298836
+      },
+      {
+        "net": "Net-(J9-CC2)",
+        "active_baseline_mm": 5.638521780803918,
+        "diagnostic_mm": 5.840885039883891,
+        "delta_mm": 0.20236325907997266
+      },
+      {
+        "net": "Net-(D5-A)",
+        "active_baseline_mm": 28.44886017283644,
+        "diagnostic_mm": 28.47598497786229,
+        "delta_mm": 0.02712480502584924
+      },
+      {
+        "net": "+3V3",
+        "active_baseline_mm": 10.870702054653027,
+        "diagnostic_mm": 10.870702054653027,
+        "delta_mm": 0.0
+      },
+      {
+        "net": "/VIN",
+        "active_baseline_mm": 44.33121020490385,
+        "diagnostic_mm": 44.33121020490385,
+        "delta_mm": 0.0
+      },
+      {
+        "net": "/usb+",
+        "active_baseline_mm": 8.14260556238143,
+        "diagnostic_mm": 8.14260556238143,
+        "delta_mm": 0.0
+      },
+      {
+        "net": "/usb-",
+        "active_baseline_mm": 8.24252825997278,
+        "diagnostic_mm": 8.24252825997278,
+        "delta_mm": 0.0
+      },
+      {
+        "net": "Net-(U6-BST)",
+        "active_baseline_mm": 9.291981880796236,
+        "diagnostic_mm": 9.291981880796236,
+        "delta_mm": 0.0
+      },
+      {
+        "net": "Net-(U6-FB)",
+        "active_baseline_mm": 31.775030379817252,
+        "diagnostic_mm": 31.775030379817252,
+        "delta_mm": 0.0
+      },
+      {
+        "net": "Net-(U4-REGOUT)",
+        "active_baseline_mm": 8.96560531165603,
+        "diagnostic_mm": 8.96074328422373,
+        "delta_mm": -0.004862027432301019
+      },
+      {
+        "net": "Net-(U3-V3)",
+        "active_baseline_mm": 8.210741311124096,
+        "diagnostic_mm": 8.188373778755953,
+        "delta_mm": -0.022367532368143372
+      },
+      {
+        "net": "iBUS{slash}SBUS RX",
+        "active_baseline_mm": 22.997130761712764,
+        "diagnostic_mm": 22.967802250046056,
+        "delta_mm": -0.02932851166670858
+      },
+      {
+        "net": "Net-(U6-EN)",
+        "active_baseline_mm": 12.273872013366152,
+        "diagnostic_mm": 12.234920478425359,
+        "delta_mm": -0.03895153494079295
+      },
+      {
+        "net": "Net-(U6-COMP)",
+        "active_baseline_mm": 15.098297413718068,
+        "diagnostic_mm": 15.016873098887931,
+        "delta_mm": -0.08142431483013723
+      },
+      {
+        "net": "ESC1",
+        "active_baseline_mm": 21.25667779568609,
+        "diagnostic_mm": 20.88464609669067,
+        "delta_mm": -0.3720316989954213
+      },
+      {
+        "net": "Net-(U5-VBUS)",
+        "active_baseline_mm": 17.61568499272996,
+        "diagnostic_mm": 16.638388031819574,
+        "delta_mm": -0.9772969609103868
+      },
+      {
+        "net": "/usb_mcu+",
+        "active_baseline_mm": 27.90261336865562,
+        "diagnostic_mm": 25.680562037817147,
+        "delta_mm": -2.2220513308384717
+      },
+      {
+        "net": "BUZZER",
+        "active_baseline_mm": 26.298330884880638,
+        "diagnostic_mm": 23.692684789684247,
+        "delta_mm": -2.6056460951963913
+      },
+      {
+        "net": "+5V",
+        "active_baseline_mm": 138.92511273911137,
+        "diagnostic_mm": 126.35247147153372,
+        "delta_mm": -12.572641267577652
+      }
+    ]
+  },
+  "browser": {
+    "componentCount": 61,
+    "trackCount": 764,
+    "componentMeshes": 336,
+    "nonFlatMeshes": 336,
+    "webgl": true,
+    "canvasWidth": 1440,
+    "layerToggleWorked": true,
+    "maskSwitchWorked": true,
+    "console_errors": [],
+    "external_requests": [],
+    "passed": true,
+    "oblique_pixel_std": 26.0497595143028,
+    "top_pixel_std": 44.33356539505767,
+    "side_pixel_std": 20.57744058385423
+  }
+}

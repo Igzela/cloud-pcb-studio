@@ -1,0 +1,15 @@
+{
+  "unrouted_zero": true,
+  "router_spacing_zero": true,
+  "independent_lvs_opens_zero": true,
+  "independent_lvs_shorts_zero": true,
+  "nonthermal_via_in_pad_zero": true,
+  "minimum_track_width_ge_010": true,
+  "gerber_all_parsed": true,
+  "fabrication_drills_match": true,
+  "annular_ring_ge_010": true,
+  "silk_overlap_zero": true,
+  "copper_edge_ge_050": true,
+  "rf_all_four_layers_clear": true,
+  "mechanical_zero_with_verified_envelopes": false
+}

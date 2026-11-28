@@ -1,0 +1,41 @@
+{
+  "frozen_design_mst_proxy_mm": 949.737053,
+  "routed_rf_lobe_mst_proxy_mm": 1117.093808,
+  "tested_alternatives": [
+    {
+      "pose_xytheta": [
+        33.7625,
+        44.315,
+        180.0
+      ],
+      "status": "PLACED",
+      "mst_proxy_mm": 988.764249,
+      "total_placed": 61,
+      "antenna_overlap_mm2": 0.0
+    },
+    {
+      "pose_xytheta": [
+        58.315000000000005,
+        26.7625,
+        270.0
+      ],
+      "status": "PLACED",
+      "mst_proxy_mm": 1004.532158,
+      "total_placed": 61,
+      "antenna_overlap_mm2": 0.0
+    },
+    {
+      "pose_xytheta": [
+        9.209999999999999,
+        26.7625,
+        90.0
+      ],
+      "status": "PLACED",
+      "mst_proxy_mm": 1073.207712,
+      "total_placed": 61,
+      "antenna_overlap_mm2": 0.0
+    }
+  ],
+  "metric": "pre-route sum of non-ground per-net Euclidean minimum-spanning-tree length",
+  "selected_lower_proxy_mm": 988.764249
+}

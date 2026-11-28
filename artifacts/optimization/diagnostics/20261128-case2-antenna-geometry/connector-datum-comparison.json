@@ -1,0 +1,247 @@
+{
+  "scope": "Nominal pad geometry only. The PCB and its mating datum are unchanged.",
+  "base_spec_sha256": "a063037c183e30022de603dbf52ee054ea3c72ced1ae79e95b19666c79a2c078",
+  "experimental_input_delta": {
+    "field": "edge_connectors.USB1.x_mm",
+    "delta_mm": -0.35
+  },
+  "frozen": {
+    "pose_xytheta": [
+      51.849999999999994,
+      9.5,
+      -90.0
+    ],
+    "pads": [
+      {
+        "number": "0",
+        "type": "thru_hole",
+        "center_xy_mm": [
+          49.2,
+          3.65
+        ],
+        "copper_edge_mm": 0.3
+      },
+      {
+        "number": "0",
+        "type": "thru_hole",
+        "center_xy_mm": [
+          49.2,
+          15.35
+        ],
+        "copper_edge_mm": 0.3
+      },
+      {
+        "number": "1",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          12.5
+        ],
+        "copper_edge_mm": 3.9
+      },
+      {
+        "number": "2",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          10.5
+        ],
+        "copper_edge_mm": 3.9
+      },
+      {
+        "number": "3",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          8.5
+        ],
+        "copper_edge_mm": 3.9
+      },
+      {
+        "number": "4",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          6.5
+        ],
+        "copper_edge_mm": 3.9
+      },
+      {
+        "number": "5",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          5.5
+        ],
+        "copper_edge_mm": 3.9
+      },
+      {
+        "number": "6",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          7.5
+        ],
+        "copper_edge_mm": 3.9
+      },
+      {
+        "number": "7",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          9.5
+        ],
+        "copper_edge_mm": 3.9
+      },
+      {
+        "number": "8",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          11.5
+        ],
+        "copper_edge_mm": 3.9
+      },
+      {
+        "number": "9",
+        "type": "smd",
+        "center_xy_mm": [
+          46.7,
+          13.5
+        ],
+        "copper_edge_mm": 3.9
+      }
+    ],
+    "min_copper_edge_mm": 0.3,
+    "input_conflicts": [
+      {
+        "kind": "fixed_interface_edge",
+        "refdes": "USB1",
+        "pin": "0",
+        "actual_mm": 0.3,
+        "required_mm": 0.5,
+        "outside_board": false,
+        "action": "revise mechanical input through explicit engineering review; never silently move interface or waive gate"
+      },
+      {
+        "kind": "fixed_interface_edge",
+        "refdes": "USB1",
+        "pin": "0",
+        "actual_mm": 0.3,
+        "required_mm": 0.5,
+        "outside_board": false,
+        "action": "revise mechanical input through explicit engineering review; never silently move interface or waive gate"
+      }
+    ]
+  },
+  "counterfactual": {
+    "pose_xytheta": [
+      51.5,
+      9.5,
+      -90.0
+    ],
+    "pads": [
+      {
+        "number": "0",
+        "type": "thru_hole",
+        "center_xy_mm": [
+          48.85,
+          3.65
+        ],
+        "copper_edge_mm": 0.65
+      },
+      {
+        "number": "0",
+        "type": "thru_hole",
+        "center_xy_mm": [
+          48.85,
+          15.35
+        ],
+        "copper_edge_mm": 0.65
+      },
+      {
+        "number": "1",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          12.5
+        ],
+        "copper_edge_mm": 4.25
+      },
+      {
+        "number": "2",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          10.5
+        ],
+        "copper_edge_mm": 4.25
+      },
+      {
+        "number": "3",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          8.5
+        ],
+        "copper_edge_mm": 4.25
+      },
+      {
+        "number": "4",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          6.5
+        ],
+        "copper_edge_mm": 4.25
+      },
+      {
+        "number": "5",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          5.5
+        ],
+        "copper_edge_mm": 4.25
+      },
+      {
+        "number": "6",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          7.5
+        ],
+        "copper_edge_mm": 4.25
+      },
+      {
+        "number": "7",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          9.5
+        ],
+        "copper_edge_mm": 4.25
+      },
+      {
+        "number": "8",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          11.5
+        ],
+        "copper_edge_mm": 4.25
+      },
+      {
+        "number": "9",
+        "type": "smd",
+        "center_xy_mm": [
+          46.35,
+          13.5
+        ],
+        "copper_edge_mm": 4.25
+      }
+    ],
+    "min_copper_edge_mm": 0.65,
+    "input_conflicts": []
+  }
+}
