@@ -188,9 +188,18 @@ def test_zone_partition_preserves_connected_copper_without_micron_slots():
 
 
 def test_saved_copper_zones_use_native_polygon_fill(tmp_path):
+    from shutil import which
+    from subprocess import run
+
+    from kiutils.items.brditems import LayerToken
+
     from cloud_pcb.general_solver.run_blind import _build_4layer_pours_and_stitching
 
     pcb = Board.create_new()
+    pcb.layers[1:1] = [
+        LayerToken(ordinal=1, name='In1.Cu', type='power'),
+        LayerToken(ordinal=2, name='In2.Cu', type='power'),
+    ]
     pcb.nets = [Net(0, ''), Net(1, 'GND'), Net(2, 'power')]
     island = dict(net='power', layer='In2.Cu', geometry=box(10, 10, 24, 24), plated_anchor_count=2)
     _build_4layer_pours_and_stitching(pcb, box(0, 0, 40, 40), islands=[island])
@@ -200,6 +209,18 @@ def test_saved_copper_zones_use_native_polygon_fill(tmp_path):
     assert {zone.netName for zone in zones} == {'GND', 'power'}
     assert all(zone.fillSettings.yes and zone.fillSettings.mode is None for zone in zones)
     assert all(zone.filledAreasThickness == 'no' and zone.filledPolygons for zone in zones)
+    cli = which('kicad-cli')
+    if cli:
+        destination = tmp_path / 'gerbers'
+        destination.mkdir()
+        result = run([cli, 'pcb', 'export', 'gerbers', '--no-protel-ext',
+                      '--layers', 'F.Cu,In1.Cu,In2.Cu,B.Cu', '--output', str(destination), str(path)],
+                     capture_output=True, text=True, timeout=30)
+        diagnostics = result.stdout + result.stderr
+        assert result.returncode == 0, diagnostics
+        assert 'Legacy zone fill strategy' not in diagnostics
+        plots = list(destination.glob('*.gbr'))
+        assert len(plots) == 4 and all(item.stat().st_size for item in plots)
 
 
 def test_import_omitted_angle_is_absolute_zero_not_footprint_angle():
