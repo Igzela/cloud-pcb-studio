@@ -115,6 +115,25 @@ def baseline_measurements(suite,pointer):
     return result,reports,details
 
 
+def round_reference_pours(baseline_board, candidate_board):
+    from kiutils.board import Board
+    from cloud_pcb.general_solver.run_blind import _plane_ground_net
+    from cloud_pcb.verify_gate.reference_pours import compare_reference_pours
+
+    try:
+        before = Board.from_file(str(baseline_board))
+        after = Board.from_file(str(candidate_board))
+    except Exception as exc:
+        # KiUtils raises bare Exception for some malformed saved boards.
+        return {'status': 'UNKNOWN', 'net': None, 'layers': {},
+                'issues': [str(exc) or 'Could not read the board']}
+    net = _plane_ground_net(before)
+    if net is None:
+        return {'status': 'UNKNOWN', 'net': None, 'layers': {},
+                'issues': ['No reference ground net in the baseline board']}
+    return compare_reference_pours(before, after, net.name)
+
+
 def source_snapshot(suite_path):
     result=code_fingerprint();result[str(Path(suite_path).resolve().relative_to(ROOT))]=digest(suite_path)
     return result
@@ -190,7 +209,7 @@ def run_round(args):
     if jvm_runtime is not None:
         manifest['freerouting_runtime'] = jvm_runtime
     atomic_json(directory/'manifest.json',manifest)
-    baseline,reports,details=baseline_measurements(suite,pointer)
+    baseline, _, baseline_details = baseline_measurements(suite,pointer)
     result=dict(status='running',hypothesis=args.hypothesis,baseline=pointer,measurements={},case_details={},tasks=[],failures=[])
     print(json.dumps(dict(event='round_start',directory=str(directory.relative_to(ROOT)),cases=sorted(selected))),flush=True)
     start=time.monotonic()
@@ -234,6 +253,12 @@ def run_round(args):
                         metrics['evidence_errors'].append('Freerouting comparison did not complete: '+comparison.get('error','missing comparison'))
                 conflicts=input_conflicts(spec);result['measurements'][case_id]=metrics
                 result['case_details'][case_id]=dict(ground_fill_ratio=report['gnd_pour_stats']['fill_ratio'],artifact_directory=str(out.relative_to(ROOT)),electrical_derivations=report.get('electrical_derivations',[]),input_conflicts=conflicts)
+                baseline_board = local_path(baseline_details[case_id]['artifact_directory']) / 'routed.kicad_pcb'
+                pour_comparison = round_reference_pours(baseline_board, out/'routed.kicad_pcb')
+                comparison_file = out/'reference_pour_comparison.json'
+                atomic_json(comparison_file, pour_comparison)
+                result['case_details'][case_id]['reference_pour_comparison'] = dict(
+                    status=pour_comparison['status'], file=str(comparison_file.relative_to(ROOT)))
                 result['tasks'].extend(triage(case_id,report,metrics,conflicts));atomic_json(out/'metrics.json',metrics)
                 entry.update(status='complete',browser_passed=browser['passed'])
             except Exception as exc:

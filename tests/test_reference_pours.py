@@ -3,6 +3,7 @@ from kiutils.items.common import Net, Position
 from kiutils.items.zones import FilledPolygon, Zone
 
 from cloud_pcb.verify_gate.reference_pours import compare_reference_pours
+from scripts.optimize_pcb import round_reference_pours
 
 
 def rectangle(x0, y0, x1, y1):
@@ -62,3 +63,15 @@ def test_selecting_a_layer_preserves_measurements_of_otherwise_partial_boards():
     assert compare_reference_pours(before, after, 'GND')['status'] == 'UNKNOWN'
     selected = compare_reference_pours(before, after, 'GND', layers=['F.Cu'])
     assert selected['status'] == 'MEASURED' and list(selected['layers']) == ['F.Cu']
+
+
+def test_round_compares_the_baselines_saved_ground_domain(tmp_path):
+    paths = [tmp_path / name for name in ('before.kicad_pcb', 'after.kicad_pcb')]
+    for path, right in zip(paths, (3, 4), strict=True):
+        pcb = Board(version='20240108', generator='pcbnew', nets=[Net(number=1, name='PGND')],
+                    zones=[zone('F.Cu', rectangle(0, 0, right, 2), name='PGND')])
+        pcb.to_file(str(path))
+    report = round_reference_pours(*paths)
+    assert report['status'] == 'MEASURED' and report['net'] == 'PGND'
+    assert report['layers']['F.Cu']['added_area_mm2'] == 2
+    assert round_reference_pours(paths[0], tmp_path / 'missing.kicad_pcb')['status'] == 'UNKNOWN'

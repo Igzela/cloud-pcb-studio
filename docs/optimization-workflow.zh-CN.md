@@ -118,6 +118,7 @@ artifacts/optimization/runs/<UTC时间>-<label>/
     assembly.html        自包含交互预览
     assembly_*.png
     assembly_browser_report.json
+    reference_pour_comparison.json  从基线和候选的保存板重测逐层参考铜
     metrics.json
   result.json            逐板指标、退步、改善、下一步任务
   review.md
@@ -137,6 +138,8 @@ python -m scripts.compare_reference_pours baseline.kicad_pcb candidate.kicad_pcb
 ```
 
 省略 `--layer` 时核对两块板中该网络声明的铜层。工具逐层合并同网覆铜，给出实际面积、增减总量和最大三个变化区域的坐标。缺失、未填充或无效的多边形会产生 `UNKNOWN`，退出码为 `2`。该比较仅覆盖文件中保存的填充多边形。回流连通、阻抗和制造验收仍以各自的工况及证据核对。
+
+完整轮次和选板轮次都会随候选保存同样的对照，选择活动基线板的参考地网。轮次结果记录状态、文件路径及归档哈希，便于审阅未被 In1 单值反映的其他层变化。晋升继续使用现有门禁与质量指标。
 
 ## 后续优化顺序
 
