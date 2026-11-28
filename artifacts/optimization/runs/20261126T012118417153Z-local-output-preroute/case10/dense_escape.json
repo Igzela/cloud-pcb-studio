@@ -1,0 +1,101 @@
+{
+  "incumbent_key": [
+    12,
+    0,
+    0,
+    0
+  ],
+  "candidate_key": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "incumbent_fill_ratio": 0.8698,
+  "candidate_fill_ratio": 0.875,
+  "non_regressing": true,
+  "candidate_route_mode": "dense_escape_individual",
+  "candidate_direct_repair": {
+    "status": "accepted",
+    "proposals": [
+      {
+        "net": "VBUS",
+        "layer": "F.Cu",
+        "width_mm": 0.5,
+        "start_xy": [
+          4.707,
+          13.423
+        ],
+        "end_xy": [
+          6.057,
+          13.423
+        ]
+      },
+      {
+        "net": "VBUS",
+        "layer": "B.Cu",
+        "width_mm": 0.5,
+        "start_xy": [
+          4.707,
+          17.673
+        ],
+        "end_xy": [
+          6.057,
+          17.673
+        ]
+      },
+      {
+        "net": "VBUS",
+        "layer": "F.Cu",
+        "width_mm": 0.5,
+        "start_xy": [
+          4.707,
+          13.423
+        ],
+        "end_xy": [
+          3.907,
+          13.423
+        ]
+      },
+      {
+        "net": "VBUS",
+        "layer": "F.Cu",
+        "width_mm": 0.5,
+        "start_xy": [
+          3.907,
+          13.423
+        ],
+        "end_xy": [
+          3.907,
+          17.673
+        ]
+      },
+      {
+        "net": "VBUS",
+        "layer": "F.Cu",
+        "width_mm": 0.5,
+        "start_xy": [
+          3.907,
+          17.673
+        ],
+        "end_xy": [
+          4.707,
+          17.673
+        ]
+      }
+    ],
+    "original_unrouted": 3,
+    "verified_unrouted": 0,
+    "original_lvs_opens": 1,
+    "verified_lvs_opens": 0
+  },
+  "candidate_exact_geometry": {
+    "status": "accepted",
+    "original_real_spacing": 4,
+    "verified_real_spacing": 0,
+    "original_raw_violations": 4,
+    "verified_raw_violations": 0
+  },
+  "physical_ground_plane_used": true,
+  "status": "accepted"
+}

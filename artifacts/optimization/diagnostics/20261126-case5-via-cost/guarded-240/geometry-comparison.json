@@ -1,0 +1,1063 @@
+{
+  "fixed_output": [
+    {
+      "net": "Net-(U3-DVDD10_UPS)",
+      "complete_preroute_objects": 3,
+      "corrected_probe_objects": 3,
+      "exact_geometry_equal": true,
+      "corrected_probe_total_copper_length_mm": 4.1494
+    }
+  ],
+  "copper_delta_against_selected_probe": {
+    "active": [
+      {
+        "net": "+3V3",
+        "removed_items": 91,
+        "added_items": 77,
+        "before_vias": 5,
+        "after_vias": 8,
+        "total_length_delta_mm": 0.9928
+      },
+      {
+        "net": "/LED0",
+        "removed_items": 21,
+        "added_items": 23,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 12.6112
+      },
+      {
+        "net": "/LED1",
+        "removed_items": 19,
+        "added_items": 24,
+        "before_vias": 3,
+        "after_vias": 2,
+        "total_length_delta_mm": 1.2025
+      },
+      {
+        "net": "/LED2",
+        "removed_items": 34,
+        "added_items": 47,
+        "before_vias": 5,
+        "after_vias": 5,
+        "total_length_delta_mm": -0.5054
+      },
+      {
+        "net": "/M0_N",
+        "removed_items": 9,
+        "added_items": 7,
+        "before_vias": 1,
+        "after_vias": 0,
+        "total_length_delta_mm": -1.5558
+      },
+      {
+        "net": "/M0_P",
+        "removed_items": 8,
+        "added_items": 11,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": -0.1217
+      },
+      {
+        "net": "/M1_N",
+        "removed_items": 6,
+        "added_items": 6,
+        "before_vias": 0,
+        "after_vias": 1,
+        "total_length_delta_mm": 1.2771
+      },
+      {
+        "net": "/M1_P",
+        "removed_items": 12,
+        "added_items": 12,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.0245
+      },
+      {
+        "net": "/M2_N",
+        "removed_items": 8,
+        "added_items": 12,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.6096
+      },
+      {
+        "net": "/M2_P",
+        "removed_items": 11,
+        "added_items": 10,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.1818
+      },
+      {
+        "net": "/M3_N",
+        "removed_items": 5,
+        "added_items": 5,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.3419
+      },
+      {
+        "net": "/M3_P",
+        "removed_items": 5,
+        "added_items": 8,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.1259
+      },
+      {
+        "net": "/U2D_N",
+        "removed_items": 8,
+        "added_items": 4,
+        "before_vias": 2,
+        "after_vias": 0,
+        "total_length_delta_mm": -2.9832
+      },
+      {
+        "net": "/U2D_P",
+        "removed_items": 9,
+        "added_items": 12,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.0185
+      },
+      {
+        "net": "/U2_N",
+        "removed_items": 13,
+        "added_items": 23,
+        "before_vias": 2,
+        "after_vias": 4,
+        "total_length_delta_mm": 22.9009
+      },
+      {
+        "net": "/U2_P",
+        "removed_items": 10,
+        "added_items": 14,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 1.0062
+      },
+      {
+        "net": "/U3SRX_N",
+        "removed_items": 19,
+        "added_items": 11,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -2.4509
+      },
+      {
+        "net": "/U3SRX_P",
+        "removed_items": 15,
+        "added_items": 15,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -3.0411
+      },
+      {
+        "net": "/U3STX_N",
+        "removed_items": 4,
+        "added_items": 4,
+        "before_vias": 0,
+        "after_vias": 0,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/U3STX_P",
+        "removed_items": 10,
+        "added_items": 10,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.5848
+      },
+      {
+        "net": "/U3TX_N",
+        "removed_items": 25,
+        "added_items": 13,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -4.6544
+      },
+      {
+        "net": "/U3TX_P",
+        "removed_items": 18,
+        "added_items": 22,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.7285
+      },
+      {
+        "net": "/V12",
+        "removed_items": 111,
+        "added_items": 101,
+        "before_vias": 7,
+        "after_vias": 6,
+        "total_length_delta_mm": -12.7874
+      },
+      {
+        "net": "/VBUS",
+        "removed_items": 13,
+        "added_items": 8,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": -0.764
+      },
+      {
+        "net": "GND",
+        "removed_items": 5,
+        "added_items": 3,
+        "before_vias": 34,
+        "after_vias": 32,
+        "total_length_delta_mm": -3.11
+      },
+      {
+        "net": "Net-(C9-Pad1)",
+        "removed_items": 11,
+        "added_items": 5,
+        "before_vias": 0,
+        "after_vias": 0,
+        "total_length_delta_mm": -22.8533
+      },
+      {
+        "net": "Net-(LAN1-P5)",
+        "removed_items": 11,
+        "added_items": 9,
+        "before_vias": 1,
+        "after_vias": 0,
+        "total_length_delta_mm": -0.1057
+      },
+      {
+        "net": "Net-(LAN1-Pad12)",
+        "removed_items": 4,
+        "added_items": 8,
+        "before_vias": 0,
+        "after_vias": 1,
+        "total_length_delta_mm": 1.7382
+      },
+      {
+        "net": "Net-(LAN1-Pad14)",
+        "removed_items": 25,
+        "added_items": 25,
+        "before_vias": 1,
+        "after_vias": 2,
+        "total_length_delta_mm": 2.8448
+      },
+      {
+        "net": "Net-(U2-CLK)",
+        "removed_items": 6,
+        "added_items": 3,
+        "before_vias": 2,
+        "after_vias": 0,
+        "total_length_delta_mm": -3.1971
+      },
+      {
+        "net": "Net-(U2-CS)",
+        "removed_items": 12,
+        "added_items": 10,
+        "before_vias": 3,
+        "after_vias": 2,
+        "total_length_delta_mm": -1.8221
+      },
+      {
+        "net": "Net-(U2-DI)",
+        "removed_items": 18,
+        "added_items": 19,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": -0.2576
+      },
+      {
+        "net": "Net-(U3-CKXTAL1)",
+        "removed_items": 30,
+        "added_items": 30,
+        "before_vias": 3,
+        "after_vias": 4,
+        "total_length_delta_mm": -14.3078
+      },
+      {
+        "net": "Net-(U3-CKXTAL2)",
+        "removed_items": 21,
+        "added_items": 38,
+        "before_vias": 3,
+        "after_vias": 2,
+        "total_length_delta_mm": 7.6034
+      },
+      {
+        "net": "Net-(U3-DVDD10_UPS)",
+        "removed_items": 0,
+        "added_items": 3,
+        "before_vias": 0,
+        "after_vias": 0,
+        "total_length_delta_mm": 4.1494
+      },
+      {
+        "net": "Net-(U3-GPIO)",
+        "removed_items": 15,
+        "added_items": 15,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": 1.8597
+      },
+      {
+        "net": "Net-(U3-RSET)",
+        "removed_items": 16,
+        "added_items": 18,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -1.2746
+      },
+      {
+        "net": "Net-(U3-VDD5)",
+        "removed_items": 20,
+        "added_items": 21,
+        "before_vias": 2,
+        "after_vias": 1,
+        "total_length_delta_mm": -10.449
+      },
+      {
+        "net": "Net-(U3-XTALDET)",
+        "removed_items": 36,
+        "added_items": 24,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": -11.0707
+      },
+      {
+        "net": "Net-(U4-FB)",
+        "removed_items": 23,
+        "added_items": 21,
+        "before_vias": 2,
+        "after_vias": 3,
+        "total_length_delta_mm": 0.6059
+      },
+      {
+        "net": "Net-(U4-LX)",
+        "removed_items": 12,
+        "added_items": 11,
+        "before_vias": 4,
+        "after_vias": 2,
+        "total_length_delta_mm": -2.9289
+      }
+    ],
+    "complete_preroute": [
+      {
+        "net": "+3V3",
+        "removed_items": 67,
+        "added_items": 49,
+        "before_vias": 8,
+        "after_vias": 8,
+        "total_length_delta_mm": -8.0003
+      },
+      {
+        "net": "/LED0",
+        "removed_items": 4,
+        "added_items": 4,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/LED1",
+        "removed_items": 9,
+        "added_items": 9,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.0535
+      },
+      {
+        "net": "/LED2",
+        "removed_items": 6,
+        "added_items": 8,
+        "before_vias": 5,
+        "after_vias": 5,
+        "total_length_delta_mm": 0.3645
+      },
+      {
+        "net": "/M0_N",
+        "removed_items": 8,
+        "added_items": 7,
+        "before_vias": 0,
+        "after_vias": 0,
+        "total_length_delta_mm": -0.1176
+      },
+      {
+        "net": "/M0_P",
+        "removed_items": 5,
+        "added_items": 7,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.0004
+      },
+      {
+        "net": "/M1_P",
+        "removed_items": 5,
+        "added_items": 8,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": -0.0016
+      },
+      {
+        "net": "/M3_N",
+        "removed_items": 2,
+        "added_items": 2,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/U2D_N",
+        "removed_items": 11,
+        "added_items": 4,
+        "before_vias": 2,
+        "after_vias": 0,
+        "total_length_delta_mm": -3.3029
+      },
+      {
+        "net": "/U2D_P",
+        "removed_items": 0,
+        "added_items": 2,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.1681
+      },
+      {
+        "net": "/U2_P",
+        "removed_items": 3,
+        "added_items": 2,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/U3SRX_N",
+        "removed_items": 6,
+        "added_items": 4,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.882
+      },
+      {
+        "net": "/U3SRX_P",
+        "removed_items": 14,
+        "added_items": 15,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.0029
+      },
+      {
+        "net": "/U3TX_P",
+        "removed_items": 5,
+        "added_items": 7,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.3121
+      },
+      {
+        "net": "/V12",
+        "removed_items": 49,
+        "added_items": 43,
+        "before_vias": 6,
+        "after_vias": 6,
+        "total_length_delta_mm": -7.3082
+      },
+      {
+        "net": "/VBUS",
+        "removed_items": 9,
+        "added_items": 8,
+        "before_vias": 2,
+        "after_vias": 1,
+        "total_length_delta_mm": -1.9913
+      },
+      {
+        "net": "GND",
+        "removed_items": 3,
+        "added_items": 0,
+        "before_vias": 35,
+        "after_vias": 32,
+        "total_length_delta_mm": -4.6674
+      },
+      {
+        "net": "Net-(C9-Pad1)",
+        "removed_items": 6,
+        "added_items": 5,
+        "before_vias": 1,
+        "after_vias": 0,
+        "total_length_delta_mm": -2.3488
+      },
+      {
+        "net": "Net-(LAN1-P5)",
+        "removed_items": 10,
+        "added_items": 9,
+        "before_vias": 1,
+        "after_vias": 0,
+        "total_length_delta_mm": -0.9476
+      },
+      {
+        "net": "Net-(LAN1-Pad12)",
+        "removed_items": 4,
+        "added_items": 3,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "Net-(LAN1-Pad14)",
+        "removed_items": 12,
+        "added_items": 13,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.1246
+      },
+      {
+        "net": "Net-(U2-CLK)",
+        "removed_items": 9,
+        "added_items": 3,
+        "before_vias": 2,
+        "after_vias": 0,
+        "total_length_delta_mm": -3.3543
+      },
+      {
+        "net": "Net-(U2-CS)",
+        "removed_items": 2,
+        "added_items": 3,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.0012
+      },
+      {
+        "net": "Net-(U2-DI)",
+        "removed_items": 4,
+        "added_items": 4,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": 0.0123
+      },
+      {
+        "net": "Net-(U3-CKXTAL1)",
+        "removed_items": 15,
+        "added_items": 15,
+        "before_vias": 4,
+        "after_vias": 4,
+        "total_length_delta_mm": 0.4875
+      },
+      {
+        "net": "Net-(U3-CKXTAL2)",
+        "removed_items": 17,
+        "added_items": 20,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.2242
+      },
+      {
+        "net": "Net-(U3-GPIO)",
+        "removed_items": 7,
+        "added_items": 7,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": -0.0169
+      },
+      {
+        "net": "Net-(U3-RSET)",
+        "removed_items": 0,
+        "added_items": 4,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.6285
+      },
+      {
+        "net": "Net-(U3-VDD5)",
+        "removed_items": 0,
+        "added_items": 2,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.5312
+      },
+      {
+        "net": "Net-(U3-XTALDET)",
+        "removed_items": 20,
+        "added_items": 20,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": 0.5543
+      },
+      {
+        "net": "Net-(U4-FB)",
+        "removed_items": 29,
+        "added_items": 13,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": -7.6395
+      },
+      {
+        "net": "Net-(U4-LX)",
+        "removed_items": 8,
+        "added_items": 7,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.0219
+      }
+    ],
+    "guarded_90s": [
+      {
+        "net": "+3V3",
+        "removed_items": 57,
+        "added_items": 40,
+        "before_vias": 8,
+        "after_vias": 8,
+        "total_length_delta_mm": -6.8003
+      },
+      {
+        "net": "/LED0",
+        "removed_items": 4,
+        "added_items": 4,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/LED1",
+        "removed_items": 9,
+        "added_items": 7,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.3195
+      },
+      {
+        "net": "/LED2",
+        "removed_items": 6,
+        "added_items": 6,
+        "before_vias": 5,
+        "after_vias": 5,
+        "total_length_delta_mm": -0.0032
+      },
+      {
+        "net": "/M0_N",
+        "removed_items": 8,
+        "added_items": 7,
+        "before_vias": 0,
+        "after_vias": 0,
+        "total_length_delta_mm": -0.1176
+      },
+      {
+        "net": "/M0_P",
+        "removed_items": 7,
+        "added_items": 7,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": -0.2032
+      },
+      {
+        "net": "/M1_P",
+        "removed_items": 7,
+        "added_items": 8,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": -0.2595
+      },
+      {
+        "net": "/M3_N",
+        "removed_items": 2,
+        "added_items": 2,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/U2_P",
+        "removed_items": 3,
+        "added_items": 2,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/U3SRX_N",
+        "removed_items": 6,
+        "added_items": 4,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.882
+      },
+      {
+        "net": "/U3SRX_P",
+        "removed_items": 16,
+        "added_items": 15,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.1514
+      },
+      {
+        "net": "/U3TX_P",
+        "removed_items": 5,
+        "added_items": 5,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.0504
+      },
+      {
+        "net": "/V12",
+        "removed_items": 28,
+        "added_items": 29,
+        "before_vias": 6,
+        "after_vias": 6,
+        "total_length_delta_mm": -6.6494
+      },
+      {
+        "net": "/VBUS",
+        "removed_items": 10,
+        "added_items": 7,
+        "before_vias": 2,
+        "after_vias": 1,
+        "total_length_delta_mm": -2.2593
+      },
+      {
+        "net": "Net-(C9-Pad1)",
+        "removed_items": 6,
+        "added_items": 5,
+        "before_vias": 1,
+        "after_vias": 0,
+        "total_length_delta_mm": -2.3488
+      },
+      {
+        "net": "Net-(LAN1-P5)",
+        "removed_items": 10,
+        "added_items": 9,
+        "before_vias": 1,
+        "after_vias": 0,
+        "total_length_delta_mm": -0.9476
+      },
+      {
+        "net": "Net-(LAN1-Pad12)",
+        "removed_items": 4,
+        "added_items": 3,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "Net-(LAN1-Pad14)",
+        "removed_items": 12,
+        "added_items": 11,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.1438
+      },
+      {
+        "net": "Net-(U2-CLK)",
+        "removed_items": 9,
+        "added_items": 3,
+        "before_vias": 2,
+        "after_vias": 0,
+        "total_length_delta_mm": -3.3543
+      },
+      {
+        "net": "Net-(U2-CS)",
+        "removed_items": 2,
+        "added_items": 3,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.0012
+      },
+      {
+        "net": "Net-(U2-DI)",
+        "removed_items": 4,
+        "added_items": 4,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": 0.0123
+      },
+      {
+        "net": "Net-(U3-CKXTAL1)",
+        "removed_items": 17,
+        "added_items": 15,
+        "before_vias": 4,
+        "after_vias": 4,
+        "total_length_delta_mm": 0.1352
+      },
+      {
+        "net": "Net-(U3-CKXTAL2)",
+        "removed_items": 17,
+        "added_items": 20,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.2242
+      },
+      {
+        "net": "Net-(U3-GPIO)",
+        "removed_items": 7,
+        "added_items": 7,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": -0.0169
+      },
+      {
+        "net": "Net-(U3-XTALDET)",
+        "removed_items": 18,
+        "added_items": 19,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": 0.563
+      },
+      {
+        "net": "Net-(U4-FB)",
+        "removed_items": 31,
+        "added_items": 13,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": -7.9905
+      },
+      {
+        "net": "Net-(U4-LX)",
+        "removed_items": 8,
+        "added_items": 5,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.2731
+      }
+    ],
+    "guarded_240s_50pct": [
+      {
+        "net": "+3V3",
+        "removed_items": 26,
+        "added_items": 15,
+        "before_vias": 8,
+        "after_vias": 8,
+        "total_length_delta_mm": -4.902
+      },
+      {
+        "net": "/M0_N",
+        "removed_items": 2,
+        "added_items": 4,
+        "before_vias": 0,
+        "after_vias": 0,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/M1_P",
+        "removed_items": 2,
+        "added_items": 3,
+        "before_vias": 1,
+        "after_vias": 1,
+        "total_length_delta_mm": 0.0
+      },
+      {
+        "net": "/V12",
+        "removed_items": 19,
+        "added_items": 23,
+        "before_vias": 6,
+        "after_vias": 6,
+        "total_length_delta_mm": -5.1445
+      },
+      {
+        "net": "Net-(C9-Pad1)",
+        "removed_items": 6,
+        "added_items": 5,
+        "before_vias": 1,
+        "after_vias": 0,
+        "total_length_delta_mm": -1.7083
+      },
+      {
+        "net": "Net-(LAN1-Pad14)",
+        "removed_items": 7,
+        "added_items": 6,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.0524
+      },
+      {
+        "net": "Net-(U2-CLK)",
+        "removed_items": 8,
+        "added_items": 3,
+        "before_vias": 2,
+        "after_vias": 0,
+        "total_length_delta_mm": -3.3543
+      },
+      {
+        "net": "Net-(U2-DI)",
+        "removed_items": 4,
+        "added_items": 4,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": 0.0123
+      },
+      {
+        "net": "Net-(U3-CKXTAL1)",
+        "removed_items": 2,
+        "added_items": 3,
+        "before_vias": 4,
+        "after_vias": 4,
+        "total_length_delta_mm": 0.0179
+      },
+      {
+        "net": "Net-(U3-CKXTAL2)",
+        "removed_items": 6,
+        "added_items": 7,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": 0.4726
+      },
+      {
+        "net": "Net-(U3-XTALDET)",
+        "removed_items": 8,
+        "added_items": 7,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": -0.0007
+      },
+      {
+        "net": "Net-(U4-FB)",
+        "removed_items": 26,
+        "added_items": 8,
+        "before_vias": 3,
+        "after_vias": 3,
+        "total_length_delta_mm": -7.9905
+      },
+      {
+        "net": "Net-(U4-LX)",
+        "removed_items": 5,
+        "added_items": 3,
+        "before_vias": 2,
+        "after_vias": 2,
+        "total_length_delta_mm": -0.0595
+      }
+    ],
+    "guarded_240s_0_5pct_pass2": []
+  },
+  "whole_net_copper_length_differences": [
+    {
+      "nets": [
+        "/M0_P",
+        "/M0_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 3.1323,
+        "complete_preroute": 4.4484,
+        "guarded_90s": 4.6521,
+        "guarded_240s_50pct": 4.5664,
+        "guarded_240s_0_5pct_pass2": 4.5664,
+        "guarded_240s_0_5pct": 4.5664
+      }
+    },
+    {
+      "nets": [
+        "/M1_P",
+        "/M1_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 4.1279,
+        "complete_preroute": 2.8769,
+        "guarded_90s": 3.1349,
+        "guarded_240s_50pct": 2.8753,
+        "guarded_240s_0_5pct_pass2": 2.8753,
+        "guarded_240s_0_5pct": 2.8753
+      }
+    },
+    {
+      "nets": [
+        "/M2_P",
+        "/M2_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 2.2317,
+        "complete_preroute": 1.8038,
+        "guarded_90s": 1.8038,
+        "guarded_240s_50pct": 1.8038,
+        "guarded_240s_0_5pct_pass2": 1.8038,
+        "guarded_240s_0_5pct": 1.8038
+      }
+    },
+    {
+      "nets": [
+        "/M3_P",
+        "/M3_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 1.7549,
+        "complete_preroute": 1.539,
+        "guarded_90s": 1.539,
+        "guarded_240s_50pct": 1.539,
+        "guarded_240s_0_5pct_pass2": 1.539,
+        "guarded_240s_0_5pct": 1.539
+      }
+    },
+    {
+      "nets": [
+        "/U2D_P",
+        "/U2D_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 1.1353,
+        "complete_preroute": 0.666,
+        "guarded_90s": 4.137,
+        "guarded_240s_50pct": 4.137,
+        "guarded_240s_0_5pct_pass2": 4.137,
+        "guarded_240s_0_5pct": 4.137
+      }
+    },
+    {
+      "nets": [
+        "/U2_P",
+        "/U2_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 1.0198,
+        "complete_preroute": 22.9145,
+        "guarded_90s": 22.9145,
+        "guarded_240s_50pct": 22.9145,
+        "guarded_240s_0_5pct_pass2": 22.9145,
+        "guarded_240s_0_5pct": 22.9145
+      }
+    },
+    {
+      "nets": [
+        "/U3SRX_P",
+        "/U3SRX_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 2.6173,
+        "complete_preroute": 4.0867,
+        "guarded_90s": 3.9382,
+        "guarded_240s_50pct": 3.2076,
+        "guarded_240s_0_5pct_pass2": 3.2076,
+        "guarded_240s_0_5pct": 3.2076
+      }
+    },
+    {
+      "nets": [
+        "/U3STX_P",
+        "/U3STX_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 4.142,
+        "complete_preroute": 4.7268,
+        "guarded_90s": 4.7268,
+        "guarded_240s_50pct": 4.7268,
+        "guarded_240s_0_5pct_pass2": 4.7268,
+        "guarded_240s_0_5pct": 4.7268
+      }
+    },
+    {
+      "nets": [
+        "/U3TX_P",
+        "/U3TX_N"
+      ],
+      "declared_max_skew_mm": 0.2,
+      "whole_net_copper_length_delta_mm": {
+        "active": 2.9859,
+        "complete_preroute": 2.0848,
+        "guarded_90s": 2.4473,
+        "guarded_240s_50pct": 2.3969,
+        "guarded_240s_0_5pct_pass2": 2.3969,
+        "guarded_240s_0_5pct": 2.3969
+      }
+    }
+  ]
+}

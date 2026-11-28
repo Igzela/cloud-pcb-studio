@@ -1,0 +1,53 @@
+{
+  "pygerber_all_ok": true,
+  "pygerber_by_layer": {
+    "F_Cu.gbr": true,
+    "In1_Cu.gbr": true,
+    "In2_Cu.gbr": true,
+    "B_Cu.gbr": true,
+    "F_Mask.gbr": true,
+    "B_Mask.gbr": true,
+    "F_Paste.gbr": true,
+    "B_Paste.gbr": true,
+    "F_SilkS.gbr": true,
+    "B_SilkS.gbr": true,
+    "Edge_Cuts.gbr": true
+  },
+  "pth_hole_count": 137,
+  "npth_hole_count": 4,
+  "fabrication_drills": {
+    "passed": true,
+    "groups": {
+      "PTH": {
+        "expected_count": 137,
+        "observed_count": 137,
+        "missing": [],
+        "unexpected": []
+      },
+      "NPTH": {
+        "expected_count": 4,
+        "observed_count": 4,
+        "missing": [],
+        "unexpected": []
+      }
+    },
+    "issues": []
+  },
+  "min_annular_ring_mm": 0.1097,
+  "annular_ring_violations": 0,
+  "annular_circle_witnesses": [],
+  "silk_to_mask_overlap_mm2": 0.0,
+  "silk_to_mask_overlap_by_side_mm2": {
+    "F": 0.0,
+    "B": 0.0
+  },
+  "copper_edge_margins_mm": {
+    "F_Cu.gbr": 0.3,
+    "In1_Cu.gbr": 0.5,
+    "In2_Cu.gbr": 0.5,
+    "B_Cu.gbr": 0.3
+  },
+  "lvs_opens": [],
+  "lvs_shorts": [],
+  "min_inter_net_clearance_mm": 0.1266
+}

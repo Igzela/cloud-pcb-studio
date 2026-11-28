@@ -1,0 +1,54 @@
+{
+  "target": {
+    "net": "Net-(U3-DVDD10_UPS)",
+    "owner_ref": "U3",
+    "owner_pin": "27",
+    "cap_pin": "1",
+    "cap_ref": "C22"
+  },
+  "protected": [
+    "/M0_N",
+    "/M0_P",
+    "/M1_N",
+    "/M1_P",
+    "/M2_N",
+    "/M2_P",
+    "/M3_N",
+    "/M3_P",
+    "/U2D_N",
+    "/U2D_P",
+    "/U2_N",
+    "/U2_P",
+    "/U3SRX_N",
+    "/U3SRX_P",
+    "/U3STX_N",
+    "/U3STX_P",
+    "/U3TX_N",
+    "/U3TX_P"
+  ],
+  "original_class": "DEFAULT",
+  "isolated_class": "IsolatedLocalOutput",
+  "ignored_class_names": [
+    "default",
+    "POWER_000",
+    "DIFF_PAIR_000",
+    "DIFF_PAIR_001",
+    "DIFF_PAIR_002",
+    "DIFF_PAIR_003",
+    "DIFF_PAIR_004",
+    "DIFF_PAIR_005",
+    "DIFF_PAIR_006",
+    "DIFF_PAIR_007",
+    "DIFF_PAIR_008"
+  ],
+  "guard_check": {
+    "guard_count": 160,
+    "minimum_gap_mm": 0.12699999999999892,
+    "overlap": [],
+    "included": true
+  },
+  "active_manifest_sha256": "7309e96543ef15e2d5c2fa1afe3e53f37665e7d9bbe80f76fa3940542f46c418",
+  "diagnostic_dsn_sha256": "44b1c9c40c66b5def1879e8062380b27ddf430a485951bcc3ed1debaf8fdd088",
+  "guard_source_sha256": "1a2577042934fec1e04623328857da4bcdd675292a68a548a7777918a6dacc5c",
+  "scope": "ground fixed copper and active protected routes only. No initial SES or other unfixed traces. Target use_layer restricted to F.Cu; all other input rules identical."
+}

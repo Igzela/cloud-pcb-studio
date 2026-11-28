@@ -1,5 +1,5 @@
 {
-  "directory": "artifacts/optimization/runs/20261122T134458373666Z-exact-geometry-and-micro-escape",
-  "manifest_sha256": "7309e96543ef15e2d5c2fa1afe3e53f37665e7d9bbe80f76fa3940542f46c418",
-  "promoted": true
+  "directory": "artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute",
+  "manifest_sha256": "b5b77af243e527744198f7fd043f65613f7a631fb316d68162c8bd7aef643125",
+  "promoted": false
 }

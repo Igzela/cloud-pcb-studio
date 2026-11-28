@@ -1,0 +1,278 @@
+{
+  "passed": true,
+  "protected_nets": {
+    "/LED0": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/LED1": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/LED2": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M0_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M0_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M1_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M1_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M2_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M2_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M3_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M3_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U2D_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U2D_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U2_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U2_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3SRX_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3SRX_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3STX_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3STX_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3TX_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3TX_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/VBUS": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "GND": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(C5-Pad1)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(C9-Pad1)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(LAN1-P5)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(LAN1-P6)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(LAN1-Pad12)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(LAN1-Pad14)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U2-CLK)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U2-CS)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U2-DI)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U3-CKXTAL1)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U3-CKXTAL2)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U3-GPIO)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U3-RSET)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U3-XTALDET)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U4-FB)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "Net-(U4-LX)": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    }
+  }
+}

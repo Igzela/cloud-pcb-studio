@@ -1,14 +1,14 @@
 # 仓库接手入口
 
-本仓库保留求解器、五板冻结产物、3D 预览、持续优化实验及独立 Gemini 布局参考。原始起点为 `aff93d3`。
+本仓库保留求解器、冻结板级产物、3D 预览、持续优化实验及独立 Gemini 布局参考。原始起点为 `aff93d3`。
 
 ## 先读与先查
 
-1. 读取根目录 `AGENTS.md` 和 [优化流程](optimization-workflow.zh-CN.md)。
-2. 读取 `artifacts/optimization/last_run.json` 及其指向的 `result.json` 和 `manifest.json`。[最新直连实验](optimization-direct-repair.zh-CN.md) · [Freerouting JVM 比较流程](optimization-freerouting-jvm.zh-CN.md)
+1. 读取根目录 `AGENTS.md`、[项目路线图](project-roadmap.zh-CN.md)和[优化流程](optimization-workflow.zh-CN.md)。
+2. 对照 `artifacts/optimization/state.json` 的活动基线和 `artifacts/optimization/last_run.json` 的最近轮次，查看对应的 `result.json` 和 `manifest.json`。[基线实测](optimization-dense-escape-repair.zh-CN.md)
 3. 按下面的环境要求安装依赖，然后执行 `source scripts/env.sh && python -m scripts.optimize_pcb status`。
 
-Case 1–5 均已暴露，只能用作回归。直连实验的产物已晋升为回归基线，指针保存在 `artifacts/optimization/state.json`。五板统一启用 `direct-repair` 变体可以复现这次设置。新泛化成绩须另做密封实验。
+Case 1–5、10–11 共七块已暴露板用于回归。Case 6–9、12–13 保持密封。活动基线的全量设置采用统一的 `dense-escape-repair` 变体。新泛化成绩通过独立密封实验获得。[密封流程](holdout-cohorts.zh-CN.md)
 
 ## 环境与凭据
 
@@ -36,8 +36,10 @@ Gemini 凭据不写入公开 Git 历史。独立模型流程读取运行时 `GEM
 
 ## 当前结果与已知故障
 
-最新源码冻结轮次为 `20261118T010740458884Z-direct-repair`，完整测试实测 **171 项通过，74.37 秒**。Case 4 未布通与独立开路均从 1 降到 0，其余四板的比较指标持平。Case 3 和 5 仍分别有 1 和 9 个开路网络，Case 2 的 RF 几何、Case 5 的固定接口板边铜距，以及五板机械尺寸证据仍限制工程验收。[实测报告](optimization-direct-repair.zh-CN.md)
+2026 年 11 月 22 日晋升的基线为 `20261122T134458373666Z-exact-geometry-and-micro-escape`，完整测试 **300 项通过，92.12 秒**。七板独立短路与真实间距违例均为 0。Case 5 还有 1 个未布通、1 个独立 LVS 开路，固定接口板边铜距为 0.30 mm，门槛为 0.50 mm。Case 2 缺天线几何，七板均有待核实的机械尺寸。工程验收状态为未认证。[逐板结果](optimization-dense-escape-repair.zh-CN.md)
 
-Freerouting 原生程序存在 GraalVM `ObstacleArea` 序列化异常。需要第二引擎时，安装官方 JVM 发行版并指定 `freerouting-jvm` 变体，见 [安装命令与逐板证据](optimization-freerouting-jvm.zh-CN.md)。
+11 月 26 日的局部输出预布线候选完成七板回归，311 项测试通过。Case 5 的未布通及独立 LVS 开路均降为 0，In1 地填充下降 0.19 个百分点，候选未晋升。[候选实验](optimization-local-output-preroute.zh-CN.md)
+
+Freerouting 原生程序存在 GraalVM `ObstacleArea` 序列化异常。活动基线的 `dense-escape-repair` 变体使用官方 JVM 版作第二引擎比较，先执行 `source scripts/env.sh && python -m scripts.install_freerouting_jvm`。[安装与比较证据](optimization-freerouting-jvm.zh-CN.md)
 
 接手者可使用 Agent 集群分别研究工具链、拥塞/扇出、布局、ECAD/MCAD 和独立审查；由主 Agent 控制文件所有权和冻结屏障。完整优化轮次运行期间，全体 Agent 停止修改源码、测试、配置、输入和工具二进制。

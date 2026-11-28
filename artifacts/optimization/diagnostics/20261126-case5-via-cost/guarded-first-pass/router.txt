@@ -1,0 +1,22 @@
+    0.000 INFO  fastroute 0.1.14
+    0.013 INFO  parsed 'board.dsn' in 12.3 ms: 4 layers, 52 components, 43 nets, 39 wires
+    0.336 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.336 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.342 INFO  initial session 'artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_fastroute.ses': 367 wires and 85 vias imported (0 errors)
+    0.519 INFO  56 trace ends inside a pad but off its center joined to the center
+    0.519 INFO  built board in 506.9 ms: 926 items (186 pins, 116 vias, 462 traces)
+    0.521 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.521 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.729 INFO  Optimization stage started. Baseline router score: 1000.00, optimizer score: 283.58, incomplete connections: 0, clearance violations: 0.
+   31.032 INFO  Optimizer pass #1: 112 of 281 candidates after 30 s (65 improving so far).
+   60.935 INFO  Optimizer pass #1: 238 of 281 candidates after 60 s (155 improving so far).
+   78.569 INFO  Optimizer greedy phase stopped after 40 of 181 candidates (8.5 s, no further improvements).
+   78.569 INFO  Optimizer pass #1: applied 7 more improving candidate(s).
+   78.775 INFO  Optimizer pass #1 was completed in 78.05 seconds (281 of 281 candidates) with the score of 317.43 (0 unrouted and 0 violations).
+   78.784 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '.run/via-pad-optimizer-240.ogzwDw/board.ses'
+   78.784 INFO  Optimizer pass #1: optimizer score 283.58 -> 317.43 (IMPROVED, 11.9355%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+   78.784 INFO  Stopping optimizer because the improvement in this pass (11.9355%) is below the threshold (50.00%).
+   78.784 INFO  Optimization stage completed: Baseline router score: 1000.00, baseline optimizer score: 283.58, final router score: 1000.00, final optimizer score: 317.43, completed in 78.06 seconds.
+   78.784 INFO  routing finished in 78.26 s
+   78.968 INFO  saved '.run/via-pad-optimizer-240.ogzwDw/board.ses' (63382 bytes)
+   79.358 INFO  report written to '.run/via-pad-optimizer-240.ogzwDw/report.json'

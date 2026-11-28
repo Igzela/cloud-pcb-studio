@@ -1,0 +1,14 @@
+{
+  "fastroute": "0.1.14",
+  "input": "artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board.dsn",
+  "time_s": {"load": 0.8683, "route": 121.431, "total": 122.504, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 3, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 101, "vias_blind": 0, "vias_buried": 0, "traces": 343, "trace_length_mm": 968.082, "bends_90": 0, "bends_45": 387, "bends_other": 0, "router_score": 970.5883, "optimizer_score": 373.8584},
+  "unrouted": [
+    {"net": "/M2_P", "length_mm": 10.418, "from": {"kind": "pin", "component": "U3", "pin": "7", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [22.766, 8.75], "to": {"kind": "pin", "component": "LAN1", "pin": "7", "layers": ["F.Cu", "B.Cu"]}, "to_xy": [12.692, 11.405]},
+    {"net": "/V12", "length_mm": 1.6, "from": {"kind": "pin", "component": "U3", "pin": "24", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [27.95, 11.534], "to": {"kind": "pin", "component": "U3", "pin": "20", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [26.35, 11.534]},
+    {"net": "Net-(U3-CKXTAL2)", "length_mm": 11.1, "from": {"kind": "pin", "component": "X1", "pin": "1", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [23.05, 16.535], "to": {"kind": "pin", "component": "U3", "pin": "45", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [24.75, 5.566]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

@@ -1,0 +1,6 @@
+    (wire (path F.Cu 160 28733 -9950 29535.1 -9950) (net "Net-(U3-DVDD10_UPS)") (type fix))
+    (wire (path In2.Cu 160 31393.8 -12078.8 31725.3 -11747.3 31725.3 -10638.2 31037.1 -9950 29535.1 -9950) (net "Net-(U3-DVDD10_UPS)") (type fix))
+    (wire (path F.Cu 160 31393.8 -12078.8 31105.3 -12367.3 30981 -12367.3) (net "Net-(U3-DVDD10_UPS)") (type fix))
+    (wire (path F.Cu 160 30981 -12849 30981 -12367.3) (net "Net-(U3-DVDD10_UPS)") (type fix))
+    (via Via[0-3]_420:200_um 31393.8 -12078.8 (net "Net-(U3-DVDD10_UPS)") (type fix))
+    (via Via[0-3]_420:200_um 29535.1 -9950 (net "Net-(U3-DVDD10_UPS)") (type fix))

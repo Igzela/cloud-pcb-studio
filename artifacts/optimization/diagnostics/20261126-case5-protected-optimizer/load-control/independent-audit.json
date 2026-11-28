@@ -1,0 +1,237 @@
+{
+  "router": {
+    "layers": 4,
+    "components": 52,
+    "nets": 43,
+    "pins": 186,
+    "connections": 136,
+    "unrouted": 0,
+    "unrouted_ignored_classes": 0,
+    "violations": 0,
+    "violations_unfixable": 0,
+    "vias": 116,
+    "vias_blind": 0,
+    "vias_buried": 0,
+    "traces": 462,
+    "trace_length_mm": 985.5532,
+    "bends_90": 2,
+    "bends_45": 405,
+    "bends_other": 0,
+    "router_score": 1000,
+    "optimizer_score": 283.5803
+  },
+  "true_spacing": 0,
+  "copper_spacing": {
+    "F.Cu": {
+      "min_mm": 0.1266,
+      "net_pair": [
+        "/V12",
+        "Net-(U3-CKXTAL1)"
+      ],
+      "pairs_below_0_1249_mm": 0
+    },
+    "In1.Cu": {
+      "min_mm": 0.127,
+      "net_pair": [
+        "/V12",
+        "/U3TX_N"
+      ],
+      "pairs_below_0_1249_mm": 0
+    },
+    "In2.Cu": {
+      "min_mm": 0.1266,
+      "net_pair": [
+        "/LED2",
+        "Net-(U2-DI)"
+      ],
+      "pairs_below_0_1249_mm": 0
+    },
+    "B.Cu": {
+      "min_mm": 0.1266,
+      "net_pair": [
+        "/U2_P",
+        "/U3TX_P"
+      ],
+      "pairs_below_0_1249_mm": 0
+    }
+  },
+  "foreign_ses_vias": 84,
+  "restored_protected_vias": 27,
+  "restored_protected_segments": 179,
+  "geometry": {
+    "passed": true,
+    "protected_nets": {
+      "/M0_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M0_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      }
+    }
+  },
+  "unprotected_ses_changes": {
+    "segments": {
+      "before": 595,
+      "after": 641,
+      "removed": 0,
+      "added": 46
+    },
+    "vias": {
+      "before": 58,
+      "after": 58,
+      "removed": 0,
+      "added": 0
+    }
+  },
+  "guards": {
+    "count": 160,
+    "min_gap_mm": 0.1267,
+    "intersections": []
+  },
+  "pours": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 769.819,
+    "fill_ratio": 0.7867,
+    "f_cu_pour_mm2": 491.841,
+    "b_cu_pour_mm2": 595.004,
+    "stitching_vias_added": 3,
+    "antipad_cutouts": 106,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "active_pours": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 771.658,
+    "fill_ratio": 0.7886,
+    "f_cu_pour_mm2": 512.32,
+    "b_cu_pour_mm2": 576.034,
+    "stitching_vias_added": 2,
+    "antipad_cutouts": 102,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "lvs_opens": [],
+  "lvs_shorts": [],
+  "nonthermal_via_in_pad": [],
+  "ses_sha256": "b81a268752588896d0685ed51001e8475ccd5ab15c304378869775a46b1fc6b2"
+}

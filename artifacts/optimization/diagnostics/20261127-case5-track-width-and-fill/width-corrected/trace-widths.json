@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "passed": true,
+  "required_min_width_mm": 0.1,
+  "observed_min_width_mm": 0.1,
+  "measured_tracks": 820,
+  "violations": [],
+  "issues": []
+}

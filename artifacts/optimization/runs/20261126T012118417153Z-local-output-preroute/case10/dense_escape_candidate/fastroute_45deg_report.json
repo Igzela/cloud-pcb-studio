@@ -1,0 +1,15 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case10/dense_escape_candidate/direct_repair_replay/fixed.dsn",
+  "time_s": {"load": 1.0022, "route": 0, "total": 1.3608, "diagnose": null},
+  "stats": {"layers": 4, "components": 84, "nets": 50, "pins": 274, "connections": 223, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 4, "violations_unfixable": 4, "vias": 119, "vias_blind": 0, "vias_buried": 0, "traces": 566, "trace_length_mm": 1607.5552, "bends_90": 9, "bends_45": 363, "bends_other": 0, "router_score": 999.7953, "optimizer_score": 618.0049},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+    {"layer": "F.Cu", "xy": [5.8435, 10.7365], "clearance_mm": 0.13, "actual_mm": 0.0731, "unfixable": true, "first": {"kind": "pin", "component": "J3", "pin": "1", "layers": ["F.Cu", "B.Cu"]}, "second": {"kind": "pin", "component": "J2", "pin": "S1", "layers": ["F.Cu", "B.Cu"]}},
+    {"layer": "In1.Cu", "xy": [5.8435, 10.7365], "clearance_mm": 0.13, "actual_mm": 0.0731, "unfixable": true, "first": {"kind": "pin", "component": "J3", "pin": "1", "layers": ["F.Cu", "B.Cu"]}, "second": {"kind": "pin", "component": "J2", "pin": "S1", "layers": ["F.Cu", "B.Cu"]}},
+    {"layer": "In2.Cu", "xy": [5.8435, 10.7365], "clearance_mm": 0.13, "actual_mm": 0.0731, "unfixable": true, "first": {"kind": "pin", "component": "J3", "pin": "1", "layers": ["F.Cu", "B.Cu"]}, "second": {"kind": "pin", "component": "J2", "pin": "S1", "layers": ["F.Cu", "B.Cu"]}},
+    {"layer": "B.Cu", "xy": [5.8435, 10.7365], "clearance_mm": 0.13, "actual_mm": 0.0731, "unfixable": true, "first": {"kind": "pin", "component": "J3", "pin": "1", "layers": ["F.Cu", "B.Cu"]}, "second": {"kind": "pin", "component": "J2", "pin": "S1", "layers": ["F.Cu", "B.Cu"]}}
+  ]
+}

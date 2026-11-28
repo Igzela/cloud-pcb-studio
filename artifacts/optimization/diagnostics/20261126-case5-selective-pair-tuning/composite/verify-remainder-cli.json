@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "protected_nets": {
+    "/M0_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M0_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M1_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/M1_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U2D_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U2D_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U2_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U2_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3SRX_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3SRX_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3TX_N": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    },
+    "/U3TX_P": {
+      "passed": true,
+      "changed_trace_groups": [],
+      "removed_vias": [],
+      "added_vias": [],
+      "issues": []
+    }
+  }
+}

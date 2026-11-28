@@ -1,0 +1,345 @@
+{
+  "rounds": {
+    "baseline": "20261122T134458373666Z-exact-geometry-and-micro-escape",
+    "local_output_preroute": "20261126T012118417153Z-local-output-preroute"
+  },
+  "measured_trace_widths": {
+    "baseline": {
+      "case1": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 515,
+        "violations": [],
+        "issues": []
+      },
+      "case2": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 628,
+        "violations": [],
+        "issues": []
+      },
+      "case3": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 945,
+        "violations": [],
+        "issues": []
+      },
+      "case4": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 1419,
+        "violations": [],
+        "issues": []
+      },
+      "case5": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.1,
+        "measured_tracks": 783,
+        "violations": [],
+        "issues": []
+      },
+      "case10": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 903,
+        "violations": [],
+        "issues": []
+      },
+      "case11": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 827,
+        "violations": [],
+        "issues": []
+      }
+    },
+    "local_output_preroute": {
+      "case1": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 515,
+        "violations": [],
+        "issues": []
+      },
+      "case2": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 628,
+        "violations": [],
+        "issues": []
+      },
+      "case3": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 937,
+        "violations": [],
+        "issues": []
+      },
+      "case4": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 1410,
+        "violations": [],
+        "issues": []
+      },
+      "case5": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.1,
+        "measured_tracks": 813,
+        "violations": [],
+        "issues": []
+      },
+      "case10": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 871,
+        "violations": [],
+        "issues": []
+      },
+      "case11": {
+        "status": "PASS",
+        "passed": true,
+        "required_min_width_mm": 0.1,
+        "observed_min_width_mm": 0.125,
+        "measured_tracks": 827,
+        "violations": [],
+        "issues": []
+      }
+    }
+  },
+  "width_gate_regressions": [],
+  "historical_replay_decision": {
+    "eligible_for_baseline": false,
+    "hard_gates_passed": false,
+    "engineering_pass": null,
+    "engineering_acceptance": "not_certified: endpoint SI, verified current/thermal limits and human wirelength comparison require separate evidence",
+    "regressions": [
+      {
+        "case": "case5",
+        "pair": [
+          "/M0_P",
+          "/M0_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          2.9302786499210933,
+          2.9342786499210733
+        ],
+        "after": [
+          4.246433418287926,
+          4.250433418287906
+        ]
+      },
+      {
+        "case": "case5",
+        "pair": [
+          "/U2_P",
+          "/U2_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          0.8187750985530766,
+          0.8207750985530826
+        ],
+        "after": [
+          23.230230256649367,
+          23.232230256649377
+        ]
+      },
+      {
+        "case": "case5",
+        "pair": [
+          "/U3SRX_P",
+          "/U3SRX_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          2.416332232299882,
+          2.418332232299913
+        ],
+        "after": [
+          3.88572317960353,
+          3.8877231796035607
+        ]
+      },
+      {
+        "case": "case5",
+        "pair": [
+          "/U3STX_P",
+          "/U3STX_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          3.941990481741496,
+          3.9419904817415388
+        ],
+        "after": [
+          4.526809471104543,
+          4.526809471104586
+        ]
+      },
+      {
+        "case": "case5",
+        "metric": "ground_fill_deficit",
+        "before": 0.06140000000000001,
+        "after": 0.06330000000000002
+      }
+    ],
+    "improvements": [
+      {
+        "case": "case3",
+        "metric": "wirelength_mm",
+        "before": 1123.486,
+        "after": 1115.612
+      },
+      {
+        "case": "case4",
+        "metric": "wirelength_mm",
+        "before": 3226.585,
+        "after": 3215.139
+      },
+      {
+        "case": "case5",
+        "metric": "unrouted_zero",
+        "before": false,
+        "after": true
+      },
+      {
+        "case": "case5",
+        "metric": "independent_lvs_opens_zero",
+        "before": false,
+        "after": true
+      },
+      {
+        "case": "case5",
+        "pair": [
+          "/M1_P",
+          "/M1_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          3.925942972440155,
+          3.9299429724401493
+        ],
+        "after": [
+          2.674921311634276,
+          2.6789213116342703
+        ]
+      },
+      {
+        "case": "case5",
+        "pair": [
+          "/M2_P",
+          "/M2_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          2.029659424169469,
+          2.033659424169463
+        ],
+        "after": [
+          1.601839314447511,
+          1.6058393144475052
+        ]
+      },
+      {
+        "case": "case5",
+        "pair": [
+          "/M3_P",
+          "/M3_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          1.5529390334559043,
+          1.5569390334558986
+        ],
+        "after": [
+          1.3370181525466276,
+          1.3410181525466218
+        ]
+      },
+      {
+        "case": "case5",
+        "pair": [
+          "/U2D_P",
+          "/U2D_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          0.9353039241165615,
+          0.9353039241165899
+        ],
+        "after": [
+          0.466014703758071,
+          0.46601470375809945
+        ]
+      },
+      {
+        "case": "case5",
+        "pair": [
+          "/U3TX_P",
+          "/U3TX_N"
+        ],
+        "metric": "differential_skew_excess_mm",
+        "before": [
+          2.784938805776611,
+          2.786938805776628
+        ],
+        "after": [
+          1.8838057685088707,
+          1.8858057685088874
+        ]
+      },
+      {
+        "case": "case5",
+        "metric": "unrouted",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "case": "case5",
+        "metric": "opens",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "case": "case10",
+        "metric": "wirelength_mm",
+        "before": 1618.22,
+        "after": 1589.495
+      }
+    ],
+    "invalid": [],
+    "full_suite": true,
+    "tests_passed": true,
+    "policy": "per-case Pareto: every safety/QoR metric non-worse; incomplete wire length never rewarded; improvement is not engineering acceptance"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/.run/active-protected-whole-case5.4bCgwr/whole-diagnostic.dsn",
+  "time_s": {"load": 0.5703, "route": 31.2541, "total": 32.0998, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 1, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 116, "vias_blind": 0, "vias_buried": 0, "traces": 397, "trace_length_mm": 975.733, "bends_90": 2, "bends_45": 411, "bends_other": 0, "router_score": 990.1961, "optimizer_score": 288.655},
+  "unrouted": [
+    {"net": "/V12", "length_mm": 1.6, "from": {"kind": "pin", "component": "U3", "pin": "20", "layers": ["F.Cu", "F.Cu"]}, "from_xy": [26.35, 11.534], "to": {"kind": "pin", "component": "U3", "pin": "24", "layers": ["F.Cu", "F.Cu"]}, "to_xy": [27.95, 11.534]}
+  ],
+  "clearance_violations": [
+
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "scope": "Scope is the current B.Cu signal geometry and unchanged minimum ground zone component area.",
+  "copper_interpretation": "A grounding via can connect an eligible region without increasing its maximum area.",
+  "measured_baseline_mm2": 573.35521,
+  "measured_candidate_mm2": 569.234265,
+  "all_pre_filter_area_mm2": 579.732676,
+  "min_eligible_island_area_mm2": 2.0,
+  "sum_of_all_eligible_island_area_mm2": 571.985831,
+  "loss_even_if_all_eligible_islands_join_ground_mm2": 1.369379
+}

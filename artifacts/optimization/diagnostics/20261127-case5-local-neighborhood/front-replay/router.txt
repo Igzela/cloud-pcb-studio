@@ -1,0 +1,25 @@
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 2.1 ms: 4 layers, 52 components, 43 nets, 256 wires
+    0.334 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.334 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.336 INFO  initial session '/workspace/cloud-pcb-studio/.run/active-front-local-neighborhood.s7bmAe/warm-seed.ses': 121 wires and 13 vias imported (0 errors)
+    0.512 INFO  53 trace ends inside a pad but off its center joined to the center
+    0.512 INFO  built board in 509.7 ms: 889 items (186 pins, 111 vias, 430 traces)
+    0.512 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.512 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.512 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    0.728 INFO  checkpoint: best board so far (3 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-front-local-neighborhood.s7bmAe/board.ses'
+    0.729 INFO  Auto-routing stage started with baseline score 970.59 for 3 unrouted items.
+    1.686 INFO  Auto-routing pass #1 was completed in 0.96 seconds with score 950.98 (5 unrouted and 0 violations) (routed 3, failed 2, ripped 2).
+    2.751 INFO  Auto-routing pass #2 was completed in 1.06 seconds with score 843.14 (16 unrouted and 0 violations) (routed 5, failed 1, ripped 0).
+    4.276 INFO  Auto-routing pass #3 was completed in 1.53 seconds with score 803.92 (20 unrouted and 0 violations) (routed 15, failed 1, ripped 1).
+    5.468 INFO  Auto-routing pass #4 was completed in 1.19 seconds with score 960.78 (4 unrouted and 0 violations) (routed 19, failed 0, ripped 2).
+    6.557 INFO  Auto-routing pass #5 was completed in 1.09 seconds with score 950.98 (5 unrouted and 0 violations) (routed 4, failed 1, ripped 3).
+    7.127 INFO  Auto-routing pass #6 was completed in 0.57 seconds with score 990.20 (1 unrouted and 0 violations) (routed 4, failed 0, ripped 0).
+    7.128 INFO  checkpoint: best board so far (1 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-front-local-neighborhood.s7bmAe/board.ses'
+    7.129 INFO  Auto-routing pass #7 was completed in 0.00 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 0, ripped 0).
+    7.129 INFO  Auto-routing stage completed: started with 3 unrouted nets, completed in 6.40 seconds, final score: 990.20 (1 unrouted and 0 violations).
+    7.129 INFO  2 item(s) cannot be routed even on the board as loaded (blocked by pins, keepouts or fixed wiring); they were skipped after their second failure.
+    7.130 INFO  routing finished in 6.62 s
+    7.338 INFO  saved '/workspace/cloud-pcb-studio/.run/active-front-local-neighborhood.s7bmAe/board.ses' (23277 bytes)
+    7.701 INFO  report written to '/workspace/cloud-pcb-studio/.run/active-front-local-neighborhood.s7bmAe/report.json'

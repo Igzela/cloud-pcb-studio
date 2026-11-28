@@ -1,0 +1,1186 @@
+{
+  "scope": "ground fixed copper and active protected routes only. No initial SES or other unfixed traces. Target use_layer restricted to F.Cu; all other input rules identical. Original +3V3 routed copper fixed to preserve the measured power bottleneck.",
+  "target": {
+    "net": "Net-(U3-DVDD10_UPS)",
+    "owner_ref": "U3",
+    "owner_pin": "27",
+    "cap_pin": "1",
+    "cap_ref": "C22"
+  },
+  "returncode": 0,
+  "target_lvs_closed": false,
+  "target_lvs_opens": [
+    {
+      "net": "Net-(U3-DVDD10_UPS)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "1": [
+          "C22-1"
+        ],
+        "0": [
+          "U3-27"
+        ]
+      }
+    }
+  ],
+  "target_trace_length_mm": 0,
+  "target_segments": [],
+  "target_vias": [],
+  "target_min_foreign_geometry_gap": null,
+  "target_guard_min_gap_mm": null,
+  "guards_count": 160,
+  "router_stats": {
+    "layers": 4,
+    "components": 52,
+    "nets": 43,
+    "pins": 186,
+    "connections": 136,
+    "unrouted": 62,
+    "unrouted_ignored_classes": 61,
+    "violations": 0,
+    "violations_unfixable": 0,
+    "vias": 61,
+    "vias_blind": 0,
+    "vias_buried": 0,
+    "traces": 177,
+    "trace_length_mm": 378.3835,
+    "bends_90": 0,
+    "bends_45": 154,
+    "bends_other": 0,
+    "router_score": 392.1568,
+    "optimizer_score": 756.2724
+  },
+  "raw_unrouted_by_net": {
+    "GND": 7,
+    "/LED0": 1,
+    "/LED1": 2,
+    "/LED2": 4,
+    "/V12": 18,
+    "/VBUS": 1,
+    "Net-(C5-Pad1)": 3,
+    "Net-(C9-Pad1)": 2,
+    "Net-(LAN1-P5)": 1,
+    "Net-(LAN1-P6)": 1,
+    "Net-(LAN1-Pad12)": 1,
+    "Net-(LAN1-Pad14)": 1,
+    "Net-(U2-CLK)": 1,
+    "Net-(U2-CS)": 1,
+    "Net-(U2-DI)": 2,
+    "Net-(U3-CKXTAL1)": 2,
+    "Net-(U3-CKXTAL2)": 2,
+    "Net-(U3-DVDD10_UPS)": 1,
+    "Net-(U3-GPIO)": 1,
+    "Net-(U3-RSET)": 1,
+    "Net-(U3-VDD5)": 4,
+    "Net-(U3-XTALDET)": 2,
+    "Net-(U4-FB)": 2,
+    "Net-(U4-LX)": 1
+  },
+  "target_router_unrouted": 1,
+  "router_spacing": {
+    "raw_count": 0,
+    "excluded_same_net_pad_overlaps": 0,
+    "real_count": 0,
+    "excluded": [],
+    "real": []
+  },
+  "protected_routing_unchanged": true,
+  "protected_routing": {
+    "passed": true,
+    "protected_nets": {
+      "+3V3": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M0_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M0_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      }
+    }
+  },
+  "restored_protected_segments": 275,
+  "restored_protected_vias": 30,
+  "differential_path_measurements_unchanged": true,
+  "differential_paths": {
+    "passed": false,
+    "pairs": [
+      {
+        "pos_net": "/M0_P",
+        "neg_net": "/M0_N",
+        "paths": {
+          "/M0_P": {
+            "length_mm": 13.090856063092717,
+            "pad_alignment_bound_mm": 0.000999999999995893,
+            "terminals": [
+              {
+                "pad": "U3-2",
+                "route_vertex": [
+                  "F.Cu",
+                  22.767,
+                  6.75
+                ]
+              },
+              {
+                "pad": "LAN1-1",
+                "route_vertex": [
+                  "B.Cu",
+                  12.692,
+                  3.785
+                ]
+              }
+            ]
+          },
+          "/M0_N": {
+            "length_mm": 9.958577413171634,
+            "pad_alignment_bound_mm": 0.0009999999999941167,
+            "terminals": [
+              {
+                "pad": "U3-3",
+                "route_vertex": [
+                  "F.Cu",
+                  22.767,
+                  7.15
+                ]
+              },
+              {
+                "pad": "LAN1-2",
+                "route_vertex": [
+                  "B.Cu",
+                  15.232,
+                  5.055
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 3.1322786499210835,
+        "skew_interval_mm": [
+          3.1302786499210935,
+          3.1342786499210735
+        ]
+      },
+      {
+        "pos_net": "/M1_P",
+        "neg_net": "/M1_N",
+        "paths": {
+          "/M1_P": {
+            "length_mm": 12.309275927716824,
+            "pad_alignment_bound_mm": 0.0009999999999994458,
+            "terminals": [
+              {
+                "pad": "U3-5",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  7.95
+                ]
+              },
+              {
+                "pad": "LAN1-3",
+                "route_vertex": [
+                  "B.Cu",
+                  12.692,
+                  6.325
+                ]
+              }
+            ]
+          },
+          "/M1_N": {
+            "length_mm": 8.181332955276671,
+            "pad_alignment_bound_mm": 0.0009999999999976694,
+            "terminals": [
+              {
+                "pad": "U3-6",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  8.35
+                ]
+              },
+              {
+                "pad": "LAN1-4",
+                "route_vertex": [
+                  "F.Cu",
+                  15.232,
+                  7.595
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 4.127942972440152,
+        "skew_interval_mm": [
+          4.125942972440155,
+          4.1299429724401495
+        ]
+      },
+      {
+        "pos_net": "/M2_P",
+        "neg_net": "/M2_N",
+        "paths": {
+          "/M2_P": {
+            "length_mm": 12.781562231534625,
+            "pad_alignment_bound_mm": 0.0009999999999994458,
+            "terminals": [
+              {
+                "pad": "U3-7",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  8.75
+                ]
+              },
+              {
+                "pad": "LAN1-7",
+                "route_vertex": [
+                  "B.Cu",
+                  12.692,
+                  11.405
+                ]
+              }
+            ]
+          },
+          "/M2_N": {
+            "length_mm": 10.549902807365159,
+            "pad_alignment_bound_mm": 0.0009999999999976694,
+            "terminals": [
+              {
+                "pad": "U3-8",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  9.15
+                ]
+              },
+              {
+                "pad": "LAN1-8",
+                "route_vertex": [
+                  "B.Cu",
+                  15.232,
+                  12.675
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 2.2316594241694663,
+        "skew_interval_mm": [
+          2.229659424169469,
+          2.2336594241694634
+        ]
+      },
+      {
+        "pos_net": "/M3_P",
+        "neg_net": "/M3_N",
+        "paths": {
+          "/M3_P": {
+            "length_mm": 13.284583181680514,
+            "pad_alignment_bound_mm": 0.0009999999999994458,
+            "terminals": [
+              {
+                "pad": "U3-10",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  9.95
+                ]
+              },
+              {
+                "pad": "LAN1-9",
+                "route_vertex": [
+                  "B.Cu",
+                  12.692,
+                  13.945
+                ]
+              }
+            ]
+          },
+          "/M3_N": {
+            "length_mm": 11.529644148224612,
+            "pad_alignment_bound_mm": 0.0009999999999976694,
+            "terminals": [
+              {
+                "pad": "U3-11",
+                "route_vertex": [
+                  "F.Cu",
+                  22.766,
+                  10.35
+                ]
+              },
+              {
+                "pad": "LAN1-10",
+                "route_vertex": [
+                  "B.Cu",
+                  15.232,
+                  15.215
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 1.7549390334559014,
+        "skew_interval_mm": [
+          1.7529390334559043,
+          1.7569390334558985
+        ]
+      },
+      {
+        "pos_net": "/U2D_P",
+        "neg_net": "/U2D_N",
+        "paths": {
+          "/U2D_P": {
+            "length_mm": 11.770606593008516,
+            "pad_alignment_bound_mm": 7.105427357601002e-15,
+            "terminals": [
+              {
+                "pad": "R2-2",
+                "route_vertex": [
+                  "F.Cu",
+                  38.755,
+                  8.609
+                ]
+              },
+              {
+                "pad": "USB1-3",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  8.5
+                ]
+              }
+            ]
+          },
+          "/U2D_N": {
+            "length_mm": 10.63530266889194,
+            "pad_alignment_bound_mm": 7.105427357601002e-15,
+            "terminals": [
+              {
+                "pad": "R3-2",
+                "route_vertex": [
+                  "F.Cu",
+                  39.325,
+                  10.509
+                ]
+              },
+              {
+                "pad": "USB1-2",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  10.5
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 1.1353039241165757,
+        "skew_interval_mm": [
+          1.1353039241165614,
+          1.1353039241165899
+        ]
+      },
+      {
+        "pos_net": "/U2_P",
+        "neg_net": "/U2_N",
+        "paths": {
+          "/U2_P": {
+            "length_mm": 15.835962019779629,
+            "pad_alignment_bound_mm": 0.0005000000000006111,
+            "terminals": [
+              {
+                "pad": "R2-1",
+                "route_vertex": [
+                  "F.Cu",
+                  37.739,
+                  8.609
+                ]
+              },
+              {
+                "pad": "U3-23",
+                "route_vertex": [
+                  "F.Cu",
+                  27.55,
+                  11.534
+                ]
+              }
+            ]
+          },
+          "/U2_N": {
+            "length_mm": 16.85573711833271,
+            "pad_alignment_bound_mm": 0.0005000000000023874,
+            "terminals": [
+              {
+                "pad": "R3-1",
+                "route_vertex": [
+                  "F.Cu",
+                  39.325,
+                  11.525
+                ]
+              },
+              {
+                "pad": "U3-22",
+                "route_vertex": [
+                  "F.Cu",
+                  27.15,
+                  11.534
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 1.0197750985530796,
+        "skew_interval_mm": [
+          1.0187750985530766,
+          1.0207750985530826
+        ]
+      },
+      {
+        "pos_net": "/U3SRX_P",
+        "neg_net": "/U3SRX_N",
+        "paths": {
+          "/U3SRX_P": {
+            "length_mm": 31.70212000054644,
+            "pad_alignment_bound_mm": 0.0005000000000077165,
+            "terminals": [
+              {
+                "pad": "U3-14",
+                "route_vertex": [
+                  "F.Cu",
+                  23.95,
+                  11.533
+                ]
+              },
+              {
+                "pad": "USB1-9",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  13.5
+                ]
+              }
+            ]
+          },
+          "/U3SRX_N": {
+            "length_mm": 34.31945223284634,
+            "pad_alignment_bound_mm": 0.0005000000000077165,
+            "terminals": [
+              {
+                "pad": "U3-15",
+                "route_vertex": [
+                  "F.Cu",
+                  24.35,
+                  11.533
+                ]
+              },
+              {
+                "pad": "USB1-8",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  11.5
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 2.6173322322998978,
+        "skew_interval_mm": [
+          2.6163322322998823,
+          2.618332232299913
+        ]
+      },
+      {
+        "pos_net": "/U3STX_P",
+        "neg_net": "/U3STX_N",
+        "paths": {
+          "/U3STX_P": {
+            "length_mm": 10.509066113599063,
+            "pad_alignment_bound_mm": 1.4210854715202004e-14,
+            "terminals": [
+              {
+                "pad": "C1-2",
+                "route_vertex": [
+                  "F.Cu",
+                  42.157,
+                  11.859
+                ]
+              },
+              {
+                "pad": "USB1-6",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  7.5
+                ]
+              }
+            ]
+          },
+          "/U3STX_N": {
+            "length_mm": 6.367075631857546,
+            "pad_alignment_bound_mm": 7.105427357601002e-15,
+            "terminals": [
+              {
+                "pad": "C2-2",
+                "route_vertex": [
+                  "F.Cu",
+                  41.564,
+                  7.706
+                ]
+              },
+              {
+                "pad": "USB1-5",
+                "route_vertex": [
+                  "F.Cu",
+                  46.7,
+                  5.5
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 4.141990481741518,
+        "skew_interval_mm": [
+          4.141990481741496,
+          4.141990481741539
+        ]
+      },
+      {
+        "pos_net": "/U3TX_P",
+        "neg_net": "/U3TX_N",
+        "paths": {
+          "/U3TX_P": {
+            "length_mm": 22.703988755852965,
+            "pad_alignment_bound_mm": 0.0005000000000006111,
+            "terminals": [
+              {
+                "pad": "U3-18",
+                "route_vertex": [
+                  "F.Cu",
+                  25.55,
+                  11.534
+                ]
+              },
+              {
+                "pad": "C1-1",
+                "route_vertex": [
+                  "F.Cu",
+                  41.141,
+                  11.859
+                ]
+              }
+            ]
+          },
+          "/U3TX_N": {
+            "length_mm": 25.689927561629585,
+            "pad_alignment_bound_mm": 0.0005000000000077165,
+            "terminals": [
+              {
+                "pad": "C2-1",
+                "route_vertex": [
+                  "F.Cu",
+                  40.548,
+                  7.706
+                ]
+              },
+              {
+                "pad": "U3-19",
+                "route_vertex": [
+                  "F.Cu",
+                  25.95,
+                  11.534
+                ]
+              }
+            ]
+          }
+        },
+        "max_skew_mm": 0.2,
+        "status": "FAIL",
+        "skew_mm": 2.9859388057766196,
+        "skew_interval_mm": [
+          2.9849388057766113,
+          2.986938805776628
+        ]
+      }
+    ]
+  },
+  "independent_lvs_opens": [
+    {
+      "net": "Net-(U3-VDD5)",
+      "components": 5,
+      "pad_count": 5,
+      "pad_groups": {
+        "2": [
+          "C12-1"
+        ],
+        "4": [
+          "FB1-2"
+        ],
+        "0": [
+          "U3-26"
+        ],
+        "3": [
+          "U4-1"
+        ],
+        "1": [
+          "U4-4"
+        ]
+      }
+    },
+    {
+      "net": "/V12",
+      "components": 19,
+      "pad_count": 19,
+      "pad_groups": {
+        "16": [
+          "C16-2"
+        ],
+        "12": [
+          "C17-1"
+        ],
+        "0": [
+          "C18-2"
+        ],
+        "11": [
+          "C19-2"
+        ],
+        "13": [
+          "C20-2"
+        ],
+        "14": [
+          "C21-2"
+        ],
+        "10": [
+          "C24-2"
+        ],
+        "6": [
+          "C25-2"
+        ],
+        "18": [
+          "C26-2"
+        ],
+        "9": [
+          "L1-2"
+        ],
+        "4": [
+          "R15-1"
+        ],
+        "3": [
+          "U3-4"
+        ],
+        "5": [
+          "U3-9"
+        ],
+        "7": [
+          "U3-13"
+        ],
+        "8": [
+          "U3-20"
+        ],
+        "17": [
+          "U3-24"
+        ],
+        "15": [
+          "U3-31"
+        ],
+        "2": [
+          "U3-42"
+        ],
+        "1": [
+          "U3-46"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U3-DVDD10_UPS)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "1": [
+          "C22-1"
+        ],
+        "0": [
+          "U3-27"
+        ]
+      }
+    },
+    {
+      "net": "Net-(LAN1-P5)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "0": [
+          "C3-1"
+        ],
+        "1": [
+          "LAN1-5",
+          "LAN1-5",
+          "LAN1-5",
+          "LAN1-5"
+        ]
+      }
+    },
+    {
+      "net": "Net-(LAN1-P6)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "1": [
+          "C4-1"
+        ],
+        "0": [
+          "LAN1-6",
+          "LAN1-6",
+          "LAN1-6",
+          "LAN1-6"
+        ]
+      }
+    },
+    {
+      "net": "Net-(C5-Pad1)",
+      "components": 4,
+      "pad_count": 4,
+      "pad_groups": {
+        "6": [
+          "C5-1"
+        ],
+        "8": [
+          "R4-1"
+        ],
+        "0": [
+          "USB1-0",
+          "USB1-0",
+          "USB1-0",
+          "USB1-0"
+        ],
+        "1": [
+          "USB1-0",
+          "USB1-0",
+          "USB1-0",
+          "USB1-0"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U3-CKXTAL1)",
+      "components": 3,
+      "pad_count": 3,
+      "pad_groups": {
+        "1": [
+          "C7-2"
+        ],
+        "0": [
+          "U3-44"
+        ],
+        "2": [
+          "X1-3"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U3-CKXTAL2)",
+      "components": 3,
+      "pad_count": 3,
+      "pad_groups": {
+        "1": [
+          "C8-1"
+        ],
+        "0": [
+          "U3-45"
+        ],
+        "2": [
+          "X1-1"
+        ]
+      }
+    },
+    {
+      "net": "Net-(C9-Pad1)",
+      "components": 3,
+      "pad_count": 3,
+      "pad_groups": {
+        "7": [
+          "C9-1"
+        ],
+        "0": [
+          "LAN1-SH1",
+          "LAN1-SH1",
+          "LAN1-SH1",
+          "LAN1-SH1"
+        ],
+        "1": [
+          "LAN1-SH2",
+          "LAN1-SH2",
+          "LAN1-SH2",
+          "LAN1-SH2"
+        ]
+      }
+    },
+    {
+      "net": "/VBUS",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "1": [
+          "FB1-1"
+        ],
+        "0": [
+          "USB1-1"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U4-LX)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "1": [
+          "L1-1"
+        ],
+        "0": [
+          "U4-3"
+        ]
+      }
+    },
+    {
+      "net": "/LED0",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "0": [
+          "LAN1-11",
+          "LAN1-11",
+          "LAN1-11",
+          "LAN1-11"
+        ],
+        "1": [
+          "U3-30"
+        ]
+      }
+    },
+    {
+      "net": "Net-(LAN1-Pad12)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "0": [
+          "LAN1-12",
+          "LAN1-12",
+          "LAN1-12",
+          "LAN1-12"
+        ],
+        "1": [
+          "R7-1"
+        ]
+      }
+    },
+    {
+      "net": "Net-(LAN1-Pad14)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "1": [
+          "LAN1-14",
+          "LAN1-14",
+          "LAN1-14",
+          "LAN1-14"
+        ],
+        "0": [
+          "R1-1"
+        ]
+      }
+    },
+    {
+      "net": "/LED2",
+      "components": 5,
+      "pad_count": 5,
+      "pad_groups": {
+        "3": [
+          "R1-2"
+        ],
+        "0": [
+          "R13-2"
+        ],
+        "4": [
+          "R14-1"
+        ],
+        "1": [
+          "U2-4"
+        ],
+        "2": [
+          "U3-41"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U3-XTALDET)",
+      "components": 3,
+      "pad_count": 3,
+      "pad_groups": {
+        "0": [
+          "R10-2"
+        ],
+        "2": [
+          "R9-2"
+        ],
+        "1": [
+          "U3-37"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U3-GPIO)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "0": [
+          "R11-1"
+        ],
+        "1": [
+          "U3-29"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U4-FB)",
+      "components": 3,
+      "pad_count": 3,
+      "pad_groups": {
+        "1": [
+          "R12-1"
+        ],
+        "0": [
+          "R15-2"
+        ],
+        "2": [
+          "U4-5"
+        ]
+      }
+    },
+    {
+      "net": "/LED1",
+      "components": 3,
+      "pad_count": 3,
+      "pad_groups": {
+        "0": [
+          "R5-1"
+        ],
+        "1": [
+          "R7-2"
+        ],
+        "2": [
+          "U3-32"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U2-CLK)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "0": [
+          "R5-2"
+        ],
+        "1": [
+          "U2-2"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U2-DI)",
+      "components": 3,
+      "pad_count": 3,
+      "pad_groups": {
+        "2": [
+          "R6-1"
+        ],
+        "0": [
+          "U2-3"
+        ],
+        "1": [
+          "U3-38"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U3-RSET)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "1": [
+          "R8-1"
+        ],
+        "0": [
+          "U3-47"
+        ]
+      }
+    },
+    {
+      "net": "Net-(U2-CS)",
+      "components": 2,
+      "pad_count": 2,
+      "pad_groups": {
+        "0": [
+          "U2-1"
+        ],
+        "1": [
+          "U3-40"
+        ]
+      }
+    }
+  ],
+  "independent_lvs_shorts": [],
+  "nonthermal_via_in_pad": [],
+  "partial_board_pours": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 792.737,
+    "fill_ratio": 0.8102,
+    "f_cu_pour_mm2": 585.896,
+    "b_cu_pour_mm2": 652.669,
+    "stitching_vias_added": 4,
+    "antipad_cutouts": 52,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "ses_sha256": "deaf77efb2a8cedd64b66a8f0fea711603df498b741954f07321723e2bfdc102"
+}

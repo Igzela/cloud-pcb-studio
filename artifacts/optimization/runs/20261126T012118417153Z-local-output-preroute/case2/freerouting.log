@@ -1,0 +1,30 @@
+2026-11-26 01:25:19.882 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)
+2026-11-26 01:25:20.256 INFO   Hardware: 2 CPU cores, 273 CPU score, 2048 MB RAM
+2026-11-26 01:25:20.260 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
+2026-11-26 01:25:20.266 INFO   Configured network proxy: proxy:8080
+2026-11-26 01:25:21.607 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-26 01:25:21.907 INFO   [E52AAD\CD1FD9] Loading board file 'board_freerouting.dsn'...
+2026-11-26 01:25:22.004 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-26 01:25:22.361 WARN   Layer 'In1.Cu' is declared as a power layer but no plane is defined for it. It will be treated as a signal layer.
+2026-11-26 01:25:22.404 INFO   [E52AAD\CD1FD9] Job 'E52AAD\CD1FD9' started at 2026-11-26T01:25:22.404315046Z.
+2026-11-26 01:25:22.504 WARN   Design Warning: Board has 2 pre-existing clearance violation(s) in the loaded design (before routing):
+  - 2 unfixable violation(s) (cannot be resolved by Freerouting):
+      * 2 pin-to-pin clearance violations:
+          - J9.B12 <-> J9.A1
+          - J9.B1 <-> J9.A12
+  - 0 potentially fixable violations
+Notice: Freerouting does not modify component placement, board outlines, or fixed items.
+Resolving these 2 unfixable violation(s) is the responsibility of the board author in their EDA tool (e.g. KiCad).
+2026-11-26 01:25:22.563 INFO   [E52AAD\CD1FD9] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=1.
+2026-11-26 01:25:22.745 INFO   [E52AAD\CD1FD9] Fanout stage started on board '7b48f14c0ed819b5abf9ab8d141a645b' with 131 of 226 SMD pins needing fanout (0 already connected, 95 netless).
+2026-11-26 01:25:26.026 INFO   [E52AAD\CD1FD9] Fanout pass #1 on board '6c04b7178a5f8d5f3d9d887e28711349' completed in 3.21 seconds with 39 SMD pins fanouted, 89 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-26 01:25:26.930 INFO   [E52AAD\CD1FD9] Fanout pass #2 on board '194d4db3bb16d43708c6178938c39056' completed in 0.87 seconds with 3 SMD pins fanouted, 45 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-26 01:25:27.403 INFO   [E52AAD\CD1FD9] Fanout pass #3 on board '194d4db3bb16d43708c6178938c39056' completed in 0.44 seconds with 0 SMD pins fanouted, 8 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-26 01:25:27.412 INFO   [E52AAD\CD1FD9] Fanout stage completed: started with 131 total SMD pins, completed in 4.65 seconds, escaped pins: 60/131 (45.8%), using 4.21 total CPU seconds, 0.92 GB total allocated, and 161.3 MB peak heap usage.
+2026-11-26 01:25:27.600 INFO   [E52AAD\CD1FD9] Auto-routing stage started on board '194d4db3bb16d43708c6178938c39056' with baseline score 270.55 for 60 unrouted items.
+2026-11-26 01:25:39.419 INFO   [E52AAD\CD1FD9] Auto-routing pass #1 on board '194d4db3bb16d43708c6178938c39056' was completed in 11.71 seconds with score 947.12 (4 unrouted and 2 violations), using 14.96 CPU seconds and the job allocated 4.92 GB of memory so far.
+2026-11-26 01:25:39.693 INFO   [E52AAD\CD1FD9] Auto-routing stage completed: started with 99 unrouted nets, completed in 17.05 seconds, final score: 947.12 (4 unrouted and 2 violations), using 15.89 total CPU seconds, 5.28 GB total allocated, and 188.9 MB peak heap usage.
+2026-11-26 01:25:39.722 INFO   [E52AAD\CD1FD9] Job 'E52AAD\CD1FD9' finished with state: COMPLETED (elapsed: 17.32 seconds, finished at UTC: 2026-11-26T01:25:39.721556709Z).
+2026-11-26 01:25:39.753 INFO   Saving output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case2/board_freerouting.ses' (SES)...
+2026-11-26 01:25:39.755 INFO   Successfully saved output file '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case2/board_freerouting.ses' (54542 bytes).
+

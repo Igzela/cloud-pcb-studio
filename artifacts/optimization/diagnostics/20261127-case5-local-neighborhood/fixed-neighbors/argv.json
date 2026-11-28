@@ -1,0 +1,19 @@
+[
+  "fastroute",
+  "-de",
+  "/workspace/cloud-pcb-studio/.run/active-protected-local-neighborhood.1tNDVm/board.dsn",
+  "-do",
+  "/workspace/cloud-pcb-studio/.run/active-protected-local-neighborhood.1tNDVm/board.ses",
+  "--report=/workspace/cloud-pcb-studio/.run/active-protected-local-neighborhood.1tNDVm/report.json",
+  "--initial-session=/workspace/cloud-pcb-studio/.run/active-protected-local-neighborhood.1tNDVm/warm-seed.ses",
+  "--max-time=143",
+  "--multi-start=1",
+  "--router.autorouter.max_threads=2",
+  "--router.fanout.enabled=false",
+  "--router.optimizer.enabled=false",
+  "--router.neck_width_um=100",
+  "--router.min_trace_width_um=100",
+  "--layer-heights=0.035,0.245,1.328,1.591",
+  "--router.copper_to_edge_clearance_um=500",
+  "--no-neckdown-classes=DIFF_PAIR_004,DIFF_PAIR_007"
+]

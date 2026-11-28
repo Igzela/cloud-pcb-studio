@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/.run/active-front-power-led.eW5dm4/board.dsn",
+  "time_s": {"load": 0.5646, "route": 1.1691, "total": 1.9158, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 114, "vias_blind": 0, "vias_buried": 0, "traces": 430, "trace_length_mm": 1025.1532, "bends_90": 6, "bends_45": 420, "bends_other": 0, "router_score": 1000, "optimizer_score": 231.5801},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

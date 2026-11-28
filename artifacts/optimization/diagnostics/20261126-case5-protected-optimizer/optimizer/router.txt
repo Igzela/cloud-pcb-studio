@@ -1,0 +1,36 @@
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 2.1 ms: 4 layers, 52 components, 43 nets, 115 wires
+    0.316 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.316 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.322 INFO  initial session '.run/protected-copper-probe.efvKI6/unfixed-seed.ses': 291 wires and 58 vias imported (0 errors)
+    0.506 INFO  56 trace ends inside a pad but off its center joined to the center
+    0.506 INFO  built board in 503.9 ms: 926 items (186 pins, 116 vias, 462 traces)
+    0.506 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.506 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.708 INFO  Optimization stage started. Baseline router score: 1000.00, optimizer score: 283.58, incomplete connections: 0, clearance violations: 0.
+   33.877 INFO  Optimizer pass #1: 91 of 224 candidates after 33 s (63 improving so far).
+   60.889 INFO  Optimizer pass #1: 136 of 224 candidates after 60 s (93 improving so far).
+   80.341 INFO  Optimizer greedy phase stopped after 22 of 164 candidates (3.5 s, no further improvements).
+   80.341 INFO  Optimizer pass #1: applied 3 more improving candidate(s).
+   80.575 INFO  Optimizer pass #1 was completed in 79.87 seconds (224 of 224 candidates) with the score of 286.77 (0 unrouted and 0 violations).
+   80.584 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '.run/protected-copper-probe.efvKI6/optimizer/board.ses'
+   80.584 INFO  Optimizer pass #1: optimizer score 283.58 -> 286.77 (IMPROVED, 1.1255%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  119.800 INFO  Optimizer pass #2: 92 of 190 candidates after 39 s (42 improving so far).
+  140.709 INFO  Optimizer pass #2: 184 of 190 candidates after 60 s (81 improving so far).
+  147.944 INFO  Optimizer greedy phase stopped after 53 of 80 candidates (6.8 s, no further improvements).
+  147.944 INFO  Optimizer pass #2: applied 14 more improving candidate(s).
+  147.944 INFO  Optimizer pass #2 was completed in 67.36 seconds (190 of 190 candidates) with the score of 339.82 (0 unrouted and 0 violations).
+  147.949 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '.run/protected-copper-probe.efvKI6/optimizer/board.ses'
+  147.949 INFO  Optimizer pass #2: optimizer score 286.77 -> 339.82 (IMPROVED, 18.4971%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  179.190 INFO  Optimizer pass #3: 40 of 174 candidates after 31 s (19 improving so far).
+  208.102 INFO  Optimizer pass #3: 82 of 174 candidates after 60 s (30 improving so far).
+  237.976 INFO  Optimizer pass #3: 171 of 174 candidates after 90 s (54 improving so far).
+  240.507 WARN  --max-time (240 s) reached: finishing with the best result so far
+  240.510 INFO  Optimizer pass #3: applied 2 more improving candidate(s).
+  240.708 INFO  Optimizer pass #3 was completed in 92.76 seconds (174 of 174 candidates) with the score of 347.16 (0 unrouted and 0 violations).
+  240.710 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '.run/protected-copper-probe.efvKI6/optimizer/board.ses'
+  240.710 INFO  Optimizer pass #3: optimizer score 339.82 -> 347.16 (IMPROVED, 2.1612%), router score: 1000.00, incomplete connections: 0, clearance violations: 0.
+  240.710 INFO  Optimization stage interrupted: Baseline router score: 1000.00, baseline optimizer score: 283.58, final router score: 1000.00, final optimizer score: 347.16, completed in 240.00 seconds.
+  240.710 INFO  routing finished in 240.20 s
+  240.885 INFO  saved '.run/protected-copper-probe.efvKI6/optimizer/board.ses' (48231 bytes)
+  241.272 INFO  report written to '.run/protected-copper-probe.efvKI6/optimizer/report.json'

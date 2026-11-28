@@ -37,11 +37,11 @@ python -m scripts.optimize_pcb status
 source scripts/env.sh
 python -m scripts.optimize_pcb run \
   --label my-generic-change \
-  --variant placement-recovery \
+  --variant dense-escape-repair \
   --hypothesis '说明改动依据、预期改善指标和适用条件'
 ```
 
-当前回归产物使用 `placement-recovery`。命令省略 `--variant` 时使用原有的 `stable`。首个电源语义实验可单独复现：
+2026 年 11 月 22 日晋升的七板回归产物使用 `dense-escape-repair`。命令省略 `--variant` 时使用 `stable`。优先级见[项目路线图](project-roadmap.zh-CN.md)。首个电源语义实验可单独复现：
 
 ```bash
 source scripts/env.sh
@@ -84,7 +84,7 @@ python -m scripts.optimize_pcb history
 
 1. 全部已注册回归案例覆盖；pytest 返回成功。
 2. 每板都有完整、相互一致的审计证据和通过的离线浏览器检查。
-3. 逐板未布通、独立开短路、真实间距、Via-in-Pad、全部 11 层 Gerber、孔环、双面丝印、板边铜距、RF 和机械证据均不退步。过去通过的门禁不得变失败。
+3. 逐板未布通、独立开短路、真实间距、Via-in-Pad、所需 Gerber 层、孔环、双面丝印、板边铜距、RF 和机械证据均不退步。过去通过的门禁不得变失败。当前基线的 11 个 Gerber 层均通过解析，并附有 PTH 和 NPTH 两份 Excellon 钻孔文件。
 4. 电容距离代理值、地填充不足量等已比较质量指标也不退步。线长仅在前后两板均完整布通且 LVS 无开短路时比较。
 5. 至少有一项实际改善。指标相同不能凭“又跑了一轮”晋升。
 
@@ -94,7 +94,7 @@ python -m scripts.optimize_pcb history
 
 ## 过程完整性
 
-- 注册表 `benchmark_case/optimization_suite.json` 固定数据集、输入哈希 和历史基线哈希。Case 1–5、10–11 共七块板用于回归。Case 10–11 完成整组冻结和人工参考对比后加入，沿用解封前产物作为基线。Case 6–9 保持密封。
+- 注册表 `benchmark_case/optimization_suite.json` 固定数据集、输入哈希 和历史基线哈希。Case 1–5、10–11 共七块板用于回归。Case 10–11 完成整组冻结和人工参考对比后加入，沿用解封前产物作为基线。Case 6–9、12–13 保持密封。
 - `sealed_holdout` 必须带密封元数据。已解封案例不能被改标签冒充 holdout；未解封案例不能进入日常优化的训练/回归运行。流程只读取密封状态元数据，不打开参考 PCB，也不自动解封。新泛化实验仍须走独立密封、代码冻结、完整产物冻结和解封比较流程。
 - 每轮保存源码、测试、工具、依赖锁文件和注册表的哈希与 `source.tar.gz`；输入复制到该轮 `inputs/`，与原规范哈希一致。
 - 每个阶段前后检查源码及输入。途中改代码或输入会使轮次失效，禁止晋升；候选进程失败、超时或 3D 出错均记录为失败。

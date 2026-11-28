@@ -1,0 +1,36 @@
+    0.000 INFO  fastroute 0.1.14
+    0.009 INFO  parsed 'board.dsn' in 8.3 ms: 4 layers, 52 components, 43 nets, 322 wires
+    0.339 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.339 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.341 INFO  initial session '/workspace/cloud-pcb-studio/.run/active-front-isolated-power.hINyIS/warm-seed.ses': 61 wires and 7 vias imported (0 errors)
+    0.520 INFO  52 trace ends inside a pad but off its center joined to the center
+    0.520 INFO  built board in 511.4 ms: 895 items (186 pins, 114 vias, 433 traces)
+    0.520 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.520 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.520 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    0.734 INFO  checkpoint: best board so far (1 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-front-isolated-power.hINyIS/board.ses'
+    0.734 INFO  Auto-routing stage started with baseline score 990.20 for 1 unrouted item.
+    1.315 INFO  Auto-routing pass #1 was completed in 0.58 seconds with score 990.20 (1 unrouted and 0 violations) (routed 0, failed 2, ripped 0).
+    2.114 INFO  Auto-routing pass #2 was completed in 0.80 seconds with score 833.33 (17 unrouted and 0 violations) (routed 1, failed 1, ripped 0).
+    3.791 INFO  Auto-routing pass #3 was completed in 1.68 seconds with score 970.59 (3 unrouted and 0 violations) (routed 15, failed 2, ripped 0).
+    5.023 INFO  Auto-routing pass #4 was completed in 1.23 seconds with score 843.14 (16 unrouted and 0 violations) (routed 2, failed 1, ripped 0).
+    6.439 INFO  Auto-routing pass #5 was completed in 1.42 seconds with score 823.53 (18 unrouted and 0 violations) (routed 14, failed 1, ripped 0).
+    7.714 INFO  Auto-routing pass #6 was completed in 1.28 seconds with score 911.76 (9 unrouted and 0 violations) (routed 15, failed 1, ripped 0).
+    8.330 INFO  Auto-routing pass #7 was completed in 0.62 seconds with score 960.78 (4 unrouted and 0 violations) (routed 6, failed 0, ripped 0).
+    8.565 INFO  Auto-routing pass #8 was completed in 0.24 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+    8.819 INFO  Auto-routing pass #9 was completed in 0.25 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+    9.098 INFO  Auto-routing pass #10 was completed in 0.28 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+    9.331 INFO  Auto-routing pass #11 was completed in 0.23 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+    9.559 INFO  Auto-routing pass #12 was completed in 0.23 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+    9.785 INFO  Auto-routing pass #13 was completed in 0.23 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+   10.011 INFO  Auto-routing pass #14 was completed in 0.23 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+   10.233 INFO  Auto-routing pass #15 was completed in 0.22 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+   10.461 INFO  Auto-routing pass #16 was completed in 0.23 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+   10.686 INFO  Auto-routing pass #17 was completed in 0.22 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+   10.929 INFO  Auto-routing pass #18 was completed in 0.24 seconds with score 960.78 (4 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+   10.929 INFO  The router's score (960.78) has not improved by more than 0.5 points in the last 10 passes (4 items still unconnected). Stopping the auto-router.
+   11.147 INFO  Auto-routing stage completed: started with 1 unrouted nets, completed in 10.41 seconds, final score: 990.20 (1 unrouted and 0 violations).
+   11.147 INFO  4 item(s) cannot be routed even on the board as loaded (blocked by pins, keepouts or fixed wiring); they were skipped after their second failure.
+   11.147 INFO  routing finished in 10.63 s
+   11.318 INFO  saved '/workspace/cloud-pcb-studio/.run/active-front-isolated-power.hINyIS/board.ses' (14592 bytes)
+   11.697 INFO  report written to '/workspace/cloud-pcb-studio/.run/active-front-isolated-power.hINyIS/report.json'

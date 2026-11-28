@@ -2412,6 +2412,7 @@ def _run_dense_escape_pass(
     *,
     micro_escape: bool = False,
     skip_coupled_pairs: bool = False,
+    local_output_preroute: bool = False,
 ) -> dict[str, Any]:
     """Execute one dense-escape routing pass (standard or fine-pitch micro-escape)."""
     from copy import deepcopy
@@ -2479,9 +2480,6 @@ def _run_dense_escape_pass(
         ic_escape_rings=ic_rings,
         ic_escape_penalty=4000.0 if micro_escape else 0.0,
     )
-    alt_unrouted_path = cand_dir / "board_unrouted.kicad_pcb"
-    alt_board.to_file(str(alt_unrouted_path))
-
     alt_dsn = cand_dir / "board.dsn"
     alt_routing_layers = {
         c: ("F.Cu", "B.Cu") if c.startswith("DIFF_PAIR") else ("F.Cu", "In2.Cu", "B.Cu")
@@ -2512,6 +2510,31 @@ def _run_dense_escape_pass(
         physical_ground_plane=phys_plane,
     )
     board_to_dsn(alt_board, alt_dsn, **dsn_export_kwargs)
+    local_links = []
+    if local_output_preroute:
+        from cloud_pcb.general_solver.direct_repair import propose_local_output_links
+        from cloud_pcb.general_solver.direct_repair_replay import _fixed_wiring
+        from cloud_pcb.general_solver.electrical import local_output_decoupler_targets
+
+        power_rails = {rail['net'] for rail in spec.get('design_requirements', {}).get('power_rails', [])}
+        power_rails.update(net for net in spec['nets'] if _is_power_net(net))
+        targets = local_output_decoupler_targets(spec, power_rails)
+        local_links = propose_local_output_links(
+            alt_board, board_poly, alt_keepouts, alt_netclasses, alt_net_to_class, alt_routing_layers, targets,
+        )
+        if local_links:
+            alt_dsn.write_text(_fixed_wiring(alt_dsn.read_text(encoding='utf-8'), local_links), encoding='utf-8')
+            numbers = {net.name: net.number for net in alt_board.nets}
+            for link in local_links:
+                alt_board.traceItems.append(Segment(
+                    start=Position(X=link.start_xy[0], Y=link.start_xy[1]),
+                    end=Position(X=link.end_xy[0], Y=link.end_xy[1]),
+                    width=link.width_mm, layer=link.layer, net=numbers[link.net], tstamp=str(uuid.uuid4()),
+                ))
+        save_json(cand_dir / 'local_output_preroute.json', {'targets': targets, 'segments': [asdict(link) for link in local_links]})
+
+    alt_unrouted_path = cand_dir / "board_unrouted.kicad_pcb"
+    alt_board.to_file(str(alt_unrouted_path))
 
     no_neckdown = []
     for cname, rule in alt_netclasses.items():
@@ -2711,7 +2734,7 @@ def _run_dense_escape_pass(
                 cand_dir,
                 router_processes,
                 dsn_export_kwargs=dsn_export_kwargs,
-                repairs=accepted_repairs,
+                repairs=local_links + (accepted_repairs or []),
             )
             exact_sp = classify_router_violations(exact_rep, spec)
             if exact_sp["real_count"] < spacing["real_count"]:
@@ -2779,6 +2802,8 @@ def _run_dense_escape_candidate(
     pairs_path: Path,
     outdir: Path,
     router_processes: list[dict[str, Any]],
+    *,
+    local_output_preroute: bool = False,
 ) -> dict[str, Any]:
     """Run a uniform dense-escape routing candidate using rule-sized vias, octagonal guards,
     aligned structure clearance, decoupled differential-pair foreign clearance, conservative
@@ -2800,6 +2825,7 @@ def _run_dense_escape_candidate(
             micro_dir, outdir, router_processes,
             micro_escape=True,
             skip_coupled_pairs=(pass1["route_mode"] == "dense_escape_individual"),
+            local_output_preroute=local_output_preroute,
         )
         pass1["candidates_log"].extend(pass2.get("candidates_log", []))
         if pass2.get("ok"):
@@ -2844,9 +2870,10 @@ def _run_dense_escape_candidate(
     return pass1
 
 
-def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False, freerouting_jvm: bool = False, direct_repair: bool = False, placement_recovery: bool = False, two_sided_recovery: bool = False, dense_escape_repair: bool = False) -> dict[str, Any]:
+def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAULT_OUTDIR, *, derive_power: bool = False, scoped_power: bool = False, external_placement: dict[str, Any] | None = None, octagonal_fanout: bool = False, value_normalize: bool = False, freerouting_jvm: bool = False, direct_repair: bool = False, placement_recovery: bool = False, two_sided_recovery: bool = False, dense_escape_repair: bool = False, local_output_preroute: bool = False) -> dict[str, Any]:
     """Execute end-to-end blind PCB build on any blind_spec.json."""
     from cloud_pcb.general_solver.electrical import derive_electrical_requirements
+    dense_escape_repair = dense_escape_repair or local_output_preroute
     secondary_runtime = None
     if freerouting_jvm:
         from cloud_pcb.layout_route.freerouting_runtime import resolve_freerouting_jvm
@@ -3289,6 +3316,7 @@ def run_blind_solver(spec_path: Path = DEFAULT_BLIND_SPEC, outdir: Path = DEFAUL
     if dense_escape_repair and (not fr_ok or fr_stats.get("unrouted", 0) > 0 or len(independent["lvs_opens"]) > 0 or spacing["real_count"] > 0):
         cand = _run_dense_escape_candidate(
             spec, placed, board_poly, corridors, pairs_lines, pairs_path, outdir, router_processes,
+            local_output_preroute=local_output_preroute,
         )
         route_candidates.extend(cand.get("candidates_log", []))
         save_json(outdir / "router_processes.json", router_processes)
@@ -3463,8 +3491,15 @@ if __name__ == "__main__":
     parser.add_argument("--placement-recovery", action="store_true", help="Retry exhausted placement with deterministic constrained packing")
     parser.add_argument("--two-sided-recovery", action="store_true", help="After ordinary placement fails, attempt typed two-sided occupancy recovery")
     parser.add_argument("--dense-escape-repair", action="store_true", help="Enable safe primary DSN pin quoting, touching-pad/EPAD ground propagation, generalized direct repair, and unrouted-incumbent dense-escape candidate")
+    parser.add_argument("--local-output-preroute", action="store_true", help="In micro-escape, pre-route geometric links for proven local output decouplers")
     args = parser.parse_args()
-    res = run_blind_solver(args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize, freerouting_jvm=args.freerouting_jvm, direct_repair=args.direct_repair, placement_recovery=args.placement_recovery, two_sided_recovery=args.two_sided_recovery, dense_escape_repair=args.dense_escape_repair)
+    res = run_blind_solver(
+        args.spec, args.outdir, derive_power=args.derive_power, scoped_power=args.scoped_power,
+        octagonal_fanout=args.octagonal_fanout, value_normalize=args.value_normalize,
+        freerouting_jvm=args.freerouting_jvm, direct_repair=args.direct_repair,
+        placement_recovery=args.placement_recovery, two_sided_recovery=args.two_sided_recovery,
+        dense_escape_repair=args.dense_escape_repair, local_output_preroute=args.local_output_preroute,
+    )
     print(json.dumps({
         "project": res["project_name"],
         "total_placed": res["placement_meta"]["total_placed"],

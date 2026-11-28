@@ -1,0 +1,384 @@
+{
+  "selected_pairs": [
+    [
+      "/M2_P",
+      "/M2_N"
+    ],
+    [
+      "/M3_P",
+      "/M3_N"
+    ],
+    [
+      "/U3STX_P",
+      "/U3STX_N"
+    ]
+  ],
+  "copper_spacing": {
+    "F.Cu": {
+      "min_mm": 0.126627315475115,
+      "net_pair": [
+        "GND",
+        "Net-(U4-FB)"
+      ],
+      "threshold_mm": 0.1249,
+      "violations": []
+    },
+    "In1.Cu": {
+      "min_mm": 0.12703980524143468,
+      "net_pair": [
+        "/V12",
+        "/U3TX_N"
+      ],
+      "threshold_mm": 0.1249,
+      "violations": []
+    },
+    "In2.Cu": {
+      "min_mm": 0.12669999999999781,
+      "net_pair": [
+        "+3V3",
+        "/U3TX_P"
+      ],
+      "threshold_mm": 0.1249,
+      "violations": []
+    },
+    "B.Cu": {
+      "min_mm": 0.12570744838301628,
+      "net_pair": [
+        "+3V3",
+        "Net-(LAN1-Pad14)"
+      ],
+      "threshold_mm": 0.1249,
+      "violations": []
+    }
+  },
+  "lvs_opens": [],
+  "lvs_shorts": [],
+  "nonthermal_via_in_pad": [],
+  "rf_keepout": [],
+  "unrelated_trace_and_via_inventory_same_before_pours": true,
+  "preserved_other_declared_copper": {
+    "passed": true,
+    "protected_nets": {
+      "/M0_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M0_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M1_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2D_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3SRX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3TX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      }
+    }
+  },
+  "selected_matches_tuned_copper": {
+    "passed": true,
+    "protected_nets": {
+      "/M2_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M2_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/M3_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_N": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      },
+      "/U3STX_P": {
+        "passed": true,
+        "changed_trace_groups": [],
+        "removed_vias": [],
+        "added_vias": [],
+        "issues": []
+      }
+    }
+  },
+  "selected_unchanged_vias": 6,
+  "selected_segments_before": 47,
+  "selected_segments_after": 63,
+  "pours": {
+    "board_area_mm2": 978.5,
+    "pour_area_mm2": 773.267,
+    "fill_ratio": 0.7903,
+    "f_cu_pour_mm2": 460.071,
+    "b_cu_pour_mm2": 577.702,
+    "stitching_vias_added": 2,
+    "antipad_cutouts": 98,
+    "is_empty": false,
+    "power_islands": []
+  },
+  "locked_fill_ratio": 0.7903,
+  "active_fill_ratio": 0.7886,
+  "differential_pairs": [
+    {
+      "nets": [
+        "/M0_P",
+        "/M0_N"
+      ],
+      "selected": false,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 4.448433418287916
+      },
+      "tuned": {
+        "status": "UNKNOWN",
+        "skew_mm": null
+      },
+      "composite": {
+        "status": "FAIL",
+        "skew_mm": 4.448433418287916
+      }
+    },
+    {
+      "nets": [
+        "/M1_P",
+        "/M1_N"
+      ],
+      "selected": false,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 2.8769213116342733
+      },
+      "tuned": {
+        "status": "UNKNOWN",
+        "skew_mm": null
+      },
+      "composite": {
+        "status": "FAIL",
+        "skew_mm": 2.8769213116342733
+      }
+    },
+    {
+      "nets": [
+        "/M2_P",
+        "/M2_N"
+      ],
+      "selected": true,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 1.803839314447508
+      },
+      "tuned": {
+        "status": "PASS",
+        "skew_mm": 0.10003931444750691
+      },
+      "composite": {
+        "status": "PASS",
+        "skew_mm": 0.10003931444750691
+      }
+    },
+    {
+      "nets": [
+        "/M3_P",
+        "/M3_N"
+      ],
+      "selected": true,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 1.5390181525466247
+      },
+      "tuned": {
+        "status": "PASS",
+        "skew_mm": 0.09991443147576007
+      },
+      "composite": {
+        "status": "PASS",
+        "skew_mm": 0.09991443147576007
+      }
+    },
+    {
+      "nets": [
+        "/U2D_P",
+        "/U2D_N"
+      ],
+      "selected": false,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 0.6660147037580852
+      },
+      "tuned": {
+        "status": "UNKNOWN",
+        "skew_mm": null
+      },
+      "composite": {
+        "status": "FAIL",
+        "skew_mm": 0.6660147037580852
+      }
+    },
+    {
+      "nets": [
+        "/U2_P",
+        "/U2_N"
+      ],
+      "selected": false,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 23.43123025664937
+      },
+      "tuned": {
+        "status": "UNKNOWN",
+        "skew_mm": null
+      },
+      "composite": {
+        "status": "FAIL",
+        "skew_mm": 23.43123025664937
+      }
+    },
+    {
+      "nets": [
+        "/U3SRX_P",
+        "/U3SRX_N"
+      ],
+      "selected": false,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 4.0867231796035455
+      },
+      "tuned": {
+        "status": "UNKNOWN",
+        "skew_mm": null
+      },
+      "composite": {
+        "status": "FAIL",
+        "skew_mm": 4.0867231796035455
+      }
+    },
+    {
+      "nets": [
+        "/U3STX_P",
+        "/U3STX_N"
+      ],
+      "selected": true,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 4.7268094711045645
+      },
+      "tuned": {
+        "status": "PASS",
+        "skew_mm": 0.0996094711045643
+      },
+      "composite": {
+        "status": "PASS",
+        "skew_mm": 0.0996094711045643
+      }
+    },
+    {
+      "nets": [
+        "/U3TX_P",
+        "/U3TX_N"
+      ],
+      "selected": false,
+      "locked": {
+        "status": "FAIL",
+        "skew_mm": 2.084805768508879
+      },
+      "tuned": {
+        "status": "UNKNOWN",
+        "skew_mm": null
+      },
+      "composite": {
+        "status": "FAIL",
+        "skew_mm": 2.084805768508879
+      }
+    }
+  ]
+}

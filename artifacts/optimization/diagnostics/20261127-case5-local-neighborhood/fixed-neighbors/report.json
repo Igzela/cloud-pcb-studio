@@ -1,0 +1,12 @@
+{
+  "fastroute": "0.1.14",
+  "input": "/workspace/cloud-pcb-studio/.run/active-protected-local-neighborhood.1tNDVm/board.dsn",
+  "time_s": {"load": 0.4672, "route": 3.5202, "total": 4.1515, "diagnose": null},
+  "stats": {"layers": 4, "components": 52, "nets": 43, "pins": 186, "connections": 136, "unrouted": 0, "unrouted_ignored_classes": 0, "violations": 0, "violations_unfixable": 0, "vias": 116, "vias_blind": 0, "vias_buried": 0, "traces": 413, "trace_length_mm": 991.9022, "bends_90": 12, "bends_45": 415, "bends_other": 0, "router_score": 1000, "optimizer_score": 258.9023},
+  "unrouted": [
+
+  ],
+  "clearance_violations": [
+
+  ]
+}

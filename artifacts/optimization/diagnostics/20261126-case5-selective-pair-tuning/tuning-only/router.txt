@@ -1,0 +1,24 @@
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'board.dsn' in 1.8 ms: 4 layers, 52 components, 43 nets, 39 wires
+    0.301 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.301 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.307 INFO  initial session 'artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case5/dense_escape_candidate/micro_escape/board_fastroute.ses': 367 wires and 85 vias imported (0 errors)
+    0.478 INFO  56 trace ends inside a pad but off its center joined to the center
+    0.478 INFO  built board in 476.2 ms: 926 items (186 pins, 116 vias, 462 traces)
+    0.478 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.478 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.478 INFO  routing finished in 0.00 s
+    1.090 INFO  length tuning 'pair_0': 2 nets, target 13.17 mm (-0.20), before 8.52..13.17 mm, after 8.52..13.17 mm, 1 still short
+    1.090 WARN  length tuning 'pair_0': /M0_N is 8.52 mm, 4.45 mm short (no room for meanders)
+    1.090 INFO  length tuning 'pair_1': 2 nets, target 12.59 mm (-0.20), before 9.46..12.59 mm, after 12.49..12.59 mm, 0 still short
+    1.090 INFO  length tuning 'pair_2': 2 nets, target 12.96 mm (-0.20), before 11.16..12.96 mm, after 12.86..12.96 mm, 0 still short
+    1.090 INFO  length tuning 'pair_3': 2 nets, target 13.41 mm (-0.20), before 11.87..13.41 mm, after 13.31..13.41 mm, 0 still short
+    1.090 INFO  length tuning 'pair_4': 2 nets, target 11.79 mm (-0.20), before 10.96..11.79 mm, after 11.69..11.79 mm, 0 still short
+    1.090 INFO  length tuning 'pair_5': 2 nets, target 39.76 mm (-0.20), before 16.84..39.76 mm, after 39.66..39.76 mm, 0 still short
+    1.090 INFO  length tuning 'pair_6': 2 nets, target 32.75 mm (-0.20), before 28.81..32.75 mm, after 32.65..32.75 mm, 0 still short
+    1.090 INFO  length tuning 'pair_7': 2 nets, target 11.09 mm (-0.20), before 6.37..11.09 mm, after 10.99..11.09 mm, 0 still short
+    1.090 INFO  length tuning 'pair_8': 2 nets, target 23.48 mm (-0.20), before 21.04..23.48 mm, after 21.94..23.48 mm, 1 still short
+    1.091 WARN  length tuning 'pair_8': /U3TX_N is 21.94 mm, 1.35 mm short (no room for meanders)
+    1.091 INFO  length tuning finished in 0.61 s
+    1.262 INFO  saved '.run/tuning-only-case5.wN2PYF/board.ses' (72790 bytes)
+    1.683 INFO  report written to '.run/tuning-only-case5.wN2PYF/report.json'

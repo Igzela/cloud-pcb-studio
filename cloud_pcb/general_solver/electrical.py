@@ -104,6 +104,49 @@ def supply_routing_scope(spec, net):
     return dict(scope='single_ic_domain', owner_ref=owner['refdes'], shunt_caps=sorted(caps), passive_members=sorted(ref for ref, kind in passives.items() if kind), supply_pins=sorted(str(p['num']) for p in supply_pins), current_verified=False, reason='one typed IC supply owner, shunt return capacitors and only passive R/L/C endpoints')
 
 
+def local_output_decoupler_targets(spec, power_rails):
+    """Identify exact pins of same-side local output bypass caps."""
+    requirements = spec.get('design_requirements', {})
+    protected = set(requirements.get('high_speed_or_clock_nets', []))
+    protected.update(n for pair in requirements.get('differential_pairs', [])
+                     for n in (pair['pos_net'], pair['neg_net']))
+    excluded = set(power_rails) | protected | GROUND_NAMES
+    components = {component['refdes']: component for component in spec.get('components', [])}
+    targets = {}
+    for net, endpoints in spec.get('nets', {}).items():
+        if not net or net in excluded or len(endpoints) != 2:
+            continue
+        scope = supply_routing_scope(spec, net)
+        if (scope['scope'] != 'single_ic_domain' or len(scope['supply_pins']) != 1
+                or len(scope['shunt_caps']) != 1):
+            continue
+        owner_ref = scope['owner_ref']
+        owner_pin, = scope['supply_pins']
+        cap_ref, = scope['shunt_caps']
+        owner, cap = components[owner_ref], components[cap_ref]
+        side = owner.get('side', 'top')
+        if side not in ('top', 'bottom') or side != cap.get('side', 'top'):
+            continue
+        if len(cap['pads']) != 2 or len({str(pad['num']) for pad in cap['pads']}) != 2:
+            continue
+        if len({pad.get('net') for pad in cap['pads']}) != 2:
+            continue
+        owner_pads = [pad for pad in owner['pads'] if str(pad['num']) == owner_pin]
+        if len(owner_pads) != 1:
+            continue
+        owner_pad = owner_pads[0]
+        if owner_pad.get('pin_type') != 'power_out':
+            continue
+        copper_layers = {'F.Cu', 'B.Cu'} if side == 'bottom' else {'F.Cu'}
+        if any(pad.get('type', 'smd') != 'smd' or pad.get('net') in protected
+               or not copper_layers.intersection(pad.get('layers') or ['F.Cu'])
+               for pad in [owner_pad, *cap['pads']]):
+            continue
+        cap_pin, = (str(pin) for ref, pin in endpoints if ref == cap_ref)
+        targets[cap_ref] = dict(net=net, owner_ref=owner_ref, owner_pin=owner_pin, cap_pin=cap_pin)
+    return targets
+
+
 def derive_electrical_requirements(spec, *, scoped=False):
     derived = copy.deepcopy(spec)
     requirements = derived.setdefault('design_requirements', {})

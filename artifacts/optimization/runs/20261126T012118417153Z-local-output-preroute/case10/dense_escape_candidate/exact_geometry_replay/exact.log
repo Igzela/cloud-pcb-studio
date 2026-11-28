@@ -1,0 +1,11 @@
+
+    0.000 INFO  fastroute 0.1.14
+    0.002 INFO  parsed 'exact.dsn' in 2.1 ms: 4 layers, 84 components, 50 nets, 43 wires
+    0.521 INFO  initial session '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case10/dense_escape_candidate/board_fastroute.ses': 456 wires and 84 vias imported (0 errors)
+    0.906 INFO  67 trace ends inside a pad but off its center joined to the center
+    0.906 INFO  built board in 903.7 ms: 961 items (274 pins, 119 vias, 566 traces)
+    0.906 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.906 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.907 INFO  routing finished in 0.00 s
+    1.291 INFO  saved '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case10/dense_escape_candidate/exact_geometry_replay/exact.ses' (82581 bytes)
+    1.970 INFO  report written to '/workspace/cloud-pcb-studio/artifacts/optimization/runs/20261126T012118417153Z-local-output-preroute/case10/dense_escape_candidate/exact_geometry_replay/exact.json'

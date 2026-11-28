@@ -1,0 +1,20 @@
+    0.000 INFO  fastroute 0.1.14
+    0.038 INFO  parsed 'board.dsn' in 37.9 ms: 4 layers, 52 components, 43 nets, 319 wires
+    0.379 INFO  net class 'DIFF_PAIR_004': no neck-down
+    0.379 INFO  net class 'DIFF_PAIR_007': no neck-down
+    0.381 INFO  initial session '/workspace/cloud-pcb-studio/.run/active-front-power-led.eW5dm4/warm-seed.ses': 78 wires and 9 vias imported (0 errors)
+    0.564 INFO  66 trace ends inside a pad but off its center joined to the center
+    0.564 INFO  built board in 526.4 ms: 921 items (186 pins, 114 vias, 459 traces)
+    0.565 INFO  threads: autorouting passes run on router.autorouter.max_threads threads (1 = sequential); the optimizer uses router.optimizer.max_threads
+    0.565 INFO  optimizer mode: JavaCompat, board time limits: WallClock, stage wall clock limits: enabled
+    0.565 INFO  Pipeline thread limits: autorouter.max_threads=2, optimizer.max_threads=1.
+    0.792 INFO  checkpoint: best board so far (1 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-front-power-led.eW5dm4/board.ses'
+    0.792 INFO  Auto-routing stage started with baseline score 990.20 for 1 unrouted item.
+    1.399 INFO  Auto-routing pass #1 was completed in 0.61 seconds with score 990.20 (1 unrouted and 0 violations) (routed 1, failed 1, ripped 2).
+    1.731 INFO  Auto-routing pass #2 was completed in 0.33 seconds with score 1000.00 (0 unrouted and 0 violations) (routed 1, failed 0, ripped 0).
+    1.733 INFO  checkpoint: best board so far (0 unrouted, 0 violations) written to '/workspace/cloud-pcb-studio/.run/active-front-power-led.eW5dm4/board.ses'
+    1.733 INFO  Auto-routing pass #3 was completed in 0.00 seconds with score 1000.00 (0 unrouted and 0 violations) (routed 0, failed 0, ripped 0).
+    1.734 INFO  Auto-routing stage completed: started with 1 unrouted nets, completed in 0.94 seconds, final score: 1000.00 (0 unrouted and 0 violations).
+    1.734 INFO  routing finished in 1.17 s
+    1.916 INFO  saved '/workspace/cloud-pcb-studio/.run/active-front-power-led.eW5dm4/board.ses' (15302 bytes)
+    2.330 INFO  report written to '/workspace/cloud-pcb-studio/.run/active-front-power-led.eW5dm4/report.json'

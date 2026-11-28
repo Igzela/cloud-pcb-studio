@@ -1,0 +1,224 @@
+(session diagnostic
+  (base_design diagnostic)
+  (placement
+    (resolution um 10)
+    (component "IMG_C1"
+      (place C1 416490 -118590 front 0)
+    )
+    (component "IMG_C10"
+      (place C10 203670 -63500 front 0)
+    )
+    (component "IMG_C11"
+      (place C11 376150 -111500 front 0)
+    )
+    (component "IMG_C12"
+      (place C12 350260 -160970 front 0)
+    )
+    (component "IMG_C14"
+      (place C14 203670 -107500 front 0)
+    )
+    (component "IMG_C15"
+      (place C15 338040 -131270 front 0)
+    )
+    (component "IMG_C16"
+      (place C16 413630 -96130 front 0)
+    )
+    (component "IMG_C17"
+      (place C17 417080 -51020 front 0)
+    )
+    (component "IMG_C18"
+      (place C18 203530 -30530 front 0)
+    )
+    (component "IMG_C19"
+      (place C19 381940 -33380 front 0)
+    )
+    (component "IMG_C2"
+      (place C2 410560 -77060 front 0)
+    )
+    (component "IMG_C20"
+      (place C20 379420 -53830 front 0)
+    )
+    (component "IMG_C21"
+      (place C21 383700 -68450 front 0)
+    )
+    (component "IMG_C22"
+      (place C22 314890 -128490 front 0)
+    )
+    (component "IMG_C24"
+      (place C24 351050 -22860 front 0)
+    )
+    (component "IMG_C25"
+      (place C25 188000 -106490 front 0)
+    )
+    (component "IMG_C26"
+      (place C26 391000 -137580 front 0)
+    )
+    (component "IMG_C27"
+      (place C27 275340 -32630 front 0)
+    )
+    (component "IMG_C3"
+      (place C3 177830 -37740 front 0)
+    )
+    (component "IMG_C4"
+      (place C4 172040 -116710 front 0)
+    )
+    (component "IMG_C5"
+      (place C5 426440 -45060 front 0)
+    )
+    (component "IMG_C6"
+      (place C6 297450 -24580 front 0)
+    )
+    (component "IMG_C7"
+      (place C7 416920 -134540 front 0)
+    )
+    (component "IMG_C8"
+      (place C8 368680 -157710 front 0)
+    )
+    (component "IMG_C9"
+      (place C9 95420 -95000 front 0)
+    )
+    (component "IMG_FB1"
+      (place FB1 348060 -135140 front 0)
+    )
+    (component "IMG_FID1"
+      (place FID1 430000 -28000 front 0)
+    )
+    (component "IMG_FID2"
+      (place FID2 430000 -162000 front 0)
+    )
+    (component "IMG_FID3"
+      (place FID3 400000 -28000 front 0)
+    )
+    (component "IMG_FID4"
+      (place FID4 400000 -162000 front 0)
+    )
+    (component "IMG_L1"
+      (place L1 188800 -152640 front 0)
+    )
+    (component "IMG_LAN1"
+      (place LAN1 63420 -95000 front 0)
+    )
+    (component "IMG_R1"
+      (place R1 440300 -98130 front 0)
+    )
+    (component "IMG_R10"
+      (place R10 255060 -25470 front 0)
+    )
+    (component "IMG_R11"
+      (place R11 279020 -19700 front 0)
+    )
+    (component "IMG_R12"
+      (place R12 365070 -133150 front 0)
+    )
+    (component "IMG_R13"
+      (place R13 229430 -22890 front 0)
+    )
+    (component "IMG_R14"
+      (place R14 334910 -156710 front 0)
+    )
+    (component "IMG_R15"
+      (place R15 197380 -84510 front 0)
+    )
+    (component "IMG_R2"
+      (place R2 382470 -86090 front 0)
+    )
+    (component "IMG_R3"
+      (place R3 393250 -110170 front 0)
+    )
+    (component "IMG_R4"
+      (place R4 455520 -48200 front 0)
+    )
+    (component "IMG_R5"
+      (place R5 322260 -19460 front 0)
+    )
+    (component "IMG_R6"
+      (place R6 174990 -81490 front 0)
+    )
+    (component "IMG_R7"
+      (place R7 182860 -60900 front 0)
+    )
+    (component "IMG_R8"
+      (place R8 436850 -71700 front 0)
+    )
+    (component "IMG_R9"
+      (place R9 441810 -127670 front 0)
+    )
+    (component "IMG_U2"
+      (place U2 338830 -77370 front 0)
+    )
+    (component "IMG_U3"
+      (place U3 257500 -85500 front 0)
+    )
+    (component "IMG_U4"
+      (place U4 299350 -156150 front 0)
+    )
+    (component "IMG_USB1"
+      (place USB1 518500 -95000 front 0)
+    )
+    (component "IMG_X1"
+      (place X1 241500 -157350 front 0)
+    )
+  )
+  (was_is
+  )
+  (routes 
+    (resolution um 10)
+    (parser
+      (host_cad "KiCad's Pcbnew")
+      (host_version "8.0.0")
+    )
+    (library_out 
+      (padstack "Via[0-3]_420:200_um"
+        (shape
+          (circle F.Cu 4200 0 0)
+        )
+        (shape
+          (circle In1.Cu 4200 0 0)
+        )
+        (shape
+          (circle In2.Cu 4200 0 0)
+        )
+        (shape
+          (circle B.Cu 4200 0 0)
+        )
+        (attach off)
+      )
+    )
+    (network_out 
+      (net "Net-(U3-DVDD10_UPS)"
+        (wire
+          (path F.Cu 1600
+            287330 -99500
+            295351 -99500
+          )
+        )
+        (wire
+          (path In2.Cu 1600
+            313938 -120788
+            317253 -117473
+            317253 -106382
+            310371 -99500
+            295351 -99500
+          )
+        )
+        (wire
+          (path F.Cu 1600
+            313938 -120788
+            311053 -123673
+            309810 -123673
+          )
+        )
+        (wire
+          (path F.Cu 1600
+            309810 -128490
+            309810 -123673
+          )
+        )
+        (via "Via[0-3]_420:200_um" 313938 -120788
+        )
+        (via "Via[0-3]_420:200_um" 295351 -99500
+        )
+      )
+    )
+  )
+)
